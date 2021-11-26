@@ -4,6 +4,7 @@ import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
 import net.jitl.init.JSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowerBlock;
 import net.minecraft.block.GrassBlock;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -15,6 +16,7 @@ import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.WitherSkullEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
@@ -29,6 +31,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class WithershroomEntity extends MonsterEntity {
 
@@ -51,14 +54,19 @@ public class WithershroomEntity extends MonsterEntity {
     }
 
     @Override
+    public @NotNull CreatureAttribute getMobType() {
+        return CreatureAttribute.UNDEAD;
+    }
+
+    @Override
     public void tick() {
         if (this.isAlive()) {
             if (tickCount % 600 == 0) {
-                List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(CreeperEntity.class, this.getBoundingBox().inflate(4D));
+                List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(CreeperEntity.class, this.getBoundingBox().inflate(1D));
                 if (!entitiesNear.isEmpty()) {
                     spawnEffectCloud();
+                    replaceWithWitherRose();
                 }
-                //transform flowers to wither roses here
             }
             if (this.getBlockStateOn().getBlock() instanceof GrassBlock) {
                 level.setBlock(this.blockPosition().below(), Blocks.COARSE_DIRT.defaultBlockState(), 1);
@@ -69,9 +77,13 @@ public class WithershroomEntity extends MonsterEntity {
 
     @Override
     public boolean hurt(@NotNull DamageSource source, float amount) {
-        if (super.hurt(source, amount) && random.nextInt(10) == 0) {
+        Entity entity = source.getDirectEntity();
+        if (entity instanceof WitherSkullEntity) {
+            return false;
+        } else if (super.hurt(source, amount) && random.nextInt(10) == 0) {
             if (source != DamageSource.OUT_OF_WORLD && source != DamageSource.MAGIC) {
                 spawnEffectCloud();
+                replaceWithWitherRose(); //TODO: move out of this method and into tick()
             }
             return true;
         } else {
@@ -91,10 +103,29 @@ public class WithershroomEntity extends MonsterEntity {
         level.playSound(null, this.blockPosition(), JSounds.HONGO_SPORE_RELEASE.get(), SoundCategory.HOSTILE, 1.0F, 1.0F);
     }
 
+    public void replaceWithWitherRose() {
+        Stream<BlockPos> blockPosStream = BlockPos.betweenClosedStream(this.getBoundingBox().inflate(2D));
+        blockPosStream.forEach((pos) -> {
+            if (level.getBlockState(pos).getBlock() instanceof FlowerBlock) {
+                level.setBlock(pos, Blocks.WITHER_ROSE.defaultBlockState(), 1);
+            }
+        });
+    }
+
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
+    }
+
+    @Override
+    public boolean addEffect(EffectInstance effectInstanceIn) {
+        return false;
+    }
+
+    @Override
+    public boolean canBeAffected(EffectInstance potioneffectIn) {
+        return potioneffectIn.getEffect() != Effects.WITHER && super.canBeAffected(potioneffectIn);
     }
 
     @Override
