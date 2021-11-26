@@ -17,6 +17,7 @@ import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.WitherSkullEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
@@ -34,6 +35,8 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class WithershroomEntity extends MonsterEntity {
+
+    public boolean canGenerateRose;
 
     public WithershroomEntity(EntityType<? extends WithershroomEntity> entityType, World world) {
         super(entityType, world);
@@ -61,16 +64,19 @@ public class WithershroomEntity extends MonsterEntity {
     @Override
     public void tick() {
         if (this.isAlive()) {
-            if (tickCount % 600 == 0) {
-                List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(CreeperEntity.class, this.getBoundingBox().inflate(1D));
+            if (tickCount % 600 == 0) { //for every 600 ticks, we check surrounding entities for creepers
+                List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(CreeperEntity.class, this.getBoundingBox().inflate(4D));
                 if (!entitiesNear.isEmpty()) {
-                    spawnEffectCloud();
-                    replaceWithWitherRose();
+                    spawnEffectCloud(); //if a creeper is nearby, we spawn an effect cloud, and set canGenerateRose to true
                 }
             }
-            if (this.getBlockStateOn().getBlock() instanceof GrassBlock) {
+            if (this.getBlockStateOn().getBlock() instanceof GrassBlock) { //if the block the entity is standing on is valid, replace it with coarse dirt
                 level.setBlock(this.blockPosition().below(), Blocks.COARSE_DIRT.defaultBlockState(), 1);
             }
+        }
+        if (canGenerateRose) { //if true, we replace all 1 block tall flowers in the area with wither roses
+            replaceWithWitherRose();
+            canGenerateRose = false; //set it back to false to prevent constant rose generation
         }
         super.tick();
     }
@@ -83,7 +89,6 @@ public class WithershroomEntity extends MonsterEntity {
         } else if (super.hurt(source, amount) && random.nextInt(10) == 0) {
             if (source != DamageSource.OUT_OF_WORLD && source != DamageSource.MAGIC) {
                 spawnEffectCloud();
-                replaceWithWitherRose(); //TODO: move out of this method and into tick()
             }
             return true;
         } else {
@@ -92,6 +97,7 @@ public class WithershroomEntity extends MonsterEntity {
     }
 
     public void spawnEffectCloud() {
+        canGenerateRose = true;
         JEffectCloudEntity poison = new JEffectCloudEntity(this, this.level, this.getX(), this.getY(), this.getZ(), 0.5F);
         poison.excludeOwner();
         poison.addPrimaryEffect(new EffectInstance(Effects.WITHER, 60, 1));
@@ -107,7 +113,7 @@ public class WithershroomEntity extends MonsterEntity {
         Stream<BlockPos> blockPosStream = BlockPos.betweenClosedStream(this.getBoundingBox().inflate(2D));
         blockPosStream.forEach((pos) -> {
             if (level.getBlockState(pos).getBlock() instanceof FlowerBlock) {
-                level.setBlock(pos, Blocks.WITHER_ROSE.defaultBlockState(), 1);
+                level.setBlockAndUpdate(pos, Blocks.WITHER_ROSE.defaultBlockState());
             }
         });
     }
@@ -147,5 +153,19 @@ public class WithershroomEntity extends MonsterEntity {
 
     protected void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
         this.playSound(SoundEvents.PIG_STEP, 0.15F, 1.0F);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putBoolean("generateRoses", canGenerateRose);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
+        if (compound.contains("generateRoses")) {
+            canGenerateRose = compound.getBoolean("generateRoses");
+        }
     }
 }
