@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -124,7 +125,7 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
         goalSelector.addGoal(1, new FloroHidingGoal()); //mutex 1
         goalSelector.addGoal(2, new FloroHiddenGoal()); //mutex 1
         goalSelector.addGoal(3, new SwimGoal(this));//mutex 4
-        goalSelector.addGoal(4, new AvoidEntityGoal<>(this, FloroEntity.class, 6.0F, 1.0D, 1.2D));//mutex 1
+        goalSelector.addGoal(4, new AvoidEntityGoal<>(this, WolfEntity.class, 6.0F, 1.0D, 1.2D));//mutex 1
 
         goalSelector.addGoal(5, new AnimatedRangedAttackGoal<>(this, RANGED_ATTACK_ACTION.get(), 1.0F, 16.0F));//mutex 3
 
