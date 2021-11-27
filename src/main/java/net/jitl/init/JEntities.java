@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.*;
+import net.jitl.common.entity.pet.MiniBoomEntity;
 import net.jitl.common.entity.projectile.*;
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
 import net.minecraft.entity.EntityClassification;
@@ -55,6 +56,15 @@ public class JEntities {
                     .sized(1.5F, 2F))
             .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
             .attributes(() -> HongoEntity.createAttributes().build())
+            .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .retrieve();
+
+    public static final EntityType<MiniBoomEntity> MINI_BOOM_TYPE = REGISTER.registerMob("miniboom",
+            Builder.of(MiniBoomEntity::new, EntityClassification.CREATURE)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(1.5F, 2F))
+            .attributes(() -> MiniBoomEntity.createAttributes().build())
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 

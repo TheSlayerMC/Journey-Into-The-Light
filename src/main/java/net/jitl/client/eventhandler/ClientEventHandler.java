@@ -11,10 +11,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import ru.timeconqueror.timecore.api.util.client.ClientProxy;
 import top.theillusivec4.curios.api.CuriosApi;
+
+import java.util.function.Predicate;
 
 @Mod.EventBusSubscriber(Dist.CLIENT)
 public class ClientEventHandler {

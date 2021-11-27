@@ -48,5 +48,7 @@ public class JEntityRenderRegistry {
         RenderingRegistry.registerEntityRenderingHandler(JEntities.CALCIA_MINE_TYPE, ParticleProjectileRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.CALCIA_BURST_TYPE, ParticleProjectileRenderer::new);
 
+        //PETS
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.MINI_BOOM_TYPE, MiniBoomRenderer::new);
     }
 }
