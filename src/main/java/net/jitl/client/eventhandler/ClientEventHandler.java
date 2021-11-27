@@ -7,14 +7,18 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
 import ru.timeconqueror.timecore.api.util.client.ClientProxy;
 import top.theillusivec4.curios.api.CuriosApi;
 
+@Mod.EventBusSubscriber(Dist.CLIENT)
 public class ClientEventHandler {
+
     public static void regToBus(IEventBus modBus, IEventBus forgeBus) {
         forgeBus.addListener(ClientEventHandler::onKeyEvent);
         forgeBus.addListener(ClientEventHandler::onBlockHighlight);
@@ -34,7 +38,7 @@ public class ClientEventHandler {
     }
 
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
-        PlayerEntity player = Minecraft.getInstance().player;
+        PlayerEntity player = ClientProxy.player();
 
         if (player != null && player.level.dimension() == JDimensions.FROZEN_WORLD) {
             if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
