@@ -27,35 +27,83 @@ object JBlockStateResources {
     @JvmStatic
     fun orientableState(location: BlockModelLocation): BlockStateResource {
         val json = JSONTimeResource.`object`(
-            null, JSONTimeResource.listOf(
+                null, JSONTimeResource.listOf(
                 JSONTimeResource.`object`(
-                    "variants", JSONTimeResource.listOf(
+                        "variants", JSONTimeResource.listOf(
                         JSONTimeResource.`object`(
-                            "facing=north", JSONTimeResource.listOf(
+                                "facing=north", JSONTimeResource.listOf(
                                 JSONTimeResource.property("model", location.toString())
-                            )
+                        )
                         ),
                         JSONTimeResource.`object`(
-                            "facing=south", JSONTimeResource.listOf(
+                                "facing=south", JSONTimeResource.listOf(
                                 JSONTimeResource.property("model", location.toString()),
                                 JSONTimeResource.property("y", 180)
-                            )
+                        )
                         ),
                         JSONTimeResource.`object`(
-                            "facing=west", JSONTimeResource.listOf(
+                                "facing=west", JSONTimeResource.listOf(
                                 JSONTimeResource.property("model", location.toString()),
                                 JSONTimeResource.property("y", 270)
-                            )
+                        )
                         ),
                         JSONTimeResource.`object`(
-                            "facing=east", JSONTimeResource.listOf(
+                                "facing=east", JSONTimeResource.listOf(
                                 JSONTimeResource.property("model", location.toString()),
                                 JSONTimeResource.property("y", 90)
-                            )
                         )
-                    )
+                        )
                 )
-            )
+                )
+        )
+        )
+        return BlockStateResource.fromJson(json)
+    }
+
+    @JvmStatic
+    fun orientableStateUpDown(location: BlockModelLocation): BlockStateResource {
+        val json = JSONTimeResource.`object`(
+                null, JSONTimeResource.listOf(
+                JSONTimeResource.`object`(
+                        "variants", JSONTimeResource.listOf(
+                        JSONTimeResource.`object`(
+                                "facing=south", JSONTimeResource.listOf(
+                                JSONTimeResource.property("model", location.toString())
+                        )
+                        ),
+                        JSONTimeResource.`object`(
+                                "facing=north", JSONTimeResource.listOf(
+                                JSONTimeResource.property("model", location.toString()),
+                                JSONTimeResource.property("y", 180)
+                        )
+                        ),
+                        JSONTimeResource.`object`(
+                                "facing=east", JSONTimeResource.listOf(
+                                JSONTimeResource.property("model", location.toString()),
+                                JSONTimeResource.property("y", 270)
+                        )
+                        ),
+                        JSONTimeResource.`object`(
+                                "facing=west", JSONTimeResource.listOf(
+                                JSONTimeResource.property("model", location.toString()),
+                                JSONTimeResource.property("y", 90)
+                        )
+                        ),
+                        JSONTimeResource.`object`(
+                                "facing=up", JSONTimeResource.listOf(
+                                JSONTimeResource.property("model", location.toString())
+                        )
+                        ),
+                        JSONTimeResource.`object`(
+                                "facing=down",
+                                JSONTimeResource.listOf(
+                                        JSONTimeResource.property("model", location.toString()),
+                                        JSONTimeResource.property("x", 90)
+                                )
+                        )
+                )
+                )
+        )
         )
         return BlockStateResource.fromJson(json)
     }
@@ -63,30 +111,30 @@ object JBlockStateResources {
     @JvmStatic
     fun rotatablePillarState(location: BlockModelLocation): BlockStateResource {
         val json = JSONTimeResource.`object`(
-            null, JSONTimeResource.listOf(
+                null, JSONTimeResource.listOf(
                 JSONTimeResource.`object`(
-                    "variants", JSONTimeResource.listOf(
+                        "variants", JSONTimeResource.listOf(
                         JSONTimeResource.`object`(
-                            "axis=y", JSONTimeResource.listOf(
+                                "axis=y", JSONTimeResource.listOf(
                                 JSONTimeResource.property("model", location.toString())
-                            )
+                        )
                         ),
                         JSONTimeResource.`object`(
-                            "axis=z", JSONTimeResource.listOf(
+                                "axis=z", JSONTimeResource.listOf(
                                 JSONTimeResource.property("model", location.toString()),
                                 JSONTimeResource.property("x", 90)
-                            )
+                        )
                         ),
                         JSONTimeResource.`object`(
-                            "axis=x", JSONTimeResource.listOf(
+                                "axis=x", JSONTimeResource.listOf(
                                 JSONTimeResource.property("model", location.toString()),
                                 JSONTimeResource.property("x", 90),
                                 JSONTimeResource.property("y", 90)
-                            )
                         )
-                    )
+                        )
                 )
-            )
+                )
+        )
         )
         return BlockStateResource.fromJson(json)
     }
