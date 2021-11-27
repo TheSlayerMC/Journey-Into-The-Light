@@ -492,7 +492,7 @@ public class BlockRegistrator {
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.CUTOUT)
                 .defaultBlockItem(JTabs.BLOCKS)
-                .state(JBlockStateResources.orientableStateUpDown(JITL.bml("block/" + name)))
+                .state(JBlockStateResources.orientableStateAllSides(JITL.bml("block/" + name)))
                 .model(JITL.bml("block/" + name),
                         () -> BlockModels.crossModel(JITL.tl("block/" + texture)));
     }

@@ -61,30 +61,30 @@ object JBlockStateResources {
     }
 
     @JvmStatic
-    fun orientableStateUpDown(location: BlockModelLocation): BlockStateResource {
+    fun orientableStateAllSides(location: BlockModelLocation): BlockStateResource {
         val json = JSONTimeResource.`object`(
                 null, JSONTimeResource.listOf(
                 JSONTimeResource.`object`(
                         "variants", JSONTimeResource.listOf(
                         JSONTimeResource.`object`(
-                                "facing=south", JSONTimeResource.listOf(
+                                "facing=north", JSONTimeResource.listOf(
                                 JSONTimeResource.property("model", location.toString())
                         )
                         ),
                         JSONTimeResource.`object`(
-                                "facing=north", JSONTimeResource.listOf(
+                                "facing=south", JSONTimeResource.listOf(
                                 JSONTimeResource.property("model", location.toString()),
                                 JSONTimeResource.property("y", 180)
                         )
                         ),
                         JSONTimeResource.`object`(
-                                "facing=east", JSONTimeResource.listOf(
+                                "facing=west", JSONTimeResource.listOf(
                                 JSONTimeResource.property("model", location.toString()),
                                 JSONTimeResource.property("y", 270)
                         )
                         ),
                         JSONTimeResource.`object`(
-                                "facing=west", JSONTimeResource.listOf(
+                                "facing=east", JSONTimeResource.listOf(
                                 JSONTimeResource.property("model", location.toString()),
                                 JSONTimeResource.property("y", 90)
                         )
@@ -95,12 +95,11 @@ object JBlockStateResources {
                         )
                         ),
                         JSONTimeResource.`object`(
-                                "facing=down",
-                                JSONTimeResource.listOf(
-                                        JSONTimeResource.property("model", location.toString()),
-                                        JSONTimeResource.property("x", 90)
-                                )
+                                "facing=down", JSONTimeResource.listOf(
+                                JSONTimeResource.property("model", location.toString()),
+                                JSONTimeResource.property("x", 180)
                         )
+                        ),
                 )
                 )
         )
