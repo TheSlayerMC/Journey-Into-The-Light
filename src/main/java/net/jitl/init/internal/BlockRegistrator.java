@@ -17,7 +17,6 @@ import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
-import net.minecraft.block.DeadCoralWallFanBlock;
 import net.minecraft.block.MagmaBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.client.renderer.RenderType;
@@ -273,7 +272,7 @@ public class BlockRegistrator {
         registerCustomRenderLayerBlock("frozen_leaves", "Frozen Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("frosty_ice", "Frosty Ice", () -> new Block(JBlockProperties.ICE_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
 
-        registerAttachedRenderedBlock("frost_crystal_large", "Large Frost Crystal", () -> new DeadCoralWallFanBlock(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()),
+        registerAttachedRenderedBlock("frost_crystal_large", "Large Frost Crystal", () -> new AttachedBlock(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()),
                 "frost_crystal_large");
 
         registerCustomRenderLayerBlock("silver_bot_spawner", "Silverbot Spawner", () -> new JSpawnerBlock(JEntities.TOWER_GUARDIAN_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);

@@ -28,10 +28,18 @@ public class AttachedBlock extends Block {
     @Override
     public BlockState getStateForPlacement(@NotNull BlockItemUseContext blockItemUseContext) {
         BlockState blockstate = this.defaultBlockState();
+        IWorldReader worldReader = blockItemUseContext.getLevel();
+        BlockPos blockPos = blockItemUseContext.getClickedPos();
+
         Direction[] directions = blockItemUseContext.getNearestLookingDirections();
-        for (int i = 0; i < directions.length; i++) {
-            Direction direction = directions[i].getOpposite();
-            return blockstate.setValue(FACING, direction);
+
+        for (int i = 0; i < directions.length; ++i) {
+            Direction direction = directions[i];
+            Direction direction2 = direction.getOpposite();
+            blockstate = blockstate.setValue(FACING, direction2);
+            if (blockstate.canSurvive(worldReader, blockPos)) {
+                return blockstate;
+            }
         }
         return null;
     }
