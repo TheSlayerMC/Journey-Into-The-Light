@@ -30,7 +30,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     private float velocityMultiplier;
     private double rangeAddend;
     private int flameAddend;
-    private int faithful;
+    private int faithfulLevel;
 
     private boolean launch = false;
     private int currentBounces;
@@ -73,13 +73,9 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         return flameAddend;
     }
 
-    public int setFaithful(int level) {
-        this.faithful = level;
+    public int setFaithfulLevel(int level) {
+        this.faithfulLevel = level;
         return level;
-    }
-
-    public int getFaithful() {
-        return faithful;
     }
 
     public int getFlameAddend() {
@@ -114,17 +110,17 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
 
             launch = false;
         }
-        if (faithful > 0) {
+        if (faithfulLevel > 0) {
             Entity entity = this.getOwner();
             if (isInGround() && isAcceptibleReturnOwner() && entity != null) {
                 this.setNoPhysics(true);
                 Vector3d vector3d = new Vector3d(entity.getX() - this.getX(), entity.getEyeY() - this.getY(), entity.getZ() - this.getZ());
-                this.setPosRaw(this.getX(), this.getY() + vector3d.y * 0.015D * (double) faithful, this.getZ());
+                this.setPosRaw(this.getX(), this.getY() + vector3d.y * 0.015D * (double) faithfulLevel, this.getZ());
                 if (this.level.isClientSide) {
                     this.yOld = this.getY();
                 }
 
-                double d0 = 0.15D * (double) faithful;
+                double d0 = 0.15D * (double) faithfulLevel;
                 this.setDeltaMovement(this.getDeltaMovement().scale(0.95D).add(vector3d.normalize().scale(d0)));
                 if (this.soundTickCount == 0) {
                     this.playSound(JSounds.PIERCER_RETURN.get(), 10.0F, MathHelper.nextFloat(random, 0.8F, 1.2F));
