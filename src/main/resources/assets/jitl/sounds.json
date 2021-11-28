@@ -288,6 +288,11 @@
       "jitl:entities/piercer_6"
     ]
   },
+  "entities.piercer_return": {
+    "sounds": [
+      "jitl:entities/piercer_return"
+    ]
+  },
   "entities.knife": {
     "sounds": [
       "jitl:entities/knife"

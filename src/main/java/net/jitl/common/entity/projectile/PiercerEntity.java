@@ -15,6 +15,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
@@ -29,10 +30,12 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     private float velocityMultiplier;
     private double rangeAddend;
     private int flameAddend;
+    private int faithful;
 
     private boolean launch = false;
     private int currentBounces;
     private int maxBounces;
+    public int soundTickCount;
 
     public PiercerEntity(LivingEntity shooter, World worldIn, ItemStack stack, int maxBounces, float damage) {
         super(JEntities.PIERCER_TYPE, shooter, worldIn);
@@ -70,6 +73,15 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         return flameAddend;
     }
 
+    public int setFaithful(int level) {
+        this.faithful = level;
+        return level;
+    }
+
+    public int getFaithful() {
+        return faithful;
+    }
+
     public int getFlameAddend() {
         return flameAddend;
     }
@@ -102,10 +114,38 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
 
             launch = false;
         }
+        if (faithful > 0) {
+            Entity entity = this.getOwner();
+            if (isInGround() && isAcceptibleReturnOwner() && entity != null) {
+                this.setNoPhysics(true);
+                Vector3d vector3d = new Vector3d(entity.getX() - this.getX(), entity.getEyeY() - this.getY(), entity.getZ() - this.getZ());
+                this.setPosRaw(this.getX(), this.getY() + vector3d.y * 0.015D * (double) faithful, this.getZ());
+                if (this.level.isClientSide) {
+                    this.yOld = this.getY();
+                }
+
+                double d0 = 0.15D * (double) faithful;
+                this.setDeltaMovement(this.getDeltaMovement().scale(0.95D).add(vector3d.normalize().scale(d0)));
+                if (this.soundTickCount == 0) {
+                    this.playSound(JSounds.PIERCER_RETURN.get(), 10.0F, MathHelper.nextFloat(random, 0.8F, 1.2F));
+                }
+
+                ++this.soundTickCount;
+            }
+        }
+    }
+
+    private boolean isAcceptibleReturnOwner() {
+        Entity entity = this.getOwner();
+        if (entity != null && entity.isAlive()) {
+            return !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();
+        } else {
+            return false;
+        }
     }
 
     /**
-    Variant of LivingEntity's canSee modified to line up with the piercer's attempted path
+     * Variant of LivingEntity's canSee modified to line up with the piercer's attempted path
      */
     private boolean pathTo(Entity entityIn) {
         Vector3d vector3d = new Vector3d(this.getX(), this.getY(0.5), this.getZ());

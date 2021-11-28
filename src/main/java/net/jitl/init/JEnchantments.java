@@ -2,10 +2,10 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.enchantment.AmbitEnchantment;
+import net.jitl.common.enchantment.FaithfulEnchantment;
 import net.jitl.common.enchantment.LightweightEnchantment;
 import net.jitl.common.enchantment.ScorchingEnchantment;
 import net.jitl.common.item.throwable.PiercerItem;
-import net.minecraft.enchantment.DamageEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -21,8 +21,8 @@ public class JEnchantments {
     @AutoRegistrable
     public static SimpleForgeRegister<Enchantment> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.ENCHANTMENTS, JITL.MODID);
 
-    public static final RegistryObject<Enchantment> CUTTING =
-            REGISTER.register("cutting", () -> new DamageEnchantment(Enchantment.Rarity.COMMON, 0, EquipmentSlotType.MAINHAND));
+    /*public static final RegistryObject<Enchantment> CUTTING =
+            REGISTER.register("cutting", () -> new DamageEnchantment(Enchantment.Rarity.COMMON, 0, EquipmentSlotType.MAINHAND));*/
 
     public static final RegistryObject<Enchantment> LIGHTWEIGHT =
             REGISTER.register("lightweight", () -> new LightweightEnchantment(Enchantment.Rarity.COMMON, PIERCER, EquipmentSlotType.MAINHAND));
@@ -32,4 +32,7 @@ public class JEnchantments {
 
     public static final RegistryObject<Enchantment> SCORCHING =
             REGISTER.register("scorching", () -> new ScorchingEnchantment(Enchantment.Rarity.COMMON, PIERCER, EquipmentSlotType.MAINHAND));
+
+    public static final RegistryObject<Enchantment> FAITHFUL =
+            REGISTER.register("faithful", () -> new FaithfulEnchantment(Enchantment.Rarity.COMMON, PIERCER, EquipmentSlotType.MAINHAND));
 }
