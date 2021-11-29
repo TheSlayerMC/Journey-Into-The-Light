@@ -16,16 +16,12 @@ import net.minecraft.item.MerchantOffer;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.village.PointOfInterestType;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
 
-@Mod.EventBusSubscriber(modid = JITL.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JVillagerRegistry {
 
     public static final DeferredRegister<PointOfInterestType> POI_REGISTER = DeferredRegister.create(ForgeRegistries.POI_TYPES, JITL.MODID);
@@ -111,10 +107,5 @@ public class JVillagerRegistry {
 
     private static Int2ObjectMap<VillagerTrades.ITrade[]> toIntMap(ImmutableMap<Integer, VillagerTrades.ITrade[]> immutableMap) {
         return new Int2ObjectOpenHashMap<>(immutableMap);
-    }
-
-    @SubscribeEvent
-    public static void onCommonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(JVillagerRegistry::addTrades);
     }
 }

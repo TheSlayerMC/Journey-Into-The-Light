@@ -58,6 +58,7 @@ public class JITL implements TimeMod {
 
 	private void preInit(final FMLCommonSetupEvent event) {
 		event.enqueueWork(JBiomeRegistry::registerProviders);
+		event.enqueueWork(JVillagerRegistry::addTrades);
 		JCapabilityProvider.registerCapabilities();
 		Raid.WaveMember.create("illager_mech", JEntities.ILLAGER_MECH_TYPE, new int[]{0, 0, 0, 1, 0, 1, 0, 2}); //TODO: move me
 	}
