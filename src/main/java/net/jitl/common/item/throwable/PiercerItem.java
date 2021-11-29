@@ -59,7 +59,7 @@ public class PiercerItem extends Item {
 
             int a = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.FAITHFUL.get(), stack);
             if (a > 0) {
-                entity.setFaithful(a);
+                entity.setFaithfulLevel(a);
             }
             //JITL.LOGGER.info(stack.getDamageValue());
 

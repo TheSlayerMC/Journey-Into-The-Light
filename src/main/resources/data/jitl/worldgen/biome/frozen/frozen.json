@@ -15,7 +15,7 @@
     "foliage_color": 25855,
     "ambient_sound": "jitl:music.frozen.ambience",
     "music": {
-      "sound": "jitl:music.biome.frozen",
+      "sound": "jitl:music.haunt_muskie_2",
       "min_delay": 10,
       "max_delay": 1000,
       "replace_current_music": true

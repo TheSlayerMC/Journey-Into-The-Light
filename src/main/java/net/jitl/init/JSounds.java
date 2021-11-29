@@ -70,4 +70,6 @@ public class JSounds {
     public static final RegistryObject<TimeSound> TEMPLE_GUARDIAN_MUSIC = REGISTER.register("music.temple_guardian");
     public static final RegistryObject<TimeSound> EUCA_AMBIENCE = REGISTER.register("music.euca.ambience");
     public static final RegistryObject<TimeSound> GOLD_PLAINS_MUSIC = REGISTER.register("music.biome.gold_plains");
+
+    public static final RegistryObject<TimeSound> HAUNT_MUSKIE_2 = REGISTER.register("music.haunt_muskie_2");
 }

@@ -28,8 +28,10 @@ import net.jitl.common.item.throwable.ThrowableItem;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JEntities;
 import net.jitl.init.JFoods;
+import net.jitl.init.JSounds;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
+import net.minecraft.item.MusicDiscItem;
 import net.minecraft.loot.LootTables;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
@@ -283,6 +285,8 @@ public class ItemRegistrator {
         registerItem("breathing_stone", "Breathing Stone", () -> new RegenCatalystItem(itemGrouped().stacksTo(1)).speed(0.0112F));
 
         registerItem("eye_of_the_blizzard", "Eye Of The Blizzard", () -> new JCurioItem(itemGrouped().stacksTo(1)).overview(true));
+
+        registerItem("music_disc_haunt_muskie_2", "Music Disc", () -> new MusicDiscItem(1, JSounds.HAUNT_MUSKIE_2::get, itemGrouped().stacksTo(1)));
 
     }
 
