@@ -1,0 +1,221 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.soul_watcher",
+        "texture_width": 128,
+        "texture_height": 128,
+        "visible_bounds_width": 3,
+        "visible_bounds_height": 3.5,
+        "visible_bounds_offset": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "bones": [
+        {
+          "name": "head",
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -11,
+                15,
+                -5
+              ],
+              "size": [
+                2,
+                10,
+                10
+              ],
+              "uv": [
+                24,
+                46
+              ]
+            },
+            {
+              "origin": [
+                7,
+                15,
+                -5
+              ],
+              "size": [
+                2,
+                10,
+                10
+              ],
+              "uv": [
+                0,
+                44
+              ]
+            },
+            {
+              "origin": [
+                -9,
+                12,
+                -8
+              ],
+              "size": [
+                16,
+                16,
+                16
+              ],
+              "uv": [
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                -6,
+                15,
+                8
+              ],
+              "size": [
+                10,
+                10,
+                2
+              ],
+              "uv": [
+                48,
+                4
+              ]
+            },
+            {
+              "origin": [
+                -6,
+                28,
+                -5
+              ],
+              "size": [
+                10,
+                2,
+                10
+              ],
+              "uv": [
+                30,
+                34
+              ]
+            },
+            {
+              "origin": [
+                -6,
+                10,
+                -5
+              ],
+              "size": [
+                10,
+                2,
+                10
+              ],
+              "uv": [
+                0,
+                32
+              ]
+            }
+          ]
+        },
+        {
+          "name": "eyelids_top",
+          "pivot": [
+            -1,
+            22.5,
+            -4.5
+          ],
+          "rotation": [
+            -30,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -7,
+                21,
+                -9
+              ],
+              "size": [
+                12,
+                5,
+                1
+              ],
+              "uv": [
+                38,
+                50
+              ]
+            },
+            {
+              "origin": [
+                -8,
+                20,
+                -10
+              ],
+              "size": [
+                14,
+                2,
+                2
+              ],
+              "uv": [
+                38,
+                46
+              ]
+            }
+          ]
+        },
+        {
+          "name": "eyelids_bottom",
+          "pivot": [
+            -1,
+            17.5,
+            -4.5
+          ],
+          "rotation": [
+            30,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -7,
+                14,
+                -9
+              ],
+              "size": [
+                12,
+                5,
+                1
+              ],
+              "uv": [
+                48,
+                56
+              ]
+            },
+            {
+              "origin": [
+                -8,
+                18,
+                -10
+              ],
+              "size": [
+                14,
+                2,
+                2
+              ],
+              "uv": [
+                48,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

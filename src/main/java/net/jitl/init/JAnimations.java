@@ -25,6 +25,9 @@ public class JAnimations {
     public static Animation illagerMechWalk;
     public static Animation illagerMechThrow;
 
+    public static Animation soulWatcherIdle;
+    public static Animation soulWatcherClosed;
+
     @SubscribeEvent
     public static void registerAnimations(FMLCommonSetupEvent event) {
         floroWalk = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/floro.walk.json"));
@@ -42,5 +45,8 @@ public class JAnimations {
 
         illagerMechWalk = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/illager_mech.walk.json"));
         illagerMechThrow = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/illager_mech.throw.json"));
+
+        soulWatcherIdle = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/soul_watcher.idle.json"));
+        soulWatcherClosed = AnimationAPI.loadAndRegisterAnimation(JITL.rl("animations/soul_watcher.closed.json"));
     }
 }
