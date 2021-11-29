@@ -19,12 +19,10 @@ import net.minecraft.village.PointOfInterestType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -39,14 +37,6 @@ public class JVillagerRegistry {
 
     public static final RegistryObject<VillagerProfession> TEST_PROFESSION = PROFESSION_REGISTER.register("test",
             () -> new VillagerProfession("test", TEST_POI.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CARTOGRAPHER));
-
-    public static void registerTestPOI() {
-        try {
-            ObfuscationReflectionHelper.findMethod(PointOfInterestType.class, "registerBlockStates", PointOfInterestType.class).invoke(null, TEST_POI.get());
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void addTrades() {
         VillagerTrades.ITrade[] testLevel1 = new VillagerTrades.ITrade[]{
@@ -125,9 +115,6 @@ public class JVillagerRegistry {
 
     @SubscribeEvent
     public static void onCommonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            JVillagerRegistry.addTrades();
-            JVillagerRegistry.registerTestPOI();
-        });
+        event.enqueueWork(JVillagerRegistry::addTrades);
     }
 }
