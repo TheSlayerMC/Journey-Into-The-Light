@@ -53,7 +53,7 @@ public class JVillagerRegistry {
                 new CurrencyForItemsTrade(JItems.LUNIUM_INGOT, JItems.LUNIUM_POWDER, 1, 1, 1),
                 new ItemsForCurrencyTrade(Items.SEA_LANTERN, JItems.CELESTIUM_INGOT, 1, 1, 1, 1)
         };
-        VillagerTrades.TRADES.put(TEST_PROFESSION.get(), toIntMap(ImmutableMap.of(1, testLevel1))); //todo: fix trades not being applied to profession
+        VillagerTrades.TRADES.put(TEST_PROFESSION.get(), toIntMap(ImmutableMap.of(1, testLevel1)));
     }
 
     public static class CurrencyForItemsTrade implements VillagerTrades.ITrade {
