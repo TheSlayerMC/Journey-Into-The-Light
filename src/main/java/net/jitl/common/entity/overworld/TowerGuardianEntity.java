@@ -81,7 +81,7 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 
 	public static AttributeModifierMap.MutableAttribute createAttributes() {
 		return createMonsterAttributes()
-				.add(Attributes.MAX_HEALTH, 20.0D)
+				.add(Attributes.MAX_HEALTH, 200.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.15D);
 	}
 

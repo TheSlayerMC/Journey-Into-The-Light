@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.WorldVertexBufferUploader;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
 
@@ -90,21 +91,15 @@ public class RenderUtils {
         builder.vertex(matrix, (float) x2, (float) y2, (float) z).color(f5, f6, f7, f4).endVertex();
     }
 
-    public static void drawCenteredString(MatrixStack matrixStack, FontRenderer fontRenderer, String fontIn, int text, int x, int y) {
-        fontRenderer.drawShadow(matrixStack, fontIn, (float) (text - fontRenderer.width(fontIn) / 2), (float) x, y);
+    public static void drawCenteredString(MatrixStack matrixStack, FontRenderer fontRenderer, String fontIn, float x, float y, int red, int green, int blue, int alpha) {
+        int color = Math.max(4, alpha) << 24 | red << 16 | green << 8 | blue;
+        fontRenderer.drawShadow(matrixStack, fontIn, x - fontRenderer.width(fontIn) / 2F, y, color);
     }
 
-    public static void drawCenteredString(MatrixStack matrixStack, FontRenderer fontRenderer, ITextComponent fontIn, int text, int x, int y) {
+    public static void drawCenteredString(MatrixStack matrixStack, FontRenderer fontRenderer, ITextComponent fontIn, float x, float y, int red, int green, int blue, int alpha) {
         IReorderingProcessor ireorderingprocessor = fontIn.getVisualOrderText();
-        fontRenderer.drawShadow(matrixStack, ireorderingprocessor, (float) (text - fontRenderer.width(ireorderingprocessor) / 2), (float) x, y);
-    }
-
-    public static void drawString(MatrixStack matrixStack, FontRenderer fontRenderer, String fontIn, int text, int x, int y) {
-        fontRenderer.drawShadow(matrixStack, fontIn, (float) text, (float) x, y);
-    }
-
-    public static void drawString(MatrixStack matrixStack, FontRenderer fontRenderer, ITextComponent fontIn, int text, int x, int y) {
-        fontRenderer.drawShadow(matrixStack, fontIn, (float) text, (float) x, y);
+        int color = Math.max(4, alpha) << 24 | red << 16 | green << 8 | blue;
+        fontRenderer.drawShadow(matrixStack, ireorderingprocessor, x - fontRenderer.width(ireorderingprocessor) / 2F, y, color);
     }
 
     public static void blitOutlineBlack(int width, int height, BiConsumer<Integer, Integer> boxXYConsumer) {
