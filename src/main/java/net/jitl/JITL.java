@@ -7,6 +7,7 @@ import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.init.JBiomeRegistry;
 import net.jitl.init.JEntities;
 import net.jitl.init.JLootConditions;
+import net.jitl.init.JVillagerRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.raid.Raid;
 import net.minecraftforge.common.MinecraftForge;
@@ -41,6 +42,10 @@ public class JITL implements TimeMod {
 
 		Registration.register(modEventBus);
 		JLootConditions.init();
+
+		JVillagerRegistry.POI_REGISTER.register(modEventBus);
+		JVillagerRegistry.PROFESSION_REGISTER.register(modEventBus);
+
 		modEventBus.addListener(this::preInit);
 		modEventBus.addListener(this::clientSetup);
 		modEventBus.addListener(this::enqueue);

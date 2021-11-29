@@ -2,6 +2,7 @@ package net.jitl.common.eventhandler;
 
 import net.jitl.JITL;
 import net.jitl.init.JStructures;
+import net.jitl.init.JVillagerRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
@@ -30,6 +31,11 @@ public class VillagerTradesEventHandler {
             List<VillagerTrades.ITrade> level5_trades = event.getTrades().get(5);
             level5_trades.add(new MapTrade(Items.EMERALD, 15, Items.COMPASS, 1, JStructures.ILlAGER_BUNKER.getStructure(), MapDecoration.Type.BANNER_LIGHT_GRAY, 12, 5));
             //trades.add(new BasicTrade(new ItemStack(Items.EMERALD, 1), new ItemStack(JItems.SAPPHIRE, 1), 1, 1, 0));
+        }
+
+        if (event.getType() == JVillagerRegistry.TEST_PROFESSION.get()) {
+            List<VillagerTrades.ITrade> level5_trades = event.getTrades().get(5);
+            level5_trades.add(new MapTrade(Items.EMERALD, 15, Items.COMPASS, 1, JStructures.ILlAGER_BUNKER.getStructure(), MapDecoration.Type.BANNER_LIGHT_GRAY, 12, 5));
         }
     }
 

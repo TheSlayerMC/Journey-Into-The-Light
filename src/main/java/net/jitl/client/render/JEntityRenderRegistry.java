@@ -39,6 +39,8 @@ public class JEntityRenderRegistry {
         RenderingRegistry.registerEntityRenderingHandler(JEntities.GLUMP_TYPE, GlumpRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
 
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.ESKIMO_TYPE, EskimoRenderer::new);
+
         //Projectiles
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_MUD_TYPE, manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
         RenderingRegistry.registerEntityRenderingHandler(JEntities.CONJURING_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/conjuring.png"), 0.5F, true));

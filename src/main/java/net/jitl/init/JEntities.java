@@ -2,6 +2,7 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.entity.EssenciaBoltEntity;
+import net.jitl.common.entity.frozen.EskimoEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.*;
 import net.jitl.common.entity.pet.MiniBoomEntity;
@@ -47,6 +48,16 @@ public class JEntities {
             .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FloroEntity::canSpawn)
             .attributes(() -> FloroEntity.createAttributes().build())
             .spawnEgg(OVERWORLD_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
+            .retrieve();
+
+    public static final EntityType<EskimoEntity> ESKIMO_TYPE = REGISTER.registerMob("eskimo",
+            Builder.of(EskimoEntity::new, EntityClassification.MONSTER)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(1.5F, 2F))
+            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
+            .attributes(() -> HongoEntity.createAttributes().build())
+            .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<HongoEntity> HONGO_TYPE = REGISTER.registerMob("hongo",
