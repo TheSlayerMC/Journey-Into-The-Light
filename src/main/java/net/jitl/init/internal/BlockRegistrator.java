@@ -275,6 +275,11 @@ public class BlockRegistrator {
         registerAttachedRenderedBlock("frost_crystal_large", "Large Frost Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create()),
                 "frost_crystal_large");
 
+        RegistryObject<Block> packedSnowBricks = registerBlock("packed_snow_bricks", "Packed Snow Bricks", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs("packed_snow_brick_stairs", "Packed Snow Brick Stairs", packedSnowBricks, JBlockProperties.PERMAFROST_PROPS.create());
+        RegistryObject<Block> packedIceBricks = registerBlock("packed_ice_bricks", "Packed Ice Bricks", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs("packed_ice_brick_stairs", "Packed Ice Brick Stairs", packedIceBricks, JBlockProperties.PERMAFROST_PROPS.create());
+
         registerCustomRenderLayerBlock("silver_bot_spawner", "Silverbot Spawner", () -> new JSpawnerBlock(JEntities.TOWER_GUARDIAN_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.FLORO_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
 

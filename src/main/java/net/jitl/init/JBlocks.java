@@ -138,6 +138,9 @@ public class JBlocks {
 
 	public static final Block FROST_CRYSTAL_LARGE = promise();
 
+	public static final Block PACKED_SNOW_BRICKS = promise();
+	public static final Block PACKED_ICE_BRICKS = promise();
+
 	public static final Block GOLDITE_GRASS_BLOCK = promise();
 	public static final Block EUCA_GOLD_GRASS_BLOCK = promise();
 	public static final Block EUCA_SILVER_GRASS_BLOCK = promise();
