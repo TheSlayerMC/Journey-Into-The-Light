@@ -39,6 +39,7 @@ public class JRecipeRegister extends JRecipeProvider {
 		addOreBlockRecipe(recipeConsumer, JItems.MEKYUM_INGOT, JBlocks.MEKYUM_BLOCK);
 		addOreBlockRecipe(recipeConsumer, JItems.STORON_INGOT, JBlocks.STORON_BLOCK);
 		addOreBlockRecipe(recipeConsumer, JItems.DREADIRON_INGOT, JBlocks.DREADIRON_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.PERIDOT_GEMSTONE, JBlocks.PERIDOT_BLOCK);
 
 		add2x2Recipe(recipeConsumer, JItems.MUD_BALL, JBlocks.BLOCK_OF_MUD);
 	}

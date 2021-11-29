@@ -92,6 +92,7 @@ public class ItemRegistrator {
         registerItem("volcanic_stone", "Volcanic Stone");
         registerItem("sentacoin", "Sentacoin");//TODO make an entity
         registerItem("sentacoin_bag", "Sentacoin Bag", () -> new Item(itemGrouped()), "item/sentacoin_bag_model");
+        registerItem("peridot_gemstone", "Peridot Gemstone");
 
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(itemGrouped(),
                 (world, thrower) -> new FloroMudEntity(JEntities.FLORO_MUD_TYPE, world, thrower, 0.0F)).setSound(() -> SoundEvents.SNOWBALL_THROW));

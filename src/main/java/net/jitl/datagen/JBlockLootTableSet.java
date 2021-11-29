@@ -21,6 +21,7 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 
 	private void initOres() {
 		registerSpecialOre(JBlocks.SAPPHIRE_ORE, JItems.SAPPHIRE);
+		registerSpecialOre(JBlocks.PERIDOT_ORE, JItems.PERIDOT_GEMSTONE);
 		registerSpecialOre(JBlocks.IRIDIUM_ORE, JItems.IRIDIUM_NUGGET);
 		registerSpecialOreWithExtraCount(JBlocks.LUNIUM_ORE, JItems.LUNIUM_POWDER, 1, 2);
 		registerDefaultOre(JBlocks.SHADIUM_ORE);

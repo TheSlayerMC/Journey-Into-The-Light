@@ -280,6 +280,9 @@ public class BlockRegistrator {
         RegistryObject<Block> packedIceBricks = registerBlock("packed_ice_bricks", "Packed Ice Bricks", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
         KBlockRegistrator.INSTANCE.registerStairs("packed_ice_brick_stairs", "Packed Ice Brick Stairs", packedIceBricks, JBlockProperties.PERMAFROST_PROPS.create());
 
+        registerDefaultBlock("peridot_ore", "Peridot Ore", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())));
+        registerDefaultBlock("peridot_block", "Peridot Block", () -> new Block(JBlockProperties.METAL_PROPS.create()));
+
         registerCustomRenderLayerBlock("silver_bot_spawner", "Silverbot Spawner", () -> new JSpawnerBlock(JEntities.TOWER_GUARDIAN_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.FLORO_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
 

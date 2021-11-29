@@ -22,6 +22,8 @@ public class JRuleTests {
     public static Supplier<RuleTest> SILVER_GRASS_EUCA = () -> new BlockStateMatchRuleTest(JBlocks.EUCA_SILVER_GRASS_BLOCK.defaultBlockState());
     public static Supplier<RuleTest> GOLDITE_GRASS_EUCA = () -> new BlockStateMatchRuleTest(JBlocks.GOLDITE_GRASS_BLOCK.defaultBlockState());
 
+    public static Supplier<RuleTest> STONE_FROZEN = () -> new BlockStateMatchRuleTest(JBlocks.PERMAFROST.defaultBlockState());
+
     public static Supplier<RuleTest> FROZEN_GRASS_BLOCK = () -> new BlockStateMatchRuleTest(JBlocks.GRASSY_PERMAFROST.defaultBlockState());
 
 }
