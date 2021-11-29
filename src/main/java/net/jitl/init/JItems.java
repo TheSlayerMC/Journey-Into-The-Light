@@ -12,12 +12,14 @@ import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 @ObjectHolder(JITL.MODID)
 public class JItems {
 
+    public static final Item MUSIC_DISC_HAUNT_MUSKIE_2 = promise();
+
     public static final Item SAPPHIRE = promise();
-	public static final Item IRIDIUM_NUGGET = promise();
-	public static final Item SHADIUM_INGOT = promise();
-	public static final Item LUNIUM_INGOT = promise();
-	public static final Item BLOODCRUST_INGOT = promise();
-	public static final Item ASH = promise();
+    public static final Item IRIDIUM_NUGGET = promise();
+    public static final Item SHADIUM_INGOT = promise();
+    public static final Item LUNIUM_INGOT = promise();
+    public static final Item BLOODCRUST_INGOT = promise();
+    public static final Item ASH = promise();
     public static final Item ENDERILLIUM_SHARD = promise();
     public static final Item CELESTIUM_INGOT = promise();
     public static final Item KORITE_INGOT = promise();

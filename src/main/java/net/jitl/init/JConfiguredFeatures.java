@@ -293,8 +293,8 @@ public class JConfiguredFeatures {
                                     new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_LEAVES.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
                                     5,
-                                    15,
-                                    18))
+                                    5,
+                                    8))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
                             .chance(3))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
@@ -309,8 +309,8 @@ public class JConfiguredFeatures {
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LEAVES.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_LOG.defaultBlockState()),
                                     5,
-                                    15,
-                                    18))
+                                    5,
+                                    8))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
                             .chance(3))
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
@@ -325,8 +325,8 @@ public class JConfiguredFeatures {
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LEAVES.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
                                     5,
-                                    15,
-                                    18))
+                                    5,
+                                    8))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
                             .chance(2))
                     .setBiomePredicate(GOLDITE_GRAINS)
@@ -341,8 +341,8 @@ public class JConfiguredFeatures {
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_BROWN_LOG.defaultBlockState()),
                                     5,
-                                    15,
-                                    18))
+                                    5,
+                                    8))
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
                             .chance(2))
                     .setBiomePredicate(GOLDITE_GRAINS)

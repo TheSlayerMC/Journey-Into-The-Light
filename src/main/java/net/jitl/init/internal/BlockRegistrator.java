@@ -272,7 +272,7 @@ public class BlockRegistrator {
         registerCustomRenderLayerBlock("frozen_leaves", "Frozen Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("frosty_ice", "Frosty Ice", () -> new Block(JBlockProperties.ICE_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
 
-        registerAttachedRenderedBlock("frost_crystal_large", "Large Frost Crystal", () -> new AttachedBlock(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()),
+        registerAttachedRenderedBlock("frost_crystal_large", "Large Frost Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create()),
                 "frost_crystal_large");
 
         registerCustomRenderLayerBlock("silver_bot_spawner", "Silverbot Spawner", () -> new JSpawnerBlock(JEntities.TOWER_GUARDIAN_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
@@ -561,5 +561,6 @@ public class BlockRegistrator {
         public static final RenderTypeWrapper CUTOUT = new RenderTypeWrapper(RenderType.cutout());
         public static final RenderTypeWrapper CUTOUT_MIPPED = new RenderTypeWrapper(RenderType.cutoutMipped());
         public static final RenderTypeWrapper TRANSLUCENT = new RenderTypeWrapper(RenderType.translucent());
+        public static final RenderTypeWrapper TRANSLUCENT_NO_CRUMBLING = new RenderTypeWrapper(RenderType.translucentNoCrumbling());
     }
 }

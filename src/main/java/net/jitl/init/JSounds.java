@@ -63,10 +63,13 @@ public class JSounds {
 
     public static final RegistryObject<TimeSound> KNIFE = REGISTER.register("entities.knife");
     public static final RegistryObject<TimeSound> PIERCER = REGISTER.register("entities.piercer");
+    public static final RegistryObject<TimeSound> PIERCER_RETURN = REGISTER.register("entities.piercer_return");
 
     public static final RegistryObject<TimeSound> MENU_MUSIC = REGISTER.register("music.menu");
     public static final RegistryObject<TimeSound> TOWER_THEME = REGISTER.register("music.guardian_tower");
     public static final RegistryObject<TimeSound> TEMPLE_GUARDIAN_MUSIC = REGISTER.register("music.temple_guardian");
     public static final RegistryObject<TimeSound> EUCA_AMBIENCE = REGISTER.register("music.euca.ambience");
     public static final RegistryObject<TimeSound> GOLD_PLAINS_MUSIC = REGISTER.register("music.biome.gold_plains");
+
+    public static final RegistryObject<TimeSound> HAUNT_MUSKIE_2 = REGISTER.register("music.haunt_muskie_2");
 }

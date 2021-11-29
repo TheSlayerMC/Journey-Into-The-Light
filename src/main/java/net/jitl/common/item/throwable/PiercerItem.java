@@ -56,6 +56,11 @@ public class PiercerItem extends Item {
             if (f > 0) {
                 entity.setFlameAddend(f);
             }
+
+            int a = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.FAITHFUL.get(), stack);
+            if (a > 0) {
+                entity.setFaithfulLevel(a);
+            }
             //JITL.LOGGER.info(stack.getDamageValue());
 
             entity.setPos(playerIn.getX(), playerIn.getEyeY(), playerIn.getZ());
@@ -88,6 +93,7 @@ public class PiercerItem extends Item {
                 enchantment == Enchantments.SHARPNESS ||
                 enchantment == JEnchantments.LIGHTWEIGHT.get() ||
                 enchantment == JEnchantments.AMBIT.get() ||
+                enchantment == JEnchantments.FAITHFUL.get() ||
                 enchantment == JEnchantments.SCORCHING.get();
     }
 

@@ -48,7 +48,7 @@ public class MiniBoomEntity extends TameableEntity implements IChargeableMob {
     private int maxSwell = 30;
     private int explosionRadius = 3;
     private int cooldownTimer;
-    private int cooldownReset = 200;
+    private int cooldownReset = 100;
 
     static {
         DATA_SWELL_DIR = EntityDataManager.defineId(MiniBoomEntity.class, DataSerializers.INT);
@@ -136,20 +136,26 @@ public class MiniBoomEntity extends TameableEntity implements IChargeableMob {
             this.oldSwell = this.swell;
             if(this.isIgnited()) this.setSwellDir(1);
             int i = this.getSwellDir();
+            this.targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, MonsterEntity.class, true));
 
             if(i > 0 && this.swell == 0)
                 this.playSound(SoundEvents.CREEPER_PRIMED, 1.0F, 0.5F);
 
-            this.swell += i;
+            if(this.cooldownTimer >= 0)
+                this.swell += i;
+
             if(this.swell < 0) this.swell = 0;
             this.cooldownTimer--;
 
             if(this.cooldownTimer < 0) this.cooldownTimer = 0;
+
                  if(this.swell >= this.maxSwell) {
                      if(cooldownTimer <= 0) {
-                         this.swell = this.maxSwell;
-                       this.explode();
-                       this.cooldownTimer = this.cooldownReset;
+                        this.swell = 0;
+                        this.explode();
+                        setTarget((LivingEntity) null);
+                        this.targetSelector.removeGoal(new NearestAttackableTargetGoal(this, MonsterEntity.class, true));
+                        this.cooldownTimer = this.cooldownReset;
                  }
             }
         }
