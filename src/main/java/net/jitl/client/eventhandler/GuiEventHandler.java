@@ -76,7 +76,7 @@ public class GuiEventHandler {
 		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
 			Minecraft minecraft = Minecraft.getInstance();
 			PlayerEntity player = minecraft.player;
-			if (!player.isCreative()) {
+			if (!player.isCreative() && !player.isSpectator()) {
 				MatrixStack matrixStack = event.getMatrixStack();
 				JPlayer cap = JPlayer.from(player);
 				if (cap != null) {
