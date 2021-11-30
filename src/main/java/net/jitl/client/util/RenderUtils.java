@@ -112,6 +112,8 @@ public class RenderUtils {
         boxXYConsumer.accept(width, height);
     }
 
+    //TODO: Refactor all this -Diamond
+
     public static void blit(MatrixStack matrixStack, int x, int y, int blitOffset, int width, int height, TextureAtlasSprite sprite) {
         innerBlit(matrixStack.last().pose(), x, x + width, y, y + height, blitOffset, sprite.getU0(), sprite.getU1(), sprite.getV0(), sprite.getV1());
     }

@@ -24,7 +24,7 @@ public class BossBarRenderer {
     public void render(RenderGameOverlayEvent.BossInfo event) {
         Minecraft minecraft = Minecraft.getInstance();
         MatrixStack stack = event.getMatrixStack();
-        int x = event.getX();
+        int x = event.getX() + 91;
         int y = event.getY();
 
         float health = boss.getHealth() / boss.getMaxHealth();
@@ -45,11 +45,11 @@ public class BossBarRenderer {
         RenderSystem.color4f(1.0F, nonRed, nonRed, 1.0F);
         minecraft.getTextureManager().bind(texture);
 
-        RenderUtils.blit(stack, 91 + x - timeWidth / 2, y, timeWidth, 9, 0, 10, 182, 9, 182, 19);
-        RenderUtils.blit(stack, 91 + x - timeWidth / 2, y, (int) (timeWidth * healthWidth), 9, 0, 0, (int) (182 * healthWidth),  9, 182, 19);
+        RenderUtils.blit(stack, x - timeWidth / 2, y, timeWidth, 9, 0, 10, 182, 9, 182, 19);
+        RenderUtils.blit(stack, x - timeWidth / 2, y, (int) (timeWidth * healthWidth), 9, 0, 0, (int) (182 * healthWidth),  9, 182, 19);
 
         if (time > 1) {
-            RenderUtils.drawCenteredString(stack, minecraft.font, boss.getName(), x + 91, y - 9, 255, (int) (255 * nonRed), (int) (255 * nonRed), (int) Math.min(255, (time - 1) * 255));
+            RenderUtils.drawCenteredString(stack, minecraft.font, boss.getName(), x, y - 9, 255, (int) (255 * nonRed), (int) (255 * nonRed), (int) Math.min(255, (time - 1) * 255));
         }
     }
 }
