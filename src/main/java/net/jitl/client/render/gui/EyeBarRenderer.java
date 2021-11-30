@@ -2,25 +2,20 @@ package net.jitl.client.render.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.jitl.client.render.gui.BossBarRenderer;
 import net.jitl.client.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
-public class BossBarRenderer {
-    protected final LivingEntity boss;
-    protected final ResourceLocation texture;
-    protected final long startTime;
-
-    public BossBarRenderer(LivingEntity boss, ResourceLocation texture) {
-        this.boss = boss;
-        this.texture = texture;
-        startTime = Util.getNanos();
+public class EyeBarRenderer extends BossBarRenderer {
+    public EyeBarRenderer(LivingEntity boss, ResourceLocation texture) {
+        super(boss, texture);
     }
 
+    @Override
     public void render(RenderGameOverlayEvent.BossInfo event) {
         Minecraft minecraft = Minecraft.getInstance();
         MatrixStack stack = event.getMatrixStack();
@@ -45,8 +40,9 @@ public class BossBarRenderer {
         RenderSystem.color4f(1.0F, nonRed, nonRed, 1.0F);
         minecraft.getTextureManager().bind(texture);
 
-        RenderUtils.blit(stack, 91 + x - timeWidth / 2, y, timeWidth, 9, 0, 10, 182, 9, 182, 19);
-        RenderUtils.blit(stack, 91 + x - timeWidth / 2, y, (int) (timeWidth * healthWidth), 9, 0, 0, (int) (182 * healthWidth),  9, 182, 19);
+        int v = Math.floor(time) % 2 == 0 ? 0 : 8;
+        RenderUtils.blit(stack, 91 + x - timeWidth / 2, y, timeWidth, 9, 0, 16 + v, 182, 7, 182, 31);
+        RenderUtils.blit(stack, 91 + x - timeWidth / 2, y, (int) (timeWidth * healthWidth), 9, 0, v, (int) (182 * healthWidth),  7, 182, 31);
 
         if (time > 1) {
             RenderUtils.drawCenteredString(stack, minecraft.font, boss.getName(), x + 91, y - 9, 255, (int) (255 * nonRed), (int) (255 * nonRed), (int) Math.min(255, (time - 1) * 255));
