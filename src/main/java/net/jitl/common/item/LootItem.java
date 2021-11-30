@@ -36,10 +36,10 @@ public class LootItem extends Item {
         if (!worldIn.isClientSide) {
             ServerPlayerEntity playerMP = (ServerPlayerEntity) playerIn;
             List<ItemStack> lootTable = LootHelper.genFromLootTable(this.lootTable, playerMP, builder -> builder.withLuck(playerMP.getLuck()));
-            int index = worldIn.random.nextInt(lootTable.size());
-            ItemStack itemToSpawn = lootTable.get(index);
-            ItemEntity item = new ItemEntity(worldIn, playerMP.getX(), playerMP.getY(), playerMP.getZ(), itemToSpawn);
-            worldIn.addFreshEntity(item);
+            for (ItemStack itemToSpawn : lootTable) {
+                ItemEntity item = new ItemEntity(worldIn, playerMP.getX(), playerMP.getY(), playerMP.getZ(), itemToSpawn);
+                worldIn.addFreshEntity(item);
+            }
             playerMP.getItemInHand(handIn).shrink(1);
             worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), JSounds.LOOT.get(), SoundCategory.NEUTRAL, 0.75F, MathHelper.nextFloat(random, 0.75F, 1.25F));
         }

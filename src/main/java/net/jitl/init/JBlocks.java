@@ -137,6 +137,9 @@ public class JBlocks {
 	public static final Block FROZEN_LOG = promise();
 
 	public static final Block FROST_CRYSTAL_LARGE = promise();
+	public static final Block FROST_CRYSTAL_MEDIUM = promise();
+	public static final Block FROST_CRYSTAL_SMALL = promise();
+	public static final Block FROST_CRYSTAL_TINY = promise();
 
 	public static final Block PACKED_SNOW_BRICKS = promise();
 	public static final Block PACKED_ICE_BRICKS = promise();

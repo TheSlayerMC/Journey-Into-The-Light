@@ -272,8 +272,14 @@ public class BlockRegistrator {
         registerCustomRenderLayerBlock("frozen_leaves", "Frozen Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("frosty_ice", "Frosty Ice", () -> new Block(JBlockProperties.ICE_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
 
-        registerAttachedRenderedBlock("frost_crystal_large", "Large Frost Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create()),
+        registerAttachedRenderedBlock("frost_crystal_large", "Large Frost Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create().lightLevel((intf) -> 4)),
                 "frost_crystal_large");
+        registerAttachedRenderedBlock("frost_crystal_medium", "Medium Frost Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create().lightLevel((intf) -> 3)),
+                "frost_crystal_medium");
+        registerAttachedRenderedBlock("frost_crystal_small", "Small Frost Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create().lightLevel((intf) -> 2)),
+                "frost_crystal_small");
+        registerAttachedRenderedBlock("frost_crystal_tiny", "Tiny Frost Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create().lightLevel((intf) -> 1)),
+                "frost_crystal_tiny");
 
         RegistryObject<Block> packedSnowBricks = registerBlock("packed_snow_bricks", "Packed Snow Bricks", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
         KBlockRegistrator.INSTANCE.registerStairs("packed_snow_brick_stairs", "Packed Snow Brick Stairs", packedSnowBricks, JBlockProperties.PERMAFROST_PROPS.create());
