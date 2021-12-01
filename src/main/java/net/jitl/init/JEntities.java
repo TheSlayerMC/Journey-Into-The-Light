@@ -3,6 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.frozen.EskimoEntity;
+import net.jitl.common.entity.nether.SoulWatcherEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.*;
 import net.jitl.common.entity.pet.MiniBoomEntity;
@@ -133,6 +134,15 @@ public class JEntities {
                     .sized(1.25F, 1.95F))
             .attributes(() -> IllagerMechEntity.createAttributes().build())
             .spawnEgg(OVERWORLD_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
+            .retrieve();
+
+    public static final EntityType<SoulWatcherEntity> SOUL_WATCHER_TYPE = REGISTER.registerMob("soul_watcher",
+            Builder.of(SoulWatcherEntity::new, EntityClassification.MONSTER)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(2F, 0.8F))
+            .attributes(() -> SoulWatcherEntity.createAttributes().build())
+            .spawnEgg(NETHER_COLOR, BOSS_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<EssenciaBoltEntity> ESSENCIA_BOLT_TYPE = REGISTER.register("essencia_bolt",
