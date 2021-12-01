@@ -127,10 +127,12 @@ public class JTreeFeature extends Feature<BaseTreeFeatureConfig> {
         return int_;
     }
 
+    @Override
     protected void setBlock(IWorldWriter worldIn, BlockPos pos, BlockState state) {
         setBlockKnownShape(worldIn, pos, state);
     }
 
+    @Override
     public final boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
         Set<BlockPos> set = Sets.newHashSet();
         Set<BlockPos> set1 = Sets.newHashSet();
