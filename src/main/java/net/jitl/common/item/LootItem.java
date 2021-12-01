@@ -1,5 +1,6 @@
 package net.jitl.common.item;
 
+import net.jitl.JITL;
 import net.jitl.init.JSounds;
 import net.jitl.init.JTabs;
 import net.jitl.util.LootHelper;
@@ -43,7 +44,7 @@ public class LootItem extends Item {
             playerMP.getItemInHand(handIn).shrink(1);
             worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), JSounds.LOOT.get(), SoundCategory.NEUTRAL, 0.75F, MathHelper.nextFloat(random, 0.75F, 1.25F));
         }
-
+        JITL.LOGGER.info(this.lootTable.toString());
         playerIn.awardStat(Stats.ITEM_USED.get(this));
         return ActionResult.sidedSuccess(playerIn.getItemInHand(handIn), worldIn.isClientSide());
     }

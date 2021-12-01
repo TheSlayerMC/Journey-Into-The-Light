@@ -2,6 +2,7 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.world.gen.features.CaveVinesFeature;
+import net.jitl.common.world.gen.features.JTreeFeature;
 import net.jitl.common.world.gen.features.RuinsFeature;
 import net.jitl.common.world.gen.features.euca.EucaBotSpawner;
 import net.jitl.common.world.gen.features.euca.EucaTreeFeature;
@@ -9,6 +10,7 @@ import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig
 import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.features.frozen.FrozenIceSpikeFeature;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.fml.RegistryObject;
@@ -24,7 +26,7 @@ public class JFeatures {
     public static final RegistryObject<Feature<NoFeatureConfig>> CAVE_VINES = REGISTER.register("cave_vines", () -> new CaveVinesFeature(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<EucaTreeFeatureConfig>> EUCA_TREE = REGISTER.register("euca_tree", () -> new EucaTreeFeature(EucaTreeFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> FROZEN_ICE_SPIKE = REGISTER.register("frozen_ice_spike", () -> new FrozenIceSpikeFeature(NoFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BaseTreeFeatureConfig>> BASE_TREE = REGISTER.register("frozen_tree", () -> new JTreeFeature(BaseTreeFeatureConfig.CODEC));
 
     public static final RegistryObject<Feature<EucaSpawnerFeatureConfig>> EUCA_BOT_SPAWNER = REGISTER.register("euca_bot_spawner", () -> new EucaBotSpawner(EucaSpawnerFeatureConfig.CODEC));
-
 }

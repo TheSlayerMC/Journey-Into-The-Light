@@ -325,7 +325,7 @@ public class BlockRegistrator {
 
         registerSpeciallyRenderedBlock("ice_bush", "Ice Bush", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
-                () -> BlockModels.crossModel(JITL.tl("block/ice_bush")));
+                () -> JBlockModels.crop(JITL.tl("block/ice_bush")));
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {

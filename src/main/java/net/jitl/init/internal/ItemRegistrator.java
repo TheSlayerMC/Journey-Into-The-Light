@@ -130,9 +130,10 @@ public class ItemRegistrator {
         registerHandheldItem("staff_of_essencia", "Staff of Essencia", () -> new StaffItem(rangedWeaponsGrouped(),
                 (world, thrower) -> new EssenciaProjectileEntity(JEntities.ESSENCIA_PROJECTILE_TYPE, world, thrower, 0.0F)));
 
+        //todo: change loot pouches to use JITL loot tables
         registerItem("loot_pouch_basic", "Loot Pouch", () -> new LootItem(LootTables.ABANDONED_MINESHAFT, false));
         registerItem("loot_pouch_gold", "Gold Loot Pouch", () -> new LootItem(LootTables.DESERT_PYRAMID, true));
-        registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(LootTables.STRONGHOLD_CORRIDOR, true));
+        registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(LootTables.END_CITY_TREASURE, true));
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");

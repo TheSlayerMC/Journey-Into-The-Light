@@ -6,6 +6,7 @@ import net.jitl.JITL;
 import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
+import net.jitl.common.world.gen.treedecorator.FrozenTreeDecorator;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -20,6 +21,11 @@ import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
+import net.minecraft.world.gen.foliageplacer.PineFoliagePlacer;
+import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.MegaJungleTrunkPlacer;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import ru.timeconqueror.timecore.api.registry.ConfiguredFeatureRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
@@ -335,16 +341,15 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GREEN_TREES =
             REGISTER.register("euca_green_tree",
                     Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.EUCA_TREE.get()
-                            .configured(new EucaTreeFeatureConfig(
-                                    JRuleTests.GOLDITE_GRASS_EUCA.get(),
-                                    new SimpleBlockStateProvider(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new BaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.EUCA_BROWN_LOG.defaultBlockState()),
-                                    5,
-                                    5,
-                                    8))
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
+                                    new FancyFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), 6),
+                                    new MegaJungleTrunkPlacer(6, 3, 2),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines().build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(2))
+                            .chance(1).countRandom(5))
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
 
@@ -374,6 +379,51 @@ public class JConfiguredFeatures {
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
                             .chance(50))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_FROZEN_TREE =
+            REGISTER.register("small_frozen_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new BaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
+                                    new ForkyTrunkPlacer(2, 1, 3),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(FROZEN_LANDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> MEDIUM_FROZEN_TREE =
+            REGISTER.register("medium_frozen_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new BaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
+                                    new FancyTrunkPlacer(10, 5, 5),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(FROZEN_LANDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_FROZEN_TREE =
+            REGISTER.register("large_frozen_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new BaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
+                                    new FancyTrunkPlacer(15, 7, 7),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(FROZEN_LANDS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
@@ -497,11 +547,11 @@ public class JConfiguredFeatures {
             REGISTER.register("frozen_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
-                                    .add(JBlocks.FROSTBERRY_THORN.defaultBlockState(), 1)
-                                    .add(JBlocks.FROZEN_FLOWER.defaultBlockState(), 1)
-                                    .add(JBlocks.ICE_BUSH.defaultBlockState(), 1)
-                                    .add(JBlocks.ICE_BUD.defaultBlockState(), 1)
-                                    .add(JBlocks.FROZEN_BLOOM.defaultBlockState(), 1),
+                                    //.add(JBlocks.FROSTBERRY_THORN.defaultBlockState(), 1)
+                                    //.add(JBlocks.FROZEN_FLOWER.defaultBlockState(), 1)
+                                    .add(JBlocks.ICE_BUSH.defaultBlockState(), 1),
+                            //.add(JBlocks.ICE_BUD.defaultBlockState(), 1)
+                            //.add(JBlocks.FROZEN_BLOOM.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
                             .tries(200)
                             .xspread(10)

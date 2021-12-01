@@ -38,4 +38,12 @@ object JBlockModels {
     fun empty(): BlockModel {
         return BlockModel(json { })
     }
+
+    @JvmStatic
+    fun crop(textureCrop: TextureLocation) = BlockModel(json {
+        "parent" set "block/crop"
+        "textures" {
+            "crop" set textureCrop.toString()
+        }
+    })
 }
