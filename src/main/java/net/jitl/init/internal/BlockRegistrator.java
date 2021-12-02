@@ -17,6 +17,7 @@ import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
+import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.MagmaBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.client.renderer.RenderType;
@@ -265,6 +266,8 @@ public class BlockRegistrator {
         registerLogBlock("euca_brown_log", "Brown Euca Log");
         registerLogBlock("frozen_log", "Frosty Log");
 
+        registerCampfireBlock("bitterwood_campfire", "Bitterwood Campfire", () -> new CampfireBlock(true, 1, JBlockProperties.WOOD_PROPS.create()));
+
         registerCustomRenderLayerBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("euca_silver_leaves", "Euca Silver Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("euca_green_leaves", "Euca Green Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
@@ -430,6 +433,19 @@ public class BlockRegistrator {
                 .defaultBlockItem(JTabs.BLOCKS)
                 .oneVariantState(new BlockModelLocation(JITL.MODID, "block/" + name))
                 .model(JITL.bml("block/" + name), blockModelSupplier);
+    }
+
+    /**
+     * Registers a block with a BlockModel supplier
+     */
+    private static void registerCampfireBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.campfireState(JITL.bml("block/" + name), JITL.bml("block/" + name + "_off")))
+                .model(JITL.bml("block/" + name), () -> JBlockModels.campfireOn(JITL.tl("block/" + name + "_log_lit"), JITL.tl("block/" + name + "_fire")))
+                .model(JITL.bml("block/" + name + "_off"), () -> JBlockModels.campfireOff(JITL.tl("block/" + name + "_log")));
     }
 
     /**

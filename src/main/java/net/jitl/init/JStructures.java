@@ -3,6 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.structures.euca.AlloyMenderStructure;
 import net.jitl.common.world.gen.structures.euca.EucaDungeonStructure;
+import net.jitl.common.world.gen.structures.frozen.EskimoCampStructure;
 import net.jitl.common.world.gen.structures.overworld.BlacksmithStructure;
 import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
@@ -67,6 +68,13 @@ public class JStructures {
             REGISTER.register("illager_bunker", IllagerBunkerStructure::new, TimeStructureSeparationSettings.create(40, 10), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
                     .setDimensionPredicate(serverWorld -> serverWorld.dimension() == World.OVERWORLD)
                     .setBiomePredicate(biomePredicate -> biomePredicate.getCategory() == Biome.Category.MESA)
+                    .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
+    public static final StructureHolder<NoFeatureConfig, EskimoCampStructure> ESKIMO_CAMP =
+            REGISTER.register("eskimo_camp", EskimoCampStructure::new, TimeStructureSeparationSettings.create(20, 10), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
+                    .transformsSurroundingLand()
+                    .setDimensionPredicate(serverWorld -> serverWorld.dimension() == JDimensions.FROZEN_WORLD)
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 }
