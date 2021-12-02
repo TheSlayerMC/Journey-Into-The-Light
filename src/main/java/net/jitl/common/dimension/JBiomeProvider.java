@@ -1,6 +1,5 @@
 package net.jitl.common.dimension;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Either;
 import com.mojang.datafixers.util.Function3;
@@ -11,8 +10,6 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.doubles.DoubleArrayList;
 import it.unimi.dsi.fastutil.doubles.DoubleList;
-import net.jitl.JITL;
-import net.jitl.init.JBiomeRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.registry.Registry;
@@ -23,38 +20,32 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.MaxMinNoiseMixer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class JBiomeProvider extends BiomeProvider {
 
-    private static final JBiomeProvider.Noise DEFAULT_NOISE_PARAMETERS = new JBiomeProvider.Noise(-7, ImmutableList.of(1.0D, 1.0D));
-    public static final MapCodec<JBiomeProvider> DIRECT_CODEC = RecordCodecBuilder.mapCodec((builder) -> {
-        return builder.group(Codec.LONG.fieldOf("seed").forGetter((eucaProvider6) -> {
-            return eucaProvider6.seed;
-        }), RecordCodecBuilder.<Pair<Biome.Attributes, Supplier<Biome>>>create((biomeAttributes1) -> {
-            return biomeAttributes1.group(Biome.Attributes.CODEC.fieldOf("parameters").forGetter(Pair::getFirst), Biome.CODEC.fieldOf("biome").forGetter(Pair::getSecond)).apply(biomeAttributes1, Pair::of);
-        }).listOf().fieldOf("biomes").forGetter((eucaProvider5) -> {
-            return eucaProvider5.parameters;
-        }), JBiomeProvider.Noise.CODEC.fieldOf("temperature_noise").forGetter((eucaProvider4) -> {
-            return eucaProvider4.temperatureParams;
-        }), JBiomeProvider.Noise.CODEC.fieldOf("humidity_noise").forGetter((eucaProvider3) -> {
-            return eucaProvider3.humidityParams;
-        }), JBiomeProvider.Noise.CODEC.fieldOf("altitude_noise").forGetter((eucaProvider2) -> {
-            return eucaProvider2.altitudeParams;
-        }), JBiomeProvider.Noise.CODEC.fieldOf("weirdness_noise").forGetter((eucaProvider1) -> {
-            return eucaProvider1.weirdnessParams;
-        })).apply(builder, JBiomeProvider::new);
-    });
-    public static final Codec<JBiomeProvider> CODEC = Codec.mapEither(JBiomeProvider.DefaultBuilder.CODEC, DIRECT_CODEC).xmap((either) -> {
-        return either.map(JBiomeProvider.DefaultBuilder::biomeSource, Function.identity());
-    }, (eucaProvider) -> {
-        return eucaProvider.preset().map(Either::<JBiomeProvider.DefaultBuilder, JBiomeProvider>left).orElseGet(() -> {
-            return Either.right(eucaProvider);
-        });
-    }).codec();
+    public static final MapCodec<JBiomeProvider> DIRECT_CODEC = RecordCodecBuilder.mapCodec((builder) ->
+            builder.group(Codec.LONG.fieldOf("seed").forGetter((baseProvider6) ->
+                    baseProvider6.seed), RecordCodecBuilder.<Pair<Biome.Attributes, Supplier<Biome>>>create((biomeAttributes1) ->
+                    biomeAttributes1.group(Biome.Attributes.CODEC.fieldOf("parameters").forGetter(Pair::getFirst), Biome.CODEC.fieldOf("biome").forGetter(Pair::getSecond))
+                            .apply(biomeAttributes1, Pair::of)).listOf().fieldOf("biomes").forGetter((baseProvider5) ->
+                    baseProvider5.parameters), Noise.CODEC.fieldOf("temperature_noise").forGetter((baseProvider4) ->
+                    baseProvider4.temperatureParams), Noise.CODEC.fieldOf("humidity_noise").forGetter((baseProvider3) ->
+                    baseProvider3.humidityParams), Noise.CODEC.fieldOf("altitude_noise").forGetter((baseProvider2) ->
+                    baseProvider2.altitudeParams), Noise.CODEC.fieldOf("weirdness_noise").forGetter((baseProvider1) ->
+                    baseProvider1.weirdnessParams)).apply(builder, JBiomeProvider::new));
+    public static final Codec<JBiomeProvider> CODEC = Codec.mapEither(JBiomeProvider.DefaultBuilder.CODEC, DIRECT_CODEC).xmap((either) ->
+            either.map(DefaultBuilder::biomeSource, Function.identity()), (baseProvider) ->
+            baseProvider.preset().map(Either::<DefaultBuilder, JBiomeProvider>left).orElseGet(() -> {
+                return Either.right(baseProvider);
+            })).codec();
     private final JBiomeProvider.Noise temperatureParams;
     private final JBiomeProvider.Noise humidityParams;
     private final JBiomeProvider.Noise altitudeParams;
@@ -68,18 +59,14 @@ public class JBiomeProvider extends BiomeProvider {
     private final long seed;
     private final Optional<Pair<Registry<Biome>, JBiomeProvider.Preset>> preset;
 
-    private JBiomeProvider(long seed, List<Pair<Biome.Attributes, Supplier<Biome>>> biomeAttributes, Optional<Pair<Registry<Biome>, JBiomeProvider.Preset>> eucaProviderPreset) {
-        this(seed, biomeAttributes, DEFAULT_NOISE_PARAMETERS, DEFAULT_NOISE_PARAMETERS, DEFAULT_NOISE_PARAMETERS, DEFAULT_NOISE_PARAMETERS, eucaProviderPreset);
-    }
-
     private JBiomeProvider(long seed, List<Pair<Biome.Attributes, Supplier<Biome>>> biomeAttributes, JBiomeProvider.Noise temperatureNoise, JBiomeProvider.Noise humidityNoise, JBiomeProvider.Noise altitudeNoise, JBiomeProvider.Noise weirdnessNoise) {
         this(seed, biomeAttributes, temperatureNoise, humidityNoise, altitudeNoise, weirdnessNoise, Optional.empty());
     }
 
-    private JBiomeProvider(long seed, List<Pair<Biome.Attributes, Supplier<Biome>>> biomeAttributes, JBiomeProvider.Noise temperatureNoise, JBiomeProvider.Noise humidityNoise, JBiomeProvider.Noise altitudeNoise, JBiomeProvider.Noise weirdnessNoise, Optional<Pair<Registry<Biome>, JBiomeProvider.Preset>> eucaProviderPreset) {
+    private JBiomeProvider(long seed, List<Pair<Biome.Attributes, Supplier<Biome>>> biomeAttributes, JBiomeProvider.Noise temperatureNoise, JBiomeProvider.Noise humidityNoise, JBiomeProvider.Noise altitudeNoise, JBiomeProvider.Noise weirdnessNoise, Optional<Pair<Registry<Biome>, JBiomeProvider.Preset>> baseProviderPreset) {
         super(biomeAttributes.stream().map(Pair::getSecond));
         this.seed = seed;
-        this.preset = eucaProviderPreset;
+        this.preset = baseProviderPreset;
         this.temperatureParams = temperatureNoise;
         this.humidityParams = humidityNoise;
         this.altitudeParams = altitudeNoise;
@@ -92,43 +79,35 @@ public class JBiomeProvider extends BiomeProvider {
         this.useY = false;
     }
 
-    protected Codec<? extends BiomeProvider> codec() {
+    @Override
+    protected @NotNull Codec<? extends BiomeProvider> codec() {
         return CODEC;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public BiomeProvider withSeed(long seed) {
+    @Override
+    public @NotNull BiomeProvider withSeed(long seed) {
         return new JBiomeProvider(seed, this.parameters, this.temperatureParams, this.humidityParams, this.altitudeParams, this.weirdnessParams, this.preset);
     }
 
     private Optional<JBiomeProvider.DefaultBuilder> preset() {
-        return this.preset.map((registryPresetPair) -> {
-            return new JBiomeProvider.DefaultBuilder(registryPresetPair.getSecond(), registryPresetPair.getFirst(), this.seed);
-        });
+        return this.preset.map((registryPresetPair) -> new DefaultBuilder(registryPresetPair.getSecond(), registryPresetPair.getFirst(), this.seed));
     }
 
-    public Biome getNoiseBiome(int x, int y, int z) {
+    @Override
+    public @NotNull Biome getNoiseBiome(int x, int y, int z) {
         int i = this.useY ? y : 0;
         Biome.Attributes biome$attributes = new Biome.Attributes((float) this.temperatureNoise.getValue(x, i, z), (float) this.humidityNoise.getValue(x, i, z), (float) this.altitudeNoise.getValue(x, i, z), (float) this.weirdnessNoise.getValue(x, i, z), 0.0F);
-        return this.parameters.stream().min(Comparator.comparing((attributeBiomePair) -> {
-            return attributeBiomePair.getFirst().fitness(biome$attributes);
-        })).map(Pair::getSecond).map(Supplier::get).orElse(BiomeRegistry.THE_VOID);
-    }
-
-    public boolean stable(long seed) {
-        return this.seed == seed && this.preset.isPresent() && Objects.equals(this.preset.get().getSecond(), Preset.EUCA);
+        return this.parameters.stream().min(Comparator.comparing((attributeBiomePair) ->
+                attributeBiomePair.getFirst().fitness(biome$attributes))).map(Pair::getSecond).map(Supplier::get).orElse(BiomeRegistry.THE_VOID);
     }
 
     static final class DefaultBuilder {
-        public static final MapCodec<JBiomeProvider.DefaultBuilder> CODEC = RecordCodecBuilder.mapCodec((builder) -> {
-            return builder.group(ResourceLocation.CODEC.flatXmap((id) -> {
-                return Optional.ofNullable(JBiomeProvider.Preset.BY_NAME.get(id)).map(DataResult::success).orElseGet(() -> {
-                    return DataResult.error("Unknown preset: " + id);
-                });
-            }, (preset1) -> {
-                return DataResult.success(preset1.name);
-            }).fieldOf("preset").stable().forGetter(JBiomeProvider.DefaultBuilder::preset), RegistryLookupCodec.create(Registry.BIOME_REGISTRY).forGetter(JBiomeProvider.DefaultBuilder::biomes), Codec.LONG.fieldOf("seed").stable().forGetter(JBiomeProvider.DefaultBuilder::seed)).apply(builder, builder.stable(JBiomeProvider.DefaultBuilder::new));
-        });
+        public static final MapCodec<JBiomeProvider.DefaultBuilder> CODEC = RecordCodecBuilder.mapCodec((builder) ->
+                builder.group(ResourceLocation.CODEC.flatXmap((id) ->
+                        Optional.ofNullable(Preset.BY_NAME.get(id)).map(DataResult::success).orElseGet(() ->
+                                DataResult.error("Unknown preset: " + id)), (preset1) ->
+                        DataResult.success(preset1.name)).fieldOf("preset").stable().forGetter(DefaultBuilder::preset), RegistryLookupCodec.create(Registry.BIOME_REGISTRY).forGetter(DefaultBuilder::biomes), Codec.LONG.fieldOf("seed").stable().forGetter(DefaultBuilder::seed)).apply(builder, builder.stable(DefaultBuilder::new)));
         private final JBiomeProvider.Preset preset;
         private final Registry<Biome> biomes;
         private final long seed;
@@ -159,9 +138,8 @@ public class JBiomeProvider extends BiomeProvider {
     static class Noise {
         private final int firstOctave;
         private final DoubleList amplitudes;
-        public static final Codec<JBiomeProvider.Noise> CODEC = RecordCodecBuilder.create((builder) -> {
-            return builder.group(Codec.INT.fieldOf("firstOctave").forGetter(JBiomeProvider.Noise::firstOctave), Codec.DOUBLE.listOf().fieldOf("amplitudes").forGetter(JBiomeProvider.Noise::amplitudes)).apply(builder, JBiomeProvider.Noise::new);
-        });
+        public static final Codec<JBiomeProvider.Noise> CODEC = RecordCodecBuilder.create((builder) ->
+                builder.group(Codec.INT.fieldOf("firstOctave").forGetter(Noise::firstOctave), Codec.DOUBLE.listOf().fieldOf("amplitudes").forGetter(Noise::amplitudes)).apply(builder, Noise::new));
 
         public Noise(int numOctaves, List<Double> amplitudes) {
             this.firstOctave = numOctaves;
@@ -179,27 +157,12 @@ public class JBiomeProvider extends BiomeProvider {
 
     public static class Preset {
         private static final Map<ResourceLocation, JBiomeProvider.Preset> BY_NAME = Maps.newHashMap();
-        public static final JBiomeProvider.Preset EUCA = new JBiomeProvider.Preset(JITL.rl("euca"), (preset, lookupRegistry1, seed1) -> {
-            return new JBiomeProvider(seed1, ImmutableList.of(Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
-                return lookupRegistry1.get(JBiomeRegistry.EUCA_PLAINS.getRegistryName());
-            }), Pair.of(new Biome.Attributes(0.0F, 0.5F, 0.0F, 0.0F, 0.375F), () -> {
-                return lookupRegistry1.get(JBiomeRegistry.EUCA_GOLDITE_GRAINS.getRegistryName());
-            }), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
-                return lookupRegistry1.get(JBiomeRegistry.EUCA_SILVER_PLAINS.getRegistryName());
-            }), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
-                return lookupRegistry1.get(JBiomeRegistry.FROZEN_WASTES.getRegistryName());
-            }), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
-                return lookupRegistry1.get(JBiomeRegistry.FROZEN_DYING_FOREST.getRegistryName());
-            }), Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
-                return lookupRegistry1.get(JBiomeRegistry.FROZEN_BITTERWOOD_FOREST.getRegistryName());
-            })), Optional.of(Pair.of(lookupRegistry1, preset)));
-        });
         private final ResourceLocation name;
         private final Function3<JBiomeProvider.Preset, Registry<Biome>, Long, JBiomeProvider> biomeSource;
 
-        public Preset(ResourceLocation id, Function3<JBiomeProvider.Preset, Registry<Biome>, Long, JBiomeProvider> eucaProviderFunction) {
+        public Preset(ResourceLocation id, Function3<JBiomeProvider.Preset, Registry<Biome>, Long, JBiomeProvider> baseProviderFunction) {
             this.name = id;
-            this.biomeSource = eucaProviderFunction;
+            this.biomeSource = baseProviderFunction;
             BY_NAME.put(id, this);
         }
 

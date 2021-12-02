@@ -2,7 +2,6 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.dimension.JBiomeProvider;
-import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
@@ -19,10 +18,6 @@ public class JBiomeRegistry {
     public static Biome FROZEN_WASTES;
     public static Biome FROZEN_DYING_FOREST;
     public static Biome FROZEN_BITTERWOOD_FOREST;
-
-    private static RegistryKey<Biome> registerBiome(String name) {
-        return RegistryKey.create(Registry.BIOME_REGISTRY, JITL.rl(name));
-    }
 
     @SubscribeEvent
     public static void registerBiomes(RegistryEvent.Register<Biome> event) {
