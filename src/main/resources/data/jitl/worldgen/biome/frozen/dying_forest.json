@@ -1,11 +1,11 @@
 {
   "surface_builder": "jitl:frozen",
-  "depth": 0.3,
-  "scale": 0.45,
+  "depth": 0.1,
+  "scale": 0.1,
   "precipitation": "snow",
   "temperature": -0.8,
   "downfall": 0.4,
-  "category": "plains",
+  "category": "forest",
   "effects": {
     "sky_color": 3145727,
     "fog_color": 7112378,
@@ -33,7 +33,6 @@
   "carvers": {},
   "features": [
     [
-      "jitl:frozen_ice_spike",
       "jitl:frozen_flowers"
     ]
   ]

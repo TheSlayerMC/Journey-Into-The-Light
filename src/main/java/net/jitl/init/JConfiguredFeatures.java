@@ -23,9 +23,8 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.PineFoliagePlacer;
-import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
-import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
-import net.minecraft.world.gen.trunkplacer.MegaJungleTrunkPlacer;
+import net.minecraft.world.gen.foliageplacer.SpruceFoliagePlacer;
+import net.minecraft.world.gen.trunkplacer.*;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import ru.timeconqueror.timecore.api.registry.ConfiguredFeatureRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
@@ -49,7 +48,9 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> EUCA_GOLD_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_plains"));
     public static final Predicate<BiomeLoadingEvent> EUCA_SILVER_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_silver_plains"));
 
-    public static final Predicate<BiomeLoadingEvent> FROZEN_LANDS = event -> Objects.equals(event.getName(), JITL.rl("frozen/frozen"));
+    public static final Predicate<BiomeLoadingEvent> FROZEN_WASTES = event -> Objects.equals(event.getName(), JITL.rl("frozen/frozen_wastes"));
+    public static final Predicate<BiomeLoadingEvent> FROZEN_DYING_FORST = event -> Objects.equals(event.getName(), JITL.rl("frozen/dying_forest"));
+    public static final Predicate<BiomeLoadingEvent> FROZEN_BITTERWOOD_FORST = event -> Objects.equals(event.getName(), JITL.rl("frozen/bitterwood_forest"));
 
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
@@ -393,7 +394,7 @@ public class JConfiguredFeatures {
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
                                     .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(FROZEN_LANDS)
+                    .setBiomePredicate(FROZEN_DYING_FORST)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> MEDIUM_FROZEN_TREE =
@@ -408,7 +409,7 @@ public class JConfiguredFeatures {
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
                                     .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(FROZEN_LANDS)
+                    .setBiomePredicate(FROZEN_DYING_FORST)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_FROZEN_TREE =
@@ -423,7 +424,52 @@ public class JConfiguredFeatures {
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
                                     .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(FROZEN_LANDS)
+                    .setBiomePredicate(FROZEN_DYING_FORST)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_FROZEN_BITTERWOOOD_TREE =
+            REGISTER.register("large_frozen_biterwood_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new BaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
+                                    new GiantTrunkPlacer(15, 7, 7),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(FROZEN_BITTERWOOD_FORST)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> MEDIUM_FROZEN_BITTERWOOOD_TREE =
+            REGISTER.register("medium_frozen_biterwood_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new BaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
+                                    new StraightTrunkPlacer(10, 7, 7),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(FROZEN_BITTERWOOD_FORST)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_FROZEN_BITTERWOOOD_TREE =
+            REGISTER.register("small_frozen_biterwood_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new BaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
+                                    new StraightTrunkPlacer(4, 2, 3),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(FROZEN_BITTERWOOD_FORST)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
@@ -521,7 +567,7 @@ public class JConfiguredFeatures {
             REGISTER.register("peridot_ore",
                     Decoration.UNDERGROUND_ORES,
                     defaultOreFeature(() -> JBlocks.PERIDOT_ORE.defaultBlockState(), JRuleTests.STONE_FROZEN, 8, 64, 20))
-                    .setBiomePredicate(FROZEN_LANDS)
+                    .setBiomePredicate(FROZEN_DYING_FORST)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> MUD_DISK =
@@ -540,7 +586,7 @@ public class JConfiguredFeatures {
                             .squared()
                             .chance(70)
                             .countRandom(32))
-                    .setBiomePredicate(FROZEN_LANDS)
+                    .setBiomePredicate(FROZEN_WASTES)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_PLANTS =
@@ -562,7 +608,7 @@ public class JConfiguredFeatures {
                             .build())
                     .range(250)
                     .count(50))
-                    .setBiomePredicate(FROZEN_LANDS)
+                    .setBiomePredicate(FROZEN_DYING_FORST)
                     .asPromise();
 
     /**

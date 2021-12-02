@@ -30,6 +30,7 @@ import java.util.function.Supplier;
 
 public class FrozenBiomeProvider extends BiomeProvider {
 
+    //TODO: Remove this class, it's useless for now
     private static final FrozenBiomeProvider.Noise DEFAULT_NOISE_PARAMETERS = new FrozenBiomeProvider.Noise(-7, ImmutableList.of(1.0D, 1.0D));
     public static final MapCodec<FrozenBiomeProvider> DIRECT_CODEC = RecordCodecBuilder.mapCodec((builder) -> {
         return builder.group(Codec.LONG.fieldOf("seed").forGetter((frozenProvider6) -> {
@@ -109,7 +110,7 @@ public class FrozenBiomeProvider extends BiomeProvider {
 
     public Biome getNoiseBiome(int x, int y, int z) {
         int i = this.useY ? y : 0;
-        Biome.Attributes biome$attributes = new Biome.Attributes((float)this.temperatureNoise.getValue((double)x, (double)i, (double)z), (float)this.humidityNoise.getValue((double)x, (double)i, (double)z), (float)this.altitudeNoise.getValue((double)x, (double)i, (double)z), (float)this.weirdnessNoise.getValue((double)x, (double)i, (double)z), 0.0F);
+        Biome.Attributes biome$attributes = new Biome.Attributes((float) this.temperatureNoise.getValue(x, i, z), (float) this.humidityNoise.getValue(x, i, z), (float) this.altitudeNoise.getValue(x, i, z), (float) this.weirdnessNoise.getValue(x, i, z), 0.0F);
         return this.parameters.stream().min(Comparator.comparing((attributeBiomePair) -> {
             return attributeBiomePair.getFirst().fitness(biome$attributes);
         })).map(Pair::getSecond).map(Supplier::get).orElse(BiomeRegistry.THE_VOID);
@@ -181,7 +182,7 @@ public class FrozenBiomeProvider extends BiomeProvider {
         private static final Map<ResourceLocation, FrozenBiomeProvider.Preset> BY_NAME = Maps.newHashMap();
         public static final FrozenBiomeProvider.Preset frozen = new FrozenBiomeProvider.Preset(JITL.rl("frozen"), (preset, lookupRegistry1, seed1) -> {
             return new FrozenBiomeProvider(seed1, ImmutableList.of(Pair.of(new Biome.Attributes(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
-                return lookupRegistry1.get(JBiomeRegistry.FROZEN_LANDS.getRegistryName());
+                return lookupRegistry1.get(JBiomeRegistry.FROZEN_WASTES.getRegistryName());
             })), Optional.of(Pair.of(lookupRegistry1, preset)));
         });
         private final ResourceLocation name;
