@@ -2,14 +2,13 @@ package net.jitl.common.world.gen.structures.frozen;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
-import net.jitl.JITL;
+import net.jitl.common.world.gen.jigsaw.JigsawStarters;
 import net.jitl.init.JEntities;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.biome.provider.BiomeProvider;
@@ -73,12 +72,12 @@ public class EskimoCampStructure extends Structure<NoFeatureConfig> {
             int chunkZ = (z << 4) + 7;
 
             int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator_, x, z, x + 7, z + 7);
-            surface -= 6;
+            surface -= 1;
 
             BlockPos pos = new BlockPos(chunkX, surface, chunkZ);
             if (chunkGenerator_.getBaseHeight(chunkX, chunkZ, Heightmap.Type.WORLD_SURFACE_WG) > 0) {
                 JigsawManager.addPieces(dynamicRegistries_,
-                        new VillageConfig(() -> dynamicRegistries_.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(JITL.rl("frozen/eskimo_camp/starting_well")), 7),
+                        new VillageConfig(() -> JigsawStarters.ESKIMO_CAMP_START, 3),
                         AbstractVillagePiece::new,
                         chunkGenerator_,
                         templateManager_,
@@ -88,7 +87,7 @@ public class EskimoCampStructure extends Structure<NoFeatureConfig> {
                         true,
                         true);
             }
-            pieces.forEach(piece -> piece.move(0, -5, 0));
+            pieces.forEach(piece -> piece.move(0, 0, 0));
             calculateBoundingBox();
             moveInsideHeights(random, 64, 67);
         }
