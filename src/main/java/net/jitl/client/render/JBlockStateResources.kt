@@ -93,6 +93,44 @@ object JBlockStateResources {
     }
 
     @JvmStatic
+    fun campfireState(modelLocationOn: BlockModelLocation, modelLocationOff: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "facing=east,lit=false" {
+                    "model" set modelLocationOff.toString()
+                    y = 270
+                }
+                "facing=east,lit=true" {
+                    "model" set modelLocationOn.toString()
+                    y = 270
+                }
+                "facing=north,lit=false" {
+                    "model" set modelLocationOff.toString()
+                    y = 180
+                }
+                "facing=north,lit=true" {
+                    "model" set modelLocationOn.toString()
+                    y = 180
+                }
+                "facing=south,lit=false" {
+                    "model" set modelLocationOff.toString()
+                }
+                "facing=south,lit=true" {
+                    "model" set modelLocationOn.toString()
+                }
+                "facing=west,lit=false" {
+                    "model" set modelLocationOff.toString()
+                    y = 90
+                }
+                "facing=west,lit=true" {
+                    "model" set modelLocationOn.toString()
+                    y = 90
+                }
+            }
+        })
+    }
+
+    @JvmStatic
     fun rotatablePillarState(location: BlockModelLocation): BlockStateResource {
         val json = JSONTimeResource.`object`(
                 null, JSONTimeResource.listOf(

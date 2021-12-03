@@ -40,6 +40,24 @@ object JBlockModels {
     }
 
     @JvmStatic
+    fun campfireOn(texture: TextureLocation, fireTexture: TextureLocation) = BlockModel(json {
+        "parent" set "block/template_campfire"
+        "textures" {
+            "fire" set fireTexture.toString()
+            "lit_log" set texture.toString()
+        }
+    })
+
+    @JvmStatic
+    fun campfireOff(texture: TextureLocation) = BlockModel(json {
+        "parent" set "block/template_campfire"
+        "textures" {
+            "fire" set "jitl:block/empty"
+            "lit_log" set texture.toString()
+        }
+    })
+
+    @JvmStatic
     fun crop(textureCrop: TextureLocation) = BlockModel(json {
         "parent" set "block/crop"
         "textures" {

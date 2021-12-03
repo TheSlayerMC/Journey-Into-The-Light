@@ -21,7 +21,7 @@
     "type": "minecraft:noise",
     "seed": -22426074,
     "biome_source": {
-      "type": "jitl:euca_provider",
+      "type": "jitl:base_biome_provider",
       "seed": -22426074,
       "altitude_noise": {
         "firstOctave": -7,

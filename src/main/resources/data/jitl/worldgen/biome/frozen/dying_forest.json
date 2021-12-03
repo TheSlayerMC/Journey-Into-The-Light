@@ -1,0 +1,39 @@
+{
+  "surface_builder": "jitl:frozen",
+  "depth": 0.1,
+  "scale": 0.1,
+  "precipitation": "snow",
+  "temperature": -0.8,
+  "downfall": 0.4,
+  "category": "forest",
+  "effects": {
+    "sky_color": 3145727,
+    "fog_color": 7112378,
+    "water_color": 3145727,
+    "water_fog_color": 25855,
+    "grass_color": 3145727,
+    "foliage_color": 25855,
+    "ambient_sound": "jitl:music.frozen.ambience",
+    "music": {
+      "sound": "jitl:music.haunt_muskie_2",
+      "min_delay": 10,
+      "max_delay": 1000,
+      "replace_current_music": true
+    },
+    "particle": {
+      "options": {
+        "type": "jitl:snowflake"
+      },
+      "probability": 0.01428
+    }
+  },
+  "starts": [],
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [
+      "jitl:frozen_flowers"
+    ]
+  ]
+}
