@@ -3,6 +3,7 @@ package net.jitl.common.entity.overworld;
 import net.jitl.JITL;
 import net.jitl.client.render.gui.BossBarRenderer;
 import net.jitl.common.entity.base.IJourneyBoss;
+import net.jitl.common.entity.goal.IdleHealGoal;
 import net.jitl.common.helper.JBossInfo;
 import net.jitl.common.helper.JMusic;
 import net.jitl.init.JAnimations;
@@ -75,6 +76,7 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 
 	protected void addBehaviourGoals() {
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(1, new IdleHealGoal(this, 1200));
 		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglinEntity.class));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 	}

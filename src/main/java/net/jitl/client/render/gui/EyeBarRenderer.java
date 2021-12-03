@@ -4,6 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.client.render.gui.BossBarRenderer;
 import net.jitl.client.util.RenderUtils;
+import net.jitl.common.entity.nether.SoulWatcherEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
@@ -11,7 +12,7 @@ import net.minecraft.util.Util;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class EyeBarRenderer extends BossBarRenderer {
-    public EyeBarRenderer(LivingEntity boss, ResourceLocation texture) {
+    public EyeBarRenderer(SoulWatcherEntity boss, ResourceLocation texture) {
         super(boss, texture);
     }
 
@@ -44,7 +45,7 @@ public class EyeBarRenderer extends BossBarRenderer {
         stack.translate(-100, 0, 0);*/
         RenderUtils.blit(stack, x - timeWidth / 2, y, timeWidth, 7, 7, 8, 182, 7, 196, 15);
         RenderUtils.blit(stack, x - timeWidth / 2, y, (int) (timeWidth * healthWidth), 7, 7, 0, (int) (182 * healthWidth),  7, 196, 15);
-        if (Math.floor(time) % 2 == 0) {
+        if (((SoulWatcherEntity) boss).isClosed()) {
             RenderUtils.blit(stack, x - 91 + 4, y + 1, 6, 5, 0, 1, 6, 5, 196, 15); //render left eye
             RenderUtils.blit(stack, x - 91 + 172, y + 1, 6, 5, 190, 1, 6, 5, 196, 15); //render left eye
         }
