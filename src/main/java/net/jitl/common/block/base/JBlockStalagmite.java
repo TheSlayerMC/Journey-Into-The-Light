@@ -1,6 +1,7 @@
 package net.jitl.common.block.base;
 
-import net.minecraft.block.AbstractBlock;
+import net.jitl.init.JBlocks;
+import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
@@ -11,16 +12,19 @@ import org.jetbrains.annotations.NotNull;
 
 public class JBlockStalagmite extends Block {
 
-    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
+    protected static final VoxelShape BIG_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
+    protected static final VoxelShape MED_SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+    protected static final VoxelShape SMALL_SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
+    protected static final VoxelShape TINY_SHAPE = Block.box(7.0D, 0.0D, 7.0D, 9.0D, 16.0D, 9.0D);
 
-
-    public JBlockStalagmite(Properties properties) {
-        super(properties);
+    public JBlockStalagmite() {
+        super(JBlockProperties.STONE_PROPS.create());
     }
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
-        return SHAPE;
+        return this == JBlocks.SCORCHED_STALAGMITE_LARGE ? BIG_SHAPE : this == JBlocks.SCORCHED_STALAGMITE_MED ? MED_SHAPE :
+                this == JBlocks.SCORCHED_STALAGMITE_SMALL ? SMALL_SHAPE : TINY_SHAPE;
     }
 
 }
