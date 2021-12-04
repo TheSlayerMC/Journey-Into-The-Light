@@ -11,7 +11,7 @@
     "has_ceiling": false,
     "coordinate_scale": 1,
     "ambient_light": 0,
-    "fixed_time": 4000,
+    "fixed_time": 18000,
     "logical_height": 256,
     "infiniburn": "minecraft:infiniburn_overworld",
     "min_y": 0,
@@ -121,14 +121,14 @@
         "random_density_offset": true,
         "amplified": false,
         "sampling": {
-          "xz_scale": 0.9999999814507745,
-          "y_scale": 0.9999999814507745,
+          "xz_scale": 1,
+          "y_scale": 1,
           "xz_factor": 80,
-          "y_factor": 160
+          "y_factor": 120
         },
         "bottom_slide": {
-          "target": -30,
-          "size": 0,
+          "target": 30,
+          "size": 1,
           "offset": 0
         },
         "top_slide": {

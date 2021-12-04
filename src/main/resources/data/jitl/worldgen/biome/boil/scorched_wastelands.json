@@ -1,7 +1,7 @@
 {
   "surface_builder": "jitl:scorched_wastelands",
-  "depth": 0.125,
-  "scale": 0.45,
+  "depth": 0.0,
+  "scale": 0.65,
   "temperature": 0.8,
   "downfall": 0.4,
   "precipitation": "none",
