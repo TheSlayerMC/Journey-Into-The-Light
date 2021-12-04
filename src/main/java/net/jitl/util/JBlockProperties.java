@@ -203,6 +203,11 @@ public class JBlockProperties {
 			.lightLevel((state) -> 5)
 			.noCollission());
 
+	public static final BlockPropsFactory GLOW_BLOCK = new BlockPropsFactory(() -> Properties.of
+			(Material.GLASS)
+			.sound(SoundType.GLASS)
+			.lightLevel((state) -> 5));
+
 	public static final BlockPropsFactory PLANT_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.REPLACEABLE_PLANT)
 			.sound(SoundType.SWEET_BERRY_BUSH)

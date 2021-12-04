@@ -329,6 +329,15 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("ice_bush", "Ice Bush", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
                 () -> JBlockModels.crop(JITL.tl("block/ice_bush")));
+
+        registerDefaultBlock("depths_dirt", "Depths Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerDefaultBlock("depths_stone", "Depths Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        registerDefaultBlock("depths_lamp", "Depths Lamp", () -> new Block(JBlockProperties.GLOW_BLOCK.create()));
+        registerDefaultBlock("depths_portal_frame", "Depths Portal Frame", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerDefaultBlock("depths_portal", "Depths Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.DEPTHS, JBlocks.DEPTHS_PORTAL_FRAME));
+        registerSpeciallyRenderedBlock("depths_grass_block", "Depths Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+                () -> BlockModels.cubeBottomTopModel(JITL.tl("block/depths_grass_block_top"), JITL.tl("block/depths_grass_block_side"), JITL.tl("block/depths_dirt")));
+
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {

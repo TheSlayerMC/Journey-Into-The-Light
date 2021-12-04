@@ -176,6 +176,13 @@ public class JBlocks {
 	public static final JLeavesBlock EUCA_SILVER_LEAVES = promise();
 	public static final JLeavesBlock EUCA_GREEN_LEAVES = promise();
 
+	public static final Block DEPTHS_PORTAL_FRAME = promise();
+	public static final Block DEPTHS_PORTAL = promise();
+	public static final Block DEPTHS_GRASS_BLOCK = promise();
+	public static final Block DEPTHS_DIRT = promise();
+	public static final Block DEPTHS_STONE = promise();
+	public static final Block DEPTHS_LAMP = promise();
+
 	public static final Block SILVER_BOT_SPAWNER = promise();
 	public static final Block GOLD_BOT_SPAWNER = promise();
 
