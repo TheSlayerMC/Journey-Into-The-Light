@@ -24,7 +24,7 @@ public class JBlockStalagmite extends Block {
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
         return this == JBlocks.SCORCHED_STALAGMITE_LARGE ? BIG_SHAPE : this == JBlocks.SCORCHED_STALAGMITE_MED ? MED_SHAPE :
-                this == JBlocks.SCORCHED_STALAGMITE_SMALL ? SMALL_SHAPE : TINY_SHAPE;
+                this == JBlocks.SCORCHED_STALAGMITE_SMALL ? SMALL_SHAPE : this == JBlocks.SCORCHED_CACTUS ? BIG_SHAPE : TINY_SHAPE;
     }
 
 }

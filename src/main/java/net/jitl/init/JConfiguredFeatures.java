@@ -53,6 +53,7 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> FROZEN_BITTERWOOD_FORST = event -> Objects.equals(event.getName(), JITL.rl("frozen/bitterwood_forest"));
 
     public static final Predicate<BiomeLoadingEvent> SCORCHED_WASTELAND = event -> Objects.equals(event.getName(), JITL.rl("boil/scorched_wastelands"));
+    public static final Predicate<BiomeLoadingEvent> BOILING_SANDS = event -> Objects.equals(event.getName(), JITL.rl("boil/boiling_sands"));
 
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
@@ -483,6 +484,17 @@ public class JConfiguredFeatures {
                             .squared()
                             .count(220))
                     .setBiomePredicate(SCORCHED_WASTELAND)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SCORCHED_CACTUS =
+            REGISTER.register("scorched_cactus",
+                            Decoration.SURFACE_STRUCTURES,
+                            () -> JFeatures.SCORCHED_CACTUS.get()
+                                    .configured(IFeatureConfig.NONE)
+                                    .range(128)
+                                    .squared()
+                                    .count(100))
+                    .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =

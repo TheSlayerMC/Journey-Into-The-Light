@@ -352,6 +352,7 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("scorched_stalagmite_med", "Scorched Stalagmite", () -> new JBlockStalagmite());
         registerSpeciallyRenderedBlock("scorched_stalagmite_large", "Scorched Stalagmite", () -> new JBlockStalagmite());
 
+        registerSpeciallyRenderedBlock("scorched_cactus", "Scorched Cactus", () -> new JBlockStalagmite());
 
     }
 

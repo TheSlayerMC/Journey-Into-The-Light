@@ -23,11 +23,7 @@ public class ScorchedStalagmiteFeature extends Feature<NoFeatureConfig> {
         if (reader.getBlockState(pos.below()) != JBlocks.SCORCHED_RUBBLE.defaultBlockState()) {
             return false;
         } else {
-            int bottomHeight = 1 + rand.nextInt(4);
-            int largeHeight = 1 + rand.nextInt(5);
-            int medHeight = 1 + rand.nextInt(6);
-            int smallHeight = 1 + rand.nextInt(7);
-            int tinyHeight = 1 + rand.nextInt(8);
+
 
             BlockPos.Mutable placePos = pos.mutable();
 
@@ -40,6 +36,11 @@ public class ScorchedStalagmiteFeature extends Feature<NoFeatureConfig> {
             BlockPos blockPos = reader.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
 
             for(int k = 0; k < 30; k++) {
+                int bottomHeight = 1 + rand.nextInt(4);
+                int largeHeight = 1 + rand.nextInt(5);
+                int medHeight = 1 + rand.nextInt(6);
+                int smallHeight = 1 + rand.nextInt(7);
+                int tinyHeight = 1 + rand.nextInt(8);
                 int xSpread = 10;
                 int zSpread = 10;
                 placePos.setWithOffset(blockPos, rand.nextInt(xSpread + 10), 0, rand.nextInt(zSpread + 10));
