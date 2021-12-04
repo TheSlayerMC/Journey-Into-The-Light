@@ -1,6 +1,7 @@
 package net.jitl.client.eventhandler;
 
 import net.jitl.client.Models;
+import net.jitl.client.world.BoilRenderInfo;
 import net.jitl.client.world.FrozenRenderInfo;
 import net.jitl.init.JDimensions;
 import net.minecraft.client.world.DimensionRenderInfo;
@@ -20,6 +21,7 @@ public class ClientLoadingEventHandler {
         KeybindEventHandler.registerKeys(event);
         event.enqueueWork(() -> {
             DimensionRenderInfo.EFFECTS.put(JDimensions.FROZEN.location(), new FrozenRenderInfo());
+            DimensionRenderInfo.EFFECTS.put(JDimensions.BOIL.location(), new BoilRenderInfo());
         });
     }
 }
