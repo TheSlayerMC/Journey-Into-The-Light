@@ -23,35 +23,44 @@ public class ScorchedStalagmiteFeature extends Feature<NoFeatureConfig> {
         if (reader.getBlockState(pos.below()) != JBlocks.SCORCHED_RUBBLE.defaultBlockState()) {
             return false;
         } else {
-            int bottomHeight = 1 + rand.nextInt(4);
-            int largeHeight = 1 + rand.nextInt(5);
-            int medHeight = 1 + rand.nextInt(6);
-            int smallHeight = 1 + rand.nextInt(7);
-            int tinyHeight = 1 + rand.nextInt(8);
 
-            BlockPos.Mutable placePos = pos.mutable();
+            //int xPos = pos.getX();
+            //int zPos = pos.getZ();
+            //int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
 
-            int xPos = pos.getX();
-            int zPos = pos.getZ();
-            int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
+            //placePos.set(xPos, yPos - 1, zPos);
+            BlockPos blockPos = reader.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
+            BlockPos.Mutable placePos = new BlockPos.Mutable();
 
-            placePos.set(xPos, yPos - 1, zPos);
+            for (int j = 0; j < 50; ++j) {
 
-            if (reader.getBlockState(placePos.above()) == Blocks.AIR.defaultBlockState()) {
-                for (int i = 0; i < bottomHeight; i++) {
-                    setBlock(reader, placePos.move(Direction.UP), JBlocks.SCORCHED_RUBBLE.defaultBlockState());
-                }
-                for (int i = 0; i < largeHeight; i++) {
-                    setBlock(reader, placePos.move(Direction.UP), JBlocks.SCORCHED_STALAGMITE_LARGE.defaultBlockState());
-                }
-                for (int i = 0; i < medHeight; i++) {
-                    setBlock(reader, placePos.move(Direction.UP), JBlocks.SCORCHED_STALAGMITE_MED.defaultBlockState());
-                }
-                for (int i = 0; i < smallHeight; i++) {
-                    setBlock(reader, placePos.move(Direction.UP), JBlocks.SCORCHED_STALAGMITE_SMALL.defaultBlockState());
-                }
-                for (int i = 0; i < tinyHeight; i++) {
-                    setBlock(reader, placePos.move(Direction.UP), JBlocks.SCORCHED_STALAGMITE_TINY.defaultBlockState());
+                int bottomHeight = 1 + rand.nextInt(4);
+                int largeHeight = 1 + rand.nextInt(5);
+                int medHeight = 1 + rand.nextInt(6);
+                int smallHeight = 1 + rand.nextInt(7);
+                int tinyHeight = 1 + rand.nextInt(8);
+
+                int xSpread = 18;
+                int zSpread = 18;
+
+                placePos.setWithOffset(blockPos, rand.nextInt(xSpread) + 1, 0, rand.nextInt(zSpread) + 1);
+
+                if (reader.getBlockState(placePos.above()) == Blocks.AIR.defaultBlockState()) {
+                    for (int i = 0; i < bottomHeight; i++) {
+                        setBlock(reader, placePos.move(Direction.UP), JBlocks.SCORCHED_RUBBLE.defaultBlockState());
+                    }
+                    for (int i = 0; i < largeHeight; i++) {
+                        setBlock(reader, placePos.move(Direction.UP), JBlocks.SCORCHED_STALAGMITE_LARGE.defaultBlockState());
+                    }
+                    for (int i = 0; i < medHeight; i++) {
+                        setBlock(reader, placePos.move(Direction.UP), JBlocks.SCORCHED_STALAGMITE_MED.defaultBlockState());
+                    }
+                    for (int i = 0; i < smallHeight; i++) {
+                        setBlock(reader, placePos.move(Direction.UP), JBlocks.SCORCHED_STALAGMITE_SMALL.defaultBlockState());
+                    }
+                    for (int i = 0; i < tinyHeight; i++) {
+                        setBlock(reader, placePos.move(Direction.UP), JBlocks.SCORCHED_STALAGMITE_TINY.defaultBlockState());
+                    }
                 }
             }
 
