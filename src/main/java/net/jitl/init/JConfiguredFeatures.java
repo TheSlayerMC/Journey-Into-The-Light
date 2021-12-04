@@ -481,7 +481,7 @@ public class JConfiguredFeatures {
                             .configured(IFeatureConfig.NONE)
                             .range(128)
                             .squared()
-                            .countRandom(32))
+                            .count(200))
                     .setBiomePredicate(SCORCHED_WASTELAND)
                     .asPromise();
 
