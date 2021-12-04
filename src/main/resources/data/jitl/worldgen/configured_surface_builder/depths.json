@@ -1,0 +1,24 @@
+{
+  "type": "default",
+  "config": {
+    "top_material": {
+      "Name": "jitl:depths_grass_block",
+      "Properties": {
+        "snowy": "false",
+        "double_drops": "false"
+      }
+    },
+    "under_material": {
+      "Name": "jitl:depths_dirt",
+      "Properties": {
+        "double_drops": "false"
+      }
+    },
+    "underwater_material": {
+      "Name": "jitl:depths_dirt",
+      "Properties": {
+        "double_drops": "false"
+      }
+    }
+  }
+}

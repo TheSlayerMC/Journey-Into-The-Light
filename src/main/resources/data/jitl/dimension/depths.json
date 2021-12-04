@@ -1,0 +1,79 @@
+{
+  "type": {
+    "name": "jitl:depths",
+    "ultrawarm": false,
+    "natural": true,
+    "piglin_safe": false,
+    "respawn_anchor_works": false,
+    "bed_works": false,
+    "has_raids": false,
+    "has_skylight": true,
+    "has_ceiling": true,
+    "coordinate_scale": 1,
+    "ambient_light": 1,
+    "logical_height": 200,
+    "infiniburn": "minecraft:infiniburn_overworld",
+    "min_y": 0,
+    "height": 200
+  },
+  "generator": {
+    "type": "minecraft:noise",
+    "seed": 1262982783,
+    "settings": {
+      "name": "jitl:depths",
+      "bedrock_roof_position": 120,
+      "bedrock_floor_position": 0,
+      "sea_level": 0,
+      "min_surface_level": 0,
+      "disable_mob_generation": false,
+      "noise_caves_enabled": true,
+      "noodle_caves_enabled": false,
+      "aquifers_enabled": true,
+      "ore_veins_enabled": false,
+      "default_block": {
+        "Name": "jitl:depths_stone"
+      },
+      "default_fluid": {
+        "Name": "jitl:depths_lamp",
+        "Properties": {
+          "level": "0"
+        }
+      },
+      "noise": {
+        "min_y": 0,
+        "height": 256,
+        "density_factor": 0,
+        "density_offset": 0.019921875,
+        "size_horizontal": 1,
+        "size_vertical": 2,
+        "simplex_surface_noise": false,
+        "random_density_offset": false,
+		"island_noise_override": false,
+		"amplified": false,		
+        "sampling": {
+          "xz_scale": 1,
+          "y_scale": 1,
+          "xz_factor": 80,
+          "y_factor": 60
+        },
+        "bottom_slide": {
+          "target": 320,
+          "size": 4,
+          "offset": -1
+        },
+        "top_slide": {
+          "target": 120,
+          "size": 3,
+          "offset": 0
+        }
+      },
+      "structures": {
+        "structures": {}
+      }
+    },
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "jitl:depths/depths"
+    }
+  }
+}

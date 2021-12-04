@@ -15,6 +15,8 @@ public class JBiomeRegistry {
     public static Biome EUCA_GOLDITE_GRAINS;
     public static Biome EUCA_SILVER_PLAINS;
 
+    public static Biome DEPTHS;
+
     public static Biome FROZEN_WASTES;
     public static Biome FROZEN_DYING_FOREST;
     public static Biome FROZEN_BITTERWOOD_FOREST;
@@ -38,6 +40,9 @@ public class JBiomeRegistry {
 
         FROZEN_BITTERWOOD_FOREST.setRegistryName(JITL.rl("frozen/bitterwood_forest"));
         event.getRegistry().register(FROZEN_BITTERWOOD_FOREST);
+
+        DEPTHS.setRegistryName(JITL.rl("depths/depths"));
+        event.getRegistry().register(DEPTHS);
     }
 
     public static void registerProviders() {
