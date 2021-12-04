@@ -1,7 +1,7 @@
 {
   "surface_builder": "jitl:boiling_sands",
   "depth": 0.0,
-  "scale": 0.45,
+  "scale": 0.25,
   "temperature": 0.8,
   "downfall": 0.4,
   "precipitation": "none",
