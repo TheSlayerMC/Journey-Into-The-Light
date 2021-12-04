@@ -34,7 +34,7 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
     private static final ResourceLocation SKY_LOCATION = JITL.rl("textures/environment/boil_sky.png");
 
     private final VertexFormat skyFormat = DefaultVertexFormats.POSITION;
-    private VertexBuffer starBuffer, skyBuffer;
+    private VertexBuffer skyBuffer;
 
     public BoilSkyRenderer() {
         textureManager = Minecraft.getInstance().textureManager;
@@ -148,16 +148,6 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         bufferbuilder.end();
         WorldVertexBufferUploader.end(bufferbuilder);
         RenderSystem.disableTexture();
-
-        float starBrightness = world.getStarBrightness(partialTicks);
-        if (starBrightness > 0.0F) {
-            RenderSystem.color4f(starBrightness, starBrightness, starBrightness, starBrightness);
-            this.starBuffer.bind();
-            this.skyFormat.setupBufferState(0L);
-            this.starBuffer.draw(matrixStack.last().pose(), 7);
-            VertexBuffer.unbind();
-            this.skyFormat.clearBufferState();
-        }
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.disableBlend();
