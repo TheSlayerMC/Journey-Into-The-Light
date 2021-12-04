@@ -7,15 +7,15 @@ import net.minecraftforge.common.capabilities.Capability;
 import org.jetbrains.annotations.Nullable;
 
 //TODO remove somehow because it is useless for coffee system
-public class JPlayerStorage implements Capability.IStorage<IJPlayer> {
+public class JPlayerStorage implements Capability.IStorage<JPlayer> {
     @Nullable
     @Override
-    public INBT writeNBT(Capability<IJPlayer> capability, IJPlayer instance, Direction side) {
+    public INBT writeNBT(Capability<JPlayer> capability, JPlayer instance, Direction side) {
         return new CompoundNBT();
     }
 
     @Override
-    public void readNBT(Capability<IJPlayer> capability, IJPlayer instance, Direction side, INBT nbt) {
+    public void readNBT(Capability<JPlayer> capability, JPlayer instance, Direction side, INBT nbt) {
 
     }
 }

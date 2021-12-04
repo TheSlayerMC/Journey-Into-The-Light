@@ -2,7 +2,6 @@ package net.jitl.client.render
 
 import net.jitl.common.block.base.XZFacedBlock
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResource
-import ru.timeconqueror.timecore.api.client.resource.JSONTimeResource
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation
 import ru.timeconqueror.timecore.api.util.json
 import ru.timeconqueror.timecore.api.util.x
@@ -27,38 +26,25 @@ object JBlockStateResources {
 
     @JvmStatic
     fun orientableState(location: BlockModelLocation): BlockStateResource {
-        val json = JSONTimeResource.`object`(
-                null, JSONTimeResource.listOf(
-                JSONTimeResource.`object`(
-                        "variants", JSONTimeResource.listOf(
-                        JSONTimeResource.`object`(
-                                "facing=north", JSONTimeResource.listOf(
-                                JSONTimeResource.property("model", location.toString())
-                        )
-                        ),
-                        JSONTimeResource.`object`(
-                                "facing=south", JSONTimeResource.listOf(
-                                JSONTimeResource.property("model", location.toString()),
-                                JSONTimeResource.property("y", 180)
-                        )
-                        ),
-                        JSONTimeResource.`object`(
-                                "facing=west", JSONTimeResource.listOf(
-                                JSONTimeResource.property("model", location.toString()),
-                                JSONTimeResource.property("y", 270)
-                        )
-                        ),
-                        JSONTimeResource.`object`(
-                                "facing=east", JSONTimeResource.listOf(
-                                JSONTimeResource.property("model", location.toString()),
-                                JSONTimeResource.property("y", 90)
-                        )
-                        )
-                )
-                )
-        )
-        )
-        return BlockStateResource.fromJson(json)
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "facing=north" {
+                    "model" set location
+                }
+                "facing=south" {
+                    "model" set location
+                    y = 180
+                }
+                "facing=west"{
+                    "model" set location
+                    y = 270
+                }
+                "facing=east" {
+                    "model" set location
+                    y = 90
+                }
+            }
+        })
     }
 
     @JvmStatic
@@ -97,33 +83,33 @@ object JBlockStateResources {
         return BlockStateResource.fromJson(json {
             "variants" {
                 "facing=east,lit=false" {
-                    "model" set modelLocationOff.toString()
+                    "model" set modelLocationOff
                     y = 270
                 }
                 "facing=east,lit=true" {
-                    "model" set modelLocationOn.toString()
+                    "model" set modelLocationOn
                     y = 270
                 }
                 "facing=north,lit=false" {
-                    "model" set modelLocationOff.toString()
+                    "model" set modelLocationOff
                     y = 180
                 }
                 "facing=north,lit=true" {
-                    "model" set modelLocationOn.toString()
+                    "model" set modelLocationOn
                     y = 180
                 }
                 "facing=south,lit=false" {
-                    "model" set modelLocationOff.toString()
+                    "model" set modelLocationOff
                 }
                 "facing=south,lit=true" {
-                    "model" set modelLocationOn.toString()
+                    "model" set modelLocationOn
                 }
                 "facing=west,lit=false" {
-                    "model" set modelLocationOff.toString()
+                    "model" set modelLocationOff
                     y = 90
                 }
                 "facing=west,lit=true" {
-                    "model" set modelLocationOn.toString()
+                    "model" set modelLocationOn
                     y = 90
                 }
             }
@@ -132,55 +118,60 @@ object JBlockStateResources {
 
     @JvmStatic
     fun rotatablePillarState(location: BlockModelLocation): BlockStateResource {
-        val json = JSONTimeResource.`object`(
-                null, JSONTimeResource.listOf(
-                JSONTimeResource.`object`(
-                        "variants", JSONTimeResource.listOf(
-                        JSONTimeResource.`object`(
-                                "axis=y", JSONTimeResource.listOf(
-                                JSONTimeResource.property("model", location.toString())
-                        )
-                        ),
-                        JSONTimeResource.`object`(
-                                "axis=z", JSONTimeResource.listOf(
-                                JSONTimeResource.property("model", location.toString()),
-                                JSONTimeResource.property("x", 90)
-                        )
-                        ),
-                        JSONTimeResource.`object`(
-                                "axis=x", JSONTimeResource.listOf(
-                                JSONTimeResource.property("model", location.toString()),
-                                JSONTimeResource.property("x", 90),
-                                JSONTimeResource.property("y", 90)
-                        )
-                        )
-                )
-                )
-        )
-        )
-        return BlockStateResource.fromJson(json)
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "axis=y" {
+                    "model" set location
+                }
+                "axis=z" {
+                    "model" set location
+                    x = 90
+                }
+                "axis=x" {
+                    "model" set location
+                    x = 90
+                    y = 90
+                }
+            }
+        })
     }
 
     @JvmStatic
     fun doublePlantState(bottom: BlockModelLocation, top: BlockModelLocation): BlockStateResource {
-        val json = JSONTimeResource.`object`(
-            null, JSONTimeResource.listOf(
-                JSONTimeResource.`object`(
-                    "variants", JSONTimeResource.listOf(
-                        JSONTimeResource.`object`(
-                            "half=lower", JSONTimeResource.listOf(
-                                JSONTimeResource.property("model", bottom.toString())
-                            )
-                        ),
-                        JSONTimeResource.`object`(
-                            "half=upper", JSONTimeResource.listOf(
-                                JSONTimeResource.property("model", top.toString())
-                            )
-                        )
-                    )
-                )
-            )
-        )
-        return BlockStateResource.fromJson(json)
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "half=lower" {
+                    "model" set bottom
+                }
+                "half=upper" {
+                    "model" set top
+                }
+            }
+        })
+    }
+
+    @JvmStatic
+    fun randomizedRotated(model: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "normal"[
+                    {
+                        "model" set model
+                    },
+                    {
+                        "model" set model
+                        y = 90
+                    },
+                    {
+                        "model" set model
+                        y = 180
+                    },
+                    {
+                        "model" set model
+                        y = 270
+                    }
+                ]
+            }
+        })
     }
 }
