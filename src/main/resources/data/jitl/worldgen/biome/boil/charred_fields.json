@@ -1,7 +1,7 @@
 {
   "surface_builder": "jitl:charred_fields",
-  "depth": 0.125,
-  "scale": 0.35,
+  "depth": 0.0,
+  "scale": 0.45,
   "temperature": 0.8,
   "downfall": 0.4,
   "precipitation": "none",
