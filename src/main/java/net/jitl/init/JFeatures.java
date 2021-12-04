@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.world.gen.features.CaveVinesFeature;
 import net.jitl.common.world.gen.features.JTreeFeature;
 import net.jitl.common.world.gen.features.RuinsFeature;
+import net.jitl.common.world.gen.features.boil.ScorchedStalagmiteFeature;
 import net.jitl.common.world.gen.features.euca.EucaBotSpawner;
 import net.jitl.common.world.gen.features.euca.EucaTreeFeature;
 import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
@@ -29,4 +30,6 @@ public class JFeatures {
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> BASE_TREE = REGISTER.register("frozen_tree", () -> new JTreeFeature(BaseTreeFeatureConfig.CODEC));
 
     public static final RegistryObject<Feature<EucaSpawnerFeatureConfig>> EUCA_BOT_SPAWNER = REGISTER.register("euca_bot_spawner", () -> new EucaBotSpawner(EucaSpawnerFeatureConfig.CODEC));
+
+    public static final RegistryObject<Feature<NoFeatureConfig>> SCORCHED_STALAGMITE = REGISTER.register("scorched_stalagmite", () -> new ScorchedStalagmiteFeature(NoFeatureConfig.CODEC));
 }

@@ -52,6 +52,8 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> FROZEN_DYING_FORST = event -> Objects.equals(event.getName(), JITL.rl("frozen/dying_forest"));
     public static final Predicate<BiomeLoadingEvent> FROZEN_BITTERWOOD_FORST = event -> Objects.equals(event.getName(), JITL.rl("frozen/bitterwood_forest"));
 
+    public static final Predicate<BiomeLoadingEvent> SCORCHED_WASTELAND = event -> Objects.equals(event.getName(), JITL.rl("boil/scorched_wastelands"));
+
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BRADBERRY_BUSH =
@@ -470,6 +472,17 @@ public class JConfiguredFeatures {
                                     .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(FROZEN_BITTERWOOD_FORST)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SCORCHED_STALAGMITE =
+            REGISTER.register("scorched_stalagmite",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.SCORCHED_STALAGMITE.get()
+                            .configured(IFeatureConfig.NONE)
+                            .range(128)
+                            .squared()
+                            .countRandom(32))
+                    .setBiomePredicate(SCORCHED_WASTELAND)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
