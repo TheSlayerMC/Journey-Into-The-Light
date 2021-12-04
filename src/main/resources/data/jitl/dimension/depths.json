@@ -14,14 +14,14 @@
     "logical_height": 200,
     "infiniburn": "minecraft:infiniburn_overworld",
     "min_y": 0,
-    "height": 80
+    "height": 100
   },
   "generator": {
     "type": "minecraft:noise",
     "seed": 1262982783,
     "settings": {
       "name": "jitl:depths",
-      "bedrock_roof_position": 70,
+      "bedrock_roof_position": 100,
       "bedrock_floor_position": 0,
       "sea_level": 0,
       "min_surface_level": 0,
@@ -41,7 +41,7 @@
       },
       "noise": {
         "min_y": 0,
-        "height": 80,
+        "height": 100,
         "density_factor": 0,
         "density_offset": 0.0,
         "size_horizontal": 1,
