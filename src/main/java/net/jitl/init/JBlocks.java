@@ -192,6 +192,11 @@ public class JBlocks {
 	public static final Block SCORCHED_RUBBLE = promise();
 	public static final Block ASH_BLOCK = promise();
 
+	public static final Block SCORCHED_STALAGMITE_TINY = promise();
+	public static final Block SCORCHED_STALAGMITE_SMALL = promise();
+	public static final Block SCORCHED_STALAGMITE_MED = promise();
+	public static final Block SCORCHED_STALAGMITE_LARGE = promise();
+
 	public static final Block SILVER_BOT_SPAWNER = promise();
 	public static final Block GOLD_BOT_SPAWNER = promise();
 

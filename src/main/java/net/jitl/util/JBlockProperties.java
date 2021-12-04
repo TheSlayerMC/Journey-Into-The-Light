@@ -50,6 +50,14 @@ public class JBlockProperties {
             .requiresCorrectToolForDrops()
             .strength(1.5F, 6.0F));
 
+	public static final BlockPropsFactory STONE_MODEL_PROPS = new BlockPropsFactory(() -> Properties.of
+					(Material.STONE)
+			.sound(SoundType.STONE)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.noOcclusion()
+			.strength(1.5F, 6.0F));
+
     public static final BlockPropsFactory LEAVES_PROPS = new BlockPropsFactory(() -> Properties.of
             (Material.LEAVES)
 			.sound(SoundType.GRASS)
