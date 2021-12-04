@@ -347,10 +347,10 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("charred_grass", "Charred Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/charred_grass_top"), JITL.tl("block/charred_grass_side"), JITL.tl("block/rubble")));
 
-        registerSpeciallyRenderedBlock("scorched_stalagmite_tiny", "Scorched Stalagmite", () -> new JBlockStalagmite(JBlockProperties.STONE_PROPS.create()));
-        registerSpeciallyRenderedBlock("scorched_stalagmite_small", "Scorched Stalagmite", () -> new JBlockStalagmite(JBlockProperties.STONE_PROPS.create()));
-        registerSpeciallyRenderedBlock("scorched_stalagmite_med", "Scorched Stalagmite", () -> new JBlockStalagmite(JBlockProperties.STONE_PROPS.create()));
-        registerSpeciallyRenderedBlock("scorched_stalagmite_large", "Scorched Stalagmite", () -> new JBlockStalagmite(JBlockProperties.STONE_PROPS.create()));
+        registerSpeciallyRenderedBlock("scorched_stalagmite_tiny", "Scorched Stalagmite", () -> new JBlockStalagmite());
+        registerSpeciallyRenderedBlock("scorched_stalagmite_small", "Scorched Stalagmite", () -> new JBlockStalagmite());
+        registerSpeciallyRenderedBlock("scorched_stalagmite_med", "Scorched Stalagmite", () -> new JBlockStalagmite());
+        registerSpeciallyRenderedBlock("scorched_stalagmite_large", "Scorched Stalagmite", () -> new JBlockStalagmite());
 
 
     }
