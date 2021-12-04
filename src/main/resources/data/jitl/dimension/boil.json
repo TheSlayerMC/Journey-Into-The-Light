@@ -1,0 +1,144 @@
+{
+  "type": {
+    "name": "jitl:boil",
+    "ultrawarm": false,
+    "natural": true,
+    "piglin_safe": false,
+    "respawn_anchor_works": false,
+    "bed_works": true,
+    "has_raids": false,
+    "has_skylight": true,
+    "has_ceiling": false,
+    "coordinate_scale": 1,
+    "ambient_light": 0,
+    "fixed_time": 4000,
+    "logical_height": 256,
+    "infiniburn": "minecraft:infiniburn_overworld",
+    "min_y": 0,
+    "height": 256
+  },
+  "generator": {
+    "type": "minecraft:noise",
+    "seed": -22426074,
+    "biome_source": {
+      "type": "jitl:base_biome_provider",
+      "seed": -22426074,
+      "altitude_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "temperature_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "humidity_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "weirdness_noise": {
+        "firstOctave": -7,
+        "amplitudes": [
+          1,
+          1
+        ]
+      },
+      "biomes": [
+        {
+          "biome": "jitl:boil/boil",
+          "parameters": {
+            "altitude": 1,
+            "temperature": 0,
+            "humidity": 0,
+            "weirdness": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "jitl:boil/boiling_sands",
+          "parameters": {
+            "altitude": 0,
+            "temperature": 1,
+            "humidity": 0,
+            "weirdness": 0,
+            "offset": 0
+          }
+        },
+		{
+          "biome": "jitl:boil/charred_fields",
+          "parameters": {
+            "altitude": 0,
+            "temperature": 0,
+            "humidity": 0,
+            "weirdness": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "jitl:boil/scorched_wastelands",
+          "parameters": {
+            "altitude": 0,
+            "temperature": 0,
+            "humidity": 1,
+            "weirdness": 0,
+            "offset": 0
+          }
+        }
+      ]
+    },
+    "settings": {
+      "name": "jitl:euca",
+      "bedrock_roof_position": -10,
+      "bedrock_floor_position": 0,
+      "sea_level": 63,
+      "disable_mob_generation": false,
+      "default_block": {
+        "Name": "jitl:ash_block"
+      },
+      "default_fluid": {
+        "Name": "minecraft:lava",
+        "Properties": {
+          "level": "0"
+        }
+      },
+      "noise": {
+        "min_y": 0,
+        "height": 256,
+        "density_factor": 1,
+        "density_offset": -0.46875,
+        "size_horizontal": 1,
+        "size_vertical": 2,
+        "simplex_surface_noise": true,
+        "random_density_offset": true,
+        "amplified": false,
+        "sampling": {
+          "xz_scale": 1,
+          "y_scale": 5,
+          "xz_factor": 80,
+          "y_factor": 120
+        },
+        "bottom_slide": {
+          "target": -40,
+          "size": 8,
+          "offset": 2
+        },
+        "top_slide": {
+          "target": -40,
+          "size": 8,
+          "offset": 2
+        }
+      },
+      "structures": {
+        "structures": {}
+      }
+    }
+  }
+}

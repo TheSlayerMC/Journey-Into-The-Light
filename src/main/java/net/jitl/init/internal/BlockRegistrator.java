@@ -338,6 +338,16 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("depths_grass_block", "Depths Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/depths_grass_block_top"), JITL.tl("block/depths_grass_block_side"), JITL.tl("block/depths_dirt")));
 
+        registerDefaultBlock("rubble", "Rubble", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerDefaultBlock("volcanic_sand", "Volcanic Sands", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerDefaultBlock("hot_ground", "Hot Ground", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerDefaultBlock("scorched_rubble", "Scorched Rubble", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerDefaultBlock("ash_block", "Ash", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        registerDefaultBlock("boil_portal", "Boiling Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.BOIL, JBlocks.BOIL_PORTAL_FRAME));
+        registerSpeciallyRenderedBlock("charred_grass", "Charred Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+                () -> BlockModels.cubeBottomTopModel(JITL.tl("block/charred_grass_top"), JITL.tl("block/charred_grass_side"), JITL.tl("block/rubble")));
+
+
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {

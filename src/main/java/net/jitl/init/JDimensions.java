@@ -15,4 +15,7 @@ public class JDimensions {
 
 	public static final RegistryKey<DimensionType> DEPTHS = RegistryKey.create(Registry.DIMENSION_TYPE_REGISTRY, JITL.rl("depths"));
 	public static final RegistryKey<World> DEPTHS_WORLD = RegistryKey.create(Registry.DIMENSION_REGISTRY, JITL.rl("depths"));
+
+	public static final RegistryKey<DimensionType> BOIL = RegistryKey.create(Registry.DIMENSION_TYPE_REGISTRY, JITL.rl("boil"));
+	public static final RegistryKey<World> BOIL_WORLD = RegistryKey.create(Registry.DIMENSION_REGISTRY, JITL.rl("boil"));
 }

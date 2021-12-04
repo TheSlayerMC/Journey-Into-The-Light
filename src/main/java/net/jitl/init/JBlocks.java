@@ -183,6 +183,15 @@ public class JBlocks {
 	public static final Block DEPTHS_STONE = promise();
 	public static final Block DEPTHS_LAMP = promise();
 
+	public static final Block BOIL_PORTAL_FRAME = promise();
+	public static final Block BOIL_PORTAL = promise();
+	public static final Block CHARRED_GRASS = promise();
+	public static final Block RUBBLE = promise();
+	public static final Block VOLCANIC_SANDS = promise();
+	public static final Block HOT_GROUND = promise();
+	public static final Block SCORCHED_RUBBLE = promise();
+	public static final Block ASH_BLOCK = promise();
+
 	public static final Block SILVER_BOT_SPAWNER = promise();
 	public static final Block GOLD_BOT_SPAWNER = promise();
 
@@ -191,7 +200,6 @@ public class JBlocks {
 
 	public static final Block FUMICE = promise();
 	public static final Block FILLED_FUMICE = promise();
-
 
 	public static final JPlantBlock FROSTBERRY_THORN = promise();
 	public static final JPlantBlock FROZEN_BLOOM = promise();
