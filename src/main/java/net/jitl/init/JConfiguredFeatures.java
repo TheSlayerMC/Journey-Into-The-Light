@@ -507,7 +507,7 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
-    /*public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_DEPOSIT =
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_DEPOSIT =
             REGISTER.register("sulphur_deposit",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.SULPHUR_DEPOSIT.get()
@@ -515,16 +515,16 @@ public class JConfiguredFeatures {
                             .range(256)
                             .decorated(Features.Placements.HEIGHTMAP_SQUARE)
                             .squared()
-                            .count(100))
+                            .count(50))
                     .setBiomePredicate(BOILING_SANDS)
-                    .asPromise();*/
+                    .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_DEPOSIT =
+    /*public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_DEPOSIT =
             REGISTER.register("sulphur_deposit",
                             Decoration.UNDERGROUND_ORES,
                             defaultOreFeature(() -> JBlocks.SULPHUR_ROCK.defaultBlockState(), JRuleTests.VOLCANIC_SAND, 50, 250, 20))
                     .setBiomePredicate(BOILING_SANDS)
-                    .asPromise();
+                    .asPromise();*/
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
             REGISTER.register("sapphire_ore",
