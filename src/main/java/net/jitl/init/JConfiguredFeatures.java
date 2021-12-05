@@ -514,7 +514,8 @@ public class JConfiguredFeatures {
                             .configured(new BlockStateFeatureConfig(JBlocks.SULPHUR_ROCK.defaultBlockState()))
                             .range(256)
                             .decorated(Features.Placements.HEIGHTMAP_SQUARE)
-                            .squared())
+                            .squared()
+                            .count(100))
                     .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
