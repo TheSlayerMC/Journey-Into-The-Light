@@ -191,6 +191,7 @@ public class JBlocks {
 	public static final Block HOT_GROUND = promise();
 	public static final Block SCORCHED_RUBBLE = promise();
 	public static final Block ASH_BLOCK = promise();
+	public static final Block SULPHUR_ROCK = promise();
 
 	public static final Block SCORCHED_STALAGMITE_TINY = promise();
 	public static final Block SCORCHED_STALAGMITE_SMALL = promise();

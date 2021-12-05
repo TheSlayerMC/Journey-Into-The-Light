@@ -16,7 +16,10 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.CampfireBlock;
+import net.minecraft.block.MagmaBlock;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.IItemProvider;
@@ -344,6 +347,7 @@ public class BlockRegistrator {
         registerSpeciallyRenderedRotatedBlock("charred_grass", "Charred Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/charred_grass_top"), JITL.tl("block/charred_grass_side"), JITL.tl("block/rubble")));
 
+        registerDefaultBlock("sulphur_rock", "Sulphur Rock", () -> new Block(JBlockProperties.BASALT_PROPS.create()));
 
         registerSpeciallyRenderedBlock("scorched_stalagmite_tiny", "Scorched Stalagmite", JBlockStalagmite::new);
         registerSpeciallyRenderedBlock("scorched_stalagmite_small", "Scorched Stalagmite", JBlockStalagmite::new);

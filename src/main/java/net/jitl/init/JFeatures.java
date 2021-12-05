@@ -6,6 +6,7 @@ import net.jitl.common.world.gen.features.JTreeFeature;
 import net.jitl.common.world.gen.features.RuinsFeature;
 import net.jitl.common.world.gen.features.boil.ScorchedCactusFeature;
 import net.jitl.common.world.gen.features.boil.ScorchedStalagmiteFeature;
+import net.jitl.common.world.gen.features.boil.SulphurDepositFeature;
 import net.jitl.common.world.gen.features.euca.EucaBotSpawner;
 import net.jitl.common.world.gen.features.euca.EucaTreeFeature;
 import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
@@ -13,6 +14,7 @@ import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.features.frozen.FrozenIceSpikeFeature;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
+import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.fml.RegistryObject;
@@ -35,4 +37,5 @@ public class JFeatures {
     public static final RegistryObject<Feature<NoFeatureConfig>> SCORCHED_STALAGMITE = REGISTER.register("scorched_stalagmite", () -> new ScorchedStalagmiteFeature(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> SCORCHED_CACTUS = REGISTER.register("scorched_cactus", () -> new ScorchedCactusFeature(NoFeatureConfig.CODEC));
 
+    public static final RegistryObject<Feature<BlockStateFeatureConfig>> SULPHUR_DEPOSIT = REGISTER.register("sulphur_deposit", () -> new SulphurDepositFeature(BlockStateFeatureConfig.CODEC));
 }

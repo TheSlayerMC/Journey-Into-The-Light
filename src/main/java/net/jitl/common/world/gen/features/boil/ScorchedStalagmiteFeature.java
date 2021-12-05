@@ -23,8 +23,6 @@ public class ScorchedStalagmiteFeature extends Feature<NoFeatureConfig> {
         if (reader.getBlockState(pos.below()) != JBlocks.SCORCHED_RUBBLE.defaultBlockState()) {
             return false;
         } else {
-
-
             BlockPos.Mutable placePos = pos.mutable();
 
             int xPos = pos.getX();

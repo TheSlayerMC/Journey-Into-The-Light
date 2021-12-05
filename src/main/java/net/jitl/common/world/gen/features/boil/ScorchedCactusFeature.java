@@ -40,7 +40,7 @@ public class ScorchedCactusFeature extends Feature<NoFeatureConfig> {
 
                 int xSpread = 10;
                 int zSpread = 10;
-                placePos.setWithOffset(blockPos, rand.nextInt(xSpread + 10), 0, rand.nextInt(zSpread + 10));
+                placePos.setWithOffset(blockPos, rand.nextInt(xSpread + 14), 0, rand.nextInt(zSpread + 14));
 
                 if (reader.getBlockState(placePos.above()) == Blocks.AIR.defaultBlockState() && reader.getBlockState(placePos) == JBlocks.VOLCANIC_SAND.defaultBlockState()) {
                     for (int i = 0; i < height; i++) {
