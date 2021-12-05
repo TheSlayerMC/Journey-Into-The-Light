@@ -43,13 +43,18 @@ public class ClientEventHandler {
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
         PlayerEntity player = ClientProxy.player();
 
-        if (player != null && player.level.dimension() == JDimensions.FROZEN_WORLD) {
-            if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
-                event.setDensity(0.05F);
-            } else {
-                event.setDensity(0.15F);
+        if(player != null) {
+            if (player.level.dimension() == JDimensions.FROZEN_WORLD) {
+                if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
+                    event.setDensity(0.05F);
+                } else {
+                    event.setDensity(0.15F);
+                }
+                if (player.level.dimension() == JDimensions.BOIL_WORLD) {
+                    event.setDensity(0.2F);
+                }
+                event.setCanceled(true);
             }
-            event.setCanceled(true);
         }
     }
 }

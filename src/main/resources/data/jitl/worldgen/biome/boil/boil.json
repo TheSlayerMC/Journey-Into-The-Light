@@ -7,10 +7,10 @@
   "precipitation": "none",
   "category": "nether",
   "effects": {
-    "sky_color": 7907327,
-    "fog_color": 12638463,
-    "water_color": 4159204,
-    "water_fog_color": 329011
+    "sky_color": 3947070,
+    "fog_color": 3947070,
+    "water_color": 3947070,
+    "water_fog_color": 3947070
   },
   "starts": [],
   "spawners": {},
