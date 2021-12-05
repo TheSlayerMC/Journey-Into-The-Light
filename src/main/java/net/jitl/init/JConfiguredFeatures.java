@@ -684,7 +684,7 @@ public class JConfiguredFeatures {
                                     new WeightedBlockStateProvider()
                                             .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 1)
                                             .add(JBlocks.FLAME_POD.defaultBlockState(), 1)
-                                            .add(JBlocks.CHARRED_GRASS.defaultBlockState(), 1),
+                                            .add(JBlocks.CRISP_GRASS.defaultBlockState(), 1),
                                     new SimpleBlockPlacer()))
                                     .tries(200)
                                     .xspread(10)
