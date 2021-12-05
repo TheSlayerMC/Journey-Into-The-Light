@@ -16,10 +16,7 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
-import net.minecraft.block.Block;
-import net.minecraft.block.CampfireBlock;
-import net.minecraft.block.MagmaBlock;
-import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.IItemProvider;
@@ -338,10 +335,10 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("depths_grass_block", "Depths Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/depths_grass_block_top"), JITL.tl("block/depths_grass_block_side"), JITL.tl("block/depths_dirt")));
 
-        registerRandomizedRotatedBlock("rubble", "Rubble", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
-        registerRandomizedRotatedBlock("volcanic_sand", "Volcanic Sands", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
-        registerRandomizedRotatedBlock("hot_ground", "Hot Ground", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
-        registerRandomizedRotatedBlock("scorched_rubble", "Scorched Rubble", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerRandomizedRotatedBlock("rubble", "Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
+        registerRandomizedRotatedBlock("volcanic_sand", "Volcanic Sands", () -> new JBlock(JBlockProperties.HOLD_FIRE));
+        registerRandomizedRotatedBlock("hot_ground", "Hot Ground", () -> new JBlock(JBlockProperties.HOLD_FIRE));
+        registerRandomizedRotatedBlock("scorched_rubble", "Scorched Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
         registerRandomizedRotatedBlock("ash_block", "Ash", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("boil_portal", "Boiling Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.BOIL, JBlocks.BOIL_PORTAL_FRAME));
         registerSpeciallyRenderedRotatedBlock("charred_grass", "Charred Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
@@ -358,27 +355,27 @@ public class BlockRegistrator {
         registerLogBlock("burned_bark", "Burned Bark");
         registerCustomRenderLayerBlock("charred_leaves", "Charred Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
 
-        registerSpeciallyRenderedBlock("inferno_bush", "Inferno Bush", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+        registerSpeciallyRenderedBlock("inferno_bush", "Inferno Bush", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
                 () -> BlockModels.crossModel(JITL.tl("block/inferno_bush")));
 
-        registerSpeciallyRenderedBlock("crumbling_pine", "Crumbling Pine", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+        registerSpeciallyRenderedBlock("crumbling_pine", "Crumbling Pine", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
                 () -> BlockModels.crossModel(JITL.tl("block/crumbling_pine")));
 
-        registerSpeciallyRenderedBlock("crisp_grass", "Crisp Grass", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+        registerSpeciallyRenderedBlock("crisp_grass", "Crisp Grass", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
                 () -> BlockModels.crossModel(JITL.tl("block/crisp_grass")));
 
-        registerSpeciallyRenderedBlock("flame_pod", "Flame Pod", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+        registerSpeciallyRenderedBlock("flame_pod", "Flame Pod", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
                 () -> BlockModels.crossModel(JITL.tl("block/flame_pod")));
 
-        registerSpeciallyRenderedBlock("hell_bell", "Hell Bell", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+        registerSpeciallyRenderedBlock("hell_bell", "Hell Bell", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
                 () -> BlockModels.crossModel(JITL.tl("block/hell_bell")));
 
-        registerSpeciallyRenderedBlock("lava_bloom", "Lava Bloom", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+        registerSpeciallyRenderedBlock("lava_bloom", "Lava Bloom", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
                 () -> BlockModels.crossModel(JITL.tl("block/lava_bloom")));
 

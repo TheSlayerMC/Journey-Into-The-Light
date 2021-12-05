@@ -57,6 +57,9 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> CHARRED_FIELDS = event -> Objects.equals(event.getName(), JITL.rl("boil/charred_fields"));
     public static final Predicate<BiomeLoadingEvent> BOILING_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("boil/boil"));
 
+
+    public static final Predicate<BiomeLoadingEvent> BOIL_FIRE_BIOMES = SCORCHED_WASTELAND.and(CHARRED_FIELDS).and(BOILING_PLAINS).and(BOILING_SANDS).negate();
+
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BRADBERRY_BUSH =
@@ -696,6 +699,27 @@ public class JConfiguredFeatures {
                             .range(250)
                             .count(100))
                     .setBiomePredicate(BOILING_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_FIRE =
+            REGISTER.register("boiling_fire", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
+                                            .add(Blocks.FIRE.defaultBlockState(), 1),
+                                    new SimpleBlockPlacer()))
+                                    .tries(50)
+                                    .xspread(10)
+                                    .zspread(10)
+                                    .whitelist(ImmutableSet.of(
+                                            JBlocks.HOT_GROUND,
+                                            JBlocks.CHARRED_GRASS,
+                                            JBlocks.SCORCHED_RUBBLE,
+                                            JBlocks.VOLCANIC_SAND))
+                                    .noProjection()
+                                    .build())
+                            .range(250)
+                            .count(100))
+                    .setBiomePredicate(BOIL_FIRE_BIOMES)
                     .asPromise();
 
     /**
