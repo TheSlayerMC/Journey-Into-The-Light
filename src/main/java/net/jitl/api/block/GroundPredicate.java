@@ -32,6 +32,13 @@ public interface GroundPredicate {
     GroundPredicate FROZEN_GRASS_BLOCK = SOLID_SIDE.and(blockPredicate(block ->
             block == JBlocks.GRASSY_PERMAFROST));
 
+    GroundPredicate BOILING_LAND = SOLID_SIDE.and(blockPredicate(block ->
+            block == JBlocks.VOLCANIC_SAND ||
+                    block == JBlocks.CHARRED_GRASS ||
+                    block == JBlocks.HOT_GROUND ||
+                    block == JBlocks.SCORCHED_RUBBLE
+    ));
+
     GroundPredicate UNDERGROUND = SOLID_SIDE.and(blockPredicate(block ->
             block == Blocks.STONE ||
                     block == Blocks.COBBLESTONE ||
