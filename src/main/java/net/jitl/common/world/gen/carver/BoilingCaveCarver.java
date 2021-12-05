@@ -59,7 +59,7 @@ public class BoilingCaveCarver extends CaveWorldCarver {
             mutable_.set(posX, posY, posZ);
             if(this.canReplaceBlock(chunkIn.getBlockState(mutable_))) {
                 BlockState blockstate;
-                if(posY <= 31) {
+                if(posY <= 12) {
                     blockstate = LAVA.createLegacyBlock();
                 } else {
                     blockstate = CAVE_AIR;
