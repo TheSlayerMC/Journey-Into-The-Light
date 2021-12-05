@@ -45,7 +45,8 @@ public interface GroundPredicate {
                     block == Blocks.ANDESITE ||
                     block == Blocks.GRANITE ||
                     block == Blocks.DIORITE ||
-                    block == Blocks.DIRT));
+                    block == Blocks.DIRT ||
+                    block == JBlocks.ASH_BLOCK));
 
     GroundPredicate SAND = SOLID_SIDE.and(blockPredicate(block ->
             block == Blocks.SAND));

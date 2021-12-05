@@ -224,6 +224,7 @@ public class JBlocks {
 	public static final JPlantBlock CRISP_GRASS = promise();
 	public static final JPlantBlock FLAME_POD = promise();
 	public static final JPlantBlock LAVA_BLOOM = promise();
+	public static final JDoublePlantBlock COOKEDSHROOM = promise();
 
 
 	public static final JPlantBlock HELL_BELL = promise();

@@ -745,6 +745,24 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOIL_UNDERGROWTH =
+            REGISTER.register("tall_boil_undergrowth",
+                            Decoration.UNDERGROUND_DECORATION,
+                            () -> Feature.RANDOM_PATCH
+                                    .configured((new BlockClusterFeatureConfig.Builder(
+                                            new WeightedBlockStateProvider()
+                                                    .add(JBlocks.COOKEDSHROOM.defaultBlockState(), 1),
+                                            new DoublePlantBlockPlacer()))
+                                            .tries(20)
+                                            .xspread(6)
+                                            .zspread(6)
+                                            .noProjection()
+                                            .build())
+                                    .range(60)
+                                    .count(20))
+                    .setBiomePredicate(BOIL_FIRE_BIOMES)
+                    .asPromise();
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_SANDS_FLOWERS =
             REGISTER.register("boiling_sands_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                             .configured((new BlockClusterFeatureConfig.Builder(
