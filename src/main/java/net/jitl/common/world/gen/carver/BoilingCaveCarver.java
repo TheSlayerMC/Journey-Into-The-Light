@@ -9,7 +9,6 @@ import java.util.function.Function;
 import net.jitl.common.block.base.JBlock;
 import net.jitl.init.JBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -64,8 +63,8 @@ public class BoilingCaveCarver extends CaveWorldCarver {
             mutable_.set(posX, posY, posZ);
             if(this.canReplaceBlock(chunkIn.getBlockState(mutable_))) {
                 BlockState blockstate;
-                if(posY <= 10  && chunkIn.getBlockState(mutable_) == JBlocks.ASH_BLOCK.defaultBlockState() && rand.nextInt(5) == 0) {
-                    blockstate = Blocks.NETHERRACK.defaultBlockState();
+                if(posY <= 10) {
+                    blockstate = LAVA.createLegacyBlock();
                 } else {
                     blockstate = CAVE_AIR;
                 }
