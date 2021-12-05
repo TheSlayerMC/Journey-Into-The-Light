@@ -360,23 +360,23 @@ public class BlockRegistrator {
 
         registerSpeciallyRenderedBlock("inferno_bush", "Inferno Bush", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> JBlockModels.crop(JITL.tl("block/inferno_bush")));
+                () -> BlockModels.crossModel(JITL.tl("block/inferno_bush")));
 
         registerSpeciallyRenderedBlock("crumbling_pine", "Crumbling Pine", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> JBlockModels.crop(JITL.tl("block/crumbling_pine")));
+                () -> BlockModels.crossModel(JITL.tl("block/crumbling_pine")));
 
         registerSpeciallyRenderedBlock("crisp_grass", "Crisp Grass", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> JBlockModels.crop(JITL.tl("block/crisp_grass")));
+                () -> BlockModels.crossModel(JITL.tl("block/crisp_grass")));
 
         registerSpeciallyRenderedBlock("flame_pod", "Flame Pod", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> JBlockModels.crop(JITL.tl("block/flame_pod")));
+                () -> BlockModels.crossModel(JITL.tl("block/flame_pod")));
 
         registerSpeciallyRenderedBlock("hell_bell", "Hell Bell", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> JBlockModels.crop(JITL.tl("block/hell_bell")));
+                () -> BlockModels.crossModel(JITL.tl("block/hell_bell")));
 
         registerTallCrossRenderedBlock("tall_molten_plant", "Tall Molten Plant", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
         registerTallCrossRenderedBlock("tall_crumbling_pine", "Tall Crumbling Pine", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
