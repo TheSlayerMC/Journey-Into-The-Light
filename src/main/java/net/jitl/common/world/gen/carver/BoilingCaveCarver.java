@@ -19,48 +19,51 @@ import org.apache.commons.lang3.mutable.MutableBoolean;
 
 public class BoilingCaveCarver extends CaveWorldCarver {
 
-    public BoilingCaveCarver(Codec<ProbabilityConfig> codec_) {
-        super(codec_, 128);
+    public BoilingCaveCarver(Codec<ProbabilityConfig> c) {
+        super(c, 128);
         this.replaceableBlocks = ImmutableSet.of(JBlocks.VOLCANIC_SAND, JBlocks.CHARRED_GRASS, JBlocks.HOT_GROUND, JBlocks.SCORCHED_RUBBLE, JBlocks.ASH_BLOCK);
         this.liquids = ImmutableSet.of(Fluids.LAVA, Fluids.WATER);
     }
 
     @Override
     protected int getCaveBound() {
-        return 10;
+        return 15;
     }
 
     @Override
-    protected float getThickness(Random random_) {
-        return (random_.nextFloat() * 2.0F + random_.nextFloat()) * 2.0F;
+    protected float getThickness(Random rand) {
+        float f = rand.nextFloat() * 2.0F + rand.nextFloat();
+        if (rand.nextInt(10) == 0) {
+            f *= rand.nextFloat() * rand.nextFloat() * 3.0F + 1.0F;
+        }
+        return f;
     }
 
     @Override
     protected double getYScale() {
-        return 5.0D;
+        return 1.0D;
     }
 
     @Override
-    protected int getCaveY(Random random_) {
-        return random_.nextInt(this.genHeight);
+    protected int getCaveY(Random r) {
+        return r.nextInt(this.genHeight);
     }
 
     @Override
-    protected boolean carveBlock(IChunk chunkIn, Function<BlockPos, Biome> function_, BitSet carvingMask, Random rand, BlockPos.Mutable mutable_, BlockPos.Mutable mutable1_, BlockPos.Mutable mutable2_, int int3_, int int4_, int int_, int posX, int posZ, int int1_, int posY, int int2_, MutableBoolean isSurface) {
-        int i = int1_ | int2_ << 4 | posY << 8;
+    protected boolean carveBlock(IChunk chunkIn, Function<BlockPos, Biome> function_, BitSet carvingMask, Random rand, BlockPos.Mutable mutable_, BlockPos.Mutable mutable1_, BlockPos.Mutable mutable2_, int int3_, int int4_, int int_, int posX, int posZ, int j, int posY, int k, MutableBoolean isSurface) {
+        int i = j | k << 4 | posY << 8;
         if (carvingMask.get(i)) {
             return false;
         } else {
             carvingMask.set(i);
             mutable_.set(posX, posY, posZ);
-            if (this.canReplaceBlock(chunkIn.getBlockState(mutable_))) {
+            if(this.canReplaceBlock(chunkIn.getBlockState(mutable_))) {
                 BlockState blockstate;
-                if (posY <= 31) {
+                if(posY <= 31) {
                     blockstate = LAVA.createLegacyBlock();
                 } else {
                     blockstate = CAVE_AIR;
                 }
-
                 chunkIn.setBlockState(mutable_, blockstate, false);
                 return true;
             } else {
