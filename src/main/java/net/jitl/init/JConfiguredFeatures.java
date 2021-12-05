@@ -707,7 +707,7 @@ public class JConfiguredFeatures {
                                     new WeightedBlockStateProvider()
                                             .add(Blocks.FIRE.defaultBlockState(), 1),
                                     new SimpleBlockPlacer()))
-                                    .tries(50)
+                                    .tries(20)
                                     .xspread(10)
                                     .zspread(10)
                                     .whitelist(ImmutableSet.of(
@@ -718,7 +718,7 @@ public class JConfiguredFeatures {
                                     .noProjection()
                                     .build())
                             .range(250)
-                            .count(100))
+                            .count(10))
                     .setBiomePredicate(BOIL_FIRE_BIOMES)
                     .asPromise();
 
