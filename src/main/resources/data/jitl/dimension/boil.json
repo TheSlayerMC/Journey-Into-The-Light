@@ -19,7 +19,7 @@
     "effects": "jitl:boil"
   },
   "generator": {
-    "type": "minecraft:overworld_caves",
+    "type": "minecraft:noise",
     "seed": -22426074,
     "biome_source": {
       "type": "jitl:base_biome_provider",
