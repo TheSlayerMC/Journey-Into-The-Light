@@ -19,7 +19,7 @@
     "effects": "jitl:boil"
   },
   "generator": {
-    "type": "minecraft:noise",
+    "type": "minecraft:overworld_caves",
     "seed": -22426074,
     "biome_source": {
       "type": "jitl:base_biome_provider",
@@ -100,6 +100,8 @@
       "bedrock_roof_position": -10,
       "bedrock_floor_position": 0,
       "sea_level": 63,
+	  "noise_caves_enabled": true,
+	  "noodle_caves_enabled": true,
       "disable_mob_generation": false,
       "default_block": {
         "Name": "jitl:ash_block"
