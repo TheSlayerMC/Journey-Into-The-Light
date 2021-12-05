@@ -9,6 +9,7 @@ import java.util.function.Function;
 import net.jitl.common.block.base.JBlock;
 import net.jitl.init.JBlocks;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
