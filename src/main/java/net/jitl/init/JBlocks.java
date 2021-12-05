@@ -215,7 +215,7 @@ public class JBlocks {
 	public static final JPlantBlock ICE_BUD = promise();
 
 	public static final JLeavesBlock CHARRED_LEAVES = promise();
-	public static final RotatedPillarBlock BURNED_BARK = promise(); 
+	public static final RotatedPillarBlock BURNED_BARK = promise();
 	public static final JDoublePlantBlock TALL_MOLTEN_PLANT = promise();
 	public static final JDoublePlantBlock TALL_CRUMBLING_PINE = promise();
 	public static final JPlantBlock INFERNO_BUSH = promise();
