@@ -9,7 +9,6 @@ import java.util.function.Function;
 import net.jitl.common.block.base.JBlock;
 import net.jitl.init.JBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -17,6 +16,10 @@ import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.carver.CaveWorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import org.apache.commons.lang3.mutable.MutableBoolean;
+
+import java.util.BitSet;
+import java.util.Random;
+import java.util.function.Function;
 
 public class BoilingCaveCarver extends CaveWorldCarver {
 
@@ -33,7 +36,7 @@ public class BoilingCaveCarver extends CaveWorldCarver {
 
     @Override
     protected float getThickness(Random rand) {
-        float f = rand.nextFloat() * 2.0F + rand.nextFloat();
+        float f = rand.nextFloat() * 6.0F + rand.nextFloat();
         if (rand.nextInt(10) == 0) {
             f *= rand.nextFloat() * rand.nextFloat() * 3.0F + 1.0F;
         }
