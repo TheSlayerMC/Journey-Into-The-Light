@@ -20,7 +20,7 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class JPlantBlock extends BushBlock implements IGrowable, IForgeShearable {
-    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
+    protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 13.0D, 12.0D);
     protected Supplier<Block> grownPlant;
     private Direction plantDirection = Direction.UP;
 

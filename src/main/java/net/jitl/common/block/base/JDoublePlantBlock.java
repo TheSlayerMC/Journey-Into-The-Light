@@ -3,11 +3,14 @@ package net.jitl.common.block.base;
 import net.jitl.JITL;
 import net.jitl.api.block.GroundPredicate;
 import net.jitl.util.Logs;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DoublePlantBlock;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import org.jetbrains.annotations.NotNull;
@@ -15,6 +18,9 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 
 public class JDoublePlantBlock extends DoublePlantBlock {
+
+    protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+
     private GroundPredicate groundPredicate;
     private Direction plantDirection = Direction.UP;
 
@@ -29,6 +35,11 @@ public class JDoublePlantBlock extends DoublePlantBlock {
     public JDoublePlantBlock setPredicate(@Nullable GroundPredicate groundPredicate) {
         this.groundPredicate = groundPredicate;
         return this;
+    }
+
+    @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
+        return SHAPE;
     }
 
     public GroundPredicate getGroundPredicate() {
