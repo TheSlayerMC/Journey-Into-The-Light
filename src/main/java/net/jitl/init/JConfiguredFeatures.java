@@ -571,6 +571,20 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(CHARRED_FIELDS)
                     .asPromise();
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> ASHUAL_ORE =
+            REGISTER.register("ashual_ore",
+                            Decoration.UNDERGROUND_ORES,
+                            defaultOreFeature(() -> JBlocks.ASHUAL_ORE.defaultBlockState(), JRuleTests.ASH, 7, 24, 4))
+                    .setBiomePredicate(BOIL_FIRE_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BLAZIUM_ORE =
+            REGISTER.register("blazium_ore",
+                            Decoration.UNDERGROUND_ORES,
+                            defaultOreFeature(() -> JBlocks.BLAZIUM_ORE.defaultBlockState(), JRuleTests.ASH, 7, 256, 4))
+                    .setBiomePredicate(BOIL_FIRE_BIOMES)
+                    .asPromise();
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
             REGISTER.register("sapphire_ore",
                     Decoration.UNDERGROUND_ORES,
