@@ -21,8 +21,6 @@
   "generator": {
     "type": "minecraft:noise",
     "seed": -22426074,
-	"noise_caves_enabled": true,
-    "noodle_caves_enabled": true,
     "biome_source": {
       "type": "jitl:base_biome_provider",
       "seed": -22426074,
@@ -62,7 +60,6 @@
             "temperature": 0,
             "humidity": 0,
             "weirdness": 0,
-			"depth": 1,
             "offset": 0
           }
         },
@@ -73,7 +70,6 @@
             "temperature": 1,
             "humidity": 0,
             "weirdness": 0,
-			"depth": 0,
             "offset": 0
           }
         },
@@ -84,7 +80,6 @@
             "temperature": 0,
             "humidity": 0,
             "weirdness": 1,
-			"depth": 0.5,
             "offset": 0
           }
         },
@@ -95,14 +90,13 @@
             "temperature": 0,
             "humidity": 1,
             "weirdness": 0,
-			"depth": 0.75,
             "offset": 0
           }
         }
       ]
     },
     "settings": {
-      "name": "jitl:euca",
+      "name": "jitl:boil",
       "bedrock_roof_position": -10,
       "bedrock_floor_position": 0,
       "sea_level": 63,
