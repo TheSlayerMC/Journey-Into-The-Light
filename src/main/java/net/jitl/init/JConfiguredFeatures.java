@@ -527,7 +527,7 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_CRYSTAL =
+    /*public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_CRYSTAL =
             REGISTER.register("sulphur_crystal",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.SULPHUR_CRYSTAL.get()
@@ -537,7 +537,7 @@ public class JConfiguredFeatures {
                             .squared()
                             .count(50))
                     .setBiomePredicate(BOILING_SANDS)
-                    .asPromise();
+                    .asPromise();*/
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_BURNED_TREE =
             REGISTER.register("large_burned_tree",
