@@ -15,7 +15,9 @@ object JBlockStateResources {
     fun horizontalState(modelLocation: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(json {
             "variants" {
-                "axis=z" { "model" set modelLocation.toString() }
+                "axis=z" {
+                    "model" set modelLocation.toString()
+                }
                 "axis=x" {
                     "model" set modelLocation.toString()
                     y = 90
@@ -154,22 +156,22 @@ object JBlockStateResources {
     fun randomizedRotated(model: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(json {
             "variants" {
-                "normal"[
-                    {
-                        "model" set model
-                    },
-                    {
-                        "model" set model
-                        y = 90
-                    },
-                    {
-                        "model" set model
-                        y = 180
-                    },
-                    {
-                        "model" set model
-                        y = 270
-                    }
+                ""[
+                        {
+                            "model" set model
+                        },
+                        {
+                            "model" set model
+                            y = 90
+                        },
+                        {
+                            "model" set model
+                            y = 180
+                        },
+                        {
+                            "model" set model
+                            y = 270
+                        }
                 ]
             }
         })

@@ -200,16 +200,16 @@ public class BlockRegistrator {
 
         registerDefaultBlock("frozen_portal", "Frozen Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.FROZEN_LANDS, JBlocks.FROZEN_PORTAL_FRAME));
 
-        registerSpeciallyRenderedBlock("grassy_permafrost", "Grassy Permafrost", () -> new Block(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()),
+        registerSpeciallyRenderedRotatedBlock("grassy_permafrost", "Grassy Permafrost", () -> new Block(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/grassy_permafrost_top"), JITL.tl("block/grassy_permafrost_side"), JITL.tl("block/crumbled_permafrost")));
 
         registerDefaultBlock("crumbled_permafrost", "Crumbled Permafrost", () -> new Block(JBlockProperties.CRUMBLED_PERMAFROST_PROPS.create()));
         registerDefaultBlock("permafrost", "Permafrost", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
 
         registerDefaultBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, JBlocks.EUCA_PORTAL_FRAME));
-        registerSpeciallyRenderedBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+        registerSpeciallyRenderedRotatedBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_gold_grass_block_top"), JITL.tl("block/euca_gold_grass_block_side"), JITL.tl("block/goldite_dirt")));
-        registerSpeciallyRenderedBlock("goldite_grass_block", "Goldite Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+        registerSpeciallyRenderedRotatedBlock("goldite_grass_block", "Goldite Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/goldite_grass_block_top"), JITL.tl("block/goldite_grass_block_side"), JITL.tl("block/goldite_dirt")));
 
         registerDefaultBlock("goldite_dirt", "Goldite Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
@@ -257,7 +257,7 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
                 () -> BlockModels.crossModel(JITL.tl("block/euca_silver_sprouts")));
 
-        registerSpeciallyRenderedBlock("euca_silver_grass_block", "Euca Silver Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+        registerSpeciallyRenderedRotatedBlock("euca_silver_grass_block", "Euca Silver Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_silver_grass_block_top"), JITL.tl("block/euca_silver_grass_block_side"), JITL.tl("block/euca_silver_dirt")));
         registerDefaultBlock("euca_silver_dirt", "Euca Silver Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
 
@@ -338,20 +338,22 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("depths_grass_block", "Depths Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/depths_grass_block_top"), JITL.tl("block/depths_grass_block_side"), JITL.tl("block/depths_dirt")));
 
-        registerDefaultBlock("rubble", "Rubble", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
-        registerDefaultBlock("volcanic_sand", "Volcanic Sands", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
-        registerDefaultBlock("hot_ground", "Hot Ground", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
-        registerDefaultBlock("scorched_rubble", "Scorched Rubble", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
-        registerDefaultBlock("ash_block", "Ash", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        registerRandomizedRotatedBlock("rubble", "Rubble", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerRandomizedRotatedBlock("volcanic_sand", "Volcanic Sands", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerRandomizedRotatedBlock("hot_ground", "Hot Ground", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerRandomizedRotatedBlock("scorched_rubble", "Scorched Rubble", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerRandomizedRotatedBlock("ash_block", "Ash", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("boil_portal", "Boiling Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.BOIL, JBlocks.BOIL_PORTAL_FRAME));
-        registerSpeciallyRenderedBlock("charred_grass", "Charred Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+        registerSpeciallyRenderedRotatedBlock("charred_grass", "Charred Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/charred_grass_top"), JITL.tl("block/charred_grass_side"), JITL.tl("block/rubble")));
 
-        registerSpeciallyRenderedBlock("scorched_stalagmite_tiny", "Scorched Stalagmite", () -> new JBlockStalagmite());
-        registerSpeciallyRenderedBlock("scorched_stalagmite_small", "Scorched Stalagmite", () -> new JBlockStalagmite());
-        registerSpeciallyRenderedBlock("scorched_stalagmite_med", "Scorched Stalagmite", () -> new JBlockStalagmite());
-        registerSpeciallyRenderedBlock("scorched_stalagmite_large", "Scorched Stalagmite", () -> new JBlockStalagmite());
-        registerSpeciallyRenderedBlock("scorched_cactus", "Scorched Cactus", () -> new JBlockStalagmite());
+
+        registerSpeciallyRenderedBlock("scorched_stalagmite_tiny", "Scorched Stalagmite", JBlockStalagmite::new);
+        registerSpeciallyRenderedBlock("scorched_stalagmite_small", "Scorched Stalagmite", JBlockStalagmite::new);
+        registerSpeciallyRenderedBlock("scorched_stalagmite_med", "Scorched Stalagmite", JBlockStalagmite::new);
+        registerSpeciallyRenderedBlock("scorched_stalagmite_large", "Scorched Stalagmite", JBlockStalagmite::new);
+
+        registerSpeciallyRenderedBlock("scorched_cactus", "Scorched Cactus", JBlockStalagmite::new);
 
         registerLogBlock("burned_bark", "Burned Bark");
         registerCustomRenderLayerBlock("charred_leaves", "Charred Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
@@ -474,6 +476,15 @@ public class BlockRegistrator {
                 .oneVarStateAndCubeAllModel();
     }
 
+    private static void registerSpeciallyRenderedRotatedBlock(String name, String enName, Supplier<Block> blockSupplier, Supplier<BlockModel> blockModelSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.randomizedRotated(JITL.bml("block/" + name)))
+                .model(JITL.bml("block/" + name), blockModelSupplier);
+    }
+
     /**
      * Registers a block with a BlockModel supplier
      */
@@ -497,6 +508,15 @@ public class BlockRegistrator {
                 .state(JBlockStateResources.campfireState(JITL.bml("block/" + name), JITL.bml("block/" + name + "_off")))
                 .model(JITL.bml("block/" + name), () -> JBlockModels.campfireOn(JITL.tl("block/" + name + "_log_lit"), JITL.tl("block/" + name + "_fire")))
                 .model(JITL.bml("block/" + name + "_off"), () -> JBlockModels.campfireOff(JITL.tl("block/" + name + "_log")));
+    }
+
+    private static void registerRandomizedRotatedBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.randomizedRotated(JITL.bml("block/" + name)))
+                .model(JITL.bml("block/" + name),
+                        () -> BlockModels.cubeAllModel(JITL.tl("block/" + name)));
     }
 
     /**
