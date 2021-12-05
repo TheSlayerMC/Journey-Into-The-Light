@@ -54,6 +54,8 @@ public class JConfiguredFeatures {
 
     public static final Predicate<BiomeLoadingEvent> SCORCHED_WASTELAND = event -> Objects.equals(event.getName(), JITL.rl("boil/scorched_wastelands"));
     public static final Predicate<BiomeLoadingEvent> BOILING_SANDS = event -> Objects.equals(event.getName(), JITL.rl("boil/boiling_sands"));
+    public static final Predicate<BiomeLoadingEvent> CHARRED_FIELDS = event -> Objects.equals(event.getName(), JITL.rl("boil/charred_fields"));
+    public static final Predicate<BiomeLoadingEvent> BOILING_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("boil/boil"));
 
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
@@ -634,6 +636,66 @@ public class JConfiguredFeatures {
                     .range(250)
                     .count(50))
                     .setBiomePredicate(FROZEN_DYING_FORST)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOIL_PLANTS =
+            REGISTER.register("tall_boil_plants",
+                            Decoration.UNDERGROUND_DECORATION,
+                            () -> Feature.RANDOM_PATCH
+                                    .configured((new BlockClusterFeatureConfig.Builder(
+                                            new WeightedBlockStateProvider()
+                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 1)
+                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 1),
+                                            new DoublePlantBlockPlacer()))
+                                            .tries(64)
+                                            .xspread(6)
+                                            .zspread(6)
+                                            .whitelist(ImmutableSet.of(
+                                                    JBlocks.VOLCANIC_SAND))
+                                            .noProjection()
+                                            .build())
+                                    .range(255)
+                                    .count(100))
+                    .setBiomePredicate(BOILING_SANDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_SANDS_FLOWERS =
+            REGISTER.register("boiling_sands_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
+                                            .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 1)
+                                            .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 1),
+                                    new SimpleBlockPlacer()))
+                                    .tries(200)
+                                    .xspread(10)
+                                    .zspread(10)
+                                    .whitelist(ImmutableSet.of(
+                                            JBlocks.VOLCANIC_SAND))
+                                    .noProjection()
+                                    .build())
+                            .range(250)
+                            .count(100))
+                    .setBiomePredicate(BOILING_SANDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_PLAINS_FLOWERS =
+            REGISTER.register("boiling_plains_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
+                                            .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 1)
+                                            .add(JBlocks.FLAME_POD.defaultBlockState(), 1)
+                                            .add(JBlocks.CHARRED_GRASS.defaultBlockState(), 1),
+                                    new SimpleBlockPlacer()))
+                                    .tries(200)
+                                    .xspread(10)
+                                    .zspread(10)
+                                    .whitelist(ImmutableSet.of(
+                                            JBlocks.HOT_GROUND))
+                                    .noProjection()
+                                    .build())
+                            .range(250)
+                            .count(100))
+                    .setBiomePredicate(BOILING_PLAINS)
                     .asPromise();
 
     /**

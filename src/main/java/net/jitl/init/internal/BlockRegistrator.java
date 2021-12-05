@@ -378,6 +378,10 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
                 () -> BlockModels.crossModel(JITL.tl("block/hell_bell")));
 
+        registerSpeciallyRenderedBlock("lava_bloom", "Lava Bloom", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
+                () -> BlockModels.crossModel(JITL.tl("block/lava_bloom")));
+
         registerTallCrossRenderedBlock("tall_molten_plant", "Tall Molten Plant", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
         registerTallCrossRenderedBlock("tall_crumbling_pine", "Tall Crumbling Pine", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
 
