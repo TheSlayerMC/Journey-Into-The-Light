@@ -751,15 +751,31 @@ public class JConfiguredFeatures {
                             () -> Feature.RANDOM_PATCH
                                     .configured((new BlockClusterFeatureConfig.Builder(
                                             new WeightedBlockStateProvider()
-                                                    .add(JBlocks.COOKEDSHROOM.defaultBlockState(), 1),
+                                                    .add(JBlocks.TALL_SIZZLESHROOM.defaultBlockState(), 1),
                                             new DoublePlantBlockPlacer()))
-                                            .tries(20)
+                                            .tries(10)
                                             .xspread(6)
                                             .zspread(6)
                                             .noProjection()
                                             .build())
                                     .range(60)
-                                    .count(20))
+                                    .count(10))
+                    .setBiomePredicate(BOIL_FIRE_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_UNDERGROWTH =
+            REGISTER.register("boiling_undergrowth", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
+                                            .add(JBlocks.SIZZLESHROOM.defaultBlockState(), 1),
+                                    new SimpleBlockPlacer()))
+                                    .tries(10)
+                                    .xspread(10)
+                                    .zspread(10)
+                                    .noProjection()
+                                    .build())
+                            .range(60)
+                            .count(10))
                     .setBiomePredicate(BOIL_FIRE_BIOMES)
                     .asPromise();
 

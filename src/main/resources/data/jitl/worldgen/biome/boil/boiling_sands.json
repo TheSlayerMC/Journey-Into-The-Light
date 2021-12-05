@@ -25,7 +25,7 @@
     "air": [
       {
         "config": {
-          "probability": 0.03
+          "probability": 0.5
         },
         "type": "jitl:boiling_carver"
       }
