@@ -1,9 +1,7 @@
 {
   "replace": false,
   "values": [
-    "jitl:rubble",
     "jitl:charred_grass",
-    "jitl:crumbled_permafrost",
     "jitl:grassy_permafrost"
   ]
 }
