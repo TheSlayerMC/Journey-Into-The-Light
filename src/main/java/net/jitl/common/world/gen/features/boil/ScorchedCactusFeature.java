@@ -35,7 +35,7 @@ public class ScorchedCactusFeature extends Feature<NoFeatureConfig> {
 
             BlockPos blockPos = reader.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
 
-            for(int k = 0; k < 10; k++) {
+            for(int k = 0; k < 30; k++) {
                 int height = 3 + rand.nextInt(4);
 
                 int xSpread = 10;
