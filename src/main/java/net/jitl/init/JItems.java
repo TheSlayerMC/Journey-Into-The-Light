@@ -168,5 +168,7 @@ public class JItems {
 
     public static final Item DREADIRON_INGOT = promise();
 
+    public static final Item SULPHUR_POWDER = promise();
+
     public static final Item EYE_OF_THE_BLIZZARD = promise();
 }

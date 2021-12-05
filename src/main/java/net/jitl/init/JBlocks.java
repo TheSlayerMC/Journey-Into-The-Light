@@ -183,24 +183,25 @@ public class JBlocks {
 	public static final Block DEPTHS_STONE = promise();
 	public static final Block DEPTHS_LAMP = promise();
 
-	public static final Block BOIL_PORTAL_FRAME = promise();
-	public static final Block BOIL_PORTAL = promise();
-	public static final Block CHARRED_GRASS = promise();
-	public static final Block RUBBLE = promise();
-	public static final Block VOLCANIC_SAND = promise();
-	public static final Block HOT_GROUND = promise();
-	public static final Block SCORCHED_RUBBLE = promise();
-	public static final Block ASH_BLOCK = promise();
-	public static final Block SULPHUR_ROCK = promise();
+    public static final Block BOIL_PORTAL_FRAME = promise();
+    public static final Block BOIL_PORTAL = promise();
+    public static final Block CHARRED_GRASS = promise();
+    public static final Block RUBBLE = promise();
+    public static final Block VOLCANIC_SAND = promise();
+    public static final Block HOT_GROUND = promise();
+    public static final Block SCORCHED_RUBBLE = promise();
+    public static final Block ASH_BLOCK = promise();
+    public static final Block SULPHUR_ROCK = promise();
+    public static final Block SULPHUR_CRYSTAL = promise();
 
-	public static final Block SCORCHED_STALAGMITE_TINY = promise();
-	public static final Block SCORCHED_STALAGMITE_SMALL = promise();
-	public static final Block SCORCHED_STALAGMITE_MED = promise();
-	public static final Block SCORCHED_STALAGMITE_LARGE = promise();
-	public static final Block SCORCHED_CACTUS = promise();
+    public static final Block SCORCHED_STALAGMITE_TINY = promise();
+    public static final Block SCORCHED_STALAGMITE_SMALL = promise();
+    public static final Block SCORCHED_STALAGMITE_MED = promise();
+    public static final Block SCORCHED_STALAGMITE_LARGE = promise();
+    public static final Block SCORCHED_CACTUS = promise();
 
-	public static final Block SILVER_BOT_SPAWNER = promise();
-	public static final Block GOLD_BOT_SPAWNER = promise();
+    public static final Block SILVER_BOT_SPAWNER = promise();
+    public static final Block GOLD_BOT_SPAWNER = promise();
 
 	public static final Block TOMATO_CROP = promise();
 	public static final Block FLORO_CROP = promise();

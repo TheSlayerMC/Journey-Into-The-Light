@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableSet;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
+import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.treedecorator.FrozenTreeDecorator;
 import net.jitl.util.JRuleTests;
@@ -356,9 +357,10 @@ public class JConfiguredFeatures {
             REGISTER.register("euca_green_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.EUCA_BROWN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GOLDITE_DIRT.defaultBlockState()),
                                     new FancyFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), 6),
                                     new MegaJungleTrunkPlacer(6, 3, 2),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines().build())
@@ -399,9 +401,10 @@ public class JConfiguredFeatures {
             REGISTER.register("small_frozen_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new ForkyTrunkPlacer(2, 1, 3),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -414,9 +417,10 @@ public class JConfiguredFeatures {
             REGISTER.register("medium_frozen_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new FancyTrunkPlacer(10, 5, 5),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -429,9 +433,10 @@ public class JConfiguredFeatures {
             REGISTER.register("large_frozen_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new FancyTrunkPlacer(15, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -444,9 +449,10 @@ public class JConfiguredFeatures {
             REGISTER.register("large_frozen_biterwood_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new GiantTrunkPlacer(15, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -459,9 +465,10 @@ public class JConfiguredFeatures {
             REGISTER.register("medium_frozen_biterwood_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new StraightTrunkPlacer(10, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -474,9 +481,10 @@ public class JConfiguredFeatures {
             REGISTER.register("small_frozen_biterwood_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new StraightTrunkPlacer(4, 2, 3),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -517,6 +525,50 @@ public class JConfiguredFeatures {
                             .squared()
                             .count(100))
                     .setBiomePredicate(BOILING_SANDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_CRYSTAL =
+            REGISTER.register("sulphur_crystal",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.SULPHUR_CRYSTAL.get()
+                            .configured(IFeatureConfig.NONE)
+                            .range(256)
+                            .decorated(Features.Placements.HEIGHTMAP_SQUARE)
+                            .squared()
+                            .count(50))
+                    .setBiomePredicate(BOILING_SANDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_BURNED_TREE =
+            REGISTER.register("large_burned_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new JBaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.BURNED_BARK.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_GRASS.defaultBlockState()),
+                                    new FancyFoliagePlacer(FeatureSpread.fixed(4), FeatureSpread.fixed(1), 2),
+                                    new ForkyTrunkPlacer(7, 7, 7),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(CHARRED_FIELDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> MEDIUM_BURNED_TREE =
+            REGISTER.register("medium_burned_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new JBaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.BURNED_BARK.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_GRASS.defaultBlockState()),
+                                    new FancyFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), 2),
+                                    new ForkyTrunkPlacer(4, 4, 4),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(CHARRED_FIELDS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =

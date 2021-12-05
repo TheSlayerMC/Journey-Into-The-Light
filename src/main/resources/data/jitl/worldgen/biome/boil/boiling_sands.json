@@ -10,7 +10,13 @@
     "sky_color": 3947070,
     "fog_color": 3947070,
     "water_color": 3947070,
-    "water_fog_color": 3947070
+    "water_fog_color": 3947070,
+    "particle": {
+      "options": {
+        "type": "jitl:sulphur"
+      },
+      "probability": 0.01428
+    }
   },
   "starts": [],
   "spawners": {},

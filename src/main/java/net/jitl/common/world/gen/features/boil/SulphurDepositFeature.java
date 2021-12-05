@@ -1,8 +1,11 @@
 package net.jitl.common.world.gen.features.boil;
 
 import com.mojang.serialization.Codec;
-import net.jitl.JITL;
+import net.jitl.common.block.base.AttachedBlock;
 import net.jitl.init.JBlocks;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -42,18 +45,26 @@ public class SulphurDepositFeature extends Feature<BlockStateFeatureConfig> {
 
             BlockPos blockPos = reader.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
 
-            for (int l = 0; l < 32; ++l) {
+            for (int l = 0; l < 2; ++l) {
                 placePos.setWithOffset(blockPos, rand.nextInt(10 + 10), 0, rand.nextInt(10 + 10));
 
-                JITL.LOGGER.info("should be generating");
-                int i = rand.nextInt(6);
-                int j = rand.nextInt(6);
-                int k = rand.nextInt(6);
+                int i = rand.nextInt(3);
+                int j = rand.nextInt(3);
+                int k = rand.nextInt(3);
                 float f = (float) (i + j + k) * 0.333F + 0.5F;
 
                 for (BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-i, -j, -k), pos.offset(i, j, k))) {
                     if (blockpos.distSqr(pos) <= (double) (f * f)) {
                         reader.setBlock(blockpos, config.state, 4);
+                        for (Direction direction : Direction.values()) {
+                            BlockPos blockpos1 = blockPos.relative(direction);
+                            if (reader.getBlockState(blockpos1) == Blocks.AIR.defaultBlockState()) {
+                                BlockState blockstate1 = JBlocks.SULPHUR_CRYSTAL.defaultBlockState().setValue(AttachedBlock.FACING, direction);
+                                if (reader.getBlockState(blockPos) == config.state) {
+                                    reader.setBlock(blockpos1, blockstate1, 2);
+                                }
+                            }
+                        }
                     }
                 }
 
