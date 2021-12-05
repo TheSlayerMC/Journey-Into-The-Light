@@ -360,7 +360,7 @@ public class JConfiguredFeatures {
                             .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.EUCA_BROWN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
-                                    new SimpleBlockStateProvider(JBlocks.GOLDITE_DIRT.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GOLDITE_GRASS_BLOCK.defaultBlockState()),
                                     new FancyFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), 6),
                                     new MegaJungleTrunkPlacer(6, 3, 2),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines().build())
@@ -404,7 +404,7 @@ public class JConfiguredFeatures {
                             .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
-                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new ForkyTrunkPlacer(2, 1, 3),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -420,7 +420,7 @@ public class JConfiguredFeatures {
                             .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
-                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new FancyTrunkPlacer(10, 5, 5),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -436,7 +436,7 @@ public class JConfiguredFeatures {
                             .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
-                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new FancyTrunkPlacer(15, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -452,7 +452,7 @@ public class JConfiguredFeatures {
                             .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
-                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new GiantTrunkPlacer(15, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -468,7 +468,7 @@ public class JConfiguredFeatures {
                             .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
-                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new StraightTrunkPlacer(10, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -484,7 +484,7 @@ public class JConfiguredFeatures {
                             .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
-                                    new SimpleBlockStateProvider(JBlocks.CRUMBLED_PERMAFROST.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new StraightTrunkPlacer(4, 2, 3),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -548,7 +548,7 @@ public class JConfiguredFeatures {
                                     new SimpleBlockStateProvider(JBlocks.CHARRED_LEAVES.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.CHARRED_GRASS.defaultBlockState()),
                                     new FancyFoliagePlacer(FeatureSpread.fixed(4), FeatureSpread.fixed(1), 2),
-                                    new ForkyTrunkPlacer(7, 7, 7),
+                                    new ForkyTrunkPlacer(5, 5, 5),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
                                     .build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
