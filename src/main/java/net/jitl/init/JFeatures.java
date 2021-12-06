@@ -10,6 +10,7 @@ import net.jitl.common.world.gen.features.boil.SulphurCrystalFeature;
 import net.jitl.common.world.gen.features.boil.SulphurDepositFeature;
 import net.jitl.common.world.gen.features.euca.EucaBotSpawner;
 import net.jitl.common.world.gen.features.euca.EucaTreeFeature;
+import net.jitl.common.world.gen.features.euca.GlimmerRootFeature;
 import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
@@ -32,6 +33,8 @@ public class JFeatures {
     public static final RegistryObject<Feature<EucaTreeFeatureConfig>> EUCA_TREE = REGISTER.register("euca_tree", () -> new EucaTreeFeature(EucaTreeFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> FROZEN_ICE_SPIKE = REGISTER.register("frozen_ice_spike", () -> new FrozenIceSpikeFeature(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<JBaseTreeFeatureConfig>> BASE_TREE = REGISTER.register("base_tree", () -> new JTreeFeature(JBaseTreeFeatureConfig.CODEC));
+
+    public static final RegistryObject<Feature<NoFeatureConfig>> GLIMMER_ROOTS = REGISTER.register("glimmer_roots", () -> new GlimmerRootFeature(NoFeatureConfig.CODEC));
 
     public static final RegistryObject<Feature<EucaSpawnerFeatureConfig>> EUCA_BOT_SPAWNER = REGISTER.register("euca_bot_spawner", () -> new EucaBotSpawner(EucaSpawnerFeatureConfig.CODEC));
 

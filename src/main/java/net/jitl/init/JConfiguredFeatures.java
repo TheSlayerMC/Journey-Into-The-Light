@@ -58,6 +58,7 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> CHARRED_FIELDS = event -> Objects.equals(event.getName(), JITL.rl("boil/charred_fields"));
     public static final Predicate<BiomeLoadingEvent> BOILING_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("boil/boil"));
 
+    public static final Predicate<BiomeLoadingEvent> EUCA_BIOMES = GOLDITE_GRAINS.or(EUCA_GOLD_PLAINS).or(EUCA_SILVER_PLAINS);
     public static final Predicate<BiomeLoadingEvent> BOIL_FIRE_BIOMES = SCORCHED_WASTELAND.or(CHARRED_FIELDS).or(BOILING_PLAINS).or(BOILING_SANDS);
 
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
@@ -152,7 +153,7 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1),
                             new DoublePlantBlockPlacer()))
-                            .tries(120)
+                            .tries(160)
                             .xspread(16)
                             .zspread(16)
                             .whitelist(ImmutableSet.of(
@@ -170,7 +171,7 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(120)
+                            .tries(160)
                             .xspread(16)
                             .zspread(16)
                             .whitelist(ImmutableSet.of(
@@ -189,7 +190,7 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(100)
+                            .tries(160)
                             .xspread(10)
                             .zspread(10)
                             .whitelist(ImmutableSet.of(
@@ -209,7 +210,7 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.EUCA_SILVER_SPROUTS.defaultBlockState(), 1)
                                     .add(JBlocks.EUCA_SILVER_SHORT_GRASS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(100)
+                            .tries(160)
                             .xspread(6)
                             .zspread(6)
                             .whitelist(ImmutableSet.of(
@@ -228,7 +229,7 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.EUCA_TALL_FLOWERS.defaultBlockState(), 1)
                                     .add(JBlocks.EUCA_TALL_GRASS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(100)
+                            .tries(160)
                             .xspread(6)
                             .zspread(6)
                             .whitelist(ImmutableSet.of(
@@ -248,7 +249,7 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 1)
                                     .add(JBlocks.GOLDITE_FLOWER.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(100)
+                            .tries(160)
                             .xspread(10)
                             .zspread(10)
                             .whitelist(ImmutableSet.of(
@@ -298,6 +299,18 @@ public class JConfiguredFeatures {
                             .countRandom(32))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GLIMMER_ROOTS =
+            REGISTER.register("glimmer_roots",
+                    Decoration.UNDERGROUND_STRUCTURES,
+                    () -> JFeatures.GLIMMER_ROOTS.get()
+                            .configured(IFeatureConfig.NONE)
+                            .range(256)
+                            .squared()
+                            .countRandom(64))
+                    .setBiomePredicate(EUCA_BIOMES)
+                    .asPromise();
+
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_TREES =
             REGISTER.register("euca_gold_tree",
