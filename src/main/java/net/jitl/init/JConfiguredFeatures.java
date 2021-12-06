@@ -57,14 +57,8 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> BOILING_SANDS = event -> Objects.equals(event.getName(), JITL.rl("boil/boiling_sands"));
     public static final Predicate<BiomeLoadingEvent> CHARRED_FIELDS = event -> Objects.equals(event.getName(), JITL.rl("boil/charred_fields"));
     public static final Predicate<BiomeLoadingEvent> BOILING_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("boil/boil"));
-    public static final Predicate<BiomeLoadingEvent> BOILING_BIOMES = event ->
-            Objects.equals(event.getName(), JITL.rl("boil/boil")) ||
-                    Objects.equals(event.getName(), JITL.rl("boil/scorched_wastelands")) ||
-                    Objects.equals(event.getName(), JITL.rl("boil/charred_fields")) ||
-                    Objects.equals(event.getName(), JITL.rl("boil/boiling_sands"));
 
-
-    public static final Predicate<BiomeLoadingEvent> BOIL_FIRE_BIOMES = SCORCHED_WASTELAND.and(CHARRED_FIELDS).and(BOILING_PLAINS).and(BOILING_SANDS).negate();
+    public static final Predicate<BiomeLoadingEvent> BOIL_FIRE_BIOMES = SCORCHED_WASTELAND.and(CHARRED_FIELDS).and(BOILING_PLAINS).and(BOILING_SANDS);
 
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
