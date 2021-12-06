@@ -200,14 +200,26 @@ public class JBlocks {
     public static final Block SCORCHED_STALAGMITE_LARGE = promise();
     public static final Block SCORCHED_CACTUS = promise();
 
+    public static final Block SCORCHED_RUBBLE_BRICKS = promise();
+    public static final Block SMOOTH_SCORCHED_RUBBLE = promise();
+    public static final Block RUNIC_SCORCHED_RUBBLE = promise();
+
+    public static final Block ASH_BLOCK_BRICKS = promise();
+    public static final Block SMOOTH_ASH_BLOCK = promise();
+    public static final Block RUNIC_ASH_BLOCK = promise();
+
+    public static final Block RUBBLE_BRICKS = promise();
+    public static final Block SMOOTH_RUBBLE = promise();
+    public static final Block RUNIC_RUBBLE = promise();
+
     public static final Block SILVER_BOT_SPAWNER = promise();
     public static final Block GOLD_BOT_SPAWNER = promise();
 
-	public static final Block TOMATO_CROP = promise();
-	public static final Block FLORO_CROP = promise();
+    public static final Block TOMATO_CROP = promise();
+    public static final Block FLORO_CROP = promise();
 
-	public static final Block FUMICE = promise();
-	public static final Block FILLED_FUMICE = promise();
+    public static final Block FUMICE = promise();
+    public static final Block FILLED_FUMICE = promise();
 
 	public static final JPlantBlock FROSTBERRY_THORN = promise();
 	public static final JPlantBlock FROZEN_BLOOM = promise();

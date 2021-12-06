@@ -1,0 +1,60 @@
+{
+  "name": "jitl:roofs",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 15,
+      "element": {
+        "location": "jitl:boil/direrock_stronghold/dire_roof_1",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "jitl:scorched_rubble_bricks",
+              "by": "jitl:runic_scorched_rubble",
+              "chance": 10
+            }
+          ]
+        },
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 15,
+      "element": {
+        "location": "jitl:boil/direrock_stronghold/dire_roof_2",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "jitl:scorched_rubble_bricks",
+              "by": "jitl:runic_scorched_rubble",
+              "chance": 10
+            }
+          ]
+        },
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 15,
+      "element": {
+        "location": "jitl:boil/direrock_stronghold/dire_roof_3",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "jitl:scorched_rubble_bricks",
+              "by": "jitl:runic_scorched_rubble",
+              "chance": 10
+            }
+          ]
+        },
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

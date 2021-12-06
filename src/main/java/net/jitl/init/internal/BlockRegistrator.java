@@ -307,6 +307,21 @@ public class BlockRegistrator {
 
         registerDefaultBlock("small_stone_bricks", "Small Stone Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
 
+        RegistryObject<Block> ashBlockBricks = registerBlock("ash_block_bricks", "Ash Block Bricks", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs("ash_block_brick_stairs", "Rubble Brick Stairs", ashBlockBricks, JBlockProperties.STONE_PROPS.create());
+        registerDefaultBlock("smooth_ash_block", "Smooth Ash Block", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerSpeciallyRenderedBlock("runic_ash_block", "Runic Ash Block", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+
+        RegistryObject<Block> rubbleBricks = registerBlock("rubble_bricks", "Rubble Bricks", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs("rubble_brick_stairs", "Rubble Brick Stairs", rubbleBricks, JBlockProperties.STONE_PROPS.create());
+        registerDefaultBlock("smooth_rubble", "Smooth Rubble", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerSpeciallyRenderedBlock("runic_rubble", "Runic Rubble", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+
+        RegistryObject<Block> scorchedRubbleBricks = registerBlock("scorched_rubble_bricks", "Scorched Rubble Bricks", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs("scorched_rubble_brick_stairs", "Scorched Rubble Brick Stairs", scorchedRubbleBricks, JBlockProperties.STONE_PROPS.create());
+        registerDefaultBlock("smooth_scorched_rubble", "Smooth Scorched Rubble", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerSpeciallyRenderedBlock("runic_scorched_rubble", "Runic Scorched Rubble", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+
         registerCustomRenderLayerBlock("ice_crystal_block", "Ice Crystal Block", () -> new Block(JBlockProperties.ICE_CRYSTAL_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
         registerCustomRenderLayerBlock("cracked_ice_crystal_block", "Cracked Ice Crystal Block", () -> new Block(JBlockProperties.ICE_CRYSTAL_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
 

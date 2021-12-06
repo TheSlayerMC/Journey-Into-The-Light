@@ -58,7 +58,7 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> CHARRED_FIELDS = event -> Objects.equals(event.getName(), JITL.rl("boil/charred_fields"));
     public static final Predicate<BiomeLoadingEvent> BOILING_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("boil/boil"));
 
-    public static final Predicate<BiomeLoadingEvent> BOIL_FIRE_BIOMES = SCORCHED_WASTELAND.and(CHARRED_FIELDS).and(BOILING_PLAINS).and(BOILING_SANDS);
+    public static final Predicate<BiomeLoadingEvent> BOIL_FIRE_BIOMES = SCORCHED_WASTELAND.or(CHARRED_FIELDS).or(BOILING_PLAINS).or(BOILING_SANDS);
 
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
@@ -492,7 +492,7 @@ public class JConfiguredFeatures {
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.SCORCHED_STALAGMITE.get()
                             .configured(IFeatureConfig.NONE)
-                            .range(128)
+                            .range(256)
                             .squared()
                             .count(220))
                     .setBiomePredicate(SCORCHED_WASTELAND)
@@ -565,10 +565,26 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(CHARRED_FIELDS)
                     .asPromise();
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_BURNED_TREE =
+            REGISTER.register("small_burned_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new JBaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.BURNED_BARK.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_GRASS.defaultBlockState()),
+                                    new FancyFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(1), 2),
+                                    new ForkyTrunkPlacer(3, 3, 3),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(CHARRED_FIELDS)
+                    .asPromise();
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> ASHUAL_ORE =
             REGISTER.register("ashual_ore",
-                            Decoration.UNDERGROUND_ORES,
-                            defaultOreFeature(() -> JBlocks.ASHUAL_ORE.defaultBlockState(), JRuleTests.ASH, 7, 140, 10))
+                    Decoration.UNDERGROUND_ORES,
+                    defaultOreFeature(() -> JBlocks.ASHUAL_ORE.defaultBlockState(), JRuleTests.ASH, 7, 140, 10))
                     .setBiomePredicate(BOIL_FIRE_BIOMES)
                     .asPromise();
 
