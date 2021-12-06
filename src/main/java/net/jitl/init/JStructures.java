@@ -1,6 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
+import net.jitl.common.world.gen.structures.boil.DirerockStrongholdStructure;
 import net.jitl.common.world.gen.structures.euca.AlloyMenderStructure;
 import net.jitl.common.world.gen.structures.euca.EucaDungeonStructure;
 import net.jitl.common.world.gen.structures.frozen.EskimoCampStructure;
@@ -75,6 +76,13 @@ public class JStructures {
             REGISTER.register("eskimo_camp", EskimoCampStructure::new, TimeStructureSeparationSettings.create(20, 10), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
                     .transformsSurroundingLand()
                     .setDimensionPredicate(serverWorld -> serverWorld.dimension() == JDimensions.FROZEN_WORLD)
+                    .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
+    public static final StructureHolder<NoFeatureConfig, DirerockStrongholdStructure> DIREROCK_STRONGHOLD =
+            REGISTER.register("direrock_stronghold", DirerockStrongholdStructure::new, TimeStructureSeparationSettings.create(15, 10), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
+                    .setDimensionPredicate(serverWorld -> serverWorld.dimension() == JDimensions.BOIL_WORLD)
+                    .setBiomePredicate(biomePredicate -> Objects.equals(biomePredicate.getName(), JITL.rl("boil/scorched_wastelands")))
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 }

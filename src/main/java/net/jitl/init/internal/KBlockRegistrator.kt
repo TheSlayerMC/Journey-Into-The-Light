@@ -1,7 +1,6 @@
 package net.jitl.init.internal
 
 import net.jitl.JITL
-import net.jitl.client.render.JBlockModels
 import net.jitl.client.render.JBlockStateResources
 import net.jitl.common.block.GuardianTowerBrainBlock
 import net.jitl.common.block.base.XZFacedBlock
@@ -13,7 +12,6 @@ import net.minecraft.block.StairsBlock
 import net.minecraftforge.fml.RegistryObject
 import ru.timeconqueror.timecore.api.client.resource.BlockModels
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResources
-import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation
 import ru.timeconqueror.timecore.api.registry.BlockRegister
 import ru.timeconqueror.timecore.api.registry.util.*
@@ -132,9 +130,7 @@ object KBlockRegistrator {
             "guardian_tower_brain" represents { GuardianTowerBrainBlock() } with {
                 name("Guardian Tower Brain")
                 clientSideOnly {
-                    val modelLoc = BlockModelLocation(modId, name)
-                    oneVariantState(modelLoc)
-                    model(modelLoc, JBlockModels.empty())
+                    oneVariantState(bml("chiseled_dungeon_bricks"))
                 }
             }
         }

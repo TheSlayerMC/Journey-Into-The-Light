@@ -26,4 +26,8 @@ public class JRuleTests {
 
     public static Supplier<RuleTest> FROZEN_GRASS_BLOCK = () -> new BlockStateMatchRuleTest(JBlocks.GRASSY_PERMAFROST.defaultBlockState());
 
+    public static Supplier<RuleTest> VOLCANIC_SAND = () -> new BlockStateMatchRuleTest(JBlocks.VOLCANIC_SAND.defaultBlockState());
+    public static Supplier<RuleTest> ASH = () -> new BlockStateMatchRuleTest(JBlocks.ASH_BLOCK.defaultBlockState());
+
+
 }

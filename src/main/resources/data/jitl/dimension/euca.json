@@ -113,8 +113,8 @@
         "sampling": {
           "xz_scale": 1,
           "y_scale": 5,
-          "xz_factor": 80,
-          "y_factor": 120
+          "xz_factor": 70,
+          "y_factor": 180
         },
         "bottom_slide": {
           "target": -40,

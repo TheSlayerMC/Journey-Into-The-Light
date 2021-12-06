@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableSet;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
+import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.treedecorator.FrozenTreeDecorator;
 import net.jitl.util.JRuleTests;
@@ -51,6 +52,14 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> FROZEN_WASTES = event -> Objects.equals(event.getName(), JITL.rl("frozen/frozen_wastes"));
     public static final Predicate<BiomeLoadingEvent> FROZEN_DYING_FORST = event -> Objects.equals(event.getName(), JITL.rl("frozen/dying_forest"));
     public static final Predicate<BiomeLoadingEvent> FROZEN_BITTERWOOD_FORST = event -> Objects.equals(event.getName(), JITL.rl("frozen/bitterwood_forest"));
+
+    public static final Predicate<BiomeLoadingEvent> SCORCHED_WASTELAND = event -> Objects.equals(event.getName(), JITL.rl("boil/scorched_wastelands"));
+    public static final Predicate<BiomeLoadingEvent> BOILING_SANDS = event -> Objects.equals(event.getName(), JITL.rl("boil/boiling_sands"));
+    public static final Predicate<BiomeLoadingEvent> CHARRED_FIELDS = event -> Objects.equals(event.getName(), JITL.rl("boil/charred_fields"));
+    public static final Predicate<BiomeLoadingEvent> BOILING_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("boil/boil"));
+
+    public static final Predicate<BiomeLoadingEvent> EUCA_BIOMES = GOLDITE_GRAINS.or(EUCA_GOLD_PLAINS).or(EUCA_SILVER_PLAINS);
+    public static final Predicate<BiomeLoadingEvent> BOIL_FIRE_BIOMES = SCORCHED_WASTELAND.or(CHARRED_FIELDS).or(BOILING_PLAINS).or(BOILING_SANDS);
 
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
@@ -144,7 +153,7 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1),
                             new DoublePlantBlockPlacer()))
-                            .tries(120)
+                            .tries(160)
                             .xspread(16)
                             .zspread(16)
                             .whitelist(ImmutableSet.of(
@@ -152,7 +161,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
 
@@ -162,7 +171,7 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(120)
+                            .tries(160)
                             .xspread(16)
                             .zspread(16)
                             .whitelist(ImmutableSet.of(
@@ -170,7 +179,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
 
@@ -181,7 +190,7 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(100)
+                            .tries(160)
                             .xspread(10)
                             .zspread(10)
                             .whitelist(ImmutableSet.of(
@@ -189,7 +198,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(EUCA_SILVER_PLAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
 
@@ -201,7 +210,7 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.EUCA_SILVER_SPROUTS.defaultBlockState(), 1)
                                     .add(JBlocks.EUCA_SILVER_SHORT_GRASS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(100)
+                            .tries(160)
                             .xspread(6)
                             .zspread(6)
                             .whitelist(ImmutableSet.of(
@@ -209,7 +218,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
                     .asPromise();
 
@@ -220,7 +229,7 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.EUCA_TALL_FLOWERS.defaultBlockState(), 1)
                                     .add(JBlocks.EUCA_TALL_GRASS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(100)
+                            .tries(160)
                             .xspread(6)
                             .zspread(6)
                             .whitelist(ImmutableSet.of(
@@ -228,7 +237,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();
 
@@ -240,7 +249,7 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 1)
                                     .add(JBlocks.GOLDITE_FLOWER.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(100)
+                            .tries(160)
                             .xspread(10)
                             .zspread(10)
                             .whitelist(ImmutableSet.of(
@@ -248,7 +257,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
 
@@ -290,6 +299,18 @@ public class JConfiguredFeatures {
                             .countRandom(32))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GLIMMER_ROOTS =
+            REGISTER.register("glimmer_roots",
+                    Decoration.UNDERGROUND_STRUCTURES,
+                    () -> JFeatures.GLIMMER_ROOTS.get()
+                            .configured(IFeatureConfig.NONE)
+                            .range(256)
+                            .squared()
+                            .countRandom(64))
+                    .setBiomePredicate(EUCA_BIOMES)
+                    .asPromise();
+
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_TREES =
             REGISTER.register("euca_gold_tree",
@@ -343,9 +364,10 @@ public class JConfiguredFeatures {
             REGISTER.register("euca_green_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.EUCA_BROWN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GOLDITE_GRASS_BLOCK.defaultBlockState()),
                                     new FancyFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), 6),
                                     new MegaJungleTrunkPlacer(6, 3, 2),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines().build())
@@ -386,9 +408,10 @@ public class JConfiguredFeatures {
             REGISTER.register("small_frozen_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new ForkyTrunkPlacer(2, 1, 3),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -401,9 +424,10 @@ public class JConfiguredFeatures {
             REGISTER.register("medium_frozen_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new FancyTrunkPlacer(10, 5, 5),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -416,9 +440,10 @@ public class JConfiguredFeatures {
             REGISTER.register("large_frozen_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new FancyTrunkPlacer(15, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -431,9 +456,10 @@ public class JConfiguredFeatures {
             REGISTER.register("large_frozen_biterwood_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new GiantTrunkPlacer(15, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -446,9 +472,10 @@ public class JConfiguredFeatures {
             REGISTER.register("medium_frozen_biterwood_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new StraightTrunkPlacer(10, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
@@ -461,15 +488,124 @@ public class JConfiguredFeatures {
             REGISTER.register("small_frozen_biterwood_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
-                            .configured(new BaseTreeFeatureConfig.Builder(
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.FROZEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GRASSY_PERMAFROST.defaultBlockState()),
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new StraightTrunkPlacer(4, 2, 3),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
                                     .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(FROZEN_BITTERWOOD_FORST)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SCORCHED_STALAGMITE =
+            REGISTER.register("scorched_stalagmite",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.SCORCHED_STALAGMITE.get()
+                            .configured(IFeatureConfig.NONE)
+                            .range(256)
+                            .squared()
+                            .count(220))
+                    .setBiomePredicate(SCORCHED_WASTELAND)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SCORCHED_CACTUS =
+            REGISTER.register("scorched_cactus",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.SCORCHED_CACTUS.get()
+                            .configured(IFeatureConfig.NONE)
+                            .range(128)
+                            .squared()
+                            .count(100))
+                    .setBiomePredicate(BOILING_SANDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_DEPOSIT =
+            REGISTER.register("sulphur_deposit",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.SULPHUR_DEPOSIT.get()
+                            .configured(new BlockStateFeatureConfig(JBlocks.SULPHUR_ROCK.defaultBlockState()))
+                            .range(256)
+                            .decorated(Features.Placements.HEIGHTMAP_SQUARE)
+                            .squared()
+                            .count(100))
+                    .setBiomePredicate(BOILING_SANDS)
+                    .asPromise();
+
+    /*public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_CRYSTAL =
+            REGISTER.register("sulphur_crystal",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.SULPHUR_CRYSTAL.get()
+                            .configured(IFeatureConfig.NONE)
+                            .range(256)
+                            .decorated(Features.Placements.HEIGHTMAP_SQUARE)
+                            .squared()
+                            .count(50))
+                    .setBiomePredicate(BOILING_SANDS)
+                    .asPromise();*/
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_BURNED_TREE =
+            REGISTER.register("large_burned_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new JBaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.BURNED_BARK.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_GRASS.defaultBlockState()),
+                                    new FancyFoliagePlacer(FeatureSpread.fixed(4), FeatureSpread.fixed(1), 2),
+                                    new ForkyTrunkPlacer(5, 5, 5),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(CHARRED_FIELDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> MEDIUM_BURNED_TREE =
+            REGISTER.register("medium_burned_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new JBaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.BURNED_BARK.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_GRASS.defaultBlockState()),
+                                    new FancyFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), 2),
+                                    new ForkyTrunkPlacer(4, 4, 4),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(CHARRED_FIELDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_BURNED_TREE =
+            REGISTER.register("small_burned_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new JBaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.BURNED_BARK.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_GRASS.defaultBlockState()),
+                                    new FancyFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(1), 2),
+                                    new ForkyTrunkPlacer(3, 3, 3),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(CHARRED_FIELDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> ASHUAL_ORE =
+            REGISTER.register("ashual_ore",
+                    Decoration.UNDERGROUND_ORES,
+                    defaultOreFeature(() -> JBlocks.ASHUAL_ORE.defaultBlockState(), JRuleTests.ASH, 7, 140, 10))
+                    .setBiomePredicate(BOIL_FIRE_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BLAZIUM_ORE =
+            REGISTER.register("blazium_ore",
+                            Decoration.UNDERGROUND_ORES,
+                            defaultOreFeature(() -> JBlocks.BLAZIUM_ORE.defaultBlockState(), JRuleTests.ASH, 7, 40, 10))
+                    .setBiomePredicate(BOIL_FIRE_BIOMES)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
@@ -609,6 +745,121 @@ public class JConfiguredFeatures {
                     .range(250)
                     .count(50))
                     .setBiomePredicate(FROZEN_DYING_FORST)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOIL_PLANTS =
+            REGISTER.register("tall_boil_plants",
+                            Decoration.UNDERGROUND_DECORATION,
+                            () -> Feature.RANDOM_PATCH
+                                    .configured((new BlockClusterFeatureConfig.Builder(
+                                            new WeightedBlockStateProvider()
+                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 1)
+                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 1),
+                                            new DoublePlantBlockPlacer()))
+                                            .tries(64)
+                                            .xspread(6)
+                                            .zspread(6)
+                                            .whitelist(ImmutableSet.of(
+                                                    JBlocks.VOLCANIC_SAND))
+                                            .noProjection()
+                                            .build())
+                                    .range(255)
+                                    .count(100))
+                    .setBiomePredicate(BOILING_SANDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOIL_UNDERGROWTH =
+            REGISTER.register("tall_boil_undergrowth",
+                            Decoration.UNDERGROUND_DECORATION,
+                            () -> Feature.RANDOM_PATCH
+                                    .configured((new BlockClusterFeatureConfig.Builder(
+                                            new WeightedBlockStateProvider()
+                                                    .add(JBlocks.TALL_SIZZLESHROOM.defaultBlockState(), 1),
+                                            new DoublePlantBlockPlacer()))
+                                            .tries(10)
+                                            .xspread(6)
+                                            .zspread(6)
+                                            .noProjection()
+                                            .build())
+                                    .range(60)
+                                    .count(10))
+                    .setBiomePredicate(BOIL_FIRE_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_UNDERGROWTH =
+            REGISTER.register("boiling_undergrowth", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
+                                            .add(JBlocks.SIZZLESHROOM.defaultBlockState(), 1),
+                                    new SimpleBlockPlacer()))
+                                    .tries(10)
+                                    .xspread(10)
+                                    .zspread(10)
+                                    .noProjection()
+                                    .build())
+                            .range(60)
+                            .count(10))
+                    .setBiomePredicate(BOIL_FIRE_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_SANDS_FLOWERS =
+            REGISTER.register("boiling_sands_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
+                                            .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 1)
+                                            .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 1),
+                                    new SimpleBlockPlacer()))
+                                    .tries(200)
+                                    .xspread(10)
+                                    .zspread(10)
+                                    .whitelist(ImmutableSet.of(
+                                            JBlocks.VOLCANIC_SAND))
+                                    .noProjection()
+                                    .build())
+                            .range(250)
+                            .count(100))
+                    .setBiomePredicate(BOILING_SANDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_PLAINS_FLOWERS =
+            REGISTER.register("boiling_plains_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
+                                            .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 1)
+                                            .add(JBlocks.FLAME_POD.defaultBlockState(), 1)
+                                            .add(JBlocks.CRISP_GRASS.defaultBlockState(), 1),
+                                    new SimpleBlockPlacer()))
+                                    .tries(200)
+                                    .xspread(10)
+                                    .zspread(10)
+                                    .whitelist(ImmutableSet.of(
+                                            JBlocks.HOT_GROUND))
+                                    .noProjection()
+                                    .build())
+                            .range(250)
+                            .count(100))
+                    .setBiomePredicate(BOILING_PLAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_FIRE =
+            REGISTER.register("boiling_fire", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
+                                            .add(Blocks.FIRE.defaultBlockState(), 1),
+                                    new SimpleBlockPlacer()))
+                                    .tries(20)
+                                    .xspread(10)
+                                    .zspread(10)
+                                    .whitelist(ImmutableSet.of(
+                                            JBlocks.HOT_GROUND,
+                                            JBlocks.CHARRED_GRASS,
+                                            JBlocks.SCORCHED_RUBBLE,
+                                            JBlocks.VOLCANIC_SAND))
+                                    .noProjection()
+                                    .build())
+                            .range(250)
+                            .count(10))
+                    .setBiomePredicate(BOIL_FIRE_BIOMES)
                     .asPromise();
 
     /**

@@ -200,16 +200,16 @@ public class BlockRegistrator {
 
         registerDefaultBlock("frozen_portal", "Frozen Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.FROZEN_LANDS, JBlocks.FROZEN_PORTAL_FRAME));
 
-        registerSpeciallyRenderedBlock("grassy_permafrost", "Grassy Permafrost", () -> new Block(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()),
+        registerSpeciallyRenderedRotatedBlock("grassy_permafrost", "Grassy Permafrost", () -> new Block(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/grassy_permafrost_top"), JITL.tl("block/grassy_permafrost_side"), JITL.tl("block/crumbled_permafrost")));
 
         registerDefaultBlock("crumbled_permafrost", "Crumbled Permafrost", () -> new Block(JBlockProperties.CRUMBLED_PERMAFROST_PROPS.create()));
         registerDefaultBlock("permafrost", "Permafrost", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
 
         registerDefaultBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, JBlocks.EUCA_PORTAL_FRAME));
-        registerSpeciallyRenderedBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+        registerSpeciallyRenderedRotatedBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_gold_grass_block_top"), JITL.tl("block/euca_gold_grass_block_side"), JITL.tl("block/goldite_dirt")));
-        registerSpeciallyRenderedBlock("goldite_grass_block", "Goldite Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+        registerSpeciallyRenderedRotatedBlock("goldite_grass_block", "Goldite Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/goldite_grass_block_top"), JITL.tl("block/goldite_grass_block_side"), JITL.tl("block/goldite_dirt")));
 
         registerDefaultBlock("goldite_dirt", "Goldite Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
@@ -257,7 +257,7 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
                 () -> BlockModels.crossModel(JITL.tl("block/euca_silver_sprouts")));
 
-        registerSpeciallyRenderedBlock("euca_silver_grass_block", "Euca Silver Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+        registerSpeciallyRenderedRotatedBlock("euca_silver_grass_block", "Euca Silver Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_silver_grass_block_top"), JITL.tl("block/euca_silver_grass_block_side"), JITL.tl("block/euca_silver_dirt")));
         registerDefaultBlock("euca_silver_dirt", "Euca Silver Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
 
@@ -307,6 +307,21 @@ public class BlockRegistrator {
 
         registerDefaultBlock("small_stone_bricks", "Small Stone Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
 
+        RegistryObject<Block> ashBlockBricks = registerBlock("ash_block_bricks", "Ash Block Bricks", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs("ash_block_brick_stairs", "Rubble Brick Stairs", ashBlockBricks, JBlockProperties.STONE_PROPS.create());
+        registerDefaultBlock("smooth_ash_block", "Smooth Ash Block", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerSpeciallyRenderedBlock("runic_ash_block", "Runic Ash Block", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+
+        RegistryObject<Block> rubbleBricks = registerBlock("rubble_bricks", "Rubble Bricks", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs("rubble_brick_stairs", "Rubble Brick Stairs", rubbleBricks, JBlockProperties.STONE_PROPS.create());
+        registerDefaultBlock("smooth_rubble", "Smooth Rubble", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerSpeciallyRenderedBlock("runic_rubble", "Runic Rubble", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+
+        RegistryObject<Block> scorchedRubbleBricks = registerBlock("scorched_rubble_bricks", "Scorched Rubble Bricks", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs("scorched_rubble_brick_stairs", "Scorched Rubble Brick Stairs", scorchedRubbleBricks, JBlockProperties.STONE_PROPS.create());
+        registerDefaultBlock("smooth_scorched_rubble", "Smooth Scorched Rubble", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerSpeciallyRenderedBlock("runic_scorched_rubble", "Runic Scorched Rubble", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+
         registerCustomRenderLayerBlock("ice_crystal_block", "Ice Crystal Block", () -> new Block(JBlockProperties.ICE_CRYSTAL_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
         registerCustomRenderLayerBlock("cracked_ice_crystal_block", "Cracked Ice Crystal Block", () -> new Block(JBlockProperties.ICE_CRYSTAL_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
 
@@ -329,6 +344,68 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("ice_bush", "Ice Bush", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
                 () -> JBlockModels.crop(JITL.tl("block/ice_bush")));
+
+        registerDefaultBlock("depths_dirt", "Depths Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerDefaultBlock("depths_stone", "Depths Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        registerDefaultBlock("depths_lamp", "Depths Lamp", () -> new Block(JBlockProperties.GLOW_BLOCK.create()));
+        registerDefaultBlock("depths_portal_frame", "Depths Portal Frame", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+        registerDefaultBlock("depths_portal", "Depths Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.DEPTHS, JBlocks.DEPTHS_PORTAL_FRAME));
+        registerSpeciallyRenderedBlock("depths_grass_block", "Depths Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+                () -> BlockModels.cubeBottomTopModel(JITL.tl("block/depths_grass_block_top"), JITL.tl("block/depths_grass_block_side"), JITL.tl("block/depths_dirt")));
+
+        registerRandomizedRotatedBlock("rubble", "Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
+        registerRandomizedRotatedBlock("volcanic_sand", "Volcanic Sands", () -> new JBlock(JBlockProperties.HOLD_FIRE));
+        registerRandomizedRotatedBlock("hot_ground", "Hot Ground", () -> new JBlock(JBlockProperties.HOLD_FIRE));
+        registerRandomizedRotatedBlock("scorched_rubble", "Scorched Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
+        registerRandomizedRotatedBlock("ash_block", "Ash", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        registerDefaultBlock("boil_portal", "Boiling Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.BOIL, JBlocks.BOIL_PORTAL_FRAME));
+        registerSpeciallyRenderedRotatedBlock("charred_grass", "Charred Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+                () -> BlockModels.cubeBottomTopModel(JITL.tl("block/charred_grass_top"), JITL.tl("block/charred_grass_side"), JITL.tl("block/rubble")));
+
+        registerDefaultBlock("sulphur_rock", "Sulphur Rock", () -> new Block(JBlockProperties.BASALT_PROPS.create()));
+        registerAttachedRenderedBlock("sulphur_crystal", "Sulphur Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create().lightLevel((intf) -> 4)),
+                "sulphur_crystal");
+
+        registerSpeciallyRenderedBlock("scorched_stalagmite_tiny", "Scorched Stalagmite", JBlockStalagmite::new);
+        registerSpeciallyRenderedBlock("scorched_stalagmite_small", "Scorched Stalagmite", JBlockStalagmite::new);
+        registerSpeciallyRenderedBlock("scorched_stalagmite_med", "Scorched Stalagmite", JBlockStalagmite::new);
+        registerSpeciallyRenderedBlock("scorched_stalagmite_large", "Scorched Stalagmite", JBlockStalagmite::new);
+
+        registerSpeciallyRenderedBlock("scorched_cactus", "Scorched Cactus", JBlockStalagmite::new);
+
+        registerLogBlock("burned_bark", "Burned Bark");
+        registerCustomRenderLayerBlock("charred_leaves", "Charred Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
+
+        registerSpeciallyRenderedBlock("inferno_bush", "Inferno Bush", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
+                () -> BlockModels.crossModel(JITL.tl("block/inferno_bush")));
+
+        registerSpeciallyRenderedBlock("crumbling_pine", "Crumbling Pine", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
+                () -> BlockModels.crossModel(JITL.tl("block/crumbling_pine")));
+
+        registerSpeciallyRenderedBlock("crisp_grass", "Crisp Grass", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
+                () -> BlockModels.crossModel(JITL.tl("block/crisp_grass")));
+
+        registerSpeciallyRenderedBlock("flame_pod", "Flame Pod", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
+                () -> BlockModels.crossModel(JITL.tl("block/flame_pod")));
+
+        registerSpeciallyRenderedBlock("hell_bell", "Hell Bell", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
+                () -> BlockModels.crossModel(JITL.tl("block/hell_bell")));
+
+        registerSpeciallyRenderedBlock("lava_bloom", "Lava Bloom", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
+                () -> BlockModels.crossModel(JITL.tl("block/lava_bloom")));
+
+        registerTallCrossRenderedBlock("tall_molten_plant", "Tall Molten Plant", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
+        registerTallCrossRenderedBlock("tall_crumbling_pine", "Tall Crumbling Pine", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
+        registerTallCrossRenderedBlock("tall_sizzleshroom", "Tall Sizzleshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
+        registerSpeciallyRenderedBlock("sizzleshroom", "Sizzleshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.UNDERGROUND),
+                () -> BlockModels.crossModel(JITL.tl("block/tall_sizzleshroom_top")));
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {
@@ -423,6 +500,15 @@ public class BlockRegistrator {
                 .oneVarStateAndCubeAllModel();
     }
 
+    private static void registerSpeciallyRenderedRotatedBlock(String name, String enName, Supplier<Block> blockSupplier, Supplier<BlockModel> blockModelSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.randomizedRotated(JITL.bml("block/" + name)))
+                .model(JITL.bml("block/" + name), blockModelSupplier);
+    }
+
     /**
      * Registers a block with a BlockModel supplier
      */
@@ -446,6 +532,15 @@ public class BlockRegistrator {
                 .state(JBlockStateResources.campfireState(JITL.bml("block/" + name), JITL.bml("block/" + name + "_off")))
                 .model(JITL.bml("block/" + name), () -> JBlockModels.campfireOn(JITL.tl("block/" + name + "_log_lit"), JITL.tl("block/" + name + "_fire")))
                 .model(JITL.bml("block/" + name + "_off"), () -> JBlockModels.campfireOff(JITL.tl("block/" + name + "_log")));
+    }
+
+    private static void registerRandomizedRotatedBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.randomizedRotated(JITL.bml("block/" + name)))
+                .model(JITL.bml("block/" + name),
+                        () -> BlockModels.cubeAllModel(JITL.tl("block/" + name)));
     }
 
     /**

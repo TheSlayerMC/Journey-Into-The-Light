@@ -50,6 +50,14 @@ public class JBlockProperties {
             .requiresCorrectToolForDrops()
             .strength(1.5F, 6.0F));
 
+	public static final BlockPropsFactory STONE_MODEL_PROPS = new BlockPropsFactory(() -> Properties.of
+					(Material.STONE)
+			.sound(SoundType.STONE)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.noOcclusion()
+			.strength(1.5F, 6.0F));
+
     public static final BlockPropsFactory LEAVES_PROPS = new BlockPropsFactory(() -> Properties.of
             (Material.LEAVES)
 			.sound(SoundType.GRASS)
@@ -95,6 +103,11 @@ public class JBlockProperties {
 	public static final BlockPropsFactory DIRT_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.DIRT)
 			.sound(SoundType.GRAVEL)
+			.harvestTool(ToolType.SHOVEL)
+			.strength(0.5F));
+
+	public static final BlockPropsFactory HOLD_FIRE = new BlockPropsFactory(() -> Properties.of(Material.DIRT)
+			.sound(SoundType.STONE)
 			.harvestTool(ToolType.SHOVEL)
 			.strength(0.5F));
 
@@ -203,8 +216,18 @@ public class JBlockProperties {
 			.lightLevel((state) -> 5)
 			.noCollission());
 
+	public static final BlockPropsFactory GLOW_BLOCK = new BlockPropsFactory(() -> Properties.of
+			(Material.GLASS)
+			.sound(SoundType.GLASS)
+			.lightLevel((state) -> 5));
+
 	public static final BlockPropsFactory PLANT_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.REPLACEABLE_PLANT)
+			.sound(SoundType.SWEET_BERRY_BUSH)
+			.noCollission());
+
+	public static final BlockPropsFactory FIRE_PLANT_PROPS = new BlockPropsFactory(() -> Properties.of
+					(Material.REPLACEABLE_FIREPROOF_PLANT)
 			.sound(SoundType.SWEET_BERRY_BUSH)
 			.noCollission());
 

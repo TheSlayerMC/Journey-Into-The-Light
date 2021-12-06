@@ -1,0 +1,38 @@
+{
+  "surface_builder": "jitl:boiling_sands",
+  "depth": 0.0,
+  "scale": 0.25,
+  "temperature": 0.8,
+  "downfall": 0.4,
+  "precipitation": "none",
+  "category": "nether",
+  "effects": {
+    "sky_color": 3947070,
+    "fog_color": 3947070,
+    "water_color": 3947070,
+    "water_fog_color": 3947070,
+    "particle": {
+      "options": {
+        "type": "jitl:sulphur"
+      },
+      "probability": 0.01428
+    }
+  },
+  "starts": [],
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      {
+        "config": {
+          "probability": 0.5
+        },
+        "type": "jitl:boiling_carver"
+      }
+    ]
+  },
+  "features": [
+    [
+    ]
+  ]
+}

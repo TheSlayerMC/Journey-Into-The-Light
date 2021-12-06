@@ -3,7 +3,7 @@ package net.jitl.common.world.gen.features;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
+import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
@@ -21,7 +21,6 @@ import net.minecraft.world.IWorldWriter;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.IWorldGenerationBaseReader;
 import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
@@ -29,8 +28,8 @@ import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import java.util.*;
 
 //TODO: create custom codec for ground block and dirt block
-public class JTreeFeature extends Feature<BaseTreeFeatureConfig> {
-    public JTreeFeature(Codec<BaseTreeFeatureConfig> codec_) {
+public class JTreeFeature extends Feature<JBaseTreeFeatureConfig> {
+    public JTreeFeature(Codec<JBaseTreeFeatureConfig> codec_) {
         super(codec_);
     }
 
@@ -58,11 +57,9 @@ public class JTreeFeature extends Feature<BaseTreeFeatureConfig> {
         });
     }
 
-    private static boolean isGrassOrDirtOrFarmland(IWorldGenerationBaseReader worldGenerationBaseReader_, BlockPos blockPos_) {
-        return worldGenerationBaseReader_.isStateAtPosition(blockPos_, (blockState3_) -> {
-            Block block = blockState3_.getBlock();
-            return isDirt(block) || block == Blocks.FARMLAND;
-        });
+    private static boolean isGroundBlock(IWorldGenerationBaseReader worldGenerationBaseReader_, BlockPos blockPos_, JBaseTreeFeatureConfig config, Random random) {
+        return worldGenerationBaseReader_.isStateAtPosition(blockPos_, (blockState3_) ->
+                blockState3_ == config.dirtProvider.getState(random, blockPos_));
     }
 
     private static boolean isReplaceablePlant(IWorldGenerationBaseReader worldGenerationBaseReader_, BlockPos blockPos_) {
@@ -83,7 +80,7 @@ public class JTreeFeature extends Feature<BaseTreeFeatureConfig> {
     /**
      * Called when placing the tree feature.
      */
-    private boolean doPlace(IWorldGenerationReader generationReader, Random rand, BlockPos positionIn, Set<BlockPos> set_, Set<BlockPos> set1_, MutableBoundingBox boundingBoxIn, BaseTreeFeatureConfig configIn) {
+    private boolean doPlace(IWorldGenerationReader generationReader, Random rand, BlockPos positionIn, Set<BlockPos> set_, Set<BlockPos> set1_, MutableBoundingBox boundingBoxIn, JBaseTreeFeatureConfig configIn) {
         int i = configIn.trunkPlacer.getTreeHeight(rand);
         int j = configIn.foliagePlacer.foliageHeight(rand, i, configIn);
         int k = i - j;
@@ -92,23 +89,27 @@ public class JTreeFeature extends Feature<BaseTreeFeatureConfig> {
         blockpos = positionIn;
 
         if (blockpos.getY() >= 1 && blockpos.getY() + i + 1 <= 256) {
-            OptionalInt optionalint = configIn.minimumSize.minClippedHeight();
-            int l1 = this.getMaxFreeTreeHeight(generationReader, i, blockpos, configIn);
-            if (l1 >= i || optionalint.isPresent() && l1 >= optionalint.getAsInt()) {
-                List<FoliagePlacer.Foliage> list = configIn.trunkPlacer.placeTrunk(generationReader, rand, l1, blockpos, set_, boundingBoxIn, configIn);
-                list.forEach((foliage_) -> {
-                    configIn.foliagePlacer.createFoliage(generationReader, rand, configIn, l1, foliage_, j, l, set1_, boundingBoxIn);
-                });
-                return true;
-            } else {
+            if (!isGroundBlock(generationReader, blockpos.below(), configIn, rand)) {
                 return false;
+            } else {
+                OptionalInt optionalint = configIn.minimumSize.minClippedHeight();
+                int l1 = this.getMaxFreeTreeHeight(generationReader, i, blockpos, configIn);
+                if (l1 >= i || optionalint.isPresent() && l1 >= optionalint.getAsInt()) {
+                    List<FoliagePlacer.Foliage> list = configIn.trunkPlacer.placeTrunk(generationReader, rand, l1, blockpos, set_, boundingBoxIn, configIn);
+                    list.forEach((foliage_) -> {
+                        configIn.foliagePlacer.createFoliage(generationReader, rand, configIn, l1, foliage_, j, l, set1_, boundingBoxIn);
+                    });
+                    return true;
+                } else {
+                    return false;
+                }
             }
         } else {
             return false;
         }
     }
 
-    private int getMaxFreeTreeHeight(IWorldGenerationBaseReader worldGenerationBaseReader_, int int_, BlockPos blockPos_, BaseTreeFeatureConfig baseFrozenTreeFetureConfig_) {
+    private int getMaxFreeTreeHeight(IWorldGenerationBaseReader worldGenerationBaseReader_, int int_, BlockPos blockPos_, JBaseTreeFeatureConfig baseFrozenTreeFetureConfig_) {
         BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
         for (int i = 0; i <= int_ + 1; ++i) {
@@ -133,7 +134,7 @@ public class JTreeFeature extends Feature<BaseTreeFeatureConfig> {
     }
 
     @Override
-    public final boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
+    public final boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, JBaseTreeFeatureConfig config) {
         Set<BlockPos> set = Sets.newHashSet();
         Set<BlockPos> set1 = Sets.newHashSet();
         Set<BlockPos> set2 = Sets.newHashSet();

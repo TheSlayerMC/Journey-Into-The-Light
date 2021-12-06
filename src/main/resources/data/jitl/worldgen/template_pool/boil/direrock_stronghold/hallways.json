@@ -1,0 +1,60 @@
+{
+  "name": "jitl:hallways",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 25,
+      "element": {
+        "location": "jitl:boil/direrock_stronghold/dire_hallway_1",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "jitl:scorched_rubble_bricks",
+              "by": "jitl:runic_scorched_rubble",
+              "chance": 10
+            }
+          ]
+        },
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "location": "jitl:boil/direrock_stronghold/dire_stairs_hallways",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "jitl:scorched_rubble_bricks",
+              "by": "jitl:runic_scorched_rubble",
+              "chance": 10
+            }
+          ]
+        },
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "location": "jitl:boil/direrock_stronghold/dire_stairs_roof_1",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "jitl:scorched_rubble_bricks",
+              "by": "jitl:runic_scorched_rubble",
+              "chance": 10
+            }
+          ]
+        },
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

@@ -1,7 +1,6 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
-import net.jitl.common.capability.player.IJPlayer;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.player.JPlayerStorage;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,12 +20,12 @@ public class JCapabilities {
     @AutoRegistrable
     private static final CapabilityRegister REGISTER = new CapabilityRegister(JITL.MODID);
 
-    @CapabilityInject(IJPlayer.class)
+    @CapabilityInject(JPlayer.class)
     public static final Capability<JPlayer> PLAYER = Hacks.promise();
 
     @AutoRegistrable.InitMethod
     private static void register() {
-        REGISTER.regCapability(IJPlayer.class, new JPlayerStorage());
+        REGISTER.regCapability(JPlayer.class, new JPlayerStorage());
     }
 
     @SubscribeEvent

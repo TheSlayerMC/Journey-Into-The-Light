@@ -15,9 +15,17 @@ public class JBiomeRegistry {
     public static Biome EUCA_GOLDITE_GRAINS;
     public static Biome EUCA_SILVER_PLAINS;
 
+    public static Biome DEPTHS;
+
     public static Biome FROZEN_WASTES;
     public static Biome FROZEN_DYING_FOREST;
     public static Biome FROZEN_BITTERWOOD_FOREST;
+
+    public static Biome BOILING_PLAINS;
+    public static Biome BOILING_SANDS;
+    public static Biome CHARRED_FIELDS;
+    public static Biome SCORCHED_WASTELANDS;
+
 
     @SubscribeEvent
     public static void registerBiomes(RegistryEvent.Register<Biome> event) {
@@ -38,6 +46,21 @@ public class JBiomeRegistry {
 
         FROZEN_BITTERWOOD_FOREST.setRegistryName(JITL.rl("frozen/bitterwood_forest"));
         event.getRegistry().register(FROZEN_BITTERWOOD_FOREST);
+
+        DEPTHS.setRegistryName(JITL.rl("depths/depths"));
+        event.getRegistry().register(DEPTHS);
+
+        BOILING_PLAINS.setRegistryName(JITL.rl("boil/boil"));
+        event.getRegistry().register(BOILING_PLAINS);
+
+        BOILING_SANDS.setRegistryName(JITL.rl("boil/boiling_sands"));
+        event.getRegistry().register(BOILING_SANDS);
+
+        CHARRED_FIELDS.setRegistryName(JITL.rl("boil/charred_fields"));
+        event.getRegistry().register(CHARRED_FIELDS);
+
+        SCORCHED_WASTELANDS.setRegistryName(JITL.rl("boil/scorched_wastelands"));
+        event.getRegistry().register(SCORCHED_WASTELANDS);
     }
 
     public static void registerProviders() {

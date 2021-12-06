@@ -176,21 +176,72 @@ public class JBlocks {
 	public static final JLeavesBlock EUCA_SILVER_LEAVES = promise();
 	public static final JLeavesBlock EUCA_GREEN_LEAVES = promise();
 
-	public static final Block SILVER_BOT_SPAWNER = promise();
-	public static final Block GOLD_BOT_SPAWNER = promise();
+	public static final Block DEPTHS_PORTAL_FRAME = promise();
+	public static final Block DEPTHS_PORTAL = promise();
+	public static final Block DEPTHS_GRASS_BLOCK = promise();
+	public static final Block DEPTHS_DIRT = promise();
+	public static final Block DEPTHS_STONE = promise();
+	public static final Block DEPTHS_LAMP = promise();
 
-	public static final Block TOMATO_CROP = promise();
-	public static final Block FLORO_CROP = promise();
+    public static final Block BOIL_PORTAL_FRAME = promise();
+    public static final Block BOIL_PORTAL = promise();
+    public static final Block CHARRED_GRASS = promise();
+    public static final Block RUBBLE = promise();
+    public static final Block VOLCANIC_SAND = promise();
+    public static final Block HOT_GROUND = promise();
+    public static final Block SCORCHED_RUBBLE = promise();
+    public static final Block ASH_BLOCK = promise();
+    public static final Block SULPHUR_ROCK = promise();
+    public static final Block SULPHUR_CRYSTAL = promise();
 
-	public static final Block FUMICE = promise();
-	public static final Block FILLED_FUMICE = promise();
+    public static final Block SCORCHED_STALAGMITE_TINY = promise();
+    public static final Block SCORCHED_STALAGMITE_SMALL = promise();
+    public static final Block SCORCHED_STALAGMITE_MED = promise();
+    public static final Block SCORCHED_STALAGMITE_LARGE = promise();
+    public static final Block SCORCHED_CACTUS = promise();
 
+    public static final Block SCORCHED_RUBBLE_BRICKS = promise();
+    public static final Block SMOOTH_SCORCHED_RUBBLE = promise();
+    public static final Block RUNIC_SCORCHED_RUBBLE = promise();
+
+    public static final Block ASH_BLOCK_BRICKS = promise();
+    public static final Block SMOOTH_ASH_BLOCK = promise();
+    public static final Block RUNIC_ASH_BLOCK = promise();
+
+    public static final Block RUBBLE_BRICKS = promise();
+    public static final Block SMOOTH_RUBBLE = promise();
+    public static final Block RUNIC_RUBBLE = promise();
+
+    public static final Block SILVER_BOT_SPAWNER = promise();
+    public static final Block GOLD_BOT_SPAWNER = promise();
+
+    public static final Block TOMATO_CROP = promise();
+    public static final Block FLORO_CROP = promise();
+
+    public static final Block FUMICE = promise();
+    public static final Block FILLED_FUMICE = promise();
 
 	public static final JPlantBlock FROSTBERRY_THORN = promise();
 	public static final JPlantBlock FROZEN_BLOOM = promise();
 	public static final JPlantBlock FROZEN_FLOWER = promise();
 	public static final JPlantBlock ICE_BUSH = promise();
 	public static final JPlantBlock ICE_BUD = promise();
+
+	public static final JLeavesBlock CHARRED_LEAVES = promise();
+	public static final RotatedPillarBlock BURNED_BARK = promise();
+	public static final JDoublePlantBlock TALL_MOLTEN_PLANT = promise();
+	public static final JDoublePlantBlock TALL_CRUMBLING_PINE = promise();
+	public static final JPlantBlock INFERNO_BUSH = promise();
+	public static final JPlantBlock CRUMBLING_PINE = promise();
+	public static final JPlantBlock CRISP_GRASS = promise();
+	public static final JPlantBlock FLAME_POD = promise();
+	public static final JPlantBlock LAVA_BLOOM = promise();
+	public static final JPlantBlock SIZZLESHROOM = promise();
+	public static final JDoublePlantBlock TALL_SIZZLESHROOM = promise();
+
+
+	public static final JPlantBlock HELL_BELL = promise();
+
 
 	public static final Block DREADIRON_BLOCK = promise();
 }
