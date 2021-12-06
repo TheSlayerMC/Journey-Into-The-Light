@@ -6,7 +6,58 @@
       "weight": 25,
       "element": {
         "location": "jitl:overworld/illager_bunker/iron_golem_prison",
-        "processors": "minecraft:empty",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "minecraft:cobblestone",
+              "by": "minecraft:mossy_cobblestone",
+              "chance": 50
+            },
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "minecraft:mossy_cobblestone",
+              "by": "minecraft:cobblestone",
+              "chance": 50
+            },
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "minecraft:stone_bricks",
+              "by": "jitl:small_stone_bricks",
+              "chance": 50
+            },
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "jitl:small_stone_bricks",
+              "by": "minecraft:stone_bricks",
+              "chance": 50
+            },
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "jitl:small_stone_bricks",
+              "by": "minecraft:mossy_stone_bricks",
+              "chance": 50
+            },
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "jitl:small_stone_bricks",
+              "by": "minecraft:cracked_stone_bricks",
+              "chance": 50
+            },
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "minecraft:stone_bricks",
+              "by": "minecraft:cracked_stone_bricks",
+              "chance": 50
+            },
+            {
+              "processor_type": "jitl:randomize_block_with_chance",
+              "to_replace": "minecraft:stone_bricks",
+              "by": "minecraft:mossy_stone_bricks",
+              "chance": 50
+            }
+          ]
+        },
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }

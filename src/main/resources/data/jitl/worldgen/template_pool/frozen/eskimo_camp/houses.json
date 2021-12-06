@@ -6,7 +6,15 @@
       "weight": 1,
       "element": {
         "location": "jitl:frozen/eskimo_camp/eskimo_large_igloo",
-        "processors": "minecraft:empty",
+        "processors": {
+          "processors": [
+            {
+              "processor_type": "timecore:randomize_block",
+              "to_replace": "jitl:packed_snow_bricks",
+              "by": "jitl:packed_ice_bricks"
+            }
+          ]
+        },
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -15,7 +23,7 @@
       "weight": 1,
       "element": {
         "location": "jitl:frozen/eskimo_camp/eskimo_small_igloo",
-        "processors": "minecraft:empty",
+        "processors": "timecore:randomize_block",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
