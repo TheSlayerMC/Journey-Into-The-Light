@@ -161,7 +161,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
 
@@ -179,7 +179,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
 
@@ -198,7 +198,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(EUCA_SILVER_PLAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
 
@@ -218,7 +218,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
                     .asPromise();
 
@@ -237,7 +237,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();
 
@@ -257,7 +257,7 @@ public class JConfiguredFeatures {
                             .noProjection()
                             .build())
                     .range(250)
-                    .count(10))
+                    .count(64))
                     .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
 
