@@ -68,11 +68,11 @@ public class GlimmerRootFeature extends Feature<NoFeatureConfig> {
         for (int i = 0; i <= amount; ++i) {
             if (world.isEmptyBlock(mutable)) {
                 if (i == amount || !world.isEmptyBlock(mutable.below())) {
-                    world.setBlock(mutable, JBlocks.CAVE_VINES.defaultBlockState().setValue(AbstractTopPlantBlock.AGE, MathHelper.nextInt(random, minAge, maxAge)), 2);
+                    world.setBlock(mutable, JBlocks.GLIMMER_ROOT.defaultBlockState().setValue(AbstractTopPlantBlock.AGE, MathHelper.nextInt(random, minAge, maxAge)), 2);
                     break;
                 }
 
-                world.setBlock(mutable, JBlocks.CAVE_VINES_PLANT.defaultBlockState(), 2);
+                world.setBlock(mutable, JBlocks.GLIMMER_ROOT_PLANT.defaultBlockState(), 2);
             }
 
             mutable.move(Direction.DOWN);
