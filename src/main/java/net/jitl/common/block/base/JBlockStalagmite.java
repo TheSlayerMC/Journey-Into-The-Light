@@ -63,11 +63,4 @@ public class JBlockStalagmite extends Block {
         }
         return false;
     }
-
-    @Override
-    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if(this == JBlocks.SCORCHED_CACTUS) {
-            entityIn.hurt(DamageSource.CACTUS, 1.0F);
-        }
-    }
 }
