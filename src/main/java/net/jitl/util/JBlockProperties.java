@@ -111,6 +111,11 @@ public class JBlockProperties {
 			.harvestTool(ToolType.SHOVEL)
 			.strength(0.5F));
 
+	public static final BlockPropsFactory HOLD_FIRE_SAND = new BlockPropsFactory(() -> Properties.of(Material.DIRT)
+			.sound(SoundType.SAND)
+			.harvestTool(ToolType.SHOVEL)
+			.strength(0.5F));
+
 	public static final BlockPropsFactory ORE_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.STONE)
 			.sound(SoundType.STONE)

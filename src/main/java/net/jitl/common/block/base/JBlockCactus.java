@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -16,25 +17,22 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.IPlantable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class JBlockStalagmite extends Block {
+public class JBlockCactus extends Block implements IPlantable {
 
     protected static final VoxelShape BIG_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
-    protected static final VoxelShape MED_SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
-    protected static final VoxelShape SMALL_SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
-    protected static final VoxelShape TINY_SHAPE = Block.box(7.0D, 0.0D, 7.0D, 9.0D, 16.0D, 9.0D);
 
-    public JBlockStalagmite() {
+    public JBlockCactus() {
         super(JBlockProperties.STONE_PROPS.create());
     }
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
-        return this == JBlocks.SCORCHED_STALAGMITE_LARGE ? BIG_SHAPE : this == JBlocks.SCORCHED_STALAGMITE_MED ? MED_SHAPE :
-                this == JBlocks.SCORCHED_STALAGMITE_SMALL ? SMALL_SHAPE : TINY_SHAPE;
+        return BIG_SHAPE;
     }
 
     @Override
@@ -58,7 +56,7 @@ public class JBlockStalagmite extends Block {
     public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
         BlockState blockstate = worldIn.getBlockState(pos.below());
         Material material = blockstate.getMaterial();
-        if(material.isSolid() || blockstate.getBlock() instanceof JBlockStalagmite) {
+        if(material.isSolid() || blockstate.getBlock() instanceof JBlockCactus) {
             return true;
         }
         return false;
@@ -66,8 +64,11 @@ public class JBlockStalagmite extends Block {
 
     @Override
     public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if(this == JBlocks.SCORCHED_CACTUS) {
-            entityIn.hurt(DamageSource.CACTUS, 1.0F);
-        }
+        entityIn.hurt(DamageSource.CACTUS, 1.0F);
+    }
+
+    @Override
+    public BlockState getPlant(IBlockReader world, BlockPos pos) {
+        return this.defaultBlockState();
     }
 }
