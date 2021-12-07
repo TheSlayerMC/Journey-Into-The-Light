@@ -11,8 +11,10 @@ import javax.annotation.Nullable;
 public class BoilRenderInfo extends DimensionRenderInfo {
 
     public BoilRenderInfo() {
-        super(-1.0F, true, FogType.NORMAL, false, false);
+        super(Float.NaN, true, FogType.NORMAL, false, false);
     }
+
+
 
     @Override
     public @NotNull Vector3d getBrightnessDependentFogColor(Vector3d vector3d, float float_) {
