@@ -31,6 +31,7 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
     private static final ResourceLocation MOON_LOCATION = JITL.rl("textures/environment/boil_sun2.png");
     private static final ResourceLocation SUN_LOCATION = JITL.rl("textures/environment/boil_sun.png");
     private static final ResourceLocation EUCA_MOON_LOCATION = JITL.rl("textures/environment/euca_moon.png");
+    private static final ResourceLocation CORBA_MOON_LOCATION = JITL.rl("textures/environment/corba_moon.png");
 
     private static final ResourceLocation SKY_LOCATION = JITL.rl("textures/environment/boil_sky.png");
 
@@ -147,6 +148,7 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         float f12;
         f12 = 30.0F;
 
+        //SUN BEGIN
         textureManager.bind(SUN_LOCATION);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
         bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
@@ -159,9 +161,9 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(0.0F));
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
+        //SUN END
 
-        Matrix4f matrix4f2 = matrixStack.last().pose();
-
+        //EUCA MOON BEGIN
         f12 = 2F;
 
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(45.0F));
@@ -175,6 +177,22 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         bufferbuilder.vertex(matrix4f1, -f12, 100.0F, f12).uv(0.0F, 1.0F).endVertex();
         bufferbuilder.end();
         WorldVertexBufferUploader.end(bufferbuilder);
+        //EUCA MOON END
+
+        //CORBA MOON BEGIN
+        f12 = 0.5F;
+        matrixStack.mulPose(Vector3f.YP.rotationDegrees(45.0F));
+        matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 460.0F));
+
+        textureManager.bind(CORBA_MOON_LOCATION);
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
+        bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
+        bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
+        bufferbuilder.vertex(matrix4f1, -f12, 100.0F, f12).uv(0.0F, 1.0F).endVertex();
+        bufferbuilder.end();
+        WorldVertexBufferUploader.end(bufferbuilder);
+        //CORBA MOON END
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, moonOpacity);
         f12 = 20.0F;
