@@ -140,7 +140,7 @@ public class JEntities {
             Builder.of(SoulWatcherEntity::new, EntityClassification.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
-                    .sized(2F, 0.8F))
+                    .sized(2.5F, 2.5F))
             .attributes(() -> SoulWatcherEntity.createAttributes().build())
             .spawnEgg(NETHER_COLOR, BOSS_COLOR, JTabs.SPAWNERS)
             .retrieve();
