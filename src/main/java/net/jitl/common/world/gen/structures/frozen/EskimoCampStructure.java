@@ -90,7 +90,7 @@ public class EskimoCampStructure extends Structure<NoFeatureConfig> {
             }
             pieces.forEach(piece -> piece.move(0, 0, 0));
             calculateBoundingBox();
-            moveInsideHeights(random, 64, 80);
+            moveInsideHeights(random, 64, 68);
         }
     }
 }

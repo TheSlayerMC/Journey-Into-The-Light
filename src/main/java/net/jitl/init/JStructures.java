@@ -81,6 +81,7 @@ public class JStructures {
 
     public static final StructureHolder<NoFeatureConfig, DirerockStrongholdStructure> DIREROCK_STRONGHOLD =
             REGISTER.register("direrock_stronghold", DirerockStrongholdStructure::new, TimeStructureSeparationSettings.create(15, 10), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
+                    .transformsSurroundingLand()
                     .setDimensionPredicate(serverWorld -> serverWorld.dimension() == JDimensions.BOIL_WORLD)
                     .setBiomePredicate(biomePredicate -> Objects.equals(biomePredicate.getName(), JITL.rl("boil/scorched_wastelands")))
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
