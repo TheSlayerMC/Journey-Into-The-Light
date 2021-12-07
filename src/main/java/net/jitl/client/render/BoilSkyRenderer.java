@@ -34,7 +34,7 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
     private static final ResourceLocation SKY_LOCATION = JITL.rl("textures/environment/boil_sky.png");
 
     private static final ResourceLocation RIFT_LOCATION = JITL.rl("textures/environment/boil_rift.png");
-    private static final ResourceLocation CLOUDS_LOCATION = JITL.rl("textures/environment/boil_clouds.png");
+    //private static final ResourceLocation CLOUDS_LOCATION = JITL.rl("textures/environment/boil_clouds.png");
 
     private final VertexFormat skyFormat = DefaultVertexFormats.POSITION;
     private VertexBuffer skyBuffer;
@@ -138,19 +138,8 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
         Matrix4f matrix4f1 = matrixStack.last().pose();*/
 
-        float v12 = 4000;
-
-        textureManager.bind(CLOUDS_LOCATION);
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.vertex(matrix4f0, -v12, 500.0F, -v12).uv(0.0F, 1.0F).endVertex();
-        bufferbuilder.vertex(matrix4f0, v12, 500.0F, -v12).uv(1.0F, 1.0F).endVertex();
-        bufferbuilder.vertex(matrix4f0, v12, 500.0F, v12).uv(1.0F, 0.0F).endVertex();
-        bufferbuilder.vertex(matrix4f0, -v12, 500.0F, v12).uv(0.0F, 0.0F).endVertex();
-        bufferbuilder.end();
-        WorldVertexBufferUploader.end(bufferbuilder);
-
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
+        matrixStack.mulPose(Vector3f.YP.rotationDegrees(0.0F));
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
 
         Matrix4f matrix4f1 = matrixStack.last().pose();

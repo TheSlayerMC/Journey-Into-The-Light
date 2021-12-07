@@ -1,8 +1,10 @@
 package net.jitl.client.world;
 
+import net.jitl.client.render.BoilCloudsRenderer;
 import net.jitl.client.render.BoilSkyRenderer;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraftforge.client.ICloudRenderHandler;
 import net.minecraftforge.client.ISkyRenderHandler;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,7 +13,7 @@ import javax.annotation.Nullable;
 public class BoilRenderInfo extends DimensionRenderInfo {
 
     public BoilRenderInfo() {
-        super(-1.0F, true, FogType.NORMAL, false, false);
+        super(256.0F, true, FogType.NORMAL, false, false);
     }
 
     @Override
@@ -29,5 +31,11 @@ public class BoilRenderInfo extends DimensionRenderInfo {
     @Override
     public ISkyRenderHandler getSkyRenderHandler() {
         return new BoilSkyRenderer();
+    }
+
+    @Nullable
+    @Override
+    public ICloudRenderHandler getCloudRenderHandler() {
+        return new BoilCloudsRenderer();
     }
 }
