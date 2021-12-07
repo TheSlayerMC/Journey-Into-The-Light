@@ -101,18 +101,18 @@
       },
       "noise": {
         "min_y": 64,
-        "height": 200,
+        "height": 128,
         "density_factor": 0,
-        "density_offset": -0.17,
+        "density_offset": -0.07,
         "size_horizontal": 1,
-        "size_vertical": 2,
+        "size_vertical": 1,
         "simplex_surface_noise": false,
         "random_density_offset": false,
         "island_noise_override": false,
         "amplified": false,
         "sampling": {
           "xz_scale": 1,
-          "y_scale": 5,
+          "y_scale": 2,
           "xz_factor": 70,
           "y_factor": 180
         },

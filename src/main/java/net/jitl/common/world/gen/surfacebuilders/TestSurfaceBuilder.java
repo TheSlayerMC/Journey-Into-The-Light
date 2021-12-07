@@ -9,25 +9,28 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.ValleySurfaceBuilder;
 
 public class TestSurfaceBuilder extends ValleySurfaceBuilder {
-	private static final BlockState LAVAROCK = JBlocks.BLOOD_ROCK.defaultBlockState();
-	private static final BlockState BLACKSTONE = Blocks.BLACKSTONE.defaultBlockState();
-	private static final BlockState GRAVEL = Blocks.GRAVEL.defaultBlockState();
-	private static final ImmutableList<BlockState> FLOOR_BLOCK_STATES = ImmutableList.of(LAVAROCK, BLACKSTONE);
-	private static final ImmutableList<BlockState> CEILING_BLOCK_STATES = ImmutableList.of(LAVAROCK);
+    private static final BlockState LAVAROCK = JBlocks.BLOOD_ROCK.defaultBlockState();
+    private static final BlockState BLACKSTONE = Blocks.BLACKSTONE.defaultBlockState();
+    private static final BlockState GRAVEL = Blocks.GRAVEL.defaultBlockState();
+    private static final ImmutableList<BlockState> FLOOR_BLOCK_STATES = ImmutableList.of(LAVAROCK, BLACKSTONE);
+    private static final ImmutableList<BlockState> CEILING_BLOCK_STATES = ImmutableList.of(LAVAROCK);
 
-	public TestSurfaceBuilder(Codec<SurfaceBuilderConfig> codec) {
-		super(codec);
-	}
+    public TestSurfaceBuilder(Codec<SurfaceBuilderConfig> codec) {
+        super(codec);
+    }
 
-	protected ImmutableList<BlockState> getFloorBlockStates() {
-		return FLOOR_BLOCK_STATES;
-	}
+    @Override
+    protected ImmutableList<BlockState> getFloorBlockStates() {
+        return FLOOR_BLOCK_STATES;
+    }
 
-	protected ImmutableList<BlockState> getCeilingBlockStates() {
-		return CEILING_BLOCK_STATES;
-	}
+    @Override
+    protected ImmutableList<BlockState> getCeilingBlockStates() {
+        return CEILING_BLOCK_STATES;
+    }
 
-	protected BlockState getPatchBlockState() {
-		return GRAVEL;
-	}
+    @Override
+    protected BlockState getPatchBlockState() {
+        return GRAVEL;
+    }
 }

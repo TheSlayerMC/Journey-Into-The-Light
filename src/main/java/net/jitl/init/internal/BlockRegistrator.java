@@ -186,6 +186,12 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("cave_vines_plant", "Cave Vines", () -> new CaveVinesBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
                 () -> JBlockModels.emissive(BlockModels.crossModel(JITL.tl("block/cave_vines_plant_back")), BlockModels.crossModel(JITL.tl("block/cave_vines_plant_front"))));
 
+        registerSpeciallyRenderedBlock("glimmer_root", "Glimmer Root", () -> new CaveVinesTopBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/glimmer_root")));
+
+        registerSpeciallyRenderedBlock("glimmer_root_plant", "Glimmer Root", () -> new CaveVinesBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/glimmer_root_plant")));
+
         registerDefaultBlock("boil_portal_frame", "Boiling Point Portal Frame");
         registerDefaultBlock("euca_portal_frame", "Euca Portal Frame");
         registerDefaultBlock("frozen_portal_frame", "Frozen Lands Portal Frame");

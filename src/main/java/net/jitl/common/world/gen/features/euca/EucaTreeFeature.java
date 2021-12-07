@@ -66,11 +66,13 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
 
                     int distance;
 
-                    if (x >= y & x >= z) distance = x + (Math.max(y, z) >> 1) + (Math.min(y, z) >> 1);
-
-                    else if (y >= x & y >= z) distance = y + (Math.max(x, z) >> 1) + (Math.min(x, z) >> 1);
-
-                    else distance = z + (Math.max(x, y) >> 1) + (Math.min(x, y) >> 1);
+                    if (x >= y & x >= z) {
+                        distance = x + (Math.max(y, z) >> 1) + (Math.min(y, z) >> 1);
+                    } else if (y >= x & y >= z) {
+                        distance = y + (Math.max(x, z) >> 1) + (Math.min(x, z) >> 1);
+                    } else {
+                        distance = z + (Math.max(x, y) >> 1) + (Math.min(x, y) >> 1);
+                    }
 
                     if (distance <= size) {
                         placeLeaves(reader, pos.offset(+x, +y, +z), rand, config);

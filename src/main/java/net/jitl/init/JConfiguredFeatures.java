@@ -4,9 +4,9 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
-import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
+import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
 import net.jitl.common.world.gen.treedecorator.FrozenTreeDecorator;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
@@ -25,7 +25,10 @@ import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.PineFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.SpruceFoliagePlacer;
-import net.minecraft.world.gen.trunkplacer.*;
+import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.GiantTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import ru.timeconqueror.timecore.api.registry.ConfiguredFeatureRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
@@ -171,9 +174,27 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(160)
+                            .tries(100)
                             .xspread(16)
                             .zspread(16)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.GOLDITE_GRASS_BLOCK))
+                            .noProjection()
+                            .build())
+                    .range(250)
+                    .count(16))
+                    .setBiomePredicate(GOLDITE_GRAINS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_STALKS =
+            REGISTER.register("goldite_stalks", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(160)
+                            .xspread(10)
+                            .zspread(10)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GOLDITE_GRASS_BLOCK))
                             .noProjection()
@@ -315,48 +336,48 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_TREES =
             REGISTER.register("euca_gold_tree",
                     Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.EUCA_TREE.get()
-                            .configured(new EucaTreeFeatureConfig(
-                                    JRuleTests.GOLD_GRASS_EUCA.get(),
-                                    new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_LEAVES.defaultBlockState()),
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
-                                    5,
-                                    5,
-                                    8))
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_GRASS_BLOCK.defaultBlockState()),
+                                    new SphericalFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(3), 1),
+                                    new ForkyTrunkPlacer(4, 1, 6),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines().build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(3))
+                            .chance(1).countRandom(5))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVER_TREES =
             REGISTER.register("euca_silver_tree",
                     Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.EUCA_TREE.get()
-                            .configured(new EucaTreeFeatureConfig(
-                                    JRuleTests.SILVER_GRASS_EUCA.get(),
-                                    new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LEAVES.defaultBlockState()),
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_LOG.defaultBlockState()),
-                                    5,
-                                    5,
-                                    8))
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_SILVER_GRASS_BLOCK.defaultBlockState()),
+                                    new SphericalFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(3), 1),
+                                    new ForkyTrunkPlacer(4, 1, 6),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines().build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(3))
+                            .chance(1).countRandom(5))
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_GOLD_TREES =
             REGISTER.register("euca_gold_gold_tree",
                     Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.EUCA_TREE.get()
-                            .configured(new EucaTreeFeatureConfig(
-                                    JRuleTests.GOLDITE_GRASS_EUCA.get(),
-                                    new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LEAVES.defaultBlockState()),
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new JBaseTreeFeatureConfig.Builder(
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
-                                    5,
-                                    5,
-                                    8))
+                                    new SimpleBlockStateProvider(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.GOLDITE_GRASS_BLOCK.defaultBlockState()),
+                                    new SphericalFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(3), 1),
+                                    new ForkyTrunkPlacer(4, 1, 6),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines().build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(2))
+                            .chance(1).countRandom(5))
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
 
@@ -368,8 +389,8 @@ public class JConfiguredFeatures {
                                     new SimpleBlockStateProvider(JBlocks.EUCA_BROWN_LOG.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
                                     new SimpleBlockStateProvider(JBlocks.GOLDITE_GRASS_BLOCK.defaultBlockState()),
-                                    new FancyFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), 6),
-                                    new MegaJungleTrunkPlacer(6, 3, 2),
+                                    new SphericalFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(3), 1),
+                                    new ForkyTrunkPlacer(4, 1, 6),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines().build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE)
                             .chance(1).countRandom(5))
