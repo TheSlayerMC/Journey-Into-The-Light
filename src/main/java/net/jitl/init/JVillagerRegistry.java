@@ -15,9 +15,9 @@ public class JVillagerRegistry {
 
     public static final DeferredRegister<VillagerProfession> PROFESSION_REGISTER = DeferredRegister.create(ForgeRegistries.PROFESSIONS, JITL.MODID);
 
-    public static final RegistryObject<PointOfInterestType> TEST_POI = POI_REGISTER.register("test",
-            () -> new PointOfInterestType("test", PointOfInterestType.getBlockStates(JBlocks.FROZEN_PORTAL_FRAME), 1, 1));
+    public static final RegistryObject<PointOfInterestType> ESKIMO_POI = POI_REGISTER.register("eskimo",
+            () -> new PointOfInterestType("eskimo", PointOfInterestType.getBlockStates(JBlocks.BITTERWOOD_CAMPFIRE), 1, 1));
 
-    public static final RegistryObject<VillagerProfession> TEST_PROFESSION = PROFESSION_REGISTER.register("test",
-            () -> new VillagerProfession("test", TEST_POI.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CARTOGRAPHER));
+    public static final RegistryObject<VillagerProfession> ESKIMO_PROFESSION = PROFESSION_REGISTER.register("eskimo",
+            () -> new VillagerProfession("eskimo", ESKIMO_POI.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CARTOGRAPHER));
 }

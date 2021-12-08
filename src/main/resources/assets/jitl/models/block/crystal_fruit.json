@@ -7,7 +7,7 @@
     "3": "jitl:block/crystal_fruit_leaves_horizontal",
     "4": "jitl:block/crystal_fruit_leaves_vertical",
     "5": "jitl:block/crystal_fruit_stem",
-    "particle": "jitl:block/crystal_fuit_side"
+    "particle": "jitl:block/crystal_fruit_side"
   },
   "elements": [
     {

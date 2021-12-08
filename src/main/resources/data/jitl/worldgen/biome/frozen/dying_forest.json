@@ -4,7 +4,7 @@
   "scale": 0.1,
   "precipitation": "snow",
   "temperature": -0.8,
-  "downfall": 0.4,
+  "downfall": 1.0,
   "category": "forest",
   "effects": {
     "sky_color": 3145727,

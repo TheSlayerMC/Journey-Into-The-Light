@@ -197,7 +197,7 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("icy_ivy_plant", "Icy Ivy", () -> new IcyIvyBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/icy_ivy")));
 
-        registerSpeciallyRenderedBlockWithRenderType("crystal_fruit", "Crystal Fruit", () -> new Block(JBlockProperties.GLOW_BLOCK.create()), () -> RenderTypeWrappers.CUTOUT);
+        registerSpeciallyRenderedBlockWithRenderType("crystal_fruit", "Crystal Fruit", () -> new CrystalFruitBlock(JBlockProperties.GLOW_PLANT_PROPS.create()), () -> RenderTypeWrappers.CUTOUT);
 
         registerDefaultBlock("boil_portal_frame", "Boiling Point Portal Frame");
         registerDefaultBlock("euca_portal_frame", "Euca Portal Frame");
@@ -551,7 +551,7 @@ public class BlockRegistrator {
     private static void registerCampfireBlock(String name, String enName, Supplier<Block> blockSupplier) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
-                .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
                 .defaultBlockItem(JTabs.BLOCKS)
                 .state(JBlockStateResources.campfireState(JITL.bml("block/" + name), JITL.bml("block/" + name + "_off")))
                 .model(JITL.bml("block/" + name), () -> JBlockModels.campfireOn(JITL.tl("block/" + name + "_log_lit"), JITL.tl("block/" + name + "_fire")))

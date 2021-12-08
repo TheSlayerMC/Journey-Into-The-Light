@@ -217,25 +217,31 @@ public class JBlockProperties {
 
 	public static final BlockPropsFactory GLOWSHROOM_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.REPLACEABLE_PLANT)
-			.sound(SoundType.SWEET_BERRY_BUSH)
-			.lightLevel((state) -> 5)
-			.noCollission());
+            .sound(SoundType.SWEET_BERRY_BUSH)
+            .lightLevel((state) -> 5)
+            .noCollission());
 
-	public static final BlockPropsFactory GLOW_BLOCK = new BlockPropsFactory(() -> Properties.of
+    public static final BlockPropsFactory GLOW_BLOCK = new BlockPropsFactory(() -> Properties.of
             (Material.GLASS)
             .noOcclusion()
             .sound(SoundType.GLASS)
             .lightLevel((state) -> 10));
 
-	public static final BlockPropsFactory PLANT_PROPS = new BlockPropsFactory(() -> Properties.of
-			(Material.REPLACEABLE_PLANT)
-			.sound(SoundType.SWEET_BERRY_BUSH)
-			.noCollission());
+    public static final BlockPropsFactory GLOW_PLANT_PROPS = new BlockPropsFactory(() -> Properties.of
+            (Material.GLASS)
+            .noOcclusion()
+            .sound(JSoundTypes.CRYSTAL_FRUIT)
+            .lightLevel((state) -> 10));
 
-	public static final BlockPropsFactory FIRE_PLANT_PROPS = new BlockPropsFactory(() -> Properties.of
-					(Material.REPLACEABLE_FIREPROOF_PLANT)
-			.sound(SoundType.SWEET_BERRY_BUSH)
-			.noCollission());
+    public static final BlockPropsFactory PLANT_PROPS = new BlockPropsFactory(() -> Properties.of
+            (Material.REPLACEABLE_PLANT)
+            .sound(SoundType.SWEET_BERRY_BUSH)
+            .noCollission());
+
+    public static final BlockPropsFactory FIRE_PLANT_PROPS = new BlockPropsFactory(() -> Properties.of
+            (Material.REPLACEABLE_FIREPROOF_PLANT)
+            .sound(SoundType.SWEET_BERRY_BUSH)
+            .noCollission());
 
 	public static final BlockPropsFactory CROP_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.PLANT)

@@ -4,7 +4,7 @@
   "scale": 0.1,
   "precipitation": "snow",
   "temperature": -0.8,
-  "downfall": 0.4,
+  "downfall": 1.0,
   "category": "taiga",
   "effects": {
     "sky_color": 3145727,
@@ -24,7 +24,7 @@
       "options": {
         "type": "jitl:snowflake"
       },
-      "probability": 0.01428
+      "probability": 0.03428
     }
   },
   "starts": [],

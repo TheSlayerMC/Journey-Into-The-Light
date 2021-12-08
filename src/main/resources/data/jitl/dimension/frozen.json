@@ -11,7 +11,7 @@
     "has_ceiling": true,
     "fixed_time": 4000,
     "coordinate_scale": 1,
-    "ambient_light": 0.05,
+    "ambient_light": 0.02,
     "logical_height": 256,
     "infiniburn": "minecraft:infiniburn_overworld",
     "min_y": 0,
@@ -37,7 +37,7 @@
         "Name": "jitl:permafrost"
       },
       "default_fluid": {
-        "Name": "jitl:frosty_ice",
+        "Name": "minecraft:ice",
         "Properties": {}
       },
       "noise": {

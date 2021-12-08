@@ -33,6 +33,15 @@ public class JSoundTypes {
 			() -> SoundEvents.STONE_HIT,
 			JSounds.LUNIUM_ORE_BREAK::get);
 
+	public static final SoundType CRYSTAL_FRUIT = new TimeSoundType(
+			1.0F,
+			1.25F,
+			() -> SoundEvents.SHROOMLIGHT_BREAK,
+			() -> SoundEvents.SHROOMLIGHT_STEP,
+			() -> SoundEvents.SHROOMLIGHT_PLACE,
+			() -> SoundEvents.SHROOMLIGHT_HIT,
+			() -> SoundEvents.SHROOMLIGHT_FALL);
+
 	public static final SoundType SHADIUM_BLOCK = new TimeSoundType(
 			1.0F,
 			1.0F,

@@ -35,6 +35,9 @@ public class ModelLoadingHandler {
         RenderTypeLookup.setRenderLayer(JBlocks.RUNIC_SCORCHED_RUBBLE, RenderType.cutout());
 
         RenderTypeLookup.setRenderLayer(JBlocks.CRYSTAL_FRUIT, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(JBlocks.BITTERWOOD_CAMPFIRE, RenderType.cutout());
+
+        RenderTypeLookup.setRenderLayer(JBlocks.FROSTY_ICE, RenderType.translucent());
     }
 }
 /*

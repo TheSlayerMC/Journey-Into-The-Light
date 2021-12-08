@@ -453,7 +453,9 @@ public class JConfiguredFeatures {
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new FancyTrunkPlacer(10, 5, 5),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
-                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                                    .decorators(ImmutableList.of(
+                                            new FrozenTreeDecorator(0.2F),
+                                            new CrystalFruitTreeDecorator(4))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(FROZEN_DYING_FORST)
                     .asPromise();
@@ -471,7 +473,7 @@ public class JConfiguredFeatures {
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
                                     .decorators(ImmutableList.of(
                                             new FrozenTreeDecorator(0.2F),
-                                            new CrystalFruitTreeDecorator())).build())
+                                            new CrystalFruitTreeDecorator(1))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(FROZEN_DYING_FORST)
                     .asPromise();

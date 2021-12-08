@@ -17,8 +17,14 @@ import java.util.Random;
 import java.util.Set;
 
 public class CrystalFruitTreeDecorator extends TreeDecorator {
-    public static final Codec<CrystalFruitTreeDecorator> CODEC;
-    public static final CrystalFruitTreeDecorator INSTANCE = new CrystalFruitTreeDecorator();
+    public static final Codec<CrystalFruitTreeDecorator> CODEC = Codec.intRange(0, 10).fieldOf("height").xmap(CrystalFruitTreeDecorator::new,
+            (decorator) -> decorator.height).codec();
+
+    private final int height;
+
+    public CrystalFruitTreeDecorator(int height) {
+        this.height = height;
+    }
 
     @Override
     protected TreeDecoratorType<?> type() {
@@ -28,19 +34,20 @@ public class CrystalFruitTreeDecorator extends TreeDecorator {
     @Override
     public void place(ISeedReader seedReader_, Random random_, List<BlockPos> list_, List<BlockPos> list1_, Set<BlockPos> set_, MutableBoundingBox mutableBoundingBox_) {
         list1_.forEach((blockPos1_) -> {
-            if (random_.nextInt(4) == 0) {
+            if (random_.nextInt(8) == 0) {
                 BlockPos blockpos = blockPos1_.below();
-                if (Feature.isAir(seedReader_, blockpos)) {
+                if (Feature.isAir(seedReader_, blockpos) && Feature.isAir(seedReader_, blockpos.below(height + 1))) {
                     BlockPos.Mutable mutable = blockpos.mutable();
-                    addHangingVine(seedReader_, mutable, set_, mutableBoundingBox_);
+                    addHangingVine(seedReader_, random_, mutable, set_, mutableBoundingBox_);
                 }
             }
         });
     }
 
-    private void addHangingVine(IWorldGenerationReader world, BlockPos.Mutable mutable, Set<BlockPos> set_, MutableBoundingBox mutableBoundingBox_) {
-        for (int i = 0; i <= 5; ++i) {
-            if (i == 5) {
+    private void addHangingVine(IWorldGenerationReader world, Random random, BlockPos.Mutable mutable, Set<BlockPos> set_, MutableBoundingBox mutableBoundingBox_) {
+        int length = random.nextInt(4) + 2;
+        for (int i = 0; i <= length; ++i) {
+            if (i == length) {
                 this.setBlock(world, mutable, JBlocks.CRYSTAL_FRUIT.defaultBlockState(), set_, mutableBoundingBox_);
                 break;
             }
@@ -48,9 +55,5 @@ public class CrystalFruitTreeDecorator extends TreeDecorator {
 
             mutable.move(Direction.DOWN);
         }
-    }
-
-    static {
-        CODEC = Codec.unit(() -> INSTANCE);
     }
 }

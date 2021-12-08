@@ -36,9 +36,7 @@ public class FrozenTreeDecorator extends TreeDecorator {
     public void place(ISeedReader seedReader_, Random random_, List<BlockPos> list_, List<BlockPos> list1_, Set<BlockPos> set_, MutableBoundingBox mutableBoundingBox_) {
         if (!(random_.nextFloat() >= this.probability)) {
             int i = list_.get(0).getY();
-            list_.stream().filter((blockPos_) -> {
-                return blockPos_.getY() - i <= 2;
-            }).forEach((blockPos1_) -> {
+            list_.stream().filter((blockPos_) -> blockPos_.getY() - i <= 2).forEach((blockPos1_) -> {
                 for (Direction direction : Direction.Plane.HORIZONTAL) {
                     if (random_.nextFloat() <= 0.25F) {
                         Direction direction1 = direction.getOpposite();

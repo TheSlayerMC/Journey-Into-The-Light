@@ -1,6 +1,7 @@
 package net.jitl.common.eventhandler;
 
 import net.jitl.JITL;
+import net.jitl.init.JItems;
 import net.jitl.init.JStructures;
 import net.jitl.init.JVillagerRegistry;
 import net.minecraft.block.Block;
@@ -34,9 +35,9 @@ public class VillagerTradesEventHandler {
             level5_trades.add(new MapTrade(Items.EMERALD, 15, Items.COMPASS, 1, JStructures.ILlAGER_BUNKER.getStructure(), MapDecoration.Type.BANNER_LIGHT_GRAY, 12, 5));
             //trades.add(new BasicTrade(new ItemStack(Items.EMERALD, 1), new ItemStack(JItems.SAPPHIRE, 1), 1, 1, 0));
         }
-        if (event.getType() == JVillagerRegistry.TEST_PROFESSION.get()) {
+        if (event.getType() == JVillagerRegistry.ESKIMO_PROFESSION.get()) {
             List<VillagerTrades.ITrade> level5_trades = event.getTrades().get(1);
-            level5_trades.add(new CurrencyForItemsTrade(Items.EMERALD, Items.COMPASS, 1, 12, 5));
+            level5_trades.add(new CurrencyForItemsTrade(JItems.PERIDOT_GEMSTONE, Items.COMPASS, 1, 12, 5));
         }
     }
 
