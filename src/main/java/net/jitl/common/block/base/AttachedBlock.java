@@ -10,18 +10,61 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.server.ServerWorld;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class AttachedBlock extends Block {
+    protected static final VoxelShape DOWN_AABB = Block.box(3, (16 - 5), 3, (16 - 3), 16.0D, (16 - 3));
+    protected static final VoxelShape UP_AABB = Block.box(3, 0.0D, 3, (16 - 3), 5, (16 - 3));
+    protected static final VoxelShape NORTH_AABB = Block.box(3, 3, (16 - 5), (16 - 3), (16 - 3), 16.0D);
+    protected static final VoxelShape SOUTH_AABB = Block.box(3, 3, 0.0D, (16 - 3), (16 - 3), 5);
+    protected static final VoxelShape WEST_AABB = Block.box((16 - 5), 3, 3, 16.0D, (16 - 3), (16 - 3));
+    protected static final VoxelShape EAST_AABB = Block.box(0.0D, 3, 3, 5, (16 - 3), (16 - 3));
+
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
     public AttachedBlock(Properties properties) {
         super(properties);
         registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.UP));
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        Direction direction = state.getValue(FACING);
+        switch (direction) {
+            case UP:
+                return UP_AABB;
+            case DOWN:
+                return DOWN_AABB;
+            case NORTH:
+                return NORTH_AABB;
+            case EAST:
+                return EAST_AABB;
+            case SOUTH:
+                return SOUTH_AABB;
+            case WEST:
+                return WEST_AABB;
+            default:
+                return UP_AABB;
+        }
+    }
+
+    @Override
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+        if (!worldIn.isAreaLoaded(pos, 1)) {
+            return;
+        }
+        if (!state.canSurvive(worldIn, pos)) {
+            worldIn.destroyBlock(pos, true);
+        }
     }
 
     @Nullable
@@ -45,16 +88,19 @@ public class AttachedBlock extends Block {
     }
 
     @Override
-    public boolean canSurvive(BlockState p_196260_1_, IWorldReader p_196260_2_, BlockPos p_196260_3_) {
-        Direction lvt_4_1_ = p_196260_1_.getValue(FACING);
-        BlockPos lvt_5_1_ = p_196260_3_.relative(lvt_4_1_.getOpposite());
-        BlockState lvt_6_1_ = p_196260_2_.getBlockState(lvt_5_1_);
-        return lvt_6_1_.isFaceSturdy(p_196260_2_, lvt_5_1_, lvt_4_1_);
+    public boolean canSurvive(BlockState blockState, IWorldReader reader, BlockPos blockPos) {
+        Direction direction = blockState.getValue(FACING);
+        BlockPos newPos = blockPos.relative(direction.getOpposite());
+        BlockState newState = reader.getBlockState(newPos);
+        return newState.isFaceSturdy(reader, newPos, direction);
     }
 
     @Override
-    public BlockState updateShape(BlockState blockState, Direction direction, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos) {
-        return blockState;
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (!stateIn.canSurvive(worldIn, currentPos)) {
+            worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
+        }
+        return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override

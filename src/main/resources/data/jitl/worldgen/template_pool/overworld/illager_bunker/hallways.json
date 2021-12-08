@@ -25,36 +25,6 @@
               "to_replace": "minecraft:stone_bricks",
               "by": "jitl:small_stone_bricks",
               "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
             }
           ]
         },
@@ -84,36 +54,6 @@
               "processor_type": "jitl:randomize_block_with_chance",
               "to_replace": "minecraft:stone_bricks",
               "by": "jitl:small_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
               "chance": 50
             }
           ]
@@ -145,36 +85,6 @@
               "to_replace": "minecraft:stone_bricks",
               "by": "jitl:small_stone_bricks",
               "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
             }
           ]
         },
@@ -204,36 +114,6 @@
               "processor_type": "jitl:randomize_block_with_chance",
               "to_replace": "minecraft:stone_bricks",
               "by": "jitl:small_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
               "chance": 50
             }
           ]
@@ -265,36 +145,6 @@
               "to_replace": "minecraft:stone_bricks",
               "by": "jitl:small_stone_bricks",
               "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
             }
           ]
         },
@@ -324,36 +174,6 @@
               "processor_type": "jitl:randomize_block_with_chance",
               "to_replace": "minecraft:stone_bricks",
               "by": "jitl:small_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
               "chance": 50
             }
           ]
@@ -385,36 +205,6 @@
               "to_replace": "minecraft:stone_bricks",
               "by": "jitl:small_stone_bricks",
               "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
             }
           ]
         },
@@ -445,36 +235,6 @@
               "to_replace": "minecraft:stone_bricks",
               "by": "jitl:small_stone_bricks",
               "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
             }
           ]
         },
@@ -504,36 +264,6 @@
               "processor_type": "jitl:randomize_block_with_chance",
               "to_replace": "minecraft:stone_bricks",
               "by": "jitl:small_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "jitl:small_stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:cracked_stone_bricks",
-              "chance": 50
-            },
-            {
-              "processor_type": "jitl:randomize_block_with_chance",
-              "to_replace": "minecraft:stone_bricks",
-              "by": "minecraft:mossy_stone_bricks",
               "chance": 50
             }
           ]

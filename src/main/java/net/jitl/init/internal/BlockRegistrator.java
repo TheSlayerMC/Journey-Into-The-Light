@@ -371,6 +371,7 @@ public class BlockRegistrator {
         registerDefaultBlock("sulphur_rock", "Sulphur Rock", () -> new Block(JBlockProperties.BASALT_PROPS.create()));
         registerAttachedRenderedBlock("sulphur_crystal", "Sulphur Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create().lightLevel((intf) -> 4)),
                 "sulphur_crystal");
+        registerDefaultBlock("torrid_crystal", "Torrid Crystal", () -> new TorridCrystalBlock(JBlockProperties.BASALT_PROPS.create()));
 
         registerSpeciallyRenderedBlock("scorched_stalagmite_tiny", "Scorched Stalagmite", JBlockStalagmite::new);
         registerSpeciallyRenderedBlock("scorched_stalagmite_small", "Scorched Stalagmite", JBlockStalagmite::new);

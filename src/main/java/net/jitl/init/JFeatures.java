@@ -4,10 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.world.gen.features.CaveVinesFeature;
 import net.jitl.common.world.gen.features.JTreeFeature;
 import net.jitl.common.world.gen.features.RuinsFeature;
-import net.jitl.common.world.gen.features.boil.ScorchedCactusFeature;
-import net.jitl.common.world.gen.features.boil.ScorchedStalagmiteFeature;
-import net.jitl.common.world.gen.features.boil.SulphurCrystalFeature;
-import net.jitl.common.world.gen.features.boil.SulphurDepositFeature;
+import net.jitl.common.world.gen.features.boil.*;
 import net.jitl.common.world.gen.features.euca.EucaBotSpawner;
 import net.jitl.common.world.gen.features.euca.EucaTreeFeature;
 import net.jitl.common.world.gen.features.euca.GlimmerRootFeature;
@@ -43,4 +40,5 @@ public class JFeatures {
 
     public static final RegistryObject<Feature<BlockStateFeatureConfig>> SULPHUR_DEPOSIT = REGISTER.register("sulphur_deposit", () -> new SulphurDepositFeature(BlockStateFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> SULPHUR_CRYSTAL = REGISTER.register("sulphur_crystal", () -> new SulphurCrystalFeature(NoFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BlockStateFeatureConfig>> TORRID_CRYSTAL = REGISTER.register("torrid_crystal", () -> new TorridCrystalFeature(BlockStateFeatureConfig.CODEC));
 }

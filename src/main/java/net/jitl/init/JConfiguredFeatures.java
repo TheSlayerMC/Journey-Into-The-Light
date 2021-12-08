@@ -555,6 +555,18 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TORRID_CRYSTAL =
+            REGISTER.register("torrid_crystal",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.TORRID_CRYSTAL.get()
+                            .configured(new BlockStateFeatureConfig(JBlocks.TORRID_CRYSTAL.defaultBlockState()))
+                            .range(256)
+                            .decorated(Features.Placements.HEIGHTMAP_SQUARE)
+                            .squared()
+                            .count(100))
+                    .setBiomePredicate(BOILING_PLAINS)
+                    .asPromise();
+
     /*public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_CRYSTAL =
             REGISTER.register("sulphur_crystal",
                     Decoration.SURFACE_STRUCTURES,
@@ -613,6 +625,22 @@ public class JConfiguredFeatures {
                                     .build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(CHARRED_FIELDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> DYING_BURNED_TREE =
+            REGISTER.register("dying_burned_tree",
+                    Decoration.SURFACE_STRUCTURES,
+                    () -> JFeatures.BASE_TREE.get()
+                            .configured(new JBaseTreeFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.BURNED_BARK.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.CHARRED_LEAVES.defaultBlockState()),
+                                    new SimpleBlockStateProvider(JBlocks.VOLCANIC_SAND.defaultBlockState()),
+                                    new FancyFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(1), 2),
+                                    new ForkyTrunkPlacer(2, 1, 1),
+                                    new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
+                    .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> ASHUAL_ORE =

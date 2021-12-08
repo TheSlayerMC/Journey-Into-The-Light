@@ -78,7 +78,7 @@ public class EskimoCampStructure extends Structure<NoFeatureConfig> {
             BlockPos pos = new BlockPos(chunkX, surface, chunkZ);
             if (chunkGenerator_.getBaseHeight(chunkX, chunkZ, Heightmap.Type.WORLD_SURFACE_WG) > 0) {
                 JigsawManager.addPieces(dynamicRegistries_,
-                        new VillageConfig(() -> dynamicRegistries_.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(JITL.rl("frozen/eskimo_camp/starting_well")), 4),
+                        new VillageConfig(() -> dynamicRegistries_.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(JITL.rl("frozen/eskimo_camp/starting_well")), 2),
                         AbstractVillagePiece::new,
                         chunkGenerator_,
                         templateManager_,

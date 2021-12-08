@@ -1,14 +1,15 @@
 package net.jitl.common.item;
 
-import net.jitl.common.capability.player.JPlayer;
-import net.jitl.common.helper.EnumKnowledgeType;
+import net.jitl.init.JBlocks;
+import net.jitl.init.JFeatures;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 public class TestBugItem extends Item {
     public TestBugItem(Properties properties) {
@@ -17,6 +18,7 @@ public class TestBugItem extends Item {
 
     @Override
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ConfiguredFeature<BlockStateFeatureConfig, ?> configuredfeature = JFeatures.TORRID_CRYSTAL.get().configured(new BlockStateFeatureConfig(JBlocks.TORRID_CRYSTAL.defaultBlockState()));
         return ActionResult.success(playerIn.getItemInHand(handIn));
     }
 
