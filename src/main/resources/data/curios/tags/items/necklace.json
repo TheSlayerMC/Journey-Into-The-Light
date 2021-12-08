@@ -8,6 +8,10 @@
     {
       "id": "jitl:cloudwalker_amulet",
       "required": false
+    },
+    {
+      "id": "jitl:ice_amulet",
+      "required": false
     }
   ]
 }

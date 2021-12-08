@@ -41,6 +41,8 @@ public class JItems {
     public static final Item BLUE_GEM = promise();
 
     public static final Item PERIDOT_GEMSTONE = promise();
+    public static final Item RIMESTONE = promise();
+    public static final Item ICE_AMULET = promise();
 
     public static final Item BRADBERRY = promise();
     public static final Item HONGOSHROOM = promise();
