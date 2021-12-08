@@ -7,6 +7,7 @@ import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig
 import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
+import net.jitl.common.world.gen.treedecorator.CrystalFruitTreeDecorator;
 import net.jitl.common.world.gen.treedecorator.FrozenTreeDecorator;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
@@ -468,7 +469,9 @@ public class JConfiguredFeatures {
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new FancyTrunkPlacer(15, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
-                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                                    .decorators(ImmutableList.of(
+                                            new FrozenTreeDecorator(0.2F),
+                                            new CrystalFruitTreeDecorator())).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(FROZEN_DYING_FORST)
                     .asPromise();
@@ -751,8 +754,16 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> PERIDOT_ORE = //TODO: Tweak rarity and quantity
             REGISTER.register("peridot_ore",
                     Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.PERIDOT_ORE.defaultBlockState(), JRuleTests.STONE_FROZEN, 8, 64, 20))
-                    .setBiomePredicate(FROZEN_DYING_FORST)
+                    defaultOreFeature(() -> JBlocks.PERIDOT_ORE.defaultBlockState(), JRuleTests.STONE_FROZEN, 8, 64, 10))
+                    .setBiomePredicate(FROZEN_DYING_FORST.or(FROZEN_BITTERWOOD_FORST).or(FROZEN_WASTES))
+                    .asPromise();
+
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> RIMESTONE_ORE = //TODO: Tweak rarity and quantity
+            REGISTER.register("rimestone_ore",
+                    Decoration.UNDERGROUND_ORES,
+                    defaultOreFeature(() -> JBlocks.RIMESTONE_ORE.defaultBlockState(), JRuleTests.STONE_FROZEN, 4, 64, 5))
+                    .setBiomePredicate(FROZEN_DYING_FORST.or(FROZEN_BITTERWOOD_FORST).or(FROZEN_WASTES))
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> MUD_DISK =

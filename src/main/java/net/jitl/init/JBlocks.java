@@ -1,9 +1,7 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
-import net.jitl.common.block.CaveVinesBlock;
-import net.jitl.common.block.CaveVinesTopBlock;
-import net.jitl.common.block.TallGlowshroomBlock;
+import net.jitl.common.block.*;
 import net.jitl.common.block.base.JDoublePlantBlock;
 import net.jitl.common.block.base.JLeavesBlock;
 import net.jitl.common.block.base.JPlantBlock;
@@ -113,24 +111,27 @@ public class JBlocks {
 	public static final Block TEST_SPAWNER = promise();
 
 	public static final TallGlowshroomBlock TALL_GREEN_GLOWSHROOM = promise();
-    public static final TallGlowshroomBlock TALL_BLUE_GLOWSHROOM = promise();
-    public static final TallGlowshroomBlock TALL_RED_GLOWSHROOM = promise();
+	public static final TallGlowshroomBlock TALL_BLUE_GLOWSHROOM = promise();
+	public static final TallGlowshroomBlock TALL_RED_GLOWSHROOM = promise();
 
-    public static final JPlantBlock GREEN_GLOWSHROOM = promise();
-    public static final JPlantBlock BLUE_GLOWSHROOM = promise();
-    public static final JPlantBlock RED_GLOWSHROOM = promise();
+	public static final JPlantBlock GREEN_GLOWSHROOM = promise();
+	public static final JPlantBlock BLUE_GLOWSHROOM = promise();
+	public static final JPlantBlock RED_GLOWSHROOM = promise();
 
-    public static final CaveVinesTopBlock CAVE_VINES = promise();
-    public static final CaveVinesBlock CAVE_VINES_PLANT = promise();
+	public static final CaveVinesTopBlock CAVE_VINES = promise();
+	public static final CaveVinesBlock CAVE_VINES_PLANT = promise();
 
-    public static final CaveVinesTopBlock GLIMMER_ROOT = promise();
-    public static final CaveVinesBlock GLIMMER_ROOT_PLANT = promise();
+	public static final IcyIvyTopBlock ICY_IVY = promise();
+	public static final IcyIvyBlock ICY_IVY_PLANT = promise();
 
-    public static final Block EUCA_PORTAL_FRAME = promise();
-    public static final Block EUCA_PORTAL = promise();
+	public static final CaveVinesTopBlock GLIMMER_ROOT = promise();
+	public static final CaveVinesBlock GLIMMER_ROOT_PLANT = promise();
 
-    public static final Block FROZEN_PORTAL_FRAME = promise();
-    public static final Block FROZEN_PORTAL = promise();
+	public static final Block EUCA_PORTAL_FRAME = promise();
+	public static final Block EUCA_PORTAL = promise();
+
+	public static final Block FROZEN_PORTAL_FRAME = promise();
+	public static final Block FROZEN_PORTAL = promise();
 
     public static final Block GRASSY_PERMAFROST = promise();
     public static final Block CRUMBLED_PERMAFROST = promise();
@@ -151,6 +152,10 @@ public class JBlocks {
 
 	public static final Block PERIDOT_ORE = promise();
 	public static final Block PERIDOT_BLOCK = promise();
+	public static final Block RIMESTONE_ORE = promise();
+	public static final Block RIMESTONE_BLOCK = promise();
+
+	public static final Block CRYSTAL_FRUIT = promise();
 
 	public static final Block GOLDITE_GRASS_BLOCK = promise();
 	public static final Block EUCA_GOLD_GRASS_BLOCK = promise();

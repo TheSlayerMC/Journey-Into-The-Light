@@ -15,10 +15,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class CaveVinesBlock extends AbstractBodyPlantBlock {
+public class IcyIvyBlock extends AbstractBodyPlantBlock {
     public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 
-    public CaveVinesBlock(AbstractBlock.Properties properties) {
+    public IcyIvyBlock(AbstractBlock.Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false);
     }
 
@@ -52,6 +52,6 @@ public class CaveVinesBlock extends AbstractBodyPlantBlock {
 
     @Override
     protected @NotNull AbstractTopPlantBlock getHeadBlock() {
-        return JBlocks.CAVE_VINES;
+        return JBlocks.ICY_IVY;
     }
 }

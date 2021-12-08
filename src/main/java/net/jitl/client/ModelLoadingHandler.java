@@ -33,6 +33,8 @@ public class ModelLoadingHandler {
         RenderTypeLookup.setRenderLayer(JBlocks.RUNIC_ASH_BLOCK, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(JBlocks.RUNIC_RUBBLE, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(JBlocks.RUNIC_SCORCHED_RUBBLE, RenderType.cutout());
+
+        RenderTypeLookup.setRenderLayer(JBlocks.CRYSTAL_FRUIT, RenderType.cutout());
     }
 }
 /*

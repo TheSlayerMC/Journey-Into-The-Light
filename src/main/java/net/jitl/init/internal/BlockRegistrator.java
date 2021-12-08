@@ -192,6 +192,13 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("glimmer_root_plant", "Glimmer Root", () -> new CaveVinesBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/glimmer_root_plant")));
 
+        registerSpeciallyRenderedBlock("icy_ivy", "Icy Ivy", () -> new IcyIvyTopBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/icy_ivy")));
+        registerSpeciallyRenderedBlock("icy_ivy_plant", "Icy Ivy", () -> new IcyIvyBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/icy_ivy")));
+
+        registerSpeciallyRenderedBlockWithRenderType("crystal_fruit", "Crystal Fruit", () -> new Block(JBlockProperties.GLOW_BLOCK.create()), () -> RenderTypeWrappers.CUTOUT);
+
         registerDefaultBlock("boil_portal_frame", "Boiling Point Portal Frame");
         registerDefaultBlock("euca_portal_frame", "Euca Portal Frame");
         registerDefaultBlock("frozen_portal_frame", "Frozen Lands Portal Frame");
@@ -297,6 +304,9 @@ public class BlockRegistrator {
 
         registerDefaultBlock("peridot_ore", "Peridot Ore", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())));
         registerDefaultBlock("peridot_block", "Peridot Block", () -> new Block(JBlockProperties.METAL_PROPS.create()));
+
+        registerDefaultBlock("rimestone_ore", "Rimestone Ore", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())));
+        registerDefaultBlock("rimestone_block", "Rimestone Block", () -> new Block(JBlockProperties.METAL_PROPS.create()));
 
         registerCustomRenderLayerBlock("silver_bot_spawner", "Silverbot Spawner", () -> new JSpawnerBlock(JEntities.TOWER_GUARDIAN_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.FLORO_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
@@ -493,6 +503,13 @@ public class BlockRegistrator {
      * For available BlockStates and BlockModels, see {@link JBlockStateResources}, {@link JBlockModels}, and {@link BlockModels}
      */
     private static void registerSpeciallyRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .oneVariantState(new BlockModelLocation(JITL.MODID, "block/" + name));
+    }
+
+    private static void registerSpeciallyRenderedBlockWithRenderType(String name, String enName, Supplier<Block> blockSupplier, Supplier<RenderTypeWrapper> renderType) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .defaultBlockItem(JTabs.BLOCKS)
