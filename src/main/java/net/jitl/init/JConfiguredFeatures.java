@@ -800,11 +800,7 @@ public class JConfiguredFeatures {
             REGISTER.register("frozen_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
-                                    //.add(JBlocks.FROSTBERRY_THORN.defaultBlockState(), 1)
-                                    //.add(JBlocks.FROZEN_FLOWER.defaultBlockState(), 1)
-                                    .add(JBlocks.ICE_BUSH.defaultBlockState(), 1),
-                            //.add(JBlocks.ICE_BUD.defaultBlockState(), 1)
-                            //.add(JBlocks.FROZEN_BLOOM.defaultBlockState(), 1),
+                                    .add(JBlocks.ICE_BUSH.defaultBlockState(), 6),
                             new SimpleBlockPlacer()))
                             .tries(200)
                             .xspread(10)
@@ -818,15 +814,33 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(FROZEN_DYING_FORST)
                     .asPromise();
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> CICLEBLOOM =
+            REGISTER.register("ciclebloom", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.CICLEBLOOM.defaultBlockState(), 6),
+                            new SimpleBlockPlacer()))
+                            .tries(7)
+                            .xspread(10)
+                            .zspread(10)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.GRASSY_PERMAFROST))
+                            .noProjection()
+                            .build())
+                    .range(250)
+                    .count(50))
+                    .setBiomePredicate(FROZEN_DYING_FORST)
+                    .asPromise();
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOIL_PLANTS =
             REGISTER.register("tall_boil_plants",
-                            Decoration.UNDERGROUND_DECORATION,
-                            () -> Feature.RANDOM_PATCH
-                                    .configured((new BlockClusterFeatureConfig.Builder(
-                                            new WeightedBlockStateProvider()
-                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 1)
-                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 1),
-                                            new DoublePlantBlockPlacer()))
+                    Decoration.UNDERGROUND_DECORATION,
+                    () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
+                                            .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 1)
+                                            .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 1),
+                                    new DoublePlantBlockPlacer()))
                                             .tries(64)
                                             .xspread(6)
                                             .zspread(6)

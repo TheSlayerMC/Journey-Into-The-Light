@@ -39,6 +39,8 @@ public class ModelLoadingHandler {
 
         RenderTypeLookup.setRenderLayer(JBlocks.FROSTY_ICE, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(JBlocks.ICE_SHROOM_SHELF, RenderType.translucent());
+
+        //RenderTypeLookup.setRenderLayer(JBlocks.CICLEBLOOM, RenderType.cutout());
     }
 }
 /*

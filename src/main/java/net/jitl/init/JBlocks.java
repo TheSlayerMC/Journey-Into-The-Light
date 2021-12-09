@@ -2,10 +2,7 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.block.*;
-import net.jitl.common.block.base.JDoublePlantBlock;
-import net.jitl.common.block.base.JLeavesBlock;
-import net.jitl.common.block.base.JPlantBlock;
-import net.jitl.common.block.base.XZFacedBlock;
+import net.jitl.common.block.base.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.StairsBlock;
@@ -231,14 +228,16 @@ public class JBlocks {
     public static final Block TOMATO_CROP = promise();
     public static final Block FLORO_CROP = promise();
 
-    public static final Block FUMICE = promise();
-    public static final Block FILLED_FUMICE = promise();
+	public static final Block FUMICE = promise();
+	public static final Block FILLED_FUMICE = promise();
 
 	public static final JPlantBlock FROSTBERRY_THORN = promise();
 	public static final JPlantBlock FROZEN_BLOOM = promise();
 	public static final JPlantBlock FROZEN_FLOWER = promise();
 	public static final JPlantBlock ICE_BUSH = promise();
 	public static final JPlantBlock ICE_BUD = promise();
+
+	public static final JSingleDoublePlantBlock CICLEBLOOM = promise();
 
 	public static final JLeavesBlock CHARRED_LEAVES = promise();
 	public static final RotatedPillarBlock BURNED_BARK = promise();

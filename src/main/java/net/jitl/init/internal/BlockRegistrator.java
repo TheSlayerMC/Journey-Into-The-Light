@@ -362,6 +362,9 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
                 () -> JBlockModels.crop(JITL.tl("block/ice_bush")));
 
+        registerSpeciallyRenderedBlockWithRenderType("ciclebloom", "Ciclebloom", () ->
+                new JSingleDoublePlantBlock(JBlockProperties.PLANT_PROPS.create().lightLevel((light) -> 4)).setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK), () -> RenderTypeWrappers.CUTOUT);
+
         registerDefaultBlock("depths_dirt", "Depths Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
         registerDefaultBlock("depths_stone", "Depths Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("depths_lamp", "Depths Lamp", () -> new Block(JBlockProperties.GLOW_BLOCK.create()));
