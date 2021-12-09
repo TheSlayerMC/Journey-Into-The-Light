@@ -61,6 +61,27 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		registerDropsSelf(JBlocks.PACKED_SNOW_BRICKS);
 		registerDropsSelf(JBlocks.PACKED_ICE_BRICKS);
 		registerDropsSelf(JBlocks.BITTERWOOD_CAMPFIRE);
+		registerDropsSelf(JBlocks.CRYSTAL_FRUIT);
+
+		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_LARGE);
+		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_MED);
+		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_SMALL);
+		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_TINY);
+
+		registerDropsSelf(JBlocks.SCORCHED_CACTUS);
+
+		registerShearsOnlyDropsSelf(JBlocks.ICY_IVY_PLANT);
+		registerShearsOnlyDropsOther(JBlocks.ICY_IVY, JBlocks.ICY_IVY_PLANT);
+		registerShearsOnlyDropsSelf(JBlocks.GLIMMER_ROOT_PLANT);
+		registerShearsOnlyDropsOther(JBlocks.GLIMMER_ROOT, JBlocks.GLIMMER_ROOT_PLANT);
+		registerShearsOnlyDropsSelf(JBlocks.CAVE_VINES_PLANT);
+		registerShearsOnlyDropsOther(JBlocks.CAVE_VINES, JBlocks.CAVE_VINES_PLANT);
+
+		registerShearsOnlyDropsSelf(JBlocks.ICE_BUSH);
+		registerShearsOnlyDropsSelf(JBlocks.FROSTBERRY_THORN);
+		registerShearsOnlyDropsSelf(JBlocks.ICY_BRUSH);
+		registerDropsSelf(JBlocks.ICE_BUD);
+		registerDropsSelf(JBlocks.FROZEN_BLOOM);
 
 		registerSpecialOreWithExtraCount(JBlocks.BLOCK_OF_MUD, JItems.MUD_BALL, 3, 4);
 	}
@@ -106,6 +127,14 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 	 */
 	public void registerWithExplosionDecay(Block block, IItemProvider drop) {
 		registerLootTable(block, createSingleItemWithExplosionDecayTable(drop));
+	}
+
+	public void registerShearsOnlyDropsSelf(Block block) {
+		registerLootTable(block, createShearsOnlyTable(block));
+	}
+
+	public void registerShearsOnlyDropsOther(Block block, IItemProvider drop) {
+		registerLootTable(block, createShearsOnlyTable(drop));
 	}
 
 	/**

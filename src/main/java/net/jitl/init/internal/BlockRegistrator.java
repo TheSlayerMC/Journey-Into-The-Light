@@ -344,15 +344,11 @@ public class BlockRegistrator {
 
         registerSpeciallyRenderedBlock("frostberry_thorn", "Frostberry Thorn", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
-                () -> BlockModels.crossModel(JITL.tl("block/frostberry_thorn")));
+                () -> JBlockModels.crop(JITL.tl("block/frostberry_thorn")));
 
         registerSpeciallyRenderedBlock("frozen_bloom", "Frozen Bloom", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
-                () -> BlockModels.crossModel(JITL.tl("block/frozen_bloom")));
-
-        registerSpeciallyRenderedBlock("frozen_flower", "Frozen Flower", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
-                () -> BlockModels.crossModel(JITL.tl("block/frozen_flower")));
+                () -> JBlockModels.crop(JITL.tl("block/frozen_bloom")));
 
         registerSpeciallyRenderedBlock("ice_bud", "Ice Bud", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),

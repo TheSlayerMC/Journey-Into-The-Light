@@ -66,6 +66,7 @@ public class JConfiguredFeatures {
 
     public static final Predicate<BiomeLoadingEvent> EUCA_BIOMES = GOLDITE_GRAINS.or(EUCA_GOLD_PLAINS).or(EUCA_SILVER_PLAINS);
     public static final Predicate<BiomeLoadingEvent> BOIL_FIRE_BIOMES = SCORCHED_WASTELAND.or(CHARRED_FIELDS).or(BOILING_PLAINS).or(BOILING_SANDS);
+    public static final Predicate<BiomeLoadingEvent> FROZEN_BIOMES = FROZEN_WASTES.or(FROZEN_DYING_FORST).or(FROZEN_BITTERWOOD_FORST);
 
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
@@ -797,21 +798,41 @@ public class JConfiguredFeatures {
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_PLANTS =
+            REGISTER.register("frozen_plants", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.ICE_BUSH.defaultBlockState(), 10)
+                                    .add(JBlocks.FROSTBERRY_THORN.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(200)
+                            .xspread(16)
+                            .zspread(16)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.GRASSY_PERMAFROST))
+                            .noProjection()
+                            .build())
+                    .range(250)
+                    .count(75))
+                    .setBiomePredicate(FROZEN_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_FLOWERS =
             REGISTER.register("frozen_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
-                                    .add(JBlocks.ICE_BUSH.defaultBlockState(), 6),
+                                    .add(JBlocks.FROZEN_BLOOM.defaultBlockState(), 5)
+                                    .add(JBlocks.ICE_BUD.defaultBlockState(), 2),
                             new SimpleBlockPlacer()))
-                            .tries(200)
-                            .xspread(10)
-                            .zspread(10)
+                            .tries(50)
+                            .xspread(16)
+                            .zspread(16)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GRASSY_PERMAFROST))
                             .noProjection()
                             .build())
                     .range(250)
                     .count(50))
-                    .setBiomePredicate(FROZEN_DYING_FORST)
+                    .setBiomePredicate(FROZEN_BIOMES)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> CICLEBLOOM =
@@ -829,7 +850,7 @@ public class JConfiguredFeatures {
                             .build())
                     .range(250)
                     .count(50))
-                    .setBiomePredicate(FROZEN_DYING_FORST)
+                    .setBiomePredicate(FROZEN_DYING_FORST.or(FROZEN_BITTERWOOD_FORST))
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOIL_PLANTS =

@@ -233,7 +233,6 @@ public class JBlocks {
 
 	public static final JPlantBlock FROSTBERRY_THORN = promise();
 	public static final JPlantBlock FROZEN_BLOOM = promise();
-	public static final JPlantBlock FROZEN_FLOWER = promise();
 	public static final JPlantBlock ICE_BUSH = promise();
 	public static final JPlantBlock ICE_BUD = promise();
 
