@@ -30,7 +30,16 @@
   "starts": [],
   "spawners": {},
   "spawn_costs": {},
-  "carvers": {},
+  "carvers": {
+    "air": [
+      {
+        "config": {
+          "probability": 0.5
+        },
+        "type": "jitl:frozen_carver"
+      }
+    ]
+  },
   "features": [
     [
       "jitl:frozen_flowers"

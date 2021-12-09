@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rimestone",
+  "ingredients": [
+    {
+      "item": "jitl:rimestone_block"
+    }
+  ],
+  "result": {
+    "item": "jitl:rimestone",
+    "count": 9
+  }
+}

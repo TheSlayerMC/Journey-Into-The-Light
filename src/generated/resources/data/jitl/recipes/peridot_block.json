@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "jitl:peridot_gemstone"
+    }
+  },
+  "result": {
+    "item": "jitl:peridot_block"
+  }
+}

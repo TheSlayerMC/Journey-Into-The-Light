@@ -22,6 +22,7 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 	private void initOres() {
 		registerSpecialOre(JBlocks.SAPPHIRE_ORE, JItems.SAPPHIRE);
 		registerSpecialOre(JBlocks.PERIDOT_ORE, JItems.PERIDOT_GEMSTONE);
+		registerSpecialOre(JBlocks.RIMESTONE_ORE, JItems.RIMESTONE);
 		registerSpecialOre(JBlocks.IRIDIUM_ORE, JItems.IRIDIUM_NUGGET);
 		registerSpecialOreWithExtraCount(JBlocks.LUNIUM_ORE, JItems.LUNIUM_POWDER, 1, 2);
 		registerDefaultOre(JBlocks.SHADIUM_ORE);
@@ -30,7 +31,7 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		registerSpecialOre(JBlocks.WARPED_QUARTZ_ORE, JItems.WARPED_QUARTZ);
 		registerSpecialOre(JBlocks.CRIMSON_QUARTZ_ORE, JItems.CRIMSON_QUARTZ);
 		registerDefaultOre(JBlocks.SULPHUR_ROCK);
-		registerSpecialOreWithExtraCount(JBlocks.SULPHUR_CRYSTAL, JItems.SULPHUR_POWDER, 1, 2);
+		registerSpecialOreWithExtraCount(JBlocks.SULPHUR_CRYSTAL, JItems.SULPHUR_POWDER, 1, 4);
 	}
 
 	private void initBuildingBlocks() {
@@ -52,6 +53,14 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		registerDropsOther(JBlocks.BLOOD_RUNE_LIFE, JBlocks.EMPTY_BLOOD_RUNE);
 		registerDropsOther(JBlocks.BLOOD_RUNE_SOUL, JBlocks.EMPTY_BLOOD_RUNE);
 		registerDropsOther(JBlocks.CHARGED_RUNIC_CONNECTOR, JBlocks.RUNIC_CONNECTOR);
+
+		registerDropsSelf(JBlocks.GRASSY_PERMAFROST);
+		registerDropsSelf(JBlocks.PERMAFROST);
+		registerDropsSelf(JBlocks.CRUMBLED_PERMAFROST);
+
+		registerDropsSelf(JBlocks.PACKED_SNOW_BRICKS);
+		registerDropsSelf(JBlocks.PACKED_ICE_BRICKS);
+		registerDropsSelf(JBlocks.BITTERWOOD_CAMPFIRE);
 
 		registerSpecialOreWithExtraCount(JBlocks.BLOCK_OF_MUD, JItems.MUD_BALL, 3, 4);
 	}
