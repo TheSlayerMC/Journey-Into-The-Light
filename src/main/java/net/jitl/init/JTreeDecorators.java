@@ -3,6 +3,8 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.treedecorator.CrystalFruitTreeDecorator;
 import net.jitl.common.world.gen.treedecorator.FrozenTreeDecorator;
+import net.jitl.common.world.gen.treedecorator.IceShroomTreeDecorator;
+import net.jitl.common.world.gen.treedecorator.IcyBrushTreeDecorator;
 import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,4 +19,8 @@ public class JTreeDecorators {
     public static final RegistryObject<TreeDecoratorType<FrozenTreeDecorator>> FROZEN_DECORATOR = REGISTER.register("frozen_tree_decorator", () -> new TreeDecoratorType<>(FrozenTreeDecorator.CODEC));
 
     public static final RegistryObject<TreeDecoratorType<CrystalFruitTreeDecorator>> CRYSTAL_FRUIT_DECORATOR = REGISTER.register("crystal_fruit_tree_decorator", () -> new TreeDecoratorType<>(CrystalFruitTreeDecorator.CODEC));
+
+    public static final RegistryObject<TreeDecoratorType<IceShroomTreeDecorator>> ICE_SHROOM_TREE_DECORATOR = REGISTER.register("ice_shroom_tree_decorator", () -> new TreeDecoratorType<>(IceShroomTreeDecorator.CODEC));
+
+    public static final RegistryObject<TreeDecoratorType<IcyBrushTreeDecorator>> ICY_BRUSH_TREE_DECORATOR = REGISTER.register("icy_brush_tree_decorator", () -> new TreeDecoratorType<>(IcyBrushTreeDecorator.CODEC));
 }

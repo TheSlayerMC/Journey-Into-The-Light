@@ -106,9 +106,9 @@
           "biome": "jitl:frozen/frozen_wastes",
           "parameters": {
             "altitude": 1,
-            "temperature": -1,
-            "humidity": -1,
-            "weirdness": -1,
+            "temperature": 0,
+            "humidity": 0,
+            "weirdness": 0,
             "offset": 0
           }
         },
@@ -116,8 +116,8 @@
           "biome": "jitl:frozen/dying_forest",
           "parameters": {
             "altitude": 0,
-            "temperature": -1,
-            "humidity": -1,
+            "temperature": 1,
+            "humidity": 0,
             "weirdness": 0,
             "offset": 0
           }
@@ -125,9 +125,9 @@
         {
           "biome": "jitl:frozen/bitterwood_forest",
           "parameters": {
-            "altitude": -1,
-            "temperature": -1,
-            "humidity": -1,
+            "altitude": 0,
+            "temperature": 0,
+            "humidity": 1,
             "weirdness": 0,
             "offset": 0
           }

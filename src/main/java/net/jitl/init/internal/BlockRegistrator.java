@@ -16,10 +16,7 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
-import net.minecraft.block.Block;
-import net.minecraft.block.CampfireBlock;
-import net.minecraft.block.MagmaBlock;
-import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.IItemProvider;
@@ -297,6 +294,10 @@ public class BlockRegistrator {
         registerAttachedRenderedBlock("frost_crystal_tiny", "Tiny Frost Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create().lightLevel((intf) -> 1)),
                 "frost_crystal_tiny");
 
+        registerCustomAttachedRenderedBlock("ice_shroom_shelf", "Ice Shroom Shelf", () -> new AttachedBlock(JBlockProperties.WOOD_PROPS.create().lightLevel((intf) -> 4)));
+
+        registerCustomRenderedBlock("icy_brush", "Icy Brush", () -> new VineBlock(JBlockProperties.VINES_PROPS.create()));
+
         RegistryObject<Block> packedSnowBricks = registerBlock("packed_snow_bricks", "Packed Snow Bricks", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
         KBlockRegistrator.INSTANCE.registerStairs("packed_snow_brick_stairs", "Packed Snow Brick Stairs", packedSnowBricks, JBlockProperties.PERMAFROST_PROPS.create());
         RegistryObject<Block> packedIceBricks = registerBlock("packed_ice_bricks", "Packed Ice Bricks", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
@@ -512,6 +513,7 @@ public class BlockRegistrator {
     private static void registerSpeciallyRenderedBlockWithRenderType(String name, String enName, Supplier<Block> blockSupplier, Supplier<RenderTypeWrapper> renderType) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
+                .renderLayer(renderType)
                 .defaultBlockItem(JTabs.BLOCKS)
                 .oneVariantState(new BlockModelLocation(JITL.MODID, "block/" + name));
     }
@@ -546,8 +548,15 @@ public class BlockRegistrator {
     }
 
     /**
-     * Registers a block with a BlockModel supplier
+     * Registers a block with no pre-generated blockstate, block or item model
      */
+    private static void registerCustomRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
+                .defaultBlockItem(JTabs.BLOCKS);
+    }
+
     private static void registerCampfireBlock(String name, String enName, Supplier<Block> blockSupplier) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
@@ -643,6 +652,14 @@ public class BlockRegistrator {
                 .state(JBlockStateResources.orientableStateAllSides(JITL.bml("block/" + name)))
                 .model(JITL.bml("block/" + name),
                         () -> BlockModels.crossModel(JITL.tl("block/" + texture)));
+    }
+
+    private static void registerCustomAttachedRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.orientableStateAllSides(JITL.bml("block/" + name)));
     }
 
     /**

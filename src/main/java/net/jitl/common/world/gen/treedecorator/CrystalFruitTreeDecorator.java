@@ -36,7 +36,7 @@ public class CrystalFruitTreeDecorator extends TreeDecorator {
         list1_.forEach((blockPos1_) -> {
             if (random_.nextInt(8) == 0) {
                 BlockPos blockpos = blockPos1_.below();
-                if (Feature.isAir(seedReader_, blockpos) && Feature.isAir(seedReader_, blockpos.below(height + 1))) {
+                if (Feature.isAir(seedReader_, blockpos) && Feature.isAir(seedReader_, blockpos.below(height + 4))) {
                     BlockPos.Mutable mutable = blockpos.mutable();
                     addHangingVine(seedReader_, random_, mutable, set_, mutableBoundingBox_);
                 }

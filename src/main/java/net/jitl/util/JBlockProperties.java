@@ -58,11 +58,21 @@ public class JBlockProperties {
 			.noOcclusion()
 			.strength(1.5F, 6.0F));
 
-    public static final BlockPropsFactory LEAVES_PROPS = new BlockPropsFactory(() -> Properties.of
-            (Material.LEAVES)
+	public static final BlockPropsFactory LEAVES_PROPS = new BlockPropsFactory(() -> Properties.of
+			(Material.LEAVES)
 			.sound(SoundType.GRASS)
 			.requiresCorrectToolForDrops()
 			.noOcclusion()
+			.isSuffocating(JBlockProperties::never)
+			.isViewBlocking(JBlockProperties::never)
+			.strength(0.2F, 0.1F));
+
+	public static final BlockPropsFactory VINES_PROPS = new BlockPropsFactory(() -> Properties.of
+			(Material.LEAVES)
+			.sound(SoundType.GRASS)
+			.requiresCorrectToolForDrops()
+			.noOcclusion()
+			.noCollission()
 			.isSuffocating(JBlockProperties::never)
 			.isViewBlocking(JBlockProperties::never)
 			.strength(0.2F, 0.1F));

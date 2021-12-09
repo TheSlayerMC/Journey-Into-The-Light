@@ -9,6 +9,8 @@ import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
 import net.jitl.common.world.gen.treedecorator.CrystalFruitTreeDecorator;
 import net.jitl.common.world.gen.treedecorator.FrozenTreeDecorator;
+import net.jitl.common.world.gen.treedecorator.IceShroomTreeDecorator;
+import net.jitl.common.world.gen.treedecorator.IcyBrushTreeDecorator;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -437,7 +439,9 @@ public class JConfiguredFeatures {
                                     new PineFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new ForkyTrunkPlacer(2, 1, 3),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
-                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                                    .decorators(ImmutableList.of(
+                                            IcyBrushTreeDecorator.INSTANCE,
+                                            new IceShroomTreeDecorator(0.2F))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(FROZEN_DYING_FORST)
                     .asPromise();
@@ -454,10 +458,11 @@ public class JConfiguredFeatures {
                                     new FancyTrunkPlacer(10, 5, 5),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
                                     .decorators(ImmutableList.of(
-                                            new FrozenTreeDecorator(0.2F),
+                                            IcyBrushTreeDecorator.INSTANCE,
+                                            new IceShroomTreeDecorator(0.2F),
                                             new CrystalFruitTreeDecorator(4))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(FROZEN_DYING_FORST)
+                    .setBiomePredicate(FROZEN_DYING_FORST.or(FROZEN_BITTERWOOD_FORST))
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_FROZEN_TREE =
@@ -472,14 +477,15 @@ public class JConfiguredFeatures {
                                     new FancyTrunkPlacer(15, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
                                     .decorators(ImmutableList.of(
-                                            new FrozenTreeDecorator(0.2F),
+                                            IcyBrushTreeDecorator.INSTANCE,
+                                            new IceShroomTreeDecorator(0.1F),
                                             new CrystalFruitTreeDecorator(1))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(FROZEN_DYING_FORST)
+                    .setBiomePredicate(FROZEN_DYING_FORST.or(FROZEN_BITTERWOOD_FORST))
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_FROZEN_BITTERWOOOD_TREE =
-            REGISTER.register("large_frozen_biterwood_tree",
+            REGISTER.register("large_frozen_bitterwood_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
                             .configured(new JBaseTreeFeatureConfig.Builder(
@@ -489,13 +495,14 @@ public class JConfiguredFeatures {
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new GiantTrunkPlacer(15, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
-                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                                    .decorators(ImmutableList.of(
+                                            new FrozenTreeDecorator(0.01F))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(FROZEN_BITTERWOOD_FORST)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> MEDIUM_FROZEN_BITTERWOOOD_TREE =
-            REGISTER.register("medium_frozen_biterwood_tree",
+            REGISTER.register("medium_frozen_bitterwood_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
                             .configured(new JBaseTreeFeatureConfig.Builder(
@@ -505,13 +512,14 @@ public class JConfiguredFeatures {
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new StraightTrunkPlacer(10, 7, 7),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
-                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                                    .decorators(ImmutableList.of(
+                                            new FrozenTreeDecorator(0.01F))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(FROZEN_BITTERWOOD_FORST)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_FROZEN_BITTERWOOOD_TREE =
-            REGISTER.register("small_frozen_biterwood_tree",
+            REGISTER.register("small_frozen_bitterwood_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
                             .configured(new JBaseTreeFeatureConfig.Builder(
@@ -521,7 +529,8 @@ public class JConfiguredFeatures {
                                     new SpruceFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), FeatureSpread.fixed(2)),
                                     new StraightTrunkPlacer(4, 2, 3),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
-                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.2F))).build())
+                                    .decorators(ImmutableList.of(
+                                            new FrozenTreeDecorator(0.01F))).build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(FROZEN_BITTERWOOD_FORST)
                     .asPromise();

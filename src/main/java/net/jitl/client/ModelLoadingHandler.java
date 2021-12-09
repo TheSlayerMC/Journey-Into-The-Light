@@ -38,6 +38,7 @@ public class ModelLoadingHandler {
         RenderTypeLookup.setRenderLayer(JBlocks.BITTERWOOD_CAMPFIRE, RenderType.cutout());
 
         RenderTypeLookup.setRenderLayer(JBlocks.FROSTY_ICE, RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(JBlocks.ICE_SHROOM_SHELF, RenderType.translucent());
     }
 }
 /*
