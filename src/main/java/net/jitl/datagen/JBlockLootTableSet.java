@@ -82,6 +82,8 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		registerShearsOnlyDropsSelf(JBlocks.ICY_BRUSH);
 		registerDropsSelf(JBlocks.ICE_BUD);
 		registerDropsSelf(JBlocks.FROZEN_BLOOM);
+		registerDropsSelf(JBlocks.CICLEBLOOM);
+		registerDropsSelf(JBlocks.ICE_SHROOM_SHELF);
 
 		registerSpecialOreWithExtraCount(JBlocks.BLOCK_OF_MUD, JItems.MUD_BALL, 3, 4);
 	}

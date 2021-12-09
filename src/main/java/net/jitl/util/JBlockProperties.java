@@ -70,12 +70,11 @@ public class JBlockProperties {
 	public static final BlockPropsFactory VINES_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.LEAVES)
 			.sound(SoundType.GRASS)
-			.requiresCorrectToolForDrops()
 			.noOcclusion()
 			.noCollission()
 			.isSuffocating(JBlockProperties::never)
 			.isViewBlocking(JBlockProperties::never)
-			.strength(0.2F, 0.1F));
+			.strength(0.1F, 0.1F));
 
 	public static final BlockPropsFactory LOG_PROPS = new BlockPropsFactory(() -> Properties.of(Material.WOOD, (state5) -> {
 		return state5.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.COLOR_BROWN : MaterialColor.TERRACOTTA_BROWN;
@@ -103,6 +102,12 @@ public class JBlockProperties {
 			.sound(SoundType.WOOD)
 			.harvestTool(ToolType.AXE)
 			.strength(2.0F, 3.0F));
+
+	public static final BlockPropsFactory SHROOM_SHELF = new BlockPropsFactory(() -> Properties.of
+			(Material.WOOD)
+			.sound(SoundType.FUNGUS)
+			.harvestTool(ToolType.AXE)
+			.strength(0.2F, 0.1F));
 
 	public static final BlockPropsFactory SAND_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.SAND)

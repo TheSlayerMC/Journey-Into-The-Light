@@ -14,6 +14,7 @@
 20e105890fd3cefcc880a33cdc62600622ad3772 data/jitl/loot_tables/blocks/cave_vines_plant.json
 56a9abddfe4793c5f2d48246548b3eecf489badd data/jitl/loot_tables/blocks/charged_runic_connector.json
 add577279d17271371659ec9042c8f9f586f87cd data/jitl/loot_tables/blocks/chiseled_dungeon_bricks.json
+625c9fda6f7657284bd0476ec57ba32e3f6ead63 data/jitl/loot_tables/blocks/ciclebloom.json
 d8392b7989a0de992bb1282429283b587a665728 data/jitl/loot_tables/blocks/cracked_dungeon_bricks.json
 75a6b39ee16cbd55eb1e3c1171b5c281638e0176 data/jitl/loot_tables/blocks/crimson_quartz_ore.json
 f32ee10b57dadea733d3efc6f921c475bf43b9a7 data/jitl/loot_tables/blocks/crumbled_permafrost.json
@@ -30,6 +31,7 @@ aa4e116178258e3f9bc7b5cca8397c6335402525 data/jitl/loot_tables/blocks/frozen_blo
 d298dbcbc793c416228643e074140c1b436cdc8b data/jitl/loot_tables/blocks/grassy_permafrost.json
 970cb899b2ec85a0fa78bb7ae00b1c67ce307efa data/jitl/loot_tables/blocks/ice_bud.json
 f6078d95577b1c334dbdb973dd35b587d026a9ac data/jitl/loot_tables/blocks/ice_bush.json
+054a2b5ffe9ba675f49b8e8edecd1a93160ffc68 data/jitl/loot_tables/blocks/ice_shroom_shelf.json
 6ed9d7f2c0a727e108028fb8c1a13a6147563c50 data/jitl/loot_tables/blocks/icy_brush.json
 d785050eb04b8571705ca65e95f366cc679aa09b data/jitl/loot_tables/blocks/icy_ivy.json
 d785050eb04b8571705ca65e95f366cc679aa09b data/jitl/loot_tables/blocks/icy_ivy_plant.json
