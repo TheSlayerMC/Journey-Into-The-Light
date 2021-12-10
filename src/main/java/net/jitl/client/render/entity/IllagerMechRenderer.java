@@ -1,15 +1,20 @@
 package net.jitl.client.render.entity;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.jitl.JITL;
 import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.common.entity.overworld.IllagerMechEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.renderer.AnimatedLivingEntityRenderer;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
+import ru.timeconqueror.timecore.client.render.model.TimeModelRenderer;
+
+import java.util.Objects;
 
 @OnlyIn(Dist.CLIENT)
 public class IllagerMechRenderer extends AnimatedLivingEntityRenderer<IllagerMechEntity, TimeEntityModel<IllagerMechEntity>> {
@@ -20,5 +25,18 @@ public class IllagerMechRenderer extends AnimatedLivingEntityRenderer<IllagerMec
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull IllagerMechEntity entity) {
         return new ResourceLocation(JITL.MODID, "textures/entity/overworld/illager_mech.png");
+    }
+
+    @Override
+    protected void setupRotations(@NotNull IllagerMechEntity entityLiving, @NotNull MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+        super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
+        float f = MathHelper.rotLerp(partialTicks, entityLiving.yBodyRotO, entityLiving.yBodyRot);
+        float f1 = MathHelper.rotLerp(partialTicks, entityLiving.yHeadRotO, entityLiving.yHeadRot);
+        float f2 = f1 - f;
+
+        TimeModelRenderer headPiece = Objects.requireNonNull(model.getPiece("head"));
+
+        Objects.requireNonNull(headPiece).yRot = f2 * ((float) Math.PI / 270F);
+        Objects.requireNonNull(headPiece).xRot = MathHelper.lerp(partialTicks, entityLiving.xRotO, entityLiving.xRot) * ((float) Math.PI / 270F);
     }
 }
