@@ -48,7 +48,8 @@ public class KnifeRenderer extends EntityRenderer<KnifeEntity> {
         if (!entityIn.isInGround()) {
             matrixStackIn.mulPose(Vector3f.ZP.rotation(f1));
         }
-        matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(180));
+        matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(120));
+        matrixStackIn.translate(0, -0.075, 0);
 
         matrixStackIn.pushPose();
 

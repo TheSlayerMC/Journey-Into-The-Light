@@ -82,4 +82,18 @@ public class KnifeEntity extends AbstractKnifeEntity implements IRendersAsItem {
         ItemStack stack = getStack();
         return stack.isEmpty() ? new ItemStack(JItems.IRON_THROWING_KNIFE) : stack;
     }
+
+    @Override
+    protected void defineSynchedData() {
+        this.getEntityData().define(STACK, ItemStack.EMPTY);
+        super.defineSynchedData();
+    }
+
+    @Override
+    public void onSyncedDataUpdated(DataParameter<?> key) {
+        if (key == STACK) {
+            getStack().setEntityRepresentation(this);
+        }
+        super.onSyncedDataUpdated(key);
+    }
 }
