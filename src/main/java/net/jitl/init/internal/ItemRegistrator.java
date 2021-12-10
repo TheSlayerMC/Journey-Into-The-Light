@@ -257,11 +257,11 @@ public class ItemRegistrator {
 
         registerItem("molten_knife", "Molten Knife", () ->
                 new KnifeItem(rangedWeaponsGrouped(), (worldIn, owner, stack) ->
-                        new KnifeEntity(owner, worldIn, stack, 10.0F)));
+                        new KnifeEntity(worldIn, owner, stack, 10.0F)));
 
         registerItem("iron_throwing_knife", "Iron Throwing Knife", () ->
                 new KnifeItem(rangedWeaponsGrouped(), (worldIn, owner, stack) ->
-                        new KnifeEntity(owner, worldIn, stack, 3.0F)));
+                        new KnifeEntity(worldIn, owner, stack, 3.0F)));
 
         registerItem("euca_piercer", "Euca Piercer", () ->
                 new PiercerItem(rangedWeaponsGrouped().durability(50), (worldIn, owner, stack)

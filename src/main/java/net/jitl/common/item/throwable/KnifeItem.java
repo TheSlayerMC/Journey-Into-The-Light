@@ -15,9 +15,9 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class KnifeItem extends Item {
-    protected TriFunction<World, LivingEntity, ItemStack, KnifeEntity> projectileFactory;
+    protected TriFunction<LivingEntity, World, ItemStack, KnifeEntity> projectileFactory;
 
-    public KnifeItem(Properties properties, TriFunction<World, LivingEntity, ItemStack, KnifeEntity> projectileFactory) {
+    public KnifeItem(Properties properties, TriFunction<LivingEntity, World, ItemStack, KnifeEntity> projectileFactory) {
         super(properties);
         this.projectileFactory = projectileFactory;
     }
@@ -27,7 +27,7 @@ public class KnifeItem extends Item {
         ItemStack stack = playerIn.getItemInHand(handIn);
         worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isClientSide()) {
-            KnifeEntity entity = projectileFactory.apply(worldIn, playerIn, stack);
+            KnifeEntity entity = projectileFactory.apply(playerIn, worldIn, stack);
 
             entity.setPos(playerIn.getX(), playerIn.getEyeY(), playerIn.getZ());
             entity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
