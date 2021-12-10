@@ -17,6 +17,7 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 	public void register() {
 		initOres();
 		initBuildingBlocks();
+		initFoliageBlocks();
 	}
 
 	private void initOres() {
@@ -54,20 +55,23 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		registerDropsOther(JBlocks.BLOOD_RUNE_SOUL, JBlocks.EMPTY_BLOOD_RUNE);
 		registerDropsOther(JBlocks.CHARGED_RUNIC_CONNECTOR, JBlocks.RUNIC_CONNECTOR);
 
-		registerDropsSelf(JBlocks.GRASSY_PERMAFROST);
+		registerDropsOtherWithoutSilkTouch(JBlocks.GRASSY_PERMAFROST, JBlocks.CRUMBLED_PERMAFROST);
 		registerDropsSelf(JBlocks.PERMAFROST);
 		registerDropsSelf(JBlocks.CRUMBLED_PERMAFROST);
 
 		registerDropsSelf(JBlocks.PACKED_SNOW_BRICKS);
 		registerDropsSelf(JBlocks.PACKED_ICE_BRICKS);
 		registerDropsSelf(JBlocks.BITTERWOOD_CAMPFIRE);
-		registerDropsSelf(JBlocks.CRYSTAL_FRUIT);
 
 		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_LARGE);
 		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_MED);
 		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_SMALL);
 		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_TINY);
 
+		registerSpecialOreWithExtraCount(JBlocks.BLOCK_OF_MUD, JItems.MUD_BALL, 3, 4);
+	}
+
+	private void initFoliageBlocks() {
 		registerDropsSelf(JBlocks.SCORCHED_CACTUS);
 
 		registerShearsOnlyDropsSelf(JBlocks.ICY_IVY_PLANT);
@@ -85,7 +89,7 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		registerDropsSelf(JBlocks.CICLEBLOOM);
 		registerDropsSelf(JBlocks.ICE_SHROOM_SHELF);
 
-		registerSpecialOreWithExtraCount(JBlocks.BLOCK_OF_MUD, JItems.MUD_BALL, 3, 4);
+		registerDropsSelf(JBlocks.CRYSTAL_FRUIT);
 	}
 
 	/**
@@ -137,6 +141,10 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 
 	public void registerShearsOnlyDropsOther(Block block, IItemProvider drop) {
 		registerLootTable(block, createShearsOnlyTable(drop));
+	}
+
+	public void registerDropsOtherWithoutSilkTouch(Block block, IItemProvider otherDrop) {
+		registerLootTable(block, createSilkTouchDispatchTable(block, otherDrop));
 	}
 
 	/**

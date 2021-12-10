@@ -9,6 +9,7 @@ import net.jitl.common.block.base.*;
 import net.jitl.common.block.crop.FloroCropBlock;
 import net.jitl.common.block.crop.TomatoCropBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
+import net.jitl.common.block.trees.DyingFrozenTree;
 import net.jitl.common.dimension.Dimensions;
 import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.init.JBlocks;
@@ -210,10 +211,11 @@ public class BlockRegistrator {
 
         registerDefaultBlock("frozen_portal", "Frozen Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.FROZEN_LANDS, JBlocks.FROZEN_PORTAL_FRAME));
 
+        registerDefaultBlock("crumbled_permafrost", "Crumbled Permafrost", () -> new Block(JBlockProperties.CRUMBLED_PERMAFROST_PROPS.create()));
+
         registerSpeciallyRenderedRotatedBlock("grassy_permafrost", "Grassy Permafrost", () -> new Block(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/grassy_permafrost_top"), JITL.tl("block/grassy_permafrost_side"), JITL.tl("block/crumbled_permafrost")));
 
-        registerDefaultBlock("crumbled_permafrost", "Crumbled Permafrost", () -> new Block(JBlockProperties.CRUMBLED_PERMAFROST_PROPS.create()));
         registerDefaultBlock("permafrost", "Permafrost", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
 
         registerDefaultBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, JBlocks.EUCA_PORTAL_FRAME));
@@ -226,6 +228,10 @@ public class BlockRegistrator {
         registerDefaultBlock("goldite_stone", "Goldite Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
 
         registerTallCrossRenderedBlock("goldite_tall_grass", "Tall Goldite Grass", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.EUCA_GRASS_BLOCKS));
+
+        registerSpeciallyRenderedBlock("frostwood_sapling", "FROSTWOOD_SAPLING", () -> new JSaplingBlock(new DyingFrozenTree(), JBlockProperties.PLANT_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/goldite_bulb")));
+
 
         registerSpeciallyRenderedBlock("goldite_bulb", "Goldite Bulb", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
@@ -361,12 +367,13 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlockWithRenderType("ciclebloom", "Ciclebloom", () ->
                 new JSingleDoublePlantBlock(JBlockProperties.PLANT_PROPS.create().lightLevel((light) -> 4)).setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK), () -> RenderTypeWrappers.CUTOUT);
 
-        registerDefaultBlock("depths_dirt", "Depths Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
         registerDefaultBlock("depths_stone", "Depths Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("depths_lamp", "Depths Lamp", () -> new Block(JBlockProperties.GLOW_BLOCK.create()));
         registerDefaultBlock("depths_portal_frame", "Depths Portal Frame", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
         registerDefaultBlock("depths_portal", "Depths Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.DEPTHS, JBlocks.DEPTHS_PORTAL_FRAME));
-        registerSpeciallyRenderedBlock("depths_grass_block", "Depths Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+
+        RegistryObject<Block> depthsDirt = registerBlock("depths_dirt", "Depths Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
+        registerSpeciallyRenderedBlock("depths_grass_block", "Depths Grass", () -> new JSpreadableSnowyDirtBlock(JBlockProperties.GRASS_PROPS.create(), depthsDirt.get()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/depths_grass_block_top"), JITL.tl("block/depths_grass_block_side"), JITL.tl("block/depths_dirt")));
 
         registerRandomizedRotatedBlock("rubble", "Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
