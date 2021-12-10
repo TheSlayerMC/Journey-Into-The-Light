@@ -130,12 +130,14 @@ public class JBlocks {
 	public static final Block FROZEN_PORTAL_FRAME = promise();
 	public static final Block FROZEN_PORTAL = promise();
 
-    public static final Block GRASSY_PERMAFROST = promise();
-    public static final Block CRUMBLED_PERMAFROST = promise();
-    public static final Block PERMAFROST = promise();
+	public static final Block GRASSY_PERMAFROST = promise();
+	public static final Block CRUMBLED_PERMAFROST = promise();
+	public static final Block PERMAFROST = promise();
 	public static final Block FROSTY_ICE = promise();
 	public static final Block FROZEN_LEAVES = promise();
 	public static final Block FROZEN_LOG = promise();
+
+	public static final Block FROSTWOOD_SAPLING = promise();
 
 	public static final Block BITTERWOOD_CAMPFIRE = promise();
 
@@ -162,7 +164,6 @@ public class JBlocks {
 	public static final Block EUCA_GOLD_GRASS_BLOCK = promise();
 	public static final Block EUCA_SILVER_GRASS_BLOCK = promise();
 
-	public static final Block GOLDITE_DIRT = promise();
 	public static final Block GOLDITE_STONE = promise();
 	public static final JDoublePlantBlock GOLDITE_TALL_GRASS = promise();
 
@@ -188,7 +189,6 @@ public class JBlocks {
 	public static final Block DEPTHS_PORTAL_FRAME = promise();
 	public static final Block DEPTHS_PORTAL = promise();
 	public static final Block DEPTHS_GRASS_BLOCK = promise();
-	public static final Block DEPTHS_DIRT = promise();
 	public static final Block DEPTHS_STONE = promise();
 	public static final Block DEPTHS_LAMP = promise();
 
