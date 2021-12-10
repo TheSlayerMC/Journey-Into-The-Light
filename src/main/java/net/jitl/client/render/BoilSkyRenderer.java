@@ -28,14 +28,12 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
 
     private final TextureManager textureManager;
 
-    private static final ResourceLocation MOON_LOCATION = JITL.rl("textures/environment/boil_sun2.png");
     private static final ResourceLocation SUN_LOCATION = JITL.rl("textures/environment/boil_sun.png");
     private static final ResourceLocation EUCA_MOON_LOCATION = JITL.rl("textures/environment/euca_moon.png");
     private static final ResourceLocation CORBA_MOON_LOCATION = JITL.rl("textures/environment/corba_moon.png");
 
     private static final ResourceLocation SKY_LOCATION = JITL.rl("textures/environment/boil_sky.png");
 
-    private static final ResourceLocation RIFT_LOCATION = JITL.rl("textures/environment/boil_rift.png");
     //private static final ResourceLocation CLOUDS_LOCATION = JITL.rl("textures/environment/boil_clouds.png");
 
     private final VertexFormat skyFormat = DefaultVertexFormats.POSITION;
@@ -194,24 +192,6 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         WorldVertexBufferUploader.end(bufferbuilder);
         //CORBA MOON END
 
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, moonOpacity);
-        f12 = 20.0F;
-
-        textureManager.bind(MOON_LOCATION);
-        int k = world.getMoonPhase();
-        int l = k % 4;
-        int i1 = k / 4 % 2;
-        float f13 = (float) (l + 0) / 4.0F;
-        float f14 = (float) (i1 + 0) / 2.0F;
-        float f15 = (float) (l + 1) / 4.0F;
-        float f16 = (float) (i1 + 1) / 2.0F;
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.vertex(matrix4f1, -f12, -100.0F, f12).uv(f15, f16).endVertex();
-        bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(f13, f16).endVertex();
-        bufferbuilder.vertex(matrix4f1, f12, -100.0F, -f12).uv(f13, f14).endVertex();
-        bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(f15, f14).endVertex();
-        bufferbuilder.end();
-        WorldVertexBufferUploader.end(bufferbuilder);
         RenderSystem.disableTexture();
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);

@@ -55,6 +55,11 @@ repositories {
         name = "Progwml6 maven"
         url = "https://dvs1.progwml6.com/files/maven/"
     }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
     mavenCentral()
     mavenLocal()
     maven {
@@ -161,7 +166,8 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.0'
 
-    runtimeOnly fg.deobf("mezz.jei:jei-${buildProps["minecraft.version"]}:7.6.0.58")
+    compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.137:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.137")
 
     implementation 'org.jetbrains:annotations:20.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
