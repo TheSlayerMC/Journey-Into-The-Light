@@ -61,6 +61,16 @@ public class JEntities {
             .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
+    public static final EntityType<MageEntity> MAGE_TYPE = REGISTER.registerMob("mage",
+                    Builder.of(MageEntity::new, EntityClassification.MONSTER)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(1.5F, 2F))
+            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
+            .attributes(() -> HongoEntity.createAttributes().build())
+            .spawnEgg(TRADER_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .retrieve();
+
     public static final EntityType<HongoEntity> HONGO_TYPE = REGISTER.registerMob("hongo",
             Builder.of(HongoEntity::new, EntityClassification.MONSTER)
                     .setTrackingRange(80)
