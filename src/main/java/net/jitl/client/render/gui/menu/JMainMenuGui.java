@@ -49,7 +49,6 @@ public class JMainMenuGui extends MainMenuScreen {
 	private String splash;
 	private Button resetDemoButton;
 	private static final ResourceLocation MINECRAFT_LOGO = JITL.rl("textures/gui/title/logo.png");
-	private static final ResourceLocation MINECRAFT_EDITION = JITL.rl("textures/gui/title/edition.png");
 	/**
 	 * Has the check for a realms notification screen been performed?
 	 */
@@ -220,9 +219,7 @@ public class JMainMenuGui extends MainMenuScreen {
 		float f = this.fading ? (float) (Util.getMillis() - this.fadeInStart) / 1000.0F : 1.0F;
 		fill(matrixStack, 0, 0, this.width, this.height, -1);
 		this.panorama.render(partialTicks, MathHelper.clamp(f, 0.0F, 1.0F));
-		int i = 274;
 		int j = this.width / 2 - 137;
-		int k = 30;
 		assert this.minecraft != null;
 		this.minecraft.getTextureManager().bind(PANORAMA_OVERLAY);
 		RenderSystem.enableBlend();

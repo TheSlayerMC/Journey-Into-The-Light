@@ -21,6 +21,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -224,18 +225,18 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     }
 
     @Override
-    protected ItemStack getPickupItem() {
+    protected @NotNull ItemStack getPickupItem() {
         return getStack().copy();
     }
 
     @Override
-    public ItemStack getItem() {
+    public @NotNull ItemStack getItem() {
         ItemStack stack = getStack();
         return stack.isEmpty() ? new ItemStack(JItems.PIERCER) : stack;
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public @NotNull IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

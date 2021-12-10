@@ -2,57 +2,34 @@ package net.jitl.common.entity.projectile;
 
 import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
-import net.jitl.init.JParticleManager;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
-@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
 public class KnifeEntity extends AbstractKnifeEntity implements IRendersAsItem {
+    private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(KnifeEntity.class, DataSerializers.ITEM_STACK);
 
     public KnifeEntity(EntityType<KnifeEntity> type, World world) {
         super(type, world);
     }
 
-    public KnifeEntity(World worldIn, LivingEntity owner) {
+    public KnifeEntity(LivingEntity owner, World worldIn, ItemStack stack, float damage) {
         super(JEntities.KNIFE_TYPE, worldIn, owner);
-    }
-
-    public KnifeEntity withBaseDamage(double damageIn) {
-        super.setBaseDamage(damageIn);
-        return this;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void onClientTick() {
-        super.onClientTick();
-        int count = 2;
-        Vector3d vector3d = this.getDeltaMovement();
-        double d0 = this.getX() + vector3d.x;
-        double d1 = this.getY() + vector3d.y;
-        double d2 = this.getZ() + vector3d.z;
-        for (int i = 0; i < count; ++i) {
-            this.level.addParticle(JParticleManager.RED_FLAME.get(),
-                    d0 - vector3d.x * 0.25D + this.random.nextDouble() * 0.6D - 0.3D,
-                    d1 - vector3d.y + 0.25F,
-                    d2 - vector3d.z * 0.25D + this.random.nextDouble() * 0.6D - 0.3D,
-                    vector3d.x,
-                    vector3d.y,
-                    vector3d.z);
-        }
+        setBaseDamage(damage);
+        setStack(stack.copy());
     }
 
     @Override
@@ -63,7 +40,6 @@ public class KnifeEntity extends AbstractKnifeEntity implements IRendersAsItem {
     @Override
     protected void onHitEntity(EntityRayTraceResult rt) {
         super.onHitEntity(rt);
-        rt.getEntity().setSecondsOnFire(2);
     }
 
     public boolean isInGround() {
@@ -71,17 +47,39 @@ public class KnifeEntity extends AbstractKnifeEntity implements IRendersAsItem {
     }
 
     @Override
-    public Item pickupItem() {
-        return JItems.MOLTEN_KNIFE;
+    public void addAdditionalSaveData(CompoundNBT nbt) {
+        super.addAdditionalSaveData(nbt);
+        nbt.put("stack", getStack().save(new CompoundNBT()));
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {//TODO move tosuperclass
+    public void readAdditionalSaveData(CompoundNBT nbt) {
+        super.readAdditionalSaveData(nbt);
+        setStack(ItemStack.of(nbt.getCompound("stack")));
+        if (getStack().isEmpty()) remove();
+    }
+
+    private void setStack(ItemStack stack) {
+        this.getEntityData().set(STACK, stack);
+    }
+
+    private ItemStack getStack() {
+        return this.getEntityData().get(STACK);
+    }
+
+    @Override
+    public Item pickupItem() {
+        return getStack().copy().getItem();
+    }
+
+    @Override
+    public @NotNull IPacket<?> getAddEntityPacket() {//TODO move tosuperclass
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
     public @NotNull ItemStack getItem() {
-        return new ItemStack(JItems.MOLTEN_KNIFE);
+        ItemStack stack = getStack();
+        return stack.isEmpty() ? new ItemStack(JItems.IRON_THROWING_KNIFE) : stack;
     }
 }

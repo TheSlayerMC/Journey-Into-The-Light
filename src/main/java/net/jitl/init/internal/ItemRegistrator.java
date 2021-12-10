@@ -24,6 +24,7 @@ import net.jitl.common.item.gear.abilities.celestium.CelestiumArmorAbility;
 import net.jitl.common.item.gear.abilities.korite.KoriteSwordAbility;
 import net.jitl.common.item.gear.abilities.mekyum.MekyumSwordAbility;
 import net.jitl.common.item.interactive.MinersPearlItem;
+import net.jitl.common.item.throwable.KnifeItem;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.common.item.throwable.ThrowableItem;
 import net.jitl.init.JBlocks;
@@ -254,13 +255,21 @@ public class ItemRegistrator {
 
         registerHandheldItem("creative_sword", "Creative Sword", () -> new JSwordItem(JToolTiers.CREATIVE, BASIC));
 
-        registerItem("molten_knife", "Molten Knife", () -> new ThrowableItem(rangedWeaponsGrouped(), (worldIn, owner) -> new KnifeEntity(worldIn, owner).withBaseDamage(10)).setSound(() -> SoundEvents.SNOWBALL_THROW));
+        registerItem("molten_knife", "Molten Knife", () ->
+                new KnifeItem(rangedWeaponsGrouped(), (worldIn, owner, stack) ->
+                        new KnifeEntity(owner, worldIn, stack, 10.0F)));
 
-        registerItem("euca_piercer", "Euca Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(50),
-                (worldIn, owner, stack) -> new PiercerEntity(owner, worldIn, stack, 3, 10.0F)));
+        registerItem("iron_throwing_knife", "Iron Throwing Knife", () ->
+                new KnifeItem(rangedWeaponsGrouped(), (worldIn, owner, stack) ->
+                        new KnifeEntity(owner, worldIn, stack, 3.0F)));
 
-        registerItem("piercer", "Piercer", () -> new PiercerItem(rangedWeaponsGrouped().durability(128),
-                (worldIn, owner, stack) -> new PiercerEntity(owner, worldIn, stack, 3, 3.0F)));
+        registerItem("euca_piercer", "Euca Piercer", () ->
+                new PiercerItem(rangedWeaponsGrouped().durability(50), (worldIn, owner, stack)
+                        -> new PiercerEntity(owner, worldIn, stack, 3, 10.0F)));
+
+        registerItem("piercer", "Piercer", () ->
+                new PiercerItem(rangedWeaponsGrouped().durability(128), (worldIn, owner, stack) ->
+                        new PiercerEntity(owner, worldIn, stack, 3, 3.0F)));
 
         registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped().stacksTo(1)).ability(true).drawback(true).overview(true));
 
