@@ -3,6 +3,7 @@ package net.jitl.common.entity.projectile;
 import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
@@ -13,9 +14,13 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,8 +43,33 @@ public class KnifeEntity extends AbstractKnifeEntity implements IRendersAsItem {
     }
 
     @Override
-    protected void onHitEntity(EntityRayTraceResult rt) {
-        super.onHitEntity(rt);
+    @OnlyIn(Dist.CLIENT)
+    public void onClientTick() {
+        super.onClientTick();
+        if (getStack().getItem() == JItems.MOLTEN_KNIFE) {
+            double d0 = getX() + 0D;
+            double d1 = getY() + 0D;
+            double d2 = getZ() + 0D;
+            level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            level.addParticle(ParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+        }
+    }
+
+    @Override
+    protected void onHitEntity(@NotNull EntityRayTraceResult entityRayTraceResult_) {
+        if (getStack().getItem() == JItems.MOLTEN_KNIFE) {
+            Entity entity = entityRayTraceResult_.getEntity();
+            if (entity instanceof LivingEntity && entity != this.getOwner()) {
+                if (!level.isClientSide()) {
+                    if (entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) getBaseDamage())) {
+                        entity.setSecondsOnFire(10);
+                    }
+                    this.playSound(JSounds.KNIFE.get(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+                }
+            }
+        } else {
+            super.onHitEntity(entityRayTraceResult_);
+        }
     }
 
     public boolean isInGround() {
