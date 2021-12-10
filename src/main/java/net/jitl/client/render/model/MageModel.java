@@ -15,15 +15,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class MageModel<T extends Entity> extends SegmentedModel<T> implements IHasHead, IHeadToggle {
 
     private final ModelRenderer head;
-    private final ModelRenderer nose;
     private final ModelRenderer body;
     private final ModelRenderer arms;
     private final ModelRenderer leg0;
     private final ModelRenderer leg1;
-    private final ModelRenderer hat;
-    private final ModelRenderer hat2;
-    private final ModelRenderer hat3;
-    private final ModelRenderer hat4;
 
     public MageModel(float s) {
         texWidth = 64;
@@ -32,10 +27,11 @@ public class MageModel<T extends Entity> extends SegmentedModel<T> implements IH
         head = new ModelRenderer(this);
         head.setPos(0.0F, 0.0F, 0.0F);
         head.texOffs(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F, 0.0F, true);
-
-        nose = new ModelRenderer(this);
-        nose.setPos(0.0F, -2.0F, 0.0F);
-        nose.texOffs(24, 0).addBox(-1.0F, -1.0F, -6.0F, 2.0F, 4.0F, 2.0F, 0.0F, true);
+        head.texOffs(0, 64).addBox(-5.0F, -10.05F, -5.0F, 10.0F, 2.0F, 10.0F, 0.0F, true);
+        head.texOffs(0, 76).addBox(-3.75F, -13.5F, -3.0F, 7.0F, 4.0F, 7.0F, 0.0F, true);
+        head.texOffs(0, 87).addBox(-2.5F, -16.5F, -1.0F, 4.0F, 4.0F, 4.0F, 0.0F, true);
+        head.texOffs(0, 95).addBox(-1.25F, -18.0F, 1.0F, 1.0F, 2.0F, 1.0F, 0.25F, true);
+        head.texOffs(24, 0).addBox(-1.0F, -3.0F, -6.0F, 2.0F, 4.0F, 2.0F, 0.0F, true);
 
         body = new ModelRenderer(this);
         body.setPos(0.0F, 0.0F, 0.0F);
@@ -56,26 +52,11 @@ public class MageModel<T extends Entity> extends SegmentedModel<T> implements IH
         leg1.setPos(-2.0F, 12.0F, 0.0F);
         leg1.texOffs(0, 22).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
 
-        hat = new ModelRenderer(this);
-        hat.setPos(5.0F, -8.03F, -5.0F);
-        hat.texOffs(0, 64).addBox(-10.0F, -2.02F, 0.0F, 10.0F, 2.0F, 10.0F, 0.0F, true);
-
-        hat2 = new ModelRenderer(this);
-        hat2.setPos(-1.75F, -8.0F, 2.0F);
-        hat2.texOffs(0, 76).addBox(-2.0F, -5.5F, -5.0F, 7.0F, 4.0F, 7.0F, 0.0F, true);
-
-        hat3 = new ModelRenderer(this);
-        hat3.setPos(-1.75F, -11.0F, 2.0F);
-        hat3.texOffs(0, 87).addBox(-0.75F, -5.5F, -3.0F, 4.0F, 4.0F, 4.0F, 0.0F, true);
-
-        hat4 = new ModelRenderer(this);
-        hat4.setPos(-1.75F, -14.0F, 2.0F);
-        hat4.texOffs(0, 95).addBox(0.5F, -4.0F, -1.0F, 1.0F, 2.0F, 1.0F, 0.25F, true);
     }
 
     @Override
     public Iterable<ModelRenderer> parts() {
-        return ImmutableList.of(this.head, this.nose, this.body, this.arms, this.leg0, this.leg1, this.hat, this.hat2, this.hat3, this.hat4);
+        return ImmutableList.of(this.head, this.body, this.arms, this.leg0, this.leg1);
     }
 
     @Override
@@ -84,9 +65,7 @@ public class MageModel<T extends Entity> extends SegmentedModel<T> implements IH
     }
 
     @Override
-    public void hatVisible(boolean boolean_) {
-
-    }
+    public void hatVisible(boolean b) { }
 
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -98,30 +77,11 @@ public class MageModel<T extends Entity> extends SegmentedModel<T> implements IH
         this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
         this.head.xRot = headPitch * ((float) Math.PI / 180F);
 
-        this.nose.yRot = netHeadYaw * ((float) Math.PI / 180F);
-        this.nose.xRot = headPitch * ((float) Math.PI / 180F);
-
-        this.hat.yRot = netHeadYaw * ((float) Math.PI / 180F);
-        this.hat.xRot = headPitch * ((float) Math.PI / 180F);
-
-        this.hat2.yRot = netHeadYaw * ((float) Math.PI / 180F);
-        this.hat2.xRot = headPitch * ((float) Math.PI / 180F);
-
-        this.hat3.yRot = netHeadYaw * ((float) Math.PI / 180F);
-        this.hat3.xRot = headPitch * ((float) Math.PI / 180F);
-
-        this.hat4.yRot = netHeadYaw * ((float) Math.PI / 180F);
-        this.hat4.xRot = headPitch * ((float) Math.PI / 180F);
-
         if (flag) {
             this.head.zRot = 0.3F * MathHelper.sin(0.45F * ageInTicks);
             this.head.xRot = 0.4F;
-
-            this.nose.zRot = 0.3F * MathHelper.sin(0.45F * ageInTicks);
-            this.nose.xRot = 0.4F;
         } else {
             this.head.zRot = 0.0F;
-            this.nose.zRot = 0.0F;
         }
 
         this.arms.y = 3.0F;
