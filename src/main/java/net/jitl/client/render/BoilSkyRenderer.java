@@ -121,6 +121,10 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         float f12;
         f12 = 30.0F;
 
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
+        matrixStack.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
+        matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
+
         //SUN BEGIN
         textureManager.bind(SUN_LOCATION);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
@@ -131,16 +135,14 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         bufferbuilder.end();
         WorldVertexBufferUploader.end(bufferbuilder);
 
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(0.0F));
-        matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
         //SUN END
 
         //EUCA MOON BEGIN
         f12 = 2F;
 
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(45.0F));
-        matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 320.0F));
+        matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 120.0F));
 
         textureManager.bind(EUCA_MOON_LOCATION);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
@@ -154,6 +156,8 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
 
         //CORBA MOON BEGIN
         f12 = 0.5F;
+
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(45.0F));
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 460.0F));
 
