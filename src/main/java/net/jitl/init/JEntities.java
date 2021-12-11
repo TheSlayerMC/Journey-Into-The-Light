@@ -122,7 +122,6 @@ public class JEntities {
     public static final EntityType<HonglowEntity> HONGLOW_TYPE = REGISTER.registerMob("honglow",
             Builder.of(HonglowEntity::new, EntityClassification.MONSTER)
                     .setTrackingRange(80)
-                    
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 2F))
             .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HonglowEntity::canSpawn)
