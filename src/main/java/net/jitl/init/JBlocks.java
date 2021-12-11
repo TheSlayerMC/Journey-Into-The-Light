@@ -126,6 +126,9 @@ public class JBlocks {
 	public static final CaveVinesTopBlock GLIMMER_ROOT = promise();
 	public static final CaveVinesBlock GLIMMER_ROOT_PLANT = promise();
 
+	public static final FlameBulbTopBlock FLAME_BULB = promise();
+	public static final FlameBulbBlock FLAME_BULB_PLANT = promise();
+
 	public static final Block EUCA_PORTAL_FRAME = promise();
 	public static final Block EUCA_PORTAL = promise();
 
@@ -252,6 +255,7 @@ public class JBlocks {
 	public static final JPlantBlock FLAME_POD = promise();
 	public static final JPlantBlock LAVA_BLOOM = promise();
 	public static final JPlantBlock CHARRED_WEEDS = promise();
+	public static final JPlantBlock CHARRED_SHORT_GRASS = promise();
 	public static final JPlantBlock SIZZLESHROOM = promise();
 	public static final JDoublePlantBlock TALL_SIZZLESHROOM = promise();
 

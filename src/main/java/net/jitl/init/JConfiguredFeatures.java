@@ -333,7 +333,6 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(EUCA_BIOMES)
                     .asPromise();
 
-
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_TREES =
             REGISTER.register("euca_gold_tree",
                     Decoration.SURFACE_STRUCTURES,
@@ -919,10 +918,11 @@ public class JConfiguredFeatures {
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> CHARRED_FIELDS_FLOWERS =
-            REGISTER.register("boiling_sands_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+            REGISTER.register("charred_fields_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
-                                    .add(JBlocks.CHARRED_WEEDS.defaultBlockState(), 1),
+                                    .add(JBlocks.CHARRED_WEEDS.defaultBlockState(), 1)
+                                    .add(JBlocks.CHARRED_SHORT_GRASS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
                             .tries(200)
                             .xspread(10)
@@ -992,9 +992,20 @@ public class JConfiguredFeatures {
                                             JBlocks.VOLCANIC_SAND))
                                     .noProjection()
                                     .build())
-                            .range(250)
-                            .count(10))
+                    .range(250)
+                    .count(10))
                     .setBiomePredicate(BOIL_FIRE_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FLAME_BULB =
+            REGISTER.register("flame_bulb",
+                    Decoration.VEGETAL_DECORATION,
+                    () -> JFeatures.FLAME_BULB.get()
+                            .configured(IFeatureConfig.NONE)
+                            .range(256)
+                            .squared()
+                            .countRandom(64))
+                    .setBiomePredicate(CHARRED_FIELDS)
                     .asPromise();
 
     /**

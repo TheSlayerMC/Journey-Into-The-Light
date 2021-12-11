@@ -41,4 +41,6 @@ public class JFeatures {
     public static final RegistryObject<Feature<BlockStateFeatureConfig>> SULPHUR_DEPOSIT = REGISTER.register("sulphur_deposit", () -> new SulphurDepositFeature(BlockStateFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> SULPHUR_CRYSTAL = REGISTER.register("sulphur_crystal", () -> new SulphurCrystalFeature(NoFeatureConfig.CODEC));
     public static final RegistryObject<Feature<BlockStateFeatureConfig>> TORRID_CRYSTAL = REGISTER.register("torrid_crystal", () -> new TorridCrystalFeature(BlockStateFeatureConfig.CODEC));
+
+    public static final RegistryObject<Feature<NoFeatureConfig>> FLAME_BULB = REGISTER.register("flame_bulb", () -> new FlameBulbFeature(NoFeatureConfig.CODEC));
 }

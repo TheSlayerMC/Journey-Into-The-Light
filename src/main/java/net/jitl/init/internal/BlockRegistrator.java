@@ -197,6 +197,11 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("icy_ivy_plant", "Icy Ivy", () -> new IcyIvyBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/icy_ivy")));
 
+        registerSpeciallyRenderedBlock("flame_bulb", "Flame Bulb", () -> new FlameBulbTopBlock(JBlockProperties.GLOW_PLANT_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/flame_bulb_top")));
+        registerSpeciallyRenderedBlock("flame_bulb_plant", "Flame Bulb", () -> new FlameBulbBlock(JBlockProperties.PLANT_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/flame_bulb_stem")));
+
         registerSpeciallyRenderedBlockWithRenderType("crystal_fruit", "Crystal Fruit", () -> new CrystalFruitBlock(JBlockProperties.GLOW_PLANT_PROPS.create()), () -> RenderTypeWrappers.CUTOUT);
 
         registerDefaultBlock("boil_portal_frame", "Boiling Point Portal Frame");
@@ -431,9 +436,13 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
                 () -> BlockModels.crossModel(JITL.tl("block/charred_weeds")));
 
+        registerSpeciallyRenderedBlock("charred_short_grass", "Charred Short Grass", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
+                () -> JBlockModels.crop(JITL.tl("block/charred_tall_grass_top")));
+
         registerTallCrossRenderedBlock("tall_molten_plant", "Tall Molten Plant", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
         registerTallCrossRenderedBlock("tall_crumbling_pine", "Tall Crumbling Pine", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
-        registerTallCrossRenderedBlock("charred_tall_grass", "Charred Tall Grass", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
+        registerTallCropRenderedBlock("charred_tall_grass", "Charred Tall Grass", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
         registerTallCrossRenderedBlock("tall_sizzleshroom", "Tall Sizzleshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
         registerSpeciallyRenderedBlock("sizzleshroom", "Sizzleshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
                         .setGroundPredicate(GroundPredicate.UNDERGROUND),
@@ -616,6 +625,19 @@ public class BlockRegistrator {
                 .model(JITL.bml("block/" + name + "_bottom"),
                         () -> BlockModels.crossModel(JITL.tl("block/" + name + "_bottom")));
     }
+
+    private static void registerTallCropRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
+                .defaultBlockItem(JTabs.DECORATION)
+                .state(JBlockStateResources.doublePlantState(JITL.bml("block/" + name + "_bottom"), JITL.bml("block/" + name + "_top")))
+                .model(JITL.bml("block/" + name + "_top"),
+                        () -> JBlockModels.crop(JITL.tl("block/" + name + "_top")))
+                .model(JITL.bml("block/" + name + "_bottom"),
+                        () -> JBlockModels.crop(JITL.tl("block/" + name + "_bottom")));
+    }
+
 
     /**
      * Registers a block with emissive rendering
