@@ -13,21 +13,25 @@ public class CurrencyForItemsTrade implements VillagerTrades.ITrade {
     private final Item item;
     private final Item currency;
     private final int cost;
+    private final int count;
     private final int maxUses;
     private final int villagerXp;
     private final float priceMultiplier;
 
-    public CurrencyForItemsTrade(IItemProvider currency, IItemProvider p_i50539_1_, int p_i50539_2_, int p_i50539_3_, int p_i50539_4_) {
-        this.item = p_i50539_1_.asItem();
+    public CurrencyForItemsTrade(IItemProvider currency, int cost, IItemProvider trade, int count, int maxUses, int villagerXp) {
+        this.item = trade.asItem();
         this.currency = currency.asItem();
-        this.cost = p_i50539_2_;
-        this.maxUses = p_i50539_3_;
-        this.villagerXp = p_i50539_4_;
+        this.cost = cost;
+        this.count = count;
+        this.maxUses = maxUses;
+        this.villagerXp = villagerXp;
         this.priceMultiplier = 0.05F;
     }
 
-    public MerchantOffer getOffer(Entity p_221182_1_, Random p_221182_2_) {
-        ItemStack lvt_3_1_ = new ItemStack(this.item, this.cost);
-        return new MerchantOffer(lvt_3_1_, new ItemStack(this.currency), this.maxUses, this.villagerXp, this.priceMultiplier);
+    public MerchantOffer getOffer(Entity entity, Random random) {
+        ItemStack currencyStack = new ItemStack(this.currency, this.cost);
+        ItemStack tradeStack = new ItemStack(this.item, this.count);
+
+        return new MerchantOffer(currencyStack, tradeStack, this.maxUses, this.villagerXp, this.priceMultiplier);
     }
 }

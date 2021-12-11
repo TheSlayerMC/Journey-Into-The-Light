@@ -159,7 +159,7 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(45.0F));
-        matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 460.0F));
+        matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
 
         textureManager.bind(CORBA_MOON_LOCATION);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);

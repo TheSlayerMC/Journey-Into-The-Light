@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 public class EskimoEntity extends JVillagerEntity {
 
     private static final Int2ObjectMap<VillagerTrades.ITrade[]> TRADES = new Int2ObjectOpenHashMap<>(ImmutableMap.of(1, new VillagerTrades.ITrade[]{
-            new CurrencyForItemsTrade(JItems.PERIDOT_GEMSTONE, Items.COMPASS, 1, 12, 5)
+            new CurrencyForItemsTrade(JItems.PERIDOT_GEMSTONE, 1, Items.COMPASS, 1, 12, 5)
     }));
 
     public EskimoEntity(EntityType<? extends CreatureEntity> type, World worldIn) {

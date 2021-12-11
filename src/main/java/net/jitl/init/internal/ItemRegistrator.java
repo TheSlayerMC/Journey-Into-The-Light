@@ -301,6 +301,7 @@ public class ItemRegistrator {
         registerItem("eye_of_the_blizzard", "Eye Of The Blizzard", () -> new JCurioItem(itemGrouped().stacksTo(1)).overview(true));
 
         registerItem("sulphur_powder", "Sulphur Powder");
+        registerItem("blazium_ingot", "Blazium Ingot");
 
         registerItem("music_disc_haunt_muskie_2", "Music Disc", () -> new MusicDiscItem(1, JSounds.HAUNT_MUSKIE_2::get, itemGrouped().stacksTo(1)));
         registerItem("music_disc_jitl_theme", "Music Disc", () -> new MusicDiscItem(1, JSounds.MENU_MUSIC::get, itemGrouped().stacksTo(1)));

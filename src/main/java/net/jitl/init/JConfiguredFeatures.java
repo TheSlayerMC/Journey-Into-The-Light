@@ -570,18 +570,6 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> TORRID_CRYSTAL =
-            REGISTER.register("torrid_crystal",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.TORRID_CRYSTAL.get()
-                            .configured(new BlockStateFeatureConfig(JBlocks.TORRID_CRYSTAL.defaultBlockState()))
-                            .range(256)
-                            .decorated(Features.Placements.HEIGHTMAP_SQUARE)
-                            .squared()
-                            .count(100))
-                    .setBiomePredicate(BOILING_PLAINS)
-                    .asPromise();
-
     /*public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_CRYSTAL =
             REGISTER.register("sulphur_crystal",
                     Decoration.SURFACE_STRUCTURES,

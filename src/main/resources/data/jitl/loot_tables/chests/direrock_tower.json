@@ -1,0 +1,69 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 3.0,
+        "max": 5.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 1,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "jitl:heart_container_small"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 45,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 12,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "jitl:sulphur_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 12,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 4,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "jitl:blazium_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:enchant_randomly"
+            }
+          ],
+          "name": "minecraft:book"
+        }
+      ]
+    }
+  ]
+}
