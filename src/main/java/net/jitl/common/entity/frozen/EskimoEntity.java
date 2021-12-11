@@ -8,6 +8,9 @@ import net.jitl.common.entity.base.trades.CurrencyForItemsTrade;
 import net.jitl.init.JItems;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
@@ -25,5 +28,11 @@ public class EskimoEntity extends JVillagerEntity {
     @Override
     protected Int2ObjectMap<VillagerTrades.ITrade[]> getVillagerTrades() {
         return TRADES;
+    }
+
+    public static AttributeModifierMap.MutableAttribute createAttributes() {
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 60.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 }

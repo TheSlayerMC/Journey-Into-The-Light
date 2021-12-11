@@ -58,8 +58,7 @@ public class JEntities {
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 2F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
-            .attributes(() -> HongoEntity.createAttributes().build())
+            .attributes(() -> EskimoEntity.createAttributes().build())
             .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -68,8 +67,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(0.9F, 2.2F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
-            .attributes(() -> HongoEntity.createAttributes().build())
+            .attributes(() -> MageEntity.createAttributes().build())
             .spawnEgg(TRADER_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -78,7 +76,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(0.9F, 2.2F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
+            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FrozenTrollEntity::canSpawn)
             .attributes(() -> FrozenTrollEntity.createAttributes().build())
             .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
@@ -117,17 +115,18 @@ public class JEntities {
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 2F))
             .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WithershroomEntity::canSpawn)
-            .attributes(() -> HongoEntity.createAttributes().build())
+            .attributes(() -> WithershroomEntity.createAttributes().build())
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<HonglowEntity> HONGLOW_TYPE = REGISTER.registerMob("honglow",
             Builder.of(HonglowEntity::new, EntityClassification.MONSTER)
                     .setTrackingRange(80)
+                    
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 2F))
             .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HonglowEntity::canSpawn)
-            .attributes(() -> HongoEntity.createAttributes().build())//FIXME is Hongo attributes for Honglow not an error?
+            .attributes(() -> HonglowEntity.createAttributes().build())
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
