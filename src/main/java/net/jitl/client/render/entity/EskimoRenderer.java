@@ -14,6 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class EskimoRenderer extends MobRenderer<EskimoEntity, EskimoModel<EskimoEntity>> {
+
     private static final ResourceLocation ESKIMO_BASE_SKIN = JITL.rl("textures/entity/frozen/eskimo_base.png");
 
     public EskimoRenderer(EntityRendererManager p_i50954_1_) {

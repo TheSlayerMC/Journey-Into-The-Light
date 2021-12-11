@@ -41,9 +41,10 @@ public class JEntityRenderRegistry {
         RenderingRegistry.registerEntityRenderingHandler(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.GLUMP_TYPE, GlumpRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.FROZEN_TROLL_TYPE, FrozenTrollRenderer::new);
 
+        //NPC
         RenderingRegistry.registerEntityRenderingHandler(JEntities.MAGE_TYPE, MageRenderer::new);
-
         RenderingRegistry.registerEntityRenderingHandler(JEntities.ESKIMO_TYPE, EskimoRenderer::new);
 
         //Projectiles
