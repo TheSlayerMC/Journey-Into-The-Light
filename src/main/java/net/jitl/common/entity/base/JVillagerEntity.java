@@ -132,4 +132,10 @@ public abstract class JVillagerEntity extends CreatureEntity implements INPC, IM
     public SoundEvent getNotifyTradeSound() {
         return null;
     }
+
+    @Override
+    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
+        return false;
+    }
+
 }
