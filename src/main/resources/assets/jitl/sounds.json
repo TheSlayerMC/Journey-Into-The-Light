@@ -316,6 +316,15 @@
       }
     ]
   },
+  "music.snowflakesss": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "jitl:music/snowflakesss",
+        "stream": true
+      }
+    ]
+  },
   "music.guardian_tower": {
     "category": "music",
     "sounds": [

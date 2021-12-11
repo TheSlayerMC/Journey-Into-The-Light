@@ -14,6 +14,7 @@ public class JItems {
 
     public static final Item MUSIC_DISC_HAUNT_MUSKIE_2 = promise();
     public static final Item MUSIC_DISC_JITL_THEME = promise();
+    public static final Item SNOWFLAKESSS = promise();
 
     public static final Item SAPPHIRE = promise();
     public static final Item IRIDIUM_NUGGET = promise();

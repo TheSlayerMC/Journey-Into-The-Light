@@ -107,6 +107,8 @@ public class BlockRegistrator {
                 BlockModels.cubeTopModel(JITL.tl("block/runic_connector"), JITL.tl("block/smooth_corrupted_blood_rock")),
                 BlockModels.cubeTopModel(JITL.tl("block/runic_connector_charged"), JITL.tl("block/blank")));
 
+        registerDefaultBlock("large_nether_bricks", "Large Nether Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
+
         registerDefaultBlock("sapphire_block", "Sapphire Block");
         registerSpeciallyRenderedBlock("lunium_block", "Lunium Block", () -> new Block(JBlockProperties.LUNIUM_BLOCK_PROPS.create().lightLevel((state) -> 5)));
         registerDefaultBlock("shadium_block", "Shadium Block", () -> new Block(JBlockProperties.SHADIUM_BLOCK_PROPS.create()));
@@ -303,6 +305,7 @@ public class BlockRegistrator {
         registerCustomAttachedRenderedBlock("ice_shroom_shelf", "Ice Shroom Shelf", () -> new AttachedBlock(JBlockProperties.SHROOM_SHELF.create().lightLevel((intf) -> 4)));
 
         registerCustomRenderedBlock("icy_brush", "Icy Brush", () -> new VineBlock(JBlockProperties.VINES_PROPS.create()));
+        registerCustomRenderedBlock("charred_brush", "Charred Brush", () -> new VineBlock(JBlockProperties.VINES_PROPS.create()));
 
         RegistryObject<Block> packedSnowBricks = registerBlock("packed_snow_bricks", "Packed Snow Bricks", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
         KBlockRegistrator.INSTANCE.registerStairs("packed_snow_brick_stairs", "Packed Snow Brick Stairs", packedSnowBricks, JBlockProperties.PERMAFROST_PROPS.create());
@@ -424,8 +427,13 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.BOILING_LAND),
                 () -> BlockModels.crossModel(JITL.tl("block/lava_bloom")));
 
+        registerSpeciallyRenderedBlock("charred_weeds", "Charred Weeds", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
+                () -> BlockModels.crossModel(JITL.tl("block/charred_weeds")));
+
         registerTallCrossRenderedBlock("tall_molten_plant", "Tall Molten Plant", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
         registerTallCrossRenderedBlock("tall_crumbling_pine", "Tall Crumbling Pine", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
+        registerTallCrossRenderedBlock("charred_tall_grass", "Charred Tall Grass", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
         registerTallCrossRenderedBlock("tall_sizzleshroom", "Tall Sizzleshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
         registerSpeciallyRenderedBlock("sizzleshroom", "Sizzleshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
                         .setGroundPredicate(GroundPredicate.UNDERGROUND),

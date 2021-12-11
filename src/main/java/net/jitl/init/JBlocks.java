@@ -50,6 +50,8 @@ public class JBlocks {
 	public static final XZFacedBlock RUNIC_CONNECTOR = promise();
 	public static final Block CHARGED_RUNIC_CONNECTOR = promise();
 
+	public static final Block LARGE_NETHER_BRICKS = promise();
+
 	public static final Block WARPED_QUARTZ_ORE = promise();
 	public static final Block CRIMSON_QUARTZ_ORE = promise();
 
@@ -149,6 +151,7 @@ public class JBlocks {
 	public static final Block ICE_SHROOM_SHELF = promise();
 
 	public static final Block ICY_BRUSH = promise();
+	public static final Block CHARRED_BRUSH = promise();
 
 	public static final Block PACKED_SNOW_BRICKS = promise();
 	public static final Block PACKED_ICE_BRICKS = promise();
@@ -242,11 +245,13 @@ public class JBlocks {
 	public static final RotatedPillarBlock BURNED_BARK = promise();
 	public static final JDoublePlantBlock TALL_MOLTEN_PLANT = promise();
 	public static final JDoublePlantBlock TALL_CRUMBLING_PINE = promise();
+	public static final JDoublePlantBlock CHARRED_TALL_GRASS = promise();
 	public static final JPlantBlock INFERNO_BUSH = promise();
 	public static final JPlantBlock CRUMBLING_PINE = promise();
 	public static final JPlantBlock CRISP_GRASS = promise();
 	public static final JPlantBlock FLAME_POD = promise();
 	public static final JPlantBlock LAVA_BLOOM = promise();
+	public static final JPlantBlock CHARRED_WEEDS = promise();
 	public static final JPlantBlock SIZZLESHROOM = promise();
 	public static final JDoublePlantBlock TALL_SIZZLESHROOM = promise();
 

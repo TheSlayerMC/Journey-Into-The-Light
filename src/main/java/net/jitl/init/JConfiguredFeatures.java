@@ -7,10 +7,7 @@ import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig
 import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
-import net.jitl.common.world.gen.treedecorator.CrystalFruitTreeDecorator;
-import net.jitl.common.world.gen.treedecorator.FrozenTreeDecorator;
-import net.jitl.common.world.gen.treedecorator.IceShroomTreeDecorator;
-import net.jitl.common.world.gen.treedecorator.IcyBrushTreeDecorator;
+import net.jitl.common.world.gen.treedecorator.*;
 import net.jitl.util.JRuleTests;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -593,6 +590,8 @@ public class JConfiguredFeatures {
                                     new FancyFoliagePlacer(FeatureSpread.fixed(4), FeatureSpread.fixed(1), 2),
                                     new ForkyTrunkPlacer(5, 5, 5),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .decorators(ImmutableList.of(
+                                            CharredBrushTreeDecorator.INSTANCE))
                                     .build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(CHARRED_FIELDS)
@@ -609,6 +608,8 @@ public class JConfiguredFeatures {
                                     new FancyFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(1), 2),
                                     new ForkyTrunkPlacer(4, 4, 4),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .decorators(ImmutableList.of(
+                                            CharredBrushTreeDecorator.INSTANCE))
                                     .build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(CHARRED_FIELDS)
@@ -625,6 +626,8 @@ public class JConfiguredFeatures {
                                     new FancyFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(1), 2),
                                     new ForkyTrunkPlacer(3, 3, 3),
                                     new TwoLayerFeature(1, 1, 2)).ignoreVines()
+                                    .decorators(ImmutableList.of(
+                                            CharredBrushTreeDecorator.INSTANCE))
                                     .build())
                             .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(CHARRED_FIELDS)
@@ -841,8 +844,8 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(FROZEN_DYING_FORST.or(FROZEN_BITTERWOOD_FORST))
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOIL_PLANTS =
-            REGISTER.register("tall_boil_plants",
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOILING_SANDS_PLANTS =
+            REGISTER.register("tall_boiling_sands_plants",
                     Decoration.UNDERGROUND_DECORATION,
                     () -> Feature.RANDOM_PATCH
                             .configured((new BlockClusterFeatureConfig.Builder(
@@ -850,9 +853,9 @@ public class JConfiguredFeatures {
                                             .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 1)
                                             .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 1),
                                     new DoublePlantBlockPlacer()))
-                                            .tries(64)
-                                            .xspread(6)
-                                            .zspread(6)
+                                    .tries(64)
+                                    .xspread(6)
+                                    .zspread(6)
                                             .whitelist(ImmutableSet.of(
                                                     JBlocks.VOLCANIC_SAND))
                                             .noProjection()
@@ -910,20 +913,58 @@ public class JConfiguredFeatures {
                                             JBlocks.VOLCANIC_SAND))
                                     .noProjection()
                                     .build())
-                            .range(250)
-                            .count(100))
+                    .range(250)
+                    .count(100))
                     .setBiomePredicate(BOILING_SANDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> CHARRED_FIELDS_FLOWERS =
+            REGISTER.register("boiling_sands_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.CHARRED_WEEDS.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(200)
+                            .xspread(10)
+                            .zspread(10)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.CHARRED_GRASS))
+                            .noProjection()
+                            .build())
+                    .range(250)
+                    .count(100))
+                    .setBiomePredicate(CHARRED_FIELDS)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_CHARRED_FIELDS_PLANTS =
+            REGISTER.register("tall_charred_fields_plants",
+                    Decoration.UNDERGROUND_DECORATION,
+                    () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new WeightedBlockStateProvider()
+                                            .add(JBlocks.CHARRED_TALL_GRASS.defaultBlockState(), 1),
+                                    new DoublePlantBlockPlacer()))
+                                    .tries(64)
+                                    .xspread(6)
+                                    .zspread(6)
+                                    .whitelist(ImmutableSet.of(
+                                            JBlocks.CHARRED_GRASS))
+                                    .noProjection()
+                                    .build())
+                            .range(255)
+                            .count(100))
+                    .setBiomePredicate(CHARRED_FIELDS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_PLAINS_FLOWERS =
             REGISTER.register("boiling_plains_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
-                            .configured((new BlockClusterFeatureConfig.Builder(
-                                    new WeightedBlockStateProvider()
-                                            .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 1)
-                                            .add(JBlocks.FLAME_POD.defaultBlockState(), 1)
-                                            .add(JBlocks.CRISP_GRASS.defaultBlockState(), 1),
-                                    new SimpleBlockPlacer()))
-                                    .tries(200)
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new WeightedBlockStateProvider()
+                                    .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 1)
+                                    .add(JBlocks.FLAME_POD.defaultBlockState(), 1)
+                                    .add(JBlocks.CRISP_GRASS.defaultBlockState(), 1),
+                            new SimpleBlockPlacer()))
+                            .tries(200)
                                     .xspread(10)
                                     .zspread(10)
                                     .whitelist(ImmutableSet.of(

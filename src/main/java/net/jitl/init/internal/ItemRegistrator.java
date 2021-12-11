@@ -96,7 +96,7 @@ public class ItemRegistrator {
         registerItem("sentacoin_bag", "Sentacoin Bag", () -> new Item(itemGrouped()), "item/sentacoin_bag_model");
         registerItem("peridot_gemstone", "Peridot Gemstone");
         registerItem("rimestone", "Rimestone");
-        registerItem("ice_amulet", "Ice Amulet", () -> new IceAmuletItem(itemGrouped()));
+        registerItem("ice_amulet", "Ice Amulet", () -> new IceAmuletItem(itemGrouped().stacksTo(1)));
 
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(itemGrouped(),
                 (world, thrower) -> new FloroMudEntity(JEntities.FLORO_MUD_TYPE, world, thrower, 0.0F)).setSound(() -> SoundEvents.SNOWBALL_THROW));
@@ -305,6 +305,7 @@ public class ItemRegistrator {
 
         registerItem("music_disc_haunt_muskie_2", "Music Disc", () -> new MusicDiscItem(1, JSounds.HAUNT_MUSKIE_2::get, itemGrouped().stacksTo(1)));
         registerItem("music_disc_jitl_theme", "Music Disc", () -> new MusicDiscItem(1, JSounds.MENU_MUSIC::get, itemGrouped().stacksTo(1)));
+        registerItem("music_disc_snowflakesss", "Music Disc", () -> new MusicDiscItem(1, JSounds.SNOWFLAKESSS::get, itemGrouped().stacksTo(1)));
     }
 
     /**

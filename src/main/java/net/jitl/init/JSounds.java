@@ -72,4 +72,5 @@ public class JSounds {
     public static final RegistryObject<TimeSound> GOLD_PLAINS_MUSIC = REGISTER.register("music.biome.gold_plains");
 
     public static final RegistryObject<TimeSound> HAUNT_MUSKIE_2 = REGISTER.register("music.haunt_muskie_2");
+    public static final RegistryObject<TimeSound> SNOWFLAKESSS = REGISTER.register("music.snowflakesss");
 }
