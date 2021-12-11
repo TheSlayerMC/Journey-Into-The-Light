@@ -65,7 +65,7 @@ public class JEntities {
                     Builder.of(MageEntity::new, EntityClassification.MONSTER)
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
-                            .sized(1.5F, 2F))
+                            .sized(0.9F, 2.2F))
             .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
             .attributes(() -> HongoEntity.createAttributes().build())
             .spawnEgg(TRADER_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
