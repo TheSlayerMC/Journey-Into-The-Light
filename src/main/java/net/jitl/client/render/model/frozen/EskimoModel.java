@@ -1,4 +1,4 @@
-package net.jitl.client.render.model;
+package net.jitl.client.render.model.frozen;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.entity.model.IHasHead;

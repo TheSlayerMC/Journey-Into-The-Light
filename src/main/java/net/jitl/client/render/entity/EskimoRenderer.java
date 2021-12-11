@@ -2,7 +2,7 @@ package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.jitl.JITL;
-import net.jitl.client.render.model.EskimoModel;
+import net.jitl.client.render.model.frozen.EskimoModel;
 import net.jitl.common.entity.frozen.EskimoEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;

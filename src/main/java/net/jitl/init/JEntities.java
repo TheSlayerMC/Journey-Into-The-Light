@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.frozen.EskimoEntity;
 import net.jitl.common.entity.frozen.FrozenTrollEntity;
+import net.jitl.common.entity.frozen.ShattererEntity;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.*;
@@ -79,6 +80,15 @@ public class JEntities {
                             .sized(0.9F, 2.2F))
             .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
             .attributes(() -> FrozenTrollEntity.createAttributes().build())
+            .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .retrieve();
+
+    public static final EntityType<ShattererEntity> SHATTERER_TYPE = REGISTER.registerMob("shatterer",
+                    Builder.of(ShattererEntity::new, EntityClassification.MONSTER)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(0.9F, 2.2F))
+            .attributes(() -> ShattererEntity.createAttributes().build())
             .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 

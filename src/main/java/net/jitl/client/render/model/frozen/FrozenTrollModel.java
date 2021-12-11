@@ -1,4 +1,4 @@
-package net.jitl.client.render.model;
+package net.jitl.client.render.model.frozen;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
@@ -18,7 +18,7 @@ public class FrozenTrollModel<T extends Entity> extends SegmentedModel<T> {
     private ModelRenderer ear2;
     private ModelRenderer beard;
 
-    public FrozenTrollModel(float s) {
+    public FrozenTrollModel() {
         texWidth = 64;
         texHeight = 64;
 
