@@ -903,7 +903,8 @@ public class JConfiguredFeatures {
                             .configured((new BlockClusterFeatureConfig.Builder(
                                     new WeightedBlockStateProvider()
                                             .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 1)
-                                            .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 1),
+                                            .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 1)
+                                            .add(JBlocks.CRISP_GRASS.defaultBlockState(), 1),
                                     new SimpleBlockPlacer()))
                                     .tries(200)
                                     .xspread(10)
@@ -961,8 +962,7 @@ public class JConfiguredFeatures {
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 1)
-                                    .add(JBlocks.FLAME_POD.defaultBlockState(), 1)
-                                    .add(JBlocks.CRISP_GRASS.defaultBlockState(), 1),
+                                    .add(JBlocks.FLAME_POD.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
                             .tries(200)
                                     .xspread(10)

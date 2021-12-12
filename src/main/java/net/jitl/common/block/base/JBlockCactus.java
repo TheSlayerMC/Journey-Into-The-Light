@@ -1,12 +1,10 @@
 package net.jitl.common.block.base;
 
-import net.jitl.init.JBlocks;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -27,7 +25,7 @@ public class JBlockCactus extends Block implements IPlantable {
     protected static final VoxelShape BIG_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
 
     public JBlockCactus() {
-        super(JBlockProperties.STONE_PROPS.create());
+        super(JBlockProperties.CACTUS_PROPS.create());
     }
 
     @Override
@@ -56,10 +54,7 @@ public class JBlockCactus extends Block implements IPlantable {
     public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
         BlockState blockstate = worldIn.getBlockState(pos.below());
         Material material = blockstate.getMaterial();
-        if(material.isSolid() || blockstate.getBlock() instanceof JBlockCactus) {
-            return true;
-        }
-        return false;
+        return material.isSolid() || blockstate.getBlock() instanceof JBlockCactus;
     }
 
     @Override

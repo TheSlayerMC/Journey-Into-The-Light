@@ -33,25 +33,31 @@ public class JBlockProperties {
             (Material.DIRT)
             .sound(JSoundTypes.CRUMBLED_PERMAFROST)
             .harvestTool(ToolType.SHOVEL)
-            .strength(1.1F));
+			.strength(1.1F));
 
 
-    public static final BlockPropsFactory PERMAFROST_PROPS = new BlockPropsFactory(() -> Properties.of
-            (Material.STONE)
-            .sound(JSoundTypes.PERMAFROST)
-            .harvestTool(ToolType.PICKAXE)
-            .requiresCorrectToolForDrops()
-            .strength(1.75F, 7.0F));
+	public static final BlockPropsFactory PERMAFROST_PROPS = new BlockPropsFactory(() -> Properties.of
+			(Material.STONE)
+			.sound(JSoundTypes.PERMAFROST)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(1.75F, 7.0F));
 
-    public static final BlockPropsFactory STONE_PROPS = new BlockPropsFactory(() -> Properties.of
-            (Material.STONE)
-            .sound(SoundType.STONE)
-            .harvestTool(ToolType.PICKAXE)
-            .requiresCorrectToolForDrops()
-            .strength(1.5F, 6.0F));
+	public static final BlockPropsFactory STONE_PROPS = new BlockPropsFactory(() -> Properties.of
+			(Material.STONE)
+			.sound(SoundType.STONE)
+			.harvestTool(ToolType.PICKAXE)
+			.requiresCorrectToolForDrops()
+			.strength(1.5F, 6.0F));
+
+	public static final BlockPropsFactory CACTUS_PROPS = new BlockPropsFactory(() -> Properties.of
+			(Material.CACTUS)
+			.sound(SoundType.WOOL)
+			.harvestTool(ToolType.AXE)
+			.strength(0.4F));
 
 	public static final BlockPropsFactory STONE_MODEL_PROPS = new BlockPropsFactory(() -> Properties.of
-					(Material.STONE)
+			(Material.STONE)
 			.sound(SoundType.STONE)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()

@@ -197,7 +197,7 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("icy_ivy_plant", "Icy Ivy", () -> new IcyIvyBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/icy_ivy")));
 
-        registerSpeciallyRenderedBlock("flame_bulb", "Flame Bulb", () -> new FlameBulbTopBlock(JBlockProperties.GLOW_PLANT_PROPS.create()),
+        registerSpeciallyRenderedBlock("flame_bulb", "Flame Bulb", () -> new FlameBulbTopBlock(JBlockProperties.GLOW_PLANT_PROPS.create().noCollission()),
                 () -> BlockModels.crossModel(JITL.tl("block/flame_bulb_top")));
         registerSpeciallyRenderedBlock("flame_bulb_plant", "Flame Bulb", () -> new FlameBulbBlock(JBlockProperties.PLANT_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/flame_bulb_stem")));
