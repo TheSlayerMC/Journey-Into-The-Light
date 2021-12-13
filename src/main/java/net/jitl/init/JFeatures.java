@@ -36,7 +36,6 @@ public class JFeatures {
     public static final RegistryObject<Feature<EucaSpawnerFeatureConfig>> EUCA_BOT_SPAWNER = REGISTER.register("euca_bot_spawner", () -> new EucaBotSpawner(EucaSpawnerFeatureConfig.CODEC));
 
     public static final RegistryObject<Feature<NoFeatureConfig>> SCORCHED_STALAGMITE = REGISTER.register("scorched_stalagmite", () -> new ScorchedStalagmiteFeature(NoFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<NoFeatureConfig>> SCORCHED_CACTUS = REGISTER.register("scorched_cactus", () -> new ScorchedCactusFeature(NoFeatureConfig.CODEC));
 
     public static final RegistryObject<Feature<BlockStateFeatureConfig>> SULPHUR_DEPOSIT = REGISTER.register("sulphur_deposit", () -> new SulphurDepositFeature(BlockStateFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoFeatureConfig>> SULPHUR_CRYSTAL = REGISTER.register("sulphur_crystal", () -> new SulphurCrystalFeature(NoFeatureConfig.CODEC));

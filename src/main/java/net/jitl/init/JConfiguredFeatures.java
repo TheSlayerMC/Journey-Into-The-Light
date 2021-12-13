@@ -16,6 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedList;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage.Decoration;
+import net.minecraft.world.gen.blockplacer.ColumnBlockPlacer;
 import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
@@ -544,13 +545,18 @@ public class JConfiguredFeatures {
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SCORCHED_CACTUS =
-            REGISTER.register("scorched_cactus",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.SCORCHED_CACTUS.get()
-                            .configured(IFeatureConfig.NONE)
-                            .range(128)
-                            .squared()
-                            .count(100))
+            REGISTER.register("scorched_cactus", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                    .configured((new BlockClusterFeatureConfig.Builder(
+                            new SimpleBlockStateProvider(JBlocks.SCORCHED_CACTUS.defaultBlockState()),
+                            new ColumnBlockPlacer(2, 4)))
+                            .tries(20)
+                            .xspread(16)
+                            .zspread(16)
+                            .whitelist(ImmutableSet.of(JBlocks.VOLCANIC_SAND))
+                            .noProjection()
+                            .build())
+                    .range(250)
+                    .count(10))
                     .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
