@@ -3,7 +3,6 @@ package net.jitl.client.render;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.jitl.JITL;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.FogRenderer;
@@ -14,7 +13,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3d;
@@ -27,8 +25,6 @@ import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
 public class FrozenSkyRenderer implements ISkyRenderHandler {
-    private static final ResourceLocation MOON_LOCATION = JITL.rl("textures/environment/frozen_moon.png");
-    private static final ResourceLocation SUN_LOCATION = JITL.rl("textures/environment/frozen_sun.png");
 
     private final VertexFormat skyFormat = DefaultVertexFormats.POSITION;
     private VertexBuffer starBuffer, skyBuffer;
@@ -95,57 +91,6 @@ public class FrozenSkyRenderer implements ISkyRenderHandler {
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 
         matrixStack.pushPose();
-        /**
-         * This code determines the current angle of the sun and moon and determines whether they should be visible or not.
-         */
-        float timeFactor = world.getDayTime() % 72000;
-        float sunOpacity = 1.0F;
-        float moonOpacity = 0.0F;
-        if (timeFactor > 71400) {
-            timeFactor -= 71400;
-            sunOpacity = timeFactor * 0.005F;
-            moonOpacity = 1.0F - timeFactor * 0.005F;
-        } else if (timeFactor > 38400) {
-            timeFactor -= 38400;
-            sunOpacity = 1.0F - timeFactor * 0.005F;
-            moonOpacity = timeFactor * 0.005F;
-        }
-
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
-        matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
-        Matrix4f matrix4f1 = matrixStack.last().pose();
-
-        float f12;
-        f12 = 30.0F;
-        textureManager.bind(SUN_LOCATION);
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
-        bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
-        bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
-        bufferbuilder.vertex(matrix4f1, -f12, 100.0F, f12).uv(0.0F, 1.0F).endVertex();
-        bufferbuilder.end();
-        WorldVertexBufferUploader.end(bufferbuilder);
-
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, moonOpacity);
-        f12 = 20.0F;
-        textureManager.bind(MOON_LOCATION);
-        int k = world.getMoonPhase();
-        int l = k % 4;
-        int i1 = k / 4 % 2;
-        float f13 = (float) (l + 0) / 4.0F;
-        float f14 = (float) (i1 + 0) / 2.0F;
-        float f15 = (float) (l + 1) / 4.0F;
-        float f16 = (float) (i1 + 1) / 2.0F;
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.vertex(matrix4f1, -f12, -100.0F, f12).uv(f15, f16).endVertex();
-        bufferbuilder.vertex(matrix4f1, f12, -100.0F, f12).uv(f13, f16).endVertex();
-        bufferbuilder.vertex(matrix4f1, f12, -100.0F, -f12).uv(f13, f14).endVertex();
-        bufferbuilder.vertex(matrix4f1, -f12, -100.0F, -f12).uv(f15, f14).endVertex();
-        bufferbuilder.end();
-        WorldVertexBufferUploader.end(bufferbuilder);
-        RenderSystem.disableTexture();
-
         float starBrightness = world.getStarBrightness(partialTicks);
         if (starBrightness > 0.0F) {
             RenderSystem.color4f(starBrightness, starBrightness, starBrightness, starBrightness);
