@@ -104,22 +104,19 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
          */
         float timeFactor = world.getDayTime() % 72000;
         float sunOpacity = 1.0F;
-        float moonOpacity = 0.0F;
         if (timeFactor > 71400) {
             timeFactor -= 71400;
             sunOpacity = timeFactor * 0.005F;
-            moonOpacity = 1.0F - timeFactor * 0.005F;
         } else if (timeFactor > 38400) {
             timeFactor -= 38400;
             sunOpacity = 1.0F - timeFactor * 0.005F;
-            moonOpacity = timeFactor * 0.005F;
         }
 
         renderSky(matrixStack);
 
         Matrix4f matrix4f1 = matrixStack.last().pose();
         float f12;
-        f12 = 30.0F;
+        f12 = 60.0F;
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(-90.0F));

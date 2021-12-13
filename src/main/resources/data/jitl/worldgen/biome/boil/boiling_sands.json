@@ -7,10 +7,10 @@
   "precipitation": "none",
   "category": "nether",
   "effects": {
-    "sky_color": 3947070,
-    "fog_color": 3947070,
-    "water_color": 3947070,
-    "water_fog_color": 3947070,
+    "sky_color": 4262144,
+    "fog_color": 4262144,
+    "water_color": 4262144,
+    "water_fog_color": 4262144,
     "particle": {
       "options": {
         "type": "jitl:sulphur"

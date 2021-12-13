@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 public class BoilRenderInfo extends DimensionRenderInfo {
 
     public BoilRenderInfo() {
-        super(256.0F, true, FogType.NORMAL, false, false);
+        super(140.0F, true, FogType.NORMAL, false, false);
     }
 
     @Override
