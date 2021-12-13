@@ -6,12 +6,15 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.jitl.common.entity.base.JVillagerEntity;
 import net.jitl.common.entity.base.trades.MapTrade;
 import net.jitl.init.JStructures;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapDecoration;
+
+import javax.annotation.Nullable;
 
 public class AlloyMenderEntity extends JVillagerEntity {
 
@@ -26,5 +29,11 @@ public class AlloyMenderEntity extends JVillagerEntity {
     @Override
     protected Int2ObjectMap<VillagerTrades.ITrade[]> getVillagerTrades() {
         return TRADES;
+    }
+
+    @Nullable
+    @Override
+    protected Screen getDialogue() {
+        return null;
     }
 }

@@ -6,15 +6,19 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.jitl.common.entity.base.JVillagerEntity;
 import net.jitl.common.entity.base.trades.CurrencyForItemsTrade;
 import net.jitl.init.JItems;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class MageEntity extends JVillagerEntity {
 
@@ -45,6 +49,12 @@ public class MageEntity extends JVillagerEntity {
     @Override
     protected Int2ObjectMap<VillagerTrades.ITrade[]> getVillagerTrades() {
         return TRADES;
+    }
+
+    @Nullable
+    @Override
+    protected Screen getDialogue() {
+        return null;
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {

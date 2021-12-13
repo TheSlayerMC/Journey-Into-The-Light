@@ -2,6 +2,8 @@ package net.jitl.common.entity.base;
 
 import com.google.common.collect.Sets;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.INPC;
@@ -52,6 +54,9 @@ public abstract class JVillagerEntity extends CreatureEntity implements INPC, IM
 
     protected abstract Int2ObjectMap<VillagerTrades.ITrade[]> getVillagerTrades();
 
+    @Nullable
+    protected abstract Screen getDialogue();
+
     protected void provideTrades() {
         VillagerTrades.ITrade[] trades = getVillagerTrades().get(1);
         if (trades != null) {
@@ -91,12 +96,20 @@ public abstract class JVillagerEntity extends CreatureEntity implements INPC, IM
     @Override
     public ActionResultType mobInteract(PlayerEntity playerEntity, Hand playerHand) {
         if (isAlive() && this.playerEntity == null) {
-            if (getOffers().isEmpty()) {
-                return ActionResultType.sidedSuccess(level.isClientSide());
+            if (getDialogue() == null) {
+                if (getOffers().isEmpty()) {
+                    return ActionResultType.sidedSuccess(level.isClientSide());
+                } else {
+                    if (!level.isClientSide()) {
+                        setTradingPlayer(playerEntity);
+                        openTradingScreen(playerEntity, getDisplayName(), 1);
+                    }
+                    return ActionResultType.sidedSuccess(level.isClientSide());
+                }
             } else {
-                if (!level.isClientSide()) {
-                    setTradingPlayer(playerEntity);
-                    openTradingScreen(playerEntity, getDisplayName(), 1);
+                if (level.isClientSide()) {
+                    Minecraft minecraft = Minecraft.getInstance();
+                    minecraft.setScreen(getDialogue());
                 }
                 return ActionResultType.sidedSuccess(level.isClientSide());
             }

@@ -3,9 +3,13 @@ package net.jitl.common.entity.frozen;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.jitl.JITL;
+import net.jitl.client.dialogue.ClientDialogueNode;
+import net.jitl.client.render.gui.dialogue.DialogueScreen;
 import net.jitl.common.entity.base.JVillagerEntity;
 import net.jitl.common.entity.base.trades.CurrencyForItemsTrade;
 import net.jitl.init.JItems;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -14,6 +18,10 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EskimoEntity extends JVillagerEntity {
 
@@ -28,6 +36,15 @@ public class EskimoEntity extends JVillagerEntity {
     @Override
     protected Int2ObjectMap<VillagerTrades.ITrade[]> getVillagerTrades() {
         return TRADES;
+    }
+
+    @Nullable
+    @Override
+    protected Screen getDialogue() {
+        List<String> options = new ArrayList<>();
+        options.add("farts");
+        options.add("nuts");
+        return new DialogueScreen(new ClientDialogueNode(JITL.rl("eskimo"), "poop", options));
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
