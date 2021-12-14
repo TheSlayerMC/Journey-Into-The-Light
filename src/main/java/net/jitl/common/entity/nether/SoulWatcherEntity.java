@@ -3,9 +3,9 @@ package net.jitl.common.entity.nether;
 import net.jitl.JITL;
 import net.jitl.client.render.gui.BossBarRenderer;
 import net.jitl.client.render.gui.EyeBarRenderer;
+import net.jitl.common.entity.base.BossCrystalEntity;
 import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.common.entity.goal.IdleHealGoal;
-import net.jitl.common.entity.overworld.FloroEntity;
 import net.jitl.common.helper.JBossInfo;
 import net.jitl.common.helper.JMusic;
 import net.jitl.init.JAnimations;
@@ -16,26 +16,29 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.RangedAttackGoal;
-import net.minecraft.entity.monster.GhastEntity;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.SmallFireballEntity;
+import net.minecraft.loot.LootTables;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
+import net.minecraft.world.server.ServerWorld;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.AnimationStarter;
 import ru.timeconqueror.timecore.animation.AnimationSystem;
 import ru.timeconqueror.timecore.api.animation.AnimatedObject;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
+
+import javax.annotation.Nullable;
+import java.util.Collections;
 
 public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, AnimatedObject<SoulWatcherEntity>, IRangedAttackMob {
     private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
@@ -122,6 +125,34 @@ public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, Ani
                 setClosed(true);
             }
             return hurt;
+        }
+    }
+
+    @Nullable
+    protected ResourceLocation getCrystalLootTable() {
+        return LootTables.BASTION_HOGLIN_STABLE;
+    }
+
+    @Nullable
+    protected BossCrystalEntity.Type getDeathCrystalType() {
+        return BossCrystalEntity.Type.NETHER;
+    }
+
+    @Override //TODO somehow merge with EntityFlyingBoss
+    public void tickDeath() {
+        if (!level.isClientSide()) {
+            BossCrystalEntity.Type crystalType = getDeathCrystalType();
+            if (crystalType != null) {
+                ResourceLocation lootTable = getCrystalLootTable();
+                BossCrystalEntity crystal;
+                if (lootTable == null) {
+                    crystal = BossCrystalEntity.create(level, getPosition(0), getDeathCrystalType(), Collections.emptyList());
+                } else {
+                    crystal = BossCrystalEntity.create((ServerWorld) level, getPosition(0), getDeathCrystalType(), null, lootTable, 0L);
+                }
+
+                level.addFreshEntity(crystal);
+            }
         }
     }
 

@@ -1,0 +1,52 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.ModelBossCrystal",
+        "texture_width": 32,
+        "texture_height": 32,
+        "visible_bounds_width": 4,
+        "visible_bounds_height": 2,
+        "visible_bounds_offset": [
+          0,
+          0,
+          0
+        ]
+      },
+      "bones": [
+        {
+          "name": "crystal",
+          "pivot": [
+            -0.17678,
+            5.34467,
+            -0.0047
+          ],
+          "rotation": [
+            45,
+            0,
+            45
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -3.17678,
+                2.34467,
+                -3.0047
+              ],
+              "size": [
+                6,
+                6,
+                6
+              ],
+              "uv": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

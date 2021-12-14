@@ -44,6 +44,7 @@ public class EskimoEntity extends JVillagerEntity {
         List<String> options = new ArrayList<>();
         options.add("farts");
         options.add("nuts");
+        options.add("butts");
         return new DialogueScreen(new ClientDialogueNode(JITL.rl("eskimo"), "poop", options));
     }
 

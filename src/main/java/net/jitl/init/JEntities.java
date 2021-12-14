@@ -2,6 +2,7 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.entity.EssenciaBoltEntity;
+import net.jitl.common.entity.base.BossCrystalEntity;
 import net.jitl.common.entity.frozen.EskimoEntity;
 import net.jitl.common.entity.frozen.FrozenTrollEntity;
 import net.jitl.common.entity.frozen.ShattererEntity;
@@ -236,6 +237,13 @@ public class JEntities {
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.4F, 0.4F))
+            .retrieve();
+
+    public static final EntityType<BossCrystalEntity> BOSS_CRYSTAL_TYPE = REGISTER.register("boss_crystal",
+            Builder.<BossCrystalEntity>of(BossCrystalEntity::new, EntityClassification.MISC)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(1.0F, 3.0F))
             .retrieve();
 }
 

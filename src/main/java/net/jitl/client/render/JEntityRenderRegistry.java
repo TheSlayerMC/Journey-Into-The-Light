@@ -3,6 +3,7 @@ package net.jitl.client.render;
 import net.jitl.JITL;
 import net.jitl.client.render.entity.*;
 import net.jitl.client.render.entity.base.Entity2DRenderer;
+import net.jitl.common.entity.base.BossCrystalEntity;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.FloroEntity;
@@ -25,11 +26,13 @@ public class JEntityRenderRegistry {
     public static TimeEntityModel<GlumpEntity> glumpModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/glump.json"));
     public static TimeEntityModel<IllagerMechEntity> illagerMechModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/illager_mech.json"));
     public static TimeEntityModel<SoulWatcherEntity> soulWatcherModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/soul_watcher.json"));
+    public static TimeEntityModel<BossCrystalEntity> bossCrystalModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/boss_crystal.json"));
 
     public static void registerEntityRenders() {
         //Misc
         RenderingRegistry.registerEntityRenderingHandler(JEntities.ESSENCIA_BOLT_TYPE, EssenciaBoltRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.EFFECT_CLOUD_TYPE, ParticleProjectileRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.BOSS_CRYSTAL_TYPE, BossCrystalRenderer::new);
 
         //Mobs
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_TYPE, FloroRenderer::new);
