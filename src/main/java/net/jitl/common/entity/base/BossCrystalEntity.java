@@ -92,6 +92,7 @@ public class BossCrystalEntity extends Entity implements IEntityAdditionalSpawnD
     @Override
     public @NotNull ActionResultType interact(@NotNull PlayerEntity player, @NotNull Hand handIn) {
         if (!level.isClientSide()) {
+            JITL.LOGGER.info("interact");
             for (Iterator<ItemStack> iterator = storedItems.iterator(); iterator.hasNext(); ) {
                 ItemStack itemStack = iterator.next();
                 if (player.addItem(itemStack)) {
