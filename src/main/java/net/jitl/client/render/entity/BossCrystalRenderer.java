@@ -18,16 +18,16 @@ public class BossCrystalRenderer extends AnimatedEntityRenderer<BossCrystalEntit
     }
 
     @Override
-    protected void preRenderCallback(BossCrystalEntity entity, MatrixStack matrixStack, float partialTicks) {
-        super.preRenderCallback(entity, matrixStack, partialTicks);
+    protected void setupAnimations(BossCrystalEntity entity, MatrixStack matrixStackIn, float partialTicks) {
+        super.setupAnimations(entity, matrixStackIn, partialTicks);
+
         Minecraft minecraft = Minecraft.getInstance();
         long worldTime = minecraft.level.getGameTime();
 
         float angle = worldTime % 360;
         float yScale = 4.5F;
 
-        TimeModelRenderer crystalPiece = Objects.requireNonNull(entityModel.getPiece("crystal"));
-
+        TimeModelRenderer crystalPiece = Objects.requireNonNull(model.getPiece("crystal"));
         crystalPiece.yRot = (angle + partialTicks) * ((float) Math.PI / 180F);
         crystalPiece.setScaleFactor(1, yScale, 1);
     }
