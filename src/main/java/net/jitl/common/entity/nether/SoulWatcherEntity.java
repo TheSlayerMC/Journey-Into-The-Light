@@ -52,7 +52,6 @@ public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, Ani
 
     public SoulWatcherEntity(EntityType<? extends SoulWatcherEntity> type, World worldIn) {
         super(type, worldIn);
-
         animationSystem = AnimationSystemBuilder.forEntity(this, worldIn, builder -> {
             builder.addLayer(LAYER_IDLE, BlendType.OVERRIDE, 1F);
             builder.addLayer(LAYER_CLOSED, BlendType.ADDING, 1F);
@@ -138,8 +137,8 @@ public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, Ani
         return BossCrystalEntity.Type.NETHER;
     }
 
-    @Override //TODO somehow merge with EntityFlyingBoss
-    public void tickDeath() {
+    @Override
+    public void onRemovedFromWorld() {
         if (!level.isClientSide()) {
             BossCrystalEntity.Type crystalType = getDeathCrystalType();
             if (crystalType != null) {
