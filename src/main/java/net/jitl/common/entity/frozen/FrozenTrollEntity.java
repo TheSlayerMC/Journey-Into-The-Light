@@ -1,6 +1,6 @@
 package net.jitl.common.entity.frozen;
 
-import net.jitl.init.JBiomeRegistry;
+import net.jitl.JITL;
 import net.jitl.init.JSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -9,7 +9,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -18,9 +17,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class FrozenTrollEntity extends MonsterEntity {
@@ -40,9 +39,9 @@ public class FrozenTrollEntity extends MonsterEntity {
 
     public static boolean canSpawn(EntityType<? extends CreatureEntity> entityType, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
         return !worldIn.getBlockState(pos).is(Blocks.WATER)
-                || worldIn.getBiome(pos).getBiomeCategory() == JBiomeRegistry.FROZEN_WASTES.getBiomeCategory()
-                || worldIn.getBiome(pos).getBiomeCategory() == JBiomeRegistry.FROZEN_DYING_FOREST.getBiomeCategory()
-                || worldIn.getBiome(pos).getBiomeCategory() == JBiomeRegistry.FROZEN_BITTERWOOD_FOREST.getBiomeCategory();
+                || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("frozen_wastes"))
+                || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("dying_forest"))
+                || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("bitterwood_forest"));
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
@@ -53,15 +52,27 @@ public class FrozenTrollEntity extends MonsterEntity {
     }
 
     @Override
-    public boolean doHurtTarget(Entity entityIn) {
-        if(super.doHurtTarget(entityIn)) {
-            if(entityIn instanceof LivingEntity) {
-                entityIn.setDeltaMovement(entityIn.getDeltaMovement().add((float) (-MathHelper.sin((float) (this.lerpYRot * Math.PI / 180.0F))) * 2, 0.1D, (float) (MathHelper.cos((float) (this.lerpYRot * Math.PI / 180.0F))) * 2));
+    public boolean doHurtTarget(@NotNull Entity entityIn) {
+        if (super.doHurtTarget(entityIn)) {
+            if (entityIn instanceof LivingEntity) {
+                entityIn.setDeltaMovement(entityIn.getDeltaMovement().add(-MathHelper.sin((float) (this.lerpYRot * Math.PI / 180.0F)) * 2, 0.1D, MathHelper.cos((float) (this.lerpYRot * Math.PI / 180.0F)) * 2));
             }
             return true;
         } else {
             return false;
         }
+    }
+
+    protected SoundEvent getAmbientSound() {
+        return JSounds.FROZEN_TROLL_AMBIENT.get();
+    }
+
+    protected SoundEvent getHurtSound(@NotNull DamageSource damageSourceIn) {
+        return JSounds.FROZEN_TROLL_HURT.get();
+    }
+
+    protected SoundEvent getDeathSound() {
+        return JSounds.FROZEN_TROLL_DEATH.get();
     }
 
     @Override

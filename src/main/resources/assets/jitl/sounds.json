@@ -251,6 +251,31 @@
       "jitl:entities/glump_death"
     ]
   },
+  "entities.frozen_troll_ambient": {
+    "sounds": [
+      "jitl:entities/frozen_troll_ambient_0",
+      "jitl:entities/frozen_troll_ambient_1",
+      "jitl:entities/frozen_troll_ambient_2"
+    ]
+  },
+  "entities.frozen_troll_hurt": {
+    "sounds": [
+      "jitl:entities/frozen_troll_hurt_0",
+      "jitl:entities/frozen_troll_hurt_1"
+    ]
+  },
+  "entities.frozen_troll_death": {
+    "sounds": [
+      "jitl:entities/frozen_troll_death_0"
+    ]
+  },
+  "entities.frozen_troll_intrigued": {
+    "sounds": [
+      "jitl:entities/frozen_troll_intrigued_0",
+      "jitl:entities/frozen_troll_intrigued_1",
+      "jitl:entities/frozen_troll_intrigued_2"
+    ]
+  },
   "entities.illager_mech_step": {
     "sounds": [
       "jitl:entities/illager_mech_step_1",

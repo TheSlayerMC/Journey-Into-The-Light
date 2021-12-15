@@ -56,6 +56,11 @@ public class JSounds {
     public static final RegistryObject<TimeSound> GLUMP_HURT = REGISTER.register("entities.glump_hurt");
     public static final RegistryObject<TimeSound> GLUMP_DEATH = REGISTER.register("entities.glump_death");
 
+    public static final RegistryObject<TimeSound> FROZEN_TROLL_AMBIENT = REGISTER.register("entities.frozen_troll_ambient");
+    public static final RegistryObject<TimeSound> FROZEN_TROLL_HURT = REGISTER.register("entities.frozen_troll_hurt");
+    public static final RegistryObject<TimeSound> FROZEN_TROLL_DEATH = REGISTER.register("entities.frozen_troll_death");
+    public static final RegistryObject<TimeSound> FROZEN_TROLL_INTRIGUED = REGISTER.register("entities.frozen_troll_intrigued");
+
     public static final RegistryObject<TimeSound> ILLAGER_MECH_STEP = REGISTER.register("entities.illager_mech_step");
     public static final RegistryObject<TimeSound> ILLAGER_MECH_HURT = REGISTER.register("entities.illager_mech_hurt");
     public static final RegistryObject<TimeSound> ILLAGER_MECH_DEATH = REGISTER.register("entities.illager_mech_death");

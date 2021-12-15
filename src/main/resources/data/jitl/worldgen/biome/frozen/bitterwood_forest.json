@@ -28,7 +28,22 @@
     }
   },
   "starts": [],
-  "spawners": {},
+  "spawners": {
+    "monster": [
+      {
+        "type": "jitl:shatterer",
+        "weight": 4,
+        "minCount": 1,
+        "maxCount": 1
+      },
+      {
+        "type": "jitl:frozen_troll",
+        "weight": 20,
+        "minCount": 1,
+        "maxCount": 4
+      }
+    ]
+  },
   "spawn_costs": {},
   "carvers": {
     "air": [

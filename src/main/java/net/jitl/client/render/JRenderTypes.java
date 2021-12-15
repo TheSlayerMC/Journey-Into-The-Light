@@ -47,7 +47,9 @@ public class JRenderTypes extends RenderType {
                 texture,
                 builder -> builder
                         .setTransparencyState(TransparencyState.ADDITIVE_TRANSPARENCY)
+                        .setDiffuseLightingState(DIFFUSE_LIGHTING)
                         .setAlphaState(MIDWAY_ALPHA)
-                        .createCompositeState(false));
+                        .setLightmapState(LIGHTMAP)
+                        .createCompositeState(true));
     }
 }
