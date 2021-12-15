@@ -31,9 +31,23 @@ public class JRenderTypes extends RenderType {
     }
 
     public static RenderType fullbrightCutout(ResourceLocation texture) {
-        return RenderHelper.rtTextured(JITL.rl("fullbright_cutout"), GLDrawMode.QUADS, DefaultVertexFormats.POSITION_TEX, texture, builder -> {
-            builder.setShadeModelState(SMOOTH_SHADE)
-                    .setAlphaState(MIDWAY_ALPHA);
-        });
+        return RenderHelper.rtTextured(JITL.rl("fullbright_cutout"),
+                GLDrawMode.QUADS,
+                DefaultVertexFormats.POSITION_TEX,
+                texture,
+                builder -> builder
+                        .setShadeModelState(SMOOTH_SHADE)
+                        .setAlphaState(MIDWAY_ALPHA));
+    }
+
+    public static RenderType transparentCutout(ResourceLocation texture) {
+        return RenderHelper.rtTextured(JITL.rl("transparent_cutout"),
+                GLDrawMode.QUADS,
+                DefaultVertexFormats.POSITION_TEX,
+                texture,
+                builder -> builder
+                        .setTransparencyState(TransparencyState.ADDITIVE_TRANSPARENCY)
+                        .setAlphaState(MIDWAY_ALPHA)
+                        .createCompositeState(false));
     }
 }

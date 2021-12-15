@@ -5,9 +5,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
@@ -27,9 +25,6 @@ public class ShattererEntity extends FlyingEntity implements IMob {
     protected void registerGoals() {
         this.goalSelector.addGoal(5, new ShattererEntity.RandomFlyGoal(this));
         this.goalSelector.addGoal(7, new ShattererEntity.LookAroundGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, (livingEntity_) -> {
-            return Math.abs(livingEntity_.getY() - this.getY()) <= 4.0D;
-        }));
     }
 
     protected boolean shouldDespawnInPeaceful() {
@@ -67,21 +62,9 @@ public class ShattererEntity extends FlyingEntity implements IMob {
 
         @Override
         public void tick() {
-            if(this.shatterer.getTarget() == null) {
-                Vector3d vector3d = this.shatterer.getDeltaMovement();
-                this.shatterer.yRot = -((float) MathHelper.atan2(vector3d.x, vector3d.z)) * (180F / (float)Math.PI);
-                this.shatterer.yBodyRot = this.shatterer.yRot;
-            } else {
-                LivingEntity livingentity = this.shatterer.getTarget();
-                double d0 = 64.0D;
-                if(livingentity.distanceToSqr(this.shatterer) < 4096.0D) {
-                    double d1 = livingentity.getX() - this.shatterer.getX();
-                    double d2 = livingentity.getZ() - this.shatterer.getZ();
-                    this.shatterer.yRot = -((float)MathHelper.atan2(d1, d2)) * (180F / (float)Math.PI);
-                    this.shatterer.yBodyRot = this.shatterer.yRot;
-                }
-            }
-
+            Vector3d vector3d = this.shatterer.getDeltaMovement();
+            this.shatterer.yRot = -((float) MathHelper.atan2(vector3d.x, vector3d.z)) * (180F / (float) Math.PI);
+            this.shatterer.yBodyRot = this.shatterer.yRot;
         }
     }
 
@@ -98,7 +81,7 @@ public class ShattererEntity extends FlyingEntity implements IMob {
         public void tick() {
             if(this.operation == MovementController.Action.MOVE_TO) {
                 if(this.floatDuration-- <= 0) {
-                    this.floatDuration += this.shatterer.getRandom().nextInt(5) + 2;
+                    this.floatDuration += this.shatterer.getRandom().nextInt(3) + 1;
                     Vector3d vector3d = new Vector3d(this.wantedX - this.shatterer.getX(), this.wantedY - this.shatterer.getY(), this.wantedZ - this.shatterer.getZ());
                     double d0 = vector3d.length();
                     vector3d = vector3d.normalize();
@@ -159,7 +142,7 @@ public class ShattererEntity extends FlyingEntity implements IMob {
             double d0 = this.shatterer.getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
             double d1 = this.shatterer.getY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
             double d2 = this.shatterer.getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-            this.shatterer.getMoveControl().setWantedPosition(d0, d1, d2, 1.0D);
+            this.shatterer.getMoveControl().setWantedPosition(d0, d1, d2, 0.3D);
         }
     }
 }

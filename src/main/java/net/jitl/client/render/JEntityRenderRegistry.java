@@ -26,7 +26,8 @@ public class JEntityRenderRegistry {
     public static TimeEntityModel<GlumpEntity> glumpModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/glump.json"));
     public static TimeEntityModel<IllagerMechEntity> illagerMechModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/illager_mech.json"));
     public static TimeEntityModel<SoulWatcherEntity> soulWatcherModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/soul_watcher.json"));
-    public static TimeEntityModel<BossCrystalEntity> bossCrystalModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/boss_crystal.json"));
+    public static TimeEntityModel<BossCrystalEntity> bossCrystalModel = TimeModelLoader.loadJsonEntityModel(
+            new ResourceLocation(JITL.MODID, "models/entity/boss_crystal.json"), JRenderTypes::transparentCutout);
 
     public static void registerEntityRenders() {
         //Misc
