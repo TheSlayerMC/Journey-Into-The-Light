@@ -2,6 +2,7 @@ package net.jitl.common.entity.frozen;
 
 import net.jitl.JITL;
 import net.jitl.common.entity.BlueLightningEntity;
+import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JEntities;
 import net.jitl.init.JSounds;
@@ -58,18 +59,20 @@ public class FrozenGuardianEntity extends CreatureEntity {
         int check_radius = 8;
             final World world = this.level;
             final BlockPos entityPos = new BlockPos(this.position());
+            if(!level.isClientSide) {
             for (int x = -check_radius; x <= check_radius; x++) {
                 for (int z = -check_radius; z <= check_radius; z++) {
-                    for(int y = -check_radius; y <= check_radius; y++) {
+                    for (int y = -check_radius; y <= check_radius; y++) {
                         final BlockPos pos = entityPos.offset(x, y, z);
                         final Block block = world.getBlockState(pos).getBlock();
-                        if(block == JBlocks.FROZEN_PEDISTAL) {
-                            BlueLightningEntity bolt = new BlueLightningEntity(JEntities.BLUE_LIGHTNING_TYPE, level);
+                        if (block == JBlocks.FROZEN_PEDISTAL) {
+                            EssenciaBoltEntity bolt = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);//Fix blue lightning not rendering
                             bolt.setPos(pos.getX(), pos.getY() + 1.2, pos.getZ());
                             this.level.addFreshEntity(bolt);
                         }
                     }
                 }
+            }
         }
         return super.mobInteract(playerEntity_, hand_);
     }
