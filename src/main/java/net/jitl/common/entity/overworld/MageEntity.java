@@ -24,17 +24,17 @@ import javax.annotation.Nullable;
 public class MageEntity extends JVillagerEntity {
 
     private static final Int2ObjectMap<VillagerTrades.ITrade[]> TRADES = new Int2ObjectOpenHashMap<>(ImmutableMap.of(1, new VillagerTrades.ITrade[]{
-            new CurrencyForItemsTrade(JItems.POWDER_OF_ESSENCIA, 32, JItems.LUNIUM_POWDER, 32, 12, 5),
-            new CurrencyForItemsTrade(JItems.SAPPHIRE, 16, JItems.LOOT_POUCH_BASIC, 1, 12, 5),
-            new CurrencyForItemsTrade(JItems.LUNIUM_POWDER, 8, JItems.SAPPHIRE, 1, 12, 5),
-            new CurrencyForItemsTrade(JItems.SAPPHIRE, 16, Items.FERMENTED_SPIDER_EYE, 2, 12, 5),
-            new CurrencyForItemsTrade(JItems.SAPPHIRE, 10, Items.GUNPOWDER, 4, 12, 5),
-            new CurrencyForItemsTrade(JItems.SAPPHIRE, 4, Items.REDSTONE, 8, 12, 5),
-            new CurrencyForItemsTrade(JItems.SAPPHIRE, 16, Items.PHANTOM_MEMBRANE, 2, 12, 5),
-            new CurrencyForItemsTrade(JItems.SAPPHIRE, 16, Items.GHAST_TEAR, 4, 12, 5),
-            new CurrencyForItemsTrade(JItems.SAPPHIRE, 16, Items.MAGMA_CREAM, 8, 12, 5),
-            new CurrencyForItemsTrade(JItems.SAPPHIRE, 8, Items.GLOWSTONE_DUST, 4, 12, 5),
-            new CurrencyForItemsTrade(JItems.SAPPHIRE, 32, Items.BLAZE_POWDER, 8, 12, 5)
+            new CurrencyForItemsTrade(JItems.POWDER_OF_ESSENCIA, 32, JItems.LUNIUM_POWDER, 32, 99, 5),
+            new CurrencyForItemsTrade(JItems.SAPPHIRE, 16, JItems.LOOT_POUCH_BASIC, 1, 99, 5),
+            new CurrencyForItemsTrade(JItems.LUNIUM_POWDER, 8, JItems.SAPPHIRE, 1, 99, 5),
+            new CurrencyForItemsTrade(JItems.SAPPHIRE, 16, Items.FERMENTED_SPIDER_EYE, 2, 99, 5),
+            new CurrencyForItemsTrade(JItems.SAPPHIRE, 10, Items.GUNPOWDER, 4, 99, 5),
+            new CurrencyForItemsTrade(JItems.SAPPHIRE, 4, Items.REDSTONE, 8, 99, 5),
+            new CurrencyForItemsTrade(JItems.SAPPHIRE, 16, Items.PHANTOM_MEMBRANE, 2, 99, 5),
+            new CurrencyForItemsTrade(JItems.SAPPHIRE, 16, Items.GHAST_TEAR, 4, 99, 5),
+            new CurrencyForItemsTrade(JItems.SAPPHIRE, 16, Items.MAGMA_CREAM, 8, 99, 5),
+            new CurrencyForItemsTrade(JItems.SAPPHIRE, 8, Items.GLOWSTONE_DUST, 4, 99, 5),
+            new CurrencyForItemsTrade(JItems.SAPPHIRE, 32, Items.BLAZE_POWDER, 8, 99, 5)
     }));
 
     public MageEntity(EntityType<? extends JVillagerEntity> type, World worldIn) {
