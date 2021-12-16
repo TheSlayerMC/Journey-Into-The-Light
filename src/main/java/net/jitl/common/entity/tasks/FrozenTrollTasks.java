@@ -54,7 +54,7 @@ public class FrozenTrollTasks {
     protected static void stopHoldingOffHandItem(FrozenTrollEntity frozenTrollEntity, boolean boolean_) {
         ItemStack itemstack = frozenTrollEntity.getItemInHand(Hand.OFF_HAND);
         frozenTrollEntity.setItemInHand(Hand.OFF_HAND, ItemStack.EMPTY);
-        boolean flag = itemstack.isPiglinCurrency();
+        boolean flag = itemstack.getItem() == BARTERING_ITEM;
         if (boolean_ && flag) {
             throwItems(frozenTrollEntity, getBarterResponseItems(frozenTrollEntity));
         } else if (!flag) {
@@ -151,7 +151,7 @@ public class FrozenTrollTasks {
     }
 
     public static boolean canAdmire(FrozenTrollEntity frozenTrollEntity, ItemStack itemStack_) {
-        return !isAdmiringDisabled(frozenTrollEntity) && !isAdmiringItem(frozenTrollEntity) && itemStack_.isPiglinCurrency();
+        return !isAdmiringDisabled(frozenTrollEntity) && !isAdmiringItem(frozenTrollEntity) && itemStack_.getItem() == BARTERING_ITEM;
     }
 
     public static Optional<SoundEvent> getSoundForCurrentActivity(FrozenTrollEntity frozenTrollEntity) {
