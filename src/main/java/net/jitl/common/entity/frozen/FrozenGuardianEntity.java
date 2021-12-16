@@ -1,7 +1,9 @@
 package net.jitl.common.entity.frozen;
 
 import net.jitl.JITL;
+import net.jitl.common.entity.BlueLightningEntity;
 import net.jitl.init.JBlocks;
+import net.jitl.init.JEntities;
 import net.jitl.init.JSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,6 +13,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -53,26 +56,20 @@ public class FrozenGuardianEntity extends CreatureEntity {
     @Override
     protected ActionResultType mobInteract(PlayerEntity playerEntity_, Hand hand_) {
         int check_radius = 8;
-        if(!this.level.isClientSide) {
             final World world = this.level;
             final BlockPos entityPos = new BlockPos(this.position());
-
             for (int x = -check_radius; x <= check_radius; x++) {
                 for (int z = -check_radius; z <= check_radius; z++) {
-                    if (x == 0 && z == 0) {
-                        continue;
-                    }
-
-                    final BlockPos pos = entityPos.offset(x, 0, z);
-                    final Block block = world.getBlockState(pos).getBlock();
-
-                    if (block == JBlocks.FROZEN_PEDISTAL) {
-                        System.out.println("PEDISTAL LOCATED" + " X:" + x + " Z:" + z);
-                        ItemEntity item = new ItemEntity(level, x, this.position().y + 1, z, new ItemStack(Items.APPLE));
-                        this.level.addFreshEntity(item);
+                    for(int y = -check_radius; y <= check_radius; y++) {
+                        final BlockPos pos = entityPos.offset(x, y, z);
+                        final Block block = world.getBlockState(pos).getBlock();
+                        if(block == JBlocks.FROZEN_PEDISTAL) {
+                            BlueLightningEntity bolt = new BlueLightningEntity(JEntities.BLUE_LIGHTNING_TYPE, level);
+                            bolt.setPos(pos.getX(), pos.getY() + 1.2, pos.getZ());
+                            this.level.addFreshEntity(bolt);
+                        }
                     }
                 }
-            }
         }
         return super.mobInteract(playerEntity_, hand_);
     }

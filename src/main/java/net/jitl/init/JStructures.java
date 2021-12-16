@@ -81,7 +81,7 @@ public class JStructures {
                     .asHolder();
 
     public static final StructureHolder<NoFeatureConfig, GuardianRuinStructure> GUARDIAN_RUIN =
-            REGISTER.register("guardian_ruin", GuardianRuinStructure::new, TimeStructureSeparationSettings.create(10, 10), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
+            REGISTER.register("guardian_ruin", GuardianRuinStructure::new, TimeStructureSeparationSettings.create(20, 10), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
                     .transformsSurroundingLand()
                     .setDimensionPredicate(serverWorld -> serverWorld.dimension() == JDimensions.FROZEN_WORLD)
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)

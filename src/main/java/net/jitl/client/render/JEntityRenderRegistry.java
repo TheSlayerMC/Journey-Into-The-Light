@@ -34,6 +34,8 @@ public class JEntityRenderRegistry {
         RenderingRegistry.registerEntityRenderingHandler(JEntities.ESSENCIA_BOLT_TYPE, EssenciaBoltRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.EFFECT_CLOUD_TYPE, ParticleProjectileRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.BOSS_CRYSTAL_TYPE, BossCrystalRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.BLUE_LIGHTNING_TYPE, BlueLightningRenderer::new);
+
 
         //Mobs
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_TYPE, FloroRenderer::new);
