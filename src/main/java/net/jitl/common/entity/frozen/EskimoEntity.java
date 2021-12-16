@@ -15,6 +15,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
@@ -31,6 +32,11 @@ public class EskimoEntity extends JVillagerEntity {
 
     public EskimoEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
     }
 
     @Override
