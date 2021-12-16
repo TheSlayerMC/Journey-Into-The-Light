@@ -49,7 +49,7 @@ public class BloodRuneBlock extends Block {
 				if (rune != null) {
                     EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, worldIn);
                     essenciaBoltEntity.setPos(pos.getX(), pos.above().getY(), pos.getZ());
-                    essenciaBoltEntity.setRGBA(0xff4800);
+                    essenciaBoltEntity.setARGB(0xff4800);
                     essenciaBoltEntity.setVisualOnly(true);
 
                     worldIn.addFreshEntity(essenciaBoltEntity);

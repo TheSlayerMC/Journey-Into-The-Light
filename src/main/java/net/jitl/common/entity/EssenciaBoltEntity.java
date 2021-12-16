@@ -14,38 +14,38 @@ import org.jetbrains.annotations.NotNull;
 public class EssenciaBoltEntity extends LightningBoltEntity {
 	private static final DataParameter<Integer> DATA_COLOR_ID = EntityDataManager.defineId(EssenciaBoltEntity.class, DataSerializers.INT);
 
-	public EssenciaBoltEntity(EntityType<? extends LightningBoltEntity> entityType, World worldIn) {
-		super(entityType, worldIn);
-	}
+    public EssenciaBoltEntity(EntityType<? extends LightningBoltEntity> entityType, World worldIn) {
+        super(entityType, worldIn);
+    }
 
-	@Override
-	public @NotNull IPacket<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
-	}
+    @Override
+    public @NotNull IPacket<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
 
-	public void setRGBA(int rgba) {
-		this.entityData.set(DATA_COLOR_ID, rgba);
-	}
+    public void setARGB(int argb) {
+        this.entityData.set(DATA_COLOR_ID, argb);
+    }
 
-	public int getRGBA() {
-		return this.entityData.get(DATA_COLOR_ID);
-	}
+    public int getARGB() {
+        return this.entityData.get(DATA_COLOR_ID);
+    }
 
-	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(DATA_COLOR_ID, 0);
-	}
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_COLOR_ID, 0);
+    }
 
-	@Override
+    @Override
 	public void addAdditionalSaveData(CompoundNBT compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putInt("Color", getRGBA());
-	}
+        super.addAdditionalSaveData(compound);
+        compound.putInt("Color", getARGB());
+    }
 
 	@Override
 	public void readAdditionalSaveData(CompoundNBT compound) {
-		super.readAdditionalSaveData(compound);
-		this.setRGBA(compound.getInt("Color"));
-	}
+        super.readAdditionalSaveData(compound);
+        this.setARGB(compound.getInt("Color"));
+    }
 }

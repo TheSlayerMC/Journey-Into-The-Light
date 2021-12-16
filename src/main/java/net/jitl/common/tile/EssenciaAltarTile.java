@@ -133,7 +133,7 @@ public class EssenciaAltarTile extends SyncableTile implements ITickableTileEnti
     private void doEffects(World world, BlockPos pos) {
         EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, world);
         essenciaBoltEntity.setPos(pos.getX(), pos.above().getY(), pos.getZ());
-        essenciaBoltEntity.setRGBA(0xff4800);
+        essenciaBoltEntity.setARGB(0xff4800);
         essenciaBoltEntity.setVisualOnly(true);
         world.addFreshEntity(essenciaBoltEntity);
         world.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundCategory.BLOCKS, 1.0F, random.nextFloat() + 0.5F);

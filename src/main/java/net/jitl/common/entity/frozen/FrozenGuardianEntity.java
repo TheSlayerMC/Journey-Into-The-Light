@@ -56,7 +56,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
                         if (block == JBlocks.FROZEN_PEDISTAL) {
                             EssenciaBoltEntity bolt = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);//Fix blue lightning not rendering
                             bolt.setPos(pos.getX(), pos.getY() + 1.2, pos.getZ());
-                            bolt.setRGBA(0x5acbff);
+                            bolt.setARGB(0x5acbff);
                             bolt.setVisualOnly(true);
                             this.level.addFreshEntity(bolt);
                         }
