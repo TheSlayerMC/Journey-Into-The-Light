@@ -2,7 +2,6 @@ package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.jitl.JITL;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -93,12 +92,6 @@ public class EssenciaBoltRenderer extends EntityRenderer<EssenciaBoltEntity> {
                     float red = DrawHelper.getRed(argb) / 255F;
                     float green = DrawHelper.getGreen(argb) / 255F;
                     float blue = DrawHelper.getBlue(argb) / 255F;
-
-                    JITL.LOGGER.info("argb:" + argb);
-
-                    JITL.LOGGER.info("red:" + red);
-                    JITL.LOGGER.info("green:" + green);
-                    JITL.LOGGER.info("blue:" + blue);
 
                     quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, red, green, blue, alpha, oneDirectionExpansion, anotherDirectionExpansion, false, false, true, false);
                     quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, red, green, blue, alpha, oneDirectionExpansion, anotherDirectionExpansion, true, false, true, true);
