@@ -1,34 +1,22 @@
 package net.jitl.common.entity.frozen;
 
-import net.jitl.JITL;
-import net.jitl.common.entity.BlueLightningEntity;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JEntities;
-import net.jitl.init.JSounds;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.dispenser.IPosition;
-import net.minecraft.entity.*;
+import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-import java.util.Optional;
 import java.util.Random;
 
 public class FrozenGuardianEntity extends CreatureEntity {
@@ -68,6 +56,8 @@ public class FrozenGuardianEntity extends CreatureEntity {
                         if (block == JBlocks.FROZEN_PEDISTAL) {
                             EssenciaBoltEntity bolt = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);//Fix blue lightning not rendering
                             bolt.setPos(pos.getX(), pos.getY() + 1.2, pos.getZ());
+                            bolt.setRGBA(0x5acbff);
+                            bolt.setVisualOnly(true);
                             this.level.addFreshEntity(bolt);
                         }
                     }

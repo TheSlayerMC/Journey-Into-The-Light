@@ -2,6 +2,7 @@ package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.jitl.JITL;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -13,6 +14,7 @@ import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+import ru.timeconqueror.timecore.api.util.client.DrawHelper;
 
 import java.util.Random;
 
@@ -85,10 +87,18 @@ public class EssenciaBoltRenderer extends EntityRenderer<EssenciaBoltEntity> {
                     oneDirectionExpansion *= 1F / 3;
                     anotherDirectionExpansion *= 1F / 3;
 
-                    float red = 1.0F;
-                    float green = 0.15F;
-                    float blue = 0.0F;
-                    float alpha = 1.0F;
+                    int argb = entityIn.getRGBA();
+                    int alpha = 1;
+
+                    float red = DrawHelper.getRed(argb) / 255F;
+                    float green = DrawHelper.getGreen(argb) / 255F;
+                    float blue = DrawHelper.getBlue(argb) / 255F;
+
+                    JITL.LOGGER.info("argb:" + argb);
+
+                    JITL.LOGGER.info("red:" + red);
+                    JITL.LOGGER.info("green:" + green);
+                    JITL.LOGGER.info("blue:" + blue);
 
                     quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, red, green, blue, alpha, oneDirectionExpansion, anotherDirectionExpansion, false, false, true, false);
                     quad(matrix4f, ivertexbuilder, f2, f3, j1, f4, f5, red, green, blue, alpha, oneDirectionExpansion, anotherDirectionExpansion, true, false, true, true);

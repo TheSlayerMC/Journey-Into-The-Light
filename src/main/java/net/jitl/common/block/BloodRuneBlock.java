@@ -47,18 +47,19 @@ public class BloodRuneBlock extends Block {
 				}
 
 				if (rune != null) {
-					EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, worldIn);
-					essenciaBoltEntity.setPos(pos.getX(), pos.above().getY(), pos.getZ());
-					essenciaBoltEntity.setVisualOnly(true);
+                    EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, worldIn);
+                    essenciaBoltEntity.setPos(pos.getX(), pos.above().getY(), pos.getZ());
+                    essenciaBoltEntity.setRGBA(0xff4800);
+                    essenciaBoltEntity.setVisualOnly(true);
 
-					worldIn.addFreshEntity(essenciaBoltEntity);
-					worldIn.setBlock(pos, rune.defaultBlockState(), 1);
-					itementity.remove();
-					worldIn.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundCategory.BLOCKS, 1.0F, player.getRandom().nextFloat() + 0.5F);
-					if (!player.isCreative()) {
-						inHandItem.shrink(1);
-					}
-					if (worldIn.isClientSide) {
+                    worldIn.addFreshEntity(essenciaBoltEntity);
+                    worldIn.setBlock(pos, rune.defaultBlockState(), 1);
+                    itementity.remove();
+                    worldIn.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundCategory.BLOCKS, 1.0F, player.getRandom().nextFloat() + 0.5F);
+                    if (!player.isCreative()) {
+                        inHandItem.shrink(1);
+                    }
+                    if (worldIn.isClientSide) {
 						spawnParticles(worldIn, player, pos);
 					}
 				} else {

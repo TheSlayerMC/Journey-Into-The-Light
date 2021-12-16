@@ -53,6 +53,7 @@ public class EssenciaProjectileEntity extends DamagingProjectileEntity {
     protected void onEntityImpact(RayTraceResult result, Entity target) {
         EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);
         essenciaBoltEntity.setPos(result.getLocation().x(), result.getLocation().y(), result.getLocation().z());
+        essenciaBoltEntity.setRGBA(0xff4800);
         level.addFreshEntity(essenciaBoltEntity);
     }
 

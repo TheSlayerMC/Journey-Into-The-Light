@@ -1,7 +1,6 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
-import net.jitl.common.entity.BlueLightningEntity;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.base.BossCrystalEntity;
 import net.jitl.common.entity.frozen.EskimoEntity;
@@ -193,14 +192,6 @@ public class JEntities {
                     .sized(0.0F, 0.0F)
                     .clientTrackingRange(16)
                     .updateInterval(Integer.MAX_VALUE))
-            .retrieve();
-
-    public static final EntityType<BlueLightningEntity> BLUE_LIGHTNING_TYPE = REGISTER.register("blue_lightning",
-                    Builder.of(BlueLightningEntity::new, EntityClassification.MISC)
-                            .noSave()
-                            .sized(0.0F, 0.0F)
-                            .clientTrackingRange(16)
-                            .updateInterval(Integer.MAX_VALUE))
             .retrieve();
 
     public static final EntityType<FloroMudEntity> FLORO_MUD_TYPE = REGISTER.register("floro_mud",
