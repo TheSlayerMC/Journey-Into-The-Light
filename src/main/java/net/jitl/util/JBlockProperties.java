@@ -291,6 +291,8 @@ public class JBlockProperties {
 			.harvestTool(ToolType.AXE)
 			.strength(2.0F, 3.0F));
 
+
+
 	private static boolean never(BlockState state, IBlockReader reader, BlockPos pos) {
 		return false;
 	}

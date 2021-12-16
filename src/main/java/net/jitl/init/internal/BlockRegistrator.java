@@ -289,7 +289,7 @@ public class BlockRegistrator {
         registerLogBlock("euca_brown_log", "Brown Euca Log");
         registerLogBlock("frozen_log", "Frosty Log");
 
-        registerCampfireBlock("bitterwood_campfire", "Bitterwood Campfire", () -> new CampfireBlock(true, 1, JBlockProperties.WOOD_PROPS.create()));
+        registerCampfireBlock("bitterwood_campfire", "Bitterwood Campfire", () -> new CampfireBlock(true, 1, JBlockProperties.WOOD_PROPS.create().noOcclusion()));
 
         registerCustomRenderLayerBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("euca_silver_leaves", "Euca Silver Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
