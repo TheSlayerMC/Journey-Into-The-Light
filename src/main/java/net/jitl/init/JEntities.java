@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.base.BossCrystalEntity;
 import net.jitl.common.entity.frozen.EskimoEntity;
+import net.jitl.common.entity.frozen.FrozenGuardianEntity;
 import net.jitl.common.entity.frozen.FrozenTrollEntity;
 import net.jitl.common.entity.frozen.ShattererEntity;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
@@ -79,6 +80,16 @@ public class JEntities {
                             .sized(0.9F, 2.2F))
             .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FrozenTrollEntity::canSpawn)
             .attributes(() -> FrozenTrollEntity.createAttributes().build())
+            .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .retrieve();
+
+    public static final EntityType<FrozenGuardianEntity> FROZEN_GUARDIAN_TYPE = REGISTER.registerMob("frozen_guardian",
+                    Builder.of(FrozenGuardianEntity::new, EntityClassification.MONSTER)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(0.9F, 2.2F))
+            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FrozenGuardianEntity::canSpawn)
+            .attributes(() -> FrozenGuardianEntity.createAttributes().build())
             .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 

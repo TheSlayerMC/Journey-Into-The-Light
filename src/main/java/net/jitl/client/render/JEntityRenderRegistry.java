@@ -51,6 +51,7 @@ public class JEntityRenderRegistry {
         //NPC
         RenderingRegistry.registerEntityRenderingHandler(JEntities.MAGE_TYPE, MageRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.ESKIMO_TYPE, EskimoRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.FROZEN_GUARDIAN_TYPE, FrozenGuardianRenderer::new);
 
         //Projectiles
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_MUD_TYPE, manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));

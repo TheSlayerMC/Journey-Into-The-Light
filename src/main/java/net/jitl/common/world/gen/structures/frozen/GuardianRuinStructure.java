@@ -1,4 +1,4 @@
-package net.jitl.common.world.gen.structures.euca;
+package net.jitl.common.world.gen.structures.frozen;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
@@ -27,21 +27,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class EucaDungeonStructure extends Structure<NoFeatureConfig> {
+public class GuardianRuinStructure extends Structure<NoFeatureConfig> {
 
-    public static final ResourceLocation SPHERE = JITL.rl("euca/euca_sphere_dungeon");
+    public static final ResourceLocation GUARDIAN = JITL.rl("frozen/guardian_ruin");
 
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
-            SPHERE, BlockPos.ZERO
+            GUARDIAN, BlockPos.ZERO
     );
 
-    public EucaDungeonStructure(Codec<NoFeatureConfig> codec) {
+    public GuardianRuinStructure(Codec<NoFeatureConfig> codec) {
         super(codec);
     }
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return net.jitl.common.world.gen.structures.euca.EucaDungeonStructure.Start::new;
+        return GuardianRuinStructure.Start::new;
     }
 
     @Override
@@ -50,12 +50,12 @@ public class EucaDungeonStructure extends Structure<NoFeatureConfig> {
     }
 
     public static StructurePiece createPiece(TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos, boolean applyGenerationNoise) {
-        return new net.jitl.common.world.gen.structures.euca.EucaDungeonStructure.Piece(templateManager, templateLocation, pos);
+        return new GuardianRuinStructure.Piece(templateManager, templateLocation, pos);
     }
 
     public static void generate(List<StructurePiece> pieces, TemplateManager templateManager, BlockPos surfacePos) {
         BlockPos changeable = surfacePos;
-        pieces.add(createPiece(templateManager, net.jitl.common.world.gen.structures.euca.EucaDungeonStructure.SPHERE, surfacePos, true));
+        pieces.add(createPiece(templateManager, GuardianRuinStructure.GUARDIAN, surfacePos, true));
     }
 
     public static class Start extends StructureStart<NoFeatureConfig> {
@@ -68,10 +68,10 @@ public class EucaDungeonStructure extends Structure<NoFeatureConfig> {
             int z = chunkZ << 4;
 
             int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator, x, z, x + 10, z + 10);
-            surface += random.nextInt(85);
+            surface -= 2;
 
             BlockPos start = new BlockPos(x, surface, z);
-            JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", net.jitl.common.world.gen.structures.euca.EucaDungeonStructure.class.getSimpleName(), start);
+            JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", GuardianRuinStructure.class.getSimpleName(), start);
 
             generate(pieces, templateManager, start);
 
@@ -83,11 +83,11 @@ public class EucaDungeonStructure extends Structure<NoFeatureConfig> {
         private final ResourceLocation templateLocation;
 
         public Piece(TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            this(JStructurePieces.EUCA_DUNGEON.get(), templateManager, templateLocation, pos);
+            this(JStructurePieces.GUARDIAN_RUIN.get(), templateManager, templateLocation, pos);
         }
 
         public Piece(TemplateManager templateManager, CompoundNBT nbt) {
-            this(JStructurePieces.EUCA_DUNGEON.get(), templateManager, nbt);
+            this(JStructurePieces.GUARDIAN_RUIN.get(), templateManager, nbt);
         }
 
         protected Piece(IStructurePieceType type, TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {

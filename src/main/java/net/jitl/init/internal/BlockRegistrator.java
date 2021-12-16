@@ -447,6 +447,9 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("sizzleshroom", "Sizzleshroom", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create())
                         .setGroundPredicate(GroundPredicate.UNDERGROUND),
                 () -> BlockModels.crossModel(JITL.tl("block/tall_sizzleshroom_top")));
+
+        registerSpeciallyRenderedBlock("frozen_pedistal", "Frozen Pedistal", JBlockPedistal::new);
+
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {
