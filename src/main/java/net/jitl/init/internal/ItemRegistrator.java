@@ -27,10 +27,7 @@ import net.jitl.common.item.interactive.MinersPearlItem;
 import net.jitl.common.item.throwable.KnifeItem;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.common.item.throwable.ThrowableItem;
-import net.jitl.init.JBlocks;
-import net.jitl.init.JEntities;
-import net.jitl.init.JFoods;
-import net.jitl.init.JSounds;
+import net.jitl.init.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.MusicDiscItem;
@@ -135,7 +132,7 @@ public class ItemRegistrator {
                 (world, thrower) -> new EssenciaProjectileEntity(JEntities.ESSENCIA_PROJECTILE_TYPE, world, thrower, 0.0F)));
 
         //todo: change loot pouches to use JITL loot tables
-        registerItem("loot_pouch_basic", "Loot Pouch", () -> new LootItem(LootTables.ABANDONED_MINESHAFT, false));
+        registerItem("loot_pouch_basic", "Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_BASIC, false));
         registerItem("loot_pouch_gold", "Gold Loot Pouch", () -> new LootItem(LootTables.DESERT_PYRAMID, true));
         registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(LootTables.END_CITY_TREASURE, true));
 
