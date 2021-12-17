@@ -74,6 +74,7 @@ public class FrozenTrollTasks {
         brain_.addActivity(Activity.IDLE, 10, ImmutableList.of(
                 new LookAtEntityTask(FrozenTrollTasks::isPlayerHoldingLovedItem, 14.0F),
                 new ForgetAttackTargetTask<>(FrozenTrollEntity::isAlive, FrozenTrollTasks::findNearestValidAttackTarget),
+                new FrozenTrollCongregateTask(),
                 createIdleLookBehaviors(),
                 createIdleMovementBehaviors(),
                 new FindInteractionAndLookTargetTask(EntityType.PLAYER, 4)));

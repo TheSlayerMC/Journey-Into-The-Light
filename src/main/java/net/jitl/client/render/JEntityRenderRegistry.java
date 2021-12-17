@@ -53,6 +53,7 @@ public class JEntityRenderRegistry {
         RenderingRegistry.registerEntityRenderingHandler(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FROZEN_TROLL_TYPE, FrozenTrollRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.SHATTERER_TYPE, ShattererRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.SHIVERING_RAM_TYPE, ShiveringRamRenderer::new);
 
         //NPC
         RenderingRegistry.registerEntityRenderingHandler(JEntities.MAGE_TYPE, MageRenderer::new);
