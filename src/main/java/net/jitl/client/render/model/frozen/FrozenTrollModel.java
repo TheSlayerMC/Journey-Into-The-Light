@@ -1,22 +1,28 @@
 package net.jitl.client.render.model.frozen;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.jitl.common.entity.base.JEntityAction;
+import net.jitl.common.entity.frozen.FrozenTrollEntity;
+import net.minecraft.client.renderer.entity.model.IHasArm;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
+import org.jetbrains.annotations.NotNull;
 
-public class FrozenTrollModel<T extends Entity> extends SegmentedModel<T> {
+public class FrozenTrollModel<T extends Entity> extends SegmentedModel<T> implements IHasArm {
 
-    private ModelRenderer head;
-    private ModelRenderer body;
-    private ModelRenderer rightarm;
-    private ModelRenderer leftarm;
-    private ModelRenderer rightleg;
-    private ModelRenderer leftleg;
-    private ModelRenderer ear1;
-    private ModelRenderer ear2;
-    private ModelRenderer beard;
+    private final ModelRenderer head;
+    private final ModelRenderer body;
+    private final ModelRenderer rightarm;
+    private final ModelRenderer leftarm;
+    private final ModelRenderer rightleg;
+    private final ModelRenderer leftleg;
+    private final ModelRenderer ear1;
+    private final ModelRenderer ear2;
+    private final ModelRenderer beard;
 
     public FrozenTrollModel() {
         texWidth = 64;
@@ -69,12 +75,35 @@ public class FrozenTrollModel<T extends Entity> extends SegmentedModel<T> {
     }
 
     @Override
-    public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(@NotNull T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.rightleg.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F;
         this.leftleg.xRot = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F;
+        this.leftarm.yRot = 0.0F;
+        this.rightarm.yRot = 0.0F;
         this.rightarm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.leftarm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
         this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
         this.head.xRot = headPitch * ((float) Math.PI / 180F);
+        if (entityIn instanceof FrozenTrollEntity) {
+            FrozenTrollEntity frozenTrollEntity = (FrozenTrollEntity) entityIn;
+            JEntityAction entityAction = frozenTrollEntity.getArmPose();
+            if (entityAction == JEntityAction.ADMIRING_ITEM) {
+                this.head.xRot = 0.5F;
+                this.head.yRot = 0.0F;
+                this.leftarm.yRot = 0.5F;
+                this.leftarm.xRot = -0.9F;
+                this.rightarm.yRot = -0.5F;
+                this.rightarm.xRot = -0.9F;
+            }
+        }
+    }
+
+    @Override
+    public void translateToHand(HandSide sideIn, MatrixStack matrixStackIn) {
+        this.getArm(sideIn).translateAndRotate(matrixStackIn);
+    }
+
+    private ModelRenderer getArm(HandSide handSide_) {
+        return handSide_ == HandSide.LEFT ? this.leftarm : this.rightarm;
     }
 }

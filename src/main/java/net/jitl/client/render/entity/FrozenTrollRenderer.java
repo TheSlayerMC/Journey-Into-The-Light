@@ -2,6 +2,7 @@ package net.jitl.client.render.entity;
 
 
 import net.jitl.JITL;
+import net.jitl.client.render.entity.layer.FrozenTrollHeldItemLayer;
 import net.jitl.client.render.model.frozen.FrozenTrollModel;
 import net.jitl.common.entity.frozen.FrozenTrollEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -13,6 +14,7 @@ public class FrozenTrollRenderer extends MobRenderer<FrozenTrollEntity, FrozenTr
 
     public FrozenTrollRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new FrozenTrollModel(), 0.5F);
+        this.addLayer(new FrozenTrollHeldItemLayer<>(this));
     }
 
     @Override

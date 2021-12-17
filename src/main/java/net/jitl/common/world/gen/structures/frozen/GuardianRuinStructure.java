@@ -3,8 +3,10 @@ package net.jitl.common.world.gen.structures.frozen;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
 import net.jitl.JITL;
+import net.jitl.init.JBlocks;
 import net.jitl.init.JStructurePieces;
 import net.jitl.init.JStructures;
+import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -17,10 +19,15 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.*;
+import net.minecraft.world.gen.feature.structure.IStructurePieceType;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.structure.StructurePiece;
+import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import ru.timeconqueror.timecore.api.common.world.structure.TunedTemplateStructurePiece;
+import ru.timeconqueror.timecore.api.common.world.structure.processor.RandomizeBlockProcessor;
 import ru.timeconqueror.timecore.api.util.GenHelper;
 
 import java.util.List;
@@ -54,7 +61,6 @@ public class GuardianRuinStructure extends Structure<NoFeatureConfig> {
     }
 
     public static void generate(List<StructurePiece> pieces, TemplateManager templateManager, BlockPos surfacePos) {
-        BlockPos changeable = surfacePos;
         pieces.add(createPiece(templateManager, GuardianRuinStructure.GUARDIAN, surfacePos, true));
     }
 
@@ -79,7 +85,7 @@ public class GuardianRuinStructure extends Structure<NoFeatureConfig> {
         }
     }
 
-    public static class Piece extends TemplateStructurePiece {
+    public static class Piece extends TunedTemplateStructurePiece {
         private final ResourceLocation templateLocation;
 
         public Piece(TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
@@ -91,14 +97,14 @@ public class GuardianRuinStructure extends Structure<NoFeatureConfig> {
         }
 
         protected Piece(IStructurePieceType type, TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            super(type, 0/*genDepth*/);
+            super(type, templateManager, templateLocation, pos);
             this.templateLocation = templateLocation;
             this.templatePosition = pos.offset(OFFSETS.get(templateLocation));
             loadTemplate(templateManager);
         }
 
         protected Piece(IStructurePieceType type, TemplateManager templateManager, CompoundNBT nbt) {
-            super(type, nbt);
+            super(type, templateManager, nbt);
             this.templateLocation = new ResourceLocation(nbt.getString("template"));
             loadTemplate(templateManager);
         }
@@ -123,6 +129,15 @@ public class GuardianRuinStructure extends Structure<NoFeatureConfig> {
         @Override
         protected void handleDataMarker(String function, BlockPos pos, IServerWorld worldIn, Random rand, MutableBoundingBox sbb) {
 
+        }
+
+        @Override
+        protected PlacementSettings makePlacementSettings() {
+            return new PlacementSettings()
+                    .addProcessor(new RandomizeBlockProcessor(JBlocks.PACKED_SNOW_BRICKS, JBlocks.PACKED_ICE_BRICKS))
+                    .addProcessor(new RandomizeBlockProcessor(JBlocks.PACKED_SNOW_BRICKS, Blocks.ICE))
+                    .addProcessor(new RandomizeBlockProcessor(JBlocks.PACKED_SNOW_BRICKS, Blocks.BLUE_ICE))
+                    .addProcessor(new RandomizeBlockProcessor(JBlocks.PACKED_SNOW_BRICKS, Blocks.PACKED_ICE));
         }
     }
 }

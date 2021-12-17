@@ -1,33 +1,41 @@
 package net.jitl.common.entity.tasks;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import com.mojang.datafixers.util.Pair;
 import net.jitl.common.entity.frozen.FrozenTrollEntity;
+import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
+import net.jitl.init.JLootTables;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.BrainUtil;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
 import net.minecraft.entity.ai.brain.schedule.Activity;
 import net.minecraft.entity.ai.brain.task.*;
-import net.minecraft.entity.monster.piglin.AdmireItemTask;
-import net.minecraft.entity.monster.piglin.StartAdmiringItemTask;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.loot.*;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameterSets;
+import net.minecraft.loot.LootParameters;
+import net.minecraft.loot.LootTable;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class FrozenTrollTasks {
@@ -36,19 +44,92 @@ public class FrozenTrollTasks {
 
     public static Brain<?> makeBrain(FrozenTrollEntity frozenTrollEntity, Brain<FrozenTrollEntity> brain) {
         initCoreActivity(brain);
+        initAdmireItemActivity(brain);
+        initIdleActivity(brain);
+        initFightActivity(frozenTrollEntity, brain);
+        brain.setCoreActivities(ImmutableSet.of(Activity.CORE));
+        brain.setDefaultActivity(Activity.IDLE);
+        brain.useDefaultActivity();
         return brain;
     }
 
-    protected static boolean isLovedItem(Item item) {
+    public static boolean isLovedItem(Item item) {
         return item == (JItems.RIMESTONE);
     }
 
     private static void initCoreActivity(Brain<FrozenTrollEntity> brain_) {
         brain_.addActivity(Activity.CORE, 0, ImmutableList.<Task<? super FrozenTrollEntity>>of(
                 new LookTask(45, 90), new WalkToTargetTask(), new InteractWithDoorTask(),
-                new StartAdmiringItemTask(),
-                new AdmireItemTask(120),
+                new FrozenTrollStartAdmiringItemTask(),
+                new FrozenTrollAdmireItemTask(120),
                 new GetAngryTask()));
+    }
+
+    private static void initAdmireItemActivity(Brain<FrozenTrollEntity> brain_) {
+        brain_.addActivityAndRemoveMemoryWhenStopped(Activity.ADMIRE_ITEM, 10, ImmutableList.<Task<? super FrozenTrollEntity>>of(
+                new PickupWantedItemTask<>(FrozenTrollTasks::isNotHoldingLovedItemInOffHand, 1.0F, true, 9),
+                new FrozenTrollForgetAdmiringItemTask(9),
+                new FrozenTrollStopReachingItemTask(200, 200)),
+                MemoryModuleType.ADMIRING_ITEM);
+    }
+
+    private static void initIdleActivity(Brain<FrozenTrollEntity> brain_) {
+        brain_.addActivity(Activity.IDLE, 10, ImmutableList.of(
+                new LookAtEntityTask(FrozenTrollTasks::isPlayerHoldingLovedItem, 14.0F),
+                new ForgetAttackTargetTask<>(FrozenTrollEntity::isAlive, FrozenTrollTasks::findNearestValidAttackTarget),
+                createIdleLookBehaviors(),
+                createIdleMovementBehaviors(),
+                new FindInteractionAndLookTargetTask(EntityType.PLAYER, 4)));
+    }
+
+    private static void initFightActivity(FrozenTrollEntity frozenTrollEntity, Brain<FrozenTrollEntity> frozenTrollEntityBrain) {
+        frozenTrollEntityBrain.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.<Task<? super FrozenTrollEntity>>of(
+                new FindNewAttackTargetTask<>((livingEntity8_) ->
+                        !isNearestValidAttackTarget(frozenTrollEntity, livingEntity8_)),
+                new MoveToTargetTask(1.0F), new AttackTargetTask(20)), MemoryModuleType.ATTACK_TARGET);
+    }
+
+    private static FirstShuffledTask<FrozenTrollEntity> createIdleLookBehaviors() {
+        return new FirstShuffledTask<>(ImmutableList.of(Pair.of(new LookAtEntityTask(EntityType.PLAYER, 8.0F), 1), Pair.of(new LookAtEntityTask(JEntities.FROZEN_TROLL_TYPE, 8.0F), 1), Pair.of(new LookAtEntityTask(8.0F), 1), Pair.of(new DummyTask(30, 60), 1)));
+    }
+
+    private static FirstShuffledTask<FrozenTrollEntity> createIdleMovementBehaviors() {
+        return new FirstShuffledTask<>(ImmutableList.of(Pair.of(
+                new WalkRandomlyTask(0.6F), 2),
+                Pair.of(InteractWithEntityTask.of(JEntities.FROZEN_TROLL_TYPE, 8, MemoryModuleType.INTERACTION_TARGET, 0.6F, 2), 2),
+                Pair.of(new SupplementedTask<>(FrozenTrollTasks::doesntSeeAnyPlayerHoldingLovedItem, new WalkTowardsLookTargetTask(0.6F, 3)), 2),
+                Pair.of(new DummyTask(30, 60), 1)));
+    }
+
+    private static boolean isNearestValidAttackTarget(FrozenTrollEntity frozenTrollEntity, LivingEntity livingEntity_) {
+        return findNearestValidAttackTarget(frozenTrollEntity).filter((livingEntity6_) -> livingEntity6_ == livingEntity_).isPresent();
+    }
+
+    private static Optional<? extends LivingEntity> findNearestValidAttackTarget(FrozenTrollEntity frozenTrollEntity) {
+        Brain<FrozenTrollEntity> brain = frozenTrollEntity.getBrain();
+        Optional<LivingEntity> optional = BrainUtil.getLivingEntityFromUUIDMemory(frozenTrollEntity, MemoryModuleType.ANGRY_AT);
+        if (optional.isPresent() && isAttackAllowed(optional.get())) {
+            return optional;
+        } else {
+            if (brain.hasMemoryValue(MemoryModuleType.UNIVERSAL_ANGER)) {
+                Optional<PlayerEntity> optional1 = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER);
+                if (optional1.isPresent()) {
+                    return optional1;
+                }
+            }
+
+            Optional<MobEntity> optional3 = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_NEMESIS);
+            if (optional3.isPresent()) {
+                return optional3;
+            } else {
+                Optional<PlayerEntity> optional2 = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_PLAYER);
+                return optional2.isPresent() && isAttackAllowed(optional2.get()) ? optional2 : Optional.empty();
+            }
+        }
+    }
+
+    private static boolean isAttackAllowed(LivingEntity livingEntity_) {
+        return EntityPredicates.ATTACK_ALLOWED.test(livingEntity_);
     }
 
     protected static void stopHoldingOffHandItem(FrozenTrollEntity frozenTrollEntity, boolean boolean_) {
@@ -100,11 +181,52 @@ public class FrozenTrollTasks {
     }
 
     private static List<ItemStack> getBarterResponseItems(FrozenTrollEntity frozenTrollEntity) {
-        LootTable loottable = frozenTrollEntity.level.getServer().getLootTables().get(LootTables.PIGLIN_BARTERING);
+        LootTable loottable = Objects.requireNonNull(frozenTrollEntity.level.getServer()).getLootTables().get(JLootTables.FROZEN_TROLL_TRADES);
         return loottable.getRandomItems((new LootContext.Builder((ServerWorld) frozenTrollEntity.level)).withParameter(LootParameters.THIS_ENTITY, frozenTrollEntity).withRandom(frozenTrollEntity.level.random).create(LootParameterSets.PIGLIN_BARTER));
     }
 
-    protected static boolean wantsToPickup(FrozenTrollEntity frozenTrollEntity, ItemStack itemStack_) {
+    private static boolean doesntSeeAnyPlayerHoldingLovedItem(LivingEntity livingEntity_) {
+        return !seesPlayerHoldingLovedItem(livingEntity_);
+    }
+
+    public static void pickUpItem(FrozenTrollEntity frozenTrollEntity, ItemEntity itemEntity_) {
+        stopWalking(frozenTrollEntity);
+        ItemStack itemstack;
+        if (itemEntity_.getItem().getItem() == Items.GOLD_NUGGET) {
+            frozenTrollEntity.take(itemEntity_, itemEntity_.getItem().getCount());
+            itemstack = itemEntity_.getItem();
+            itemEntity_.remove();
+        } else {
+            frozenTrollEntity.take(itemEntity_, 1);
+            itemstack = removeOneItemFromItemEntity(itemEntity_);
+        }
+
+        Item item = itemstack.getItem();
+        if (isLovedItem(item)) {
+            frozenTrollEntity.getBrain().eraseMemory(MemoryModuleType.TIME_TRYING_TO_REACH_ADMIRE_ITEM);
+            holdInOffhand(frozenTrollEntity, itemstack);
+            admireGoldItem(frozenTrollEntity);
+        } else {
+            boolean flag = frozenTrollEntity.equipItemIfPossible(itemstack);
+            if (!flag) {
+                putInInventory(frozenTrollEntity, itemstack);
+            }
+        }
+    }
+
+    private static ItemStack removeOneItemFromItemEntity(ItemEntity itemEntity_) {
+        ItemStack itemstack = itemEntity_.getItem();
+        ItemStack itemstack1 = itemstack.split(1);
+        if (itemstack.isEmpty()) {
+            itemEntity_.remove();
+        } else {
+            itemEntity_.setItem(itemstack);
+        }
+
+        return itemstack1;
+    }
+
+    public static boolean wantsToPickup(FrozenTrollEntity frozenTrollEntity, ItemStack itemStack_) {
         Item item = itemStack_.getItem();
         if (isAdmiringDisabled(frozenTrollEntity) && frozenTrollEntity.getBrain().hasMemoryValue(MemoryModuleType.ATTACK_TARGET)) {
             return false;
@@ -112,7 +234,7 @@ public class FrozenTrollTasks {
             return isNotHoldingLovedItemInOffHand(frozenTrollEntity);
         } else {
             boolean flag = frozenTrollEntity.canAddToInventory(itemStack_);
-            if (item == Items.GOLD_NUGGET) {
+            if (item == JItems.PERIDOT_GEMSTONE) {
                 return flag;
             } else {
                 return isNotHoldingLovedItemInOffHand(frozenTrollEntity) && flag;
@@ -160,11 +282,11 @@ public class FrozenTrollTasks {
 
     private static SoundEvent getSoundForActivity(FrozenTrollEntity frozenTrollEntity, Activity activity_) {
         if (activity_ == Activity.ADMIRE_ITEM) {
-            return SoundEvents.PIGLIN_ADMIRING_ITEM;
+            return JSounds.FROZEN_TROLL_INTRIGUED.get();
         } else if (seesPlayerHoldingLovedItem(frozenTrollEntity)) {
-            return SoundEvents.PIGLIN_JEALOUS;
+            return JSounds.FROZEN_TROLL_INTRIGUED.get();
         } else {
-            return JSounds.PIERCER.get();
+            return JSounds.FROZEN_TROLL_INTRIGUED.get();
         }
     }
 
@@ -186,10 +308,6 @@ public class FrozenTrollTasks {
 
     private static boolean isAdmiringItem(FrozenTrollEntity frozenTrollEntity) {
         return frozenTrollEntity.getBrain().hasMemoryValue(MemoryModuleType.ADMIRING_ITEM);
-    }
-
-    private static boolean isBarterCurrency(Item item_) {
-        return item_ == BARTERING_ITEM;
     }
 
     private static boolean isHoldingItemInOffHand(FrozenTrollEntity frozenTrollEntity) {
