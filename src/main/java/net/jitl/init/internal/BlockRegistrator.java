@@ -448,7 +448,7 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.UNDERGROUND),
                 () -> BlockModels.crossModel(JITL.tl("block/tall_sizzleshroom_top")));
 
-        registerSpeciallyRenderedBlock("frozen_pedistal", "Frozen Pedistal", JBlockPedistal::new);
+        registerSpeciallyRenderedBlock("frozen_pedistal", "Frozen Pedistal", JBlockPedestal::new);
 
     }
 

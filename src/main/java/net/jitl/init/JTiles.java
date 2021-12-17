@@ -3,6 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.client.render.tile.EssenciaAltarTER;
 import net.jitl.client.render.tile.LaserEmitterTER;
+import net.jitl.common.block.tileentity.PedestalTile;
 import net.jitl.common.tile.EssenciaAltarTile;
 import net.jitl.common.tile.GuardianTowerBrainTile;
 import net.jitl.common.tile.JMobSpawnerTile;
@@ -21,6 +22,8 @@ public class JTiles {
     public static final TileEntityType<JMobSpawnerTile> MOB_SPAWNER = promise();
     public static final TileEntityType<EssenciaAltarTile> ESSENCIA_ALTAR = promise();
     public static final TileEntityType<GuardianTowerBrainTile> GUARDIAN_TOWER_BRAIN = promise();
+    public static final TileEntityType<PedestalTile> PEDESTAL = promise();
+
 
     private static class Registrator {
         @AutoRegistrable
@@ -32,6 +35,7 @@ public class JTiles {
             REGISTER.registerSingleBound("mob_spawner", JMobSpawnerTile::new, () -> JBlocks.TEST_SPAWNER);
             REGISTER.registerSingleBound("essencia_altar", EssenciaAltarTile::new, () -> JBlocks.ESSENCIA_ALTAR).regCustomRenderer(() -> EssenciaAltarTER::new);
             REGISTER.registerSingleBound("guardian_tower_brain", GuardianTowerBrainTile::new, () -> JBlocks.GUARDIAN_TOWER_BRAIN);
+            REGISTER.registerSingleBound("pedestal", PedestalTile::new, () -> JBlocks.FROZEN_PEDISTAL);
         }
     }
 }

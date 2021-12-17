@@ -3,6 +3,7 @@ package net.jitl.client.render;
 import net.jitl.JITL;
 import net.jitl.client.render.entity.*;
 import net.jitl.client.render.entity.base.Entity2DRenderer;
+import net.jitl.client.render.tile.TileEntityRendererPedestal;
 import net.jitl.common.entity.base.BossCrystalEntity;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
@@ -11,9 +12,11 @@ import net.jitl.common.entity.overworld.GlumpEntity;
 import net.jitl.common.entity.overworld.IllagerMechEntity;
 import net.jitl.common.entity.overworld.TowerGuardianEntity;
 import net.jitl.init.JEntities;
+import net.jitl.init.JTiles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import ru.timeconqueror.timecore.api.client.render.model.TimeModelLoader;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
@@ -30,6 +33,8 @@ public class JEntityRenderRegistry {
             new ResourceLocation(JITL.MODID, "models/entity/boss_crystal.json"), JRenderTypes::transparentCutout);
 
     public static void registerEntityRenders() {
+        ClientRegistry.bindTileEntityRenderer(JTiles.PEDESTAL, TileEntityRendererPedestal::new);
+
         //Misc
         RenderingRegistry.registerEntityRenderingHandler(JEntities.ESSENCIA_BOLT_TYPE, EssenciaBoltRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(JEntities.EFFECT_CLOUD_TYPE, ParticleProjectileRenderer::new);
