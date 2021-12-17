@@ -106,12 +106,11 @@ public class FrozenGuardianEntity extends CreatureEntity {
                     if (block == JBlocks.FROZEN_PEDISTAL) {
                         PedestalTile tile = (PedestalTile) world.getBlockEntity(pos);
 
-                        // NEED TO GET IT TO CHECK IF THE PEDESTAL HAS THE ITEM AND IF IT DOES COUNT + 1, AND IF IT REACHES ALL 8
-                        // KILL THE ENTITY AND SPAWN THE ITEM AND DESTROY THE ITEMS ON THE PEDESTAL
-
                         if (tile != null && tile.getItem(0).getItem().equals(JItems.SAPPHIRE)) {
                             countedFullPedestals++;
                             System.out.println(pos);
+
+                            // KILL THE ENTITY AND SPAWN THE ITEM AND DESTROY THE ITEMS ON THE PEDESTAL
 
                             if (!world.isClientSide) {
                                 EssenciaBoltEntity bolt = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);
