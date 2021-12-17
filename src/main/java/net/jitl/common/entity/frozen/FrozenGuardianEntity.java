@@ -64,7 +64,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
                         bolt.setPos(pos.getX(), pos.getY() + 1.2, pos.getZ());
                         bolt.setARGB(0x5acbff);
                         bolt.setVisualOnly(true);
-                    //NEED TO GET IT TO CHECK IF IT HAS THE THE PEDESTAL HAS THE ITEM AND IF IT DOES COUNT + 1, AND IF IT REACHES ALL 8
+                    //NEED TO GET IT TO CHECK IF THE PEDESTAL HAS THE ITEM AND IF IT DOES COUNT + 1, AND IF IT REACHES ALL 8
                         // KILL THE ENTITY AND SPAWN THE ITEM AND DESTROY THE ITEMS ON THE PEDESTAL
                         if(tile.getItem(0) == new ItemStack(JItems.SAPPHIRE)) {
                             countedFullPedestals++;
