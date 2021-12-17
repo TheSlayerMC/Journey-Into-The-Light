@@ -81,6 +81,21 @@
             }
           ],
           "name": "minecraft:blue_ice"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 10,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "jitl:peridot_gemstone"
         }
       ]
     }

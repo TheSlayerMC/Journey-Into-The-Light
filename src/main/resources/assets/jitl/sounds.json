@@ -251,6 +251,11 @@
       "jitl:entities/glump_death"
     ]
   },
+  "entities.frozen_guardian_death": {
+    "sounds": [
+      "jitl:entities/frozen_guardian_death"
+    ]
+  },
   "entities.frozen_troll_ambient": {
     "sounds": [
       "jitl:entities/frozen_troll_ambient_0",

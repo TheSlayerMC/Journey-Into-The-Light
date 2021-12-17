@@ -26,10 +26,7 @@ import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.LootTable;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.EntityPredicates;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 
@@ -86,7 +83,7 @@ public class FrozenTrollTasks {
         frozenTrollEntityBrain.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.<Task<? super FrozenTrollEntity>>of(
                 new FindNewAttackTargetTask<>((livingEntity8_) ->
                         !isNearestValidAttackTarget(frozenTrollEntity, livingEntity8_)),
-                new MoveToTargetTask(1.0F), new AttackTargetTask(20)), MemoryModuleType.ATTACK_TARGET);
+                new MoveToTargetTask(1.4F), new AttackTargetTask(20)), MemoryModuleType.ATTACK_TARGET);
     }
 
     private static FirstShuffledTask<FrozenTrollEntity> createIdleLookBehaviors() {
@@ -94,10 +91,11 @@ public class FrozenTrollTasks {
     }
 
     private static FirstShuffledTask<FrozenTrollEntity> createIdleMovementBehaviors() {
-        return new FirstShuffledTask<>(ImmutableList.of(Pair.of(
-                new WalkRandomlyTask(0.6F), 2),
-                Pair.of(InteractWithEntityTask.of(JEntities.FROZEN_TROLL_TYPE, 8, MemoryModuleType.INTERACTION_TARGET, 0.6F, 2), 2),
-                Pair.of(new SupplementedTask<>(FrozenTrollTasks::doesntSeeAnyPlayerHoldingLovedItem, new WalkTowardsLookTargetTask(0.6F, 3)), 2),
+        return new FirstShuffledTask<>(ImmutableList.of(
+                Pair.of(new WalkRandomlyTask(1.2F), 2),
+                Pair.of(new RunSometimesTask<>(new WalkRandomlyTask(1.4F), RangedInteger.of(30, 60)), 2),
+                Pair.of(InteractWithEntityTask.of(JEntities.FROZEN_TROLL_TYPE, 8, MemoryModuleType.INTERACTION_TARGET, 1.2F, 2), 2),
+                Pair.of(new SupplementedTask<>(FrozenTrollTasks::doesntSeeAnyPlayerHoldingLovedItem, new WalkTowardsLookTargetTask(1.2F, 3)), 2),
                 Pair.of(new DummyTask(30, 60), 1)));
     }
 
