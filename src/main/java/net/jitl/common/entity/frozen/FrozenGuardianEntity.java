@@ -100,16 +100,12 @@ public class FrozenGuardianEntity extends CreatureEntity {
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putBoolean("activated", this.entityData.get(DATA_IS_ACTIVATED));
-        compound.putInt("counted_fill_pedestals", 0);
-        compound.putInt("death_timer", 5);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         compound.getBoolean("activated");
-        compound.getInt("counted_fill_pedestals");
-        compound.getInt("death_timer");
     }
 
     public void setActivated(boolean activated) {
