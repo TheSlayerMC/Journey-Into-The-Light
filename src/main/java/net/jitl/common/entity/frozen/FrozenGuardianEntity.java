@@ -79,11 +79,11 @@ public class FrozenGuardianEntity extends CreatureEntity {
             this.death_timer--;
             this.level.addParticle(ParticleTypes.CLOUD, this.getX() - 0.5D + random.nextDouble(), this.getY() + 0.5D + random.nextDouble(), this.getZ() - 0.5D + random.nextDouble(), this.random.nextGaussian() * 0.05D, 0.15D, this.random.nextGaussian() * 0.05D);
             if(death_timer <= 0){
-                this.death_timer = 0;
-                this.kill();
-                if(!level.isClientSide && death_timer == 0) {
+                this.remove();
+                if(!level.isClientSide) {
                     this.level.addFreshEntity(new ItemEntity(level, this.position().x + 0.5F, this.position().y + 1.4F, this.position().z + 0.5F, new ItemStack(JItems.STAFF_OF_CONJURING, 1)));
                 }
+                this.death_timer = 100;
                 this.counted_full_pedestals = 0;
             }
         }
