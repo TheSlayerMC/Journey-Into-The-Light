@@ -82,7 +82,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
                 this.kill();
                 boolean spawnedItem = false;
                 if(!level.isClientSide && spawnedItem == false) {
-                    this.level.addFreshEntity(new ItemEntity(level, this.position().x + 0.5F, this.position().y + 1.4F, this.position().z + 0.5F, new ItemStack(JItems.STAFF_OF_CONJURING)));
+                    this.level.addFreshEntity(new ItemEntity(level, this.position().x + 0.5F, this.position().y + 1.4F, this.position().z + 0.5F, new ItemStack(JItems.STAFF_OF_CONJURING, 1)));
                     spawnedItem = true;
                 }
                 this.COUNTED_FULL_PEDESTALS = 0;
