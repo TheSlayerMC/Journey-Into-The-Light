@@ -7,8 +7,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -32,6 +35,19 @@ public class JBlockPedestal extends JTileContainerBlock {
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
         return SHAPE;
+    }
+
+    @Override
+    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.is(newState.getBlock())) {
+            TileEntity tileentity = worldIn.getBlockEntity(pos);
+            if (tileentity instanceof IInventory) {
+                InventoryHelper.dropContents(worldIn, pos, (IInventory) tileentity);
+                worldIn.updateNeighbourForOutputSignal(pos, this);
+            }
+
+            super.onRemove(state, worldIn, pos, newState, isMoving);
+        }
     }
 
     @Override
