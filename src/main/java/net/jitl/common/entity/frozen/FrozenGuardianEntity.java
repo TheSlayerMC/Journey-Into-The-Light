@@ -21,6 +21,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -157,6 +158,16 @@ public class FrozenGuardianEntity extends CreatureEntity {
     }
 
     @Override
+    public boolean hurt(DamageSource source, float amount) {
+        return false;
+    }
+
+    @Override
+    public boolean fireImmune() {
+        return true;
+    }
+
+    @Override
     protected ActionResultType mobInteract(PlayerEntity playerEntity, Hand hand) {
         int check_radius = 8;
         int totalPedestals = 0;
@@ -190,9 +201,6 @@ public class FrozenGuardianEntity extends CreatureEntity {
             this.playSound(JSounds.FROZEN_GUARDIAN_DEATH.get(), 1.5F, 1.0F);
             setActivated(true);
         }
-
         return super.mobInteract(playerEntity, hand);
     }
-
-
 }
