@@ -33,7 +33,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "jitl:permafrost"
+              "name": "jitl:crumbled_permafrost"
             }
           ]
         }
