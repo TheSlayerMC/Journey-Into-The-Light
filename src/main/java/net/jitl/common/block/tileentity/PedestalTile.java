@@ -45,21 +45,21 @@ public class PedestalTile extends LockableLootTileEntity {
     }
 
     @Override
+    public CompoundNBT getUpdateTag() {
+        return this.save(new CompoundNBT());
+    }
+
+    @Override
     public void load(BlockState state, CompoundNBT nbt) {
         super.load(state, nbt);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        if (!this.tryLoadLootTable(nbt)) {
-            ItemStackHelper.loadAllItems(nbt, this.inventory);
-        }
-
+        ItemStackHelper.loadAllItems(nbt, this.inventory);
     }
 
     @Override
     public CompoundNBT save(CompoundNBT compound) {
         super.save(compound);
-        if (!this.trySaveLootTable(compound)) {
-            ItemStackHelper.saveAllItems(compound, this.inventory);
-        }
+        ItemStackHelper.saveAllItems(compound, this.inventory);
         return compound;
     }
 
