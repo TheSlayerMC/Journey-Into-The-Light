@@ -48,7 +48,7 @@ public class JBlockPedestal extends JTileContainerBlock {
                     pedestal.setItem(0, ItemStack.EMPTY);
                 }
                 if(heldItem == JItems.SAPPHIRE) {
-                   pedestal.setItem(0, new ItemStack(heldItem));
+                    pedestal.setItem(0, new ItemStack(heldItem));
                    if(!player.isCreative())
                        player.getMainHandItem().shrink(1);
                 }
