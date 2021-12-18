@@ -167,7 +167,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
                 for (int y = -check_radius; y <= check_radius; y++) {
                     final BlockPos pos = entityPos.offset(x, y, z);
                     final Block block = world.getBlockState(pos).getBlock();
-                    if (block == JBlocks.FROZEN_PEDISTAL) {
+                    if (block == JBlocks.FROZEN_PEDESTAL) {
                         PedestalTile tile = (PedestalTile) world.getBlockEntity(pos);
                         if (tile != null && tile.getItem(0).getItem().equals(JItems.SAPPHIRE)) {
                                 EssenciaBoltEntity bolt = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);
