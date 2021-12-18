@@ -24,7 +24,7 @@ public class TileEntityRendererPedestal extends TileEntityRenderer<PedestalTile>
     @Override
     public void render(PedestalTile e, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
         ItemStack i = e.getItem(0);
-        renderItem(i, new double[] {0.5D, 1.4D, 0.5D}, matrixStackIn, bufferIn, combinedOverlayIn, combinedLightIn, 1.0F);
+        renderItem(i, new double[] {0.5D, 1.35D, 0.5D}, matrixStackIn, bufferIn, combinedOverlayIn, combinedLightIn, 1.0F);
     }
 
     private void renderItem(ItemStack stack, double[] translation, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedOverlay, int lightLevel, float scale) {
