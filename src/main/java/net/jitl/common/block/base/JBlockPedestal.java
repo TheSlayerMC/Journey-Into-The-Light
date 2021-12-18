@@ -43,7 +43,8 @@ public class JBlockPedestal extends JTileContainerBlock {
         if(heldItem != null) {
             if(worldIn.getBlockEntity(pos) instanceof PedestalTile) {
                 if(pedestal.getItem(0) != null) {
-                    worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5F, pos.getY() + 1.4F, pos.getZ() + 0.5F, pedestal.getItem(0)));
+                    if(!worldIn.isClientSide)
+                        worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5F, pos.getY() + 1.4F, pos.getZ() + 0.5F, pedestal.getItem(0)));
                     pedestal.setItem(0, ItemStack.EMPTY);
                 }
                 if(heldItem == JItems.SAPPHIRE) {
