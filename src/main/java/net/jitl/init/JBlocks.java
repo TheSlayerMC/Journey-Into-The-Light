@@ -262,7 +262,7 @@ public class JBlocks {
 
 	public static final JPlantBlock HELL_BELL = promise();
 
-	public static final Block FROZEN_PEDISTAL = promise();
+	public static final Block FROZEN_PEDESTAL = promise();
 
 	public static final Block DREADIRON_BLOCK = promise();
 }
