@@ -7,10 +7,7 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
 import net.minecraft.block.Block;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.item.ItemEntity;
@@ -113,6 +110,32 @@ public class FrozenGuardianEntity extends CreatureEntity {
 
     public boolean isActivated() {
         return this.entityData.get(DATA_IS_ACTIVATED);
+    }
+
+    @Override
+    public boolean canBeCollidedWith() {
+        return false;
+    }
+
+    @Override
+    public boolean canBeLeashed(PlayerEntity player) {
+        return false;
+    }
+
+    @Override
+    public boolean isAttackable() {
+        return false;
+    }
+
+    @Override
+    public void push(Entity entity) { }
+
+    @Override
+    protected void doPush(Entity entityIn) { }
+
+    @Override
+    public boolean isPushable() {
+        return false;
     }
 
     @Override
