@@ -1,8 +1,6 @@
 package net.jitl.client.render.model.frozen;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.jitl.common.entity.frozen.ShiveringRamEntity;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -68,16 +66,6 @@ public class ShiveringRamModel<T extends ShiveringRamEntity> extends AgeableMode
         this.leg1.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
         this.leg2.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
         this.leg3.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    }
-
-    @Override
-    public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        body.render(matrixStack, buffer, packedLight, packedOverlay);
-        head.render(matrixStack, buffer, packedLight, packedOverlay);
-        leg0.render(matrixStack, buffer, packedLight, packedOverlay);
-        leg1.render(matrixStack, buffer, packedLight, packedOverlay);
-        leg2.render(matrixStack, buffer, packedLight, packedOverlay);
-        leg3.render(matrixStack, buffer, packedLight, packedOverlay);
     }
 
     @Override

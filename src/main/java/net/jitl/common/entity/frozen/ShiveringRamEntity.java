@@ -117,7 +117,9 @@ public class ShiveringRamEntity extends AnimalEntity implements IShearable, IFor
 
     @Override
     public ActionResultType mobInteract(PlayerEntity playerEntity_, Hand hand_) {
-        JITL.LOGGER.info(isBaby());
+        if (level.isClientSide()) {
+            JITL.LOGGER.info(isBaby());
+        }
         ItemStack itemstack = playerEntity_.getItemInHand(hand_);
         if (itemstack.getItem() == Items.SHEARS) { //Forge: Moved to onSheared
             if (!this.level.isClientSide && this.readyForShearing()) {
