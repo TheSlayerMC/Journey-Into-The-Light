@@ -52,21 +52,19 @@ public class JBlockPedestal extends JTileContainerBlock {
 
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        PedestalTile pedestal = (PedestalTile) worldIn.getBlockEntity(pos);
         Item heldItem = player.getMainHandItem().getItem();
-        if (heldItem != null) {
-            if (worldIn.getBlockEntity(pos) instanceof PedestalTile) {
-                if (pedestal != null) {
-                    pedestal.getItem(0);
-                    if (!worldIn.isClientSide)
-                        worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5F, pos.getY() + 1.4F, pos.getZ() + 0.5F, pedestal.getItem(0)));
-                    pedestal.setItem(0, ItemStack.EMPTY);
-                    if (heldItem == JItems.SAPPHIRE) {
-                        pedestal.setItem(0, new ItemStack(heldItem));
-                        worldIn.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                        if (!player.isCreative())
-                            player.getMainHandItem().shrink(1);
-                    }
+        if (worldIn.getBlockEntity(pos) instanceof PedestalTile) {
+            PedestalTile pedestal = (PedestalTile) worldIn.getBlockEntity(pos);
+            if (pedestal != null) {
+                pedestal.getItem(0);
+                if (!worldIn.isClientSide)
+                    worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5F, pos.getY() + 1.4F, pos.getZ() + 0.5F, pedestal.getItem(0)));
+                pedestal.setItem(0, ItemStack.EMPTY);
+                if (heldItem == JItems.SAPPHIRE) {
+                    pedestal.setItem(0, new ItemStack(heldItem));
+                    worldIn.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    if (!player.isCreative())
+                        player.getMainHandItem().shrink(1);
                 }
             }
         }
