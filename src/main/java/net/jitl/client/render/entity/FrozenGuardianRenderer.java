@@ -28,7 +28,6 @@ public class FrozenGuardianRenderer extends MobRenderer<FrozenGuardianEntity, Fr
 
         float f = MathHelper.cos(entityIn.tickCount * 1.085F);
         float idle = (0.065F + 0.05F * f) * (float) Math.PI;
-
         matrixStackIn.translate(0, idle, 0);
 
         matrixStackIn.popPose();

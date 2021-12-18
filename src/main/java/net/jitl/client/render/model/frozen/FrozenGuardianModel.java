@@ -10,6 +10,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
 
+import java.util.ArrayList;
+
 public class FrozenGuardianModel<T extends Entity> extends SegmentedModel<T> implements IHasArm {
     private final ModelRenderer arms;
     private final ModelRenderer sleeve2_r1;
@@ -77,6 +79,11 @@ public class FrozenGuardianModel<T extends Entity> extends SegmentedModel<T> imp
         this.head.xRot = idle / 6;
         this.body.xRot = idle;
         this.arms.xRot = idle / 2;
+
+        ModelRenderer[] parts = {head, body, arms};
+        for(ModelRenderer i : parts) {
+            //move all parts here
+        }
     }
 
     @Override
