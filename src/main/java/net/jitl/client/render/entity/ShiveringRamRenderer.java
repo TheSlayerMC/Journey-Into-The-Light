@@ -1,6 +1,7 @@
 package net.jitl.client.render.entity;
 
 import net.jitl.JITL;
+import net.jitl.client.render.entity.layer.ShiveringRamWoolLayer;
 import net.jitl.client.render.model.frozen.ShiveringRamModel;
 import net.jitl.common.entity.frozen.ShiveringRamEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -12,6 +13,7 @@ public class ShiveringRamRenderer extends MobRenderer<ShiveringRamEntity, Shiver
 
     public ShiveringRamRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new ShiveringRamModel(), 0.5F);
+        this.addLayer(new ShiveringRamWoolLayer(this));
     }
 
     @Override
