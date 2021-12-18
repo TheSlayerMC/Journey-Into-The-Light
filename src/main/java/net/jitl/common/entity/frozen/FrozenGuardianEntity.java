@@ -22,7 +22,9 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -74,10 +76,26 @@ public class FrozenGuardianEntity extends CreatureEntity {
         super.tick();
         if(isActivated()) {
             this.death_timer--;
-            this.level.addParticle(ParticleTypes.CLOUD, this.getX() - 0.5D + random.nextDouble(), this.getY() + 0.5D + random.nextDouble(), this.getZ() - 0.5D + random.nextDouble(), this.random.nextGaussian() * 0.05D, 0.15D, this.random.nextGaussian() * 0.05D);
-            if(death_timer <= 0){
+            this.level.addParticle(ParticleTypes.CLOUD,
+                    this.getX() - 0.5D + random.nextDouble(),
+                    this.getY() + 0.5D + random.nextDouble(),
+                    this.getZ() - 0.5D + random.nextDouble(),
+                    this.random.nextGaussian() * 0.05D,
+                    0.15D,
+                    this.random.nextGaussian() * 0.05D);
+            if (death_timer <= 0) {
+                for (int i = 0; i < 24; ++i) {
+                    this.level.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                            this.getX() - MathHelper.nextDouble(random, -0.45D, 0.75D),
+                            this.getY() + MathHelper.nextDouble(random, -1.5D, 2.0D),
+                            this.getZ() - MathHelper.nextDouble(random, -0.45D, 0.75D),
+                            this.random.nextGaussian() * 0.05D,
+                            0.15D,
+                            this.random.nextGaussian() * 0.05D);
+                }
+                this.playSound(SoundEvents.FIRE_EXTINGUISH, 1.0F, 1.0F);
                 this.remove();
-                if(!level.isClientSide) {
+                if (!level.isClientSide) {
                     this.level.addFreshEntity(new ItemEntity(level, this.position().x + 0.5F, this.position().y + 1.4F, this.position().z + 0.5F, new ItemStack(JItems.STAFF_OF_CONJURING, 1)));
                 }
                 this.death_timer = 100;

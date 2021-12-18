@@ -101,10 +101,10 @@ public class JEntities {
             .retrieve();
 
     public static final EntityType<ShattererEntity> SHATTERER_TYPE = REGISTER.registerMob("shatterer",
-                    Builder.of(ShattererEntity::new, EntityClassification.MONSTER)
-                            .setTrackingRange(80)
-                            .setShouldReceiveVelocityUpdates(true)
-                            .sized(0.9F, 2.2F))
+            Builder.of(ShattererEntity::new, EntityClassification.MONSTER)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(0.9F, 2.2F))
             .attributes(() -> ShattererEntity.createAttributes().build())
             .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();

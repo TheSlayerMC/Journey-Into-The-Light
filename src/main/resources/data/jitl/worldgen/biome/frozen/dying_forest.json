@@ -43,16 +43,18 @@
         "maxCount": 4
       },
       {
-        "type": "jitl:shivering_ram",
-        "weight": 26,
-        "minCount": 1,
-        "maxCount": 4
-      },
-      {
         "type": "minecraft:stray",
         "weight": 20,
         "minCount": 1,
         "maxCount": 1
+      }
+    ],
+    "creature": [
+      {
+        "type": "jitl:shivering_ram",
+        "weight": 26,
+        "minCount": 1,
+        "maxCount": 4
       }
     ]
   },
