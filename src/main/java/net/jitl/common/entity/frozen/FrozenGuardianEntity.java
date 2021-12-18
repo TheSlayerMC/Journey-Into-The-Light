@@ -104,7 +104,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
     @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
-        compound.getBoolean("activated");
+        setActivated(compound.getBoolean("activated"));
     }
 
     public void setActivated(boolean activated) {
