@@ -118,6 +118,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
     @Override
     protected ActionResultType mobInteract(PlayerEntity playerEntity, Hand hand) {
         int check_radius = 8;
+        int totalPedestals = 0;
         final World world = this.level;
         final BlockPos entityPos = new BlockPos(this.position());
         for (int x = -check_radius; x <= check_radius; x++) {
@@ -128,24 +129,27 @@ public class FrozenGuardianEntity extends CreatureEntity {
                     if (block == JBlocks.FROZEN_PEDISTAL) {
                         PedestalTile tile = (PedestalTile) world.getBlockEntity(pos);
                         if (tile != null && tile.getItem(0).getItem().equals(JItems.SAPPHIRE)) {
-                            this.counted_full_pedestals++;
                                 EssenciaBoltEntity bolt = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);
                                 bolt.setPos(pos.getX(), pos.getY() + 1.2, pos.getZ());
                                 bolt.setARGB(0x5acbff);
                                 bolt.setVisualOnly(true);
+                            if(isActivated()) {
                                 if(!level.isClientSide)
                                     this.level.addFreshEntity(bolt);
-                            tile.setItem(0, ItemStack.EMPTY);
+                                tile.setItem(0, ItemStack.EMPTY);
+                            }
+                            totalPedestals++;
+                            this.counted_full_pedestals++;
                         }
                     }
                 }
             }
         }
-        if(this.counted_full_pedestals >= 8) {
+        if(totalPedestals >= 8) {
             this.playSound(JSounds.FROZEN_GUARDIAN_DEATH.get(), 1.5F, 1.0F);
             setActivated(true);
         }
-        System.out.println(counted_full_pedestals);
+
         return super.mobInteract(playerEntity, hand);
     }
 
