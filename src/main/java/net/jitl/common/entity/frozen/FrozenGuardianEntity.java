@@ -37,13 +37,13 @@ import java.util.Random;
 public class FrozenGuardianEntity extends CreatureEntity {
     private static final DataParameter<Boolean> DATA_IS_ACTIVATED = EntityDataManager.defineId(FrozenGuardianEntity.class, DataSerializers.BOOLEAN);
 
-    private int DEATH_TIMER;
-    private int COUNTED_FULL_PEDESTALS;
+    private int death_timer;
+    private int counted_full_pedestals;
 
     public FrozenGuardianEntity(EntityType<? extends FrozenGuardianEntity> entityType, World world) {
         super(entityType, world);
-        this.DEATH_TIMER = 50;
-        this.COUNTED_FULL_PEDESTALS = 0;
+        this.death_timer = 50;
+        this.counted_full_pedestals = 0;
     }
 
     @Override
@@ -76,15 +76,15 @@ public class FrozenGuardianEntity extends CreatureEntity {
     public void tick() {
         super.tick();
         if(isActivated()) {
-            this.DEATH_TIMER--;
+            this.death_timer--;
             this.level.addParticle(ParticleTypes.CLOUD, this.getX() - 0.5D + random.nextDouble(), this.getY() + 0.5D + random.nextDouble(), this.getZ() - 0.5D + random.nextDouble(), this.random.nextGaussian() * 0.05D, 0.15D, this.random.nextGaussian() * 0.05D);
-            if(DEATH_TIMER <= 0){
-                this.DEATH_TIMER = 0;
+            if(death_timer <= 0){
+                this.death_timer = 0;
                 this.kill();
-                if(!level.isClientSide && DEATH_TIMER == 0) {
+                if(!level.isClientSide && death_timer == 0) {
                     this.level.addFreshEntity(new ItemEntity(level, this.position().x + 0.5F, this.position().y + 1.4F, this.position().z + 0.5F, new ItemStack(JItems.STAFF_OF_CONJURING, 1)));
                 }
-                this.COUNTED_FULL_PEDESTALS = 0;
+                this.counted_full_pedestals = 0;
             }
         }
     }
@@ -128,7 +128,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
                     if (block == JBlocks.FROZEN_PEDISTAL) {
                         PedestalTile tile = (PedestalTile) world.getBlockEntity(pos);
                         if (tile != null && tile.getItem(0).getItem().equals(JItems.SAPPHIRE)) {
-                            this.COUNTED_FULL_PEDESTALS++;
+                            this.counted_full_pedestals++;
                                 EssenciaBoltEntity bolt = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);
                                 bolt.setPos(pos.getX(), pos.getY() + 1.2, pos.getZ());
                                 bolt.setARGB(0x5acbff);
@@ -141,11 +141,11 @@ public class FrozenGuardianEntity extends CreatureEntity {
                 }
             }
         }
-        if(this.COUNTED_FULL_PEDESTALS >= 8) {
+        if(this.counted_full_pedestals >= 8) {
             this.playSound(JSounds.FROZEN_GUARDIAN_DEATH.get(), 1.5F, 1.0F);
             setActivated(true);
         }
-        System.out.println(COUNTED_FULL_PEDESTALS);
+        System.out.println(counted_full_pedestals);
         return super.mobInteract(playerEntity, hand);
     }
 
