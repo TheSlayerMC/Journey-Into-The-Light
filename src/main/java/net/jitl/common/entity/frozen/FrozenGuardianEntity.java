@@ -96,6 +96,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
                 }
                 this.playSound(SoundEvents.FIRE_EXTINGUISH, 1.0F, 1.0F);
                 this.remove();
+                
                 if (!level.isClientSide) {
                     this.level.addFreshEntity(new ItemEntity(level, this.position().x + 0.5F, this.position().y + 1.4F, this.position().z + 0.5F, new ItemStack(JItems.STAFF_OF_CONJURING, 1)));
                 }
