@@ -17,27 +17,29 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.village.PointOfInterest;
 import net.minecraft.village.PointOfInterestManager;
 import net.minecraft.village.PointOfInterestType;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
-import net.minecraftforge.common.util.ITeleporter;
 
 import java.util.Comparator;
 import java.util.Optional;
 
-public class BaseTeleporter implements ITeleporter {
+public class BaseTeleporter extends Teleporter {
 
     protected final ServerWorld level;
     private final JBasePortalBlock portal_block;
     private final Block portal_frame;
 
     public BaseTeleporter(ServerWorld worldIn, JBasePortalBlock portal, Block frame) {
+        super(worldIn);
         this.level = worldIn;
         this.portal_block = portal;
         this.portal_frame = frame;
     }
 
+    @Override
     public Optional<TeleportationRepositioner.Result> findPortalAround(BlockPos pos, boolean isNether) {
         PointOfInterestManager pointofinterestmanager = this.level.getPoiManager();
         int i = isNether ? 16 : 128;
@@ -62,6 +64,7 @@ public class BaseTeleporter implements ITeleporter {
         });
     }
 
+    @Override
     public Optional<TeleportationRepositioner.Result> createPortal(BlockPos pos, Direction.Axis axis) {
         Direction direction = Direction.get(Direction.AxisDirection.POSITIVE, axis);
         double d0 = -1.0D;
