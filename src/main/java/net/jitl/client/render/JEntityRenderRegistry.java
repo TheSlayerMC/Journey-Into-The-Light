@@ -71,5 +71,6 @@ public class JEntityRenderRegistry {
 
         //PETS
         RenderingRegistry.registerEntityRenderingHandler(JEntities.MINI_BOOM_TYPE, MiniBoomRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.CAPYBARA_TYPE, CapybaraRenderer::new);
     }
 }

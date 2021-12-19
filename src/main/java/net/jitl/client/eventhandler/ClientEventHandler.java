@@ -1,5 +1,6 @@
 package net.jitl.client.eventhandler;
 
+import net.jitl.common.capability.player.JPlayer;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JDimensions;
 import net.jitl.init.JItems;
@@ -39,10 +40,26 @@ public class ClientEventHandler {
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
         PlayerEntity player = ClientProxy.player();
 
-        if(player != null) {
+        if (player != null) {
+            JPlayer cap = JPlayer.from(player);
+
             if (player.level.dimension() == JDimensions.FROZEN_WORLD) {
+
                 if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
-                    event.setDensity(0.05F);
+                    if (cap != null) {
+                        if (!cap.fogDensity.isDensityEnabled()) {
+                            event.setDensity(0.05F);
+                        } else {
+                            event.setDensity(0.005F);
+                        }
+                    } else {
+                        event.setDensity(0.05F);
+                    }
+                } else if (cap != null) {
+                    if (cap.fogDensity.isDensityEnabled()) {
+                        event.setDensity(0.01F);
+                    }
+
                 } else {
                     event.setDensity(0.15F);
                 }

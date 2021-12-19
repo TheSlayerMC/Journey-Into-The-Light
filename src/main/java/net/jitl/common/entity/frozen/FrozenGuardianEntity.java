@@ -1,6 +1,7 @@
 package net.jitl.common.entity.frozen;
 
 import net.jitl.common.block.tileentity.PedestalTile;
+import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JEntities;
@@ -88,7 +89,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
                 for (int i = 0; i < 24; ++i) {
                     this.level.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
                             this.getX() - MathHelper.nextDouble(random, -0.45D, 0.75D),
-                            this.getY() + MathHelper.nextDouble(random, -1.5D, 2.0D),
+                            this.getY() + MathHelper.nextDouble(random, 0.5D, 2.0D),
                             this.getZ() - MathHelper.nextDouble(random, -0.45D, 0.75D),
                             this.random.nextGaussian() * 0.05D,
                             0.15D,
@@ -182,13 +183,11 @@ public class FrozenGuardianEntity extends CreatureEntity {
                     if (block == JBlocks.FROZEN_PEDESTAL) {
                         PedestalTile tile = (PedestalTile) world.getBlockEntity(pos);
                         if (tile != null && tile.getItem(0).getItem().equals(JItems.SAPPHIRE)) {
-                                EssenciaBoltEntity bolt = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);
-                                bolt.setPos(pos.getX(), pos.getY() + 1.2, pos.getZ());
-                                bolt.setARGB(0x5acbff);
-                                bolt.setVisualOnly(true);
-                            if(isActivated()) {
-                                if(!level.isClientSide)
-                                    this.level.addFreshEntity(bolt);
+                            if (isActivated()) {
+                                if (!level.isClientSide) {
+                                    summonLightning(pos);
+                                    disableFogDensity();
+                                }
                                 tile.setItem(0, ItemStack.EMPTY);
                             }
                             totalPedestals++;
@@ -198,10 +197,28 @@ public class FrozenGuardianEntity extends CreatureEntity {
                 }
             }
         }
-        if(totalPedestals >= 8) {
+        if (totalPedestals >= 8) {
             this.playSound(JSounds.FROZEN_GUARDIAN_DEATH.get(), 1.5F, 1.0F);
             setActivated(true);
         }
         return super.mobInteract(playerEntity, hand);
+    }
+
+    public void summonLightning(BlockPos pos) {
+        EssenciaBoltEntity bolt = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);
+        bolt.setPos(pos.getX(), pos.getY() + 1.2, pos.getZ());
+        bolt.setARGB(0x5acbff);
+        bolt.setVisualOnly(true);
+        this.level.addFreshEntity(bolt);
+    }
+
+    public void disableFogDensity() {
+        for (PlayerEntity player : level.players()) {
+            JPlayer capability = JPlayer.from(player);
+            if (capability != null) {
+                capability.fogDensity.setDensityEnabled(true);
+                capability.detectAndSendChanges();
+            }
+        }
     }
 }

@@ -38,7 +38,7 @@
       },
       {
         "type": "jitl:frozen_troll",
-        "weight": 17,
+        "weight": 12,
         "minCount": 1,
         "maxCount": 4
       },
@@ -52,6 +52,12 @@
     "creature": [
       {
         "type": "jitl:shivering_ram",
+        "weight": 26,
+        "minCount": 1,
+        "maxCount": 4
+      },
+      {
+        "type": "jitl:capybara",
         "weight": 26,
         "minCount": 1,
         "maxCount": 4

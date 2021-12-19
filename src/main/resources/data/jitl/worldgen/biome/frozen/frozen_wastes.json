@@ -55,6 +55,12 @@
         "weight": 26,
         "minCount": 1,
         "maxCount": 4
+      },
+      {
+        "type": "jitl:capybara",
+        "weight": 26,
+        "minCount": 1,
+        "maxCount": 4
       }
     ]
   },

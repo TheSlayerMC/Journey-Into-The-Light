@@ -1,6 +1,7 @@
 package net.jitl.common.capability.player;
 
 import net.jitl.common.capability.player.data.Essence;
+import net.jitl.common.capability.player.data.FogDensity;
 import net.jitl.common.capability.player.data.Sentacoins;
 import net.jitl.init.JCapabilities;
 import net.minecraft.entity.Entity;
@@ -21,6 +22,7 @@ import ru.timeconqueror.timecore.common.capability.owner.serializer.CapabilityOw
 public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
     public final Essence essence = container("essence", new Essence());
     public final Sentacoins sentacoins = container("sentacoins", new Sentacoins());
+    public final FogDensity fogDensity = container("fogDensity", new FogDensity());
 
     private final PlayerEntity player;
 
