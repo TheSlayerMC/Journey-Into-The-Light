@@ -216,7 +216,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
 
     public void disableFogDensity() {
         int playerArea = 10;
-        AxisAlignedBB axisalignedbb = AxisAlignedBB.unitCubeFromLowerCorner(this.position()).inflate(-playerArea, 10.0D, -playerArea);
+        AxisAlignedBB axisalignedbb = AxisAlignedBB.unitCubeFromLowerCorner(this.position()).inflate(playerArea, 10.0D, playerArea);
         for(PlayerEntity player : this.level.getEntitiesOfClass(PlayerEntity.class, axisalignedbb)) {
             JPlayer capability = JPlayer.from(player);
             if(capability != null) {
