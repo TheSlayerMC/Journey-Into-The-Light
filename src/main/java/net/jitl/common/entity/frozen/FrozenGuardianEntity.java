@@ -25,6 +25,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -209,13 +210,16 @@ public class FrozenGuardianEntity extends CreatureEntity {
         bolt.setPos(pos.getX(), pos.getY() + 1.2, pos.getZ());
         bolt.setARGB(0x5acbff);
         bolt.setVisualOnly(true);
-        this.level.addFreshEntity(bolt);
+        if(!level.isClientSide)
+            this.level.addFreshEntity(bolt);
     }
 
     public void disableFogDensity() {
-        for (PlayerEntity player : level.players()) {
+        int playerArea = 10;
+        AxisAlignedBB axisalignedbb = AxisAlignedBB.unitCubeFromLowerCorner(this.position()).inflate(-playerArea, 10.0D, -playerArea);
+        for(PlayerEntity player : this.level.getEntitiesOfClass(PlayerEntity.class, axisalignedbb)) {
             JPlayer capability = JPlayer.from(player);
-            if (capability != null) {
+            if(capability != null) {
                 capability.fogDensity.setDensityEnabled(true);
                 capability.detectAndSendChanges();
             }
