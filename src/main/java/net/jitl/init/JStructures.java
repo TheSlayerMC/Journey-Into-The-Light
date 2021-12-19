@@ -4,6 +4,7 @@ import net.jitl.JITL;
 import net.jitl.common.world.gen.structures.boil.DirerockStrongholdStructure;
 import net.jitl.common.world.gen.structures.euca.AlloyMenderStructure;
 import net.jitl.common.world.gen.structures.euca.EucaDungeonStructure;
+import net.jitl.common.world.gen.structures.euca.goldite.windmill.GolditeWindmillStructure;
 import net.jitl.common.world.gen.structures.frozen.EskimoCampStructure;
 import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinStructure;
 import net.jitl.common.world.gen.structures.overworld.BlacksmithStructure;
@@ -84,6 +85,14 @@ public class JStructures {
             REGISTER.register("guardian_ruin", GuardianRuinStructure::new, TimeStructureSeparationSettings.create(20, 10), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
                     .transformsSurroundingLand()
                     .setDimensionPredicate(serverWorld -> serverWorld.dimension() == JDimensions.FROZEN_WORLD)
+                    .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
+    public static final StructureHolder<NoFeatureConfig, GolditeWindmillStructure> GOLDITE_WINDMILL =
+            REGISTER.register("goldite_windmill", GolditeWindmillStructure::new, TimeStructureSeparationSettings.create(20, 10), NoFeatureConfig.CODEC, NoFeatureConfig.NONE)
+                    .transformsSurroundingLand()
+                    .setDimensionPredicate(serverWorld -> serverWorld.dimension() == JDimensions.EUCA_WORLD)
+                    .setBiomePredicate(biomePredicate -> Objects.equals(biomePredicate.getName(), JITL.rl("euca/euca_goldite_grains")))
                     .addToTag(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 

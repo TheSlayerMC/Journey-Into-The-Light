@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "jitl:block/euca_gold_plank",
+    "top": "jitl:block/euca_gold_plank",
+    "side": "jitl:block/euca_gold_plank"
+  }
+}

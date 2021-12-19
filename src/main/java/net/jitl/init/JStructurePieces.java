@@ -3,6 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.structures.euca.AlloyMenderStructure;
 import net.jitl.common.world.gen.structures.euca.EucaDungeonStructure;
+import net.jitl.common.world.gen.structures.euca.goldite.windmill.GolditeWindmillPieces;
 import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinPieces;
 import net.jitl.common.world.gen.structures.overworld.BlacksmithStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
@@ -25,8 +26,9 @@ public class JStructurePieces {
     public static final Promised<IStructurePieceType> MAGE = REGISTER.register("mage", () -> MageHouseStructure.Piece::new);
 
     public static final Promised<IStructurePieceType> ALLOY_MENDER = REGISTER.register("alloy_mender", () -> AlloyMenderStructure.Piece::new);
-
     public static final Promised<IStructurePieceType> EUCA_DUNGEON = REGISTER.register("euca_dungeon", () -> EucaDungeonStructure.Piece::new);
+    public static final Promised<IStructurePieceType> GOLDITE_WINDMILL = REGISTER.register("goldite_windmill", () -> GolditeWindmillPieces.Piece::new);
+
 
     public static final Promised<IStructurePieceType> GUARDIAN_RUIN = REGISTER.register("guardian_ruin", () -> GuardianRuinPieces.Piece::new);
 
