@@ -4,6 +4,7 @@ import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.common.capability.JCapabilityProvider;
+import net.jitl.common.dimension.Dimensions;
 import net.jitl.init.JBiomeRegistry;
 import net.jitl.init.JEntities;
 import net.jitl.init.JLootConditions;
@@ -40,6 +41,7 @@ public class JITL implements TimeMod {
 		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
 		Registration.register(modEventBus);
+		Dimensions.register(modEventBus);
 		JLootConditions.init();
 
 		modEventBus.addListener(this::preInit);
