@@ -5,7 +5,7 @@ import net.jitl.common.world.gen.structures.boil.DirerockStrongholdStructure;
 import net.jitl.common.world.gen.structures.euca.AlloyMenderStructure;
 import net.jitl.common.world.gen.structures.euca.EucaDungeonStructure;
 import net.jitl.common.world.gen.structures.frozen.EskimoCampStructure;
-import net.jitl.common.world.gen.structures.frozen.GuardianRuinStructure;
+import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinStructure;
 import net.jitl.common.world.gen.structures.overworld.BlacksmithStructure;
 import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
