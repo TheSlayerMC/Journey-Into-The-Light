@@ -3,6 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.common.block.*;
 import net.jitl.common.block.base.*;
+import net.jitl.common.block.portal.JBasePortalBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.StairsBlock;
@@ -130,10 +131,10 @@ public class JBlocks {
 	public static final FlameBulbBlock FLAME_BULB_PLANT = promise();
 
 	public static final Block EUCA_PORTAL_FRAME = promise();
-	public static final Block EUCA_PORTAL = promise();
+	public static final JBasePortalBlock EUCA_PORTAL = promise();
 
 	public static final Block FROZEN_PORTAL_FRAME = promise();
-	public static final Block FROZEN_PORTAL = promise();
+	public static final JBasePortalBlock FROZEN_PORTAL = promise();
 
 	public static final Block GRASSY_PERMAFROST = promise();
 	public static final Block CRUMBLED_PERMAFROST = promise();
@@ -193,17 +194,17 @@ public class JBlocks {
 	public static final JLeavesBlock EUCA_GREEN_LEAVES = promise();
 
 	public static final Block DEPTHS_PORTAL_FRAME = promise();
-	public static final Block DEPTHS_PORTAL = promise();
+	public static final JBasePortalBlock DEPTHS_PORTAL = promise();
 	public static final Block DEPTHS_GRASS_BLOCK = promise();
 	public static final Block DEPTHS_STONE = promise();
 	public static final Block DEPTHS_LAMP = promise();
 
-    public static final Block BOIL_PORTAL_FRAME = promise();
-    public static final Block BOIL_PORTAL = promise();
-    public static final Block CHARRED_GRASS = promise();
-    public static final Block RUBBLE = promise();
-    public static final Block VOLCANIC_SAND = promise();
-    public static final Block HOT_GROUND = promise();
+	public static final Block BOIL_PORTAL_FRAME = promise();
+	public static final JBasePortalBlock BOIL_PORTAL = promise();
+	public static final Block CHARRED_GRASS = promise();
+	public static final Block RUBBLE = promise();
+	public static final Block VOLCANIC_SAND = promise();
+	public static final Block HOT_GROUND = promise();
     public static final Block SCORCHED_RUBBLE = promise();
     public static final Block ASH_BLOCK = promise();
     public static final Block SULPHUR_ROCK = promise();

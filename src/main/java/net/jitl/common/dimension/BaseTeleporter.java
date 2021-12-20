@@ -32,14 +32,14 @@ import java.util.function.Function;
 public class BaseTeleporter implements ITeleporter {
 
     protected final ServerWorld level;
-    private final JBasePortalBlock portal_block;
-    private final Block portal_frame = JBlocks.BOIL_PORTAL_FRAME;
+    private final JBasePortalBlock portal_block = JBlocks.FROZEN_PORTAL;
+    private final Block portal_frame = JBlocks.FROZEN_PORTAL_FRAME;
     private final PointOfInterestType poi;
     private final RegistryKey<World> destination;
 
     public BaseTeleporter(ServerWorld worldIn, JBasePortalBlock portal, Block frame, PointOfInterestType poi, RegistryKey<World> destination) {
         this.level = worldIn;
-        this.portal_block = portal;
+        //this.portal_block = portal;
         //this.portal_frame = frame;
         this.poi = poi;
         this.destination = destination;
@@ -71,29 +71,28 @@ public class BaseTeleporter implements ITeleporter {
         double d1 = -1.0D;
         BlockPos blockpos1 = null;
         WorldBorder worldborder = this.level.getWorldBorder();
-        int i = this.level.getHeight() - 1;
-        BlockPos.Mutable blockpos$mutable = pos.mutable();
+        int dimensionLogicalHeight = this.level.getHeight() - 1;
+        BlockPos.Mutable mutablePos = pos.mutable();
 
         for (BlockPos.Mutable blockpos$mutable1 : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
-            int j = Math.min(i, this.level.getHeight(Heightmap.Type.MOTION_BLOCKING, blockpos$mutable1.getX(), blockpos$mutable1.getZ()));
-            int k = 1;
+            int j = Math.min(dimensionLogicalHeight, this.level.getHeight(Heightmap.Type.MOTION_BLOCKING, blockpos$mutable1.getX(), blockpos$mutable1.getZ()));
             if (worldborder.isWithinBounds(blockpos$mutable1) && worldborder.isWithinBounds(blockpos$mutable1.move(direction, 1))) {
                 blockpos$mutable1.move(direction.getOpposite(), 1);
 
-                for(int l = j; l >= 0; --l) {
+                for (int l = j; l >= 0; --l) {
                     blockpos$mutable1.setY(l);
                     if (this.level.isEmptyBlock(blockpos$mutable1)) {
                         int i1;
-                        for(i1 = l; l > 0 && this.level.isEmptyBlock(blockpos$mutable1.move(Direction.DOWN)); --l) {
+                        for (i1 = l; l > 0 && this.level.isEmptyBlock(blockpos$mutable1.move(Direction.DOWN)); --l) {
                         }
 
-                        if (l + 4 <= i) {
+                        if (l + 4 <= dimensionLogicalHeight) {
                             int j1 = i1 - l;
                             if (j1 <= 0 || j1 >= 3) {
                                 blockpos$mutable1.setY(l);
-                                if (this.canHostFrame(blockpos$mutable1, blockpos$mutable, direction, 0)) {
+                                if (this.canHostFrame(blockpos$mutable1, mutablePos, direction, 0)) {
                                     double d2 = pos.distSqr(blockpos$mutable1);
-                                    if (this.canHostFrame(blockpos$mutable1, blockpos$mutable, direction, -1) && this.canHostFrame(blockpos$mutable1, blockpos$mutable, direction, 1) && (d0 == -1.0D || d0 > d2)) {
+                                    if (this.canHostFrame(blockpos$mutable1, mutablePos, direction, -1) && this.canHostFrame(blockpos$mutable1, mutablePos, direction, 1) && (d0 == -1.0D || d0 > d2)) {
                                         d0 = d2;
                                         blockpos = blockpos$mutable1.immutable();
                                     }
@@ -122,32 +121,32 @@ public class BaseTeleporter implements ITeleporter {
                 return Optional.empty();
             }
 
-            for(int l1 = -1; l1 < 2; ++l1) {
-                for(int k2 = 0; k2 < 2; ++k2) {
-                    for(int i3 = -1; i3 < 3; ++i3) {
-                        BlockState blockstate1 = i3 < 0 ? this.portal_frame.defaultBlockState() : Blocks.AIR.defaultBlockState();
-                        blockpos$mutable.setWithOffset(blockpos, k2 * direction.getStepX() + l1 * direction1.getStepX(), i3, k2 * direction.getStepZ() + l1 * direction1.getStepZ());
-                        this.level.setBlockAndUpdate(blockpos$mutable, blockstate1);
+            for (int l1 = -1; l1 < 2; ++l1) {
+                for (int k2 = 0; k2 < 2; ++k2) {
+                    for (int i3 = -1; i3 < 3; ++i3) {
+                        BlockState blockstate1 = i3 < 0 ? portal_frame.defaultBlockState() : Blocks.AIR.defaultBlockState();
+                        mutablePos.setWithOffset(blockpos, k2 * direction.getStepX() + l1 * direction1.getStepX(), i3, k2 * direction.getStepZ() + l1 * direction1.getStepZ());
+                        this.level.setBlockAndUpdate(mutablePos, blockstate1);
                     }
                 }
             }
         }
 
-        for(int k1 = -1; k1 < 3; ++k1) {
-            for(int i2 = -1; i2 < 4; ++i2) {
+        for (int k1 = -1; k1 < 3; ++k1) {
+            for (int i2 = -1; i2 < 4; ++i2) {
                 if (k1 == -1 || k1 == 2 || i2 == -1 || i2 == 3) {
-                    blockpos$mutable.setWithOffset(blockpos, k1 * direction.getStepX(), i2, k1 * direction.getStepZ());
-                    this.level.setBlock(blockpos$mutable, this.portal_frame.defaultBlockState(), 3);
+                    mutablePos.setWithOffset(blockpos, k1 * direction.getStepX(), i2, k1 * direction.getStepZ());
+                    this.level.setBlock(mutablePos, portal_frame.defaultBlockState(), 3);
                 }
             }
         }
 
-        BlockState blockstate = this.portal_block.defaultBlockState().setValue(JBasePortalBlock.AXIS, axis);
+        BlockState aetherPortal = portal_block.defaultBlockState().setValue(JBasePortalBlock.AXIS, axis);
 
         for (int j2 = 0; j2 < 2; ++j2) {
             for (int l2 = 0; l2 < 3; ++l2) {
-                blockpos$mutable.setWithOffset(blockpos, j2 * direction.getStepX(), l2, j2 * direction.getStepZ());
-                this.level.setBlock(blockpos$mutable, blockstate, 18);
+                mutablePos.setWithOffset(blockpos, j2 * direction.getStepX(), l2, j2 * direction.getStepZ());
+                this.level.setBlock(mutablePos, aetherPortal, 18);
             }
         }
 
