@@ -60,7 +60,7 @@ public class JBlockPedestal extends JTileContainerBlock {
                 if (!worldIn.isClientSide)
                     worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5F, pos.getY() + 1.4F, pos.getZ() + 0.5F, pedestal.getItem(0)));
                 pedestal.setItem(0, ItemStack.EMPTY);
-                if (heldItem == JItems.SAPPHIRE) {
+                if (heldItem == JItems.FROSTBORN_SOUL) {
                     pedestal.setItem(0, new ItemStack(heldItem));
                     worldIn.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     if (!player.isCreative())

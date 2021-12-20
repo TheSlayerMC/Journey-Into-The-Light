@@ -183,7 +183,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
                     final Block block = world.getBlockState(pos).getBlock();
                     if (block == JBlocks.FROZEN_PEDESTAL) {
                         PedestalTile tile = (PedestalTile) world.getBlockEntity(pos);
-                        if (tile != null && tile.getItem(0).getItem().equals(JItems.SAPPHIRE)) {
+                        if (tile != null && tile.getItem(0).getItem().equals(JItems.FROSTBORN_SOUL)) {
                             if (isActivated()) {
                                 if (!level.isClientSide) {
                                     summonLightning(pos);
