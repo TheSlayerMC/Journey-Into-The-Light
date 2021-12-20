@@ -49,7 +49,9 @@ public class BaseTeleporter implements ITeleporter {
         PointOfInterestManager poiManager = this.level.getPoiManager();
         poiManager.ensureLoadedAndValid(this.level, pos, 64);
         Optional<PointOfInterest> optional = poiManager.getInSquare((poiType) ->
+                //TODO: change back
                 poiType == Dimensions.FROZEN_PORTAL.get(), pos, 64, PointOfInterestManager.Status.ANY).sorted(Comparator.<PointOfInterest>comparingDouble((poi) ->
+
                 poi.getPos().distSqr(pos)).thenComparingInt((poi) ->
                 poi.getPos().getY())).filter((poi) ->
                 this.level.getBlockState(poi.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS)).findFirst();
@@ -139,12 +141,12 @@ public class BaseTeleporter implements ITeleporter {
             }
         }
 
-        BlockState undergardenPortal = portal_block.defaultBlockState().setValue(JBasePortalBlock.AXIS, axis);
+        BlockState portal = portal_block.defaultBlockState().setValue(JBasePortalBlock.AXIS, axis);
 
         for (int j2 = 0; j2 < 2; ++j2) {
             for (int l2 = 0; l2 < 3; ++l2) {
                 mutablePos.setWithOffset(blockpos, j2 * direction.getStepX(), l2, j2 * direction.getStepZ());
-                this.level.setBlock(mutablePos, undergardenPortal, 18);
+                this.level.setBlock(mutablePos, portal, 18);
             }
         }
 
