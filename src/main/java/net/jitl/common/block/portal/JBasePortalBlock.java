@@ -1,13 +1,14 @@
 package net.jitl.common.block.portal;
 
 import net.jitl.common.dimension.BaseTeleporter;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.NetherPortalBlock;
+import net.jitl.common.dimension.Dimensions;
+import net.jitl.init.JBlocks;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import org.jetbrains.annotations.NotNull;
@@ -43,7 +44,17 @@ public class JBasePortalBlock extends NetherPortalBlock {
                     destination = dimensionID;
                 }
                 ServerWorld serverworld = Objects.requireNonNull(playerMP.level.getServer()).getLevel(destination);
-                playerMP.changeDimension(serverworld, new BaseTeleporter(((ServerPlayerEntity) entityIn).getLevel(), this, this.frame));
+                PointOfInterestType poi = Dimensions.EUCA_PORTAL.get();
+                if(this == JBlocks.EUCA_PORTAL)
+                    poi = Dimensions.EUCA_PORTAL.get();
+                if(this == JBlocks.FROZEN_PORTAL)
+                    poi = Dimensions.FROZEN_PORTAL.get();
+                if(this == JBlocks.BOIL_PORTAL)
+                    poi = Dimensions.BOILING_PORTAL.get();
+                if(this == JBlocks.DEPTHS_PORTAL)
+                    poi = Dimensions.DEPTHS_PORTAL.get();
+
+                playerMP.changeDimension(serverworld, new BaseTeleporter(((ServerPlayerEntity) entityIn).getLevel(), this, this.frame, poi));
             }
         }
     }

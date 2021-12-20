@@ -17,6 +17,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.village.PointOfInterest;
 import net.minecraft.village.PointOfInterestManager;
 import net.minecraft.village.PointOfInterestType;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
@@ -26,42 +27,40 @@ import net.minecraftforge.common.util.ITeleporter;
 import java.util.Comparator;
 import java.util.Optional;
 
-public class BaseTeleporter implements ITeleporter {
+public class BaseTeleporter extends Teleporter {
 
     protected final ServerWorld level;
     private final JBasePortalBlock portal_block;
     private final Block portal_frame;
+    private final PointOfInterestType poi;
 
-    public BaseTeleporter(ServerWorld worldIn, JBasePortalBlock portal, Block frame) {
+    public BaseTeleporter(ServerWorld worldIn, JBasePortalBlock portal, Block frame, PointOfInterestType poi) {
+        super(worldIn);
         this.level = worldIn;
         this.portal_block = portal;
         this.portal_frame = frame;
+        this.poi = poi;
     }
 
+    @Override
     public Optional<TeleportationRepositioner.Result> findPortalAround(BlockPos pos, boolean isNether) {
-        PointOfInterestManager pointofinterestmanager = this.level.getPoiManager();
-        int i = isNether ? 16 : 128;
-        pointofinterestmanager.ensureLoadedAndValid(this.level, pos, i);
-        Optional<PointOfInterest> optional = pointofinterestmanager.getInSquare((poiType) -> {
-            return poiType == Registry.register(Registry.POINT_OF_INTEREST_TYPE, new ResourceLocation("euca"), new PointOfInterestType("euca", ImmutableSet.copyOf(JBlocks.EUCA_PORTAL.getStateDefinition().getPossibleStates()), 0, 1));
-            //TODO make this POI changeable
-        }, pos, i, PointOfInterestManager.Status.ANY).sorted(Comparator.<PointOfInterest>comparingDouble((poi1) -> {
-            return poi1.getPos().distSqr(pos);
-        }).thenComparingInt((poi3) -> {
-            return poi3.getPos().getY();
-        })).filter((poi2) -> {
-            return this.level.getBlockState(poi2.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS);
-        }).findFirst();
+        PointOfInterestManager poiManager = this.level.getPoiManager();
+        poiManager.ensureLoadedAndValid(this.level, pos, 128);
+        Optional<PointOfInterest> optional = poiManager.getInSquare((poiType) ->
+                poiType == poi, pos, 128, PointOfInterestManager.Status.ANY).sorted(Comparator.<PointOfInterest>comparingDouble((poi) ->
+                poi.getPos().distSqr(pos)).thenComparingInt((poi) ->
+                poi.getPos().getY())).filter((poi) ->
+                this.level.getBlockState(poi.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS)).findFirst();
         return optional.map((poi) -> {
             BlockPos blockpos = poi.getPos();
             this.level.getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, blockpos);
             BlockState blockstate = this.level.getBlockState(blockpos);
-            return TeleportationRepositioner.getLargestRectangleAround(blockpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, (posIn) -> {
-                return this.level.getBlockState(posIn) == blockstate;
-            });
+            return TeleportationRepositioner.getLargestRectangleAround(blockpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, (posIn) ->
+                    this.level.getBlockState(posIn) == blockstate);
         });
     }
 
+    @Override
     public Optional<TeleportationRepositioner.Result> createPortal(BlockPos pos, Direction.Axis axis) {
         Direction direction = Direction.get(Direction.AxisDirection.POSITIVE, axis);
         double d0 = -1.0D;
