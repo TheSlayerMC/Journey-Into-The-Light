@@ -71,8 +71,10 @@ public class JBasePortalBlock extends NetherPortalBlock {
                         poi = Dimensions.DEPTHS_PORTAL.get();
 
                     if (serverworld != null) {
-                        playerMP.setPortalCooldown();
+                        entityIn.level.getProfiler().push(Objects.requireNonNull(this.getRegistryName()).toString());
+                        entityIn.setPortalCooldown();
                         playerMP.changeDimension(serverworld, new BaseTeleporter(((ServerPlayerEntity) entityIn).getLevel(), this, this.frame, poi, dimensionID));
+                        entityIn.level.getProfiler().pop();
                     }
                 }
             }
