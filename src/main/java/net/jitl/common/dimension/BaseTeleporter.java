@@ -1,49 +1,51 @@
 package net.jitl.common.dimension;
 
-import com.google.common.collect.ImmutableSet;
+import net.jitl.JITL;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.init.JBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.TeleportationRepositioner;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.village.PointOfInterest;
 import net.minecraft.village.PointOfInterestManager;
 import net.minecraft.village.PointOfInterestType;
-import net.minecraft.world.Teleporter;
+import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
 
+import javax.annotation.Nullable;
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.function.Function;
 
-public class BaseTeleporter extends Teleporter {
+public class BaseTeleporter implements ITeleporter {
 
     protected final ServerWorld level;
     private final JBasePortalBlock portal_block;
-    private final Block portal_frame;
+    private final Block portal_frame = JBlocks.BOIL_PORTAL_FRAME;
     private final PointOfInterestType poi;
+    private final RegistryKey<World> destination;
 
-    public BaseTeleporter(ServerWorld worldIn, JBasePortalBlock portal, Block frame, PointOfInterestType poi) {
-        super(worldIn);
+    public BaseTeleporter(ServerWorld worldIn, JBasePortalBlock portal, Block frame, PointOfInterestType poi, RegistryKey<World> destination) {
         this.level = worldIn;
         this.portal_block = portal;
-        this.portal_frame = frame;
+        //this.portal_frame = frame;
         this.poi = poi;
+        this.destination = destination;
     }
 
-    @Override
-    public Optional<TeleportationRepositioner.Result> findPortalAround(BlockPos pos, boolean isNether) {
+    public Optional<TeleportationRepositioner.Result> findPortalAround(BlockPos pos) {
         PointOfInterestManager poiManager = this.level.getPoiManager();
         poiManager.ensureLoadedAndValid(this.level, pos, 128);
         Optional<PointOfInterest> optional = poiManager.getInSquare((poiType) ->
@@ -60,8 +62,9 @@ public class BaseTeleporter extends Teleporter {
         });
     }
 
-    @Override
     public Optional<TeleportationRepositioner.Result> createPortal(BlockPos pos, Direction.Axis axis) {
+        JITL.LOGGER.info(portal_block);
+        JITL.LOGGER.info(portal_frame);
         Direction direction = Direction.get(Direction.AxisDirection.POSITIVE, axis);
         double d0 = -1.0D;
         BlockPos blockpos = null;
@@ -71,7 +74,7 @@ public class BaseTeleporter extends Teleporter {
         int i = this.level.getHeight() - 1;
         BlockPos.Mutable blockpos$mutable = pos.mutable();
 
-        for(BlockPos.Mutable blockpos$mutable1 : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
+        for (BlockPos.Mutable blockpos$mutable1 : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
             int j = Math.min(i, this.level.getHeight(Heightmap.Type.MOTION_BLOCKING, blockpos$mutable1.getX(), blockpos$mutable1.getZ()));
             int k = 1;
             if (worldborder.isWithinBounds(blockpos$mutable1) && worldborder.isWithinBounds(blockpos$mutable1.move(direction, 1))) {
@@ -141,8 +144,8 @@ public class BaseTeleporter extends Teleporter {
 
         BlockState blockstate = this.portal_block.defaultBlockState().setValue(JBasePortalBlock.AXIS, axis);
 
-        for(int j2 = 0; j2 < 2; ++j2) {
-            for(int l2 = 0; l2 < 3; ++l2) {
+        for (int j2 = 0; j2 < 2; ++j2) {
+            for (int l2 = 0; l2 < 3; ++l2) {
                 blockpos$mutable.setWithOffset(blockpos, j2 * direction.getStepX(), l2, j2 * direction.getStepZ());
                 this.level.setBlock(blockpos$mutable, blockstate, 18);
             }
@@ -151,11 +154,53 @@ public class BaseTeleporter extends Teleporter {
         return Optional.of(new TeleportationRepositioner.Result(blockpos.immutable(), 2, 3));
     }
 
+    @Nullable
+    @Override
+    public PortalInfo getPortalInfo(Entity entity, ServerWorld serverWorld_, Function<ServerWorld, PortalInfo> defaultPortalInfo) {
+        boolean destinationIsJDim = serverWorld_.dimension() == destination;
+        if (entity.level.dimension() != destination && !destinationIsJDim) {
+            return null;
+        } else {
+            WorldBorder border = serverWorld_.getWorldBorder();
+            double minX = Math.max(-2.9999872E7D, border.getMinX() + 16.0D);
+            double minZ = Math.max(-2.9999872E7D, border.getMinZ() + 16.0D);
+            double maxX = Math.min(2.9999872E7D, border.getMaxX() - 16.0D);
+            double maxZ = Math.min(2.9999872E7D, border.getMaxZ() - 16.0D);
+            double coordinateDifference = DimensionType.getTeleportationScale(entity.level.dimensionType(), serverWorld_.dimensionType());
+            BlockPos blockpos = new BlockPos(MathHelper.clamp(entity.getX() * coordinateDifference, minX, maxX), entity.getY(), MathHelper.clamp(entity.getZ() * coordinateDifference, minZ, maxZ));
+            return this.getOrMakePortal(entity, blockpos).map((result) -> {
+                BlockState blockstate = entity.level.getBlockState(entity.portalEntrancePos);
+                Direction.Axis axis;
+                Vector3d vector3d;
+                if (blockstate.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
+                    axis = blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS);
+                    TeleportationRepositioner.Result rectangle = TeleportationRepositioner.getLargestRectangleAround(entity.portalEntrancePos, axis, 21, Direction.Axis.Y, 21, (pos) -> entity.level.getBlockState(pos) == blockstate);
+                    vector3d = entity.getRelativePortalPosition(axis, rectangle);
+                } else {
+                    axis = Direction.Axis.X;
+                    vector3d = new Vector3d(0.5D, 0.0D, 0.0D);
+                }
+
+                return PortalSize.createPortalInfo(serverWorld_, result, axis, vector3d, entity.getDimensions(entity.getPose()), entity.getDeltaMovement(), entity.yRot, entity.xRot);
+            }).orElse(null);
+        }
+    }
+
+    protected Optional<TeleportationRepositioner.Result> getOrMakePortal(Entity entity, BlockPos pos) {
+        Optional<TeleportationRepositioner.Result> existingPortal = this.findPortalAround(pos);
+        if (existingPortal.isPresent()) {
+            return existingPortal;
+        } else {
+            Direction.Axis portalAxis = this.level.getBlockState(entity.portalEntrancePos).getOptionalValue(JBasePortalBlock.AXIS).orElse(Direction.Axis.X);
+            return this.createPortal(pos, portalAxis);
+        }
+    }
+
     private boolean canHostFrame(BlockPos originalPos, BlockPos.Mutable offsetPos, Direction directionIn, int offsetScale) {
         Direction direction = directionIn.getClockWise();
 
-        for(int i = -1; i < 3; ++i) {
-            for(int j = -1; j < 4; ++j) {
+        for (int i = -1; i < 3; ++i) {
+            for (int j = -1; j < 4; ++j) {
                 offsetPos.setWithOffset(originalPos, directionIn.getStepX() * i + direction.getStepX() * offsetScale, j, directionIn.getStepZ() * i + direction.getStepZ() * offsetScale);
                 if (j < 0 && !this.level.getBlockState(offsetPos).getMaterial().isSolid()) {
                     return false;
