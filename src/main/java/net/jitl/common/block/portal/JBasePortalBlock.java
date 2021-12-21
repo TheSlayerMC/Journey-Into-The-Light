@@ -6,7 +6,6 @@ import net.jitl.init.JBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.PortalSize;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -25,6 +24,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.Random;
@@ -66,7 +66,7 @@ public class JBasePortalBlock extends Block {
         Direction.Axis direction$axis = facing.getAxis();
         Direction.Axis direction$axis1 = stateIn.getValue(AXIS);
         boolean flag = direction$axis1 != direction$axis && direction$axis.isHorizontal();
-        return !flag && facingState.getBlock() != this && !(new PortalSize(worldIn, currentPos, direction$axis1)).isValid() ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return !flag && facingState.getBlock() != this && !(new JBasePortalBlock.Size(worldIn, currentPos, direction$axis1, getBlock(), frame.get())).validatePortal() ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
 
@@ -133,6 +133,166 @@ public class JBasePortalBlock extends Block {
                     }
                 }
             }
+        }
+    }
+
+    public boolean makePortal(IWorld worldIn, BlockPos pos) {
+        JBasePortalBlock.Size portal = this.isPortal(worldIn, pos);
+        if (portal != null) {
+            portal.createPortalBlocks();
+            System.out.println("MADE");
+            return true;
+        } else {
+            System.out.println("NOT MADE");
+            return false;
+        }
+    }
+
+    public JBasePortalBlock.Size isPortal(IWorld worldIn, BlockPos pos) {
+        JBasePortalBlock.Size portalX = new Size(worldIn, pos, Direction.Axis.X, this, worldIn.getBlockState(pos.below()).getBlock());
+        if (portalX.isValid() && portalX.portalBlockCount == 0) {
+            return portalX;
+        } else {
+            JBasePortalBlock.Size portalZ = new Size(worldIn, pos, Direction.Axis.Z, this, worldIn.getBlockState(pos.below()).getBlock());
+            return portalZ.isValid() && portalZ.portalBlockCount == 0 ? portalZ : null;
+        }
+    }
+
+    public static class Size {
+        private final IWorld world;
+        private final Direction.Axis axis;
+        private final Direction rightDir;
+        private final Direction leftDir;
+        private int portalBlockCount;
+        @Nullable
+        private BlockPos bottomLeft;
+        private int height;
+        private int width;
+        private Block portal, frame;
+
+        public Size(IWorld worldIn, BlockPos pos, Direction.Axis axisIn, Block portal, Block frame) {
+            this.world = worldIn;
+            this.axis = axisIn;
+            this.portal=portal;
+            this.frame=frame;
+            if (axisIn == Direction.Axis.X) {
+                this.leftDir = Direction.EAST;
+                this.rightDir = Direction.WEST;
+            } else {
+                this.leftDir = Direction.NORTH;
+                this.rightDir = Direction.SOUTH;
+            }
+
+            for(BlockPos blockpos = pos; pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && this.canConnect(worldIn.getBlockState(pos.below())); pos = pos.below()) {
+                ;
+            }
+
+            int i = this.getDistanceUntilEdge(pos, this.leftDir) - 1;
+            if (i >= 0) {
+                this.bottomLeft = pos.relative(this.leftDir, i);
+                this.width = this.getDistanceUntilEdge(this.bottomLeft, this.rightDir);
+                if (this.width < 2 || this.width > 21) {
+                    this.bottomLeft = null;
+                    this.width = 0;
+                }
+            }
+
+            if (this.bottomLeft != null) {
+                this.height = this.calculatePortalHeight();
+            }
+
+        }
+
+        protected int getDistanceUntilEdge(BlockPos pos, Direction directionIn) {
+            int i;
+            for(i = 0; i < 22; ++i) {
+                BlockPos blockpos = pos.relative(directionIn, i);
+                if (!this.canConnect(this.world.getBlockState(blockpos)) || !(this.world.getBlockState(blockpos.below()).getBlock().is(this.world.getBlockState(pos.below()).getBlock()))) {
+                    break;
+                }
+            }
+
+            BlockPos framePos = pos.relative(directionIn, i);
+            return this.world.getBlockState(framePos).getBlock().is(this.world.getBlockState(pos.below()).getBlock()) ? i : 0;
+        }
+
+        public int getHeight() {
+            return this.height;
+        }
+
+        public int getWidth() {
+            return this.width;
+        }
+
+        protected int calculatePortalHeight() {
+            label56:
+            for(this.height = 0; this.height < 21; ++this.height) {
+                for(int i = 0; i < this.width; ++i) {
+                    BlockPos blockpos = this.bottomLeft.relative(this.rightDir, i).above(this.height);
+                    BlockState blockstate = this.world.getBlockState(blockpos);
+                    if (!this.canConnect(blockstate)) {
+                        break label56;
+                    }
+
+                    Block block = blockstate.getBlock();
+                    if (block == this.portal) {
+                        ++this.portalBlockCount;
+                    }
+
+                    if (i == 0) {
+                        BlockPos framePos = blockpos.relative(this.leftDir);
+                        if (!(this.world.getBlockState(framePos).getBlock().is(this.world.getBlockState(framePos).getBlock()))) {
+                            break label56;
+                        }
+                    } else if (i == this.width - 1) {
+                        BlockPos framePos = blockpos.relative(this.rightDir);
+                        if (!(this.world.getBlockState(framePos).getBlock().is(this.world.getBlockState(framePos).getBlock()))) {
+                            break label56;
+                        }
+                    }
+                }
+            }
+
+            for(int j = 0; j < this.width; ++j) {
+                BlockPos framePos = this.bottomLeft.relative(this.rightDir, j).above(this.height);
+                if (!(this.world.getBlockState(framePos).getBlock().is(this.world.getBlockState(framePos).getBlock()))) {
+                    this.height = 0;
+                    break;
+                }
+            }
+
+            if (this.height <= 21 && this.height >= 3) {
+                return this.height;
+            } else {
+                this.bottomLeft = null;
+                this.width = 0;
+                this.height = 0;
+                return 0;
+            }
+        }
+
+        protected boolean canConnect(BlockState pos) {
+            Block block = pos.getBlock();
+            return pos.isAir() || block == this.portal;
+        }
+
+        public boolean isValid() {
+            return this.bottomLeft != null && this.width >= 2 && this.width <= 21 && this.height >= 3 && this.height <= 21;
+        }
+
+        public void createPortalBlocks() {
+            BlockState blockstate = this.portal.defaultBlockState().setValue(JBasePortalBlock.AXIS, this.axis);
+            BlockPos.betweenClosed(this.bottomLeft, this.bottomLeft.relative(Direction.UP, this.height - 1).relative(this.rightDir, this.width - 1)).forEach((pos) -> {
+                this.world.setBlock(pos, blockstate, 18);
+            });
+        }
+
+        private boolean isPortalCountValidForSize() {
+            return this.portalBlockCount >= this.width * this.height;
+        }
+
+        public boolean validatePortal() {
+            return this.isValid() && this.isPortalCountValidForSize();
         }
     }
 }

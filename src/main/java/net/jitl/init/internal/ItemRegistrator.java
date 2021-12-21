@@ -24,6 +24,7 @@ import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustToolAbility;
 import net.jitl.common.item.gear.abilities.celestium.CelestiumArmorAbility;
 import net.jitl.common.item.gear.abilities.korite.KoriteSwordAbility;
 import net.jitl.common.item.gear.abilities.mekyum.MekyumSwordAbility;
+import net.jitl.common.item.interactive.FlameCoinItem;
 import net.jitl.common.item.interactive.MinersPearlItem;
 import net.jitl.common.item.throwable.KnifeItem;
 import net.jitl.common.item.throwable.PiercerItem;
@@ -149,7 +150,7 @@ public class ItemRegistrator {
         registerItem("blood", "Blood");
         registerItem("powder_of_essencia", "Powder Of Essencia");
 
-        registerItem("flame_coin", "Flame Coin");
+        registerItem("flame_coin", "Flame Coin", () -> new FlameCoinItem());
 
         //END ITEMS
         registerItem("enderillium_shard", "Enderillium Shard");
