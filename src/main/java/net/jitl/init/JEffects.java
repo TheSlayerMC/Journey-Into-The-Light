@@ -27,6 +27,21 @@ public class JEffects {
         public static SimpleForgeRegister<Potion> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.POTION_TYPES, JITL.MODID);
 
         public static final RegistryObject<Potion> ESSENCE_REGEN =
-                REGISTER.register("essence_regen", () -> new Potion("essence_regen", new EffectInstance(JEffects.ESSENCE_REGEN.get(), 100, 3)));
+                REGISTER.register("essence_regen", () -> new Potion("essence_regen", new EffectInstance(JEffects.ESSENCE_REGEN.get(), 900, 1)));
+
+        public static final RegistryObject<Potion> LONG_ESSENCE_REGEN =
+                REGISTER.register("long_essence_regen", () -> new Potion("long_essence_regen", new EffectInstance(JEffects.ESSENCE_REGEN.get(), 1800, 1)));
+
+        public static final RegistryObject<Potion> STRONG_ESSENCE_REGEN =
+                REGISTER.register("strong_essence_regen", () -> new Potion("strong_essence_regen", new EffectInstance(JEffects.ESSENCE_REGEN.get(), 450, 3)));
+
+        public static final RegistryObject<Potion> FROSTBURN =
+                REGISTER.register("frostburn", () -> new Potion("frostburn", new EffectInstance(JEffects.FROSTBURN.get(), 3600, 2)));
+
+        public static final RegistryObject<Potion> LONG_FROSTBURN =
+                REGISTER.register("long_frostburn", () -> new Potion("long_frostburn", new EffectInstance(JEffects.FROSTBURN.get(), 9600, 2)));
+
+        public static final RegistryObject<Potion> STRONG_FROSTBURN =
+                REGISTER.register("strong_frostburn", () -> new Potion("strong_frostburn", new EffectInstance(JEffects.FROSTBURN.get(), 1800, 3)));
     }
 }

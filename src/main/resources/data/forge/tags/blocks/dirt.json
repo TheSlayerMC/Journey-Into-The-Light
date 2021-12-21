@@ -4,6 +4,13 @@
     "jitl:rubble",
     "jitl:charred_grass",
     "jitl:crumbled_permafrost",
-    "jitl:grassy_permafrost"
+    "jitl:grassy_permafrost",
+    "jitl:goldite_grass_block",
+    "jitl:euca_gold_grass_block",
+    "jitl:euca_silver_grass_block",
+    "jitl:goldite_dirt",
+    "jitl:volcanic_sand",
+    "jitl:hot_ground",
+    "jitl:depths_grass_block"
   ]
 }

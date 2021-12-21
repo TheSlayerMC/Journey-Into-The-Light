@@ -158,13 +158,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1),
                             new DoublePlantBlockPlacer()))
-                            .tries(160)
-                            .xspread(16)
-                            .zspread(16)
+                            .tries(24)
+                            .xspread(8)
+                            .zspread(8)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GOLDITE_GRASS_BLOCK))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(64))
                     .setBiomePredicate(GOLDITE_GRAINS)
@@ -176,13 +177,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(100)
-                            .xspread(16)
-                            .zspread(16)
+                            .tries(24)
+                            .xspread(7)
+                            .zspread(7)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GOLDITE_GRASS_BLOCK))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(16))
                     .setBiomePredicate(GOLDITE_GRAINS)
@@ -194,13 +196,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(160)
+                            .tries(24)
                             .xspread(10)
                             .zspread(10)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GOLDITE_GRASS_BLOCK))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(64))
                     .setBiomePredicate(GOLDITE_GRAINS)
@@ -213,13 +216,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(160)
+                            .tries(24)
                             .xspread(10)
                             .zspread(10)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.EUCA_SILVER_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(64))
                     .setBiomePredicate(EUCA_SILVER_PLAINS.and(EUCA_GOLD_PLAINS))
@@ -233,13 +237,14 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.EUCA_SILVER_SPROUTS.defaultBlockState(), 1)
                                     .add(JBlocks.EUCA_SILVER_SHORT_GRASS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(160)
+                            .tries(24)
                             .xspread(6)
                             .zspread(6)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.EUCA_SILVER_GRASS_BLOCK))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(64))
                     .setBiomePredicate(EUCA_SILVER_PLAINS)
@@ -252,13 +257,14 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.EUCA_TALL_FLOWERS.defaultBlockState(), 1)
                                     .add(JBlocks.EUCA_TALL_GRASS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(160)
-                            .xspread(6)
-                            .zspread(6)
+                            .tries(24)
+                            .xspread(7)
+                            .zspread(7)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.EUCA_GOLD_GRASS_BLOCK))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(64))
                     .setBiomePredicate(EUCA_GOLD_PLAINS)
@@ -272,13 +278,14 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 1)
                                     .add(JBlocks.GOLDITE_FLOWER.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(160)
-                            .xspread(10)
-                            .zspread(10)
+                            .tries(24)
+                            .xspread(7)
+                            .zspread(7)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GOLDITE_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(64))
                     .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
@@ -540,7 +547,8 @@ public class JConfiguredFeatures {
                             .configured(IFeatureConfig.NONE)
                             .range(256)
                             .squared()
-                            .count(220))
+                            .count(220)
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(SCORCHED_WASTELAND)
                     .asPromise();
 
@@ -549,12 +557,13 @@ public class JConfiguredFeatures {
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new SimpleBlockStateProvider(JBlocks.SCORCHED_CACTUS.defaultBlockState()),
                             new ColumnBlockPlacer(2, 4)))
-                            .tries(20)
+                            .tries(4)
                             .xspread(16)
                             .zspread(16)
                             .whitelist(ImmutableSet.of(JBlocks.VOLCANIC_SAND))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(10))
                     .setBiomePredicate(BOILING_SANDS)
@@ -789,7 +798,8 @@ public class JConfiguredFeatures {
                             .range(5)
                             .squared()
                             .chance(70)
-                            .countRandom(32))
+                            .countRandom(32)
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(FROZEN_WASTES)
                     .asPromise();
 
@@ -797,18 +807,19 @@ public class JConfiguredFeatures {
             REGISTER.register("frozen_plants", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
                             new WeightedBlockStateProvider()
-                                    .add(JBlocks.ICE_BUSH.defaultBlockState(), 10)
-                                    .add(JBlocks.FROSTBERRY_THORN.defaultBlockState(), 1),
+                                    .add(JBlocks.ICE_BUSH.defaultBlockState(), 1)
+                                    .add(JBlocks.FROSTBERRY_THORN.defaultBlockState(), 5),
                             new SimpleBlockPlacer()))
-                            .tries(200)
-                            .xspread(16)
-                            .zspread(16)
+                            .tries(26)
+                            .xspread(8)
+                            .zspread(8)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GRASSY_PERMAFROST))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
-                    .count(75))
+                    .count(64))
                     .setBiomePredicate(FROZEN_BIOMES)
                     .asPromise();
 
@@ -819,13 +830,14 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.FROZEN_BLOOM.defaultBlockState(), 5)
                                     .add(JBlocks.ICE_BUD.defaultBlockState(), 2),
                             new SimpleBlockPlacer()))
-                            .tries(50)
-                            .xspread(16)
-                            .zspread(16)
+                            .tries(3)
+                            .xspread(8)
+                            .zspread(8)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GRASSY_PERMAFROST))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(50))
                     .setBiomePredicate(FROZEN_BIOMES)
@@ -837,13 +849,14 @@ public class JConfiguredFeatures {
                             new WeightedBlockStateProvider()
                                     .add(JBlocks.CICLEBLOOM.defaultBlockState(), 6),
                             new SimpleBlockPlacer()))
-                            .tries(7)
+                            .tries(2)
                             .xspread(10)
                             .zspread(10)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.GRASSY_PERMAFROST))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(50))
                     .setBiomePredicate(FROZEN_DYING_FORST.or(FROZEN_BITTERWOOD_FORST))
@@ -851,7 +864,7 @@ public class JConfiguredFeatures {
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOILING_SANDS_PLANTS =
             REGISTER.register("tall_boiling_sands_plants",
-                    Decoration.UNDERGROUND_DECORATION,
+                    Decoration.VEGETAL_DECORATION,
                     () -> Feature.RANDOM_PATCH
                             .configured((new BlockClusterFeatureConfig.Builder(
                                     new WeightedBlockStateProvider()
@@ -861,12 +874,13 @@ public class JConfiguredFeatures {
                                     .tries(64)
                                     .xspread(6)
                                     .zspread(6)
-                                            .whitelist(ImmutableSet.of(
-                                                    JBlocks.VOLCANIC_SAND))
-                                            .noProjection()
-                                            .build())
-                                    .range(255)
-                                    .count(100))
+                                    .whitelist(ImmutableSet.of(
+                                            JBlocks.VOLCANIC_SAND))
+                                    .noProjection()
+                                    .build())
+                            .range(255)
+                            .count(100)
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
@@ -912,13 +926,14 @@ public class JConfiguredFeatures {
                                             .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 1)
                                             .add(JBlocks.CRISP_GRASS.defaultBlockState(), 1),
                                     new SimpleBlockPlacer()))
-                                    .tries(200)
-                                    .xspread(10)
-                                    .zspread(10)
+                                    .tries(24)
+                                    .xspread(6)
+                                    .zspread(6)
                                     .whitelist(ImmutableSet.of(
                                             JBlocks.VOLCANIC_SAND))
                                     .noProjection()
                                     .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(100))
                     .setBiomePredicate(BOILING_SANDS)
@@ -931,13 +946,14 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.CHARRED_WEEDS.defaultBlockState(), 1)
                                     .add(JBlocks.CHARRED_SHORT_GRASS.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(200)
-                            .xspread(10)
-                            .zspread(10)
+                            .tries(24)
+                            .xspread(6)
+                            .zspread(6)
                             .whitelist(ImmutableSet.of(
                                     JBlocks.CHARRED_GRASS))
                             .noProjection()
                             .build())
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
                     .range(250)
                     .count(100))
                     .setBiomePredicate(CHARRED_FIELDS)
@@ -951,7 +967,7 @@ public class JConfiguredFeatures {
                                     new WeightedBlockStateProvider()
                                             .add(JBlocks.CHARRED_TALL_GRASS.defaultBlockState(), 1),
                                     new DoublePlantBlockPlacer()))
-                                    .tries(64)
+                                    .tries(10)
                                     .xspread(6)
                                     .zspread(6)
                                     .whitelist(ImmutableSet.of(
@@ -959,7 +975,8 @@ public class JConfiguredFeatures {
                                     .noProjection()
                                     .build())
                             .range(255)
-                            .count(100))
+                            .count(100)
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(CHARRED_FIELDS)
                     .asPromise();
 
@@ -970,15 +987,16 @@ public class JConfiguredFeatures {
                                     .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 1)
                                     .add(JBlocks.FLAME_POD.defaultBlockState(), 1),
                             new SimpleBlockPlacer()))
-                            .tries(200)
-                                    .xspread(10)
-                                    .zspread(10)
-                                    .whitelist(ImmutableSet.of(
-                                            JBlocks.HOT_GROUND))
-                                    .noProjection()
-                                    .build())
-                            .range(250)
-                            .count(100))
+                            .tries(6)
+                            .xspread(6)
+                            .zspread(6)
+                            .whitelist(ImmutableSet.of(
+                                    JBlocks.HOT_GROUND))
+                            .noProjection()
+                            .build())
+                    .range(250)
+                    .count(100)
+                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(BOILING_PLAINS)
                     .asPromise();
 
@@ -1010,7 +1028,8 @@ public class JConfiguredFeatures {
                             .configured(IFeatureConfig.NONE)
                             .range(256)
                             .squared()
-                            .countRandom(64))
+                            .countRandom(64)
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(CHARRED_FIELDS)
                     .asPromise();
 
