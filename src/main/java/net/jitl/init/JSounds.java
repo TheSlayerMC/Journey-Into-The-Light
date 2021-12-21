@@ -43,6 +43,8 @@ public class JSounds {
     public static final RegistryObject<TimeSound> ESSENCIA_ALTAR_ACTIVATE = REGISTER.register("block.essencia_altar.activate");
 
     public static final RegistryObject<TimeSound> CRYSTAL_APPLE_FREEZE = REGISTER.register("items.crystal_apple.freeze");
+    public static final RegistryObject<TimeSound> CRYSTAL_APPLE_UNFREEZE = REGISTER.register("items.crystal_apple.unfreeze");
+
     public static final RegistryObject<TimeSound> STAFF_0 = REGISTER.register("items.staff.staff_0");
     public static final RegistryObject<TimeSound> LOOT = REGISTER.register("items.loot");
     public static final RegistryObject<TimeSound> MINERS_PEARL = REGISTER.register("items.miners_pearl");

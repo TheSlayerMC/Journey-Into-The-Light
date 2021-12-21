@@ -21,7 +21,7 @@ public class PotionEventHandler {
         LivingEntity entity = event.getEntityLiving();
         if (event.getPotionEffect().getEffect() == JEffects.FROSTBURN.get()) {
             if (entity instanceof PlayerEntity) {
-                Minecraft.getInstance().getSoundManager().play(SimpleSound.forLocalAmbience(JSounds.CRYSTAL_APPLE_FREEZE.get(), 1.0F, 1.0F));
+                playFrostburnApplySound();
             }
         }
     }
@@ -31,7 +31,7 @@ public class PotionEventHandler {
         LivingEntity entity = event.getEntityLiving();
         if (event.getPotion().equals(JEffects.FROSTBURN.get())) {
             if (entity instanceof PlayerEntity) {
-                Minecraft.getInstance().getSoundManager().play(SimpleSound.forLocalAmbience(JSounds.CRYSTAL_APPLE_FREEZE.get(), 1.0F, 1.55F));
+                playFrostburnExpireSound();
             }
         }
     }
@@ -41,8 +41,16 @@ public class PotionEventHandler {
         LivingEntity entity = event.getEntityLiving();
         if (Objects.requireNonNull(event.getPotionEffect()).getEffect().equals(JEffects.FROSTBURN.get())) {
             if (entity instanceof PlayerEntity) {
-                Minecraft.getInstance().getSoundManager().play(SimpleSound.forLocalAmbience(JSounds.CRYSTAL_APPLE_FREEZE.get(), 1.0F, 1.55F));
+                playFrostburnExpireSound();
             }
         }
+    }
+
+    private static void playFrostburnApplySound() {
+        Minecraft.getInstance().getSoundManager().play(SimpleSound.forLocalAmbience(JSounds.CRYSTAL_APPLE_FREEZE.get(), 1.0F, 1.0F));
+    }
+
+    private static void playFrostburnExpireSound() {
+        Minecraft.getInstance().getSoundManager().play(SimpleSound.forLocalAmbience(JSounds.CRYSTAL_APPLE_UNFREEZE.get(), 1.0F, 1.0F));
     }
 }

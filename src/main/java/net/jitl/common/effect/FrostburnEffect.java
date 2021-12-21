@@ -25,8 +25,8 @@ public class FrostburnEffect extends Effect {
         AxisAlignedBB axisalignedbb = AxisAlignedBB.unitCubeFromLowerCorner(entityLivingBaseIn.position()).inflate(playerArea, playerArea, playerArea);
         for (LivingEntity livingEntity : entityLivingBaseIn.level.getEntitiesOfClass(LivingEntity.class, axisalignedbb)) {
             if (livingEntity != entityLivingBaseIn && !(livingEntity instanceof TameableEntity)) {
-                livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100 * (amplifier / 2), amplifier + 1));
-                livingEntity.addEffect(new EffectInstance(Effects.WEAKNESS, 100 * (amplifier), amplifier));
+                livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 3));
+                livingEntity.addEffect(new EffectInstance(Effects.WEAKNESS, 100, 2));
             }
         }
     }

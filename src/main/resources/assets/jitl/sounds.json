@@ -210,6 +210,11 @@
       "jitl:items/crystal_apple_freeze"
     ]
   },
+  "items.crystal_apple.unfreeze": {
+    "sounds": [
+      "jitl:items/crystal_apple_unfreeze"
+    ]
+  },
   "items.loot": {
     "sounds": [
       "jitl:items/loot"

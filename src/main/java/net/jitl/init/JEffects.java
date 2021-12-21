@@ -36,12 +36,9 @@ public class JEffects {
                 REGISTER.register("strong_essence_regen", () -> new Potion("strong_essence_regen", new EffectInstance(JEffects.ESSENCE_REGEN.get(), 450, 3)));
 
         public static final RegistryObject<Potion> FROSTBURN =
-                REGISTER.register("frostburn", () -> new Potion("frostburn", new EffectInstance(JEffects.FROSTBURN.get(), 3600, 2)));
+                REGISTER.register("frostburn", () -> new Potion("frostburn", new EffectInstance(JEffects.FROSTBURN.get(), 3600, 1)));
 
         public static final RegistryObject<Potion> LONG_FROSTBURN =
-                REGISTER.register("long_frostburn", () -> new Potion("long_frostburn", new EffectInstance(JEffects.FROSTBURN.get(), 9600, 2)));
-
-        public static final RegistryObject<Potion> STRONG_FROSTBURN =
-                REGISTER.register("strong_frostburn", () -> new Potion("strong_frostburn", new EffectInstance(JEffects.FROSTBURN.get(), 1800, 3)));
+                REGISTER.register("long_frostburn", () -> new Potion("long_frostburn", new EffectInstance(JEffects.FROSTBURN.get(), 9600, 1)));
     }
 }

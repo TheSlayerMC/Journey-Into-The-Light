@@ -14,7 +14,7 @@ public class JFoods {
             .effect(() -> new EffectInstance(Effects.DAMAGE_BOOST, 4000, 2), 1.0F)
             .effect(() -> new EffectInstance(Effects.HEAL, 10, 1), 1.0F)
             .effect(() -> new EffectInstance(Effects.ABSORPTION, 1400, 4), 1.0F)
-            .effect(() -> new EffectInstance(JEffects.FROSTBURN.get(), 600, 4), 1.0F)
+            .effect(() -> new EffectInstance(JEffects.FROSTBURN.get(), 600, 1), 1.0F)
             .alwaysEat().build();
 
     public static final Food BRADBERRY = (new Food.Builder()).nutrition(1).saturationMod(0.25F).fast().alwaysEat().build();
