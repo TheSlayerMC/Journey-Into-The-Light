@@ -39,12 +39,9 @@ public class ClientEventHandler {
 
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
         PlayerEntity player = ClientProxy.player();
-
         if (player != null) {
             JPlayer cap = JPlayer.from(player);
-
             if (player.level.dimension() == JDimensions.FROZEN_WORLD) {
-
                 if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
                     if (cap != null) {
                         if (!cap.fogDensity.isDensityEnabled()) {

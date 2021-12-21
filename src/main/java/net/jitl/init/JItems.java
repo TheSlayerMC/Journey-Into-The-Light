@@ -46,6 +46,7 @@ public class JItems {
     public static final Item RIMESTONE = promise();
     public static final Item FROSTBORN_SOUL = promise();
     public static final Item ICE_AMULET = promise();
+    public static final Item CRYSTAL_APPLE = promise();
 
     public static final Item LOOT_POUCH_BASIC = promise();
     public static final Item LOOT_POUCH_GOLD = promise();

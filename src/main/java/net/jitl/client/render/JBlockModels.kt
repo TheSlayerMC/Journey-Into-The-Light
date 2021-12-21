@@ -64,4 +64,18 @@ object JBlockModels {
             "crop" set textureCrop.toString()
         }
     })
+
+    @JvmStatic
+    fun portalEW(texture: TextureLocation) = BlockModel(json {
+        "textures" {
+            "particle" set texture.toString()
+            "texture" set texture.toString()
+        }
+        "elements"[
+                {
+                    //"from" [
+                    //]
+                }
+        ]
+    })
 }

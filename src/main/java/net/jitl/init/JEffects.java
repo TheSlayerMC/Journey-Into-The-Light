@@ -18,6 +18,9 @@ public class JEffects {
     public static final RegistryObject<Effect> ESSENCE_REGEN =
             REGISTER.register("essence_regen", () -> new EssenceRegenEffect(EffectType.BENEFICIAL, 0xff3600));
 
+    public static final RegistryObject<Effect> FROSTBURN =
+            REGISTER.register("frostburn", () -> new EssenceRegenEffect(EffectType.BENEFICIAL, 0xff3600));
+
     public static class JPotions {
         @AutoRegistrable
         public static SimpleForgeRegister<Potion> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.POTION_TYPES, JITL.MODID);
