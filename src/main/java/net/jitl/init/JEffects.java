@@ -2,6 +2,7 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.effect.EssenceRegenEffect;
+import net.jitl.common.effect.FrostburnEffect;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
@@ -19,7 +20,7 @@ public class JEffects {
             REGISTER.register("essence_regen", () -> new EssenceRegenEffect(EffectType.BENEFICIAL, 0xff3600));
 
     public static final RegistryObject<Effect> FROSTBURN =
-            REGISTER.register("frostburn", () -> new EssenceRegenEffect(EffectType.BENEFICIAL, 0xff3600));
+            REGISTER.register("frostburn", () -> new FrostburnEffect(EffectType.BENEFICIAL, 0xff3600));
 
     public static class JPotions {
         @AutoRegistrable

@@ -13,6 +13,7 @@ import net.jitl.common.item.curios.amulet.IceAmuletItem;
 import net.jitl.common.item.curios.catalyst.EssenceCatalystItem;
 import net.jitl.common.item.curios.catalyst.RegenCatalystItem;
 import net.jitl.common.item.curios.ring.JRingItem;
+import net.jitl.common.item.food.CrystalAppleItem;
 import net.jitl.common.item.gear.*;
 import net.jitl.common.item.gear.abilities.IAbility;
 import net.jitl.common.item.gear.abilities.LuniumAbility;
@@ -94,7 +95,7 @@ public class ItemRegistrator {
         registerItem("sentacoin_bag", "Sentacoin Bag", () -> new Item(itemGrouped()), "item/sentacoin_bag_model");
         registerItem("peridot_gemstone", "Peridot Gemstone");
         registerItem("rimestone", "Rimestone");
-        registerItem("crystal_apple", "Crystal Apple", () -> new Item(itemGrouped().food(JFoods.CRYSTAL_APPLE).rarity(Rarity.EPIC)));
+        registerItem("crystal_apple", "Crystal Apple", () -> new CrystalAppleItem(itemGrouped().food(JFoods.CRYSTAL_APPLE).rarity(Rarity.EPIC)));
         registerItem("frostborn_soul", "Frostborn Soul");
         registerItem("ice_amulet", "Ice Amulet", () -> new IceAmuletItem(itemGrouped().stacksTo(1)));
 

@@ -25,7 +25,6 @@ public class JSounds {
     public static final RegistryObject<TimeSound> PERMAFROST_BREAK = REGISTER.register("block.permafrost.break");
     public static final RegistryObject<TimeSound> PERMAFROST_DIG = REGISTER.register("block.permafrost.dig");
 
-
     public static final RegistryObject<TimeSound> LUNIUM_ORE_BREAK = REGISTER.register("block.lunium_ore.break");
     public static final RegistryObject<TimeSound> LUNIUM_BLOCK_BREAK = REGISTER.register("block.lunium_block.break");
     public static final RegistryObject<TimeSound> LUNIUM_BLOCK_DIG = REGISTER.register("block.lunium_block.dig");
@@ -43,6 +42,7 @@ public class JSounds {
     public static final RegistryObject<TimeSound> RUNE_ACTIVATE = REGISTER.register("block.rune.activate");
     public static final RegistryObject<TimeSound> ESSENCIA_ALTAR_ACTIVATE = REGISTER.register("block.essencia_altar.activate");
 
+    public static final RegistryObject<TimeSound> CRYSTAL_APPLE_FREEZE = REGISTER.register("items.crystal_apple.freeze");
     public static final RegistryObject<TimeSound> STAFF_0 = REGISTER.register("items.staff.staff_0");
     public static final RegistryObject<TimeSound> LOOT = REGISTER.register("items.loot");
     public static final RegistryObject<TimeSound> MINERS_PEARL = REGISTER.register("items.miners_pearl");

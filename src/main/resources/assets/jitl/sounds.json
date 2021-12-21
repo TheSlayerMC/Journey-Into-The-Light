@@ -205,6 +205,11 @@
       "jitl:items/staff/staff_0"
     ]
   },
+  "items.crystal_apple.freeze": {
+    "sounds": [
+      "jitl:items/crystal_apple_freeze"
+    ]
+  },
   "items.loot": {
     "sounds": [
       "jitl:items/loot"

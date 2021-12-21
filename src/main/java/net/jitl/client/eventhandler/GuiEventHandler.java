@@ -5,6 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.JITL;
 import net.jitl.client.render.gui.button.ToggleMenuButton;
 import net.jitl.client.render.gui.menu.JMainMenuGui;
+import net.jitl.client.render.overlay.RenderFrostburnOverlay;
 import net.jitl.client.util.RenderUtils;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.player.data.Essence;
@@ -12,6 +13,7 @@ import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.common.helper.JBossInfo;
 import net.jitl.config.JClientConfig;
 import net.jitl.config.JConfigs;
+import net.jitl.init.JEffects;
 import net.jitl.util.IEssenceItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.MainMenuScreen;
@@ -72,11 +74,22 @@ public class GuiEventHandler {
 	}
 
 	@SubscribeEvent()
+	public static void renderFrostburnOverlay(RenderGameOverlayEvent.Post event) {
+		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
+			Minecraft minecraft = Minecraft.getInstance();
+			PlayerEntity player = minecraft.player;
+			if (player != null && player.hasEffect(JEffects.FROSTBURN.get())) {
+				RenderFrostburnOverlay.render(minecraft);
+			}
+		}
+	}
+
+	@SubscribeEvent()
 	public static void renderEssenceBar(RenderGameOverlayEvent.Post event) {
 		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
 			Minecraft minecraft = Minecraft.getInstance();
 			PlayerEntity player = minecraft.player;
-			if (!player.isCreative() && !player.isSpectator()) {
+			if (player != null && !player.isCreative() && !player.isSpectator()) {
 				MatrixStack matrixStack = event.getMatrixStack();
 				JPlayer cap = JPlayer.from(player);
 				if (cap != null) {
