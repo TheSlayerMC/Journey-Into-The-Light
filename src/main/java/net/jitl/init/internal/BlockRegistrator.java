@@ -148,7 +148,7 @@ public class BlockRegistrator {
         KBlockRegistrator.INSTANCE.registerStairs("euca_golden_stairs", "Euca Golden Stairs", eucaGoldPlank, JBlockProperties.WOOD_PROPS.create());
         RegistryObject<Block> eucaDungeonBricks = registerBlock("euca_dungeon_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         KBlockRegistrator.INSTANCE.registerStairs("euca_dungeon_stairs", "Euca Dungeon Stairs", eucaDungeonBricks, JBlockProperties.STONE_PROPS.create());
-        registerSpeciallyRenderedBlock("euca_gold_plank_slab", "Euca Gold Planks Slab", () -> new SlabBlock(JBlockProperties.WOOD_PROPS.create()));
+        registerSlabBlock("euca_gold_plank_slab", "Euca Gold Planks Slab", "euca_gold_plank", () -> new SlabBlock(JBlockProperties.WOOD_PROPS.create()));
         registerDefaultBlock("euca_dungeon_tile", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("euca_gold_stone", "Euca Gold Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("euca_runic_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
@@ -600,6 +600,15 @@ public class BlockRegistrator {
                 .state(JBlockStateResources.campfireState(JITL.bml("block/" + name), JITL.bml("block/" + name + "_off")))
                 .model(JITL.bml("block/" + name), () -> JBlockModels.campfireOn(JITL.tl("block/" + name + "_log_lit"), JITL.tl("block/" + name + "_fire")))
                 .model(JITL.bml("block/" + name + "_off"), () -> JBlockModels.campfireOff(JITL.tl("block/" + name + "_log")));
+    }
+
+    private static void registerSlabBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.slabState(JITL.bml("block/" + name), JITL.bml("block/" + textureName), JITL.bml("block/" + name + "_top")))
+                .model(JITL.bml("block/" + name), () -> JBlockModels.slab(JITL.tl("block/" + textureName)))
+                .model(JITL.bml("block/" + name + "_top"), () -> JBlockModels.slab(JITL.tl("block/" + textureName)));
     }
 
     private static void registerRandomizedRotatedBlock(String name, String enName, Supplier<Block> blockSupplier) {

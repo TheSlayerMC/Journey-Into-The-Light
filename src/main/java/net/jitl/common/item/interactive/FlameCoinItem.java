@@ -32,6 +32,18 @@ public class FlameCoinItem extends Item {
                         return ActionResultType.CONSUME;
                     }
                 }
+                if (blockstate.getBlock() == JBlocks.FROZEN_PORTAL_FRAME && context.getClickedFace() == Direction.UP) {
+                    if (JBlocks.FROZEN_PORTAL.makePortal(context.getLevel(), blockpos.relative(direction))) {
+                        context.getLevel().playSound(null, blockpos, JSounds.GLUMP_DEATH.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        return ActionResultType.CONSUME;
+                    }
+                }
+                if (blockstate.getBlock() == JBlocks.BOIL_PORTAL_FRAME && context.getClickedFace() == Direction.UP) {
+                    if (JBlocks.BOIL_PORTAL.makePortal(context.getLevel(), blockpos.relative(direction))) {
+                        context.getLevel().playSound(null, blockpos, JSounds.GLUMP_DEATH.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        return ActionResultType.CONSUME;
+                    }
+                }
             }
             if (!player.isCreative()) context.getItemInHand().shrink(1);
         }
