@@ -1,7 +1,6 @@
 package net.jitl.common.dimension;
 
 import net.jitl.common.block.portal.JBasePortalBlock;
-import net.jitl.init.JBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -32,15 +31,15 @@ import java.util.function.Function;
 public class BaseTeleporter implements ITeleporter {
 
     protected final ServerWorld level;
-    private final JBasePortalBlock portal_block = JBlocks.FROZEN_PORTAL; //TODO: change back
-    private final Block portal_frame = JBlocks.FROZEN_PORTAL_FRAME; //TODO: change back
-    private final PointOfInterestType poi; //TODO: change back
+    private final JBasePortalBlock portal_block;
+    private final Block portal_frame;
+    private final PointOfInterestType poi;
     private final RegistryKey<World> destination;
 
     public BaseTeleporter(ServerWorld worldIn, JBasePortalBlock portal, Block frame, PointOfInterestType poi, RegistryKey<World> destination) {
         this.level = worldIn;
-        //this.portal_block = portal;
-        //this.portal_frame = frame;
+        this.portal_block = portal;
+        this.portal_frame = frame;
         this.poi = poi;
         this.destination = destination;
     }
@@ -49,9 +48,7 @@ public class BaseTeleporter implements ITeleporter {
         PointOfInterestManager poiManager = this.level.getPoiManager();
         poiManager.ensureLoadedAndValid(this.level, pos, 64);
         Optional<PointOfInterest> optional = poiManager.getInSquare((poiType) ->
-                //TODO: change back
-                poiType == Dimensions.FROZEN_PORTAL.get(), pos, 64, PointOfInterestManager.Status.ANY).sorted(Comparator.<PointOfInterest>comparingDouble((poi) ->
-
+                poiType == poi, pos, 64, PointOfInterestManager.Status.ANY).sorted(Comparator.<PointOfInterest>comparingDouble((poi) ->
                 poi.getPos().distSqr(pos)).thenComparingInt((poi) ->
                 poi.getPos().getY())).filter((poi) ->
                 this.level.getBlockState(poi.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS)).findFirst();
@@ -216,6 +213,6 @@ public class BaseTeleporter implements ITeleporter {
 
     @Override
     public boolean playTeleportSound(ServerPlayerEntity player, ServerWorld sourceWorld, ServerWorld destWorld) {
-        return false;
+        return true;
     }
 }

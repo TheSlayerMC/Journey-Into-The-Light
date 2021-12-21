@@ -50,6 +50,20 @@ object JBlockStateResources {
     }
 
     @JvmStatic
+    fun basicPortalState(locationEW: BlockModelLocation, locationNS: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "axis=x" {
+                    "model" set locationNS
+                }
+                "axis=z" {
+                    "model" set locationEW
+                }
+            }
+        })
+    }
+
+    @JvmStatic
     fun orientableStateAllSides(modelLocation: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(json {
             "variants" {

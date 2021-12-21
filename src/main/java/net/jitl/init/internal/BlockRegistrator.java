@@ -217,7 +217,7 @@ public class BlockRegistrator {
         //registerDefaultBlock("cloudia_portal_frame", "Cloudia Portal Frame");
         //registerDefaultBlock("senterian_portal_frame", "Senterian Portal Frame");//different style
 
-        registerDefaultBlock("frozen_portal", "Frozen Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.FROZEN_LANDS, JBlocks.FROZEN_PORTAL_FRAME));
+        registerPortalBlock("frozen_portal", "Frozen Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.FROZEN_LANDS, () -> JBlocks.FROZEN_PORTAL_FRAME));
 
         registerDefaultBlock("crumbled_permafrost", "Crumbled Permafrost", () -> new Block(JBlockProperties.CRUMBLED_PERMAFROST_PROPS.create()));
 
@@ -226,7 +226,7 @@ public class BlockRegistrator {
 
         registerDefaultBlock("permafrost", "Permafrost", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
 
-        registerDefaultBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, JBlocks.EUCA_PORTAL_FRAME));
+        registerPortalBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, () -> JBlocks.EUCA_PORTAL_FRAME));
         registerSpeciallyRenderedRotatedBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_gold_grass_block_top"), JITL.tl("block/euca_gold_grass_block_side"), JITL.tl("block/goldite_dirt")));
         registerSpeciallyRenderedRotatedBlock("goldite_grass_block", "Goldite Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
@@ -379,7 +379,7 @@ public class BlockRegistrator {
         registerDefaultBlock("depths_stone", "Depths Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("depths_lamp", "Depths Lamp", () -> new Block(JBlockProperties.GLOW_BLOCK.create()));
         registerDefaultBlock("depths_portal_frame", "Depths Portal Frame", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-        registerDefaultBlock("depths_portal", "Depths Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.DEPTHS, JBlocks.DEPTHS_PORTAL_FRAME));
+        registerPortalBlock("depths_portal", "Depths Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.DEPTHS, () -> JBlocks.DEPTHS_PORTAL_FRAME));
 
         RegistryObject<Block> depthsDirt = registerBlock("depths_dirt", "Depths Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
         registerSpeciallyRenderedBlock("depths_grass_block", "Depths Grass", () -> new JSpreadableSnowyDirtBlock(JBlockProperties.GRASS_PROPS.create(), depthsDirt.get()),
@@ -390,7 +390,7 @@ public class BlockRegistrator {
         registerRandomizedRotatedBlock("hot_ground", "Hot Ground", () -> new JBlock(JBlockProperties.HOLD_FIRE));
         registerRandomizedRotatedBlock("scorched_rubble", "Scorched Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
         registerRandomizedRotatedBlock("ash_block", "Ash", () -> new Block(JBlockProperties.STONE_PROPS.create()));
-        registerDefaultBlock("boil_portal", "Boiling Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.BOIL, JBlocks.BOIL_PORTAL_FRAME));
+        registerPortalBlock("boil_portal", "Boiling Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.BOIL, () -> JBlocks.BOIL_PORTAL_FRAME));
         registerSpeciallyRenderedRotatedBlock("charred_grass", "Charred Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/charred_grass_top"), JITL.tl("block/charred_grass_side"), JITL.tl("block/rubble")));
 
@@ -582,6 +582,14 @@ public class BlockRegistrator {
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
                 .defaultBlockItem(JTabs.BLOCKS);
+    }
+
+    private static void registerPortalBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.basicPortalState(JITL.bml("block/" + name + "_ns"), JITL.bml("block/" + name + "_ew")));
     }
 
     private static void registerCampfireBlock(String name, String enName, Supplier<Block> blockSupplier) {
