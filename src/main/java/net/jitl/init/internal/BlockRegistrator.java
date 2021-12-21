@@ -587,9 +587,9 @@ public class BlockRegistrator {
     private static void registerPortalBlock(String name, String enName, Supplier<Block> blockSupplier) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
-                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
+                .renderLayer(() -> RenderTypeWrappers.TRANSLUCENT)
                 .defaultBlockItem(JTabs.BLOCKS)
-                .state(JBlockStateResources.basicPortalState(JITL.bml("block/" + name + "_ns"), JITL.bml("block/" + name + "_ew")));
+                .state(JBlockStateResources.basicPortalState(JITL.bml("block/" + name + "_ew"), JITL.bml("block/" + name + "_ns")));
     }
 
     private static void registerCampfireBlock(String name, String enName, Supplier<Block> blockSupplier) {
