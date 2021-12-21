@@ -168,13 +168,14 @@ public class JBasePortalBlock extends Block {
         private BlockPos bottomLeft;
         private int height;
         private int width;
-        private Block portal, frame;
+        private final Block portal;
+        private final Block frame;
 
         public Size(IWorld worldIn, BlockPos pos, Direction.Axis axisIn, Block portal, Block frame) {
             this.world = worldIn;
             this.axis = axisIn;
-            this.portal=portal;
-            this.frame=frame;
+            this.portal = portal;
+            this.frame = frame;
             if (axisIn == Direction.Axis.X) {
                 this.leftDir = Direction.EAST;
                 this.rightDir = Direction.WEST;
@@ -184,7 +185,6 @@ public class JBasePortalBlock extends Block {
             }
 
             for(BlockPos blockpos = pos; pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && this.canConnect(worldIn.getBlockState(pos.below())); pos = pos.below()) {
-                ;
             }
 
             int i = this.getDistanceUntilEdge(pos, this.leftDir) - 1;
