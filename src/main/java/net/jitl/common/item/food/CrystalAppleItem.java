@@ -22,4 +22,9 @@ public class CrystalAppleItem extends Item {
         }
         return stack;
     }
+
+    @Override
+    public boolean isFoil(@NotNull ItemStack stack) {
+        return true;
+    }
 }
