@@ -57,6 +57,17 @@ object JBlockModels {
         }
     })
 
+
+    @JvmStatic
+    fun slab(texture: TextureLocation) = BlockModel(json {
+        "parent" set "block/slab"
+        "textures" {
+            "top" set texture.toString()
+            "bottom" set texture.toString()
+            "side" set texture.toString()
+        }
+    })
+
     @JvmStatic
     fun crop(textureCrop: TextureLocation) = BlockModel(json {
         "parent" set "block/crop"

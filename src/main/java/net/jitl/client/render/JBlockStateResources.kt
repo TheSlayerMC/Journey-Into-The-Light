@@ -133,6 +133,23 @@ object JBlockStateResources {
     }
 
     @JvmStatic
+    fun slabState(bottom: BlockModelLocation, doubleSlab: BlockModelLocation, top: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "type=bottom" {
+                    "model" set bottom
+                }
+                "type=double" {
+                    "model" set doubleSlab
+                }
+                "type=top" {
+                    "model" set top
+                }
+            }
+        })
+    }
+
+    @JvmStatic
     fun rotatablePillarState(location: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(json {
             "variants" {

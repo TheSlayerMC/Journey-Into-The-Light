@@ -140,10 +140,8 @@ public class JBasePortalBlock extends Block {
         JBasePortalBlock.Size portal = this.isPortal(worldIn, pos);
         if (portal != null) {
             portal.createPortalBlocks();
-            System.out.println("MADE");
             return true;
         } else {
-            System.out.println("NOT MADE");
             return false;
         }
     }
