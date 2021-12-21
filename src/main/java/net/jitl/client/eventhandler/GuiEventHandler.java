@@ -74,8 +74,8 @@ public class GuiEventHandler {
 	}
 
 	@SubscribeEvent()
-	public static void renderFrostburnOverlay(RenderGameOverlayEvent.Post event) {
-		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
+	public static void renderFrostburnOverlay(RenderGameOverlayEvent.Pre event) {
+		if (event.getType() == RenderGameOverlayEvent.ElementType.VIGNETTE) {
 			Minecraft minecraft = Minecraft.getInstance();
 			PlayerEntity player = minecraft.player;
 			if (player != null && player.hasEffect(JEffects.FROSTBURN.get())) {
