@@ -20,7 +20,7 @@ public class JEffects {
             REGISTER.register("essence_regen", () -> new EssenceRegenEffect(EffectType.BENEFICIAL, 0xff3600));
 
     public static final RegistryObject<Effect> FROSTBURN =
-            REGISTER.register("frostburn", () -> new FrostburnEffect(EffectType.BENEFICIAL, 0xff3600));
+            REGISTER.register("frostburn", () -> new FrostburnEffect(EffectType.BENEFICIAL, 0x99e6ff));
 
     public static class JPotions {
         @AutoRegistrable
