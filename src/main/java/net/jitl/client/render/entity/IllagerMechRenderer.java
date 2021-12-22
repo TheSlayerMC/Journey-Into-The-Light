@@ -7,6 +7,7 @@ import net.jitl.common.entity.overworld.IllagerMechEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -38,5 +39,11 @@ public class IllagerMechRenderer extends AnimatedLivingEntityRenderer<IllagerMec
 
         Objects.requireNonNull(headPiece).yRot = f2 * ((float) Math.PI / 270F);
         Objects.requireNonNull(headPiece).xRot = MathHelper.lerp(partialTicks, entityLiving.xRotO, entityLiving.xRot) * ((float) Math.PI / 270F);
+
+        if (!((double) entityLiving.animationSpeed < 0.01D)) {
+            float v1 = entityLiving.animationPosition - entityLiving.animationSpeed * (1.0F - partialTicks) + 6.0F;
+            float v2 = (Math.abs(v1 % 13.0F - 6.5F) - 3.25F) / 3.25F;
+            matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(6.5F * v2));
+        }
     }
 }

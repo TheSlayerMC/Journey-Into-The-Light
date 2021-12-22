@@ -1,6 +1,5 @@
 package net.jitl.common.block.base;
 
-import net.jitl.JITL;
 import net.jitl.util.LootHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -21,7 +20,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class JLootBlock extends Block {
-
     private final ResourceLocation lootTable;
 
     public JLootBlock(Properties properties, ResourceLocation loot) {
@@ -32,14 +30,13 @@ public class JLootBlock extends Block {
     @Override
     public void playerDestroy(World worldIn, @NotNull PlayerEntity player, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable TileEntity te, ItemStack stack) {
         if (!worldIn.isClientSide) {
-            JITL.LOGGER.info(lootTable);
             ServerPlayerEntity playerMP = (ServerPlayerEntity) player;
             List<ItemStack> lootTable = LootHelper.genFromLootTable(this.lootTable, playerMP, builder -> builder.withLuck(playerMP.getLuck()));
             for (ItemStack itemToSpawn : lootTable) {
                 ItemEntity item = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemToSpawn);
                 worldIn.addFreshEntity(item);
             }
-            worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.GLASS_BREAK, SoundCategory.NEUTRAL, 0.75F, MathHelper.nextFloat(RANDOM, 0.75F, 1.25F));
+            worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.GLASS_BREAK, SoundCategory.NEUTRAL, 0.75F, MathHelper.nextFloat(RANDOM, 0.55F, 0.75F));
         }
     }
 }

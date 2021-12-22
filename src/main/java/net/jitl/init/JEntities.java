@@ -80,6 +80,16 @@ public class JEntities {
             .spawnEgg(FROZEN_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
+    public static final EntityType<PhantasmEntity> PHANTASM_TYPE = REGISTER.registerMob("phantasm",
+            Builder.of(PhantasmEntity::new, EntityClassification.MONSTER)
+                    .setTrackingRange(80)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .sized(0.5F, 0.5F))
+            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PhantasmEntity::canSpawn)
+            .attributes(() -> PhantasmEntity.createAttributes().build())
+            .spawnEgg(FROZEN_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
+            .retrieve();
+
     public static final EntityType<ShiveringRamEntity> SHIVERING_RAM_TYPE = REGISTER.registerMob("shivering_ram",
             Builder.of(ShiveringRamEntity::new, EntityClassification.CREATURE)
                     .setTrackingRange(80)

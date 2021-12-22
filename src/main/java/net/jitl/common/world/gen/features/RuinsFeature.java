@@ -28,23 +28,17 @@ public class RuinsFeature extends Feature<RuinsFeatureConfig> {
 			return false;
 		} else {
 			BlockPos.Mutable placePos = pos.mutable();
-
 			int columns = rand.nextInt(config.maxColumns) + 5;
-			for (int j1 = 0; j1 < columns /* amount of columns */; j1++) {
-
+			for (int j1 = 0; j1 < columns; j1++) {
 				int xPos = pos.getX() + rand.nextInt(config.maxSpreading);
 				int zPos = pos.getZ() + rand.nextInt(config.maxSpreading);
 				int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
-
 				int height = 1 + rand.nextInt(config.maxHeight);
-
 				placePos.set(xPos, yPos, zPos);
-
 				for (int i = 0; i < height; ++i) {
 					reader.setBlock(placePos, config.ruinedBlocksProvider.getState(rand, placePos), 2);
 					placePos.move(Direction.UP);
 				}
-
 				if (rand.nextInt(4) == 0) {
 					BlockPos chestPos = new BlockPos(pos.getX(), yPos, pos.getZ());
 					if (config.spawnBlock.test(reader.getBlockState(chestPos.below()), rand) && reader.getBlockState(chestPos).getBlock().is(Blocks.AIR)) {
