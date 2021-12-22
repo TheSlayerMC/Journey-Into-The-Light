@@ -225,7 +225,20 @@ public class FrozenTrollEntity extends MonsterEntity {
         }
     }
 
-    protected SoundEvent getAmbientSound() {
+    @Override
+    public void playAmbientSound() {
+        if (this.isAngry()) {
+            this.playSound(getAngryAmbientSound(), this.getSoundVolume(), this.getVoicePitch());
+        } else {
+            this.playSound(getCuteAmbientSound(), this.getSoundVolume(), this.getVoicePitch() + 1.0F);
+        }
+    }
+
+    protected SoundEvent getCuteAmbientSound() {
+        return JSounds.FROZEN_TROLL_INTRIGUED.get();
+    }
+
+    protected SoundEvent getAngryAmbientSound() {
         return JSounds.FROZEN_TROLL_AMBIENT.get();
     }
 
