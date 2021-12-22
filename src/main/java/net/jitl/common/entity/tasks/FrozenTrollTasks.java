@@ -4,10 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
 import net.jitl.common.entity.frozen.FrozenTrollEntity;
-import net.jitl.init.JEntities;
-import net.jitl.init.JItems;
-import net.jitl.init.JLootTables;
-import net.jitl.init.JSounds;
+import net.jitl.init.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
@@ -233,7 +230,7 @@ public class FrozenTrollTasks {
             return isNotHoldingLovedItemInOffHand(frozenTrollEntity);
         } else {
             boolean flag = frozenTrollEntity.canAddToInventory(itemStack_);
-            if (item == JItems.PERIDOT_GEMSTONE) {
+            if (item.is(JTags.FROZEN_TROLL_LOVED_ITEMS)) {
                 return flag;
             } else {
                 return false;

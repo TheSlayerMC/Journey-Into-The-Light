@@ -1,6 +1,6 @@
 package net.jitl.common.block.base;
 
-import net.jitl.common.block.tileentity.PedestalTile;
+import net.jitl.common.tile.PedestalTile;
 import net.jitl.init.JItems;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;

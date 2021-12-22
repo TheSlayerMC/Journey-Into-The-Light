@@ -1,7 +1,7 @@
 package net.jitl.client.render.tile;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.jitl.common.block.tileentity.PedestalTile;
+import net.jitl.common.tile.PedestalTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;

@@ -1,8 +1,8 @@
 package net.jitl.common.entity.frozen;
 
-import net.jitl.common.block.tileentity.PedestalTile;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.entity.EssenciaBoltEntity;
+import net.jitl.common.tile.PedestalTile;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JEntities;
 import net.jitl.init.JItems;

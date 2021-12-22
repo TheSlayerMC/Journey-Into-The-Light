@@ -12,10 +12,7 @@ import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.common.block.trees.DyingFrozenTree;
 import net.jitl.common.dimension.Dimensions;
 import net.jitl.common.helper.EnumHarvestLevel;
-import net.jitl.init.JBlocks;
-import net.jitl.init.JEntities;
-import net.jitl.init.JItems;
-import net.jitl.init.JTabs;
+import net.jitl.init.*;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.*;
 import net.minecraft.client.renderer.RenderType;
@@ -70,6 +67,8 @@ public class BlockRegistrator {
         registerDefaultBlock("crimson_quartz_ore", "Crimson Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create()
                 .harvestLevel(EnumHarvestLevel.IRON.getInt()))
                 .setExpDrop(2));
+
+        registerSpeciallyRenderedBlock("ancient_pottery", "Ancient Pottery", () -> new JLootBlock(JBlockProperties.BRICK_PROPS.create().noOcclusion(), JLootTables.LOOT_POUCH_BASIC));
 
         registerBerryBushBlock("bradberry_bush", "Bradberry Bush", () -> JItems.BRADBERRY);
 

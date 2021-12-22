@@ -89,10 +89,10 @@ public class JConfiguredFeatures {
                                             .add(Blocks.MOSSY_COBBLESTONE.defaultBlockState(), 3)
                                             .add(Blocks.COBBLESTONE.defaultBlockState(), 4)
                                             .add(Blocks.CHISELED_STONE_BRICKS.defaultBlockState(), 2)
-                                            .add(Blocks.INFESTED_COBBLESTONE.defaultBlockState(), 2)
-                                            .add(Blocks.INFESTED_STONE_BRICKS.defaultBlockState(), 2)
-                                            .add(Blocks.INFESTED_MOSSY_STONE_BRICKS.defaultBlockState(), 2)
-                                            .add(Blocks.INFESTED_CRACKED_STONE_BRICKS.defaultBlockState(), 2),
+                                            .add(Blocks.INFESTED_COBBLESTONE.defaultBlockState(), 1)
+                                            .add(Blocks.INFESTED_STONE_BRICKS.defaultBlockState(), 1)
+                                            .add(Blocks.INFESTED_MOSSY_STONE_BRICKS.defaultBlockState(), 1)
+                                            .add(Blocks.INFESTED_CRACKED_STONE_BRICKS.defaultBlockState(), 1),
                                     5,
                                     5,
                                     8,
