@@ -95,6 +95,7 @@ public class JConfiguredFeatures {
                                             .add(Blocks.INFESTED_CRACKED_STONE_BRICKS.defaultBlockState(), 2),
                                     5,
                                     5,
+                                    8,
                                     new WeightedList<ResourceLocation>()
                                             .add(LootTables.ABANDONED_MINESHAFT, 5)
                                             .add(LootTables.SIMPLE_DUNGEON, 6)
@@ -116,6 +117,7 @@ public class JConfiguredFeatures {
                                             .add(Blocks.CUT_SANDSTONE.defaultBlockState(), 2),
                                     5,
                                     5,
+                                    8,
                                     new WeightedList<ResourceLocation>()
                                             .add(LootTables.DESERT_PYRAMID, 4)
                                             .add(LootTables.VILLAGE_DESERT_HOUSE, 6)

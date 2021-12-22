@@ -29,7 +29,7 @@ public class RuinsFeature extends Feature<RuinsFeatureConfig> {
 		} else {
 			BlockPos.Mutable placePos = pos.mutable();
 
-			int columns = rand.nextInt(3) + 5;
+			int columns = rand.nextInt(config.maxColumns) + 5;
 			for (int j1 = 0; j1 < columns /* amount of columns */; j1++) {
 
 				int xPos = pos.getX() + rand.nextInt(config.maxSpreading);
