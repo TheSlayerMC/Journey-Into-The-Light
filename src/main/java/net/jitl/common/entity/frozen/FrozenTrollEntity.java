@@ -22,6 +22,9 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -35,6 +38,8 @@ import java.util.Objects;
 import java.util.Random;
 
 public class FrozenTrollEntity extends MonsterEntity {
+
+    private static final DataParameter<Boolean> IS_ANGRY_ID = EntityDataManager.defineId(FrozenTrollEntity.class, DataSerializers.BOOLEAN);
 
     private final Inventory inventory = new Inventory(8);
 
@@ -69,7 +74,6 @@ public class FrozenTrollEntity extends MonsterEntity {
             MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM,
             MemoryModuleType.ATE_RECENTLY);
 
-
     public FrozenTrollEntity(EntityType<? extends FrozenTrollEntity> entityType, World world) {
         super(entityType, world);
         this.setCanPickUpLoot(true);
@@ -92,11 +96,27 @@ public class FrozenTrollEntity extends MonsterEntity {
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.put("Inventory", this.inventory.createTag());
+        compound.putBoolean("angry", this.entityData.get(IS_ANGRY_ID));
     }
 
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.inventory.fromTag(compound.getList("Inventory", 10));
+        setAngry(compound.getBoolean("angry"));
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(IS_ANGRY_ID, false);
+    }
+
+    public boolean isAngry() {
+        return this.entityData.get(IS_ANGRY_ID);
+    }
+
+    public void setAngry(boolean angry) {
+        this.entityData.set(IS_ANGRY_ID, angry);
     }
 
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
@@ -109,6 +129,10 @@ public class FrozenTrollEntity extends MonsterEntity {
         this.getBrain().tick((ServerWorld) this.level, this);
         this.level.getProfiler().pop();
         FrozenTrollTasks.updateActivity(this);
+
+        boolean isPresent = getTarget() != null;
+        this.entityData.set(IS_ANGRY_ID, isPresent);
+
         super.customServerAiStep();
     }
 
@@ -137,10 +161,12 @@ public class FrozenTrollEntity extends MonsterEntity {
         }
     }
 
+    @Override
     public boolean wantsToPickUp(ItemStack itemStack_) {
         return ForgeEventFactory.getMobGriefingEvent(this.level, this) && this.canPickUpLoot() && FrozenTrollTasks.wantsToPickup(this, itemStack_);
     }
 
+    @Override
     protected void pickUpItem(ItemEntity itemEntity) {
         this.onItemPickup(itemEntity);
         FrozenTrollTasks.pickUpItem(this, itemEntity);

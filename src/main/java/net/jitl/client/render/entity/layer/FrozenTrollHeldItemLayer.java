@@ -49,9 +49,9 @@ public class FrozenTrollHeldItemLayer<T extends LivingEntity, M extends EntityMo
                 FrozenTrollEntity frozenTrollEntity = (FrozenTrollEntity) livingEntity_;
                 JEntityAction entityAction = frozenTrollEntity.getArmPose();
                 if (entityAction == JEntityAction.ADMIRING_ITEM) {
-                    matrixStack_.mulPose(Vector3f.YP.rotationDegrees(200.0F));
+                    matrixStack_.mulPose(Vector3f.YP.rotationDegrees(195.0F));
                     matrixStack_.mulPose(Vector3f.ZP.rotationDegrees(15.0F));
-                    matrixStack_.translate(0.35F, -0.1, 0.1);
+                    matrixStack_.translate(0.465F, -0.2, 0.03);
                 } else {
                     matrixStack_.mulPose(Vector3f.YP.rotationDegrees(180.0F));
                 }

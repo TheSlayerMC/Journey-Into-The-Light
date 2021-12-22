@@ -13,75 +13,66 @@ import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.NotNull;
 
 public class FrozenTrollModel<T extends Entity> extends SegmentedModel<T> implements IHasArm {
-
     private final ModelRenderer head;
+    private final ModelRenderer leg1;
+    private final ModelRenderer leg2;
+    private final ModelRenderer arm1;
+    private final ModelRenderer arm2;
     private final ModelRenderer body;
-    private final ModelRenderer rightarm;
-    private final ModelRenderer leftarm;
-    private final ModelRenderer rightleg;
-    private final ModelRenderer leftleg;
-    private final ModelRenderer ear1;
-    private final ModelRenderer ear2;
-    private final ModelRenderer beard;
+    private final ModelRenderer body_r1;
 
     public FrozenTrollModel() {
         texWidth = 64;
         texHeight = 64;
 
-        head = new ModelRenderer(this, 0, 0);
-        head.addBox(-4F, -8F, -4F, 8, 8, 8);
-        head.setPos(0F, 11F, 0F);
-        head.mirror = true;
-        body = new ModelRenderer(this, 16, 16);
-        body.addBox(-4F, 0F, -2F, 8, 12, 4);
-        body.setPos(0F, 7F, 0F);
-        body.mirror = true;
-        rightarm = new ModelRenderer(this, 40, 16);
-        rightarm.addBox(-3F, -2F, -2F, 4, 10, 4);
-        rightarm.setPos(-5F, 11F, 0F);
-        rightarm.mirror = true;
-        leftarm = new ModelRenderer(this, 40, 16);
-        leftarm.addBox(-1F, -2F, -2F, 4, 10, 4);
-        leftarm.setPos(5F, 11F, 0F);
-        leftarm.mirror = true;
-        rightleg = new ModelRenderer(this, 0, 16);
-        rightleg.addBox(-2F, 0F, -2F, 4, 5, 4);
-        rightleg.setPos(-2F, 19F, 0F);
-        rightleg.mirror = true;
-        leftleg = new ModelRenderer(this, 0, 16);
-        leftleg.addBox(-2F, 0F, -2F, 4, 5, 4);
-        leftleg.setPos(2F, 19F, 0F);
-        leftleg.mirror = true;
-        ear1 = new ModelRenderer(this, 0, 0);
-        ear1.addBox(0F, -11F, 0F, 2, 2, 1);
-        ear1.setPos(3F, 2F, -2F);
-        ear1.mirror = true;
-        ear2 = new ModelRenderer(this, 0, 0);
-        ear2.addBox(0F, -11F, 0F, 2, 2, 1);
-        ear2.setPos(-5F, 2F, -2F);
-        ear2.mirror = true;
-        beard = new ModelRenderer(this, 40, 33);
-        beard.addBox(0F, 0F, 0F, 6, 6, 2);
-        beard.setPos(-3F, 0F, -4F);
-        beard.mirror = true;
-        head.addChild(beard);
-        head.addChild(ear1);
-        head.addChild(ear2);
+        head = new ModelRenderer(this);
+        head.setPos(0.0F, 10.625F, 1.75F);
+        head.texOffs(0, 0).addBox(-5.0F, -8.625F, -2.75F, 2.0F, 2.0F, 1.0F, 0.0F, true);
+        head.texOffs(32, 30).addBox(-3.0F, 0.375F, -6.25F, 6.0F, 5.0F, 2.0F, 0.0F, false);
+        head.texOffs(32, 11).addBox(-2.0F, 5.375F, -5.75F, 4.0F, 4.0F, 1.0F, 0.0F, false);
+        head.texOffs(0, 0).addBox(-4.0F, -7.625F, -6.75F, 8.0F, 8.0F, 8.0F, 0.0F, false);
+        head.texOffs(0, 0).addBox(3.0F, -8.625F, -2.75F, 2.0F, 2.0F, 1.0F, 0.0F, false);
+
+        leg1 = new ModelRenderer(this);
+        leg1.setPos(2.25F, 17.5F, 2.0F);
+        leg1.texOffs(16, 30).addBox(-2.0F, -0.5F, -2.0F, 4.0F, 7.0F, 4.0F, 0.0F, true);
+
+        leg2 = new ModelRenderer(this);
+        leg2.setPos(-2.25F, 17.5F, 2.0F);
+        leg2.texOffs(32, 0).addBox(-2.0F, -0.5F, -2.0F, 4.0F, 7.0F, 4.0F, 0.0F, false);
+
+        arm1 = new ModelRenderer(this);
+        arm1.setPos(6.0F, 9.0F, 1.0F);
+        arm1.texOffs(24, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 4.0F, 0.0F, true);
+
+        arm2 = new ModelRenderer(this);
+        arm2.setPos(-6.0F, 9.0F, 1.0F);
+        arm2.texOffs(0, 29).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 4.0F, 0.0F, false);
+
+        body = new ModelRenderer(this);
+        body.setPos(0.0F, 24.0F, 0.0F);
+
+
+        body_r1 = new ModelRenderer(this);
+        body_r1.setPos(0.0F, -11.5F, 2.0F);
+        body.addChild(body_r1);
+        setRotationAngle(body_r1, 0.1745F, 0.0F, 0.0F);
+        body_r1.texOffs(0, 16).addBox(-4.0F, -4.0F, -2.0F, 8.0F, 9.0F, 4.0F, 0.0F, false);
     }
 
     @Override
     public Iterable<ModelRenderer> parts() {
-        return ImmutableList.of(this.head, this.body, this.rightarm, this.leftarm, this.rightleg, this.leftleg);
+        return ImmutableList.of(this.head, this.body, this.arm1, this.arm2, this.leg1, this.leg2);
     }
 
     @Override
     public void setupAnim(@NotNull T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.rightleg.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F;
-        this.leftleg.xRot = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F;
-        this.leftarm.yRot = 0.0F;
-        this.rightarm.yRot = 0.0F;
-        this.rightarm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.leftarm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.leg1.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 2.0F * limbSwingAmount * 0.5F;
+        this.leg2.xRot = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F;
+        this.arm1.yRot = 0.0F;
+        this.arm2.yRot = 0.0F;
+        this.arm2.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.arm1.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
         this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
         this.head.xRot = headPitch * ((float) Math.PI / 180F);
         if (entityIn instanceof FrozenTrollEntity) {
@@ -90,10 +81,10 @@ public class FrozenTrollModel<T extends Entity> extends SegmentedModel<T> implem
             if (entityAction == JEntityAction.ADMIRING_ITEM) {
                 this.head.xRot = 0.5F;
                 this.head.yRot = 0.0F;
-                this.leftarm.yRot = 0.5F;
-                this.leftarm.xRot = -0.9F;
-                this.rightarm.yRot = -0.5F;
-                this.rightarm.xRot = -0.9F;
+                this.arm1.yRot = 0.3F;
+                this.arm1.xRot = -0.9F;
+                this.arm2.yRot = -0.3F;
+                this.arm2.xRot = -0.9F;
             }
         }
     }
@@ -104,6 +95,12 @@ public class FrozenTrollModel<T extends Entity> extends SegmentedModel<T> implem
     }
 
     private ModelRenderer getArm(HandSide handSide_) {
-        return handSide_ == HandSide.LEFT ? this.leftarm : this.rightarm;
+        return handSide_ == HandSide.LEFT ? this.arm1 : this.arm2;
+    }
+
+    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+        modelRenderer.xRot = x;
+        modelRenderer.yRot = y;
+        modelRenderer.zRot = z;
     }
 }

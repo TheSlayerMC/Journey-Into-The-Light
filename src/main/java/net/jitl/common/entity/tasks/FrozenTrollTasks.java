@@ -236,7 +236,7 @@ public class FrozenTrollTasks {
             if (item == JItems.PERIDOT_GEMSTONE) {
                 return flag;
             } else {
-                return isNotHoldingLovedItemInOffHand(frozenTrollEntity) && flag;
+                return false;
             }
         }
     }
