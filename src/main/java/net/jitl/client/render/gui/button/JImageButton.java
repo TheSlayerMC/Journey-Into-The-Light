@@ -61,10 +61,15 @@ public class JImageButton extends ImageButton {
 				i += this.yDiffTex;
 			}
 
+			RenderSystem.enableBlend();
+			RenderSystem.defaultBlendFunc();
+			RenderSystem.enableDepthTest();
+
 			this.blit(matrixStack, this.x, this.y, 0, i, this.width, this.height);
 
-			RenderSystem.enableDepthTest();
 			blit(matrixStack, this.x, this.y, (float) this.xTexStart, (float) i, this.width, this.height, this.textureWidth, this.textureHeight);
+
+			this.renderBg(matrixStack, minecraft, mouseX, mouseY);
 		}
 	}
 }

@@ -34,8 +34,6 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
 
     private static final ResourceLocation SKY_LOCATION = JITL.rl("textures/environment/boil_sky.png");
 
-    //private static final ResourceLocation CLOUDS_LOCATION = JITL.rl("textures/environment/boil_clouds.png");
-
     private final VertexFormat skyFormat = DefaultVertexFormats.POSITION;
     private VertexBuffer skyBuffer;
 
@@ -115,6 +113,8 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         renderSky(matrixStack);
 
         Matrix4f matrix4f1 = matrixStack.last().pose();
+
+        //SUN BEGIN
         float f12;
         f12 = 60.0F;
 
@@ -122,7 +122,7 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
 
-        //SUN BEGIN
+
         textureManager.bind(SUN_LOCATION);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
         bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
