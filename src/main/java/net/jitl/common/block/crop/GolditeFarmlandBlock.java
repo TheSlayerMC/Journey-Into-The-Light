@@ -32,6 +32,7 @@ public class GolditeFarmlandBlock extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(MOISTURE, Integer.valueOf(0)));
     }
 
+    @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (facing == Direction.UP && !stateIn.canSurvive(worldIn, currentPos)) {
             worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
@@ -40,23 +41,28 @@ public class GolditeFarmlandBlock extends Block {
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
+    @Override
     public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
         BlockState blockstate = worldIn.getBlockState(pos.above());
         return !blockstate.getMaterial().isSolid();
     }
 
+    @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return !this.defaultBlockState().canSurvive(context.getLevel(), context.getClickedPos()) ? JBlocks.GOLDITE_DIRT.defaultBlockState() : super.getStateForPlacement(context);
     }
 
+    @Override
     public boolean useShapeForLightOcclusion(BlockState state) {
         return true;
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }
 
+    @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!state.canSurvive(worldIn, pos)) {
             turnToDirt(state, worldIn, pos);
@@ -64,9 +70,7 @@ public class GolditeFarmlandBlock extends Block {
 
     }
 
-    /**
-     * Performs a random tick on a block.
-     */
+    @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         int i = state.getValue(MOISTURE);
         if (!isNearWater(worldIn, pos) && !worldIn.isRainingAt(pos.above())) {
@@ -81,9 +85,7 @@ public class GolditeFarmlandBlock extends Block {
 
     }
 
-    /**
-     * Block's chance to react to a living entity falling on it.
-     */
+    @Override
     public void fallOn(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
         if (!worldIn.isClientSide && net.minecraftforge.common.ForgeHooks.onFarmlandTrample(worldIn, pos, JBlocks.GOLDITE_DIRT.defaultBlockState(), fallDistance, entityIn)) { // Forge: Move logic to Entity#canTrample
             turnToDirt(worldIn.getBlockState(pos), worldIn, pos);
@@ -112,6 +114,7 @@ public class GolditeFarmlandBlock extends Block {
         return net.minecraftforge.common.FarmlandWaterManager.hasBlockWaterTicket(worldIn, pos);
     }
 
+    @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(MOISTURE);
     }
