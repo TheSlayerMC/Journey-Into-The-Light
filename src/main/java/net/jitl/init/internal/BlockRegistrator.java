@@ -7,6 +7,7 @@ import net.jitl.client.render.JBlockStateResources;
 import net.jitl.common.block.*;
 import net.jitl.common.block.base.*;
 import net.jitl.common.block.crop.FloroCropBlock;
+import net.jitl.common.block.crop.GolditeFarmlandBlock;
 import net.jitl.common.block.crop.TomatoCropBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.common.block.trees.DyingFrozenTree;
@@ -229,11 +230,14 @@ public class BlockRegistrator {
         registerPortalBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, () -> JBlocks.EUCA_PORTAL_FRAME));
         registerSpeciallyRenderedRotatedBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_gold_grass_block_top"), JITL.tl("block/euca_gold_grass_block_side"), JITL.tl("block/goldite_dirt")));
+
         registerSpeciallyRenderedRotatedBlock("goldite_grass_block", "Goldite Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/goldite_grass_block_top"), JITL.tl("block/goldite_grass_block_side"), JITL.tl("block/goldite_dirt")));
 
         registerDefaultBlock("goldite_dirt", "Goldite Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
         registerDefaultBlock("goldite_stone", "Goldite Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+
+        registerSpeciallyRenderedBlock("goldite_farmland", "Goldite Farmland", () -> new GolditeFarmlandBlock());
 
         registerTallCrossRenderedBlock("goldite_tall_grass", "Tall Goldite Grass", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.EUCA_GRASS_BLOCKS));
 

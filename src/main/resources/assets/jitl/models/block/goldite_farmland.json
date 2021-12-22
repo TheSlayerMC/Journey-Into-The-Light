@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_farmland",
+  "textures": {
+    "dirt": "jitl:block/goldite_dirt",
+    "top": "jitl:block/goldite_farmland"
+  }
+}
