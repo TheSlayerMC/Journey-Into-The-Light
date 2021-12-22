@@ -923,10 +923,10 @@ public class JConfiguredFeatures {
                             .configured((new BlockClusterFeatureConfig.Builder(
                                     new WeightedBlockStateProvider()
                                             .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 1)
-                                            .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 1)
-                                            .add(JBlocks.CRISP_GRASS.defaultBlockState(), 1),
+                                            .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 5)
+                                            .add(JBlocks.CRISP_GRASS.defaultBlockState(), 8),
                                     new SimpleBlockPlacer()))
-                                    .tries(24)
+                                    .tries(8)
                                     .xspread(6)
                                     .zspread(6)
                                     .whitelist(ImmutableSet.of(
