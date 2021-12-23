@@ -458,6 +458,7 @@ public class BlockRegistrator {
 
         registerSpeciallyRenderedBlock("frozen_pedestal", "Frozen Pedestal", JBlockPedestal::new);
 
+        registerSpeciallyRenderedBlock("boil_lock", "Boiling Lock", LockBlock::new);
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {

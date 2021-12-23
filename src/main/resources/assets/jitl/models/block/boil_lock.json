@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "jitl:block/boil_lock_top",
+    "front": "jitl:block/boil_lock_front",
+    "side": "jitl:block/boil_lock_side"
+  }
+}
