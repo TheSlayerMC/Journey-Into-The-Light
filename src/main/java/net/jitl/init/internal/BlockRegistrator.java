@@ -705,8 +705,8 @@ public class BlockRegistrator {
                 .model(JITL.bml("block/" + name),
                         () -> BlockModels.cubeOrientableModel(
                                 JITL.tl("block/" + topTexture),
-                                JITL.tl("block/" + sideTexture),
-                                JITL.tl("block/" + frontTexture)));
+                                JITL.tl("block/" + frontTexture),
+                                JITL.tl("block/" + sideTexture)));
     }
 
     private static void registerAttachedRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, String texture) {
