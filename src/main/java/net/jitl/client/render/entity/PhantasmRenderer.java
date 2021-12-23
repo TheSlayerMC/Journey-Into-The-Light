@@ -24,7 +24,7 @@ public class PhantasmRenderer extends MobRenderer<PhantasmEntity, PhantasmModel<
         super.render(entitylivingbaseIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
         IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(this.getTextureLocation(entitylivingbaseIn)));
         matrixStackIn.translate(0.0D, -0.989F, 0.0D);
-        this.model.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingRenderer.getOverlayCoords(entitylivingbaseIn, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
+      //  this.model.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingRenderer.getOverlayCoords(entitylivingbaseIn, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
     }
 
     @Override
