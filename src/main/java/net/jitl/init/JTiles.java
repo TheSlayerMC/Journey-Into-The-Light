@@ -19,6 +19,7 @@ public class JTiles {
     public static final TileEntityType<EssenciaAltarTile> ESSENCIA_ALTAR = promise();
     public static final TileEntityType<GuardianTowerBrainTile> GUARDIAN_TOWER_BRAIN = promise();
     public static final TileEntityType<PedestalTile> PEDESTAL = promise();
+    public static final TileEntityType<PotTile> POT = promise();
 
 
     private static class Registrator {
@@ -32,6 +33,7 @@ public class JTiles {
             REGISTER.registerSingleBound("essencia_altar", EssenciaAltarTile::new, () -> JBlocks.ESSENCIA_ALTAR).regCustomRenderer(() -> EssenciaAltarTER::new);
             REGISTER.registerSingleBound("guardian_tower_brain", GuardianTowerBrainTile::new, () -> JBlocks.GUARDIAN_TOWER_BRAIN);
             REGISTER.registerSingleBound("pedestal", PedestalTile::new, () -> JBlocks.FROZEN_PEDESTAL);
+            REGISTER.registerSingleBound("ancient_pottery", PotTile::new, () -> JBlocks.ANCIENT_POTTERY);
         }
     }
 }

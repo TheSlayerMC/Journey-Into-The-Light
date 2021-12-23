@@ -13,7 +13,10 @@ import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.common.block.trees.DyingFrozenTree;
 import net.jitl.common.dimension.Dimensions;
 import net.jitl.common.helper.EnumHarvestLevel;
-import net.jitl.init.*;
+import net.jitl.init.JBlocks;
+import net.jitl.init.JEntities;
+import net.jitl.init.JItems;
+import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.*;
 import net.minecraft.client.renderer.RenderType;
@@ -69,7 +72,7 @@ public class BlockRegistrator {
                 .harvestLevel(EnumHarvestLevel.IRON.getInt()))
                 .setExpDrop(2));
 
-        registerSpeciallyRenderedBlock("ancient_pottery", "Ancient Pottery", () -> new JLootBlock(JBlockProperties.BRICK_PROPS.create().noOcclusion(), JLootTables.LOOT_POUCH_BASIC));
+        registerSpeciallyRenderedBlock("ancient_pottery", "Ancient Pottery", AncientPotteryBlock::new);
 
         registerBerryBushBlock("bradberry_bush", "Bradberry Bush", () -> JItems.BRADBERRY);
 

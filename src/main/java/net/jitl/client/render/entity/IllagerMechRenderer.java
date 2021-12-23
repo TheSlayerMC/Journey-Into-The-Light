@@ -1,5 +1,6 @@
 package net.jitl.client.render.entity;
 
+import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.jitl.JITL;
 import net.jitl.client.render.JEntityRenderRegistry;
@@ -15,17 +16,28 @@ import ru.timeconqueror.timecore.animation.renderer.AnimatedLivingEntityRenderer
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 import ru.timeconqueror.timecore.client.render.model.TimeModelRenderer;
 
+import java.util.Map;
 import java.util.Objects;
 
 @OnlyIn(Dist.CLIENT)
 public class IllagerMechRenderer extends AnimatedLivingEntityRenderer<IllagerMechEntity, TimeEntityModel<IllagerMechEntity>> {
+    private static final Map<IllagerMechEntity.Cracks, ResourceLocation> resourceLocations = ImmutableMap.of(
+            IllagerMechEntity.Cracks.LOW, JITL.rl("textures/entity/overworld/illager_mech_cracked_low.png"),
+            IllagerMechEntity.Cracks.MEDIUM, JITL.rl("textures/entity/overworld/illager_mech_cracked_medium.png"),
+            IllagerMechEntity.Cracks.HIGH, JITL.rl("textures/entity/overworld/illager_mech_cracked_high.png"));
+
     public IllagerMechRenderer(EntityRendererManager rendererManager) {
         super(rendererManager, JEntityRenderRegistry.illagerMechModel, 0.5F);
     }
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull IllagerMechEntity entity) {
-        return new ResourceLocation(JITL.MODID, "textures/entity/overworld/illager_mech.png");
+        IllagerMechEntity.Cracks cracks = entity.getCrackiness();
+        if (cracks != IllagerMechEntity.Cracks.NONE) {
+            return resourceLocations.get(cracks);
+        } else {
+            return JITL.rl("textures/entity/overworld/illager_mech.png");
+        }
     }
 
     @Override

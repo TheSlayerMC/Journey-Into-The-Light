@@ -1,5 +1,6 @@
 package net.jitl.common.entity.overworld;
 
+import com.google.common.collect.ImmutableList;
 import net.jitl.JITL;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
@@ -12,6 +13,7 @@ import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.AbstractRaiderEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.monster.VexEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.*;
@@ -31,6 +33,10 @@ import ru.timeconqueror.timecore.api.animation.ActionManager;
 import ru.timeconqueror.timecore.api.animation.AnimatedObject;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedObject<IllagerMechEntity> {
 
@@ -59,16 +65,22 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
     }
 
     protected void registerGoals() {
+        super.registerGoals();
         this.goalSelector.addGoal(2, new ThrowingGoal(this, 1.0D, false)); //mutex 1
+        this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9D, 32.0F));
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new AttackGoal());
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, MobEntity.class, 5, false, false, (livingEntity_) -> livingEntity_ instanceof IMob && !(livingEntity_ instanceof CreeperEntity) && !(livingEntity_ instanceof AbstractRaiderEntity)));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, MobEntity.class, 5, false, false,
+                (livingEntity_) -> livingEntity_ instanceof IMob &&
+                        !(livingEntity_ instanceof CreeperEntity) &&
+                        !(livingEntity_ instanceof AbstractRaiderEntity) &&
+                        !(livingEntity_ instanceof VexEntity)));
     }
 
     @Override
@@ -120,6 +132,20 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
             this.doEnchantDamageEffects(this, entityIn);
         }
         return flag;
+    }
+
+    public boolean hurt(DamageSource source, float amount) {
+        IllagerMechEntity.Cracks cracks = this.getCrackiness();
+        boolean hurt = super.hurt(source, amount);
+        if (hurt && this.getCrackiness() != cracks) {
+            this.playSound(SoundEvents.IRON_GOLEM_DAMAGE, 1.0F, 0.5F);
+        }
+
+        return hurt;
+    }
+
+    public IllagerMechEntity.Cracks getCrackiness() {
+        return IllagerMechEntity.Cracks.byFraction(this.getHealth() / this.getMaxHealth());
     }
 
     @Override
@@ -202,6 +228,31 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
         @Override
         protected @NotNull PathNodeType evaluateBlockPathType(@NotNull IBlockReader blockReader_, boolean boolean_, boolean boolean1_, @NotNull BlockPos blockPos_, @NotNull PathNodeType pathNodeType_) {
             return pathNodeType_ == PathNodeType.LEAVES ? PathNodeType.OPEN : super.evaluateBlockPathType(blockReader_, boolean_, boolean1_, blockPos_, pathNodeType_);
+        }
+    }
+
+    public enum Cracks {
+        NONE(1.0F),
+        LOW(0.75F),
+        MEDIUM(0.5F),
+        HIGH(0.25F);
+
+        private static final List<IllagerMechEntity.Cracks> BY_DAMAGE =
+                Stream.of(values()).sorted(Comparator.comparingDouble((cracks_) -> (double) cracks_.fraction)).collect(ImmutableList.toImmutableList());
+        private final float fraction;
+
+        Cracks(float float_) {
+            this.fraction = float_;
+        }
+
+        public static IllagerMechEntity.Cracks byFraction(float float_) {
+            for (IllagerMechEntity.Cracks cracks : BY_DAMAGE) {
+                if (float_ < cracks.fraction) {
+                    return cracks;
+                }
+            }
+
+            return NONE;
         }
     }
 }
