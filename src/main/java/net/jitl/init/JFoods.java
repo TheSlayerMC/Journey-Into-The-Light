@@ -17,6 +17,7 @@ public class JFoods {
             .effect(() -> new EffectInstance(JEffects.FROSTBURN.get(), 600, 1), 1.0F)
             .alwaysEat().build();
 
+    public static final Food REDCURRANT = (new Food.Builder()).nutrition(2).saturationMod(0.25F).fast().alwaysEat().build();
     public static final Food BRADBERRY = (new Food.Builder()).nutrition(1).saturationMod(0.25F).fast().alwaysEat().build();
     public static final Food HONGOSROOM = (new Food.Builder()).nutrition(4).saturationMod(0.5F).build();
     public static final Food HONGLOWSROOM = (new Food.Builder()).nutrition(4).saturationMod(0.5F).effect(new EffectInstance(Effects.NIGHT_VISION, 1000, 1), 0.5F).build();

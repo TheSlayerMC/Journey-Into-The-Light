@@ -3,6 +3,7 @@ package net.jitl.init;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import net.jitl.JITL;
+import net.jitl.common.block.base.JBerryBushBlock;
 import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
@@ -848,8 +849,7 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> CICLEBLOOM =
             REGISTER.register("ciclebloom", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new BlockClusterFeatureConfig.Builder(
-                            new WeightedBlockStateProvider()
-                                    .add(JBlocks.CICLEBLOOM.defaultBlockState(), 6),
+                            new SimpleBlockStateProvider(JBlocks.CICLEBLOOM.defaultBlockState()),
                             new SimpleBlockPlacer()))
                             .tries(2)
                             .xspread(10)
@@ -858,19 +858,37 @@ public class JConfiguredFeatures {
                                     JBlocks.GRASSY_PERMAFROST))
                             .noProjection()
                             .build())
-                    .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
-                    .range(250)
-                    .count(50))
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
+                            .range(250)
+                            .count(5))
+                    .setBiomePredicate(FROZEN_DYING_FORST.or(FROZEN_BITTERWOOD_FORST))
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> REDCURRANT_BUSH =
+            REGISTER.register("redcurrant_bush", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+                            .configured((new BlockClusterFeatureConfig.Builder(
+                                    new SimpleBlockStateProvider(JBlocks.REDCURRANT_BUSH.defaultBlockState().setValue(JBerryBushBlock.AGE, 3)),
+                                    new SimpleBlockPlacer()))
+                                    .tries(1)
+                                    .xspread(3)
+                                    .zspread(3)
+                                    .whitelist(ImmutableSet.of(
+                                            JBlocks.GRASSY_PERMAFROST))
+                                    .noProjection()
+                                    .build())
+                            .decorated(Features.Placements.HEIGHTMAP_WORLD_SURFACE).squared()
+                            .range(250)
+                            .count(1))
                     .setBiomePredicate(FROZEN_DYING_FORST.or(FROZEN_BITTERWOOD_FORST))
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOILING_SANDS_PLANTS =
             REGISTER.register("tall_boiling_sands_plants",
-                    Decoration.VEGETAL_DECORATION,
-                    () -> Feature.RANDOM_PATCH
-                            .configured((new BlockClusterFeatureConfig.Builder(
-                                    new WeightedBlockStateProvider()
-                                            .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 1)
+                            Decoration.VEGETAL_DECORATION,
+                            () -> Feature.RANDOM_PATCH
+                                    .configured((new BlockClusterFeatureConfig.Builder(
+                                            new WeightedBlockStateProvider()
+                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 1)
                                             .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 1),
                                     new DoublePlantBlockPlacer()))
                                     .tries(64)

@@ -75,6 +75,7 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("ancient_pottery", "Ancient Pottery", AncientPotteryBlock::new);
 
         registerBerryBushBlock("bradberry_bush", "Bradberry Bush", () -> JItems.BRADBERRY);
+        registerBerryBushBlock("redcurrant_bush", "Redcurrant Bush", () -> JItems.REDCURRANT_BERRY);
 
         registerDefaultBlock("blood_rock", "Blood Rock", () -> new Block(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()));
         registerDefaultBlock("blood_rock_bricks", "Blood Rock Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));

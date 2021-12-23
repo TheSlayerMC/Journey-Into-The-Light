@@ -62,6 +62,14 @@ public class JRecipeRegister extends JRecipeProvider {
 				.group("lunium_ingot")
 				.save(recipeConsumer);
 
+		ShapelessRecipeBuilder.shapeless(JItems.REDCURRANT_ON_A_STICK, 1)
+				.requires(JItems.REDCURRANT_BERRY)
+				.requires(Items.FISHING_ROD)
+				.unlockedBy(inputToKey(JItems.REDCURRANT_BERRY),
+						has(JItems.REDCURRANT_BERRY))
+				.group("redcurrant_on_a_stick")
+				.save(recipeConsumer);
+
 		ShapedRecipeBuilder.shaped(JItems.POWDER_OF_ESSENCIA, 8).define('#', JItems.LUNIUM_POWDER).define('I', JItems.BLOOD)
 				.pattern("###")
 				.pattern("#I#")

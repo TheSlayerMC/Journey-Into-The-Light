@@ -33,6 +33,7 @@ import net.jitl.init.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.MusicDiscItem;
+import net.minecraft.item.OnAStickItem;
 import net.minecraft.item.Rarity;
 import net.minecraft.loot.LootTables;
 import net.minecraft.potion.Effects;
@@ -96,6 +97,8 @@ public class ItemRegistrator {
         registerItem("sentacoin_bag", "Sentacoin Bag", () -> new Item(itemGrouped()), "item/sentacoin_bag_model");
         registerItem("peridot_gemstone", "Peridot Gemstone");
         registerItem("rimestone", "Rimestone");
+        registerItem("redcurrant_berry", "Redcurrant Berry", () -> new Item(itemGrouped().food(JFoods.REDCURRANT)));
+        registerHandheldItem("redcurrant_on_a_stick", "Redcurrant On A Stick", () -> new OnAStickItem<>(itemGrouped(), JEntities.CAPYBARA_TYPE, 7));
         registerItem("crystal_apple", "Crystal Apple", () -> new CrystalAppleItem(itemGrouped().food(JFoods.CRYSTAL_APPLE).rarity(Rarity.EPIC)));
         registerItem("frostborn_soul", "Frostborn Soul");
         registerItem("ice_amulet", "Ice Amulet", () -> new IceAmuletItem(itemGrouped().stacksTo(1)));

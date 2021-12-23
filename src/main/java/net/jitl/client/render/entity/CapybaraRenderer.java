@@ -6,6 +6,7 @@ import net.jitl.client.render.model.frozen.CapybaraModel;
 import net.jitl.common.entity.frozen.CapybaraEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.SaddleLayer;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,6 +14,7 @@ public class CapybaraRenderer extends MobRenderer<CapybaraEntity, CapybaraModel<
 
     public CapybaraRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new CapybaraModel(), 0.5F);
+        this.addLayer(new SaddleLayer<>(this, new CapybaraModel<>(), JITL.rl("textures/entity/frozen/capybara_saddle.png")));
     }
 
     @Override

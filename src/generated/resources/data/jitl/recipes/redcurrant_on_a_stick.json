@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "redcurrant_on_a_stick",
+  "ingredients": [
+    {
+      "item": "jitl:redcurrant_berry"
+    },
+    {
+      "item": "minecraft:fishing_rod"
+    }
+  ],
+  "result": {
+    "item": "jitl:redcurrant_on_a_stick"
+  }
+}

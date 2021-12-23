@@ -166,6 +166,7 @@ public class JBlocks {
 	public static final Block RIMESTONE_ORE = promise();
 	public static final Block RIMESTONE_BLOCK = promise();
 
+	public static final Block REDCURRANT_BUSH = promise();
 	public static final Block CRYSTAL_FRUIT = promise();
 
 	public static final Block GOLDITE_GRASS_BLOCK = promise();
