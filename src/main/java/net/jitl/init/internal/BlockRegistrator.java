@@ -225,16 +225,16 @@ public class BlockRegistrator {
 
         registerDefaultBlock("crumbled_permafrost", "Crumbled Permafrost", () -> new Block(JBlockProperties.CRUMBLED_PERMAFROST_PROPS.create()));
 
-        registerSpeciallyRenderedRotatedBlock("grassy_permafrost", "Grassy Permafrost", () -> new Block(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()),
+        registerSpeciallyRenderedRandomlyRotatedBlock("grassy_permafrost", "Grassy Permafrost", () -> new Block(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/grassy_permafrost_top"), JITL.tl("block/grassy_permafrost_side"), JITL.tl("block/crumbled_permafrost")));
 
         registerDefaultBlock("permafrost", "Permafrost", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
 
         registerPortalBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, () -> JBlocks.EUCA_PORTAL_FRAME));
-        registerSpeciallyRenderedRotatedBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+        registerSpeciallyRenderedRandomlyRotatedBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_gold_grass_block_top"), JITL.tl("block/euca_gold_grass_block_side"), JITL.tl("block/goldite_dirt")));
 
-        registerSpeciallyRenderedRotatedBlock("goldite_grass_block", "Goldite Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+        registerSpeciallyRenderedRandomlyRotatedBlock("goldite_grass_block", "Goldite Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/goldite_grass_block_top"), JITL.tl("block/goldite_grass_block_side"), JITL.tl("block/goldite_dirt")));
 
         registerDefaultBlock("goldite_dirt", "Goldite Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
@@ -288,7 +288,7 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
                 () -> BlockModels.crossModel(JITL.tl("block/euca_silver_sprouts")));
 
-        registerSpeciallyRenderedRotatedBlock("euca_silver_grass_block", "Euca Silver Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+        registerSpeciallyRenderedRandomlyRotatedBlock("euca_silver_grass_block", "Euca Silver Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/euca_silver_grass_block_top"), JITL.tl("block/euca_silver_grass_block_side"), JITL.tl("block/euca_silver_dirt")));
         registerDefaultBlock("euca_silver_dirt", "Euca Silver Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
 
@@ -398,7 +398,7 @@ public class BlockRegistrator {
         registerRandomizedRotatedBlock("scorched_rubble", "Scorched Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
         registerRandomizedRotatedBlock("ash_block", "Ash", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerPortalBlock("boil_portal", "Boiling Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.BOIL, () -> JBlocks.BOIL_PORTAL_FRAME));
-        registerSpeciallyRenderedRotatedBlock("charred_grass", "Charred Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
+        registerSpeciallyRenderedRandomlyRotatedBlock("charred_grass", "Charred Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/charred_grass_top"), JITL.tl("block/charred_grass_side"), JITL.tl("block/rubble")));
 
         registerDefaultBlock("sulphur_rock", "Sulphur Rock", () -> new Block(JBlockProperties.BASALT_PROPS.create()));
@@ -561,7 +561,7 @@ public class BlockRegistrator {
                 .oneVarStateAndCubeAllModel();
     }
 
-    private static void registerSpeciallyRenderedRotatedBlock(String name, String enName, Supplier<Block> blockSupplier, Supplier<BlockModel> blockModelSupplier) {
+    private static void registerSpeciallyRenderedRandomlyRotatedBlock(String name, String enName, Supplier<Block> blockSupplier, Supplier<BlockModel> blockModelSupplier) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
