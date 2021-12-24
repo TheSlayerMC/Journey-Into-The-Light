@@ -364,21 +364,17 @@ public class BlockRegistrator {
         registerCustomRenderLayerBlock("ice_crystal_block", "Ice Crystal Block", () -> new Block(JBlockProperties.ICE_CRYSTAL_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
         registerCustomRenderLayerBlock("cracked_ice_crystal_block", "Cracked Ice Crystal Block", () -> new Block(JBlockProperties.ICE_CRYSTAL_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
 
-        registerSpeciallyRenderedBlock("frostberry_thorn", "Frostberry Thorn", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
-                () -> JBlockModels.crop(JITL.tl("block/frostberry_thorn")));
+        registerCropRenderedBlock("frostberry_thorn", "Frostberry Thorn", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK));
 
-        registerSpeciallyRenderedBlock("frozen_bloom", "Frozen Bloom", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
-                () -> JBlockModels.crop(JITL.tl("block/frozen_bloom")));
+        registerCropRenderedBlock("frozen_bloom", "Frozen Bloom", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK));
 
-        registerSpeciallyRenderedBlock("ice_bud", "Ice Bud", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
-                () -> BlockModels.crossModel(JITL.tl("block/ice_bud")));
+        registerCrossRenderedBlock("ice_bud", "Ice Bud", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK));
 
-        registerSpeciallyRenderedBlock("ice_bush", "Ice Bush", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK),
-                () -> JBlockModels.crop(JITL.tl("block/ice_bush")));
+        registerCrossRenderedBlock("ice_bush", "Ice Bush", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK));
 
         registerSpeciallyRenderedBlockWithRenderType("ciclebloom", "Ciclebloom", () ->
                 new JSingleDoublePlantBlock(JBlockProperties.PLANT_PROPS.create().lightLevel((light) -> 4)).setGroundPredicate(GroundPredicate.FROZEN_GRASS_BLOCK), () -> RenderTypeWrappers.CUTOUT);
@@ -416,37 +412,29 @@ public class BlockRegistrator {
         registerLogBlock("burned_bark", "Burned Bark");
         registerCustomRenderLayerBlock("charred_leaves", "Charred Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
 
-        registerSpeciallyRenderedBlock("inferno_bush", "Inferno Bush", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> BlockModels.crossModel(JITL.tl("block/inferno_bush")));
+        registerCrossRenderedBlock("inferno_bush", "Inferno Bush", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.BOILING_LAND));
 
-        registerSpeciallyRenderedBlock("crumbling_pine", "Crumbling Pine", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> BlockModels.crossModel(JITL.tl("block/crumbling_pine")));
+        registerCrossRenderedBlock("crumbling_pine", "Crumbling Pine", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.BOILING_LAND));
 
-        registerSpeciallyRenderedBlock("crisp_grass", "Crisp Grass", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> BlockModels.crossModel(JITL.tl("block/crisp_grass")));
+        registerCrossRenderedBlock("crisp_grass", "Crisp Grass", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.BOILING_LAND));
 
-        registerSpeciallyRenderedBlock("flame_pod", "Flame Pod", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> BlockModels.crossModel(JITL.tl("block/flame_pod")));
+        registerCrossRenderedBlock("flame_pod", "Flame Pod", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.BOILING_LAND));
 
-        registerSpeciallyRenderedBlock("hell_bell", "Hell Bell", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> BlockModels.crossModel(JITL.tl("block/hell_bell")));
+        registerCrossRenderedBlock("hell_bell", "Hell Bell", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.BOILING_LAND));
 
-        registerSpeciallyRenderedBlock("lava_bloom", "Lava Bloom", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> BlockModels.crossModel(JITL.tl("block/lava_bloom")));
+        registerCrossRenderedBlock("lava_bloom", "Lava Bloom", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.BOILING_LAND));
 
-        registerSpeciallyRenderedBlock("charred_weeds", "Charred Weeds", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> BlockModels.crossModel(JITL.tl("block/charred_weeds")));
+        registerCrossRenderedBlock("charred_weeds", "Charred Weeds", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.BOILING_LAND));
 
-        registerSpeciallyRenderedBlock("charred_short_grass", "Charred Short Grass", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.BOILING_LAND),
-                () -> JBlockModels.crop(JITL.tl("block/charred_tall_grass_top")));
+        registerCrossRenderedBlock("charred_short_grass", "Charred Short Grass", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
+                .setGroundPredicate(GroundPredicate.BOILING_LAND));
 
         registerTallCrossRenderedBlock("tall_molten_plant", "Tall Molten Plant", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
         registerTallCrossRenderedBlock("tall_crumbling_pine", "Tall Crumbling Pine", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.BOILING_LAND));
@@ -582,6 +570,30 @@ public class BlockRegistrator {
                 .model(JITL.bml("block/" + name), blockModelSupplier);
     }
 
+    private static void registerCrossRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
+                .defaultBlockItem(JTabs.DECORATION, (itemChain) -> {
+                    itemChain.defaultModel(JITL.tl("block/" + name));
+                })
+                .oneVariantState(new BlockModelLocation(JITL.MODID, "block/" + name))
+                .model(JITL.bml("block/" + name),
+                        () -> BlockModels.crossModel(JITL.tl("block/" + name)));
+    }
+
+    private static void registerCropRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
+                .defaultBlockItem(JTabs.DECORATION, (itemChain) -> {
+                    itemChain.defaultModel(JITL.tl("block/" + name));
+                })
+                .oneVariantState(new BlockModelLocation(JITL.MODID, "block/" + name))
+                .model(JITL.bml("block/" + name),
+                        () -> JBlockModels.crop(JITL.tl("block/" + name)));
+    }
+
     /**
      * Registers a block with no pre-generated blockstate, block or item model
      */
@@ -596,7 +608,9 @@ public class BlockRegistrator {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.TRANSLUCENT)
-                .defaultBlockItem(JTabs.BLOCKS)
+                .defaultBlockItem(JTabs.BLOCKS, (itemChain) -> {
+                    itemChain.defaultModel(JITL.tl("block/" + name));
+                })
                 .state(JBlockStateResources.basicPortalState(JITL.bml("block/" + name + "_ew"), JITL.bml("block/" + name + "_ns")));
     }
 
@@ -647,7 +661,9 @@ public class BlockRegistrator {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
-                .defaultBlockItem(JTabs.DECORATION)
+                .defaultBlockItem(JTabs.DECORATION, (itemChain) -> {
+                    itemChain.defaultModel(JITL.tl("block/" + name + "_top"));
+                })
                 .state(JBlockStateResources.doublePlantState(JITL.bml("block/" + name + "_bottom"), JITL.bml("block/" + name + "_top")))
                 .model(JITL.bml("block/" + name + "_top"),
                         () -> BlockModels.crossModel(JITL.tl("block/" + name + "_top")))
@@ -659,7 +675,9 @@ public class BlockRegistrator {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
-                .defaultBlockItem(JTabs.DECORATION)
+                .defaultBlockItem(JTabs.DECORATION, (itemChain) -> {
+                    itemChain.defaultModel(JITL.tl("block/" + name + "_top"));
+                })
                 .state(JBlockStateResources.doublePlantState(JITL.bml("block/" + name + "_bottom"), JITL.bml("block/" + name + "_top")))
                 .model(JITL.bml("block/" + name + "_top"),
                         () -> JBlockModels.crop(JITL.tl("block/" + name + "_top")))
@@ -713,7 +731,9 @@ public class BlockRegistrator {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.CUTOUT)
-                .defaultBlockItem(JTabs.BLOCKS)
+                .defaultBlockItem(JTabs.DECORATION, (itemChain) -> {
+                    itemChain.defaultModel(JITL.tl("block/" + name));
+                })
                 .state(JBlockStateResources.orientableStateAllSides(JITL.bml("block/" + name)))
                 .model(JITL.bml("block/" + name),
                         () -> BlockModels.crossModel(JITL.tl("block/" + texture)));
@@ -733,20 +753,23 @@ public class BlockRegistrator {
     //TODO remove itemblock, bind berry bush to 'berries' item
     private static void registerBerryBushBlock(String name, String enName, Supplier<IItemProvider> itemProviderSupplier) {
         REGISTER.register(name, () -> new JBerryBushBlock(
-                (JBlockProperties.BERRY_BUSH_PROPS.create()), itemProviderSupplier))
+                        (JBlockProperties.BERRY_BUSH_PROPS.create()), itemProviderSupplier))
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.CUTOUT)
-                .defaultBlockItem(JTabs.BLOCKS).also((chain) -> {
-            String model0 = "block/" + name + "_0";
-            String model1 = "block/" + name + "_1";
-            String model2 = "block/" + name + "_2";
-            String model3 = "block/" + name + "_3";
+                .defaultBlockItem(JTabs.DECORATION, (itemChain) -> {
+                    itemChain.defaultModel(JITL.tl("block/" + name + "_0"));
+                })
+                .also((chain) -> {
+                    String model0 = "block/" + name + "_0";
+                    String model1 = "block/" + name + "_1";
+                    String model2 = "block/" + name + "_2";
+                    String model3 = "block/" + name + "_3";
 
-            chain.model(JITL.bml(model0), () -> BlockModels.crossModel(JITL.tl(model0)))
-                    .model(JITL.bml(model1), () -> BlockModels.crossModel(JITL.tl(model1)))
-                    .model(JITL.bml(model2), () -> BlockModels.crossModel(JITL.tl(model2)))
-                    .model(JITL.bml(model3), () -> BlockModels.crossModel(JITL.tl(model3)))
-                    .state(() -> BlockStateResource.fromBuilder(BlockStateResource.Builder.create()
+                    chain.model(JITL.bml(model0), () -> BlockModels.crossModel(JITL.tl(model0)))
+                            .model(JITL.bml(model1), () -> BlockModels.crossModel(JITL.tl(model1)))
+                            .model(JITL.bml(model2), () -> BlockModels.crossModel(JITL.tl(model2)))
+                            .model(JITL.bml(model3), () -> BlockModels.crossModel(JITL.tl(model3)))
+                            .state(() -> BlockStateResource.fromBuilder(BlockStateResource.Builder.create()
                             .addVariant(new BlockStateResource.Variant("age=0", JITL.bml(model0)))
                             .addVariant(new BlockStateResource.Variant("age=1", JITL.bml(model1)))
                             .addVariant(new BlockStateResource.Variant("age=2", JITL.bml(model2)))
@@ -758,6 +781,9 @@ public class BlockRegistrator {
         REGISTER.register(name, () -> block)
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.CUTOUT)
+                .defaultBlockItem(JTabs.DECORATION, (itemChain) -> {
+                    itemChain.defaultModel(JITL.tl("block/" + name + "_0"));
+                })
                 .also((chain) -> {
             String model0 = "block/" + name + "_0";
             String model1 = "block/" + name + "_1";
