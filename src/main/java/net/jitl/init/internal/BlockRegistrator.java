@@ -383,8 +383,8 @@ public class BlockRegistrator {
 
         registerDefaultBlock("depths_stone", "Depths Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("depths_lamp", "Depths Lamp", () -> new Block(JBlockProperties.GLOW_BLOCK.create()));
-        registerDefaultBlock("depths_portal_frame", "Depths Portal Frame", () -> new DepthsPortalFrameBlock(JBlockProperties.BRICK_PROPS.create()));
-        registerPortalBlock("depths_portal", "Depths Portal", () -> new DepthsPortalBlock(JBlockProperties.PORTAL.create()));
+        registerSpeciallyRenderedBlock("depths_portal_frame", "Depths Portal Frame", () -> new DepthsPortalFrameBlock(JBlockProperties.BRICK_PROPS.create()));
+        registerSpeciallyRenderedBlock("depths_portal", "Depths Portal", () -> new DepthsPortalBlock(JBlockProperties.PORTAL.create()));
 
         RegistryObject<Block> depthsDirt = registerBlock("depths_dirt", "Depths Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
         registerSpeciallyRenderedBlock("depths_grass_block", "Depths Grass", () -> new JSpreadableSnowyDirtBlock(JBlockProperties.GRASS_PROPS.create(), depthsDirt.get()),
