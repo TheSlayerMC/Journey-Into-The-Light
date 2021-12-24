@@ -449,6 +449,10 @@ public class BlockRegistrator {
         registerOrientableRenderedBlock("boil_lock", "Boiling Lock", LockBlock::new, "boil_lock_top", "boil_lock_side", "boil_lock_front");
     }
 
+
+
+    
+
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {
         return REGISTER.register(name, block).name(enName);
     }
