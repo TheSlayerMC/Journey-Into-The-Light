@@ -9,6 +9,8 @@ import net.jitl.common.block.base.*;
 import net.jitl.common.block.crop.FloroCropBlock;
 import net.jitl.common.block.crop.GolditeFarmlandBlock;
 import net.jitl.common.block.crop.TomatoCropBlock;
+import net.jitl.common.block.portal.DepthsPortalBlock;
+import net.jitl.common.block.portal.DepthsPortalFrameBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.common.block.trees.DyingFrozenTree;
 import net.jitl.common.dimension.Dimensions;
@@ -381,8 +383,8 @@ public class BlockRegistrator {
 
         registerDefaultBlock("depths_stone", "Depths Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("depths_lamp", "Depths Lamp", () -> new Block(JBlockProperties.GLOW_BLOCK.create()));
-        registerDefaultBlock("depths_portal_frame", "Depths Portal Frame", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-        registerPortalBlock("depths_portal", "Depths Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.DEPTHS, () -> JBlocks.DEPTHS_PORTAL_FRAME));
+        registerDefaultBlock("depths_portal_frame", "Depths Portal Frame", () -> new DepthsPortalFrameBlock(JBlockProperties.BRICK_PROPS.create()));
+        registerPortalBlock("depths_portal", "Depths Portal", () -> new DepthsPortalBlock(JBlockProperties.PORTAL.create()));
 
         RegistryObject<Block> depthsDirt = registerBlock("depths_dirt", "Depths Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
         registerSpeciallyRenderedBlock("depths_grass_block", "Depths Grass", () -> new JSpreadableSnowyDirtBlock(JBlockProperties.GRASS_PROPS.create(), depthsDirt.get()),

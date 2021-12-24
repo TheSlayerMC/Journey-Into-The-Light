@@ -3,6 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.common.block.*;
 import net.jitl.common.block.base.*;
+import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
@@ -199,7 +200,7 @@ public class JBlocks {
 	public static final JLeavesBlock EUCA_GREEN_LEAVES = promise();
 
 	public static final Block DEPTHS_PORTAL_FRAME = promise();
-	public static final JBasePortalBlock DEPTHS_PORTAL = promise();
+	public static final DepthsPortalBlock DEPTHS_PORTAL = promise();
 	public static final Block DEPTHS_GRASS_BLOCK = promise();
 	public static final Block DEPTHS_STONE = promise();
 	public static final Block DEPTHS_LAMP = promise();
