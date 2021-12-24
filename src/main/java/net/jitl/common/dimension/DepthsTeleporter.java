@@ -2,36 +2,15 @@ package net.jitl.common.dimension;
 
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.DepthsPortalFrameBlock;
-import net.jitl.common.block.portal.JBasePortalBlock;
-import net.jitl.init.JBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.TeleportationRepositioner;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.village.PointOfInterest;
-import net.minecraft.village.PointOfInterestManager;
-import net.minecraft.village.PointOfInterestType;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.structure.StrongholdPieces;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
-
-import javax.annotation.Nullable;
-import java.util.Comparator;
-import java.util.Optional;
 import java.util.Random;
 import java.util.function.Function;
 
@@ -162,7 +141,7 @@ public class DepthsTeleporter implements ITeleporter {
             entity.teleportTo(entity.getX(), getTopBlock((int) entity.getX(), (int)entity.getZ()), entity.getZ());
             System.out.println("Placed OVERWORLD Player TO DEPTHS Y:" + entity.getY());
         } else {
-            entity.teleportTo(entity.getX(), getTopBlockOverworld((int) entity.getX(), (int)entity.getZ()), entity.getZ());
+            entity.teleportTo(entity.getX(), level.getHeight(Heightmap.Type.WORLD_SURFACE, (int)entity.getX(), (int)entity.getZ()), entity.getZ());
             System.out.println("Placed DEPTHS Player TO OVERWORLD Y:" + entity.getY());
         }
         return entity;
