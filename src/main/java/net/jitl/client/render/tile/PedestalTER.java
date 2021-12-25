@@ -12,11 +12,11 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class TileEntityRendererPedestal extends TileEntityRenderer<PedestalTile> {
+public class PedestalTER extends TileEntityRenderer<PedestalTile> {
 
     private final ItemRenderer renderEntity;
 
-    public TileEntityRendererPedestal(TileEntityRendererDispatcher rendererDispatcherIn) {
+    public PedestalTER(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
         this.renderEntity = Minecraft.getInstance().getItemRenderer();
     }
@@ -24,12 +24,12 @@ public class TileEntityRendererPedestal extends TileEntityRenderer<PedestalTile>
     @Override
     public void render(PedestalTile e, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
         ItemStack i = e.getItem(0);
-        renderItem(i, new double[] {0.5D, 1.35D, 0.5D}, matrixStackIn, bufferIn, combinedOverlayIn, combinedLightIn, 1.0F);
+        renderItem(i, new double[]{0.5D, 1.55D, 0.5D}, matrixStackIn, bufferIn, combinedOverlayIn, combinedLightIn, 1.0F);
     }
 
     private void renderItem(ItemStack stack, double[] translation, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedOverlay, int lightLevel, float scale) {
         matrixStack.pushPose();
-        float timeD = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) / 6;
+        float timeD = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) / 16;
         matrixStack.translate(translation[0], translation[1], translation[2]);
         matrixStack.mulPose(Vector3f.YP.rotation(timeD));
         matrixStack.scale(scale, scale, scale);

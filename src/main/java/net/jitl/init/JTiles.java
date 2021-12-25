@@ -3,6 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.client.render.tile.EssenciaAltarTER;
 import net.jitl.client.render.tile.LaserEmitterTER;
+import net.jitl.client.render.tile.PedestalTER;
 import net.jitl.common.tile.*;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
@@ -32,7 +33,7 @@ public class JTiles {
             REGISTER.registerSingleBound("mob_spawner", JMobSpawnerTile::new, () -> JBlocks.TEST_SPAWNER);
             REGISTER.registerSingleBound("essencia_altar", EssenciaAltarTile::new, () -> JBlocks.ESSENCIA_ALTAR).regCustomRenderer(() -> EssenciaAltarTER::new);
             REGISTER.registerSingleBound("guardian_tower_brain", GuardianTowerBrainTile::new, () -> JBlocks.GUARDIAN_TOWER_BRAIN);
-            REGISTER.registerSingleBound("pedestal", PedestalTile::new, () -> JBlocks.FROZEN_PEDESTAL);
+            REGISTER.registerSingleBound("pedestal", PedestalTile::new, () -> JBlocks.FROZEN_PEDESTAL).regCustomRenderer(() -> PedestalTER::new);
             REGISTER.registerSingleBound("ancient_pottery", PotTile::new, () -> JBlocks.ANCIENT_POTTERY);
         }
     }
