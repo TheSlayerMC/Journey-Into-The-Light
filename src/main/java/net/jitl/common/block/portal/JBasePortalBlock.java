@@ -121,8 +121,6 @@ public class JBasePortalBlock extends Block {
                             poi = Dimensions.FROZEN_PORTAL.get();
                         if (this == JBlocks.BOIL_PORTAL)
                             poi = Dimensions.BOILING_PORTAL.get();
-                        if (this == JBlocks.DEPTHS_PORTAL)
-                            poi = Dimensions.DEPTHS_PORTAL.get();
 
                         if (destinationWorld != null && minecraftserver.isNetherEnabled() && !entity.isPassenger()) {
                             entity.level.getProfiler().push(Objects.requireNonNull(this.getRegistryName()).toString());
