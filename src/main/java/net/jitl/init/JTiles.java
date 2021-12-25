@@ -19,7 +19,7 @@ public class JTiles {
     public static final TileEntityType<EssenciaAltarTile> ESSENCIA_ALTAR = promise();
     public static final TileEntityType<GuardianTowerBrainTile> GUARDIAN_TOWER_BRAIN = promise();
     public static final TileEntityType<PedestalTile> PEDESTAL = promise();
-    public static final TileEntityType<PotTile> POT = promise();
+    public static final TileEntityType<PotTile> ANCIENT_POTTERY = promise();
 
 
     private static class Registrator {

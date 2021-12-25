@@ -17,7 +17,7 @@ public class PotTile extends LockableLootTileEntity {
     private NonNullList<ItemStack> inventory = NonNullList.withSize(27, ItemStack.EMPTY);
 
     public PotTile() {
-        super(JTiles.POT);
+        super(JTiles.ANCIENT_POTTERY);
     }
 
     @Override
