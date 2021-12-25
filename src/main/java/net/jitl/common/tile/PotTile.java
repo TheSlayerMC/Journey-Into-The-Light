@@ -14,8 +14,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import org.jetbrains.annotations.NotNull;
 
 public class PotTile extends LockableLootTileEntity {
-
-    private NonNullList<ItemStack> inventory = NonNullList.withSize(8, ItemStack.EMPTY);
+    private NonNullList<ItemStack> inventory = NonNullList.withSize(27, ItemStack.EMPTY);
 
     public PotTile() {
         super(JTiles.POT);
@@ -38,7 +37,7 @@ public class PotTile extends LockableLootTileEntity {
 
     @Override
     public int getContainerSize() {
-        return 8;
+        return 27;
     }
 
     @Override
@@ -47,16 +46,23 @@ public class PotTile extends LockableLootTileEntity {
     }
 
     @Override
-    public void load(@NotNull BlockState state, @NotNull CompoundNBT nbt) {
+    public void load(BlockState state, CompoundNBT nbt) {
         super.load(state, nbt);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.inventory);
+        if (!this.tryLoadLootTable(nbt)) {
+            ItemStackHelper.loadAllItems(nbt, this.inventory);
+            //TODO: not loading items on relog
+        }
     }
 
     @Override
-    public @NotNull CompoundNBT save(@NotNull CompoundNBT compound) {
+    public CompoundNBT save(CompoundNBT compound) {
         super.save(compound);
-        ItemStackHelper.saveAllItems(compound, this.inventory);
+        if (!this.trySaveLootTable(compound)) {
+            ItemStackHelper.saveAllItems(compound, this.inventory);
+            //TODO: not saving items on relog
+        }
+
         return compound;
     }
 

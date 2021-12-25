@@ -40,12 +40,10 @@ public class FrozenGuardianEntity extends CreatureEntity {
     private static final DataParameter<Boolean> DATA_IS_ACTIVATED = EntityDataManager.defineId(FrozenGuardianEntity.class, DataSerializers.BOOLEAN);
 
     private int death_timer;
-    private int counted_full_pedestals;
 
     public FrozenGuardianEntity(EntityType<? extends FrozenGuardianEntity> entityType, World world) {
         super(entityType, world);
         this.death_timer = 50;
-        this.counted_full_pedestals = 0;
     }
 
     @Override
@@ -103,7 +101,6 @@ public class FrozenGuardianEntity extends CreatureEntity {
                     this.level.addFreshEntity(new ItemEntity(level, this.position().x + 0.5F, this.position().y + 1.4F, this.position().z + 0.5F, new ItemStack(JItems.STAFF_OF_CONJURING, 1)));
                 }
                 this.death_timer = 100;
-                this.counted_full_pedestals = 0;
             }
         }
     }
@@ -192,7 +189,6 @@ public class FrozenGuardianEntity extends CreatureEntity {
                                 tile.setItem(0, ItemStack.EMPTY);
                             }
                             totalPedestals++;
-                            this.counted_full_pedestals++;
                         }
                     }
                 }

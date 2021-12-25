@@ -1,18 +1,24 @@
 package net.jitl.common.block;
 
 import net.jitl.common.block.base.JTileContainerBlock;
-import net.jitl.common.tile.PedestalTile;
+import net.jitl.common.tile.PotTile;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 
 public class AncientPotteryBlock extends JTileContainerBlock {
@@ -20,7 +26,7 @@ public class AncientPotteryBlock extends JTileContainerBlock {
     protected static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 20.0D, 13.0D);
 
     public AncientPotteryBlock() {
-        super(JBlockProperties.BRICK_PROPS.create().noOcclusion(), (blockState, iBlockReader) -> new PedestalTile());
+        super(JBlockProperties.BRICK_PROPS.create().noOcclusion(), (blockState, iBlockReader) -> new PotTile());
     }
 
     @Override
@@ -40,19 +46,29 @@ public class AncientPotteryBlock extends JTileContainerBlock {
         }
     }
 
-    /*@Override
+    @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        Item heldItem = player.getMainHandItem().getItem();
-        if (worldIn.getBlockEntity(pos) instanceof PedestalTile) {
-            PedestalTile pedestal = (PedestalTile) worldIn.getBlockEntity(pos);
-            if (pedestal != null) {
-                pedestal.setItem(0, new ItemStack(heldItem));
-                worldIn.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                if (!player.isCreative())
-                    player.getMainHandItem().shrink(1);
+        if (worldIn.getBlockEntity(pos) instanceof PotTile) {
+            PotTile potTile = (PotTile) worldIn.getBlockEntity(pos);
+            InvWrapper invWrapper = new InvWrapper(potTile);
+            ItemStack heldStack = player.getItemInHand(handIn);
+
+            if (!heldStack.isEmpty()) {
+                ItemStack stack = heldStack;
+                ItemStack prevStack = stack.copy();
+                int slots = invWrapper.getSlots();
+                for (int i = 0; i < slots; i++) {
+                    if (!stack.isEmpty()) {
+                        stack = invWrapper.insertItem(i, stack, false);
+                    }
+                }
+                if (stack.isEmpty() || stack.getCount() != prevStack.getCount()) {
+                    player.setItemInHand(handIn, stack);
+                    return ActionResultType.SUCCESS;
+                }
             }
         }
         return ActionResultType.sidedSuccess(worldIn.isClientSide);
-    }*/
+    }
 }
 
