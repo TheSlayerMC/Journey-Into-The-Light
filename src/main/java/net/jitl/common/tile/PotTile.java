@@ -46,24 +46,21 @@ public class PotTile extends LockableLootTileEntity {
     }
 
     @Override
+    public CompoundNBT save(CompoundNBT compound) {
+        super.save(compound);
+        if (!this.trySaveLootTable(compound)) {
+            ItemStackHelper.saveAllItems(compound, this.inventory);
+        }
+        return compound;
+    }
+
+    @Override
     public void load(BlockState state, CompoundNBT nbt) {
         super.load(state, nbt);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         if (!this.tryLoadLootTable(nbt)) {
             ItemStackHelper.loadAllItems(nbt, this.inventory);
-            //TODO: not loading items on relog
         }
-    }
-
-    @Override
-    public CompoundNBT save(CompoundNBT compound) {
-        super.save(compound);
-        if (!this.trySaveLootTable(compound)) {
-            ItemStackHelper.saveAllItems(compound, this.inventory);
-            //TODO: not saving items on relog
-        }
-
-        return compound;
     }
 
     @Override
