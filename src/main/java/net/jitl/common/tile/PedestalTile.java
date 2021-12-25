@@ -60,6 +60,6 @@ public class PedestalTile extends LockableLootTileEntity {
 
     @Override
     protected ITextComponent getDefaultName() {
-        return new TranslationTextComponent("nothin");
+        return new TranslationTextComponent("jitl.tile.pedestal");
     }
 }
