@@ -141,7 +141,7 @@ public class ItemRegistrator {
 
         //todo: change loot pouches to use JITL loot tables
         registerItem("loot_pouch_basic", "Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_BASIC, false));
-        registerItem("loot_pouch_gold", "Gold Loot Pouch", () -> new LootItem(LootTables.DESERT_PYRAMID, true));
+        registerItem("loot_pouch_gold", "Gold Loot Pouch", () -> new LootItem(LootTables.FISHING_TREASURE, true));
         registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(LootTables.END_CITY_TREASURE, true));
 
         //NETHER ITEMS
@@ -153,7 +153,7 @@ public class ItemRegistrator {
         registerItem("blood", "Blood");
         registerItem("powder_of_essencia", "Powder Of Essencia");
 
-        registerItem("flame_coin", "Flame Coin", () -> new FlameCoinItem());
+        registerItem("flame_coin", "Flame Coin", FlameCoinItem::new);
 
         //END ITEMS
         registerItem("enderillium_shard", "Enderillium Shard");

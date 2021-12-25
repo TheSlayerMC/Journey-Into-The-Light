@@ -80,7 +80,6 @@ public class JBlocks {
 	public static final Block BLUE_GEM_BLOCK = promise();
 	public static final Block YELLOW_GEM_BLOCK = promise();
 
-	public static final Block ANCIENT_POTTERY = promise();
 	public static final Block DUNGEON_BRICKS = promise();
 	public static final Block CARVED_DUNGEON_BRICKS = promise();
 	public static final Block CHISELED_DUNGEON_BRICKS = promise();
@@ -270,6 +269,7 @@ public class JBlocks {
 	public static final JPlantBlock HELL_BELL = promise();
 
 	public static final Block FROZEN_PEDESTAL = promise();
+    public static final Block ANCIENT_POTTERY = promise();
 
 	public static final Block DREADIRON_BLOCK = promise();
 }

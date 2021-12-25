@@ -11,6 +11,7 @@ import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import org.jetbrains.annotations.NotNull;
 
 public class PedestalTile extends LockableLootTileEntity {
     private NonNullList<ItemStack> inventory = NonNullList.withSize(2, ItemStack.EMPTY);
@@ -20,17 +21,17 @@ public class PedestalTile extends LockableLootTileEntity {
     }
 
     @Override
-    protected NonNullList<ItemStack> getItems() {
+    protected @NotNull NonNullList<ItemStack> getItems() {
         return inventory;
     }
 
     @Override
-    protected void setItems(NonNullList<ItemStack> itemsIn) {
+    protected void setItems(@NotNull NonNullList<ItemStack> itemsIn) {
         inventory = itemsIn;
     }
 
     @Override
-    protected Container createMenu(int id, PlayerInventory player) {
+    protected @NotNull Container createMenu(int id, @NotNull PlayerInventory player) {
         return null;
     }
 
@@ -40,26 +41,26 @@ public class PedestalTile extends LockableLootTileEntity {
     }
 
     @Override
-    public CompoundNBT getUpdateTag() {
+    public @NotNull CompoundNBT getUpdateTag() {
         return this.save(new CompoundNBT());
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
+    public void load(@NotNull BlockState state, @NotNull CompoundNBT nbt) {
         super.load(state, nbt);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt, this.inventory);
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public @NotNull CompoundNBT save(@NotNull CompoundNBT compound) {
         super.save(compound);
         ItemStackHelper.saveAllItems(compound, this.inventory);
         return compound;
     }
 
     @Override
-    protected ITextComponent getDefaultName() {
+    protected @NotNull ITextComponent getDefaultName() {
         return new TranslationTextComponent("jitl.tile.pedestal");
     }
 }

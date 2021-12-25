@@ -74,8 +74,6 @@ public class BlockRegistrator {
                 .harvestLevel(EnumHarvestLevel.IRON.getInt()))
                 .setExpDrop(2));
 
-        registerSpeciallyRenderedBlock("ancient_pottery", "Ancient Pottery", AncientPotteryBlock::new);
-
         registerBerryBushBlock("bradberry_bush", "Bradberry Bush", () -> JItems.BRADBERRY);
         registerBerryBushBlock("redcurrant_bush", "Redcurrant Bush", () -> JItems.REDCURRANT_BERRY);
 
@@ -447,6 +445,7 @@ public class BlockRegistrator {
                 () -> BlockModels.crossModel(JITL.tl("block/tall_sizzleshroom_top")));
 
         registerSpeciallyRenderedBlock("frozen_pedestal", "Frozen Pedestal", JBlockPedestal::new);
+        registerSpeciallyRenderedBlock("ancient_pottery", "Ancient Pottery", AncientPotteryBlock::new);
 
         registerOrientableRenderedBlock("boil_lock", "Boiling Lock", LockBlock::new, "boil_lock_top", "boil_lock_side", "boil_lock_front");
     }

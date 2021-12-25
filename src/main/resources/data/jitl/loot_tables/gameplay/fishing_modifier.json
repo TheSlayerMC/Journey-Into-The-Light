@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "weight": 5,
+          "quality": 2,
+          "name": "jitl:gameplay/fishing"
+        }
+      ]
+    }
+  ]
+}

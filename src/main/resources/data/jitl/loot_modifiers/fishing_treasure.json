@@ -1,0 +1,12 @@
+{
+  "conditions": [
+    {
+      "condition": "jitl:get_tables",
+      "old_tables": [
+        "minecraft:gameplay/fishing/treasure"
+      ]
+    }
+  ],
+  "new_table": "jitl:gameplay/fishing",
+  "type": "jitl:inject_table"
+}

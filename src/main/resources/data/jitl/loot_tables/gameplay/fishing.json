@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "jitl:loot_pouch_basic"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "jitl:loot_pouch_gold"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "jitl:loot_pouch_diamond"
+        }
+      ]
+    }
+  ]
+}
