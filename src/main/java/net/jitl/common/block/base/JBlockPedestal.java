@@ -20,13 +20,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class JBlockPedestal extends JTileContainerBlock {
-
-    protected static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 20.0D, 13.0D);
 
     public JBlockPedestal() {
         super(JBlockProperties.STONE_PROPS.create(), (blockState, iBlockReader) -> new PedestalTile());
@@ -34,7 +33,13 @@ public class JBlockPedestal extends JTileContainerBlock {
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
-        return SHAPE;
+        VoxelShape pedestal = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 20.0D, 11.0D);
+        VoxelShape bottom = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 1D, 13.0D);
+        VoxelShape bottom1 = Block.box(4.0D, 1.0D, 4.0D, 12.0D, 3D, 12.0D);
+        VoxelShape top = Block.box(3.0D, 19.0D, 3.0D, 13.0D, 20D, 13.0D);
+        VoxelShape top1 = Block.box(4.0D, 17.0D, 4.0D, 12.0D, 19D, 12.0D);
+        VoxelShape top2 = Block.box(5.0D, 20.0D,5.0D, 11D, 21.0D, 11D);
+        return VoxelShapes.or(pedestal, bottom, bottom1, top, top1, top2);
     }
 
     @Override
