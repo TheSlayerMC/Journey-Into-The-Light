@@ -144,6 +144,8 @@ public class ItemRegistrator {
         registerItem("loot_pouch_gold", "Gold Loot Pouch", () -> new LootItem(LootTables.FISHING_TREASURE, true));
         registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(LootTables.END_CITY_TREASURE, true));
 
+        registerItem("flame_coin", "Flame Coin", FlameCoinItem::new);
+
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
         registerItem("firestone_shard", "Firestone Shard", () -> new JFuelItem(itemGrouped().fireResistant(), 200));
@@ -152,8 +154,6 @@ public class ItemRegistrator {
         registerItem("crimson_quartz", "Crimson Quartz");
         registerItem("blood", "Blood");
         registerItem("powder_of_essencia", "Powder Of Essencia");
-
-        registerItem("flame_coin", "Flame Coin", FlameCoinItem::new);
         registerItem("boil_key", "Boil Lock Key");
 
         //END ITEMS

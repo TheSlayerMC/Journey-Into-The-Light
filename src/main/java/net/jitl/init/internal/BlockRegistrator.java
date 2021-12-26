@@ -77,6 +77,18 @@ public class BlockRegistrator {
         registerBerryBushBlock("bradberry_bush", "Bradberry Bush", () -> JItems.BRADBERRY);
         registerBerryBushBlock("redcurrant_bush", "Redcurrant Bush", () -> JItems.REDCURRANT_BERRY);
 
+        registerEmissiveRenderedBlock("ancient_stone_runic_0", "Ancient Runic Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()),
+                BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_0")), BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_0_overlay")));
+
+        registerEmissiveRenderedBlock("ancient_stone_runic_1", "Ancient Runic Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()),
+                BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_1")), BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_1_overlay")));
+
+        registerEmissiveRenderedBlock("ancient_stone_runic_2", "Ancient Runic Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()),
+                BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_2")), BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_2_overlay")));
+
+        registerEmissiveRenderedBlock("ancient_stone_runic_3", "Ancient Runic Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()),
+                BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_3")), BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_3_overlay")));
+
         registerDefaultBlock("blood_rock", "Blood Rock", () -> new Block(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()));
         registerDefaultBlock("blood_rock_bricks", "Blood Rock Bricks", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
         registerDefaultBlock("smooth_blood_rock", "Smooth Blood Rock", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
