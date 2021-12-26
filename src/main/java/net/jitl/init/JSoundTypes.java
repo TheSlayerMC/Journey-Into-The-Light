@@ -15,6 +15,15 @@ public class JSoundTypes {
 			JSounds.MUD_BLOCK_DIG::get,
 			JSounds.MUD_BLOCK_BREAK::get);
 
+	public static final SoundType POTTERY = new TimeSoundType(
+			1.0F,
+			1.0F,
+			JSounds.POTTERY_BREAK::get,
+			JSounds.POTTERY_DIG::get,
+			JSounds.POTTERY_DIG::get,
+			JSounds.POTTERY_DIG::get,
+			JSounds.POTTERY_BREAK::get);
+
 	public static final SoundType LUNIUM_BLOCK = new TimeSoundType(
 			1.0F,
 			1.0F,

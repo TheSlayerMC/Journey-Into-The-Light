@@ -18,6 +18,7 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		initOres();
 		initBuildingBlocks();
 		initFoliageBlocks();
+		initUtilityBlocks();
 	}
 
 	private void initOres() {
@@ -90,6 +91,10 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		registerDropsSelf(JBlocks.ICE_SHROOM_SHELF);
 
 		registerDropsSelf(JBlocks.CRYSTAL_FRUIT);
+	}
+
+	private void initUtilityBlocks() {
+		registerSpecialOreWithExtraCount(JBlocks.ANCIENT_POTTERY, JItems.POTTERY_SHARD, 2, 5);
 	}
 
 	/**

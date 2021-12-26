@@ -159,21 +159,27 @@ public class JBlockProperties {
 			.strength(3.0F, 3.0F));
 
 	public static final BlockPropsFactory BRICK_PROPS = new BlockPropsFactory(() -> Properties.of
-			(Material.STONE)
+					(Material.STONE)
 			.sound(JSoundTypes.BRICK)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 
+	public static final BlockPropsFactory POTTERY_PROPS = new BlockPropsFactory(() -> Properties.of
+					(Material.STONE)
+			.sound(JSoundTypes.POTTERY)
+			.harvestTool(ToolType.PICKAXE)
+			.strength(0.5F, 0.5F));
+
 	public static final BlockPropsFactory NETHER_BASALT_ORE_PROPS = new BlockPropsFactory(() -> Properties.of
-			(Material.STONE)
+					(Material.STONE)
 			.sound(SoundType.BASALT)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
 
 	public static final BlockPropsFactory NETHER_NETHERRACK_ORE_PROPS = new BlockPropsFactory(() -> Properties.of
-			(Material.STONE)
+					(Material.STONE)
 			.sound(SoundType.NETHER_ORE)
 			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()

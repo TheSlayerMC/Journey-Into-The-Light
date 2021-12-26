@@ -1,16 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "# #",
     "###",
+    "# #",
     "###"
   ],
   "key": {
     "#": {
-      "item": "jitl:lunium_ingot"
+      "item": "jitl:pottery_shard"
     }
   },
   "result": {
-    "item": "jitl:lunium_chestplate"
+    "item": "jitl:ancient_pottery"
   }
 }

@@ -18,6 +18,26 @@
     ],
     "subtitle": "subtitles.block.generic.break"
   },
+  "block.pottery.break": {
+    "sounds": [
+      "jitl:blocks/break/pottery_1",
+      "jitl:blocks/break/pottery_2"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.pottery.dig": {
+    "sounds": [
+      "jitl:blocks/dig/pottery_1",
+      "jitl:blocks/dig/pottery_2",
+      "jitl:blocks/dig/pottery_3"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "items.bottle_plug": {
+    "sounds": [
+      "jitl:items/bottle_plug"
+    ]
+  },
   "block.grassy_permafrost.break": {
     "sounds": [
       "jitl:blocks/break/grassy_permafrost_1",

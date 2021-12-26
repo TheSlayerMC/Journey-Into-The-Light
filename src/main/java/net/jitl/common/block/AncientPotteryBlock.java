@@ -2,6 +2,7 @@ package net.jitl.common.block;
 
 import net.jitl.common.block.base.JTileContainerBlock;
 import net.jitl.common.tile.PotTile;
+import net.jitl.init.JSounds;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -23,10 +25,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class AncientPotteryBlock extends JTileContainerBlock {
 
-    protected static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 20.0D, 13.0D);
+    protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 20.0D, 15.0D);
 
     public AncientPotteryBlock() {
-        super(JBlockProperties.BRICK_PROPS.create().noOcclusion(), (blockState, iBlockReader) -> new PotTile());
+        super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), (blockState, iBlockReader) -> new PotTile());
     }
 
     @Override
@@ -48,25 +50,29 @@ public class AncientPotteryBlock extends JTileContainerBlock {
 
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.getBlockEntity(pos) instanceof PotTile) {
-            PotTile potTile = (PotTile) worldIn.getBlockEntity(pos);
-            InvWrapper invWrapper = new InvWrapper(potTile);
-            ItemStack heldStack = player.getItemInHand(handIn);
+        if (!worldIn.isClientSide()) {
+            if (worldIn.getBlockEntity(pos) instanceof PotTile) {
+                PotTile potTile = (PotTile) worldIn.getBlockEntity(pos);
+                InvWrapper invWrapper = new InvWrapper(potTile);
+                ItemStack heldStack = player.getItemInHand(handIn);
 
-            if (!heldStack.isEmpty()) {
-                ItemStack stack = heldStack;
-                ItemStack prevStack = stack.copy();
-                int slots = invWrapper.getSlots();
-                for (int i = 0; i < slots; i++) {
-                    if (!stack.isEmpty()) {
-                        stack = invWrapper.insertItem(i, stack, false);
+                if (!heldStack.isEmpty()) {
+                    ItemStack stack = heldStack;
+                    ItemStack prevStack = stack.copy();
+                    int slots = invWrapper.getSlots();
+                    for (int i = 0; i < slots; i++) {
+                        if (!stack.isEmpty()) {
+                            stack = invWrapper.insertItem(i, stack, false);
+                        }
                     }
-                }
-                if (stack.isEmpty() || stack.getCount() != prevStack.getCount()) {
-                    player.setItemInHand(handIn, stack);
-                    return ActionResultType.SUCCESS;
+                    if (stack.isEmpty() || stack.getCount() != prevStack.getCount()) {
+                        player.setItemInHand(handIn, stack);
+                        return ActionResultType.SUCCESS;
+                    }
+                    worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
             }
+            return ActionResultType.sidedSuccess(worldIn.isClientSide);
         }
         return ActionResultType.sidedSuccess(worldIn.isClientSide);
     }

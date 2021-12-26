@@ -234,6 +234,7 @@ public class ItemRegistrator {
 
         registerItem("sulphur_powder", "Sulphur Powder");
         registerItem("blazium_ingot", "Blazium Ingot");
+        registerItem("pottery_shard", "Pottery Shard");
 
         registerItem("music_disc_haunt_muskie_2", "Music Disc", () -> new MusicDiscItem(1, JSounds.HAUNT_MUSKIE_2::get, itemGrouped().stacksTo(1)));
         registerItem("music_disc_jitl_theme", "Music Disc", () -> new MusicDiscItem(1, JSounds.MENU_MUSIC::get, itemGrouped().stacksTo(1)));

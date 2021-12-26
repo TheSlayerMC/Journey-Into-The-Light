@@ -180,6 +180,7 @@ public class JItems {
     public static final Item BREATHING_STONE = promise();
 
     public static final Item DREADIRON_INGOT = promise();
+    public static final Item POTTERY_SHARD = promise();
 
     public static final Item SULPHUR_POWDER = promise();
     public static final Item BLAZIUM_INGOT = promise();

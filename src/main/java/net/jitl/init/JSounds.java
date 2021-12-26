@@ -16,6 +16,10 @@ public class JSounds {
     public static final RegistryObject<TimeSound> MUD_BLOCK_BREAK = REGISTER.register("block.mud.break");
     public static final RegistryObject<TimeSound> MUD_BLOCK_DIG = REGISTER.register("block.mud.dig");
 
+    public static final RegistryObject<TimeSound> POTTERY_BREAK = REGISTER.register("block.pottery.break");
+    public static final RegistryObject<TimeSound> POTTERY_DIG = REGISTER.register("block.pottery.dig");
+    public static final RegistryObject<TimeSound> BOTTLE_PLUG = REGISTER.register("items.bottle_plug");
+
     public static final RegistryObject<TimeSound> GRASSY_PERMAFROST_BREAK = REGISTER.register("block.grassy_permafrost.break");
     public static final RegistryObject<TimeSound> GRASSY_PERMAFROST_DIG = REGISTER.register("block.grassy_permafrost.dig");
 
