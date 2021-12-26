@@ -3,6 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.client.render.tile.EssenciaAltarTER;
 import net.jitl.client.render.tile.LaserEmitterTER;
+import net.jitl.client.render.tile.ObeliskTER;
 import net.jitl.client.render.tile.PedestalTER;
 import net.jitl.common.tile.*;
 import net.minecraft.tileentity.TileEntityType;
@@ -21,6 +22,7 @@ public class JTiles {
     public static final TileEntityType<GuardianTowerBrainTile> GUARDIAN_TOWER_BRAIN = promise();
     public static final TileEntityType<PedestalTile> PEDESTAL = promise();
     public static final TileEntityType<PotTile> ANCIENT_POTTERY = promise();
+    public static final TileEntityType<PedestalTile> OBELISK = promise();
 
 
     private static class Registrator {
@@ -35,6 +37,8 @@ public class JTiles {
             REGISTER.registerSingleBound("guardian_tower_brain", GuardianTowerBrainTile::new, () -> JBlocks.GUARDIAN_TOWER_BRAIN);
             REGISTER.registerSingleBound("pedestal", PedestalTile::new, () -> JBlocks.FROZEN_PEDESTAL).regCustomRenderer(() -> PedestalTER::new);
             REGISTER.registerSingleBound("ancient_pottery", PotTile::new, () -> JBlocks.ANCIENT_POTTERY);
+            REGISTER.registerSingleBound("obelisk", ObeliskTile::new, () -> JBlocks.ANCIENT_OBELISK).regCustomRenderer(() -> ObeliskTER::new);
+
         }
     }
 }

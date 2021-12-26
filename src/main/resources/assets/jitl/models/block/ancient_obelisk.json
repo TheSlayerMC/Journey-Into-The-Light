@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "all": "jitl:block/ancient_obelisk"
+  }
+}

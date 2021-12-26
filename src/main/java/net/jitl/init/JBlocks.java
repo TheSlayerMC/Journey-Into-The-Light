@@ -137,6 +137,15 @@ public class JBlocks {
 	public static final Block FROZEN_PORTAL_FRAME = promise();
 	public static final JBasePortalBlock FROZEN_PORTAL = promise();
 
+	public static final Block ANCIENT_OBELISK = promise();
+	public static final Block ANCIENT_STONE = promise();
+	public static final Block ANCIENT_STONE_RUNIC_0 = promise();
+	public static final Block ANCIENT_STONE_RUNIC_1 = promise();
+	public static final Block ANCIENT_STONE_RUNIC_2 = promise();
+	public static final Block ANCIENT_STONE_RUNIC_3 = promise();
+	public static final Block ANCIENT_CATALYST = promise();
+	public static final Block MOSSY_ESSENCE_STONE = promise();
+
 	public static final Block GRASSY_PERMAFROST = promise();
 	public static final Block CRUMBLED_PERMAFROST = promise();
 	public static final Block PERMAFROST = promise();
