@@ -38,29 +38,27 @@ public class LockBlock extends Block {
         if(this == JBlocks.BOIL_LOCK && heldItem.getItem() == JItems.BOIL_KEY)
             canOpen = true;
 
-        if(canOpen) {
+        if(heldItem != null && canOpen) {
             worldIn.playSound(player, pos, SoundEvents.IRON_DOOR_OPEN, SoundCategory.BLOCKS, 1.0F, r.nextFloat());
             if(worldIn.isClientSide) {
                 return ActionResultType.SUCCESS;
-         } else {
-              if (heldItem != null) {
-                        if (state.getValue(FACING) == Direction.WEST || state.getValue(FACING) == Direction.EAST) {
-                            for (int y = -1; y < 2; y++) {
-                             for (int z = -1; z < 2; z++) {
-                                    worldIn.removeBlock(pos.offset(0, y, z), false);
-                                }
-                            }
-                     }
-                     if(state.getValue(FACING) == Direction.NORTH || state.getValue(FACING) == Direction.SOUTH) {
-                          for (int x = -1; x < 2; x++) {
-                              for (int y = -1; y < 2; y++) {
-                                 worldIn.removeBlock(pos.offset(x, y, 0), false);
-                             }
-                         }
-                     }
-                     if(!player.isCreative())
-                         heldItem.shrink(1);
-                 }
+            } else {
+                if(state.getValue(FACING) == Direction.WEST || state.getValue(FACING) == Direction.EAST) {
+                    for(int y = -1; y < 2; y++) {
+                        for(int z = -1; z < 2; z++) {
+                            worldIn.removeBlock(pos.offset(0, y, z), false);
+                        }
+                    }
+                }
+                if(state.getValue(FACING) == Direction.NORTH || state.getValue(FACING) == Direction.SOUTH) {
+                    for (int x = -1; x < 2; x++) {
+                        for (int y = -1; y < 2; y++) {
+                            worldIn.removeBlock(pos.offset(x, y, 0), false);
+                        }
+                    }
+                }
+                if(!player.isCreative())
+                    heldItem.shrink(1);
             }
         }
         return ActionResultType.CONSUME;
