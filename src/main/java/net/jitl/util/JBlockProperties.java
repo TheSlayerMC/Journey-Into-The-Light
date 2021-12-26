@@ -165,6 +165,12 @@ public class JBlockProperties {
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 
+	public static final BlockPropsFactory DUNGEON_BLOCK_PROPS = new BlockPropsFactory(() -> Properties.of
+					(Material.STONE)
+			.sound(JSoundTypes.BRICK)
+			.requiresCorrectToolForDrops()
+			.strength(-1F, 12000.0F));
+
 	public static final BlockPropsFactory POTTERY_PROPS = new BlockPropsFactory(() -> Properties.of
 					(Material.STONE)
 			.sound(JSoundTypes.POTTERY)

@@ -21,7 +21,7 @@ public class AncientSocketBlock extends Block {
     protected static final VoxelShape FULL_SHAPE = VoxelShapes.or(BLOCK, INSERT);
 
     public AncientSocketBlock() {
-        super(JBlockProperties.BRICK_PROPS.create());
+        super(JBlockProperties.DUNGEON_BLOCK_PROPS.create());
         this.registerDefaultState(this.stateDefinition.any().setValue(INSERTED, Boolean.valueOf(false)));
     }
 

@@ -78,28 +78,26 @@ public class BlockRegistrator {
         registerBerryBushBlock("bradberry_bush", "Bradberry Bush", () -> JItems.BRADBERRY);
         registerBerryBushBlock("redcurrant_bush", "Redcurrant Bush", () -> JItems.REDCURRANT_BERRY);
 
+        registerDefaultBlock("mossy_essence_stone", "Mossy Essence Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
+        registerDefaultBlock("ancient_catalyst", "Ancient Catalyst", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
         registerSpeciallyRenderedBlock("ancient_socket", "Ancient Socket", AncientSocketBlock::new);
 
-        registerColumnRenderedBlock("ancient_stone", "Ancient Stone", () -> new RotatedPillarBlock(JBlockProperties.BRICK_PROPS.create()),
+        registerColumnRenderedBlock("ancient_stone", "Ancient Stone", () -> new RotatedPillarBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()),
                 "ancient_stone",
                 "ancient_stone_side");
-
-        registerDefaultBlock("ancient_catalyst", "Ancient Catalyst", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-        registerDefaultBlock("mossy_essence_stone", "Mossy Essence Stone", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
-
         registerSpeciallyRenderedBlock("ancient_obelisk", "Ancient Obelisk",
-                () -> new JTileContainerBlock(JBlockProperties.STONE_PROPS.create().noOcclusion(), (blockState, iBlockReader) -> new ObeliskTile()));
+                () -> new JTileContainerBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create().noOcclusion(), (blockState, iBlockReader) -> new ObeliskTile()));
 
-        registerEmissiveRenderedBlock("ancient_stone_runic_0", "Ancient Runic Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()),
+        registerEmissiveRenderedBlock("ancient_stone_runic_0", "Ancient Runic Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()),
                 BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_0")), BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_0_overlay")));
 
-        registerEmissiveRenderedBlock("ancient_stone_runic_1", "Ancient Runic Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()),
+        registerEmissiveRenderedBlock("ancient_stone_runic_1", "Ancient Runic Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()),
                 BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_1")), BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_1_overlay")));
 
-        registerEmissiveRenderedBlock("ancient_stone_runic_2", "Ancient Runic Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()),
+        registerEmissiveRenderedBlock("ancient_stone_runic_2", "Ancient Runic Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()),
                 BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_2")), BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_2_overlay")));
 
-        registerEmissiveRenderedBlock("ancient_stone_runic_3", "Ancient Runic Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()),
+        registerEmissiveRenderedBlock("ancient_stone_runic_3", "Ancient Runic Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()),
                 BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_3")), BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_3_overlay")));
 
         registerDefaultBlock("blood_rock", "Blood Rock", () -> new Block(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()));
