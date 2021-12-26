@@ -37,7 +37,6 @@ public class AncientPieceItem extends Item {
             if (world.isClientSide) {
                 return ActionResultType.SUCCESS;
             } else {
-                System.out.println("YES");
                 BlockState blockstate1 = blockstate.setValue(AncientSocketBlock.INSERTED, Boolean.TRUE);
                 world.setBlock(pos, blockstate1, 2);
                 heldItem.shrink(1);
