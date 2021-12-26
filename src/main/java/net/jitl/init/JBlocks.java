@@ -144,6 +144,7 @@ public class JBlocks {
 	public static final Block ANCIENT_STONE_RUNIC_2 = promise();
 	public static final Block ANCIENT_STONE_RUNIC_3 = promise();
 	public static final Block ANCIENT_CATALYST = promise();
+	public static final AncientSocketBlock ANCIENT_SOCKET = promise();
 	public static final Block MOSSY_ESSENCE_STONE = promise();
 
 	public static final Block GRASSY_PERMAFROST = promise();

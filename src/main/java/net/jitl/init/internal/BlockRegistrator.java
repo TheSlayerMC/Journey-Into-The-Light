@@ -78,9 +78,7 @@ public class BlockRegistrator {
         registerBerryBushBlock("bradberry_bush", "Bradberry Bush", () -> JItems.BRADBERRY);
         registerBerryBushBlock("redcurrant_bush", "Redcurrant Bush", () -> JItems.REDCURRANT_BERRY);
 
-        registerColumnRenderedBlock("ancient_socket", "Ancient Socket", () -> new RotatedPillarBlock(JBlockProperties.BRICK_PROPS.create()),
-                "ancient_socket_top",
-                "ancient_socket_side");
+        registerSpeciallyRenderedBlock("ancient_socket", "Ancient Socket", AncientSocketBlock::new);
 
         registerColumnRenderedBlock("ancient_stone", "Ancient Stone", () -> new RotatedPillarBlock(JBlockProperties.BRICK_PROPS.create()),
                 "ancient_stone",

@@ -24,6 +24,7 @@ import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustToolAbility;
 import net.jitl.common.item.gear.abilities.celestium.CelestiumArmorAbility;
 import net.jitl.common.item.gear.abilities.korite.KoriteSwordAbility;
 import net.jitl.common.item.gear.abilities.mekyum.MekyumSwordAbility;
+import net.jitl.common.item.interactive.AncientPieceItem;
 import net.jitl.common.item.interactive.FlameCoinItem;
 import net.jitl.common.item.interactive.MinersPearlItem;
 import net.jitl.common.item.throwable.KnifeItem;
@@ -77,10 +78,6 @@ public class ItemRegistrator {
         registerItem("blue_gem", "blue Gem");
         registerItem("purple_gem", "purple Gem");
         registerItem("yellow_gem", "Yellow Gem");
-        registerItem("ancient_piece", "Ancient Piece");
-        registerItem("ancient_shard", "Ancient Shard");
-        registerItem("ancient_chunk", "Ancient Chunk");
-        registerItem("ancient_fragment", "Ancient Fragment");
         registerItem("balmy_teardrop", "Balmy Teardrop");
         registerItem("cave_crystal", "Cave Crystal");
         registerItem("stone_clump", "Stone Clump");
@@ -145,6 +142,11 @@ public class ItemRegistrator {
         registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(LootTables.END_CITY_TREASURE, true));
 
         registerItem("flame_coin", "Flame Coin", FlameCoinItem::new);
+
+        registerItem("ancient_piece", "Ancient Piece", AncientPieceItem::new);
+        registerItem("ancient_shard", "Ancient Shard", AncientPieceItem::new);
+        registerItem("ancient_chunk", "Ancient Chunk", AncientPieceItem::new);
+        registerItem("ancient_fragment", "Ancient Fragment", AncientPieceItem::new);
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");

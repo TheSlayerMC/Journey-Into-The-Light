@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "insert=false": {
+      "model": "jitl:block/ancient_socket"
+    },
+    "insert=true": {
+      "model": "jitl:block/ancient_socket_filled"
+    }
+  }
+}
