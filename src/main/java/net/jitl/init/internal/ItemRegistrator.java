@@ -154,6 +154,7 @@ public class ItemRegistrator {
         registerItem("powder_of_essencia", "Powder Of Essencia");
 
         registerItem("flame_coin", "Flame Coin", FlameCoinItem::new);
+        registerItem("boil_key", "Boil Lock Key");
 
         //END ITEMS
         registerItem("enderillium_shard", "Enderillium Shard");

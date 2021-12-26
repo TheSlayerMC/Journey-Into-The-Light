@@ -206,6 +206,8 @@ public class JBlocks {
 
 	public static final Block BOIL_PORTAL_FRAME = promise();
 	public static final JBasePortalBlock BOIL_PORTAL = promise();
+	public static final Block BOIL_LOCK = promise();
+
 	public static final Block CHARRED_GRASS = promise();
 	public static final Block RUBBLE = promise();
 	public static final Block VOLCANIC_SAND = promise();

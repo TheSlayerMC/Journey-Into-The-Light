@@ -188,4 +188,5 @@ public class JItems {
     public static final Item EYE_OF_THE_BLIZZARD = promise();
 
     public static final Item FLAME_COIN = promise();
+    public static final Item BOIL_KEY = promise();
 }

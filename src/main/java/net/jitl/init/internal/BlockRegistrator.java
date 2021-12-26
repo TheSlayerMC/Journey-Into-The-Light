@@ -215,7 +215,6 @@ public class BlockRegistrator {
 		/*
 		we'll keep these separated for a while
 		 */
-        //registerDefaultBlock("depths_portal_frame", "The Depths Portal Frame");//different style
         //registerDefaultBlock("corba_portal_frame", "Corba Portal Frame");//different style
         //registerDefaultBlock("terrania_portal_frame", "Terrania Portal Frame");
         //registerDefaultBlock("cloudia_portal_frame", "Cloudia Portal Frame");
@@ -246,7 +245,6 @@ public class BlockRegistrator {
 
         registerSpeciallyRenderedBlock("frostwood_sapling", "FROSTWOOD_SAPLING", () -> new JSaplingBlock(new DyingFrozenTree(), JBlockProperties.PLANT_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/goldite_bulb")));
-
 
         registerSpeciallyRenderedBlock("goldite_bulb", "Goldite Bulb", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
