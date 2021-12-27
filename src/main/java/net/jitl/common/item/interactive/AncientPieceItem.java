@@ -34,6 +34,9 @@ public class AncientPieceItem extends Item {
         BlockState blockstate = world.getBlockState(pos);
         Random itemRand = new Random();
         if(blockstate.is(JBlocks.ANCIENT_SOCKET) && !blockstate.getValue(AncientSocketBlock.INSERTED)) {
+            if (world.isClientSide) {
+                return ActionResultType.SUCCESS;
+            } else {
                 BlockState blockstate1 = blockstate.setValue(AncientSocketBlock.INSERTED, Boolean.TRUE);
                 world.setBlock(pos, blockstate1, 2);
                 heldItem.shrink(1);
@@ -47,7 +50,8 @@ public class AncientPieceItem extends Item {
                     world.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
                 }
                 world.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
         }
-        return ActionResultType.SUCCESS;
+        return ActionResultType.CONSUME;
     }
 }
