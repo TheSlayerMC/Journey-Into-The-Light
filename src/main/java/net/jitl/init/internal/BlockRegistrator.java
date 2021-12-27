@@ -79,7 +79,7 @@ public class BlockRegistrator {
         registerBerryBushBlock("redcurrant_bush", "Redcurrant Bush", () -> JItems.REDCURRANT_BERRY);
 
         registerDefaultBlock("mossy_essence_stone", "Mossy Essence Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
-        registerDefaultBlock("ancient_catalyst", "Ancient Catalyst", () -> new AncientCatalystBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
+        registerCustomRenderedBlock("ancient_catalyst", "Ancient Catalyst", () -> new AncientCatalystBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
         registerCustomRenderedBlock("ancient_socket", "Ancient Socket", AncientSocketBlock::new);
 
         registerColumnRenderedBlock("ancient_stone", "Ancient Stone", () -> new RotatedPillarBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()),
@@ -402,8 +402,8 @@ public class BlockRegistrator {
 
         registerDefaultBlock("depths_stone", "Depths Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("depths_lamp", "Depths Lamp", () -> new Block(JBlockProperties.GLOW_BLOCK.create()));
-        registerSpeciallyRenderedBlock("depths_portal_frame", "Depths Portal Frame", () -> new DepthsPortalFrameBlock(JBlockProperties.BRICK_PROPS.create()));
-        registerSpeciallyRenderedBlock("depths_portal", "Depths Portal", () -> new DepthsPortalBlock(JBlockProperties.PORTAL.create()));
+        registerCustomRenderedBlock("depths_portal_frame", "Depths Portal Frame", () -> new DepthsPortalFrameBlock(JBlockProperties.BRICK_PROPS.create()));
+        registerCustomRenderedBlock("depths_portal", "Depths Portal", () -> new DepthsPortalBlock(JBlockProperties.PORTAL.create()));
 
         RegistryObject<Block> depthsDirt = registerBlock("depths_dirt", "Depths Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
         registerSpeciallyRenderedBlock("depths_grass_block", "Depths Grass", () -> new JSpreadableSnowyDirtBlock(JBlockProperties.GRASS_PROPS.create(), depthsDirt.get()),
