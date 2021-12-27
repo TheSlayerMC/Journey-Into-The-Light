@@ -80,7 +80,7 @@ public class BlockRegistrator {
 
         registerDefaultBlock("mossy_essence_stone", "Mossy Essence Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
         registerDefaultBlock("ancient_catalyst", "Ancient Catalyst", () -> new AncientCatalystBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
-        registerSpeciallyRenderedBlock("ancient_socket", "Ancient Socket", AncientSocketBlock::new);
+        registerCustomRenderedBlock("ancient_socket", "Ancient Socket", AncientSocketBlock::new);
 
         registerColumnRenderedBlock("ancient_stone", "Ancient Stone", () -> new RotatedPillarBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()),
                 "ancient_stone",
