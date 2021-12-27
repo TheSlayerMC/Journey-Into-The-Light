@@ -73,7 +73,7 @@ public class ItemRegistrator {
         registerItem("iridium_nugget", "Iridium Nugget");
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
-        registerItem("lunium_chunk", "Lunium Chunk");
+        registerItem("lunium_powder", "Lunium Powder");
         registerItem("shadium_chunk", "Shadium Chunk");
         registerItem("obsidian_rod", "Obsidian Rod");
         registerItem("green_gem", "Green Gem");
@@ -130,7 +130,6 @@ public class ItemRegistrator {
         registerItem("floro_pedal", "Floro Pedal", () -> new Item(itemGrouped().food(JFoods.FLORO_PEDAL)));
         registerItem("floro_seeds", "Floro Seeds", () -> new SeedsItem(JBlocks.FLORO_CROP));
 
-        registerItem("lunium_powder", "Lunium Powder");
 
         registerHandheldItem("staff_of_conjuring", "Staff of Conjuring", () -> new StaffItem(rangedWeaponsGrouped().stacksTo(1),
                 (world, thrower) -> new ConjuringProjectileEntity(JEntities.CONJURING_PROJECTILE_TYPE, world, thrower, 0.0F)));

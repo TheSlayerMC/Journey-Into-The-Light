@@ -24,6 +24,8 @@ public class JBlocks {
     public static final Block BLAZIUM_ORE = promise();
 	public static final Block CELESTIUM_ORE = promise();
 	public static final Block MEKYUM_ORE = promise();
+	public static final Block KORITE_ORE = promise();
+
 	public static final Block STORON_ORE = promise();
 	public static final Block FLAIRIUM_ORE = promise();
 	public static final Block DES_ORE = promise();

@@ -20,9 +20,15 @@ public class JItems {
     public static final Item IRIDIUM_NUGGET = promise();
     public static final Item SHADIUM_INGOT = promise();
     public static final Item LUNIUM_INGOT = promise();
+    public static final Item SHADIUM_CHUNK = promise();
     public static final Item BLOODCRUST_INGOT = promise();
+    public static final Item BLOODCRUST_CHUNK = promise();
     public static final Item ASH = promise();
     public static final Item ENDERILLIUM_SHARD = promise();
+    public static final Item CELESTIUM_CHUNK = promise();
+    public static final Item KORITE_CHUNK = promise();
+    public static final Item MEKYUM_CHUNK = promise();
+    public static final Item STORON_CHUNK = promise();
     public static final Item CELESTIUM_INGOT = promise();
     public static final Item KORITE_INGOT = promise();
     public static final Item MEKYUM_INGOT = promise();
