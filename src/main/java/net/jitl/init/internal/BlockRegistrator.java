@@ -79,7 +79,7 @@ public class BlockRegistrator {
         registerBerryBushBlock("redcurrant_bush", "Redcurrant Bush", () -> JItems.REDCURRANT_BERRY);
 
         registerDefaultBlock("mossy_essence_stone", "Mossy Essence Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
-        registerCustomRenderedBlock("ancient_catalyst", "Ancient Catalyst", () -> new AncientCatalystBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
+        registerDefaultBlock("ancient_catalyst", "Ancient Catalyst", () -> new AncientCatalystBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
         registerCustomRenderedBlock("ancient_socket", "Ancient Socket", AncientSocketBlock::new);
 
         registerColumnRenderedBlock("ancient_stone", "Ancient Stone", () -> new RotatedPillarBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()),
