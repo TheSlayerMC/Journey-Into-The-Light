@@ -73,6 +73,8 @@ public class ItemRegistrator {
         registerItem("iridium_nugget", "Iridium Nugget");
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
+        registerItem("lunium_chunk", "Lunium Chunk");
+        registerItem("shadium_chunk", "Shadium Chunk");
         registerItem("obsidian_rod", "Obsidian Rod");
         registerItem("green_gem", "Green Gem");
         registerItem("blue_gem", "blue Gem");
@@ -150,6 +152,7 @@ public class ItemRegistrator {
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
+        registerItem("bloodcrust_chunk", "Bloodcrust Chunk");
         registerItem("firestone_shard", "Firestone Shard", () -> new JFuelItem(itemGrouped().fireResistant(), 200));
         registerItem("firestone_clump", "Firestone Clump", () -> new JFuelItem(itemGrouped().fireResistant(), 2000));
         registerItem("warped_quartz", "Warped Quartz");
@@ -169,6 +172,10 @@ public class ItemRegistrator {
 		registerItem("korite_ingot", "Korite Ingot");
         registerItem("mekyum_ingot", "Mekyum Ingot");
         registerItem("storon_ingot", "Storon Ingot");
+        registerItem("celestium_chunk", "Celestium Chunk");
+        registerItem("korite_chunk", "Korite Chunk");
+        registerItem("mekyum_chunk", "Mekyum Chunk");
+        registerItem("storon_chunk", "Storon Chunk");
 
         //DEVELOPER ITEMS
         registerItem("test_bug", "Test Bug", TestBugItem::new);
@@ -237,6 +244,8 @@ public class ItemRegistrator {
 
         registerItem("sulphur_powder", "Sulphur Powder");
         registerItem("blazium_ingot", "Blazium Ingot");
+        registerItem("blazium_chunk", "Blazium Chunk");
+
         registerItem("pottery_shard", "Pottery Shard");
 
         registerItem("music_disc_haunt_muskie_2", "Music Disc", () -> new MusicDiscItem(1, JSounds.HAUNT_MUSKIE_2::get, itemGrouped().stacksTo(1)));
