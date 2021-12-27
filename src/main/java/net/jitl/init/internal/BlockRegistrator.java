@@ -336,6 +336,8 @@ public class BlockRegistrator {
         registerAttachedRenderedBlock("frost_crystal_tiny", "Tiny Frost Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create().lightLevel((intf) -> 1)),
                 "frost_crystal_tiny");
 
+        registerCustomAttachedRenderedBlock("fluorescent_fungi", "Fluorescent Fungi", () -> new AttachedBlock(JBlockProperties.GLOWSHROOM_PROPS.create().lightLevel((intf) -> 3)));
+
         registerCustomAttachedRenderedBlock("ice_shroom_shelf", "Ice Shroom Shelf", () -> new AttachedBlock(JBlockProperties.SHROOM_SHELF.create().lightLevel((intf) -> 4)));
 
         registerCustomRenderedBlock("icy_brush", "Icy Brush", () -> new VineBlock(JBlockProperties.VINES_PROPS.create()));
