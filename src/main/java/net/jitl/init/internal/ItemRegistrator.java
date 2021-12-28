@@ -178,6 +178,7 @@ public class ItemRegistrator {
 
         //DEVELOPER ITEMS
         registerItem("test_bug", "Test Bug", TestBugItem::new);
+        registerHandheldItem("creative_sword", "Creative Sword", () -> new JSwordItem(JToolTiers.CREATIVE, BASIC));
 
         //Mat armor and tools
         addMaterialToolsArmorWeapons("Sapphire", JToolTiers.SAPPHIRE, JArmorMaterial.SAPPHIRE, BASIC, BASIC, BASIC);
@@ -194,7 +195,6 @@ public class ItemRegistrator {
         //Armor
         addArmor("Dreadiron", JArmorMaterial.DREADIRON, BASIC);
 
-        registerHandheldItem("creative_sword", "Creative Sword", () -> new JSwordItem(JToolTiers.CREATIVE, BASIC));
 
         registerItem("molten_knife", "Molten Knife", () ->
                 new KnifeItem(rangedWeaponsGrouped(), (worldIn, owner, stack) ->
