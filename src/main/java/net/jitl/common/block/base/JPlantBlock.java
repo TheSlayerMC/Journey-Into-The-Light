@@ -2,6 +2,7 @@ package net.jitl.common.block.base;
 
 import net.jitl.JITL;
 import net.jitl.api.block.GroundPredicate;
+import net.jitl.init.JBlocks;
 import net.jitl.util.Logs;
 import net.minecraft.block.*;
 import net.minecraft.util.Direction;
@@ -21,13 +22,21 @@ import java.util.function.Supplier;
 
 public class JPlantBlock extends BushBlock implements IGrowable, IForgeShearable {
     protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 13.0D, 12.0D);
+    protected static final VoxelShape TALL_SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 30.0D, 12.0D);
+
     protected Supplier<Block> grownPlant;
     private Direction plantDirection = Direction.UP;
 
     private GroundPredicate groundPredicate;
+    private boolean offset;
 
     public JPlantBlock(Properties properties) {
+        this(properties, true);
+    }
+
+    public JPlantBlock(Properties properties, boolean offset) {
         super(properties);
+        this.offset = offset;
     }
 
     public JPlantBlock setGroundPredicate(@Nullable GroundPredicate groundPredicate) {
@@ -62,7 +71,7 @@ public class JPlantBlock extends BushBlock implements IGrowable, IForgeShearable
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
-        return SHAPE;
+        return this == JBlocks.TALL_GREEN_FUNGI ? TALL_SHAPE : SHAPE;
     }
 
     /**
@@ -117,6 +126,6 @@ public class JPlantBlock extends BushBlock implements IGrowable, IForgeShearable
      */
     @Override
     public AbstractBlock.@NotNull OffsetType getOffsetType() {
-        return AbstractBlock.OffsetType.XYZ;
+        return offset ? AbstractBlock.OffsetType.XYZ : super.getOffsetType();
     }
 }
