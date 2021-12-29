@@ -1,0 +1,51 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "jitl:block/tall_green_fungi"
+      },
+      {
+        "model": "jitl:block/tall_green_fungi",
+        "y": 90
+      },
+      {
+        "model": "jitl:block/tall_green_fungi",
+        "y": 180
+      },
+      {
+        "model": "jitl:block/tall_green_fungi",
+        "y": 270
+      },
+	   {
+        "model": "jitl:block/tall_purple_fungi"
+      },
+      {
+        "model": "jitl:block/tall_purple_fungi",
+        "y": 90
+      },
+      {
+        "model": "jitl:block/tall_purple_fungi",
+        "y": 180
+      },
+      {
+        "model": "jitl:block/tall_purple_fungi",
+        "y": 270
+      },
+	   {
+        "model": "jitl:block/tall_yellow_fungi"
+      },
+      {
+        "model": "jitl:block/tall_yellow_fungi",
+        "y": 90
+      },
+      {
+        "model": "jitl:block/tall_yellow_fungi",
+        "y": 180
+      },
+      {
+        "model": "jitl:block/tall_yellow_fungi",
+        "y": 270
+      }
+    ]
+  }
+}

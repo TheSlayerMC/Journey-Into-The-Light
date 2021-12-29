@@ -467,7 +467,7 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.UNDERGROUND),
                 () -> BlockModels.crossModel(JITL.tl("block/tall_sizzleshroom_top")));
 
-        registerCustomRenderedBlock("tall_green_fungi", "Fluorescent Fungi", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create(), false)
+        registerCustomRenderedBlock("tall_fungi", "Fluorescent Fungi", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create(), false)
                 .setGroundPredicate(GroundPredicate.UNDERGROUND));
 
         registerSpeciallyRenderedBlock("frozen_pedestal", "Frozen Pedestal", JBlockPedestal::new);

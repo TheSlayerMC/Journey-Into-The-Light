@@ -279,7 +279,7 @@ public class JBlocks {
 	public static final JPlantBlock SIZZLESHROOM = promise();
 	public static final JDoublePlantBlock TALL_SIZZLESHROOM = promise();
 
-	public static final JPlantBlock TALL_GREEN_FUNGI = promise();
+	public static final JPlantBlock TALL_FUNGI = promise();
 
 	public static final JPlantBlock HELL_BELL = promise();
 

@@ -71,7 +71,7 @@ public class JPlantBlock extends BushBlock implements IGrowable, IForgeShearable
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
-        return this == JBlocks.TALL_GREEN_FUNGI ? TALL_SHAPE : SHAPE;
+        return this == JBlocks.TALL_FUNGI ? TALL_SHAPE : SHAPE;
     }
 
     /**
