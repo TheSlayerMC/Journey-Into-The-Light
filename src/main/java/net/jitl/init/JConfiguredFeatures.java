@@ -128,32 +128,7 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_GLOWSHROOMS =
-            REGISTER.register("tall_glowshrooms",
-                    Decoration.UNDERGROUND_DECORATION,
-                    () -> Feature.RANDOM_PATCH
-                            .configured((new BlockClusterFeatureConfig.Builder(
-                                    new WeightedBlockStateProvider()
-                                            .add(JBlocks.TALL_GREEN_GLOWSHROOM.defaultBlockState(), 1)
-                                            .add(JBlocks.TALL_BLUE_GLOWSHROOM.defaultBlockState(), 1)
-                                            .add(JBlocks.TALL_RED_GLOWSHROOM.defaultBlockState(), 1),
-                                    new DoublePlantBlockPlacer()))
-                                    .tries(64)
-                                    .xspread(6)
-                                    .zspread(6)
-                                    .whitelist(ImmutableSet.of(
-                                            Blocks.STONE,
-                                            Blocks.COBBLESTONE,
-                                            Blocks.MOSSY_COBBLESTONE,
-                                            Blocks.ANDESITE,
-                                            Blocks.GRANITE,
-                                            Blocks.DIORITE))
-                                    .noProjection()
-                                    .build())
-                            .range(55)
-                            .count(1))
-                    .setBiomePredicate(COMMON_BIOMES)
-                    .asPromise();
+
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
             REGISTER.register("goldite_tall_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
@@ -294,6 +269,33 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
                     .asPromise();
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_GLOWSHROOMS =
+            REGISTER.register("tall_glowshrooms",
+                            Decoration.UNDERGROUND_DECORATION,
+                            () -> Feature.RANDOM_PATCH
+                                    .configured((new BlockClusterFeatureConfig.Builder(
+                                            new WeightedBlockStateProvider()
+                                                    .add(JBlocks.TALL_GREEN_GLOWSHROOM.defaultBlockState(), 1)
+                                                    .add(JBlocks.TALL_BLUE_GLOWSHROOM.defaultBlockState(), 1)
+                                                    .add(JBlocks.TALL_RED_GLOWSHROOM.defaultBlockState(), 1),
+                                            new DoublePlantBlockPlacer()))
+                                            .tries(64)
+                                            .xspread(6)
+                                            .zspread(6)
+                                            .whitelist(ImmutableSet.of(
+                                                    Blocks.STONE,
+                                                    Blocks.COBBLESTONE,
+                                                    Blocks.MOSSY_COBBLESTONE,
+                                                    Blocks.ANDESITE,
+                                                    Blocks.GRANITE,
+                                                    Blocks.DIORITE))
+                                            .noProjection()
+                                            .build())
+                                    .range(55)
+                                    .count(1))
+                    .setBiomePredicate(COMMON_BIOMES)
+                    .asPromise();
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_GLOWSHROOMS =
             REGISTER.register("small_glowshrooms",
                     Decoration.UNDERGROUND_DECORATION,
@@ -318,6 +320,32 @@ public class JConfiguredFeatures {
                                     .build())
                             .range(55)
                             .count(1))
+                    .setBiomePredicate(COMMON_BIOMES)
+                    .asPromise();
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWING_FUNGI =
+            REGISTER.register("glowing_fungi",
+                            Decoration.UNDERGROUND_DECORATION,
+                            () -> Feature.RANDOM_PATCH
+                                    .configured((new BlockClusterFeatureConfig.Builder(
+                                            new WeightedBlockStateProvider()
+                                                    .add(JBlocks.TALL_FUNGI.defaultBlockState(), 1),
+                                            new SimpleBlockPlacer()))
+                                            .tries(256)
+                                            .xspread(0)
+                                            .yspread(0)
+                                            .zspread(0)
+                                            .whitelist(ImmutableSet.of(
+                                                    Blocks.STONE,
+                                                    Blocks.COBBLESTONE,
+                                                    Blocks.MOSSY_COBBLESTONE,
+                                                    Blocks.ANDESITE,
+                                                    Blocks.GRANITE,
+                                                    Blocks.DIORITE))
+                                            .noProjection()
+                                            .build())
+                                    .range(55)
+                                    .count(100))
                     .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
