@@ -1,0 +1,17 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "loader": "jitl:emissive",
+  "particle": "#emissive",
+  "emissive": {
+    "parent": "minecraft:block/cube_all",
+    "textures": {
+      "all": "jitl:block/lunium_ore_front"
+    }
+  },
+  "normal": {
+    "parent": "minecraft:block/cube_all",
+    "textures": {
+      "all": "jitl:block/deepslate_lunium_ore"
+    }
+  }
+}

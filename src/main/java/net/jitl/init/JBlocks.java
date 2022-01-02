@@ -16,9 +16,13 @@ import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 public class JBlocks {
 
     public static final Block SAPPHIRE_ORE = promise();
-    public static final Block LUNIUM_ORE = promise();
+	public static final Block DEEPSLATE_SAPPHIRE_ORE = promise();
+	public static final Block LUNIUM_ORE = promise();
+	public static final Block DEEPSLATE_LUNIUM_ORE = promise();
     public static final Block SHADIUM_ORE = promise();
-    public static final Block IRIDIUM_ORE = promise();
+	public static final Block DEEPSLATE_SHADIUM_ORE = promise();
+	public static final Block IRIDIUM_ORE = promise();
+    public static final Block DEEPSLATE_IRIDIUM_ORE = promise();
     public static final Block BLOODCRUST_ORE = promise();
     public static final Block ASHUAL_ORE = promise();
     public static final Block BLAZIUM_ORE = promise();

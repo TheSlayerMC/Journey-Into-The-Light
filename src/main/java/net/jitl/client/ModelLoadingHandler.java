@@ -21,6 +21,7 @@ public class ModelLoadingHandler {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         RenderTypeLookup.setRenderLayer(JBlocks.LUNIUM_ORE, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(JBlocks.DEEPSLATE_LUNIUM_ORE, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(JBlocks.FIRESTONE_ORE, RenderType.cutout());
 
         RenderTypeLookup.setRenderLayer(JBlocks.CAVE_VINES, RenderType.cutout());

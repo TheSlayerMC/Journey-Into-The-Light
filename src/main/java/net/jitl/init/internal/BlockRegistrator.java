@@ -45,14 +45,23 @@ public class BlockRegistrator {
     @AutoRegistrable.InitMethod
     private static void register() {
         registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.DIAMOND, 3);
+        registerOreBlock("deepslate_sapphire_ore", "Deepslate Sapphire Ore", EnumHarvestLevel.DIAMOND, 3);
         registerSpeciallyRenderedBlock("lunium_ore", "Lunium Ore", () -> new JOreBlock(JBlockProperties.LUNIUM_ORE_PROPS.create()
+                .lightLevel((state) -> 3)
+                .harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
+                .setExpDrop(0));
+        registerSpeciallyRenderedBlock("deepslate_lunium_ore", "Deepslate Lunium Ore", () -> new JOreBlock(JBlockProperties.LUNIUM_ORE_PROPS.create()
                 .lightLevel((state) -> 3)
                 .harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
                 .setExpDrop(0));
         registerDefaultBlock("shadium_ore", "Shadium Ore", () -> new JOreBlock(JBlockProperties.SHADIUM_ORE_PROPS.create()
                 .harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
                 .setExpDrop(0));
+        registerDefaultBlock("deepslate_shadium_ore", "Deepslate Shadium Ore", () -> new JOreBlock(JBlockProperties.SHADIUM_ORE_PROPS.create()
+                .harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
+                .setExpDrop(0));
         registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON, 3);
+        registerOreBlock("deepslate_iridium_ore", "Deepslate Iridium Ore", EnumHarvestLevel.IRON, 3);
         registerOreBlock("bloodcrust_ore", "Bloodcrust Ore", EnumHarvestLevel.NETHERITE, 0);
         registerOreBlock("ashual_ore", "Ashual Ore", EnumHarvestLevel.NETHERITE, 4);
         registerOreBlock("blazium_ore", "Blazium Ore", EnumHarvestLevel.NETHERITE, 4);
