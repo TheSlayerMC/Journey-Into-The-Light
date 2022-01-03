@@ -18,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -33,7 +34,12 @@ public class AncientPotteryBlock extends JTileContainerBlock {
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
-        return SHAPE;
+        VoxelShape middle = Block.box(1.0D, 14.0D, 1.0D, 15.0D, 2.0D, 15.0D);
+        VoxelShape bottom = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 0.0D, 14.0D);
+        VoxelShape top = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+        VoxelShape lip = Block.box(4.0D, 1.0D, 4.0D, 12.0D, 20.0D, 12.0D);
+
+        return VoxelShapes.or(middle, bottom, top, lip);
     }
 
     @Override
