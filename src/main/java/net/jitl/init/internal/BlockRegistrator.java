@@ -68,6 +68,7 @@ public class BlockRegistrator {
         registerOreBlock("mekyum_ore", "Mekyum Ore", EnumHarvestLevel.NETHERITE, 0);
         registerOreBlock("celestium_ore", "Celestium Ore", EnumHarvestLevel.NETHERITE, 0);
         registerOreBlock("storon_ore", "Storon Ore", EnumHarvestLevel.NETHERITE, 0);
+        registerOreBlock("korite_ore", "Korite Ore", EnumHarvestLevel.NETHERITE, 0);
         registerOreBlock("flairium_ore", "Flairium Ore", EnumHarvestLevel.NETHERITE, 0);
         registerOreBlock("des_ore", "Des Ore", EnumHarvestLevel.NETHERITE, 0);
         registerOreBlock("enderillium_ore", "Enderillium Ore", EnumHarvestLevel.NETHERITE, 4);
@@ -155,11 +156,15 @@ public class BlockRegistrator {
         registerDefaultBlock("mekyum_block", "Mekyum Block");
         registerDefaultBlock("celestium_block", "Celestium Block");
         registerDefaultBlock("storon_block", "Storon Block");
+        registerDefaultBlock("korite_block", "Korite Block");
         registerDefaultBlock("flairium_block", "Flairium Block");
         registerDefaultBlock("des_block", "Des Block");
         registerDefaultBlock("enderillium_block", "Enderillium Block");
         registerDefaultBlock("gorbite_block", "Gorbite Block");
         registerDefaultBlock("orbadite_block", "Orbadite Block");
+        registerDefaultBlock("crimson_quartz_block", "Crimson Quartz Block");
+        registerDefaultBlock("warped_quartz_block", "Warped Quartz Block");
+        registerDefaultBlock("firestone_block", "Firestone Block");
         registerDefaultBlock("lunite_block", "Lunite Block");
         registerDefaultBlock("nethic_gemstone_block", "Nethic Gemstone Block");
         registerDefaultBlock("frost_gem_block", "Frost Gem Block");

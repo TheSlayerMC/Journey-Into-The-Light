@@ -799,6 +799,13 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(GOLDITE_GRAINS)
                     .asPromise();
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> KORITE_ORE =
+            REGISTER.register("korite_ore",
+                            Decoration.UNDERGROUND_ORES,
+                            defaultOreFeature(() -> JBlocks.KORITE_ORE.defaultBlockState(), JRuleTests.STONE_EUCA, 12, 128, 20))
+                    .setBiomePredicate(GOLDITE_GRAINS)
+                    .asPromise();
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> PERIDOT_ORE = //TODO: Tweak rarity and quantity
             REGISTER.register("peridot_ore",
                     Decoration.UNDERGROUND_ORES,

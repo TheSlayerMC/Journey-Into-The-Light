@@ -27,17 +27,19 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		registerSpecialOre(JBlocks.RIMESTONE_ORE, JItems.RIMESTONE);
 		registerSpecialOre(JBlocks.IRIDIUM_ORE, JItems.IRIDIUM_NUGGET);
 		registerSpecialOreWithExtraCount(JBlocks.LUNIUM_ORE, JItems.LUNIUM_POWDER, 1, 2);
-		registerSpecialOre(JBlocks.SHADIUM_ORE, JItems.SHADIUM_CHUNK);
-		registerSpecialOre(JBlocks.BLOODCRUST_ORE, JItems.BLOODCRUST_CHUNK);
+		registerSpecialOre(JBlocks.SHADIUM_ORE, JItems.RAW_SHADIUM);
+		registerSpecialOre(JBlocks.DEEPSLATE_SHADIUM_ORE, JItems.RAW_SHADIUM);
+		registerSpecialOre(JBlocks.BLOODCRUST_ORE, JItems.RAW_BLOODCRUST);
 		registerSpecialOreWithExtraCount(JBlocks.FIRESTONE_ORE, JItems.FIRESTONE_SHARD, 1, 4);
 		registerSpecialOre(JBlocks.WARPED_QUARTZ_ORE, JItems.WARPED_QUARTZ);
 		registerSpecialOre(JBlocks.CRIMSON_QUARTZ_ORE, JItems.CRIMSON_QUARTZ);
 		registerDefaultOre(JBlocks.SULPHUR_ROCK);
 		registerSpecialOreWithExtraCount(JBlocks.SULPHUR_CRYSTAL, JItems.SULPHUR_POWDER, 1, 4);
-		registerSpecialOre(JBlocks.MEKYUM_ORE, JItems.MEKYUM_CHUNK);
-		registerSpecialOre(JBlocks.CELESTIUM_ORE, JItems.CELESTIUM_CHUNK);
-		registerSpecialOre(JBlocks.KORITE_ORE, JItems.KORITE_CHUNK);
-		registerSpecialOre(JBlocks.STORON_ORE, JItems.STORON_CHUNK);
+		registerSpecialOre(JBlocks.MEKYUM_ORE, JItems.RAW_MEKYUM);
+		registerSpecialOre(JBlocks.BLAZIUM_ORE, JItems.RAW_BLAZIUM);
+		registerSpecialOre(JBlocks.CELESTIUM_ORE, JItems.RAW_CELESTIUM);
+		registerSpecialOre(JBlocks.KORITE_ORE, JItems.RAW_KORITE);
+		registerSpecialOre(JBlocks.STORON_ORE, JItems.RAW_STORON);
 		registerSpecialOre(JBlocks.ENDERILLIUM_ORE, JItems.ENDERILLIUM_SHARD);
 	}
 

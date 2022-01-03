@@ -74,7 +74,7 @@ public class ItemRegistrator {
         registerItem("lunium_ingot", "Lunium Ingot");
         registerItem("shadium_ingot", "Shadium Ingot");
         registerItem("lunium_powder", "Lunium Powder");
-        registerItem("shadium_chunk", "Shadium Chunk");
+        registerItem("raw_shadium", "Raw shadium");
         registerItem("obsidian_rod", "Obsidian Rod");
         registerItem("green_gem", "Green Gem");
         registerItem("blue_gem", "blue Gem");
@@ -151,7 +151,7 @@ public class ItemRegistrator {
 
         //NETHER ITEMS
         registerItem("bloodcrust_ingot", "Bloodcrust Ingot");
-        registerItem("bloodcrust_chunk", "Bloodcrust Chunk");
+        registerItem("raw_bloodcrust", "Raw Bloodcrust");
         registerItem("firestone_shard", "Firestone Shard", () -> new JFuelItem(itemGrouped().fireResistant(), 200));
         registerItem("firestone_clump", "Firestone Clump", () -> new JFuelItem(itemGrouped().fireResistant(), 2000));
         registerItem("warped_quartz", "Warped Quartz");
@@ -171,10 +171,10 @@ public class ItemRegistrator {
 		registerItem("korite_ingot", "Korite Ingot");
         registerItem("mekyum_ingot", "Mekyum Ingot");
         registerItem("storon_ingot", "Storon Ingot");
-        registerItem("celestium_chunk", "Celestium Chunk");
-        registerItem("korite_chunk", "Korite Chunk");
-        registerItem("mekyum_chunk", "Mekyum Chunk");
-        registerItem("storon_chunk", "Storon Chunk");
+        registerItem("raw_celestium", "Raw Celestium");
+        registerItem("raw_korite", "Raw Korite");
+        registerItem("raw_mekyum", "Raw Mekyum");
+        registerItem("raw_storon", "Raw Storon");
 
         //DEVELOPER ITEMS
         registerItem("test_bug", "Test Bug", TestBugItem::new);
@@ -243,7 +243,7 @@ public class ItemRegistrator {
 
         registerItem("sulphur_powder", "Sulphur Powder");
         registerItem("blazium_ingot", "Blazium Ingot");
-        registerItem("blazium_chunk", "Blazium Chunk");
+        registerItem("raw_blazium", "Raw Blazium");
 
         registerItem("pottery_shard", "Pottery Shard");
 
