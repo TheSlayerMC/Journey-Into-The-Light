@@ -35,9 +35,10 @@ public class AncientPotteryBlock extends JTileContainerBlock {
         VoxelShape middle = Block.box(1.0D, 14.0D, 1.0D, 15.0D, 2.0D, 15.0D);
         VoxelShape bottom = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 0.0D, 14.0D);
         VoxelShape top = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-        VoxelShape lip = Block.box(4.0D, 1.0D, 4.0D, 12.0D, 20.0D, 12.0D);
+        VoxelShape topMid = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 18.0D, 11.0D);
+        VoxelShape lip = Block.box(4.0D, 18.0D, 4.0D, 12.0D, 20.0D, 12.0D);
 
-        return VoxelShapes.or(middle, bottom, top, lip);
+        return VoxelShapes.or(middle, bottom, top, lip, topMid);
     }
 
     @Override
