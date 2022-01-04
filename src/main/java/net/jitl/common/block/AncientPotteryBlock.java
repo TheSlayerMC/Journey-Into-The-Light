@@ -1,11 +1,12 @@
 package net.jitl.common.block;
 
-import net.jitl.common.block.base.JTileContainerBlock;
+import net.jitl.common.block.base.JFallingTileContainerBlock;
 import net.jitl.common.tile.PotTile;
 import net.jitl.init.JSounds;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -24,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 
-public class AncientPotteryBlock extends JTileContainerBlock {
+public class AncientPotteryBlock extends JFallingTileContainerBlock {
 
     public AncientPotteryBlock() {
         super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), (blockState, iBlockReader) -> new PotTile());
@@ -41,16 +42,28 @@ public class AncientPotteryBlock extends JTileContainerBlock {
         return VoxelShapes.or(middle, bottom, top, lip, topMid);
     }
 
+    //TODO: don't drop contents if block is going to fall
+
     @Override
     public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.is(newState.getBlock())) {
-            TileEntity tileentity = worldIn.getBlockEntity(pos);
-            if (tileentity instanceof IInventory) {
-                InventoryHelper.dropContents(worldIn, pos, (IInventory) tileentity);
-                worldIn.updateNeighbourForOutputSignal(pos, this);
+        if (!isFree(state)) {
+            if (!state.is(newState.getBlock())) {
+                TileEntity tileentity = worldIn.getBlockEntity(pos);
+                if (tileentity instanceof IInventory) {
+                    InventoryHelper.dropContents(worldIn, pos, (IInventory) tileentity);
+                    worldIn.updateNeighbourForOutputSignal(pos, this);
+                }
+                super.onRemove(state, worldIn, pos, newState, isMoving);
             }
-            super.onRemove(state, worldIn, pos, newState, isMoving);
         }
+    }
+
+    //TODO: drop contents when landing
+
+    @Override
+    public void onLand(World worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, FallingBlockEntity fallingBlock) {
+        worldIn.destroyBlock(pos, true, null);
+        worldIn.removeBlockEntity(pos);
     }
 
     @Override
