@@ -444,7 +444,7 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("scorched_stalagmite_med", "Scorched Stalagmite", JBlockStalagmite::new);
         registerSpeciallyRenderedBlock("scorched_stalagmite_large", "Scorched Stalagmite", JBlockStalagmite::new);
 
-        registerSpeciallyRenderedBlock("scorched_cactus", "Scorched Cactus", JBlockCactus::new);
+        registerSpeciallyRenderedBlockWithRenderType("scorched_cactus", "Scorched Cactus", JBlockCactus::new, () -> RenderTypeWrappers.CUTOUT);
 
         registerLogBlock("burned_bark", "Burned Bark");
         registerCustomRenderLayerBlock("charred_leaves", "Charred Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
