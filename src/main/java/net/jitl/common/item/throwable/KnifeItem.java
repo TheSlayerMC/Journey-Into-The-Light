@@ -35,7 +35,9 @@ public class KnifeItem extends Item {
             if (playerIn.isCreative()) {
                 entity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
             } else {
-                playerIn.inventory.removeItem(stack);
+                if (playerIn.getItemInHand(handIn) == stack) {
+                    playerIn.getItemInHand(handIn).shrink(1);
+                }
             }
             worldIn.addFreshEntity(entity);
             playerIn.awardStat(Stats.ITEM_USED.get(this));
