@@ -26,8 +26,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class AncientPotteryBlock extends JTileContainerBlock {
 
-    protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 20.0D, 15.0D);
-
     public AncientPotteryBlock() {
         super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), (blockState, iBlockReader) -> new PotTile());
     }
