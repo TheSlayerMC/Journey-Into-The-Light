@@ -3,18 +3,21 @@ package net.jitl.common.tile;
 import net.jitl.init.JTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.jetbrains.annotations.NotNull;
 
-public class PotTile extends LockableLootTileEntity {
+public class PotTile extends LockableLootTileEntity implements ITickableTileEntity {
     private NonNullList<ItemStack> inventory = NonNullList.withSize(27, ItemStack.EMPTY);
+    private boolean hasFallen;
 
     public PotTile() {
         super(JTiles.ANCIENT_POTTERY);
@@ -61,10 +64,22 @@ public class PotTile extends LockableLootTileEntity {
         if (!this.tryLoadLootTable(nbt)) {
             ItemStackHelper.loadAllItems(nbt, this.inventory);
         }
+        hasFallen = nbt.getBoolean("fallen");
     }
 
     @Override
     protected @NotNull ITextComponent getDefaultName() {
         return new TranslationTextComponent("jitl.tile.pot");
+    }
+
+    @Override
+    public void tick() {
+        if (hasFallen) {
+            if (level != null) {
+                InventoryHelper.dropContents(level, getBlockPos(), this);
+                level.destroyBlock(getBlockPos(), true);
+                setRemoved();
+            }
+        }
     }
 }
