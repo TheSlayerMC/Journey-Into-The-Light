@@ -22,7 +22,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.timeconqueror.timecore.api.TimeMod;
+import ru.timeconqueror.timecore.api.TimeCoreAPI;
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation;
 import ru.timeconqueror.timecore.api.client.resource.location.ItemModelLocation;
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
@@ -31,7 +31,7 @@ import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
 @Mod(JITL.MODID)
-public class JITL implements TimeMod {
+public class JITL {
     public static final String MODID = "jitl";
     public static final String NAME = "Journey Into the Light";
     public static final Logger LOGGER = LogManager.getLogger(MODID);
@@ -52,6 +52,8 @@ public class JITL implements TimeMod {
 
 		ClientLoadingEventHandler.regToBus(modEventBus, forgeEventBus);
 		ClientEventHandler.regToBus(modEventBus, forgeEventBus);
+
+		TimeCoreAPI.setup(this);
 	}
 
 	private void preInit(final FMLCommonSetupEvent event) {

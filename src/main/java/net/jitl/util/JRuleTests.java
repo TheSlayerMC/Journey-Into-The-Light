@@ -7,8 +7,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 
 import java.util.function.Supplier;
 
-import RuleTest;
-
 public class JRuleTests {
 
 	public static RuleTest GRASS = new BlockStateMatchTest(Blocks.GRASS_BLOCK.defaultBlockState());

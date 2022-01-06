@@ -25,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.util.Hacks;
 
+//TODO duplicate of JCapabilities
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class JCapabilityProvider implements ICapabilitySerializable<Tag> {
     @CapabilityInject(IArmorSetCapability.class)

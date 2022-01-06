@@ -16,7 +16,7 @@ public class ArgbColor {
     public static final int LIGHT_GRAY = 0xc8c8c8;
 
     /**
-     * Returns color from provided {@link TextFormatting}
+     * Returns color from provided {@link ChatFormatting}
      * Throws {@link IllegalArgumentException} if provided format is not color.
      */
     @SuppressWarnings("ConstantConditions")

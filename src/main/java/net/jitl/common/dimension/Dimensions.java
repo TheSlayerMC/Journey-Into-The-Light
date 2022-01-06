@@ -1,17 +1,15 @@
 package net.jitl.common.dimension;
 
 import net.jitl.JITL;
-import net.jitl.common.block.base.JBlock;
 import net.jitl.init.JBlocks;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
+import net.minecraftforge.registries.RegistryObject;
 
 public class Dimensions {
 

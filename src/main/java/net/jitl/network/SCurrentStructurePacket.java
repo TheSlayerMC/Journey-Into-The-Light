@@ -3,7 +3,7 @@ package net.jitl.network;
 import net.jitl.client.eventhandler.music.StructureMusicHandler;
 import net.jitl.common.helper.EnumStructureMusic;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.common.packet.ITimePacketHandler;
 

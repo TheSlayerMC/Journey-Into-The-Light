@@ -3,6 +3,7 @@ package net.jitl.common.helper;
 import mcp.MethodsReturnNonnullByDefault;
 import net.jitl.JITL;
 import net.jitl.init.JItems;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
@@ -56,13 +57,11 @@ public enum JArmorMaterial implements ArmorMaterial {
         return 30;
     }
 
-    @MethodsReturnNonnullByDefault
     @Override
     public SoundEvent getEquipSound() {
         return slotIn;
     }
 
-    @MethodsReturnNonnullByDefault
     @Override
     public Ingredient getRepairIngredient() {
         return repairItem;

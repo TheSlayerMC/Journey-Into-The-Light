@@ -25,7 +25,12 @@ import net.minecraft.block.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.MagmaBlock;
+import net.minecraft.world.level.block.VineBlock;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import ru.timeconqueror.timecore.api.client.resource.BlockModel;
 import ru.timeconqueror.timecore.api.client.resource.BlockModels;
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResource;
@@ -45,7 +50,7 @@ public class BlockRegistrator {
     @AutoRegistrable
     static final BlockRegister REGISTER = new BlockRegister(JITL.MODID);
 
-    @AutoRegistrable.InitMethod
+    @AutoRegistrable.Init
     private static void register() {
         registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.DIAMOND, 3);
         registerOreBlock("deepslate_sapphire_ore", "Deepslate Sapphire Ore", EnumHarvestLevel.DIAMOND, 3);
@@ -515,7 +520,7 @@ public class BlockRegistrator {
     /**
      * Registers block as usual with a creative tab
      */
-    private static RegistryObject<Block> registerBlock(String name, String enName, Supplier<Block> blockSupplier, ItemGroup cTab) {
+    private static RegistryObject<Block> registerBlock(String name, String enName, Supplier<Block> blockSupplier, CreativeModeTab cTab) {
         return REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .defaultBlockItem(cTab)
@@ -590,7 +595,7 @@ public class BlockRegistrator {
                 .oneVariantState(new BlockModelLocation(JITL.MODID, "block/" + name));
     }
 
-    private static void registerCustomRenderLayerBlock(String name, String enName, Supplier<Block> blockSupplier, ItemGroup cTab, Supplier<RenderTypeWrapper> renderType) {
+    private static void registerCustomRenderLayerBlock(String name, String enName, Supplier<Block> blockSupplier, CreativeModeTab cTab, Supplier<RenderTypeWrapper> renderType) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .renderLayer(renderType)
@@ -800,7 +805,7 @@ public class BlockRegistrator {
      * Registers a berry bush block
      */
     //TODO remove itemblock, bind berry bush to 'berries' item
-    private static void registerBerryBushBlock(String name, String enName, Supplier<IItemProvider> itemProviderSupplier) {
+    private static void registerBerryBushBlock(String name, String enName, Supplier<ItemLike> itemProviderSupplier) {
         REGISTER.register(name, () -> new JBerryBushBlock(
                         (JBlockProperties.BERRY_BUSH_PROPS.create()), itemProviderSupplier))
                 .name(enName)

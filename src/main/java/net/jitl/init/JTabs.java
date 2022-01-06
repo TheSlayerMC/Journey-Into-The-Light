@@ -5,8 +5,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-import CreativeModeTab;
-
 public class JTabs {
 
     public static final CreativeModeTab BLOCKS = new CreativeModeTab("jitl.blocks") {

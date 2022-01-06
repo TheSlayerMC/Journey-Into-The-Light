@@ -13,8 +13,6 @@ import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 
-import BlockEntityType;
-
 @ObjectHolder(JITL.MODID)
 public class JTiles {
 
@@ -31,7 +29,7 @@ public class JTiles {
         @AutoRegistrable
         private static final TileEntityRegister REGISTER = new TileEntityRegister(JITL.MODID);
 
-        @AutoRegistrable.InitMethod
+        @AutoRegistrable.Init
         private static void register() {
             REGISTER.registerSingleBound("laser_emitter", LaserEmitterTile::new, () -> JBlocks.LASER_EMITTER).regCustomRenderer(() -> LaserEmitterTER::new);
             REGISTER.registerSingleBound("mob_spawner", JMobSpawnerTile::new, () -> JBlocks.TEST_SPAWNER);

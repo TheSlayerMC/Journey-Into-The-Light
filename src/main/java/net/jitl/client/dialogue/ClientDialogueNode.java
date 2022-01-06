@@ -9,8 +9,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.List;
 import java.util.Objects;
 
-import LivingEntity;
-
 public class ClientDialogueNode {
     private final String textKey;
     private final List<String> optionTextKeys;

@@ -64,7 +64,7 @@ public class ItemRegistrator {
     @AutoRegistrable
     private static final ItemRegister REGISTER = new ItemRegister(JITL.MODID);
 
-    @AutoRegistrable.InitMethod
+    @AutoRegistrable.Init
     private static void register() {
 
         //OVERWORLD ITEMS

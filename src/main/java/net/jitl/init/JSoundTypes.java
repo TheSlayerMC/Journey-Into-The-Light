@@ -4,8 +4,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.sounds.SoundEvents;
 import ru.timeconqueror.timecore.api.common.block.TimeSoundType;
 
-import SoundType;
-
 public class JSoundTypes {
 
 	public static final SoundType MUD = new TimeSoundType(

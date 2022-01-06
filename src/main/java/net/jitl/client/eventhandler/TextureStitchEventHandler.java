@@ -12,7 +12,7 @@ public class TextureStitchEventHandler {
 
     @SubscribeEvent
     public static void stitchTextures(TextureStitchEvent.Pre evt) {
-        if (evt.getMap().location() == InventoryMenu.BLOCK_ATLAS) {
+        if (evt.getAtlas().location() == InventoryMenu.BLOCK_ATLAS) {
             evt.addSprite(JITL.rl("gui/curios/heart_container"));
             evt.addSprite(JITL.rl("gui/curios/catalyst"));
         }

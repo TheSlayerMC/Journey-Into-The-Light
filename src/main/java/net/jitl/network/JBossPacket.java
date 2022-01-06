@@ -7,6 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.common.packet.ITimePacketHandler;
 import ru.timeconqueror.timecore.api.util.Requirements;
@@ -48,19 +49,16 @@ public class JBossPacket {
         public boolean handle(JBossPacket packet, NetworkEvent.Context ctx) {
             ctx.enqueueWork(() -> {
                 switch (packet.addOrRemove) {
-                    case ADD:
+                    case ADD -> {
                         Entity boss = Minecraft.getInstance().level.getEntity(packet.bossNum);
                         if (boss instanceof IJourneyBoss) {
                             JBossInfo.map.put(packet.barUUID, (IJourneyBoss) boss);
                         } else {
                             throw new IllegalStateException("Attempted to add boss info to " + boss.getClass().getName());
                         }
-                        break;
-                    case REMOVE:
-                        JBossInfo.map.remove(packet.barUUID);
-                        break;
-                    default:
-                        throw new IllegalStateException();
+                    }
+                    case REMOVE -> JBossInfo.map.remove(packet.barUUID);
+                    default -> throw new IllegalStateException();
                 }
             });
 

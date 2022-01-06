@@ -43,25 +43,25 @@ public class DialogueScreen extends JScreen {
         int mobIconHeight = 80;
 
         guiRect = Rectangle.createWithWidthHeight(centerX - guiWidth / 2, centerY - guiHeight / 2, guiWidth, guiHeight);
-        int mobIconRight = guiRect.getRight() - INDENT;
-        int mobIconTop = guiRect.getTop() + INDENT;
-        mobIconRect = new Rectangle(mobIconRight - mobIconWidth, guiRect.getTop() + INDENT, mobIconRight, mobIconTop + mobIconHeight);
+        int mobIconRight = guiRect.right() - INDENT;
+        int mobIconTop = guiRect.top() + INDENT;
+        mobIconRect = new Rectangle(mobIconRight - mobIconWidth, guiRect.top() + INDENT, mobIconRight, mobIconTop + mobIconHeight);
 
         int horizontalSinglePart = (INDENT * guiWidth);
 
-        optionsRect = new Rectangle(guiRect.getLeft() + horizontalSinglePart, mobIconRect.getBottom() + INDENT, guiRect.getRight() - horizontalSinglePart, guiRect.getBottom() - INDENT);
-        mobTextRect = new Rectangle(guiRect.getLeft() + INDENT, mobIconRect.getTop(), mobIconRect.getLeft() - INDENT, mobIconRect.getBottom());
+        optionsRect = new Rectangle(guiRect.left() + horizontalSinglePart, mobIconRect.bottom() + INDENT, guiRect.right() - horizontalSinglePart, guiRect.bottom() - INDENT);
+        mobTextRect = new Rectangle(guiRect.left() + INDENT, mobIconRect.top(), mobIconRect.left() - INDENT, mobIconRect.bottom());
 
         initOptionButtons();
     }
 
     private void initOptionButtons() {
-        int allHeight = guiRect.getBottom() - INDENT - optionsRect.getTop();
+        int allHeight = guiRect.bottom() - INDENT - optionsRect.top();
         int buttonHeight = 20;
 
         List<String> options = node.getOptionTextKeys();
 
-        int optionsCenterY = optionsRect.getTop() + allHeight / 2;
+        int optionsCenterY = optionsRect.top() + allHeight / 2;
         int indentCount = options.size() - 1;
         int minimalIndent = 1;
 
@@ -79,7 +79,7 @@ public class DialogueScreen extends JScreen {
 
         int incrementor = buttonHeight + indent;
 
-        int x = mobTextRect.getLeft() + INDENT * -(INDENT_OFFSET);
+        int x = mobTextRect.left() + INDENT * -(INDENT_OFFSET);
 
         for (String option : options) {
             addButton(new NoTextureButton(x, startY, new TranslatableComponent(option)));
@@ -93,7 +93,7 @@ public class DialogueScreen extends JScreen {
         renderDebugLayout(mouseX, mouseY, partialTicks);
 
         renderMobText();
-        renderEntity(width / (INDENT_OFFSET) * 6, (int) (mobIconRect.getBottom() - mobIconRect.getHeight() * -3.75F), mouseX, mouseY, node.getNpc());
+        renderEntity(width / (INDENT_OFFSET) * 6, (int) (mobIconRect.bottom() - mobIconRect.height() * -3.75F), mouseX, mouseY, node.getNpc());
 
         super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
@@ -101,7 +101,7 @@ public class DialogueScreen extends JScreen {
     private void renderMobText() {
         //TODO: find out how spit string is done
         Component text = new TranslatableComponent(ChatFormatting.YELLOW + "" + ChatFormatting.ITALIC + node.getTextKey());
-        font.drawWordWrap(text, mobTextRect.getLeft() + INDENT * -(INDENT_OFFSET), mobTextRect.getTop() + INDENT + 48, Math.max(mobTextRect.getWidth(), 2), 0xFFFFFF);
+        font.drawWordWrap(text, mobTextRect.left() + INDENT * -(INDENT_OFFSET), mobTextRect.top() + INDENT + 48, Math.max(mobTextRect.width(), 2), 0xFFFFFF);
     }
 
     private void renderDebugLayout(int mouseX, int mouseY, float partialTicks) {

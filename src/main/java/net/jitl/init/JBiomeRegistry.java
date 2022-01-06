@@ -8,8 +8,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import Biome;
-
 @Mod.EventBusSubscriber
 public class JBiomeRegistry {
 

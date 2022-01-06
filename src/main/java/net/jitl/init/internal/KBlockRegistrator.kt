@@ -6,22 +6,21 @@ import net.jitl.common.block.GuardianTowerBrainBlock
 import net.jitl.common.block.base.XZFacedBlock
 import net.jitl.init.JTabs
 import net.jitl.util.JBlockProperties
-import net.minecraft.block.AbstractBlock
-import net.minecraft.block.Block
-import net.minecraft.block.StairsBlock
-import net.minecraftforge.fml.RegistryObject
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.StairBlock
+import net.minecraft.world.level.block.state.BlockBehaviour
+import net.minecraftforge.registries.RegistryObject
 import ru.timeconqueror.timecore.api.client.resource.BlockModels
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResources
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation
 import ru.timeconqueror.timecore.api.registry.BlockRegister
 import ru.timeconqueror.timecore.api.registry.util.*
-import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable.InitMethod
 
 object KBlockRegistrator {
     @AutoRegistrable
     private val REGISTER = BlockRegister(JITL.MODID)
 
-    @InitMethod
+    @AutoRegistrable.Init
     private fun register() {
         REGISTER {
             "runic_connector" represents { XZFacedBlock(JBlockProperties.BRICK_PROPS.create()) } with {
@@ -144,11 +143,11 @@ object KBlockRegistrator {
         name: String,
         enName: String,
         sourceBlock: RegistryObject<out Block>,
-        properties: AbstractBlock.Properties,
+        properties: BlockBehaviour.Properties,
         sourceBlockTexture: TextureLocation = TextureLocation(sourceBlock.id.namespace, "block/" + sourceBlock.id.path)
     ) {
         REGISTER {
-            name represents { StairsBlock({ sourceBlock.get().defaultBlockState() }, properties) } with {
+            name represents { StairBlock({ sourceBlock.get().defaultBlockState() }, properties) } with {
                 defaultBlockItem(JTabs.BLOCKS)
                 name(enName)
 

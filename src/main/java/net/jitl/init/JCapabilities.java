@@ -2,7 +2,6 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.capability.player.JPlayer;
-import net.jitl.common.capability.player.JPlayerStorage;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -23,9 +22,9 @@ public class JCapabilities {
     @CapabilityInject(JPlayer.class)
     public static final Capability<JPlayer> PLAYER = Hacks.promise();
 
-    @AutoRegistrable.InitMethod
+    @AutoRegistrable.Init
     private static void register() {
-        REGISTER.regCapability(JPlayer.class, new JPlayerStorage());
+        REGISTER.register(JPlayer.class);
     }
 
     @SubscribeEvent
