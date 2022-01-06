@@ -4,14 +4,14 @@ import com.mojang.serialization.Codec;
 import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
 import net.jitl.init.JBlocks;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.util.GenHelper;
 
@@ -24,12 +24,12 @@ public class EucaBotSpawner extends Feature<EucaSpawnerFeatureConfig> {
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random random, BlockPos pos, EucaSpawnerFeatureConfig config) {
+    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random random, BlockPos pos, EucaSpawnerFeatureConfig config) {
         int xPos = pos.getX() + random.nextInt(8) - random.nextInt(8);
         int zPos = pos.getZ() + random.nextInt(8) - random.nextInt(8);
-        int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos) - 1;
+        int yPos = reader.getHeight(Heightmap.Types.WORLD_SURFACE_WG, xPos, zPos) - 1;
 
-        BlockPos.Mutable placement = new BlockPos.Mutable(xPos, yPos, zPos);
+        BlockPos.MutableBlockPos placement = new BlockPos.MutableBlockPos(xPos, yPos, zPos);
 
         if (!config.spawnBlock.test(reader.getBlockState(pos.below()), random)) {
             return false;
@@ -51,7 +51,7 @@ public class EucaBotSpawner extends Feature<EucaSpawnerFeatureConfig> {
         }
     }
 
-    public void addRectangle(int east, int south, int height, int x, int y, int z, Block b, ISeedReader reader) {
+    public void addRectangle(int east, int south, int height, int x, int y, int z, Block b, WorldGenLevel reader) {
         for (int x1 = 0; x1 < east; x1++) {
             for (int z1 = 0; z1 < south; z1++) {
                 for (int y1 = 0; y1 < height; y1++) {
@@ -61,7 +61,7 @@ public class EucaBotSpawner extends Feature<EucaSpawnerFeatureConfig> {
         }
     }
 
-    public void placeShaft(ISeedReader reader, BlockPos pos) {
+    public void placeShaft(WorldGenLevel reader, BlockPos pos) {
         int xPos = pos.getX();
         int zPos = pos.getZ();
         int yPos = pos.getY();

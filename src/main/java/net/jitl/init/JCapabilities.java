@@ -3,7 +3,7 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.player.JPlayerStorage;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -31,7 +31,7 @@ public class JCapabilities {
     @SubscribeEvent
     public static void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            TimeCore.INSTANCE.getCapabilityManager().attachStaticCoffeeCapability(CapabilityOwner.ENTITY, PLAYER, entity -> entity instanceof PlayerEntity, entity -> new JPlayer((PlayerEntity) entity));
+            TimeCore.INSTANCE.getCapabilityManager().attachStaticCoffeeCapability(CapabilityOwner.ENTITY, PLAYER, entity -> entity instanceof Player, entity -> new JPlayer((Player) entity));
 //            TimeCore.INSTANCE.getCapabilityManager().enableKeepingPlayerCapability(player -> {
 //                JPlayer cap = JPlayer.from(player);
 //                cap.serialize(coffeeProperty -> {coffeeProperty.})

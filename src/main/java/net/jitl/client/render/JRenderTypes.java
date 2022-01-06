@@ -1,14 +1,17 @@
 package net.jitl.client.render;
 
 import net.jitl.JITL;
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.util.ResourceLocation;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
+import net.minecraft.resources.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import ru.timeconqueror.timecore.api.util.client.GLDrawMode;
 import ru.timeconqueror.timecore.api.util.client.RenderHelper;
+
+import net.minecraft.client.renderer.RenderStateShard.TextureStateShard;
+import net.minecraft.client.renderer.RenderStateShard.TransparencyStateShard;
 
 public class JRenderTypes extends RenderType {
     public JRenderTypes(String nameIn, VertexFormat formatIn, int drawModeIn, int bufferSizeIn, boolean useDelegateIn, boolean needsSortingIn, Runnable setupTaskIn, Runnable clearTaskIn) {
@@ -17,15 +20,15 @@ public class JRenderTypes extends RenderType {
 
     public static RenderType laserBeam(ResourceLocation texture) {
         return RenderType.create(JITL.rl("laser_beam").toString(),
-                DefaultVertexFormats.POSITION_TEX,
+                DefaultVertexFormat.POSITION_TEX,
                 GL11.GL_QUADS,
                 256,
                 false,
                 false,
-                RenderType.State.builder()
-                        .setTextureState(new TextureState(texture, false/*blur*/, false/*mipmap*/))
+                CompositeState.builder()
+                        .setTextureState(new TextureStateShard(texture, false/*blur*/, false/*mipmap*/))
                         .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
-                        .setAlphaState(RenderState.DEFAULT_ALPHA)
+                        .setAlphaState(RenderStateShard.DEFAULT_ALPHA)
                         .setShadeModelState(SMOOTH_SHADE)
                         .createCompositeState(false));
     }
@@ -33,7 +36,7 @@ public class JRenderTypes extends RenderType {
     public static RenderType fullbrightCutout(ResourceLocation texture) {
         return RenderHelper.rtTextured(JITL.rl("fullbright_cutout"),
                 GLDrawMode.QUADS,
-                DefaultVertexFormats.POSITION_TEX,
+                DefaultVertexFormat.POSITION_TEX,
                 texture,
                 builder -> builder
                         .setShadeModelState(SMOOTH_SHADE)
@@ -43,10 +46,10 @@ public class JRenderTypes extends RenderType {
     public static RenderType transparentCutout(ResourceLocation texture) {
         return RenderHelper.rtTextured(JITL.rl("transparent_cutout"),
                 GLDrawMode.QUADS,
-                DefaultVertexFormats.POSITION_TEX,
+                DefaultVertexFormat.POSITION_TEX,
                 texture,
                 builder -> builder
-                        .setTransparencyState(TransparencyState.ADDITIVE_TRANSPARENCY)
+                        .setTransparencyState(TransparencyStateShard.ADDITIVE_TRANSPARENCY)
                         .setDiffuseLightingState(DIFFUSE_LIGHTING)
                         .setAlphaState(MIDWAY_ALPHA)
                         .setLightmapState(LIGHTMAP)

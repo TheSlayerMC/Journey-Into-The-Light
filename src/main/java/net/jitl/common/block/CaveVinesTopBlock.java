@@ -3,22 +3,28 @@ package net.jitl.common.block;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JParticleManager;
 import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class CaveVinesTopBlock extends AbstractTopPlantBlock {
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.GrowingPlantHeadBlock;
+import net.minecraft.world.level.block.NetherVines;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class CaveVinesTopBlock extends GrowingPlantHeadBlock {
     protected static final VoxelShape SHAPE = Block.box(4.0D, 9.0D, 4.0D, 12.0D, 16.0D, 12.0D);
 
-    public CaveVinesTopBlock(AbstractBlock.Properties properties) {
+    public CaveVinesTopBlock(Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false, 0.1D);
     }
 
@@ -28,17 +34,17 @@ public class CaveVinesTopBlock extends AbstractTopPlantBlock {
      */
     @Override
     protected int getBlocksToGrowWhenBonemealed(@NotNull Random rand) {
-        return PlantBlockHelper.getBlocksToGrowWhenBonemealed(rand);
+        return NetherVines.getBlocksToGrowWhenBonemealed(rand);
     }
 
     @Override
-    public boolean isLadder(BlockState state, IWorldReader world, BlockPos pos, LivingEntity entity) {
+    public boolean isLadder(BlockState state, LevelReader world, BlockPos pos, LivingEntity entity) {
         return true;
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
         if (rand.nextInt(8) == 0) {
             BlockPos blockpos = pos.below();
             if (worldIn.isEmptyBlock(blockpos)) {
@@ -57,6 +63,6 @@ public class CaveVinesTopBlock extends AbstractTopPlantBlock {
 
     @Override
     protected boolean canGrowInto(@NotNull BlockState state) {
-        return PlantBlockHelper.isValidGrowthState(state);
+        return NetherVines.isValidGrowthState(state);
     }
 }

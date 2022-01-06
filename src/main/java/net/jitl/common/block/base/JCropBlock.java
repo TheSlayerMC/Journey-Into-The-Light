@@ -4,31 +4,38 @@ import java.util.Random;
 
 import net.jitl.util.JBlockProperties;
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.RavagerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.monster.Ravager;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
-public abstract class JCropBlock extends BushBlock implements IGrowable {
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+
+public abstract class JCropBlock extends BushBlock implements BonemealableBlock {
 
     public static IntegerProperty AGE = BlockStateProperties.AGE_7;
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 
-    public JCropBlock(AbstractBlock.Properties builder) {
+    public JCropBlock(Properties builder) {
         super(builder);
         this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)));
     }
@@ -41,12 +48,12 @@ public abstract class JCropBlock extends BushBlock implements IGrowable {
     public abstract int getMaxAge();
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
         return state.is(Blocks.FARMLAND);
     }
 
@@ -72,7 +79,7 @@ public abstract class JCropBlock extends BushBlock implements IGrowable {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         if (worldIn.getRawBrightness(pos, 0) >= 9) {
             int i = this.getAge(state);
@@ -86,7 +93,7 @@ public abstract class JCropBlock extends BushBlock implements IGrowable {
         }
     }
 
-    public void growCrops(World worldIn, BlockPos pos, BlockState state) {
+    public void growCrops(Level worldIn, BlockPos pos, BlockState state) {
         int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
         int j = this.getMaxAge();
         if (i > j) {
@@ -95,18 +102,18 @@ public abstract class JCropBlock extends BushBlock implements IGrowable {
         worldIn.setBlock(pos, this.getStateForAge(i), 2);
     }
 
-    protected int getBonemealAgeIncrease(World worldIn) {
-        return MathHelper.nextInt(worldIn.random, 2, 5);
+    protected int getBonemealAgeIncrease(Level worldIn) {
+        return Mth.nextInt(worldIn.random, 2, 5);
     }
 
-    protected static float getGrowthSpeed(Block blockIn, IBlockReader worldIn, BlockPos pos) {
+    protected static float getGrowthSpeed(Block blockIn, BlockGetter worldIn, BlockPos pos) {
         float f = 1.0F;
         BlockPos blockpos = pos.below();
         for(int i = -1; i <= 1; ++i) {
             for(int j = -1; j <= 1; ++j) {
                 float f1 = 0.0F;
                 BlockState blockstate = worldIn.getBlockState(blockpos.offset(i, 0, j));
-                if(blockstate.canSustainPlant(worldIn, blockpos.offset(i, 0, j), net.minecraft.util.Direction.UP, (net.minecraftforge.common.IPlantable) blockIn)) {
+                if(blockstate.canSustainPlant(worldIn, blockpos.offset(i, 0, j), net.minecraft.core.Direction.UP, (net.minecraftforge.common.IPlantable) blockIn)) {
                     f1 = 1.0F;
                     if(blockstate.isFertile(worldIn, pos.offset(i, 0, j)))
                         f1 = 3.0F;
@@ -133,12 +140,12 @@ public abstract class JCropBlock extends BushBlock implements IGrowable {
         return f;
     }
 
-    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         return (worldIn.getRawBrightness(pos, 0) >= 8 || worldIn.canSeeSky(pos)) && super.canSurvive(state, worldIn, pos);
     }
 
-    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if(entityIn instanceof RavagerEntity && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(worldIn, entityIn)) {
+    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+        if(entityIn instanceof Ravager && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(worldIn, entityIn)) {
             worldIn.destroyBlock(pos, true, entityIn);
         }
 
@@ -146,32 +153,32 @@ public abstract class JCropBlock extends BushBlock implements IGrowable {
     }
 
 
-    protected IItemProvider getBaseSeedId() {
+    protected ItemLike getBaseSeedId() {
         return this::getSeedItem;
     }
 
     @Override
-    public ItemStack getCloneItemStack(IBlockReader worldIn, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
         return new ItemStack(this.getBaseSeedId());
     }
 
     @Override
-    public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
         return !this.isMaxAge(state);
     }
 
     @Override
-    public boolean isBonemealSuccess(World worldIn, Random rand, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level worldIn, Random rand, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
         this.growCrops(worldIn, pos, state);
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
 }

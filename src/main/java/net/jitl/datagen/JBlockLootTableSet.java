@@ -2,14 +2,20 @@ package net.jitl.datagen;
 
 import net.jitl.init.JBlocks;
 import net.jitl.init.JItems;
-import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.Item;
 import net.minecraft.loot.*;
-import net.minecraft.loot.functions.ApplyBonus;
-import net.minecraft.loot.functions.SetCount;
-import net.minecraft.util.IItemProvider;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.ItemLike;
 import ru.timeconqueror.timecore.api.devtools.gen.loottable.BlockLootTableSet;
+
+import net.minecraft.world.level.storage.loot.ConstantIntValue;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.RandomValueBounds;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
 
 public class JBlockLootTableSet extends BlockLootTableSet {
 
@@ -143,7 +149,7 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 	 * @param block The block being registered.
 	 * @param drop  The item or block being dropped.
 	 */
-	public void registerWithExplosionDecay(Block block, IItemProvider drop) {
+	public void registerWithExplosionDecay(Block block, ItemLike drop) {
 		registerLootTable(block, createSingleItemWithExplosionDecayTable(drop));
 	}
 
@@ -151,11 +157,11 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		registerLootTable(block, createShearsOnlyTable(block));
 	}
 
-	public void registerShearsOnlyDropsOther(Block block, IItemProvider drop) {
+	public void registerShearsOnlyDropsOther(Block block, ItemLike drop) {
 		registerLootTable(block, createShearsOnlyTable(drop));
 	}
 
-	public void registerDropsOtherWithoutSilkTouch(Block block, IItemProvider otherDrop) {
+	public void registerDropsOtherWithoutSilkTouch(Block block, ItemLike otherDrop) {
 		registerLootTable(block, createSilkTouchDispatchTable(block, otherDrop));
 	}
 
@@ -167,8 +173,8 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 	 * @param silkTouchDrop        The block dropped when the user's tool has silktouch applied.
 	 * @param dropWithoutSilkTouch The item dropped when the tool doesn't have silktouch applied.
 	 */
-	protected static LootTable.Builder createSilkTouchWithLuckDispatchTable(Block silkTouchDrop, IItemProvider dropWithoutSilkTouch) {
-		return createSilkTouchDispatchTable(silkTouchDrop, applyExplosionDecay(ItemLootEntry.lootTableItem(dropWithoutSilkTouch).apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+	protected static LootTable.Builder createSilkTouchWithLuckDispatchTable(Block silkTouchDrop, ItemLike dropWithoutSilkTouch) {
+		return createSilkTouchDispatchTable(silkTouchDrop, applyExplosionDecay(LootItem.lootTableItem(dropWithoutSilkTouch).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
 	}
 
 	/**
@@ -180,8 +186,8 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 	 * @param silkTouchDrop        The block dropped when the user's tool has silktouch applied.
 	 * @param dropWithoutSilkTouch The item dropped when the tool doesn't have silktouch applied.
 	 */
-	protected static LootTable.Builder createSilkTouchWithExtraLuckDispatchTable(Block silkTouchDrop, IItemProvider dropWithoutSilkTouch, int minimumQuantity, int maximumQuantity) {
-		return createSilkTouchDispatchTable(silkTouchDrop, applyExplosionDecay(ItemLootEntry.lootTableItem(dropWithoutSilkTouch).apply(SetCount.setCount(RandomValueRange.between(minimumQuantity, maximumQuantity))).apply(ApplyBonus.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+	protected static LootTable.Builder createSilkTouchWithExtraLuckDispatchTable(Block silkTouchDrop, ItemLike dropWithoutSilkTouch, int minimumQuantity, int maximumQuantity) {
+		return createSilkTouchDispatchTable(silkTouchDrop, applyExplosionDecay(LootItem.lootTableItem(dropWithoutSilkTouch).apply(SetItemCountFunction.setCount(RandomValueBounds.between(minimumQuantity, maximumQuantity))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
 	}
 
 	/**
@@ -189,8 +195,8 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 	 *
 	 * @param drop The block or item being dropped.
 	 */
-	protected static LootTable.Builder createSingleItemWithExplosionDecayTable(IItemProvider drop) {
+	protected static LootTable.Builder createSingleItemWithExplosionDecayTable(ItemLike drop) {
 		return LootTable.lootTable()
-				.withPool(applyExplosionDecay(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(ItemLootEntry.lootTableItem(drop))));
+				.withPool(applyExplosionDecay(LootPool.lootPool().setRolls(ConstantIntValue.exactly(1)).add(LootItem.lootTableItem(drop))));
 	}
 }

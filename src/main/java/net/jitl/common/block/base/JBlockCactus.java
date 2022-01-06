@@ -1,20 +1,20 @@
 package net.jitl.common.block.base;
 
 import net.jitl.util.JBlockProperties;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.IPlantable;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,12 +29,12 @@ public class JBlockCactus extends Block implements IPlantable {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return BIG_SHAPE;
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
         if(!worldIn.isAreaLoaded(pos, 1)) return;
 
         if(!state.canSurvive(worldIn, pos)) {
@@ -43,7 +43,7 @@ public class JBlockCactus extends Block implements IPlantable {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if(!stateIn.canSurvive(worldIn, currentPos)) {
             worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
         }
@@ -51,19 +51,19 @@ public class JBlockCactus extends Block implements IPlantable {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         BlockState blockstate = worldIn.getBlockState(pos.below());
         Material material = blockstate.getMaterial();
         return material.isSolid() || blockstate.getBlock() instanceof JBlockCactus;
     }
 
     @Override
-    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         entityIn.hurt(DamageSource.CACTUS, 1.0F);
     }
 
     @Override
-    public BlockState getPlant(IBlockReader world, BlockPos pos) {
+    public BlockState getPlant(BlockGetter world, BlockPos pos) {
         return this.defaultBlockState();
     }
 }

@@ -7,12 +7,12 @@ import net.jitl.common.helper.TooltipFiller;
 import net.jitl.common.item.gear.JArmorItem;
 import net.jitl.common.item.gear.JGear;
 import net.jitl.common.item.gear.abilities.FullArmorAbility;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
@@ -23,6 +23,12 @@ import net.minecraftforge.fml.common.Mod;
 import ru.timeconqueror.timecore.api.common.event.LivingUpdateEndEvent;
 
 import java.util.ArrayList;
+
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class GearAbilityHandler {
@@ -68,10 +74,10 @@ public class GearAbilityHandler {
                     ((JGear) item).getAbility().attackTarget(living, stack, event);
                 }
             } else if (entity.getType() == EntityType.ARROW) {
-                if (((ArrowEntity) entity).getOwner() instanceof LivingEntity) {
-                    for (ItemStack itemStack : ((ArrowEntity) entity).getOwner().getArmorSlots()) {
+                if (((Arrow) entity).getOwner() instanceof LivingEntity) {
+                    for (ItemStack itemStack : ((Arrow) entity).getOwner().getArmorSlots()) {
                         Item current = itemStack.getItem();
-                        if (!(current instanceof ArmorItem && ((ArmorItem) current).getMaterial() == ArmorMaterial.LEATHER))
+                        if (!(current instanceof ArmorItem && ((ArmorItem) current).getMaterial() == ArmorMaterials.LEATHER))
                             return;
                     }
                     event.setAmount(event.getAmount() + 5F);
@@ -98,7 +104,7 @@ public class GearAbilityHandler {
         }
     }
 
-    public static void onKeyPressed(PlayerEntity player) {
+    public static void onKeyPressed(Player player) {
         IArmorSetCapability capability = JCapabilityProvider.getCapability(player, JCapabilityProvider.ARMOR);
         if (capability != null) {
             FullArmorAbility armor = capability.getFullArmor();
@@ -110,11 +116,11 @@ public class GearAbilityHandler {
     public static void addVanillaTooptips(ItemTooltipEvent event) {
         Item item = event.getItemStack().getItem();
         if (item instanceof ArmorItem) {
-            IArmorMaterial material = ((ArmorItem) item).getMaterial();
-            if (material == ArmorMaterial.LEATHER) {
+            ArmorMaterial material = ((ArmorItem) item).getMaterial();
+            if (material == ArmorMaterials.LEATHER) {
                 TooltipFiller filler = new TooltipFiller(event.getToolTip(), "leather_gear", 1);
                 filler.addOverview();
-            } else if (material == ArmorMaterial.CHAIN) {
+            } else if (material == ArmorMaterials.CHAIN) {
                 TooltipFiller filler = new TooltipFiller(event.getToolTip(), "chain_gear");
             }
         }
@@ -172,7 +178,7 @@ public class GearAbilityHandler {
     public static void equipmentChange(LivingEquipmentChangeEvent event) {
         Item item = event.getFrom().getItem();
         LivingEntity entity = event.getEntityLiving();
-        EquipmentSlotType slot = event.getSlot();
+        EquipmentSlot slot = event.getSlot();
         if (item instanceof JGear) {
             ((JGear) item).getAbility().unEquip(entity, slot, event.getFrom());
         }
@@ -180,7 +186,7 @@ public class GearAbilityHandler {
         if (item instanceof JGear) {
             ((JGear) item).getAbility().equip(entity, slot, event.getTo());
         }
-        if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
+        if (slot.getType() == EquipmentSlot.Type.ARMOR) {
             IArmorSetCapability capability = JCapabilityProvider.getCapability(entity, JCapabilityProvider.ARMOR);
             if (capability != null) capability.setArmor(entity.getArmorSlots().iterator());
         }

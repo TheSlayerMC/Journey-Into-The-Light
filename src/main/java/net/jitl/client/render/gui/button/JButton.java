@@ -1,16 +1,19 @@
 package net.jitl.client.render.gui.button;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.JITL;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import net.minecraft.client.gui.components.Button.OnPress;
+import net.minecraft.client.gui.components.Button.OnTooltip;
 
 @OnlyIn(Dist.CLIENT)
 public class JButton extends Button {
@@ -20,21 +23,21 @@ public class JButton extends Button {
 
 	public boolean isMirrored;
 
-	public JButton(int x, int y, int width, int height, ITextComponent title, IPressable pressedAction, boolean isMirrored) {
+	public JButton(int x, int y, int width, int height, Component title, OnPress pressedAction, boolean isMirrored) {
 		super(x, y, width, height, title, pressedAction);
 		this.isMirrored = isMirrored;
 	}
 
-	public JButton(int x, int y, int width, int height, ITextComponent title, IPressable pressedAction, ITooltip onTooltip, boolean isMirrored) {
+	public JButton(int x, int y, int width, int height, Component title, OnPress pressedAction, OnTooltip onTooltip, boolean isMirrored) {
 		super(x, y, width, height, title, pressedAction, onTooltip);
 		this.isMirrored = isMirrored;
 	}
 
 	@Override
-	public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+	public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		if (this.visible) {
 			Minecraft minecraft = Minecraft.getInstance();
-			FontRenderer fontrenderer = minecraft.font;
+			Font fontrenderer = minecraft.font;
 			if (!this.isMirrored) {
 				minecraft.getTextureManager().bind(BUTTONS_NORMAL);
 			} else {
@@ -65,7 +68,7 @@ public class JButton extends Button {
 			} else if (this.isHovered()) {
 				j = 16777120;
 			}
-			drawCenteredString(matrixStack, fontrenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
+			drawCenteredString(matrixStack, fontrenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | Mth.ceil(this.alpha * 255.0F) << 24);
 		}
 	}
 }

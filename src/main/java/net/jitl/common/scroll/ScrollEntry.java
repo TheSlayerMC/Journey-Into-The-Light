@@ -1,6 +1,6 @@
 package net.jitl.common.scroll;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.Nullable;
 

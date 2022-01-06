@@ -1,8 +1,10 @@
 package net.jitl.init;
 
-import net.minecraft.block.SoundType;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.sounds.SoundEvents;
 import ru.timeconqueror.timecore.api.common.block.TimeSoundType;
+
+import SoundType;
 
 public class JSoundTypes {
 

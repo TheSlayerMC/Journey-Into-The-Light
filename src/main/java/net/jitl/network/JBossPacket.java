@@ -3,8 +3,8 @@ package net.jitl.network;
 import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.common.helper.JBossInfo;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraftforge.fml.network.NetworkEvent;
 import org.jetbrains.annotations.NotNull;
@@ -33,14 +33,14 @@ public class JBossPacket {
     public static class Handler implements ITimePacketHandler<JBossPacket> {
 
         @Override
-        public void encode(JBossPacket packet, PacketBuffer buffer) throws IOException {
+        public void encode(JBossPacket packet, FriendlyByteBuf buffer) throws IOException {
             buffer.writeEnum(packet.addOrRemove);
             buffer.writeUUID(packet.barUUID);
             buffer.writeInt(packet.bossNum);
         }
 
         @Override
-        public @NotNull JBossPacket decode(PacketBuffer buffer) throws IOException {
+        public @NotNull JBossPacket decode(FriendlyByteBuf buffer) throws IOException {
             return new JBossPacket(buffer.readEnum(Operation.class), buffer.readUUID(), buffer.readInt());
         }
 

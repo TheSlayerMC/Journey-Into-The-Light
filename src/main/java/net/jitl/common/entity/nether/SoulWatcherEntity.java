@@ -11,25 +11,25 @@ import net.jitl.common.helper.JMusic;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.FlyingMovementController;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.RangedAttackGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.projectile.SmallFireballEntity;
-import net.minecraft.loot.LootTables;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.BossInfo;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerBossInfo;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.FlyingMoveControl;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.projectile.SmallFireball;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.AnimationStarter;
 import ru.timeconqueror.timecore.animation.AnimationSystem;
@@ -40,28 +40,36 @@ import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
 import javax.annotation.Nullable;
 import java.util.Collections;
 
-public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, AnimatedObject<SoulWatcherEntity>, IRangedAttackMob {
-    private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.FlyingMob;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.monster.RangedAttackMob;
+
+public class SoulWatcherEntity extends FlyingMob implements IJourneyBoss, AnimatedObject<SoulWatcherEntity>, RangedAttackMob {
+    private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.NOTCHED_6);
     private final BossBarRenderer BOSS_BAR = new EyeBarRenderer(this, JITL.tl("gui/bossbars/soul_watcher.png").fullLocation());
     private static final JMusic BOSS_TRACK = new JMusic(JSounds.TEMPLE_GUARDIAN_MUSIC.get(), 2, 0, 0);
     private final AnimationSystem<SoulWatcherEntity> animationSystem;
-    private static final DataParameter<Boolean> CLOSED = EntityDataManager.defineId(SoulWatcherEntity.class, DataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> CLOSED = SynchedEntityData.defineId(SoulWatcherEntity.class, EntityDataSerializers.BOOLEAN);
 
     private static final String LAYER_IDLE = "idle";
     private static final String LAYER_CLOSED = "closed";
 
-    public SoulWatcherEntity(EntityType<? extends SoulWatcherEntity> type, World worldIn) {
+    public SoulWatcherEntity(EntityType<? extends SoulWatcherEntity> type, Level worldIn) {
         super(type, worldIn);
         animationSystem = AnimationSystemBuilder.forEntity(this, worldIn, builder -> {
             builder.addLayer(LAYER_IDLE, BlendType.OVERRIDE, 1F);
             builder.addLayer(LAYER_CLOSED, BlendType.ADDING, 1F);
         }, predefinedAnimations -> predefinedAnimations.setIdleAnimation(new AnimationStarter(JAnimations.soulWatcherIdle), LAYER_IDLE));
 
-        this.moveControl = new FlyingMovementController(this, 1, true);
+        this.moveControl = new FlyingMoveControl(this, 1, true);
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 100.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.15D);
     }
@@ -94,7 +102,7 @@ public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, Ani
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.5, 50, 60.0F));
         this.goalSelector.addGoal(1, new IdleHealGoal(this, 1200));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false));
     }
 
     @Override
@@ -103,7 +111,7 @@ public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, Ani
         double y = target.getY(0.5) - this.getY(0.5);
         double z = target.getZ() - this.getZ();
         for (int count = 0; count < 10; count++) {
-            SmallFireballEntity fireball = new SmallFireballEntity(this.level, this, x / 10, y / 10, z / 10);
+            SmallFireball fireball = new SmallFireball(this.level, this, x / 10, y / 10, z / 10);
             fireball.setPos(this.getX(), this.getY(0.5), this.getZ());
             fireball.shoot(x, y, z, 0.5F, 10.25F);
             this.level.addFreshEntity(fireball);
@@ -129,7 +137,7 @@ public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, Ani
 
     @Nullable
     protected ResourceLocation getCrystalLootTable() {
-        return LootTables.BASTION_HOGLIN_STABLE;
+        return BuiltInLootTables.BASTION_HOGLIN_STABLE;
     }
 
     @Nullable
@@ -147,7 +155,7 @@ public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, Ani
                 if (lootTable == null) {
                     crystal = BossCrystalEntity.create(level, getPosition(0), getDeathCrystalType(), Collections.emptyList());
                 } else {
-                    crystal = BossCrystalEntity.create((ServerWorld) level, getPosition(0), getDeathCrystalType(), null, lootTable, 0L);
+                    crystal = BossCrystalEntity.create((ServerLevel) level, getPosition(0), getDeathCrystalType(), null, lootTable, 0L);
                 }
 
                 level.addFreshEntity(crystal);
@@ -156,7 +164,7 @@ public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, Ani
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return sizeIn.height * 0.5F;
     }
 
@@ -167,13 +175,13 @@ public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, Ani
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putBoolean("closed", isClosed());
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
 
         if (compound.contains("closed")) {
@@ -182,13 +190,13 @@ public class SoulWatcherEntity extends FlyingEntity implements IJourneyBoss, Ani
     }
 
     @Override
-    public void startSeenByPlayer(ServerPlayerEntity player) {
+    public void startSeenByPlayer(ServerPlayer player) {
         super.startSeenByPlayer(player);
         JBossInfo.addInfo(player, bossInfo, this);
     }
 
     @Override
-    public void stopSeenByPlayer(ServerPlayerEntity player) {
+    public void stopSeenByPlayer(ServerPlayer player) {
         super.stopSeenByPlayer(player);
         JBossInfo.removeInfo(player, bossInfo, this);
     }

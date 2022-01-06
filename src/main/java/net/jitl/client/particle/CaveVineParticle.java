@@ -1,20 +1,20 @@
 package net.jitl.client.particle;
 
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
-public class CaveVineParticle extends SpriteTexturedParticle {
+public class CaveVineParticle extends TextureSheetParticle {
     private final float rotSpeed;
-    private final IAnimatedSprite sprites;
+    private final SpriteSet sprites;
 
     //Almost identical to FallingDustParticle but with fullBright, and doesn't stop when it lands on the ground
-    private CaveVineParticle(ClientWorld worldIn, double x, double y, double z, IAnimatedSprite spriteWithAge) {
+    private CaveVineParticle(ClientLevel worldIn, double x, double y, double z, SpriteSet spriteWithAge) {
         super(worldIn, x, y, z);
         this.sprites = spriteWithAge;
         this.quadSize *= 0.67499995F;
@@ -26,19 +26,19 @@ public class CaveVineParticle extends SpriteTexturedParticle {
     }
 
     @Override
-    public @NotNull IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public @NotNull ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     @Override
     public float getQuadSize(float scaleFactor) {
-        return this.quadSize * MathHelper.clamp(((float) this.age + scaleFactor) / (float) this.lifetime * 32.0F, 0.0F, 1.0F);
+        return this.quadSize * Mth.clamp(((float) this.age + scaleFactor) / (float) this.lifetime * 32.0F, 0.0F, 1.0F);
     }
 
     @Override
     public int getLightColor(float partialTick) {
         float f = ((float) this.age + partialTick) / (float) this.lifetime;
-        f = MathHelper.clamp(f, 0.0F, 1.0F);
+        f = Mth.clamp(f, 0.0F, 1.0F);
         int i = super.getLightColor(partialTick);
         int j = i & 255;
         int k = i >> 16 & 255;
@@ -71,14 +71,14 @@ public class CaveVineParticle extends SpriteTexturedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite sprites;
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprites;
 
-        public Factory(IAnimatedSprite spriteSet) {
+        public Factory(SpriteSet spriteSet) {
             this.sprites = spriteSet;
         }
 
-        public Particle createParticle(@NotNull BasicParticleType typeIn, @NotNull ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             return new CaveVineParticle(worldIn, x, y, z, this.sprites);
         }
     }

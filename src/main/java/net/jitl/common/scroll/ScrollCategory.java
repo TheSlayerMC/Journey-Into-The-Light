@@ -1,8 +1,10 @@
 package net.jitl.common.scroll;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.LinkedHashMap;
+
+import ResourceLocation;
 
 /*
  * Code by TimeConqueror

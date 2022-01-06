@@ -1,21 +1,21 @@
 package net.jitl.client.particle;
 
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
-public class RedFlameParticle extends SpriteTexturedParticle {
-	protected RedFlameParticle(ClientWorld worldIn, double x, double y, double z, double motionX, double motionY, double motionZ) {
+public class RedFlameParticle extends TextureSheetParticle {
+	protected RedFlameParticle(ClientLevel worldIn, double x, double y, double z, double motionX, double motionY, double motionZ) {
 		super(worldIn, x, y, z, motionX, motionY, motionZ);
 	}
 
 	@Override
-	public IParticleRenderType getRenderType() {
-		return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+	public ParticleRenderType getRenderType() {
+		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class RedFlameParticle extends SpriteTexturedParticle {
 	@Override
 	public int getLightColor(float partialTick) {
 		float f = ((float) this.age + partialTick) / (float) this.lifetime;
-		f = MathHelper.clamp(f, 0.0F, 1.0F);
+		f = Mth.clamp(f, 0.0F, 1.0F);
 		int i = super.getLightColor(partialTick);
 		int j = i & 255;
 		int k = i >> 16 & 255;
@@ -46,14 +46,14 @@ public class RedFlameParticle extends SpriteTexturedParticle {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public static class Factory implements IParticleFactory<BasicParticleType> {
-		private final IAnimatedSprite sprite;
+	public static class Factory implements ParticleProvider<SimpleParticleType> {
+		private final SpriteSet sprite;
 
-		public Factory(IAnimatedSprite spriteSet) {
+		public Factory(SpriteSet spriteSet) {
 			this.sprite = spriteSet;
 		}
 
-		public Particle createParticle(@NotNull BasicParticleType typeIn, @NotNull ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			RedFlameParticle redFlameparticle = new RedFlameParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
 			redFlameparticle.pickSprite(this.sprite);
 			return redFlameparticle;

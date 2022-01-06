@@ -1,7 +1,7 @@
 package net.jitl.common.dialogue;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -70,7 +70,7 @@ public class DialogueNode {
             return nextNode;
         }
 
-        public void onClickAction(World world, ServerPlayerEntity player) {
+        public void onClickAction(Level world, ServerPlayer player) {
             onClickAction.onClick(world, player);
         }
 
@@ -84,6 +84,6 @@ public class DialogueNode {
     }
 
     public interface Action {
-        void onClick(World world, ServerPlayerEntity player);
+        void onClick(Level world, ServerPlayer player);
     }
 }

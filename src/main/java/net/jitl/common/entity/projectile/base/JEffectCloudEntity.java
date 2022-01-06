@@ -2,20 +2,20 @@ package net.jitl.common.entity.projectile.base;
 
 import net.jitl.init.JEntities;
 import net.minecraft.entity.*;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.NBTUtil;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtUtils;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
@@ -25,9 +25,17 @@ import ru.timeconqueror.timecore.api.util.Requirements;
 import java.util.*;
 
 //TODO test effects
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
+
+import EntityDataAccessor;
+
 public class JEffectCloudEntity extends Entity {
-    public static final DataParameter<Float> RADIUS = EntityDataManager.defineId(JEffectCloudEntity.class, DataSerializers.FLOAT); //the current radius of the cloud
-    public static final DataParameter<Integer> COLOR = EntityDataManager.defineId(JEffectCloudEntity.class, DataSerializers.INT);
+    public static final EntityDataAccessor<Float> RADIUS = SynchedEntityData.defineId(JEffectCloudEntity.class, EntityDataSerializers.FLOAT); //the current radius of the cloud
+    public static final EntityDataAccessor<Integer> COLOR = SynchedEntityData.defineId(JEffectCloudEntity.class, EntityDataSerializers.INT);
     /**
      * The list of size keys
      */
@@ -43,23 +51,23 @@ public class JEffectCloudEntity extends Entity {
     /**
      * The effects that will be inflicted normally
      */
-    public ArrayList<EffectInstance> primaryEffects = new ArrayList<>();
+    public ArrayList<MobEffectInstance> primaryEffects = new ArrayList<>();
     /**
      * The effects that will be inflicted to enemies who are exceptions
      */
-    public ArrayList<EffectInstance> secondaryEffects = new ArrayList<>();
+    public ArrayList<MobEffectInstance> secondaryEffects = new ArrayList<>();
 
 
-    public JEffectCloudEntity(EntityType<? extends JEffectCloudEntity> entityType, World world) {
+    public JEffectCloudEntity(EntityType<? extends JEffectCloudEntity> entityType, Level world) {
         super(entityType, world);
         this.noPhysics = true;
     }
 
-    public JEffectCloudEntity(LivingEntity cloudCreator, World world, Vector3d pos, float initialRadius) {
+    public JEffectCloudEntity(LivingEntity cloudCreator, Level world, Vec3 pos, float initialRadius) {
         this(cloudCreator, world, pos.x(), pos.y(), pos.z(), initialRadius);
     }
 
-    public JEffectCloudEntity(LivingEntity cloudCreator, World world, double x, double y, double z, float initialRadius) {
+    public JEffectCloudEntity(LivingEntity cloudCreator, Level world, double x, double y, double z, float initialRadius) {
         this(JEntities.EFFECT_CLOUD_TYPE, world);
         ownerUUID = cloudCreator.getUUID();
         this.setPos(x, y, z);
@@ -90,12 +98,12 @@ public class JEffectCloudEntity extends Entity {
         excludedEntities.add(mob.getUUID());
     }
 
-    public void addPrimaryEffect(EffectInstance effect) {
+    public void addPrimaryEffect(MobEffectInstance effect) {
         primaryEffects.add(effect);
     }
 
 
-    public void addSecondaryEffect(EffectInstance effect) {
+    public void addSecondaryEffect(MobEffectInstance effect) {
         secondaryEffects.add(effect);
     }
 
@@ -123,8 +131,8 @@ public class JEffectCloudEntity extends Entity {
             for (float current = 0; current < loops; ++current) {
                 float rotation = this.random.nextFloat() * ((float) Math.PI * 2F);
                 float distance = this.random.nextFloat() * radius; //vanilla has a sqrt here but it seems pointless
-                float xOffset = MathHelper.cos(rotation) * distance;
-                float zOffset = MathHelper.sin(rotation) * distance;
+                float xOffset = Mth.cos(rotation) * distance;
+                float zOffset = Mth.sin(rotation) * distance;
                 int color = getEntityData().get(COLOR);
                 this.level.addAlwaysVisibleParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + xOffset, this.getY(), this.getZ() + zOffset, (color >> 16 & 255) / 255.0, (color >> 8 & 255) / 255.0, (color & 255) / 255.0);
             }
@@ -155,7 +163,7 @@ public class JEffectCloudEntity extends Entity {
             List<LivingEntity> entityList = level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox());
             for (LivingEntity entity : entityList) {
                 if (Math.sqrt(Math.pow(entity.getX() - this.getX(), 2) + Math.pow(entity.getZ() - this.getZ(), 2)) <= getEntityData().get(RADIUS)) { //better precision (makes real hitbox round)
-                    for (EffectInstance effect : isEntityException(entity) ? secondaryEffects : primaryEffects) { //decide which effects to apply
+                    for (MobEffectInstance effect : isEntityException(entity) ? secondaryEffects : primaryEffects) { //decide which effects to apply
                         entity.addEffect(effect);
                     }
                 }
@@ -172,47 +180,47 @@ public class JEffectCloudEntity extends Entity {
     }
 
     @Override
-    public EntitySize getDimensions(Pose pose) {
-        return EntitySize.scalable(getEntityData().get(RADIUS) * 2F, 0.5F); //this gets the bounding box. Change second value to adjust height
+    public EntityDimensions getDimensions(Pose pose) {
+        return EntityDimensions.scalable(getEntityData().get(RADIUS) * 2F, 0.5F); //this gets the bounding box. Change second value to adjust height
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundNBT nbt) {
+    protected void addAdditionalSaveData(CompoundTag nbt) {
         nbt.putInt("time", this.tickCount);
         nbt.putFloat("radius", getEntityData().get(RADIUS));
         nbt.putInt("color", getEntityData().get(COLOR));
         nbt.putUUID("owner", ownerUUID);
 
-        ListNBT primaryEffectTag = new ListNBT();
-        for (EffectInstance effect : primaryEffects) {
-            primaryEffectTag.add(effect.save(new CompoundNBT()));
+        ListTag primaryEffectTag = new ListTag();
+        for (MobEffectInstance effect : primaryEffects) {
+            primaryEffectTag.add(effect.save(new CompoundTag()));
         }
         nbt.put("primary_effects", primaryEffectTag);
 
-        ListNBT secondaryEffectTag = new ListNBT();
-        for (EffectInstance effect : secondaryEffects) {
-            secondaryEffectTag.add(effect.save(new CompoundNBT()));
+        ListTag secondaryEffectTag = new ListTag();
+        for (MobEffectInstance effect : secondaryEffects) {
+            secondaryEffectTag.add(effect.save(new CompoundTag()));
         }
         nbt.put("secondary_effects", secondaryEffectTag);
 
-        ListNBT sizesTag = new ListNBT();
+        ListTag sizesTag = new ListTag();
         for (Pair<Integer, Float> pair : sizes) {
-            CompoundNBT pairTag = new CompoundNBT();
+            CompoundTag pairTag = new CompoundTag();
             pairTag.putInt("time", pair.left());
             pairTag.putFloat("size", pair.right());
             sizesTag.add(pairTag);
         }
         nbt.put("sizes", sizesTag);
 
-        ListNBT exceptionList = new ListNBT();
+        ListTag exceptionList = new ListTag();
         for (UUID id : excludedEntities) {
-            exceptionList.add(NBTUtil.createUUID(id));
+            exceptionList.add(NbtUtils.createUUID(id));
         }
         nbt.put("exceptions", exceptionList);
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundNBT nbt) {
+    protected void readAdditionalSaveData(CompoundTag nbt) {
         this.tickCount = nbt.getInt("time");
         getEntityData().set(RADIUS, nbt.getFloat("radius"));
         getEntityData().set(COLOR, nbt.getInt("color"));
@@ -220,35 +228,35 @@ public class JEffectCloudEntity extends Entity {
             ownerUUID = nbt.getUUID("owner");
         }
 
-        ListNBT primaryEffectsTag = nbt.getList("primary_effects", Constants.NBT.TAG_COMPOUND);
+        ListTag primaryEffectsTag = nbt.getList("primary_effects", Constants.NBT.TAG_COMPOUND);
         primaryEffects.clear();
         for (int i = 0; i < primaryEffectsTag.size(); i++) {
-            addPrimaryEffect(EffectInstance.load(primaryEffectsTag.getCompound(i)));
+            addPrimaryEffect(MobEffectInstance.load(primaryEffectsTag.getCompound(i)));
         }
 
-        ListNBT secondaryEffectsTag = nbt.getList("secondary_effects", Constants.NBT.TAG_COMPOUND);
+        ListTag secondaryEffectsTag = nbt.getList("secondary_effects", Constants.NBT.TAG_COMPOUND);
         secondaryEffects.clear();
         for (int i = 0; i < secondaryEffectsTag.size(); i++) {
-            addSecondaryEffect(EffectInstance.load(secondaryEffectsTag.getCompound(i)));
+            addSecondaryEffect(MobEffectInstance.load(secondaryEffectsTag.getCompound(i)));
         }
 
-        ListNBT sizesNBT = nbt.getList("sizes", Constants.NBT.TAG_COMPOUND);
+        ListTag sizesNBT = nbt.getList("sizes", Constants.NBT.TAG_COMPOUND);
         sizes.clear();
         for (int current = 0; current < sizesNBT.size(); current++) {
-            CompoundNBT pairCompound = sizesNBT.getCompound(current);
+            CompoundTag pairCompound = sizesNBT.getCompound(current);
             addSizeKey(pairCompound.getInt("time"), pairCompound.getFloat("size"));
         }
 
-        ListNBT exceptionList = nbt.getList("exceptions", Constants.NBT.TAG_INT_ARRAY);
-        for (INBT uuidNbt : exceptionList) {
-            excludedEntities.add(NBTUtil.loadUUID(uuidNbt));
+        ListTag exceptionList = nbt.getList("exceptions", Constants.NBT.TAG_INT_ARRAY);
+        for (Tag uuidNbt : exceptionList) {
+            excludedEntities.add(NbtUtils.loadUUID(uuidNbt));
         }
     }
 
     @Nullable
     private LivingEntity getEntityFromUUID(UUID id) {
         Requirements.onServer(level);
-        ServerWorld world = (ServerWorld) level;
+        ServerLevel world = (ServerLevel) level;
 
         Entity entity = world.getEntity(id);
         // instance of is here because some mobs could have the same uuid
@@ -264,7 +272,7 @@ public class JEffectCloudEntity extends Entity {
     }
 
     @Override
-    public void onSyncedDataUpdated(DataParameter<?> data) {
+    public void onSyncedDataUpdated(EntityDataAccessor<?> data) {
         if (data == RADIUS) {
             double oldX = this.getX();
             double oldY = this.getY();
@@ -276,7 +284,7 @@ public class JEffectCloudEntity extends Entity {
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

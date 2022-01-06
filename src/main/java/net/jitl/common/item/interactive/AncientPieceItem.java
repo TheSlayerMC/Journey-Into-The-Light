@@ -3,19 +3,19 @@ package net.jitl.common.item.interactive;
 import net.jitl.common.block.AncientSocketBlock;
 import net.jitl.init.JBlocks;
 import net.jitl.util.JItemProperties;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.block.EndPortalFrameBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.item.Items;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import java.util.Random;
 
@@ -26,10 +26,10 @@ public class AncientPieceItem extends Item {
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context) {
-        PlayerEntity player = context.getPlayer();
+    public InteractionResult useOn(UseOnContext context) {
+        Player player = context.getPlayer();
         ItemStack heldItem = player.getMainHandItem();
-        World world = context.getLevel();
+        Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
         BlockState blockstate = world.getBlockState(pos);
         Random itemRand = new Random();
@@ -46,8 +46,8 @@ public class AncientPieceItem extends Item {
                     double d5 = 0.0D;
                     world.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
                 }
-                world.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
-        return ActionResultType.sidedSuccess(world.isClientSide);
+        return InteractionResult.sidedSuccess(world.isClientSide);
     }
 }

@@ -1,56 +1,56 @@
 package net.jitl.common.helper;
 
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
 
 import java.util.List;
 
 public class TooltipFiller {
-    private final List<ITextComponent> tooltip;
+    private final List<Component> tooltip;
     private final String key;
     private int line = 0;
     private final int startPoint;
 
-    public TooltipFiller(List<ITextComponent> text, String itemKey) {
+    public TooltipFiller(List<Component> text, String itemKey) {
         tooltip = text;
         key = itemKey;
         startPoint = -1;
     }
 
-    public TooltipFiller(List<ITextComponent> text, String itemKey, int start) {
+    public TooltipFiller(List<Component> text, String itemKey, int start) {
         tooltip = text;
         key = itemKey;
         startPoint = start;
     }
 
-    public void addTooltip(TextFormatting color) {
+    public void addTooltip(ChatFormatting color) {
         if (startPoint == -1) {
-            tooltip.add(new TranslationTextComponent("jitl.tooltip." + key + "." + line++).withStyle(color));
+            tooltip.add(new TranslatableComponent("jitl.tooltip." + key + "." + line++).withStyle(color));
         } else {
-            tooltip.add(startPoint + line, new TranslationTextComponent("jitl.tooltip." + key + "." + line++).withStyle(color));
+            tooltip.add(startPoint + line, new TranslatableComponent("jitl.tooltip." + key + "." + line++).withStyle(color));
         }
     }
 
     public void addOverview() {
-        addTooltip(TextFormatting.GOLD);
+        addTooltip(ChatFormatting.GOLD);
     }
 
     public void addDetail() {
-        addTooltip(TextFormatting.AQUA);
+        addTooltip(ChatFormatting.AQUA);
     }
 
     public void addDrawback() {
-        addTooltip(TextFormatting.RED);
+        addTooltip(ChatFormatting.RED);
     }
 
     public void addValue(Object... values) {
         //TODO: test
-        tooltip.add(new TranslationTextComponent("jitl.tooltip." + key + "." + line++, values).withStyle(TextFormatting.GREEN));
+        tooltip.add(new TranslatableComponent("jitl.tooltip." + key + "." + line++, values).withStyle(ChatFormatting.GREEN));
     }
 
     public void addBreak() {
-        tooltip.add(StringTextComponent.EMPTY);
+        tooltip.add(TextComponent.EMPTY);
     }
 }

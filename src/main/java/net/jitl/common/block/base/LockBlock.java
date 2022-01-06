@@ -4,26 +4,34 @@ import net.jitl.init.JBlocks;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
 import net.jitl.util.JBlockProperties;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.Level;
 
 import java.util.Random;
 
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+
 public class LockBlock extends Block {
 
-    public static final DirectionProperty FACING = HorizontalBlock.FACING;
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public LockBlock() {
         super(JBlockProperties.STONE_PROPS.create());
@@ -31,7 +39,7 @@ public class LockBlock extends Block {
     }
 
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         ItemStack heldItem = player.getMainHandItem();
         Random r = new Random();
         boolean canOpen = false;
@@ -39,9 +47,9 @@ public class LockBlock extends Block {
             canOpen = true;
 
         if(heldItem != null && canOpen) {
-            worldIn.playSound(player, pos, SoundEvents.IRON_DOOR_OPEN, SoundCategory.BLOCKS, 1.0F, r.nextFloat());
+            worldIn.playSound(player, pos, SoundEvents.IRON_DOOR_OPEN, SoundSource.BLOCKS, 1.0F, r.nextFloat());
             if(worldIn.isClientSide) {
-                return ActionResultType.SUCCESS;
+                return InteractionResult.SUCCESS;
             } else {
                 if(state.getValue(FACING) == Direction.WEST || state.getValue(FACING) == Direction.EAST) {
                     for(int y = -1; y < 2; y++) {
@@ -61,16 +69,16 @@ public class LockBlock extends Block {
                     heldItem.shrink(1);
             }
         }
-        return ActionResultType.CONSUME;
+        return InteractionResult.CONSUME;
     }
 
     @Override
-    public BlockRenderType getRenderShape(BlockState state) {
-        return BlockRenderType.MODEL;
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
@@ -85,7 +93,7 @@ public class LockBlock extends Block {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 }

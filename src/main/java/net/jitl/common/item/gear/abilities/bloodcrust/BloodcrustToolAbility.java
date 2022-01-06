@@ -2,25 +2,25 @@ package net.jitl.common.item.gear.abilities.bloodcrust;
 
 import net.jitl.common.helper.TooltipFiller;
 import net.jitl.common.item.gear.abilities.IAbility;
-import net.minecraft.block.AbstractFireBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
 
 import java.util.List;
 
 public class BloodcrustToolAbility implements IAbility {
     @Override
-    public void breakBlock(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity entity) {
-        CompoundNBT tag = stack.getTag();
-        if (state.getBlock() instanceof AbstractFireBlock) {
+    public void breakBlock(ItemStack stack, Level world, BlockState state, BlockPos pos, LivingEntity entity) {
+        CompoundTag tag = stack.getTag();
+        if (state.getBlock() instanceof BaseFireBlock) {
             tag.putInt("Fire boost", 16);
             System.out.println("boost");
         } else {
@@ -30,8 +30,8 @@ public class BloodcrustToolAbility implements IAbility {
     }
 
     @Override
-    public void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
-        if (!stack.hasTag()) stack.setTag(new CompoundNBT());
+    public void equip(LivingEntity entity, EquipmentSlot slot, ItemStack stack) {
+        if (!stack.hasTag()) stack.setTag(new CompoundTag());
     }
 
     @Override
@@ -43,7 +43,7 @@ public class BloodcrustToolAbility implements IAbility {
     }
 
     @Override
-    public void fillTooltips(ItemStack stack, List<ITextComponent> tooltip) {
+    public void fillTooltips(ItemStack stack, List<Component> tooltip) {
         TooltipFiller filler = new TooltipFiller(tooltip, "bloodcrust_tool");
         filler.addOverview();
         filler.addDrawback();

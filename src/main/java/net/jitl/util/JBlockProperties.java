@@ -1,15 +1,15 @@
 package net.jitl.util;
 
 import net.jitl.init.JSoundTypes;
-import net.minecraft.block.AbstractBlock.Properties;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraftforge.common.ToolType;
 import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
 
@@ -305,7 +305,7 @@ public class JBlockProperties {
 
 
 
-	private static boolean never(BlockState state, IBlockReader reader, BlockPos pos) {
+	private static boolean never(BlockState state, BlockGetter reader, BlockPos pos) {
 		return false;
 	}
 

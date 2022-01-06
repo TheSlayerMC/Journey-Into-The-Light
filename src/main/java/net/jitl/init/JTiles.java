@@ -6,23 +6,25 @@ import net.jitl.client.render.tile.LaserEmitterTER;
 import net.jitl.client.render.tile.ObeliskTER;
 import net.jitl.client.render.tile.PedestalTER;
 import net.jitl.common.tile.*;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 import ru.timeconqueror.timecore.api.registry.TileEntityRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 
+import BlockEntityType;
+
 @ObjectHolder(JITL.MODID)
 public class JTiles {
 
-    public static final TileEntityType<LaserEmitterTile> LASER_EMITTER = promise();
-    public static final TileEntityType<JMobSpawnerTile> MOB_SPAWNER = promise();
-    public static final TileEntityType<EssenciaAltarTile> ESSENCIA_ALTAR = promise();
-    public static final TileEntityType<GuardianTowerBrainTile> GUARDIAN_TOWER_BRAIN = promise();
-    public static final TileEntityType<PedestalTile> PEDESTAL = promise();
-    public static final TileEntityType<PotTile> ANCIENT_POTTERY = promise();
-    public static final TileEntityType<PedestalTile> OBELISK = promise();
+    public static final BlockEntityType<LaserEmitterTile> LASER_EMITTER = promise();
+    public static final BlockEntityType<JMobSpawnerTile> MOB_SPAWNER = promise();
+    public static final BlockEntityType<EssenciaAltarTile> ESSENCIA_ALTAR = promise();
+    public static final BlockEntityType<GuardianTowerBrainTile> GUARDIAN_TOWER_BRAIN = promise();
+    public static final BlockEntityType<PedestalTile> PEDESTAL = promise();
+    public static final BlockEntityType<PotTile> ANCIENT_POTTERY = promise();
+    public static final BlockEntityType<PedestalTile> OBELISK = promise();
 
 
     private static class Registrator {

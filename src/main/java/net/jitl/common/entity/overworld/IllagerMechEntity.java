@@ -4,25 +4,25 @@ import com.google.common.collect.ImmutableList;
 import net.jitl.JITL;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.monster.AbstractRaiderEntity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.monster.VexEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.raid.Raider;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Vex;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.pathfinding.*;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.AnimationStarter;
@@ -38,7 +38,26 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedObject<IllagerMechEntity> {
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathFinder;
+import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
+
+public class IllagerMechEntity extends Raider implements AnimatedObject<IllagerMechEntity> {
 
     private static final Lazy<DelayedAction<IllagerMechEntity, Object>> THROWING_ACTION;
 
@@ -51,7 +70,7 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
                 .setDelayPredicate(StandardDelayPredicates.onEnd()));
     }
 
-    public IllagerMechEntity(EntityType<? extends IllagerMechEntity> entityType, World world) {
+    public IllagerMechEntity(EntityType<? extends IllagerMechEntity> entityType, Level world) {
         super(entityType, world);
         setCanJoinRaid(true);
         animationSystem = AnimationSystemBuilder.forEntity(this, world,
@@ -68,19 +87,19 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
         super.registerGoals();
         this.goalSelector.addGoal(2, new ThrowingGoal(this, 1.0D, false)); //mutex 1
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9D, 32.0F));
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new AttackGoal());
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, MobEntity.class, 5, false, false,
-                (livingEntity_) -> livingEntity_ instanceof IMob &&
-                        !(livingEntity_ instanceof CreeperEntity) &&
-                        !(livingEntity_ instanceof AbstractRaiderEntity) &&
-                        !(livingEntity_ instanceof VexEntity)));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Villager.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false,
+                (livingEntity_) -> livingEntity_ instanceof Enemy &&
+                        !(livingEntity_ instanceof Creeper) &&
+                        !(livingEntity_ instanceof Raider) &&
+                        !(livingEntity_ instanceof Vex)));
     }
 
     @Override
@@ -92,8 +111,8 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
         return SoundEvents.RAVAGER_CELEBRATE;
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 75.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.2D)
                 .add(Attributes.ATTACK_DAMAGE, 12.0D)
@@ -102,7 +121,7 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return sizeIn.height * 0.6F;
     }
 
@@ -135,7 +154,7 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        IllagerMechEntity.Cracks cracks = this.getCrackiness();
+        Cracks cracks = this.getCrackiness();
         boolean hurt = super.hurt(source, amount);
         if (hurt && this.getCrackiness() != cracks) {
             this.playSound(SoundEvents.IRON_GOLEM_DAMAGE, 1.0F, 0.5F);
@@ -144,12 +163,12 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
         return hurt;
     }
 
-    public IllagerMechEntity.Cracks getCrackiness() {
-        return IllagerMechEntity.Cracks.byFraction(this.getHealth() / this.getMaxHealth());
+    public Cracks getCrackiness() {
+        return Cracks.byFraction(this.getHealth() / this.getMaxHealth());
     }
 
     @Override
-    protected @NotNull PathNavigator createNavigation(@NotNull World worldIn) {
+    protected @NotNull PathNavigation createNavigation(@NotNull Level worldIn) {
         return new Navigator(this, worldIn);
     }
 
@@ -209,8 +228,8 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
         }
     }
 
-    static class Navigator extends GroundPathNavigator {
-        public Navigator(MobEntity mobEntity, World world) {
+    static class Navigator extends GroundPathNavigation {
+        public Navigator(Mob mobEntity, Level world) {
             super(mobEntity, world);
         }
 
@@ -221,13 +240,13 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
         }
     }
 
-    static class Processor extends WalkNodeProcessor {
+    static class Processor extends WalkNodeEvaluator {
         private Processor() {
         }
 
         @Override
-        protected @NotNull PathNodeType evaluateBlockPathType(@NotNull IBlockReader blockReader_, boolean boolean_, boolean boolean1_, @NotNull BlockPos blockPos_, @NotNull PathNodeType pathNodeType_) {
-            return pathNodeType_ == PathNodeType.LEAVES ? PathNodeType.OPEN : super.evaluateBlockPathType(blockReader_, boolean_, boolean1_, blockPos_, pathNodeType_);
+        protected @NotNull BlockPathTypes evaluateBlockPathType(@NotNull BlockGetter blockReader_, boolean boolean_, boolean boolean1_, @NotNull BlockPos blockPos_, @NotNull BlockPathTypes pathNodeType_) {
+            return pathNodeType_ == BlockPathTypes.LEAVES ? BlockPathTypes.OPEN : super.evaluateBlockPathType(blockReader_, boolean_, boolean1_, blockPos_, pathNodeType_);
         }
     }
 
@@ -237,7 +256,7 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
         MEDIUM(0.5F),
         HIGH(0.25F);
 
-        private static final List<IllagerMechEntity.Cracks> BY_DAMAGE =
+        private static final List<Cracks> BY_DAMAGE =
                 Stream.of(values()).sorted(Comparator.comparingDouble((cracks_) -> (double) cracks_.fraction)).collect(ImmutableList.toImmutableList());
         private final float fraction;
 
@@ -245,8 +264,8 @@ public class IllagerMechEntity extends AbstractRaiderEntity implements AnimatedO
             this.fraction = float_;
         }
 
-        public static IllagerMechEntity.Cracks byFraction(float float_) {
-            for (IllagerMechEntity.Cracks cracks : BY_DAMAGE) {
+        public static Cracks byFraction(float float_) {
+            for (Cracks cracks : BY_DAMAGE) {
                 if (float_ < cracks.fraction) {
                     return cracks;
                 }

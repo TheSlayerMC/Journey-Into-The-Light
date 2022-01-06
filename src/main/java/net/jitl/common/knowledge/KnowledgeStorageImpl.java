@@ -1,9 +1,9 @@
 package net.jitl.common.knowledge;
 
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
 
-public class KnowledgeStorageImpl extends SerializableInnerCap<CompoundNBT, KnowledgeStorageImpl> implements PlayerStats.KnowledgeStorage {
+public class KnowledgeStorageImpl extends SerializableInnerCap<CompoundTag, KnowledgeStorageImpl> implements PlayerStats.KnowledgeStorage {
 	private float amountOnLevel;
 	private int levels;
 
@@ -80,8 +80,8 @@ public class KnowledgeStorageImpl extends SerializableInnerCap<CompoundNBT, Know
 	}
 
 	@Override
-	public CompoundNBT serializeNBT() {
-		CompoundNBT compound = new CompoundNBT();
+	public CompoundTag serializeNBT() {
+		CompoundTag compound = new CompoundTag();
 		compound.putFloat("amount_on_level", amountOnLevel);
 		compound.putInt("levels", levels);
 
@@ -89,19 +89,19 @@ public class KnowledgeStorageImpl extends SerializableInnerCap<CompoundNBT, Know
 	}
 
 	@Override
-	public void deserializeNBT(CompoundNBT nbt) {
+	public void deserializeNBT(CompoundTag nbt) {
 		amountOnLevel = nbt.getFloat("amount_on_level");
 		levels = nbt.getInt("levels");
 	}
 
 	@Override
-	public void writeToBuffer(PacketBuffer buffer) {
+	public void writeToBuffer(FriendlyByteBuf buffer) {
 		buffer.writeFloat(amountOnLevel);
 		buffer.writeInt(levels);
 	}
 
 	@Override
-	public void readFromBuffer(PacketBuffer buffer) {
+	public void readFromBuffer(FriendlyByteBuf buffer) {
 		amountOnLevel = buffer.readFloat();
 		levels = buffer.readInt();
 	}

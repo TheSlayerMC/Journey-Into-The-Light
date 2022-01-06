@@ -7,41 +7,47 @@ import net.jitl.init.JBlocks;
 import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class FrozenGuardianEntity extends CreatureEntity {
-    private static final DataParameter<Boolean> DATA_IS_ACTIVATED = EntityDataManager.defineId(FrozenGuardianEntity.class, DataSerializers.BOOLEAN);
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
+
+public class FrozenGuardianEntity extends PathfinderMob {
+    private static final EntityDataAccessor<Boolean> DATA_IS_ACTIVATED = SynchedEntityData.defineId(FrozenGuardianEntity.class, EntityDataSerializers.BOOLEAN);
 
     private int death_timer;
 
-    public FrozenGuardianEntity(EntityType<? extends FrozenGuardianEntity> entityType, World world) {
+    public FrozenGuardianEntity(EntityType<? extends FrozenGuardianEntity> entityType, Level world) {
         super(entityType, world);
         this.death_timer = 50;
     }
@@ -49,12 +55,12 @@ public class FrozenGuardianEntity extends CreatureEntity {
     @Override
     protected void registerGoals() { }
 
-    public static boolean canSpawn(EntityType<? extends CreatureEntity> entityType, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+    public static boolean canSpawn(EntityType<? extends PathfinderMob> entityType, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
         return false;
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D);
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D);
     }
 
     @Override
@@ -64,11 +70,11 @@ public class FrozenGuardianEntity extends CreatureEntity {
 
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficultyIn) {
-        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(JItems.STAFF_OF_CONJURING));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(JItems.STAFF_OF_CONJURING));
     }
 
     @Override
-    public @NotNull IPacket<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -87,9 +93,9 @@ public class FrozenGuardianEntity extends CreatureEntity {
             if (death_timer <= 0) {
                 for (int i = 0; i < 24; ++i) {
                     this.level.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
-                            this.getX() - MathHelper.nextDouble(random, -0.45D, 0.75D),
-                            this.getY() + MathHelper.nextDouble(random, 0.5D, 2.0D),
-                            this.getZ() - MathHelper.nextDouble(random, -0.45D, 0.75D),
+                            this.getX() - Mth.nextDouble(random, -0.45D, 0.75D),
+                            this.getY() + Mth.nextDouble(random, 0.5D, 2.0D),
+                            this.getZ() - Mth.nextDouble(random, -0.45D, 0.75D),
                             this.random.nextGaussian() * 0.05D,
                             0.15D,
                             this.random.nextGaussian() * 0.05D);
@@ -112,13 +118,13 @@ public class FrozenGuardianEntity extends CreatureEntity {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putBoolean("activated", this.entityData.get(DATA_IS_ACTIVATED));
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         setActivated(compound.getBoolean("activated"));
     }
@@ -137,7 +143,7 @@ public class FrozenGuardianEntity extends CreatureEntity {
     }
 
     @Override
-    public boolean canBeLeashed(PlayerEntity player) {
+    public boolean canBeLeashed(Player player) {
         return false;
     }
 
@@ -168,10 +174,10 @@ public class FrozenGuardianEntity extends CreatureEntity {
     }
 
     @Override
-    protected ActionResultType mobInteract(PlayerEntity playerEntity, Hand hand) {
+    protected InteractionResult mobInteract(Player playerEntity, InteractionHand hand) {
         int check_radius = 8;
         int totalPedestals = 0;
-        final World world = this.level;
+        final Level world = this.level;
         final BlockPos entityPos = new BlockPos(this.position());
         for (int x = -check_radius; x <= check_radius; x++) {
             for (int z = -check_radius; z <= check_radius; z++) {
@@ -212,8 +218,8 @@ public class FrozenGuardianEntity extends CreatureEntity {
 
     public void disableFogDensity() {
         int playerArea = 10;
-        AxisAlignedBB axisalignedbb = AxisAlignedBB.unitCubeFromLowerCorner(this.position()).inflate(playerArea, 10.0D, playerArea);
-        for(PlayerEntity player : this.level.getEntitiesOfClass(PlayerEntity.class, axisalignedbb)) {
+        AABB axisalignedbb = AABB.unitCubeFromLowerCorner(this.position()).inflate(playerArea, 10.0D, playerArea);
+        for(Player player : this.level.getEntitiesOfClass(Player.class, axisalignedbb)) {
             JPlayer capability = JPlayer.from(player);
             if(capability != null) {
                 capability.fogDensity.setDensityEnabled(true);

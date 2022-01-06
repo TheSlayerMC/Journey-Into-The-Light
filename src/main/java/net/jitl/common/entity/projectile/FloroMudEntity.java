@@ -5,37 +5,37 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JParticleManager;
 import net.jitl.init.JSounds;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IRendersAsItem;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.ItemSupplier;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
-@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
-public class FloroMudEntity extends DamagingProjectileEntity implements IRendersAsItem {
+@OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
+public class FloroMudEntity extends DamagingProjectileEntity implements ItemSupplier {
 
-    public FloroMudEntity(EntityType<FloroMudEntity> type, World world) {
+    public FloroMudEntity(EntityType<FloroMudEntity> type, Level world) {
         super(type, world);
     }
 
-    public FloroMudEntity(EntityType<FloroMudEntity> type, World world, LivingEntity thrower, float damage) {
+    public FloroMudEntity(EntityType<FloroMudEntity> type, Level world, LivingEntity thrower, float damage) {
         super(type, world, thrower, damage);
     }
 
-    public FloroMudEntity(World world, LivingEntity thrower, float damage) {
+    public FloroMudEntity(Level world, LivingEntity thrower, float damage) {
         super(JEntities.FLORO_MUD_TYPE, world, thrower, damage);
     }
 
@@ -44,7 +44,7 @@ public class FloroMudEntity extends DamagingProjectileEntity implements IRenders
     public void onClientTick() {
         super.onClientTick();
         int count = 2;
-        Vector3d vector3d = this.getDeltaMovement();
+        Vec3 vector3d = this.getDeltaMovement();
         double d0 = this.getX() + vector3d.x;
         double d1 = this.getY() + vector3d.y;
         double d2 = this.getZ() + vector3d.z;
@@ -60,19 +60,19 @@ public class FloroMudEntity extends DamagingProjectileEntity implements IRenders
     }
 
     @Override
-    protected void onEntityImpact(RayTraceResult result, Entity target) {
+    protected void onEntityImpact(HitResult result, Entity target) {
         if (target instanceof LivingEntity && target.hurt(DamageSource.thrown(this, this.getOwner()), getDamage())) {
-            EffectInstance effectInstance = new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20);
+            MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20);
             ((LivingEntity) target).addEffect(effectInstance);
         }
     }
 
     @Override
-    protected void onHit(RayTraceResult result) {
+    protected void onHit(HitResult result) {
         super.onHit(result);
         if (!level.isClientSide) {
-            if (result.getType() != RayTraceResult.Type.MISS) {
-                level.playSound(null, new BlockPos(result.getLocation()), JSounds.MUD_BLOCK_BREAK.get(), SoundCategory.AMBIENT, 1.0F, 1.5F);
+            if (result.getType() != HitResult.Type.MISS) {
+                level.playSound(null, new BlockPos(result.getLocation()), JSounds.MUD_BLOCK_BREAK.get(), SoundSource.AMBIENT, 1.0F, 1.5F);
             }
         } else {
             remove();
@@ -85,7 +85,7 @@ public class FloroMudEntity extends DamagingProjectileEntity implements IRenders
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {//TODO move tosuperclass
+    public Packet<?> getAddEntityPacket() {//TODO move tosuperclass
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

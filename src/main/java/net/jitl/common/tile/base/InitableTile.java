@@ -1,8 +1,8 @@
 package net.jitl.common.tile.base;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import ru.timeconqueror.timecore.api.common.tile.SerializationType;
 import ru.timeconqueror.timecore.api.common.tile.SyncableTile;
 
@@ -11,7 +11,7 @@ import javax.annotation.OverridingMethodsMustInvokeSuper;
 public class InitableTile extends SyncableTile {
     private boolean firstAdded = true;
 
-    public InitableTile(TileEntityType<?> tileEntityTypeIn) {
+    public InitableTile(BlockEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
@@ -33,13 +33,13 @@ public class InitableTile extends SyncableTile {
     }
 
     @Override
-    protected void writeNBT(CompoundNBT nbt, SerializationType type) {
+    protected void writeNBT(CompoundTag nbt, SerializationType type) {
         super.writeNBT(nbt, type);
     }
 
     @Override
     @OverridingMethodsMustInvokeSuper
-    protected void readNBT(BlockState state, CompoundNBT nbt, SerializationType type) {
+    protected void readNBT(BlockState state, CompoundTag nbt, SerializationType type) {
         super.readNBT(state, nbt, type);
 
         firstAdded = false;

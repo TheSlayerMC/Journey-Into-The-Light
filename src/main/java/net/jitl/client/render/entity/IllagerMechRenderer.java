@@ -1,14 +1,14 @@
 package net.jitl.client.render.entity;
 
 import com.google.common.collect.ImmutableMap;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
 import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.common.entity.overworld.IllagerMechEntity;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import com.mojang.math.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -26,7 +26,7 @@ public class IllagerMechRenderer extends AnimatedLivingEntityRenderer<IllagerMec
             IllagerMechEntity.Cracks.MEDIUM, JITL.rl("textures/entity/overworld/illager_mech_cracked_medium.png"),
             IllagerMechEntity.Cracks.HIGH, JITL.rl("textures/entity/overworld/illager_mech_cracked_high.png"));
 
-    public IllagerMechRenderer(EntityRendererManager rendererManager) {
+    public IllagerMechRenderer(EntityRenderDispatcher rendererManager) {
         super(rendererManager, JEntityRenderRegistry.illagerMechModel, 0.5F);
     }
 
@@ -41,16 +41,16 @@ public class IllagerMechRenderer extends AnimatedLivingEntityRenderer<IllagerMec
     }
 
     @Override
-    protected void setupRotations(@NotNull IllagerMechEntity entityLiving, @NotNull MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+    protected void setupRotations(@NotNull IllagerMechEntity entityLiving, @NotNull PoseStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
         super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
-        float f = MathHelper.rotLerp(partialTicks, entityLiving.yBodyRotO, entityLiving.yBodyRot);
-        float f1 = MathHelper.rotLerp(partialTicks, entityLiving.yHeadRotO, entityLiving.yHeadRot);
+        float f = Mth.rotLerp(partialTicks, entityLiving.yBodyRotO, entityLiving.yBodyRot);
+        float f1 = Mth.rotLerp(partialTicks, entityLiving.yHeadRotO, entityLiving.yHeadRot);
         float f2 = f1 - f;
 
         TimeModelRenderer headPiece = Objects.requireNonNull(model.getPiece("head"));
 
         Objects.requireNonNull(headPiece).yRot = f2 * ((float) Math.PI / 270F);
-        Objects.requireNonNull(headPiece).xRot = MathHelper.lerp(partialTicks, entityLiving.xRotO, entityLiving.xRot) * ((float) Math.PI / 270F);
+        Objects.requireNonNull(headPiece).xRot = Mth.lerp(partialTicks, entityLiving.xRotO, entityLiving.xRot) * ((float) Math.PI / 270F);
 
         if (!((double) entityLiving.animationSpeed < 0.01D)) {
             float v1 = entityLiving.animationPosition - entityLiving.animationSpeed * (1.0F - partialTicks) + 6.0F;

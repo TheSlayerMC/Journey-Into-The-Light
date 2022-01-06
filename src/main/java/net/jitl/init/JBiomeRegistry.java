@@ -2,11 +2,13 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.dimension.JBiomeProvider;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import Biome;
 
 @Mod.EventBusSubscriber
 public class JBiomeRegistry {

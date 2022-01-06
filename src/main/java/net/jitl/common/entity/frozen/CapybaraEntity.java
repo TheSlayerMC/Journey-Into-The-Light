@@ -3,38 +3,62 @@ package net.jitl.common.entity.frozen;
 import net.jitl.JITL;
 import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.horse.AbstractHorseEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Random;
 
-public class CapybaraEntity extends AnimalEntity implements IRideable, IEquipable {
-    private static final DataParameter<Boolean> DATA_SADDLE_ID = EntityDataManager.defineId(CapybaraEntity.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> DATA_BOOST_TIME = EntityDataManager.defineId(CapybaraEntity.class, DataSerializers.INT);
-    private final BoostHelper steering = new BoostHelper(this.entityData, DATA_BOOST_TIME, DATA_SADDLE_ID);
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.AgableMob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ItemBasedSteering;
+import net.minecraft.world.entity.ItemSteerable;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.Saddleable;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.FollowParentGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.vehicle.DismountHelper;
+
+public class CapybaraEntity extends Animal implements ItemSteerable, Saddleable {
+    private static final EntityDataAccessor<Boolean> DATA_SADDLE_ID = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> DATA_BOOST_TIME = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.INT);
+    private final ItemBasedSteering steering = new ItemBasedSteering(this.entityData, DATA_BOOST_TIME, DATA_SADDLE_ID);
 
     private static final Ingredient FOOD_ITEMS = Ingredient.of(
             Items.WHEAT,
@@ -53,48 +77,48 @@ public class CapybaraEntity extends AnimalEntity implements IRideable, IEquipabl
             Items.GOLDEN_APPLE,
             Items.ENCHANTED_GOLDEN_APPLE);
 
-    public CapybaraEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
+    public CapybaraEntity(EntityType<? extends Animal> type, Level worldIn) {
         super(type, worldIn);
         this.maxUpStep = 2.0F;
     }
 
-    public static boolean canSpawn(EntityType<? extends AnimalEntity> entityType, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+    public static boolean canSpawn(EntityType<? extends Animal> entityType, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
         return !worldIn.getBlockState(pos).is(Blocks.WATER)
                 || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("frozen_wastes"))
                 || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("dying_forest"))
                 || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("bitterwood_forest"));
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
     @Override
-    public float getWalkTargetValue(BlockPos pos, IWorldReader worldIn) {
+    public float getWalkTargetValue(BlockPos pos, LevelReader worldIn) {
         return 0.02F;
     }
 
     @Nullable
     @Override
-    public AgeableEntity getBreedOffspring(ServerWorld serverWorld_, AgeableEntity ageableEntity_) {
+    public AgableMob getBreedOffspring(ServerLevel serverWorld_, AgableMob ageableEntity_) {
         return JEntities.CAPYBARA_TYPE.create(serverWorld_);
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.2D));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D, AbstractHorseEntity.class));
+        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D, AbstractHorse.class));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.0D));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.7D));
-        this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.7D));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.addBehaviourGoals();
     }
 
     protected void addBehaviourGoals() {
-        this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
     }
 
     @Nullable
@@ -110,16 +134,16 @@ public class CapybaraEntity extends AnimalEntity implements IRideable, IEquipabl
     @Override
     public boolean canBeControlledByRider() {
         Entity entity = this.getControllingPassenger();
-        if (!(entity instanceof PlayerEntity)) {
+        if (!(entity instanceof Player)) {
             return false;
         } else {
-            PlayerEntity playerentity = (PlayerEntity) entity;
+            Player playerentity = (Player) entity;
             return playerentity.getMainHandItem().getItem() == JItems.REDCURRANT_ON_A_STICK || playerentity.getOffhandItem().getItem() == JItems.REDCURRANT_ON_A_STICK;
         }
     }
 
     @Override
-    public void onSyncedDataUpdated(DataParameter<?> key) {
+    public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
         if (DATA_BOOST_TIME.equals(key) && this.level.isClientSide) {
             this.steering.onSynced();
         }
@@ -135,7 +159,7 @@ public class CapybaraEntity extends AnimalEntity implements IRideable, IEquipabl
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         this.steering.addAdditionalSaveData(compound);
     }
@@ -144,25 +168,25 @@ public class CapybaraEntity extends AnimalEntity implements IRideable, IEquipabl
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
     @Override
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.steering.readAdditionalSaveData(compound);
     }
 
     @Override
-    public ActionResultType mobInteract(PlayerEntity playerEntity_, Hand hand_) {
+    public InteractionResult mobInteract(Player playerEntity_, InteractionHand hand_) {
         boolean flag = this.isFood(playerEntity_.getItemInHand(hand_));
         if (!flag && this.isSaddled() && !this.isVehicle() && !playerEntity_.isSecondaryUseActive()) {
             if (!this.level.isClientSide) {
                 playerEntity_.startRiding(this);
             }
 
-            return ActionResultType.sidedSuccess(this.level.isClientSide);
+            return InteractionResult.sidedSuccess(this.level.isClientSide);
         } else {
-            ActionResultType actionresulttype = super.mobInteract(playerEntity_, hand_);
+            InteractionResult actionresulttype = super.mobInteract(playerEntity_, hand_);
             if (!actionresulttype.consumesAction()) {
                 ItemStack itemstack = playerEntity_.getItemInHand(hand_);
-                return itemstack.getItem() == Items.SADDLE ? itemstack.interactLivingEntity(playerEntity_, this, hand_) : ActionResultType.PASS;
+                return itemstack.getItem() == Items.SADDLE ? itemstack.interactLivingEntity(playerEntity_, this, hand_) : InteractionResult.PASS;
             } else {
                 return actionresulttype;
             }
@@ -189,7 +213,7 @@ public class CapybaraEntity extends AnimalEntity implements IRideable, IEquipabl
     }
 
     @Override
-    public void equipSaddle(@Nullable SoundCategory soundCategory_) {
+    public void equipSaddle(@Nullable SoundSource soundCategory_) {
         this.steering.setSaddle(true);
         if (soundCategory_ != null) {
             this.level.playSound(null, this, SoundEvents.PIG_SADDLE, soundCategory_, 0.5F, 1.0F);
@@ -198,24 +222,24 @@ public class CapybaraEntity extends AnimalEntity implements IRideable, IEquipabl
     }
 
     @Override
-    public Vector3d getDismountLocationForPassenger(LivingEntity livingEntity) {
+    public Vec3 getDismountLocationForPassenger(LivingEntity livingEntity) {
         Direction direction = this.getMotionDirection();
         if (direction.getAxis() == Direction.Axis.Y) {
             return super.getDismountLocationForPassenger(livingEntity);
         } else {
-            int[][] aint = TransportationHelper.offsetsForDirection(direction);
+            int[][] aint = DismountHelper.offsetsForDirection(direction);
             BlockPos blockpos = this.blockPosition();
-            BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+            BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
             for (Pose pose : livingEntity.getDismountPoses()) {
-                AxisAlignedBB axisalignedbb = livingEntity.getLocalBoundsForPose(pose);
+                AABB axisalignedbb = livingEntity.getLocalBoundsForPose(pose);
 
                 for (int[] aint1 : aint) {
                     blockpos$mutable.set(blockpos.getX() + aint1[0], blockpos.getY(), blockpos.getZ() + aint1[1]);
                     double d0 = this.level.getBlockFloorHeight(blockpos$mutable);
-                    if (TransportationHelper.isBlockFloorValid(d0)) {
-                        Vector3d vector3d = Vector3d.upFromBottomCenterOf(blockpos$mutable, d0);
-                        if (TransportationHelper.canDismountTo(this.level, livingEntity, axisalignedbb.move(vector3d))) {
+                    if (DismountHelper.isBlockFloorValid(d0)) {
+                        Vec3 vector3d = Vec3.upFromBottomCenterOf(blockpos$mutable, d0);
+                        if (DismountHelper.canDismountTo(this.level, livingEntity, axisalignedbb.move(vector3d))) {
                             livingEntity.setPose(pose);
                             return vector3d;
                         }
@@ -228,7 +252,7 @@ public class CapybaraEntity extends AnimalEntity implements IRideable, IEquipabl
     }
 
     @Override
-    public void travel(Vector3d travelVector) {
+    public void travel(Vec3 travelVector) {
         this.travel(this, this.steering, travelVector);
     }
 
@@ -238,7 +262,7 @@ public class CapybaraEntity extends AnimalEntity implements IRideable, IEquipabl
     }
 
     @Override
-    public void travelWithInput(Vector3d travelVec) {
+    public void travelWithInput(Vec3 travelVec) {
         super.travel(travelVec);
     }
 

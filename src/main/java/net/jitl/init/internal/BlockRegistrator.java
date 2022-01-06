@@ -37,6 +37,9 @@ import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+
 public class BlockRegistrator {
 
     @AutoRegistrable

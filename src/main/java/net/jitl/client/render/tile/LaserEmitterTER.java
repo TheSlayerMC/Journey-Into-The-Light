@@ -1,7 +1,7 @@
 package net.jitl.client.render.tile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.jitl.JITL;
 import net.jitl.client.Models;
 import net.jitl.client.render.JRenderTypes;
@@ -9,33 +9,33 @@ import net.jitl.common.tile.LaserEmitterTile;
 import net.jitl.util.calculation.BeamCalculation;
 import net.jitl.util.calculation.BeamCalculation.TillBlockResult;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ActiveRenderInfo;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.Camera;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Quaternion;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.world.World;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Quaternion;
+import net.minecraft.world.phys.Vec3;
+import com.mojang.math.Vector3f;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.client.model.animation.Animation;
 import ru.timeconqueror.timecore.api.util.VecUtils;
 import ru.timeconqueror.timecore.client.render.model.TimeModel;
 
 //TODO optimize - TimeCore- add registry for buffers to endBatch them in WorldRenderer to heavily increase FPS
-public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
+public class LaserEmitterTER extends BlockEntityRenderer<LaserEmitterTile> {
     private static final RenderType TYPE_LASER_BEAM = JRenderTypes.laserBeam(JITL.rl("textures/tile/laser_beam.png"));
 
-    public LaserEmitterTER(TileEntityRendererDispatcher rendererDispatcherIn) {
+    public LaserEmitterTER(BlockEntityRenderDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
     }
 
     @Override
-    public void render(LaserEmitterTile tile, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        World world = tile.getLevel();
+    public void render(LaserEmitterTile tile, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
+        Level world = tile.getLevel();
         if (world == null) return;
 
         float gameTime = Animation.getWorldTime(world, partialTicks) * 20;
@@ -44,14 +44,14 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
         renderModel(Models.fullCube, JITL.rl("textures/block/laser_emitter.png"), rotation, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
 
         BlockPos blockPos = tile.getBlockPos();
-        Vector3d blockVec = VecUtils.vec3d(blockPos);
+        Vec3 blockVec = VecUtils.vec3d(blockPos);
 
         TillBlockResult result = BeamCalculation.tillBlock(world, blockPos, LaserEmitterTile.BEAM_OFFSET, rotation, LaserEmitterTile.MAX_DISTANCE);
 
         renderBeam(blockPos, gameTime, matrixStackIn, bufferIn, VecUtils.vec3d(result.getRelBeamStart()), result.getRayTraceEnd().subtract(blockVec));
     }
 
-    public static void renderModel(TimeModel model, ResourceLocation texture, Quaternion rotationQuaternion, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
+    public static void renderModel(TimeModel model, ResourceLocation texture, Quaternion rotationQuaternion, PoseStack matrixStack, MultiBufferSource buffer, int combinedLightIn, int combinedOverlayIn) {
         matrixStack.pushPose();
 
         matrixStack.translate(0.5F, 0, 0.5F);
@@ -64,17 +64,17 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
         matrixStack.popPose();
     }
 
-    public static void renderBeam(BlockPos pos, float gameTime, MatrixStack stack, IRenderTypeBuffer bufferIn, Vector3d startIn, Vector3d endIn) {
+    public static void renderBeam(BlockPos pos, float gameTime, PoseStack stack, MultiBufferSource bufferIn, Vec3 startIn, Vec3 endIn) {
         Vector3f start = new Vector3f(startIn);
         Vector3f end = new Vector3f(endIn);
 
-        IVertexBuilder laserBeamBuffer = bufferIn.getBuffer(TYPE_LASER_BEAM);
+        VertexConsumer laserBeamBuffer = bufferIn.getBuffer(TYPE_LASER_BEAM);
 
-        MatrixStack.Entry last = stack.last();
+        PoseStack.Pose last = stack.last();
         Matrix4f posMatrix = last.pose();
 
-        ActiveRenderInfo activeRenderInfo = Minecraft.getInstance().gameRenderer.getMainCamera();
-        Vector3d camera = activeRenderInfo.getPosition().subtract(pos.getX(), pos.getY(), pos.getZ());
+        Camera activeRenderInfo = Minecraft.getInstance().gameRenderer.getMainCamera();
+        Vec3 camera = activeRenderInfo.getPosition().subtract(pos.getX(), pos.getY(), pos.getZ());
 
         float speed = 4;
         float amplitude = 21; //bigger - lesser
@@ -113,7 +113,7 @@ public class LaserEmitterTER extends TileEntityRenderer<LaserEmitterTile> {
         toCamera.sub(start);
         toCamera.normalize();
 
-        VecUtils.addToFirst(start, new Vector3d(toCamera.x() * 0.2F, toCamera.y() * 0.2F, toCamera.z() * 0.2F));
+        VecUtils.addToFirst(start, new Vec3(toCamera.x() * 0.2F, toCamera.y() * 0.2F, toCamera.z() * 0.2F));
 
         Vector3f leftPerpendicular = toCamera.copy();
         Vector3f beamDirection = end.copy();

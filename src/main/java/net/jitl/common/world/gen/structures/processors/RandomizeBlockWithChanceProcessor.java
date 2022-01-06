@@ -2,13 +2,13 @@ package net.jitl.common.world.gen.structures.processors;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.Block;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.gen.feature.template.IStructureProcessorType;
-import net.minecraft.world.gen.feature.template.PlacementSettings;
-import net.minecraft.world.gen.feature.template.StructureProcessor;
-import net.minecraft.world.gen.feature.template.Template;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.init.TStructureProcessorTypes;
 import ru.timeconqueror.timecore.api.util.ExtraCodecs;
@@ -40,16 +40,16 @@ public class RandomizeBlockWithChanceProcessor extends StructureProcessor {
 
     @Nullable
     @Override
-    public Template.BlockInfo process(IWorldReader world, BlockPos templatePosition, BlockPos pieceBottomCenter, Template.BlockInfo original, Template.BlockInfo modified, PlacementSettings settings, @Nullable Template template) {
+    public StructureTemplate.StructureBlockInfo process(LevelReader world, BlockPos templatePosition, BlockPos pieceBottomCenter, StructureTemplate.StructureBlockInfo original, StructureTemplate.StructureBlockInfo modified, StructurePlaceSettings settings, @Nullable StructureTemplate template) {
         if (modified.state.getBlock() == toReplace && RandHelper.chance(settings.getRandom(modified.pos), chance)) {
-            return new Template.BlockInfo(modified.pos, replacement.defaultBlockState(), modified.nbt);
+            return new StructureTemplate.StructureBlockInfo(modified.pos, replacement.defaultBlockState(), modified.nbt);
         }
 
         return modified;
     }
 
     @Override
-    protected IStructureProcessorType<?> getType() {
+    protected StructureProcessorType<?> getType() {
         return TStructureProcessorTypes.RANDOMIZE_BLOCK_PROCESSOR;
     }
 }

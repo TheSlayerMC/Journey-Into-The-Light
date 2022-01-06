@@ -2,7 +2,7 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.world.gen.treedecorator.*;
-import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import ru.timeconqueror.timecore.api.registry.SimpleForgeRegister;

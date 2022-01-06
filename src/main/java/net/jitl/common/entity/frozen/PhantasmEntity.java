@@ -2,56 +2,64 @@ package net.jitl.common.entity.frozen;
 
 import net.jitl.JITL;
 import net.jitl.init.JParticleManager;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.MovementController;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 
 import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Random;
 
-public class PhantasmEntity extends MobEntity implements IMob {
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.Pose;
+
+public class PhantasmEntity extends Mob implements Enemy {
     public float targetSquish;
     public float squish;
     public float oSquish;
     private boolean wasOnGround;
 
-    public PhantasmEntity(EntityType<? extends PhantasmEntity> type, World worldIn) {
+    public PhantasmEntity(EntityType<? extends PhantasmEntity> type, Level worldIn) {
         super(type, worldIn);
-        this.moveControl = new PhantasmEntity.MoveHelperController(this);
+        this.moveControl = new MoveHelperController(this);
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new PhantasmEntity.FloatGoal(this));
-        this.goalSelector.addGoal(2, new PhantasmEntity.AttackGoal(this));
-        this.goalSelector.addGoal(3, new PhantasmEntity.FaceRandomGoal(this));
-        this.goalSelector.addGoal(5, new PhantasmEntity.HopGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, (livingEntity_) -> {
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(2, new AttackGoal(this));
+        this.goalSelector.addGoal(3, new FaceRandomGoal(this));
+        this.goalSelector.addGoal(5, new HopGoal(this));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, (livingEntity_) -> {
             return Math.abs(livingEntity_.getY() - this.getY()) <= 4.0D;
         }));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
     }
 
-    public void addAdditionalSaveData(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putBoolean("wasOnGround", this.wasOnGround);
     }
@@ -59,26 +67,26 @@ public class PhantasmEntity extends MobEntity implements IMob {
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.wasOnGround = compound.getBoolean("wasOnGround");
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
-    public static boolean canSpawn(EntityType<? extends MobEntity> entityType, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+    public static boolean canSpawn(EntityType<? extends Mob> entityType, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
         return !worldIn.getBlockState(pos).is(Blocks.WATER)
                 || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("frozen_wastes"))
                 || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("dying_forest"))
                 || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("bitterwood_forest"));
     }
 
-    protected IParticleData getParticleType() {
+    protected ParticleOptions getParticleType() {
         return JParticleManager.MINERS_PEARL.get();
     }
 
@@ -96,8 +104,8 @@ public class PhantasmEntity extends MobEntity implements IMob {
             for (int j = 0; j < i * 8; ++j) {
                 float f = this.random.nextFloat() * ((float) Math.PI * 2F);
                 float f1 = this.random.nextFloat() * 0.5F + 0.5F;
-                float f2 = MathHelper.sin(f) * (float) i * 0.5F * f1;
-                float f3 = MathHelper.cos(f) * (float) i * 0.5F * f1;
+                float f2 = Mth.sin(f) * (float) i * 0.5F * f1;
+                float f3 = Mth.cos(f) * (float) i * 0.5F * f1;
                 this.level.addParticle(this.getParticleType(), this.getX() + (double) f2, this.getY(), this.getZ() + (double) f3, 0.0D, 0.0D, 0.0D);
             }
 
@@ -138,7 +146,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
     public void remove(boolean keepData) {
         int i = 1;
         if (!this.level.isClientSide && i > 1 && this.isDeadOrDying() && !this.removed) {
-            ITextComponent itextcomponent = this.getCustomName();
+            Component itextcomponent = this.getCustomName();
             boolean flag = this.isNoAi();
             float f = (float) i / 4.0F;
             int j = i / 2;
@@ -168,7 +176,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
      */
     public void push(Entity entityIn) {
         super.push(entityIn);
-        if (entityIn instanceof IronGolemEntity && this.isDealsDamage()) {
+        if (entityIn instanceof IronGolem && this.isDealsDamage()) {
             this.dealDamage((LivingEntity) entityIn);
         }
     }
@@ -176,7 +184,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
     /**
      * Called by a player entity when they collide with an entity
      */
-    public void playerTouch(PlayerEntity entityIn) {
+    public void playerTouch(Player entityIn) {
         if (this.isDealsDamage()) {
             this.dealDamage(entityIn);
         }
@@ -193,7 +201,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
 
     }
 
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return 0.625F * sizeIn.height;
     }
 
@@ -246,7 +254,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
      * Causes this entity to do an upwards motion (jumping).
      */
     protected void jumpFromGround() {
-        Vector3d vector3d = this.getDeltaMovement();
+        Vec3 vector3d = this.getDeltaMovement();
         this.setDeltaMovement(vector3d.x, this.getJumpPower(), vector3d.z);
         this.hasImpulse = true;
     }
@@ -269,7 +277,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
 
         public AttackGoal(PhantasmEntity slimeIn) {
             this.slime = slimeIn;
-            this.setFlags(EnumSet.of(Goal.Flag.LOOK));
+            this.setFlags(EnumSet.of(Flag.LOOK));
         }
 
         /**
@@ -283,7 +291,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
             } else if (!livingentity.isAlive()) {
                 return false;
             } else {
-                return (!(livingentity instanceof PlayerEntity) || !((PlayerEntity) livingentity).abilities.invulnerable) && this.slime.getMoveControl() instanceof MoveHelperController;
+                return (!(livingentity instanceof Player) || !((Player) livingentity).abilities.invulnerable) && this.slime.getMoveControl() instanceof MoveHelperController;
             }
         }
 
@@ -304,7 +312,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
                 return false;
             } else if (!livingentity.isAlive()) {
                 return false;
-            } else if (livingentity instanceof PlayerEntity && ((PlayerEntity) livingentity).abilities.invulnerable) {
+            } else if (livingentity instanceof Player && ((Player) livingentity).abilities.invulnerable) {
                 return false;
             } else {
                 return --this.growTiredTimer > 0;
@@ -316,7 +324,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
          */
         public void tick() {
             this.slime.lookAt(Objects.requireNonNull(this.slime.getTarget()), 10.0F, 10.0F);
-            ((PhantasmEntity.MoveHelperController) this.slime.getMoveControl()).setDirection(this.slime.yRot, this.slime.isDealsDamage());
+            ((MoveHelperController) this.slime.getMoveControl()).setDirection(this.slime.yRot, this.slime.isDealsDamage());
         }
     }
 
@@ -327,7 +335,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
 
         public FaceRandomGoal(PhantasmEntity slimeIn) {
             this.slime = slimeIn;
-            this.setFlags(EnumSet.of(Goal.Flag.LOOK));
+            this.setFlags(EnumSet.of(Flag.LOOK));
         }
 
         /**
@@ -335,7 +343,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
          * method as well.
          */
         public boolean canUse() {
-            return this.slime.getTarget() == null && (this.slime.onGround || this.slime.isInWater() || this.slime.isInLava() || this.slime.hasEffect(Effects.LEVITATION)) && this.slime.getMoveControl() instanceof PhantasmEntity.MoveHelperController;
+            return this.slime.getTarget() == null && (this.slime.onGround || this.slime.isInWater() || this.slime.isInLava() || this.slime.hasEffect(MobEffects.LEVITATION)) && this.slime.getMoveControl() instanceof MoveHelperController;
         }
 
         /**
@@ -347,7 +355,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
                 this.chosenDegrees = (float) this.slime.getRandom().nextInt(360);
             }
 
-            ((PhantasmEntity.MoveHelperController) this.slime.getMoveControl()).setDirection(this.chosenDegrees, false);
+            ((MoveHelperController) this.slime.getMoveControl()).setDirection(this.chosenDegrees, false);
         }
     }
 
@@ -356,7 +364,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
 
         public FloatGoal(PhantasmEntity slimeIn) {
             this.slime = slimeIn;
-            this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
+            this.setFlags(EnumSet.of(Flag.JUMP, Flag.MOVE));
             slimeIn.getNavigation().setCanFloat(true);
         }
 
@@ -365,7 +373,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
          * method as well.
          */
         public boolean canUse() {
-            return (this.slime.isInWater() || this.slime.isInLava()) && this.slime.getMoveControl() instanceof PhantasmEntity.MoveHelperController;
+            return (this.slime.isInWater() || this.slime.isInLava()) && this.slime.getMoveControl() instanceof MoveHelperController;
         }
 
         /**
@@ -376,7 +384,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
                 this.slime.getJumpControl().jump();
             }
 
-            ((PhantasmEntity.MoveHelperController) this.slime.getMoveControl()).setWantedMovement(1.2D);
+            ((MoveHelperController) this.slime.getMoveControl()).setWantedMovement(1.2D);
         }
     }
 
@@ -385,7 +393,7 @@ public class PhantasmEntity extends MobEntity implements IMob {
 
         public HopGoal(PhantasmEntity slimeIn) {
             this.slime = slimeIn;
-            this.setFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
+            this.setFlags(EnumSet.of(Flag.JUMP, Flag.MOVE));
         }
 
         /**
@@ -400,11 +408,11 @@ public class PhantasmEntity extends MobEntity implements IMob {
          * Keep ticking a continuous task that has already been started
          */
         public void tick() {
-            ((PhantasmEntity.MoveHelperController) this.slime.getMoveControl()).setWantedMovement(1.0D);
+            ((MoveHelperController) this.slime.getMoveControl()).setWantedMovement(1.0D);
         }
     }
 
-    static class MoveHelperController extends MovementController {
+    static class MoveHelperController extends MoveControl {
         private float yRot;
         private int jumpDelay;
         private final PhantasmEntity slime;
@@ -423,17 +431,17 @@ public class PhantasmEntity extends MobEntity implements IMob {
 
         public void setWantedMovement(double speedIn) {
             this.speedModifier = speedIn;
-            this.operation = MovementController.Action.MOVE_TO;
+            this.operation = Operation.MOVE_TO;
         }
 
         public void tick() {
             this.mob.yRot = this.rotlerp(this.mob.yRot, this.yRot, 90.0F);
             this.mob.yHeadRot = this.mob.yRot;
             this.mob.yBodyRot = this.mob.yRot;
-            if (this.operation != MovementController.Action.MOVE_TO) {
+            if (this.operation != Operation.MOVE_TO) {
                 this.mob.setZza(0.0F);
             } else {
-                this.operation = MovementController.Action.WAIT;
+                this.operation = Operation.WAIT;
                 if (this.mob.isOnGround()) {
                     this.mob.setSpeed((float) (this.speedModifier * this.mob.getAttributeValue(Attributes.MOVEMENT_SPEED)));
                     if (this.jumpDelay-- <= 0) {

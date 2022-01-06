@@ -4,26 +4,26 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.math.shapes.BitSetVoxelShapePart;
-import net.minecraft.util.math.shapes.VoxelShapePart;
-import net.minecraft.util.math.vector.Vector3i;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldWriter;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.IWorldGenerationBaseReader;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.template.Template;
-import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape;
+import net.minecraft.world.phys.shapes.DiscreteVoxelShape;
+import net.minecraft.core.Vec3i;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelWriter;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.LevelSimulatedRW;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 
 import java.util.*;
 
@@ -33,54 +33,54 @@ public class JTreeFeature extends Feature<JBaseTreeFeatureConfig> {
         super(codec_);
     }
 
-    public static boolean isFree(IWorldGenerationBaseReader worldGenerationBaseReader_, BlockPos blockPos_) {
+    public static boolean isFree(LevelSimulatedReader worldGenerationBaseReader_, BlockPos blockPos_) {
         return validTreePos(worldGenerationBaseReader_, blockPos_) || worldGenerationBaseReader_.isStateAtPosition(blockPos_, (blockState7_) -> {
             return blockState7_.is(BlockTags.LOGS);
         });
     }
 
-    private static boolean isVine(IWorldGenerationBaseReader worldGenerationBaseReader_, BlockPos blockPos_) {
+    private static boolean isVine(LevelSimulatedReader worldGenerationBaseReader_, BlockPos blockPos_) {
         return worldGenerationBaseReader_.isStateAtPosition(blockPos_, (blockState6_) -> {
             return blockState6_.is(Blocks.VINE);
         });
     }
 
-    private static boolean isBlockWater(IWorldGenerationBaseReader worldGenerationBaseReader_, BlockPos blockPos_) {
+    private static boolean isBlockWater(LevelSimulatedReader worldGenerationBaseReader_, BlockPos blockPos_) {
         return worldGenerationBaseReader_.isStateAtPosition(blockPos_, (blockState5_) -> {
             return blockState5_.is(Blocks.WATER);
         });
     }
 
-    public static boolean isAirOrLeaves(IWorldGenerationBaseReader worldGenerationBaseReader_, BlockPos blockPos_) {
+    public static boolean isAirOrLeaves(LevelSimulatedReader worldGenerationBaseReader_, BlockPos blockPos_) {
         return worldGenerationBaseReader_.isStateAtPosition(blockPos_, (blockState4_) -> {
             return blockState4_.isAir() || blockState4_.is(BlockTags.LEAVES);
         });
     }
 
-    private static boolean isGroundBlock(IWorldGenerationBaseReader worldGenerationBaseReader_, BlockPos blockPos_, JBaseTreeFeatureConfig config, Random random) {
+    private static boolean isGroundBlock(LevelSimulatedReader worldGenerationBaseReader_, BlockPos blockPos_, JBaseTreeFeatureConfig config, Random random) {
         return worldGenerationBaseReader_.isStateAtPosition(blockPos_, (blockState3_) ->
                 blockState3_ == config.dirtProvider.getState(random, blockPos_));
     }
 
-    private static boolean isReplaceablePlant(IWorldGenerationBaseReader worldGenerationBaseReader_, BlockPos blockPos_) {
+    private static boolean isReplaceablePlant(LevelSimulatedReader worldGenerationBaseReader_, BlockPos blockPos_) {
         return worldGenerationBaseReader_.isStateAtPosition(blockPos_, (blockState2_) -> {
             Material material = blockState2_.getMaterial();
             return material == Material.REPLACEABLE_PLANT;
         });
     }
 
-    public static void setBlockKnownShape(IWorldWriter worldWriter_, BlockPos blockPos_, BlockState blockState_) {
+    public static void setBlockKnownShape(LevelWriter worldWriter_, BlockPos blockPos_, BlockState blockState_) {
         worldWriter_.setBlock(blockPos_, blockState_, 19);
     }
 
-    public static boolean validTreePos(IWorldGenerationBaseReader worldGenerationBaseReader_, BlockPos blockPos_) {
+    public static boolean validTreePos(LevelSimulatedReader worldGenerationBaseReader_, BlockPos blockPos_) {
         return isAirOrLeaves(worldGenerationBaseReader_, blockPos_) || isReplaceablePlant(worldGenerationBaseReader_, blockPos_) || isBlockWater(worldGenerationBaseReader_, blockPos_);
     }
 
     /**
      * Called when placing the tree feature.
      */
-    private boolean doPlace(IWorldGenerationReader generationReader, Random rand, BlockPos positionIn, Set<BlockPos> set_, Set<BlockPos> set1_, MutableBoundingBox boundingBoxIn, JBaseTreeFeatureConfig configIn) {
+    private boolean doPlace(LevelSimulatedRW generationReader, Random rand, BlockPos positionIn, Set<BlockPos> set_, Set<BlockPos> set1_, BoundingBox boundingBoxIn, JBaseTreeFeatureConfig configIn) {
         int i = configIn.trunkPlacer.getTreeHeight(rand);
         int j = configIn.foliagePlacer.foliageHeight(rand, i, configIn);
         int k = i - j;
@@ -95,7 +95,7 @@ public class JTreeFeature extends Feature<JBaseTreeFeatureConfig> {
                 OptionalInt optionalint = configIn.minimumSize.minClippedHeight();
                 int l1 = this.getMaxFreeTreeHeight(generationReader, i, blockpos, configIn);
                 if (l1 >= i || optionalint.isPresent() && l1 >= optionalint.getAsInt()) {
-                    List<FoliagePlacer.Foliage> list = configIn.trunkPlacer.placeTrunk(generationReader, rand, l1, blockpos, set_, boundingBoxIn, configIn);
+                    List<FoliagePlacer.FoliageAttachment> list = configIn.trunkPlacer.placeTrunk(generationReader, rand, l1, blockpos, set_, boundingBoxIn, configIn);
                     list.forEach((foliage_) -> {
                         configIn.foliagePlacer.createFoliage(generationReader, rand, configIn, l1, foliage_, j, l, set1_, boundingBoxIn);
                     });
@@ -109,8 +109,8 @@ public class JTreeFeature extends Feature<JBaseTreeFeatureConfig> {
         }
     }
 
-    private int getMaxFreeTreeHeight(IWorldGenerationBaseReader worldGenerationBaseReader_, int int_, BlockPos blockPos_, JBaseTreeFeatureConfig baseFrozenTreeFetureConfig_) {
-        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+    private int getMaxFreeTreeHeight(LevelSimulatedReader worldGenerationBaseReader_, int int_, BlockPos blockPos_, JBaseTreeFeatureConfig baseFrozenTreeFetureConfig_) {
+        BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
         for (int i = 0; i <= int_ + 1; ++i) {
             int j = baseFrozenTreeFetureConfig_.minimumSize.getSizeAtHeight(int_, i);
@@ -129,46 +129,46 @@ public class JTreeFeature extends Feature<JBaseTreeFeatureConfig> {
     }
 
     @Override
-    protected void setBlock(IWorldWriter worldIn, BlockPos pos, BlockState state) {
+    protected void setBlock(LevelWriter worldIn, BlockPos pos, BlockState state) {
         setBlockKnownShape(worldIn, pos, state);
     }
 
     @Override
-    public final boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, JBaseTreeFeatureConfig config) {
+    public final boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, JBaseTreeFeatureConfig config) {
         Set<BlockPos> set = Sets.newHashSet();
         Set<BlockPos> set1 = Sets.newHashSet();
         Set<BlockPos> set2 = Sets.newHashSet();
-        MutableBoundingBox mutableboundingbox = MutableBoundingBox.getUnknownBox();
+        BoundingBox mutableboundingbox = BoundingBox.getUnknownBox();
         boolean flag = this.doPlace(reader, rand, pos, set, set1, mutableboundingbox, config);
         if (mutableboundingbox.x0 <= mutableboundingbox.x1 && flag && !set.isEmpty()) {
             if (!config.decorators.isEmpty()) {
                 List<BlockPos> list = Lists.newArrayList(set);
                 List<BlockPos> list1 = Lists.newArrayList(set1);
-                list.sort(Comparator.comparingInt(Vector3i::getY));
-                list1.sort(Comparator.comparingInt(Vector3i::getY));
+                list.sort(Comparator.comparingInt(Vec3i::getY));
+                list1.sort(Comparator.comparingInt(Vec3i::getY));
                 config.decorators.forEach((treeDecorator_) -> {
                     treeDecorator_.place(reader, rand, list, list1, set2, mutableboundingbox);
                 });
             }
 
-            VoxelShapePart voxelshapepart = this.updateLeaves(reader, mutableboundingbox, set, set2);
-            Template.updateShapeAtEdge(reader, 3, voxelshapepart, mutableboundingbox.x0, mutableboundingbox.y0, mutableboundingbox.z0);
+            DiscreteVoxelShape voxelshapepart = this.updateLeaves(reader, mutableboundingbox, set, set2);
+            StructureTemplate.updateShapeAtEdge(reader, 3, voxelshapepart, mutableboundingbox.x0, mutableboundingbox.y0, mutableboundingbox.z0);
             return true;
         } else {
             return false;
         }
     }
 
-    private VoxelShapePart updateLeaves(IWorld world_, MutableBoundingBox mutableBoundingBox_, Set<BlockPos> set_, Set<BlockPos> set1_) {
+    private DiscreteVoxelShape updateLeaves(LevelAccessor world_, BoundingBox mutableBoundingBox_, Set<BlockPos> set_, Set<BlockPos> set1_) {
         List<Set<BlockPos>> list = Lists.newArrayList();
-        VoxelShapePart voxelshapepart = new BitSetVoxelShapePart(mutableBoundingBox_.getXSpan(), mutableBoundingBox_.getYSpan(), mutableBoundingBox_.getZSpan());
+        DiscreteVoxelShape voxelshapepart = new BitSetDiscreteVoxelShape(mutableBoundingBox_.getXSpan(), mutableBoundingBox_.getYSpan(), mutableBoundingBox_.getZSpan());
         int i = 6;
 
         for (int j = 0; j < 6; ++j) {
             list.add(Sets.newHashSet());
         }
 
-        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+        BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
         for (BlockPos blockpos : Lists.newArrayList(set1_)) {
             if (mutableBoundingBox_.isInside(blockpos)) {

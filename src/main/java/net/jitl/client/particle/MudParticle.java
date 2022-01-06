@@ -1,17 +1,17 @@
 package net.jitl.client.particle;
 
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
-public class MudParticle extends SpriteTexturedParticle {
+public class MudParticle extends TextureSheetParticle {
 
-    private final IAnimatedSprite sprites;
+    private final SpriteSet sprites;
 
-    protected MudParticle(ClientWorld worldIn, double x, double y, double z, IAnimatedSprite spriteWithAge) {
+    protected MudParticle(ClientLevel worldIn, double x, double y, double z, SpriteSet spriteWithAge) {
         super(worldIn, x, y, z, 0.0F, -0.15F, 0.0F);
         this.sprites = spriteWithAge;
         int i = (int) (32.0D / (Math.random() * 0.8D + 0.2D));
@@ -44,19 +44,19 @@ public class MudParticle extends SpriteTexturedParticle {
     }
 
     @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite sprites;
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprites;
 
-        public Factory(IAnimatedSprite spriteSet) {
+        public Factory(SpriteSet spriteSet) {
             this.sprites = spriteSet;
         }
 
-        public Particle createParticle(@NotNull BasicParticleType typeIn, @NotNull ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             return new MudParticle(worldIn, x, y, z, this.sprites);
         }
     }

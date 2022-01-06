@@ -1,13 +1,15 @@
 package net.jitl.common.item.gear.abilities;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
-public abstract class FullArmorAbility {
-    protected CompoundNBT tag;
+import CompoundTag;
 
-    public FullArmorAbility(CompoundNBT nbt) {
+public abstract class FullArmorAbility {
+    protected CompoundTag tag;
+
+    public FullArmorAbility(CompoundTag nbt) {
         tag = nbt;
     }
 

@@ -4,14 +4,14 @@ import net.jitl.JITL;
 import net.jitl.client.render.entity.layer.ShiveringRamWoolLayer;
 import net.jitl.client.render.model.frozen.ShiveringRamModel;
 import net.jitl.common.entity.frozen.ShiveringRamEntity;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 public class ShiveringRamRenderer extends MobRenderer<ShiveringRamEntity, ShiveringRamModel<ShiveringRamEntity>> {
 
-    public ShiveringRamRenderer(EntityRendererManager renderManagerIn) {
+    public ShiveringRamRenderer(EntityRenderDispatcher renderManagerIn) {
         super(renderManagerIn, new ShiveringRamModel(), 0.5F);
         this.addLayer(new ShiveringRamWoolLayer(this));
     }

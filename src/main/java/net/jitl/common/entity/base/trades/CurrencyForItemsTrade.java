@@ -1,15 +1,15 @@
 package net.jitl.common.entity.base.trades;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.util.IItemProvider;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.ItemLike;
 
 import java.util.Random;
 
-public class CurrencyForItemsTrade implements VillagerTrades.ITrade {
+public class CurrencyForItemsTrade implements VillagerTrades.ItemListing {
     private final Item item;
     private final Item currency;
     private final int cost;
@@ -18,7 +18,7 @@ public class CurrencyForItemsTrade implements VillagerTrades.ITrade {
     private final int villagerXp;
     private final float priceMultiplier;
 
-    public CurrencyForItemsTrade(IItemProvider currency, int cost, IItemProvider trade, int count, int maxUses, int villagerXp) {
+    public CurrencyForItemsTrade(ItemLike currency, int cost, ItemLike trade, int count, int maxUses, int villagerXp) {
         this.item = trade.asItem();
         this.currency = currency.asItem();
         this.cost = cost;

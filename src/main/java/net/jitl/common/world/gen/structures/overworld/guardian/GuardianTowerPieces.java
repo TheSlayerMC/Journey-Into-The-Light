@@ -4,19 +4,21 @@ import com.google.common.collect.ImmutableMap;
 import net.jitl.JITL;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JStructurePieces;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.structure.IStructurePieceType;
-import net.minecraft.world.gen.feature.structure.StructurePiece;
-import net.minecraft.world.gen.feature.template.PlacementSettings;
-import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.levelgen.feature.StructurePieceType;
+import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import ru.timeconqueror.timecore.api.common.world.structure.INoNoiseStructurePiece;
 import ru.timeconqueror.timecore.api.common.world.structure.TunedTemplateStructurePiece;
 import ru.timeconqueror.timecore.api.common.world.structure.processor.RandomizeBlockProcessor;
 
 import java.util.List;
 import java.util.Map;
+
+import ResourceLocation;
 
 public class GuardianTowerPieces {
     public static final int BB_WIDTH = 25;
@@ -31,7 +33,7 @@ public class GuardianTowerPieces {
             TOP_FLOOR_DECORATION_PIECE, new BlockPos(1, 0, 1)
     );
 
-    public static void generate(List<StructurePiece> pieces, TemplateManager templateManager, BlockPos surfacePos) {
+    public static void generate(List<StructurePiece> pieces, StructureManager templateManager, BlockPos surfacePos) {
         BlockPos changeable = surfacePos;
         for (int i = 0; i < 4; i++) {
             pieces.add(createPiece(templateManager, GuardianTowerPieces.FLOOR_PIECE, changeable, false));
@@ -43,41 +45,41 @@ public class GuardianTowerPieces {
         pieces.add(createPiece(templateManager, GuardianTowerPieces.FIRST_FLOOR_DECORATION_PIECE, surfacePos, true));
     }
 
-    public static StructurePiece createPiece(TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos, boolean applyGenerationNoise) {
-        return applyGenerationNoise ? new GuardianTowerPieces.Piece(templateManager, templateLocation, pos) : new GuardianTowerPieces.NoGrassTouchedPiece(templateManager, templateLocation, pos);
+    public static StructurePiece createPiece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos, boolean applyGenerationNoise) {
+        return applyGenerationNoise ? new Piece(templateManager, templateLocation, pos) : new NoGrassTouchedPiece(templateManager, templateLocation, pos);
     }
 
     public static class NoGrassTouchedPiece extends Piece implements INoNoiseStructurePiece {
-        public NoGrassTouchedPiece(TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
+        public NoGrassTouchedPiece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
             super(JStructurePieces.GUARDIAN_TOWER_NO_GRASS_TOUCHED_PIECE.get(), templateManager, templateLocation, pos);
         }
 
-        public NoGrassTouchedPiece(TemplateManager templateManager, CompoundNBT nbt) {
+        public NoGrassTouchedPiece(StructureManager templateManager, CompoundTag nbt) {
             super(JStructurePieces.GUARDIAN_TOWER_NO_GRASS_TOUCHED_PIECE.get(), templateManager, nbt);
         }
     }
 
     public static class Piece extends TunedTemplateStructurePiece {
-        public Piece(TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
+        public Piece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
             this(JStructurePieces.GUARDIAN_TOWER_PIECE.get(), templateManager, templateLocation, pos);
         }
 
-        public Piece(TemplateManager templateManager, CompoundNBT nbt) {
+        public Piece(StructureManager templateManager, CompoundTag nbt) {
             this(JStructurePieces.GUARDIAN_TOWER_PIECE.get(), templateManager, nbt);
         }
 
-        private Piece(IStructurePieceType type, TemplateManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
+        private Piece(StructurePieceType type, StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
             super(type, templateManager, templateLocation, pos);
             this.templatePosition = pos.offset(OFFSETS.get(templateLocation));
         }
 
-        private Piece(IStructurePieceType type, TemplateManager templateManager, CompoundNBT nbt) {
+        private Piece(StructurePieceType type, StructureManager templateManager, CompoundTag nbt) {
             super(type, templateManager, nbt);
         }
 
         @Override
-        protected PlacementSettings makePlacementSettings() {
-            return new PlacementSettings()
+        protected StructurePlaceSettings makePlacementSettings() {
+            return new StructurePlaceSettings()
                     .addProcessor(new RandomizeBlockProcessor(JBlocks.SHIELDED_DUNGEON_BRICKS, JBlocks.SHIELDED_CARVED_DUNGEON_BRICKS))
                     .addProcessor(new RandomizeBlockProcessor(JBlocks.SHIELDED_DUNGEON_BRICKS, JBlocks.SHIELDED_CHISELED_DUNGEON_BRICKS))
                     .addProcessor(new RandomizeBlockProcessor(JBlocks.SHIELDED_DUNGEON_BRICKS, JBlocks.SHIELDED_CRACKED_DUNGEON_BRICKS));

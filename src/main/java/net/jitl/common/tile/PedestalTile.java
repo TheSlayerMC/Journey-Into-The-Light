@@ -1,19 +1,19 @@
 package net.jitl.common.tile;
 
 import net.jitl.init.JTiles;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.LockableLootTileEntity;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import org.jetbrains.annotations.NotNull;
 
-public class PedestalTile extends LockableLootTileEntity {
+public class PedestalTile extends RandomizableContainerBlockEntity {
     private NonNullList<ItemStack> inventory = NonNullList.withSize(2, ItemStack.EMPTY);
 
     public PedestalTile() {
@@ -31,7 +31,7 @@ public class PedestalTile extends LockableLootTileEntity {
     }
 
     @Override
-    protected @NotNull Container createMenu(int id, @NotNull PlayerInventory player) {
+    protected @NotNull AbstractContainerMenu createMenu(int id, @NotNull Inventory player) {
         return null;
     }
 
@@ -41,26 +41,26 @@ public class PedestalTile extends LockableLootTileEntity {
     }
 
     @Override
-    public @NotNull CompoundNBT getUpdateTag() {
-        return this.save(new CompoundNBT());
+    public @NotNull CompoundTag getUpdateTag() {
+        return this.save(new CompoundTag());
     }
 
     @Override
-    public void load(@NotNull BlockState state, @NotNull CompoundNBT nbt) {
+    public void load(@NotNull BlockState state, @NotNull CompoundTag nbt) {
         super.load(state, nbt);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.inventory);
+        ContainerHelper.loadAllItems(nbt, this.inventory);
     }
 
     @Override
-    public @NotNull CompoundNBT save(@NotNull CompoundNBT compound) {
+    public @NotNull CompoundTag save(@NotNull CompoundTag compound) {
         super.save(compound);
-        ItemStackHelper.saveAllItems(compound, this.inventory);
+        ContainerHelper.saveAllItems(compound, this.inventory);
         return compound;
     }
 
     @Override
-    protected @NotNull ITextComponent getDefaultName() {
-        return new TranslationTextComponent("jitl.tile.pedestal");
+    protected @NotNull Component getDefaultName() {
+        return new TranslatableComponent("jitl.tile.pedestal");
     }
 }

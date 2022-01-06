@@ -2,29 +2,29 @@ package net.jitl.client.render.model.frozen;
 
 import com.google.common.collect.ImmutableList;
 import net.jitl.common.entity.frozen.ShiveringRamEntity;
-import net.minecraft.client.renderer.entity.model.AgeableModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.util.Mth;
 
-public class ShiveringRamModel<T extends ShiveringRamEntity> extends AgeableModel<T> {
+public class ShiveringRamModel<T extends ShiveringRamEntity> extends AgeableListModel<T> {
     private float headXRot;
 
-    private final ModelRenderer body;
-    private final ModelRenderer head;
-    private final ModelRenderer leg0;
-    private final ModelRenderer leg1;
-    private final ModelRenderer leg2;
-    private final ModelRenderer leg3;
+    private final ModelPart body;
+    private final ModelPart head;
+    private final ModelPart leg0;
+    private final ModelPart leg1;
+    private final ModelPart leg2;
+    private final ModelPart leg3;
 
     public ShiveringRamModel() {
         texWidth = 128;
         texHeight = 128;
 
-        body = new ModelRenderer(this);
+        body = new ModelPart(this);
         body.setPos(0.0F, 5.0F, 2.0F);
         body.texOffs(0, 0).addBox(-4.0F, 1.0F, -9.0F, 8.0F, 8.0F, 16.0F, 0.0F, false);
 
-        head = new ModelRenderer(this);
+        head = new ModelPart(this);
         head.setPos(0.0F, 6.0F, -8.0F);
         head.texOffs(32, 0).addBox(-3.0F, -4.0F, -6.0F, 6.0F, 6.0F, 8.0F, 0.0F, false);
         head.texOffs(0, 46).addBox(3.0F, -4.0F, -4.0F, 4.0F, 6.0F, 6.0F, 0.0F, false);
@@ -32,19 +32,19 @@ public class ShiveringRamModel<T extends ShiveringRamEntity> extends AgeableMode
         head.texOffs(56, 40).addBox(-7.0F, -1.0F, -7.0F, 4.0F, 3.0F, 3.0F, 0.0F, false);
         head.texOffs(52, 0).addBox(3.0F, -1.0F, -7.0F, 4.0F, 3.0F, 3.0F, 0.0F, false);
 
-        leg0 = new ModelRenderer(this);
+        leg0 = new ModelPart(this);
         leg0.setPos(3.0F, 12.0F, 7.0F);
         leg0.texOffs(50, 14).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
 
-        leg1 = new ModelRenderer(this);
+        leg1 = new ModelPart(this);
         leg1.setPos(-3.0F, 12.0F, 7.0F);
         leg1.texOffs(20, 46).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
 
-        leg2 = new ModelRenderer(this);
+        leg2 = new ModelPart(this);
         leg2.setPos(3.0F, 12.0F, -5.0F);
         leg2.texOffs(0, 24).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
 
-        leg3 = new ModelRenderer(this);
+        leg3 = new ModelPart(this);
         leg3.setPos(-3.0F, 12.0F, -5.0F);
         leg3.texOffs(0, 0).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
     }
@@ -62,19 +62,19 @@ public class ShiveringRamModel<T extends ShiveringRamEntity> extends AgeableMode
         this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
         this.head.xRot = this.headXRot;
 
-        this.leg0.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.leg1.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.leg2.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.leg3.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.leg0.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.leg1.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.leg2.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.leg3.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 
     @Override
-    protected Iterable<ModelRenderer> headParts() {
+    protected Iterable<ModelPart> headParts() {
         return ImmutableList.of(head);
     }
 
     @Override
-    protected Iterable<ModelRenderer> bodyParts() {
+    protected Iterable<ModelPart> bodyParts() {
         return ImmutableList.of(
                 body,
                 leg3,
@@ -83,7 +83,7 @@ public class ShiveringRamModel<T extends ShiveringRamEntity> extends AgeableMode
                 leg0);
     }
 
-    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+    public void setRotationAngle(ModelPart modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;
         modelRenderer.yRot = y;
         modelRenderer.zRot = z;

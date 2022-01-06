@@ -4,9 +4,9 @@ import net.jitl.common.capability.player.JPlayer;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JDimensions;
 import net.jitl.init.JItems;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
@@ -38,7 +38,7 @@ public class ClientEventHandler {
     }
 
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
-        PlayerEntity player = ClientProxy.player();
+        Player player = ClientProxy.player();
         if (player != null) {
             JPlayer cap = JPlayer.from(player);
             if (player.level.dimension() == JDimensions.FROZEN_WORLD) {

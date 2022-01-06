@@ -5,12 +5,16 @@ import net.jitl.common.block.*;
 import net.jitl.common.block.base.*;
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.StairsBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static ru.timeconqueror.timecore.api.util.Hacks.promise;
+
+import Block;
+import RotatedPillarBlock;
+import StairBlock;
 
 @ObjectHolder(JITL.MODID)
 public class JBlocks {
@@ -92,7 +96,7 @@ public class JBlocks {
 	public static final Block CRACKED_DUNGEON_BRICKS = promise();
 	public static final Block DUNGEON_LAMP = promise();
 	public static final Block GILDED_DUNGEON_BRICKS = promise();
-	public static final StairsBlock GILDED_DUNGEON_STAIRS = promise();
+	public static final StairBlock GILDED_DUNGEON_STAIRS = promise();
 	public static final Block DUNGEON_FLOOR = promise();
 	public static final Block SHIELDED_DUNGEON_BRICKS = promise();
 	public static final Block SHIELDED_CARVED_DUNGEON_BRICKS = promise();
@@ -100,7 +104,7 @@ public class JBlocks {
 	public static final Block SHIELDED_CRACKED_DUNGEON_BRICKS = promise();
 	public static final Block SHIELDED_DUNGEON_LAMP = promise();
 	public static final Block SHIELDED_GILDED_DUNGEON_BRICKS = promise();
-    public static final StairsBlock SHIELDED_GILDED_DUNGEON_STAIRS = promise();
+    public static final StairBlock SHIELDED_GILDED_DUNGEON_STAIRS = promise();
     public static final Block SHIELDED_DUNGEON_FLOOR = promise();
     public static final Block GUARDIAN_TOWER_BRAIN = promise();
     public static final Block COMMON_GEMS = promise();

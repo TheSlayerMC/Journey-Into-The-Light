@@ -1,13 +1,15 @@
 package net.jitl.common.block.base;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Rotation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Rotation;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 /**
  * Block that can be placed parallel to the horizontal axis.
@@ -37,12 +39,12 @@ public class XZFacedBlock extends Block {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         return defaultBlockState().setValue(HORIZONTAL_AXIS, context.getHorizontalDirection().getAxis());
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_AXIS);
     }
 }

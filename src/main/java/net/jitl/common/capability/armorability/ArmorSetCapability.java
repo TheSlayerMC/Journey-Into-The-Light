@@ -2,10 +2,10 @@ package net.jitl.common.capability.armorability;
 
 import net.jitl.common.item.gear.JArmorItem;
 import net.jitl.common.item.gear.abilities.FullArmorAbility;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,13 +13,13 @@ import java.util.Iterator;
 public class ArmorSetCapability implements IArmorSetCapability {
     private ArrayList<ItemStack> armorPieces;
     private FullArmorAbility fullSet;
-    private CompoundNBT nbt = new CompoundNBT();
+    private CompoundTag nbt = new CompoundTag();
 
     public void setArmor(Iterator<ItemStack> iterator) {
         ArrayList<ItemStack> stacks = new ArrayList<>();
         ItemStack currentStack = iterator.next();
         Item item = currentStack.getItem();
-        IArmorMaterial material = null;
+        ArmorMaterial material = null;
         FullArmorAbility fullArmorAbility = null;
         if (item instanceof JArmorItem) {
             stacks.add(currentStack);
@@ -56,12 +56,12 @@ public class ArmorSetCapability implements IArmorSetCapability {
     }
 
     @Override
-    public CompoundNBT getNBT() {
+    public CompoundTag getNBT() {
         return nbt;
     }
 
     @Override
-    public void setNBT(CompoundNBT nbt) {
+    public void setNBT(CompoundTag nbt) {
         this.nbt = nbt;
     }
 }

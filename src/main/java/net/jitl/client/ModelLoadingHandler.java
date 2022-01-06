@@ -3,7 +3,7 @@ package net.jitl.client;
 import net.jitl.JITL;
 import net.jitl.init.JBlocks;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,26 +20,26 @@ public class ModelLoadingHandler {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        RenderTypeLookup.setRenderLayer(JBlocks.LUNIUM_ORE, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.DEEPSLATE_LUNIUM_ORE, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.FIRESTONE_ORE, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.LUNIUM_ORE, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.DEEPSLATE_LUNIUM_ORE, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.FIRESTONE_ORE, RenderType.cutout());
 
-        RenderTypeLookup.setRenderLayer(JBlocks.CAVE_VINES, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.CAVE_VINES_PLANT, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.CAVE_VINES, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.CAVE_VINES_PLANT, RenderType.cutout());
 
-        RenderTypeLookup.setRenderLayer(JBlocks.GREEN_GLOWSHROOM, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.RED_GLOWSHROOM, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.BLUE_GLOWSHROOM, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.GREEN_GLOWSHROOM, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.RED_GLOWSHROOM, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.BLUE_GLOWSHROOM, RenderType.cutout());
 
-        RenderTypeLookup.setRenderLayer(JBlocks.RUNIC_ASH_BLOCK, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.RUNIC_RUBBLE, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.RUNIC_SCORCHED_RUBBLE, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.RUNIC_ASH_BLOCK, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.RUNIC_RUBBLE, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.RUNIC_SCORCHED_RUBBLE, RenderType.cutout());
 
-        RenderTypeLookup.setRenderLayer(JBlocks.CRYSTAL_FRUIT, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(JBlocks.BITTERWOOD_CAMPFIRE, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.CRYSTAL_FRUIT, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.BITTERWOOD_CAMPFIRE, RenderType.cutout());
 
-        RenderTypeLookup.setRenderLayer(JBlocks.FROSTY_ICE, RenderType.translucent());
-        RenderTypeLookup.setRenderLayer(JBlocks.ICE_SHROOM_SHELF, RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.FROSTY_ICE, RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.ICE_SHROOM_SHELF, RenderType.translucent());
 
         //RenderTypeLookup.setRenderLayer(JBlocks.CICLEBLOOM, RenderType.cutout());
     }

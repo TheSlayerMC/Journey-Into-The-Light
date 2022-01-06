@@ -1,76 +1,78 @@
 package net.jitl.init;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
+import CreativeModeTab;
 
 public class JTabs {
 
-    public static final ItemGroup BLOCKS = new ItemGroup("jitl.blocks") {
+    public static final CreativeModeTab BLOCKS = new CreativeModeTab("jitl.blocks") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(JBlocks.SHADIUM_ORE);
         }
     };
 
-    public static final ItemGroup DECORATION = new ItemGroup("jitl.decoration") {
+    public static final CreativeModeTab DECORATION = new CreativeModeTab("jitl.decoration") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(JBlocks.DUNGEON_LAMP);
         }
     };
 
-    public static final ItemGroup PORTALS = new ItemGroup("jitl.portals") {
+    public static final CreativeModeTab PORTALS = new CreativeModeTab("jitl.portals") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(Items.FLINT_AND_STEEL);
         }
     };
 
-    public static final ItemGroup ITEMS = new ItemGroup("jitl.items") {
+    public static final CreativeModeTab ITEMS = new CreativeModeTab("jitl.items") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(JItems.SAPPHIRE);
         }
     };
 
-    public static final ItemGroup TOOLS = new ItemGroup("jitl.tools") {
+    public static final CreativeModeTab TOOLS = new CreativeModeTab("jitl.tools") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(JItems.SAPPHIRE_PICKAXE);
         }
     };
 
-    public static final ItemGroup ARMOR = new ItemGroup("jitl.armor") {
+    public static final CreativeModeTab ARMOR = new CreativeModeTab("jitl.armor") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(JItems.SAPPHIRE_HELMET);
         }
     };
 
-    public static final ItemGroup WEAPONS = new ItemGroup("jitl.weapons") {
+    public static final CreativeModeTab WEAPONS = new CreativeModeTab("jitl.weapons") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(JItems.LUNIUM_SWORD);
         }
     };
 
-    public static final ItemGroup RANGED_WEAPONS = new ItemGroup("jitl.ranged_weapons") {
+    public static final CreativeModeTab RANGED_WEAPONS = new CreativeModeTab("jitl.ranged_weapons") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(Items.BOW);
         }
     };
 
-    public static final ItemGroup MISC = new ItemGroup("jitl.misc") {
+    public static final CreativeModeTab MISC = new CreativeModeTab("jitl.misc") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(JItems.TEST_BUG);
         }
     };
 
-    public static final ItemGroup SPAWNERS = new ItemGroup("jitl.spawners") {
+    public static final CreativeModeTab SPAWNERS = new CreativeModeTab("jitl.spawners") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(Blocks.SPAWNER);

@@ -1,13 +1,15 @@
 package net.jitl.common.scroll;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.jitl.JITL;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.ResourceLocation;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import net.minecraft.resources.ResourceLocation;
+
+import ResourceLocation;
 
 /*
  * Code by TimeConqueror
@@ -33,7 +35,7 @@ public class UnderHeaderDescComponent implements IDescComponent {
 
     //TODO: remove GLStateManager methods, change to new render system
     @Override
-    public void drawContentPart(MatrixStack matrixStack, int x0, int y0, int width) {
+    public void drawContentPart(PoseStack matrixStack, int x0, int y0, int width) {
         GlStateManager._pushMatrix();
         GlStateManager._enableBlend();
         GlStateManager._enableAlphaTest();
@@ -61,9 +63,9 @@ public class UnderHeaderDescComponent implements IDescComponent {
     }
 
     private void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height, float zLevel) {
-        Tessellator tessellator = Tessellator.getInstance();
+        Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuilder();
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.begin(7, DefaultVertexFormat.POSITION_TEX);
         bufferbuilder.vertex(x + 0, y + height, zLevel).uv((float) (textureX + 0) * 0.00390625F, (float) (textureY + height) * 0.00390625F).endVertex();
         bufferbuilder.vertex(x + width, y + height, zLevel).uv((float) (textureX + width) * 0.00390625F, (float) (textureY + height) * 0.00390625F).endVertex();
         bufferbuilder.vertex(x + width, y + 0, zLevel).uv((float) (textureX + width) * 0.00390625F, (float) (textureY + 0) * 0.00390625F).endVertex();

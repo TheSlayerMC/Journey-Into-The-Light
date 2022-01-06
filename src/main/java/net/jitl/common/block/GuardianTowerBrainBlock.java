@@ -3,13 +3,13 @@ package net.jitl.common.block;
 import net.jitl.init.JItems;
 import net.jitl.init.JTiles;
 import net.jitl.util.JBlockProperties;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.util.client.ClientProxy;
 
@@ -22,12 +22,12 @@ public class GuardianTowerBrainBlock extends Block {
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+    public BlockEntity createTileEntity(BlockState state, BlockGetter world) {
         return JTiles.GUARDIAN_TOWER_BRAIN.create();
     }
 
     @Override
-    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
         super.animateTick(stateIn, worldIn, pos, rand);
 
         if (JItems.TEST_BUG.isInMainHand(ClientProxy.player())) {

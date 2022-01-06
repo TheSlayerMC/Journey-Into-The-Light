@@ -1,12 +1,12 @@
 package net.jitl.api.block;
 
 import net.jitl.init.JBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelReader;
 
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -81,7 +81,7 @@ public interface GroundPredicate {
      * @return {@code true} if the input argument matches the predicate,
      * otherwise {@code false}
      */
-    boolean testGround(IWorldReader world, BlockPos groundPos, BlockState blockState, Direction plantDirection);
+    boolean testGround(LevelReader world, BlockPos groundPos, BlockState blockState, Direction plantDirection);
 
     /**
      * Returns a composed predicate that represents a short-circuiting logical

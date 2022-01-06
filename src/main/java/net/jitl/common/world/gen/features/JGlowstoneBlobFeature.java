@@ -1,30 +1,30 @@
 package net.jitl.common.world.gen.features;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class JGlowstoneBlobFeature extends Feature<NoFeatureConfig> {
+public class JGlowstoneBlobFeature extends Feature<NoneFeatureConfiguration> {
 
 	private final Block placementBlock;
 	private final Block blockToPlace;
 
-	public JGlowstoneBlobFeature(Block placementBlock, Block blockToPlace, Codec<NoFeatureConfig> codec) {
+	public JGlowstoneBlobFeature(Block placementBlock, Block blockToPlace, Codec<NoneFeatureConfiguration> codec) {
 		super(codec);
 		this.placementBlock = placementBlock;
 		this.blockToPlace = blockToPlace;
 	}
 
-	public boolean place(ISeedReader reader, @NotNull ChunkGenerator generator, @NotNull Random rand, @NotNull BlockPos pos, @NotNull NoFeatureConfig config) {
+	public boolean place(WorldGenLevel reader, @NotNull ChunkGenerator generator, @NotNull Random rand, @NotNull BlockPos pos, @NotNull NoneFeatureConfiguration config) {
 		if (!reader.isEmptyBlock(pos)) {
 			return false;
 		} else {

@@ -3,27 +3,29 @@ package net.jitl.common.block.base;
 import net.jitl.common.tile.PedestalTile;
 import net.jitl.init.JItems;
 import net.jitl.util.JBlockProperties;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+
+import VoxelShape;
 
 public class JBlockPedestal extends JTileContainerBlock {
 
@@ -32,22 +34,22 @@ public class JBlockPedestal extends JTileContainerBlock {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         VoxelShape pedestal = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 20.0D, 11.0D);
         VoxelShape bottom = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 1D, 13.0D);
         VoxelShape bottom1 = Block.box(4.0D, 1.0D, 4.0D, 12.0D, 3D, 12.0D);
         VoxelShape top = Block.box(3.0D, 19.0D, 3.0D, 13.0D, 20D, 13.0D);
         VoxelShape top1 = Block.box(4.0D, 17.0D, 4.0D, 12.0D, 19D, 12.0D);
         VoxelShape top2 = Block.box(5.0D, 20.0D,5.0D, 11D, 21.0D, 11D);
-        return VoxelShapes.or(pedestal, bottom, bottom1, top, top1, top2);
+        return Shapes.or(pedestal, bottom, bottom1, top, top1, top2);
     }
 
     @Override
-    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) {
-            TileEntity tileentity = worldIn.getBlockEntity(pos);
-            if (tileentity instanceof IInventory) {
-                InventoryHelper.dropContents(worldIn, pos, (IInventory) tileentity);
+            BlockEntity tileentity = worldIn.getBlockEntity(pos);
+            if (tileentity instanceof Container) {
+                Containers.dropContents(worldIn, pos, (Container) tileentity);
                 worldIn.updateNeighbourForOutputSignal(pos, this);
             }
 
@@ -56,7 +58,7 @@ public class JBlockPedestal extends JTileContainerBlock {
     }
 
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         Item heldItem = player.getMainHandItem().getItem();
         if (worldIn.getBlockEntity(pos) instanceof PedestalTile) {
             PedestalTile pedestal = (PedestalTile) worldIn.getBlockEntity(pos);
@@ -67,13 +69,13 @@ public class JBlockPedestal extends JTileContainerBlock {
                 pedestal.setItem(0, ItemStack.EMPTY);
                 if (heldItem == JItems.FROSTBORN_SOUL) {
                     pedestal.setItem(0, new ItemStack(heldItem));
-                    worldIn.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    worldIn.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                     if (!player.isCreative())
                         player.getMainHandItem().shrink(1);
                 }
             }
         }
-        return ActionResultType.sidedSuccess(worldIn.isClientSide);
+        return InteractionResult.sidedSuccess(worldIn.isClientSide);
     }
 }
 

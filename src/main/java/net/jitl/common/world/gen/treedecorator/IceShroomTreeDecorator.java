@@ -4,14 +4,14 @@ import com.mojang.serialization.Codec;
 import net.jitl.common.block.base.AttachedBlock;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JTreeDecorators;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.treedecorator.TreeDecorator;
-import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 
 import java.util.List;
 import java.util.Random;
@@ -33,7 +33,7 @@ public class IceShroomTreeDecorator extends TreeDecorator {
     }
 
     @Override
-    public void place(ISeedReader seedReader_, Random random_, List<BlockPos> list_, List<BlockPos> list1_, Set<BlockPos> set_, MutableBoundingBox mutableBoundingBox_) {
+    public void place(WorldGenLevel seedReader_, Random random_, List<BlockPos> list_, List<BlockPos> list1_, Set<BlockPos> set_, BoundingBox mutableBoundingBox_) {
         if (!(random_.nextFloat() >= this.probability)) {
             int i = list_.get(0).getY();
             list_.stream().filter((blockPos_) -> blockPos_.getY() - i <= 10).forEach((blockPos1_) -> {

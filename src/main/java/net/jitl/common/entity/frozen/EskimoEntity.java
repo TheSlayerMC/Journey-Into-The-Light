@@ -9,16 +9,16 @@ import net.jitl.client.render.gui.dialogue.DialogueScreen;
 import net.jitl.common.entity.base.JVillagerEntity;
 import net.jitl.common.entity.base.trades.CurrencyForItemsTrade;
 import net.jitl.init.JItems;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
-import net.minecraft.item.Items;
-import net.minecraft.world.World;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -26,21 +26,21 @@ import java.util.List;
 
 public class EskimoEntity extends JVillagerEntity {
 
-    private static final Int2ObjectMap<VillagerTrades.ITrade[]> TRADES = new Int2ObjectOpenHashMap<>(ImmutableMap.of(1, new VillagerTrades.ITrade[]{
+    private static final Int2ObjectMap<VillagerTrades.ItemListing[]> TRADES = new Int2ObjectOpenHashMap<>(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{
             new CurrencyForItemsTrade(JItems.PERIDOT_GEMSTONE, 1, Items.COMPASS, 1, 12, 5)
     }));
 
-    public EskimoEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
+    public EskimoEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
         super(type, worldIn);
     }
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
     }
 
     @Override
-    protected Int2ObjectMap<VillagerTrades.ITrade[]> getVillagerTrades() {
+    protected Int2ObjectMap<VillagerTrades.ItemListing[]> getVillagerTrades() {
         return TRADES;
     }
 
@@ -54,8 +54,8 @@ public class EskimoEntity extends JVillagerEntity {
         return new DialogueScreen(new ClientDialogueNode(JITL.rl("eskimo"), "poop", options));
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 60.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }

@@ -2,24 +2,24 @@ package net.jitl.common.world.gen.features.boil;
 
 import com.mojang.serialization.Codec;
 import net.jitl.init.JBlocks;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import ru.timeconqueror.timecore.api.util.GenHelper;
 
 import java.util.Random;
 
-public class TorridCrystalFeature extends Feature<BlockStateFeatureConfig> {
-    public TorridCrystalFeature(Codec<BlockStateFeatureConfig> codec) {
+public class TorridCrystalFeature extends Feature<BlockStateConfiguration> {
+    public TorridCrystalFeature(Codec<BlockStateConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateFeatureConfig config) {
+    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateConfiguration config) {
         if (!(reader.getBlockState(pos.below()).getMaterial().isSolid())) {
             return false;
         } else {
@@ -27,11 +27,11 @@ public class TorridCrystalFeature extends Feature<BlockStateFeatureConfig> {
                 int height = 6;
                 int radius = rand.nextInt(2) + 2;
                 GenHelper.genFilledCircle(radius, Direction.Axis.Y, (blockPos1) -> {
-                    BlockPos.Mutable placePos = blockPos1.mutable();
+                    BlockPos.MutableBlockPos placePos = blockPos1.mutable();
 
                     int xPos = pos.getX();
                     int zPos = pos.getZ();
-                    int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
+                    int yPos = reader.getHeight(Heightmap.Types.WORLD_SURFACE_WG, xPos, zPos);
 
                     placePos.move(xPos, yPos - 5, zPos);
 

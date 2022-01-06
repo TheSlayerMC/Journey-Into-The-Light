@@ -2,37 +2,37 @@ package net.jitl.common.world.gen.features.boil;
 
 import com.mojang.serialization.Codec;
 import net.jitl.init.JBlocks;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.Random;
 
-public class ScorchedStalagmiteFeature extends Feature<NoFeatureConfig> {
-    public ScorchedStalagmiteFeature(Codec<NoFeatureConfig> codec) {
+public class ScorchedStalagmiteFeature extends Feature<NoneFeatureConfiguration> {
+    public ScorchedStalagmiteFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        pos = reader.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
+    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, NoneFeatureConfiguration config) {
+        pos = reader.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
         if (reader.getBlockState(pos.below()) != JBlocks.SCORCHED_RUBBLE.defaultBlockState()) {
             return false;
         } else {
-            BlockPos.Mutable placePos = pos.mutable();
+            BlockPos.MutableBlockPos placePos = pos.mutable();
 
             int xPos = pos.getX();
             int zPos = pos.getZ();
-            int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
+            int yPos = reader.getHeight(Heightmap.Types.WORLD_SURFACE_WG, xPos, zPos);
 
             placePos.set(xPos, yPos - 1, zPos);
 
-            BlockPos blockPos = reader.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
+            BlockPos blockPos = reader.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
             int bottomHeight = 1 + rand.nextInt(4);
             int largeHeight = 1 + rand.nextInt(5);
             int medHeight = 1 + rand.nextInt(6);

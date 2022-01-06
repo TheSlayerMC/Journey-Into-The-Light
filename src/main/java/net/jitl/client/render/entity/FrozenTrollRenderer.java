@@ -5,14 +5,14 @@ import net.jitl.JITL;
 import net.jitl.client.render.entity.layer.FrozenTrollHeldItemLayer;
 import net.jitl.client.render.model.frozen.FrozenTrollModel;
 import net.jitl.common.entity.frozen.FrozenTrollEntity;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 public class FrozenTrollRenderer extends MobRenderer<FrozenTrollEntity, FrozenTrollModel<FrozenTrollEntity>> {
 
-    public FrozenTrollRenderer(EntityRendererManager renderManagerIn) {
+    public FrozenTrollRenderer(EntityRenderDispatcher renderManagerIn) {
         super(renderManagerIn, new FrozenTrollModel(), 0.5F);
         this.addLayer(new FrozenTrollHeldItemLayer<>(this));
     }

@@ -4,28 +4,28 @@ import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
 import net.jitl.init.JEntities;
 import net.jitl.init.JParticleManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class EssenciaProjectileEntity extends DamagingProjectileEntity {
 
-    public EssenciaProjectileEntity(EntityType<EssenciaProjectileEntity> type, World world) {
+    public EssenciaProjectileEntity(EntityType<EssenciaProjectileEntity> type, Level world) {
         super(type, world);
     }
 
-    public EssenciaProjectileEntity(EntityType<EssenciaProjectileEntity> type, World world, LivingEntity thrower, float damage) {
+    public EssenciaProjectileEntity(EntityType<EssenciaProjectileEntity> type, Level world, LivingEntity thrower, float damage) {
         super(type, world, thrower, damage);
     }
 
-    public EssenciaProjectileEntity(World world, LivingEntity thrower, float damage) {
+    public EssenciaProjectileEntity(Level world, LivingEntity thrower, float damage) {
         super(JEntities.ESSENCIA_PROJECTILE_TYPE, world, thrower, damage);
     }
 
@@ -34,7 +34,7 @@ public class EssenciaProjectileEntity extends DamagingProjectileEntity {
     public void onClientTick() {
         super.onClientTick();
         int count = 2;
-        Vector3d vector3d = this.getDeltaMovement();
+        Vec3 vector3d = this.getDeltaMovement();
         double d0 = this.getX() + vector3d.x;
         double d1 = this.getY() + vector3d.y;
         double d2 = this.getZ() + vector3d.z;
@@ -50,7 +50,7 @@ public class EssenciaProjectileEntity extends DamagingProjectileEntity {
     }
 
     @Override
-    protected void onEntityImpact(RayTraceResult result, Entity target) {
+    protected void onEntityImpact(HitResult result, Entity target) {
         EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);
         essenciaBoltEntity.setPos(result.getLocation().x(), result.getLocation().y(), result.getLocation().z());
         essenciaBoltEntity.setARGB(0xff4800);
@@ -63,7 +63,7 @@ public class EssenciaProjectileEntity extends DamagingProjectileEntity {
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

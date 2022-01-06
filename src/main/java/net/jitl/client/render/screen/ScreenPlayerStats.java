@@ -1,32 +1,32 @@
 package net.jitl.client.render.screen;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.JITL;
 import net.jitl.common.container.ContainerEmpty;
 import net.jitl.common.helper.ArgbColor;
 import net.jitl.common.helper.EnumKnowledgeType;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
-public class ScreenPlayerStats extends ContainerScreen<ContainerEmpty> {
+public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
 
     private final ResourceLocation knowledge_sprite = JITL.rl("textures/gui/knowledge/knowledge_sprites.png");
     private final ResourceLocation background = JITL.rl("textures/gui/stats.png");
 
-    private ScreenPlayerStats.PageButton nextButton;
-    private ScreenPlayerStats.PageButton previousButton;
+    private PageButton nextButton;
+    private PageButton previousButton;
     //private final PlayerStats stats;
     private int pageNumber = 0;
 
-    public ScreenPlayerStats(PlayerInventory inv) {
-        super(new ContainerEmpty(), inv, new StringTextComponent(""));
+    public ScreenPlayerStats(Inventory inv) {
+        super(new ContainerEmpty(), inv, new TextComponent(""));
         this.imageWidth = 242;
         this.imageHeight = 204;
        // this.stats = JCapabilityManager.asJourneyPlayer(Minecraft.getInstance().player).getPlayerStats();
@@ -39,12 +39,12 @@ public class ScreenPlayerStats extends ContainerScreen<ContainerEmpty> {
         int j = (this.height - this.imageHeight) / 2;
         int k = j + 16 + 2;
 
-        this.nextButton = this.addButton(new ScreenPlayerStats.PageButton(i + 5, k, false, (button_) -> { }));
-        this.previousButton = this.addButton(new ScreenPlayerStats.PageButton(i + 5, k + 20, true, (button_) -> { }));
+        this.nextButton = this.addButton(new PageButton(i + 5, k, false, (button_) -> { }));
+        this.previousButton = this.addButton(new PageButton(i + 5, k + 20, true, (button_) -> { }));
     }
 
     @Override
-    protected void renderBg(@NotNull MatrixStack matrixStack, float v, int i, int i1) {
+    protected void renderBg(@NotNull PoseStack matrixStack, float v, int i, int i1) {
         this.renderBackground(matrixStack);
 
         int x = (this.width - this.imageWidth) / 2;
@@ -74,7 +74,7 @@ public class ScreenPlayerStats extends ContainerScreen<ContainerEmpty> {
         return super.mouseClicked(mouseX, mouseY, buttonIn);
     }
 
-    public void page1(MatrixStack stack) {
+    public void page1(PoseStack stack) {
         int height = 43;
         int x = 9;
         int h = 9;
@@ -97,7 +97,7 @@ public class ScreenPlayerStats extends ContainerScreen<ContainerEmpty> {
         drawKnowledgeSprite(stack, 126, h, 224, 10, EnumKnowledgeType.DEPTHS, "The Depths");
     }
 
-    public void page2(MatrixStack stack) {
+    public void page2(PoseStack stack) {
         int height = 43;
         int x = 9;
         int h = 9;
@@ -117,7 +117,7 @@ public class ScreenPlayerStats extends ContainerScreen<ContainerEmpty> {
 		drawKnowledgeSprite(126, h, 224, 10, 0.60F, "The Depths");*/
     }
 
-    public void drawSprite(MatrixStack matrixStack, int x, int y, int spriteX, int spriteY, String s) {
+    public void drawSprite(PoseStack matrixStack, int x, int y, int spriteX, int spriteY, String s) {
         RenderSystem.pushMatrix();
         RenderSystem.enableRescaleNormal();
         int k = (width - imageWidth) / 2;
@@ -134,7 +134,7 @@ public class ScreenPlayerStats extends ContainerScreen<ContainerEmpty> {
         RenderSystem.enableDepthTest();
     }
 
-    public void drawKnowledgeSprite(MatrixStack matrixStack, int x, int y, int spriteX, int spriteY, EnumKnowledgeType type, String s) {
+    public void drawKnowledgeSprite(PoseStack matrixStack, int x, int y, int spriteX, int spriteY, EnumKnowledgeType type, String s) {
         drawSprite(matrixStack, x, y, spriteX, spriteY, s);
         int progressBarSize = 65;
         int k = (width - imageWidth) / 2;
@@ -159,7 +159,7 @@ public class ScreenPlayerStats extends ContainerScreen<ContainerEmpty> {
 
         int getLevelCount = 48;
 
-        font.drawShadow(matrixStack, "" + getLevelCount, getLevelCount > 10 ? lvX - 2 : getLevelCount > 100 ? lvX - 4 : lvX, lvY, ArgbColor.from(TextFormatting.BLUE));
+        font.drawShadow(matrixStack, "" + getLevelCount, getLevelCount > 10 ? lvX - 2 : getLevelCount > 100 ? lvX - 4 : lvX, lvY, ArgbColor.from(ChatFormatting.BLUE));
         RenderSystem.popMatrix();
         RenderSystem.enableDepthTest();
     }
@@ -172,13 +172,13 @@ public class ScreenPlayerStats extends ContainerScreen<ContainerEmpty> {
     }
 
     @Override
-    protected void renderLabels(@NotNull MatrixStack matrixStack, int x, int y) { }
+    protected void renderLabels(@NotNull PoseStack matrixStack, int x, int y) { }
 
-    private class PageButton extends Button implements Button.IPressable {
+    private class PageButton extends Button implements Button.OnPress {
         private final boolean prev;
 
-        public PageButton(int x, int y, Boolean prev, Button.IPressable pressable) {
-            super(x, y, 12, 19, StringTextComponent.EMPTY, pressable);
+        public PageButton(int x, int y, Boolean prev, OnPress pressable) {
+            super(x, y, 12, 19, TextComponent.EMPTY, pressable);
             this.prev = prev;
             this.visible = true;
         }
@@ -195,7 +195,7 @@ public class ScreenPlayerStats extends ContainerScreen<ContainerEmpty> {
         }
 
         @Override
-        public void renderButton(@NotNull MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+        public void renderButton(@NotNull PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
             assert minecraft != null;
             minecraft.getTextureManager().bind(JITL.rl("textures/gui/stats.png"));
             RenderSystem.pushMatrix();

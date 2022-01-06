@@ -1,16 +1,16 @@
 package net.jitl.client.render.gui.dialogue;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.jitl.client.dialogue.ClientDialogueNode;
 import net.jitl.client.render.gui.base.JScreen;
 import net.jitl.client.render.gui.button.NoTextureButton;
 import net.jitl.client.util.Rectangle;
-import net.minecraft.client.gui.screen.inventory.InventoryScreen;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class DialogueScreen extends JScreen {
     private Rectangle mobTextRect;
 
     public DialogueScreen(ClientDialogueNode node) {
-        super(new TranslationTextComponent("test"));
+        super(new TranslatableComponent("test"));
         this.node = node;
     }
 
@@ -82,13 +82,13 @@ public class DialogueScreen extends JScreen {
         int x = mobTextRect.getLeft() + INDENT * -(INDENT_OFFSET);
 
         for (String option : options) {
-            addButton(new NoTextureButton(x, startY, new TranslationTextComponent(option)));
+            addButton(new NoTextureButton(x, startY, new TranslatableComponent(option)));
             startY += incrementor;
         }
     }
 
     @Override
-    public void render(@NotNull MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+    public void render(@NotNull PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         renderBackground(matrixStack);
         renderDebugLayout(mouseX, mouseY, partialTicks);
 
@@ -100,7 +100,7 @@ public class DialogueScreen extends JScreen {
 
     private void renderMobText() {
         //TODO: find out how spit string is done
-        ITextComponent text = new TranslationTextComponent(TextFormatting.YELLOW + "" + TextFormatting.ITALIC + node.getTextKey());
+        Component text = new TranslatableComponent(ChatFormatting.YELLOW + "" + ChatFormatting.ITALIC + node.getTextKey());
         font.drawWordWrap(text, mobTextRect.getLeft() + INDENT * -(INDENT_OFFSET), mobTextRect.getTop() + INDENT + 48, Math.max(mobTextRect.getWidth(), 2), 0xFFFFFF);
     }
 

@@ -13,9 +13,9 @@ import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.features.frozen.FrozenIceSpikeFeature;
-import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import ru.timeconqueror.timecore.api.registry.SimpleForgeRegister;
@@ -26,20 +26,20 @@ public class JFeatures {
     private static final SimpleForgeRegister<Feature<?>> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.FEATURES, JITL.MODID);
 
     public static final RegistryObject<Feature<RuinsFeatureConfig>> RUINS = REGISTER.register("ruins", () -> new RuinsFeature(RuinsFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<NoFeatureConfig>> CAVE_VINES = REGISTER.register("cave_vines", () -> new CaveVinesFeature(NoFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> CAVE_VINES = REGISTER.register("cave_vines", () -> new CaveVinesFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<EucaTreeFeatureConfig>> EUCA_TREE = REGISTER.register("euca_tree", () -> new EucaTreeFeature(EucaTreeFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<NoFeatureConfig>> FROZEN_ICE_SPIKE = REGISTER.register("frozen_ice_spike", () -> new FrozenIceSpikeFeature(NoFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> FROZEN_ICE_SPIKE = REGISTER.register("frozen_ice_spike", () -> new FrozenIceSpikeFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<JBaseTreeFeatureConfig>> BASE_TREE = REGISTER.register("base_tree", () -> new JTreeFeature(JBaseTreeFeatureConfig.CODEC));
 
-    public static final RegistryObject<Feature<NoFeatureConfig>> GLIMMER_ROOTS = REGISTER.register("glimmer_roots", () -> new GlimmerRootFeature(NoFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> GLIMMER_ROOTS = REGISTER.register("glimmer_roots", () -> new GlimmerRootFeature(NoneFeatureConfiguration.CODEC));
 
     public static final RegistryObject<Feature<EucaSpawnerFeatureConfig>> EUCA_BOT_SPAWNER = REGISTER.register("euca_bot_spawner", () -> new EucaBotSpawner(EucaSpawnerFeatureConfig.CODEC));
 
-    public static final RegistryObject<Feature<NoFeatureConfig>> SCORCHED_STALAGMITE = REGISTER.register("scorched_stalagmite", () -> new ScorchedStalagmiteFeature(NoFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> SCORCHED_STALAGMITE = REGISTER.register("scorched_stalagmite", () -> new ScorchedStalagmiteFeature(NoneFeatureConfiguration.CODEC));
 
-    public static final RegistryObject<Feature<BlockStateFeatureConfig>> SULPHUR_DEPOSIT = REGISTER.register("sulphur_deposit", () -> new SulphurDepositFeature(BlockStateFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<NoFeatureConfig>> SULPHUR_CRYSTAL = REGISTER.register("sulphur_crystal", () -> new SulphurCrystalFeature(NoFeatureConfig.CODEC));
-    public static final RegistryObject<Feature<BlockStateFeatureConfig>> TORRID_CRYSTAL = REGISTER.register("torrid_crystal", () -> new TorridCrystalFeature(BlockStateFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<BlockStateConfiguration>> SULPHUR_DEPOSIT = REGISTER.register("sulphur_deposit", () -> new SulphurDepositFeature(BlockStateConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> SULPHUR_CRYSTAL = REGISTER.register("sulphur_crystal", () -> new SulphurCrystalFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockStateConfiguration>> TORRID_CRYSTAL = REGISTER.register("torrid_crystal", () -> new TorridCrystalFeature(BlockStateConfiguration.CODEC));
 
-    public static final RegistryObject<Feature<NoFeatureConfig>> FLAME_BULB = REGISTER.register("flame_bulb", () -> new FlameBulbFeature(NoFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> FLAME_BULB = REGISTER.register("flame_bulb", () -> new FlameBulbFeature(NoneFeatureConfiguration.CODEC));
 }

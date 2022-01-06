@@ -2,19 +2,21 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.loot.conditions.GetTablesCondition;
-import net.minecraft.loot.ILootSerializer;
-import net.minecraft.loot.LootConditionType;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.world.level.storage.loot.Serializer;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.core.Registry;
+
+import LootItemConditionType;
 
 public class JLootConditions {
     public static void init() {
     }
 
-    public static final LootConditionType GET_TABLE = register("get_tables", new GetTablesCondition.Serializer());
+    public static final LootItemConditionType GET_TABLE = register("get_tables", new GetTablesCondition.Serializer());
 
-    private static LootConditionType register(String id, ILootSerializer<? extends ILootCondition> serializer) {
+    private static LootItemConditionType register(String id, Serializer<? extends LootItemCondition> serializer) {
         JITL.LOGGER.info("registered loot conditions");
-        return Registry.register(Registry.LOOT_CONDITION_TYPE, JITL.rl(id), new LootConditionType(serializer));
+        return Registry.register(Registry.LOOT_CONDITION_TYPE, JITL.rl(id), new LootItemConditionType(serializer));
     }
 }

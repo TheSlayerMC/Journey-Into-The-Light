@@ -4,9 +4,9 @@ import net.jitl.common.capability.player.data.Essence;
 import net.jitl.common.capability.player.data.FogDensity;
 import net.jitl.common.capability.player.data.Sentacoins;
 import net.jitl.init.JCapabilities;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.network.PacketDistributor;
@@ -24,9 +24,9 @@ public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
     public final Sentacoins sentacoins = container("sentacoins", new Sentacoins());
     public final FogDensity fogDensity = container("fogDensity", new FogDensity());
 
-    private final PlayerEntity player;
+    private final Player player;
 
-    public JPlayer(PlayerEntity player) {
+    public JPlayer(Player player) {
         this.player = player;
     }
 
@@ -44,7 +44,7 @@ public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
 
     @Override
     public void sendChangesToClients(@NotNull SimpleChannel channel, @NotNull Object data) {
-        channel.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) player), data);
+        channel.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), data);
     }
 
     public void detectAndSendChanges() {
@@ -56,7 +56,7 @@ public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
     }
 
     @Nullable
-    public static JPlayer from(@Nullable PlayerEntity player) {
+    public static JPlayer from(@Nullable Player player) {
         if (player != null) {
             LazyOptional<JPlayer> cap = player.getCapability(JCapabilities.PLAYER);
 

@@ -10,17 +10,18 @@ import net.jitl.common.entity.overworld.*;
 import net.jitl.common.entity.pet.MiniBoomEntity;
 import net.jitl.common.entity.projectile.*;
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.EntityType;
-import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.levelgen.Heightmap;
 import ru.timeconqueror.timecore.api.registry.EntityRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 import static net.minecraft.entity.EntityType.Builder;
 
-public class JEntities {
-    //dimension colors
+publicimpornet.minecraft.world.entity.EntityTypetityType.Builder;
+
+ clasnet.minecraft.world.entity.EntityTypecolors
     private static final int OVERWORLD_COLOR = 0x32f53f;
     private static final int NETHER_COLOR = 0x881a2b;
     private static final int END_COLOR = 0x000000/*0x931aa3*/;
@@ -43,17 +44,17 @@ public class JEntities {
     @AutoRegistrable
     private static final EntityRegister REGISTER = new EntityRegister(JITL.MODID);
     public static final EntityType<FloroEntity> FLORO_TYPE = REGISTER.registerMob("floro",
-            Builder.of(FloroEntity::new, EntityClassification.MONSTER)
+            Builder.of(FloroEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1F, 2F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FloroEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FloroEntity::canSpawn)
             .attributes(() -> FloroEntity.createAttributes().build())
             .spawnEgg(OVERWORLD_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<EskimoEntity> ESKIMO_TYPE = REGISTER.registerMob("eskimo",
-            Builder.of(EskimoEntity::new, EntityClassification.MONSTER)
+            Builder.of(EskimoEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 2F))
@@ -62,7 +63,7 @@ public class JEntities {
             .retrieve();
 
     public static final EntityType<MageEntity> MAGE_TYPE = REGISTER.registerMob("mage",
-                    Builder.of(MageEntity::new, EntityClassification.MONSTER)
+                    Builder.of(MageEntity::new, MobCategory.MONSTER)
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(0.9F, 2.2F))
@@ -71,57 +72,57 @@ public class JEntities {
             .retrieve();
 
     public static final EntityType<FrozenTrollEntity> FROZEN_TROLL_TYPE = REGISTER.registerMob("frozen_troll",
-            Builder.of(FrozenTrollEntity::new, EntityClassification.MONSTER)
+            Builder.of(FrozenTrollEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.9F, 2.2F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FrozenTrollEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FrozenTrollEntity::canSpawn)
             .attributes(() -> FrozenTrollEntity.createAttributes().build())
             .spawnEgg(FROZEN_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<PhantasmEntity> PHANTASM_TYPE = REGISTER.registerMob("phantasm",
-            Builder.of(PhantasmEntity::new, EntityClassification.MONSTER)
+            Builder.of(PhantasmEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.5F, 0.5F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PhantasmEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PhantasmEntity::canSpawn)
             .attributes(() -> PhantasmEntity.createAttributes().build())
             .spawnEgg(FROZEN_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<ShiveringRamEntity> SHIVERING_RAM_TYPE = REGISTER.registerMob("shivering_ram",
-            Builder.of(ShiveringRamEntity::new, EntityClassification.CREATURE)
+            Builder.of(ShiveringRamEntity::new, MobCategory.CREATURE)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.2F, 1.25F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ShiveringRamEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ShiveringRamEntity::canSpawn)
             .attributes(() -> ShiveringRamEntity.createAttributes().build())
             .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<CapybaraEntity> CAPYBARA_TYPE = REGISTER.registerMob("capybara",
-            Builder.of(CapybaraEntity::new, EntityClassification.CREATURE)
+            Builder.of(CapybaraEntity::new, MobCategory.CREATURE)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.85F, 1.65F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CapybaraEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CapybaraEntity::canSpawn)
             .attributes(() -> CapybaraEntity.createAttributes().build())
             .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<FrozenGuardianEntity> FROZEN_GUARDIAN_TYPE = REGISTER.registerMob("frozen_guardian",
-            Builder.of(FrozenGuardianEntity::new, EntityClassification.MONSTER)
+            Builder.of(FrozenGuardianEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.9F, 2.2F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FrozenGuardianEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FrozenGuardianEntity::canSpawn)
             .attributes(() -> FrozenGuardianEntity.createAttributes().build())
             .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<ShattererEntity> SHATTERER_TYPE = REGISTER.registerMob("shatterer",
-            Builder.of(ShattererEntity::new, EntityClassification.MONSTER)
+            Builder.of(ShattererEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.9F, 2.2F))
@@ -130,17 +131,17 @@ public class JEntities {
             .retrieve();
 
     public static final EntityType<HongoEntity> HONGO_TYPE = REGISTER.registerMob("hongo",
-            Builder.of(HongoEntity::new, EntityClassification.MONSTER)
+            Builder.of(HongoEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 2F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
             .attributes(() -> HongoEntity.createAttributes().build())
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<MiniBoomEntity> MINI_BOOM_TYPE = REGISTER.registerMob("miniboom",
-            Builder.of(MiniBoomEntity::new, EntityClassification.CREATURE)
+            Builder.of(MiniBoomEntity::new, MobCategory.CREATURE)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 2F))
@@ -149,27 +150,27 @@ public class JEntities {
             .retrieve();
 
     public static final EntityType<WithershroomEntity> WITHERSHROOM_TYPE = REGISTER.registerMob("withershroom",
-            Builder.of(WithershroomEntity::new, EntityClassification.MONSTER)
+            Builder.of(WithershroomEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 2F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WithershroomEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WithershroomEntity::canSpawn)
             .attributes(() -> WithershroomEntity.createAttributes().build())
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<HonglowEntity> HONGLOW_TYPE = REGISTER.registerMob("honglow",
-            Builder.of(HonglowEntity::new, EntityClassification.MONSTER)
+            Builder.of(HonglowEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 2F))
-            .spawnSettings(EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HonglowEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HonglowEntity::canSpawn)
             .attributes(() -> HonglowEntity.createAttributes().build())
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
     public static final EntityType<WitherspineEntity> WITHERSPINE_TYPE = REGISTER.registerMob("witherspine",
-            Builder.of(WitherspineEntity::new, EntityClassification.MONSTER)
+            Builder.of(WitherspineEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.5F, 3.65F))//TODO add spawn settings
@@ -178,7 +179,7 @@ public class JEntities {
             .retrieve();
 
     public static final EntityType<TowerGuardianEntity> TOWER_GUARDIAN_TYPE = REGISTER.registerMob("tower_guardian",
-            Builder.of(TowerGuardianEntity::new, EntityClassification.MONSTER)
+            Builder.of(TowerGuardianEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(2F, 4.2F))//TODO add spawn settings
@@ -187,7 +188,7 @@ public class JEntities {
             .retrieve();
 
     public static final EntityType<GlumpEntity> GLUMP_TYPE = REGISTER.registerMob("glump",
-            Builder.of(GlumpEntity::new, EntityClassification.MONSTER)
+            Builder.of(GlumpEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(2F, 0.8F))//TODO add spawn settings
@@ -196,7 +197,7 @@ public class JEntities {
             .retrieve();
 
     public static final EntityType<IllagerMechEntity> ILLAGER_MECH_TYPE = REGISTER.registerMob("illager_mech",
-            Builder.of(IllagerMechEntity::new, EntityClassification.MONSTER)
+            Builder.of(IllagerMechEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.25F, 1.95F))
@@ -205,7 +206,7 @@ public class JEntities {
             .retrieve();
 
     public static final EntityType<SoulWatcherEntity> SOUL_WATCHER_TYPE = REGISTER.registerMob("soul_watcher",
-            Builder.of(SoulWatcherEntity::new, EntityClassification.MONSTER)
+            Builder.of(SoulWatcherEntity::new, MobCategory.MONSTER)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(2.5F, 2.5F))
@@ -214,7 +215,7 @@ public class JEntities {
             .retrieve();
 
     public static final EntityType<EssenciaBoltEntity> ESSENCIA_BOLT_TYPE = REGISTER.register("essencia_bolt",
-            Builder.of(EssenciaBoltEntity::new, EntityClassification.MISC)
+            Builder.of(EssenciaBoltEntity::new, MobCategory.MISC)
                     .noSave()
                     .sized(0.0F, 0.0F)
                     .clientTrackingRange(16)
@@ -222,63 +223,63 @@ public class JEntities {
             .retrieve();
 
     public static final EntityType<FloroMudEntity> FLORO_MUD_TYPE = REGISTER.register("floro_mud",
-            Builder.<FloroMudEntity>of(FloroMudEntity::new, EntityClassification.MISC)
+            Builder.<FloroMudEntity>of(FloroMudEntity::new, MobCategory.MISC)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.5F, 0.5F))
             .retrieve();
 
     public static final EntityType<ConjuringProjectileEntity> CONJURING_PROJECTILE_TYPE = REGISTER.register("conjuring_projectile",
-            Builder.<ConjuringProjectileEntity>of(ConjuringProjectileEntity::new, EntityClassification.MISC)
+            Builder.<ConjuringProjectileEntity>of(ConjuringProjectileEntity::new, MobCategory.MISC)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.5F, 0.5F))
             .retrieve();
 
     public static final EntityType<EssenciaProjectileEntity> ESSENCIA_PROJECTILE_TYPE = REGISTER.register("essencia_projectile",
-            Builder.<EssenciaProjectileEntity>of(EssenciaProjectileEntity::new, EntityClassification.MISC)
+            Builder.<EssenciaProjectileEntity>of(EssenciaProjectileEntity::new, MobCategory.MISC)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.5F, 0.5F))
             .retrieve();
 
     public static final EntityType<KnifeEntity> KNIFE_TYPE = REGISTER.register("knife",
-            Builder.<KnifeEntity>of(KnifeEntity::new, EntityClassification.MISC)
+            Builder.<KnifeEntity>of(KnifeEntity::new, MobCategory.MISC)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.5F, 0.5F))
             .retrieve();
 
     public static final EntityType<PiercerEntity> PIERCER_TYPE = REGISTER.register("piercer",
-            Builder.<PiercerEntity>of(PiercerEntity::new, EntityClassification.MISC)
+            Builder.<PiercerEntity>of(PiercerEntity::new, MobCategory.MISC)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.5F, 0.5F))
             .retrieve();
 
     public static final EntityType<JEffectCloudEntity> EFFECT_CLOUD_TYPE = REGISTER.register("effect_cloud",
-            Builder.<JEffectCloudEntity>of(JEffectCloudEntity::new, EntityClassification.MISC)
+            Builder.<JEffectCloudEntity>of(JEffectCloudEntity::new, MobCategory.MISC)
                     .fireImmune()
                     .clientTrackingRange(10)
                     .sized(0.0F, 0.0F))
             .retrieve();
 
     public static final EntityType<CalciaMineEntity> CALCIA_MINE_TYPE = REGISTER.register("calcia_mine",
-            Builder.<CalciaMineEntity>of(CalciaMineEntity::new, EntityClassification.MISC)
+            Builder.<CalciaMineEntity>of(CalciaMineEntity::new, MobCategory.MISC)
                     .fireImmune()
                     .clientTrackingRange(10)
                     .sized(0.0F, 0.0F))
             .retrieve();
 
     public static final EntityType<CalciaBurstEntity> CALCIA_BURST_TYPE = REGISTER.register("calcia_burst",
-            Builder.<CalciaBurstEntity>of(CalciaBurstEntity::new, EntityClassification.MISC)
+            Builder.<CalciaBurstEntity>of(CalciaBurstEntity::new, MobCategory.MISC)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(0.4F, 0.4F))
             .retrieve();
 
     public static final EntityType<BossCrystalEntity> BOSS_CRYSTAL_TYPE = REGISTER.register("boss_crystal",
-            Builder.<BossCrystalEntity>of(BossCrystalEntity::new, EntityClassification.MISC)
+            Builder.<BossCrystalEntity>of(BossCrystalEntity::new, MobCategory.MISC)
                     .setTrackingRange(80)
                     .setShouldReceiveVelocityUpdates(true)
                     .sized(1.0F, 3.0F))

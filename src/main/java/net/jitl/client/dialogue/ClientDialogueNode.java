@@ -1,13 +1,15 @@
 package net.jitl.client.dialogue;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.Objects;
+
+import LivingEntity;
 
 public class ClientDialogueNode {
     private final String textKey;

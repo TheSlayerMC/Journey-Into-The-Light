@@ -3,25 +3,25 @@ package net.jitl.common.world.gen.features.boil;
 import com.mojang.serialization.Codec;
 import net.jitl.common.block.base.AttachedBlock;
 import net.jitl.init.JBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
 import java.util.Random;
 
-public class SulphurDepositFeature extends Feature<BlockStateFeatureConfig> {
-    public SulphurDepositFeature(Codec<BlockStateFeatureConfig> codec_) {
+public class SulphurDepositFeature extends Feature<BlockStateConfiguration> {
+    public SulphurDepositFeature(Codec<BlockStateConfiguration> codec_) {
         super(codec_);
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateFeatureConfig config) {
+    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateConfiguration config) {
         if (reader.getBlockState(pos.below()) != JBlocks.VOLCANIC_SAND.defaultBlockState()) {
             return false;
         } else {
@@ -35,15 +35,15 @@ public class SulphurDepositFeature extends Feature<BlockStateFeatureConfig> {
                 return false;
             }
 
-            BlockPos.Mutable placePos = pos.mutable();
+            BlockPos.MutableBlockPos placePos = pos.mutable();
 
             int xPos = pos.getX();
             int zPos = pos.getZ();
-            int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos);
+            int yPos = reader.getHeight(Heightmap.Types.WORLD_SURFACE_WG, xPos, zPos);
 
             placePos.set(xPos, yPos - 1, zPos);
 
-            BlockPos blockPos = reader.getHeightmapPos(Heightmap.Type.WORLD_SURFACE_WG, pos);
+            BlockPos blockPos = reader.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
 
             for (int l = 0; l < 2; ++l) {
                 placePos.setWithOffset(blockPos, rand.nextInt(10 + 10), 0, rand.nextInt(10 + 10));

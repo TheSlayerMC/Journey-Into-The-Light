@@ -1,36 +1,36 @@
 package net.jitl.client.render.tile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.jitl.JITL;
 import net.jitl.client.render.JRenderTypes;
 import net.jitl.common.tile.EssenciaAltarTile;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Vector3f;
 import ru.timeconqueror.timecore.api.util.HorizontalDirection;
 
 import java.util.Random;
 //TODO add path increasing start from the center block
-public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
+public class EssenciaAltarTER extends BlockEntityRenderer<EssenciaAltarTile> {
     private static final Random RANDOM = new Random();
 
-    public EssenciaAltarTER(TileEntityRendererDispatcher rendererDispatcherIn) {
+    public EssenciaAltarTER(BlockEntityRenderDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
     }
 
     @Override
-    public void render(EssenciaAltarTile tile, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+    public void render(EssenciaAltarTile tile, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         if (!tile.isActivated()) return;
 
         RenderType rtEssenciaAltarSide = JRenderTypes.fullbrightCutout(JITL.rl("textures/tile/charge_indicator_essencia_altar.png"));//fixme move to static
 
         matrixStackIn.pushPose();
 
-        IVertexBuilder builder = bufferIn.getBuffer(rtEssenciaAltarSide);
+        VertexConsumer builder = bufferIn.getBuffer(rtEssenciaAltarSide);
         float offset = 0.002F;
         verticalQuad(builder, matrixStackIn, 0, 1, 1, 1, false, 1 + offset, false); //to south
         verticalQuad(builder, matrixStackIn, 0, 1, 1, 1, false, -offset, true); //to north
@@ -68,7 +68,7 @@ public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
         return Math.max(0, Math.min(length, 3) - decrement) + 0.1F/*needed to set light to the last brick*/;
     }
 
-    public static void verticalQuad(IVertexBuilder builder, MatrixStack matrixStack, float x0, float y0, float width, float height, boolean rotateToZ, float offset, boolean invertRenderOrder) {
+    public static void verticalQuad(VertexConsumer builder, PoseStack matrixStack, float x0, float y0, float width, float height, boolean rotateToZ, float offset, boolean invertRenderOrder) {
         Matrix4f pose = matrixStack.last().pose();
 
         if (invertRenderOrder) {
@@ -84,7 +84,7 @@ public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
         }
     }
 
-    public static void facedTopHorizontalQuad(IVertexBuilder builder, MatrixStack matrixStack, float x0, float z0, float width, float height, float y) {
+    public static void facedTopHorizontalQuad(VertexConsumer builder, PoseStack matrixStack, float x0, float z0, float width, float height, float y) {
         Matrix4f pose = matrixStack.last().pose();
 
         builder.vertex(pose, x0, y, z0).uv(0, 0).endVertex();
@@ -93,7 +93,7 @@ public class EssenciaAltarTER extends TileEntityRenderer<EssenciaAltarTile> {
         builder.vertex(pose, x0 + width, y, z0).uv(1, 0).endVertex();
     }
 
-    public static void facedTopPercentedQuad(IVertexBuilder builder, MatrixStack matrixStack, float x0, float z0, float width, float height, float y, boolean invertDirection) {
+    public static void facedTopPercentedQuad(VertexConsumer builder, PoseStack matrixStack, float x0, float z0, float width, float height, float y, boolean invertDirection) {
         Matrix4f pose = matrixStack.last().pose();
 
 

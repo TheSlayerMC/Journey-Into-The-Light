@@ -8,21 +8,21 @@ import net.jitl.common.helper.JBossInfo;
 import net.jitl.common.helper.JMusic;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.ZombifiedPiglinEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.ZombifiedPiglin;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.BossInfo;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerBossInfo;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerBossEvent;
 import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.AnimationStarter;
@@ -34,9 +34,16 @@ import ru.timeconqueror.timecore.api.animation.AnimatedObject;
 import ru.timeconqueror.timecore.api.animation.BlendType;
 import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
 
-public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject<TowerGuardianEntity>, IJourneyBoss {
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 
-	private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
+public class TowerGuardianEntity extends Monster implements AnimatedObject<TowerGuardianEntity>, IJourneyBoss {
+
+	private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.NOTCHED_6);
 	private final BossBarRenderer BOSS_BAR = new BossBarRenderer(this, JITL.tl("gui/bossbars/tower_guardian.png").fullLocation());
 	private static final JMusic BOSS_TRACK = new JMusic(JSounds.TEMPLE_GUARDIAN_MUSIC.get(), 2, 0, 0);
 	private static final Lazy<DelayedAction<TowerGuardianEntity, Object>> SMASHING_ACTION;
@@ -51,7 +58,7 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 
 	private final AnimationSystem<TowerGuardianEntity> animationSystem;
 
-	public TowerGuardianEntity(EntityType<? extends TowerGuardianEntity> type, World world) {
+	public TowerGuardianEntity(EntityType<? extends TowerGuardianEntity> type, Level world) {
 		super(type, world);
 
 		animationSystem = AnimationSystemBuilder.forEntity(this, world, builder -> {
@@ -69,26 +76,26 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SmashingGoal(this, 1.0D, false)); //mutex 1
-		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 		this.addBehaviourGoals();
 	}
 
 	protected void addBehaviourGoals() {
-		this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(1, new IdleHealGoal(this, 1200));
-		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglinEntity.class));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglin.class));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
 	}
 
-	public static AttributeModifierMap.MutableAttribute createAttributes() {
+	public static AttributeSupplier.Builder createAttributes() {
 		return createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 200.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.15D);
 	}
 
 	@Override
-	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		return sizeIn.height * 0.9F;
 	}
 
@@ -103,13 +110,13 @@ public class TowerGuardianEntity extends MonsterEntity implements AnimatedObject
 	}
 
 	@Override
-	public void startSeenByPlayer(ServerPlayerEntity player) {
+	public void startSeenByPlayer(ServerPlayer player) {
 		super.startSeenByPlayer(player);
 		JBossInfo.addInfo(player, bossInfo, this);
 	}
 
 	@Override
-	public void stopSeenByPlayer(ServerPlayerEntity player) {
+	public void stopSeenByPlayer(ServerPlayer player) {
 		super.stopSeenByPlayer(player);
 		JBossInfo.removeInfo(player, bossInfo, this);
 	}

@@ -3,33 +3,39 @@ package net.jitl.common.block;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JParticleManager;
 import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class CaveVinesBlock extends AbstractBodyPlantBlock {
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.GrowingPlantBodyBlock;
+import net.minecraft.world.level.block.GrowingPlantHeadBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class CaveVinesBlock extends GrowingPlantBodyBlock {
     public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 
-    public CaveVinesBlock(AbstractBlock.Properties properties) {
+    public CaveVinesBlock(Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false);
     }
 
     @Override
-    public boolean isLadder(BlockState state, IWorldReader world, BlockPos pos, LivingEntity entity) {
+    public boolean isLadder(BlockState state, LevelReader world, BlockPos pos, LivingEntity entity) {
         return true;
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void animateTick(@NotNull BlockState stateIn, @NotNull World worldIn, @NotNull BlockPos pos, Random rand) {
+    public void animateTick(@NotNull BlockState stateIn, @NotNull Level worldIn, @NotNull BlockPos pos, Random rand) {
         if (rand.nextInt(8) == 0) {
             double d0 = (double) pos.getX() + rand.nextDouble();
             double d1 = (double) pos.getY() - 0.05D;
@@ -39,7 +45,7 @@ public class CaveVinesBlock extends AbstractBodyPlantBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         BlockPos blockpos = pos.relative(this.growthDirection.getOpposite());
         BlockState blockstate = worldIn.getBlockState(blockpos);
         Block block = blockstate.getBlock();
@@ -51,7 +57,7 @@ public class CaveVinesBlock extends AbstractBodyPlantBlock {
     }
 
     @Override
-    protected @NotNull AbstractTopPlantBlock getHeadBlock() {
+    protected @NotNull GrowingPlantHeadBlock getHeadBlock() {
         return JBlocks.CAVE_VINES;
     }
 }

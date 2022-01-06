@@ -1,6 +1,6 @@
 package net.jitl.common.scroll;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 /*
  * Code by TimeConqueror
@@ -8,7 +8,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 public interface IDescComponent {
     int getContentPartHeight();
 
-    void drawContentPart(MatrixStack matrixStack, int x0, int y0, int width);
+    void drawContentPart(PoseStack matrixStack, int x0, int y0, int width);
 
     /**
      * Must be called before drawingContentPart and doing any mechanics with

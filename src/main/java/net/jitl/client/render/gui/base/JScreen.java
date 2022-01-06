@@ -1,13 +1,13 @@
 package net.jitl.client.render.gui.base;
 
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 
 public class JScreen extends Screen {
     protected int centerX;
     protected int centerY;
 
-    protected JScreen(ITextComponent titleIn) {
+    protected JScreen(Component titleIn) {
         super(titleIn);
     }
 

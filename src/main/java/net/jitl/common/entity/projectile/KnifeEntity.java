@@ -3,35 +3,35 @@ package net.jitl.common.entity.projectile;
 import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IRendersAsItem;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.ItemSupplier;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
-public class KnifeEntity extends AbstractKnifeEntity implements IRendersAsItem {
-    private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(KnifeEntity.class, DataSerializers.ITEM_STACK);
+public class KnifeEntity extends AbstractKnifeEntity implements ItemSupplier {
+    private static final EntityDataAccessor<ItemStack> STACK = SynchedEntityData.defineId(KnifeEntity.class, EntityDataSerializers.ITEM_STACK);
 
-    public KnifeEntity(EntityType<KnifeEntity> type, World world) {
+    public KnifeEntity(EntityType<KnifeEntity> type, Level world) {
         super(type, world);
     }
 
-    public KnifeEntity(LivingEntity owner, World worldIn, ItemStack stack, float damage) {
+    public KnifeEntity(LivingEntity owner, Level worldIn, ItemStack stack, float damage) {
         super(JEntities.KNIFE_TYPE, worldIn, owner);
         setBaseDamage(damage);
         setStack(stack.copy());
@@ -56,7 +56,7 @@ public class KnifeEntity extends AbstractKnifeEntity implements IRendersAsItem {
     }
 
     @Override
-    protected void onHitEntity(@NotNull EntityRayTraceResult entityRayTraceResult_) {
+    protected void onHitEntity(@NotNull EntityHitResult entityRayTraceResult_) {
         if (getStack().getItem() == JItems.MOLTEN_KNIFE) {
             Entity entity = entityRayTraceResult_.getEntity();
             if (entity instanceof LivingEntity && entity != this.getOwner()) {
@@ -77,13 +77,13 @@ public class KnifeEntity extends AbstractKnifeEntity implements IRendersAsItem {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT nbt) {
+    public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
-        nbt.put("stack", getStack().save(new CompoundNBT()));
+        nbt.put("stack", getStack().save(new CompoundTag()));
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT nbt) {
+    public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         setStack(ItemStack.of(nbt.getCompound("stack")));
         if (getStack().isEmpty()) remove();
@@ -103,7 +103,7 @@ public class KnifeEntity extends AbstractKnifeEntity implements IRendersAsItem {
     }
 
     @Override
-    public @NotNull IPacket<?> getAddEntityPacket() {//TODO move tosuperclass
+    public @NotNull Packet<?> getAddEntityPacket() {//TODO move tosuperclass
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -120,7 +120,7 @@ public class KnifeEntity extends AbstractKnifeEntity implements IRendersAsItem {
     }
 
     @Override
-    public void onSyncedDataUpdated(DataParameter<?> key) {
+    public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
         if (key == STACK) {
             getStack().setEntityRepresentation(this);
         }

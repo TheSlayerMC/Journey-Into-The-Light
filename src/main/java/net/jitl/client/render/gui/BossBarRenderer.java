@@ -1,14 +1,17 @@
 package net.jitl.client.render.gui;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.client.util.RenderUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.Util;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
+import LivingEntity;
+import ResourceLocation;
 
 public class BossBarRenderer {
     protected final LivingEntity boss;
@@ -23,7 +26,7 @@ public class BossBarRenderer {
 
     public void render(RenderGameOverlayEvent.BossInfo event) {
         Minecraft minecraft = Minecraft.getInstance();
-        MatrixStack stack = event.getMatrixStack();
+        PoseStack stack = event.getMatrixStack();
         int x = event.getX() + 91;
         int y = event.getY();
 

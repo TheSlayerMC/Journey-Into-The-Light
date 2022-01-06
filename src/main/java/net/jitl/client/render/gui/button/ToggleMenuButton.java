@@ -1,12 +1,16 @@
 package net.jitl.client.render.gui.button;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
 import net.jitl.config.JClientConfig;
 import net.jitl.config.JConfigs;
 import net.jitl.util.JRenderUtils;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+
+import net.minecraft.client.gui.components.Button.OnPress;
+
+import Component;
 
 public class ToggleMenuButton extends JImageButton {
 
@@ -16,18 +20,18 @@ public class ToggleMenuButton extends JImageButton {
 	private static final int TEXT_WIDTH = 128;
 	private static final int TEXT_HEIGHT = 8;
 
-	private static final ITextComponent ENABLE_JITL_MENU = new TranslationTextComponent("jitl.tooltip.enable_menu");
-	private static final ITextComponent DISABLE_JITL_MENU = new TranslationTextComponent("jitl.tooltip.disable_menu");
+	private static final Component ENABLE_JITL_MENU = new TranslatableComponent("jitl.tooltip.enable_menu");
+	private static final Component DISABLE_JITL_MENU = new TranslatableComponent("jitl.tooltip.disable_menu");
 
-	public ToggleMenuButton(int xIn, int yIn, IPressable onPressIn) {
+	public ToggleMenuButton(int xIn, int yIn, OnPress onPressIn) {
 		super(xIn, yIn, 20, 20, 0, 0, 20, JITL.rl("textures/gui/title/menu_toggle.png"), 20, 40, onPressIn);
 	}
 
 	@Override
-	public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+	public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		super.renderButton(matrixStack, mouseX, mouseY, partialTicks);
 		if (isHovered()) {
-			ITextComponent textKey = menuEnabled ? DISABLE_JITL_MENU : ENABLE_JITL_MENU;
+			Component textKey = menuEnabled ? DISABLE_JITL_MENU : ENABLE_JITL_MENU;
 			JRenderUtils.Text.renderTooltip(matrixStack, textKey, 16, 0, TEXT_WIDTH, TEXT_HEIGHT);
 		}
 	}

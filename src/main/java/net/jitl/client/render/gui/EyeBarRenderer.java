@@ -1,14 +1,14 @@
 package net.jitl.client.render.gui;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.client.render.gui.BossBarRenderer;
 import net.jitl.client.util.RenderUtils;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.Util;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class EyeBarRenderer extends BossBarRenderer {
@@ -19,7 +19,7 @@ public class EyeBarRenderer extends BossBarRenderer {
     @Override
     public void render(RenderGameOverlayEvent.BossInfo event) {
         Minecraft minecraft = Minecraft.getInstance();
-        MatrixStack stack = event.getMatrixStack();
+        PoseStack stack = event.getMatrixStack();
         int x = event.getX() + 91;
         int y = event.getY();
 

@@ -1,44 +1,50 @@
 package net.jitl.common.entity.frozen;
 
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.MovementController;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 
 import java.util.EnumSet;
 import java.util.Random;
 
-public class ShattererEntity extends FlyingEntity implements IMob {
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.FlyingMob;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.Pose;
 
-    public ShattererEntity(EntityType<? extends ShattererEntity> type, World worldIn) {
+public class ShattererEntity extends FlyingMob implements Enemy {
+
+    public ShattererEntity(EntityType<? extends ShattererEntity> type, Level worldIn) {
         super(type, worldIn);
-        this.moveControl = new ShattererEntity.MoveHelperController(this);
+        this.moveControl = new MoveHelperController(this);
     }
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(5, new ShattererEntity.RandomFlyGoal(this));
-        this.goalSelector.addGoal(7, new ShattererEntity.LookAroundGoal(this));
+        this.goalSelector.addGoal(5, new RandomFlyGoal(this));
+        this.goalSelector.addGoal(7, new LookAroundGoal(this));
     }
 
     protected boolean shouldDespawnInPeaceful() {
         return true;
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.FOLLOW_RANGE, 100.0D);
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return 1F;
     }
 
@@ -52,7 +58,7 @@ public class ShattererEntity extends FlyingEntity implements IMob {
 
         public LookAroundGoal(ShattererEntity shatterer) {
             this.shatterer = shatterer;
-            this.setFlags(EnumSet.of(Goal.Flag.LOOK));
+            this.setFlags(EnumSet.of(Flag.LOOK));
         }
 
         @Override
@@ -62,13 +68,13 @@ public class ShattererEntity extends FlyingEntity implements IMob {
 
         @Override
         public void tick() {
-            Vector3d vector3d = this.shatterer.getDeltaMovement();
-            this.shatterer.yRot = -((float) MathHelper.atan2(vector3d.x, vector3d.z)) * (180F / (float) Math.PI);
+            Vec3 vector3d = this.shatterer.getDeltaMovement();
+            this.shatterer.yRot = -((float) Mth.atan2(vector3d.x, vector3d.z)) * (180F / (float) Math.PI);
             this.shatterer.yBodyRot = this.shatterer.yRot;
         }
     }
 
-    static class MoveHelperController extends MovementController {
+    static class MoveHelperController extends MoveControl {
         private final ShattererEntity shatterer;
         private int floatDuration;
 
@@ -79,24 +85,24 @@ public class ShattererEntity extends FlyingEntity implements IMob {
 
         @Override
         public void tick() {
-            if(this.operation == MovementController.Action.MOVE_TO) {
+            if(this.operation == Operation.MOVE_TO) {
                 if(this.floatDuration-- <= 0) {
                     this.floatDuration += this.shatterer.getRandom().nextInt(3) + 1;
-                    Vector3d vector3d = new Vector3d(this.wantedX - this.shatterer.getX(), this.wantedY - this.shatterer.getY(), this.wantedZ - this.shatterer.getZ());
+                    Vec3 vector3d = new Vec3(this.wantedX - this.shatterer.getX(), this.wantedY - this.shatterer.getY(), this.wantedZ - this.shatterer.getZ());
                     double d0 = vector3d.length();
                     vector3d = vector3d.normalize();
-                    if(this.canReach(vector3d, MathHelper.ceil(d0))) {
+                    if(this.canReach(vector3d, Mth.ceil(d0))) {
                         this.shatterer.setDeltaMovement(this.shatterer.getDeltaMovement().add(vector3d.scale(0.1D)));
                     } else {
-                        this.operation = MovementController.Action.WAIT;
+                        this.operation = Operation.WAIT;
                     }
                 }
 
             }
         }
 
-        private boolean canReach(Vector3d vector3d_, int int_) {
-            AxisAlignedBB axisalignedbb = this.shatterer.getBoundingBox();
+        private boolean canReach(Vec3 vector3d_, int int_) {
+            AABB axisalignedbb = this.shatterer.getBoundingBox();
 
             for(int i = 1; i < int_; ++i) {
                 axisalignedbb = axisalignedbb.move(vector3d_);
@@ -114,12 +120,12 @@ public class ShattererEntity extends FlyingEntity implements IMob {
 
         public RandomFlyGoal(ShattererEntity shatterer) {
             this.shatterer = shatterer;
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+            this.setFlags(EnumSet.of(Flag.MOVE));
         }
 
         @Override
         public boolean canUse() {
-            MovementController movementcontroller = this.shatterer.getMoveControl();
+            MoveControl movementcontroller = this.shatterer.getMoveControl();
             if (!movementcontroller.hasWanted()) {
                 return true;
             } else {

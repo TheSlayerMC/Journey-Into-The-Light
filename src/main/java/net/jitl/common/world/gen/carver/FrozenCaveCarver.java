@@ -3,13 +3,13 @@ package net.jitl.common.world.gen.carver;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
 import net.jitl.init.JBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.carver.CaveWorldCarver;
-import net.minecraft.world.gen.feature.ProbabilityConfig;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.levelgen.carver.CaveWorldCarver;
+import net.minecraft.world.level.levelgen.feature.configurations.ProbabilityFeatureConfiguration;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 
 import java.util.BitSet;
@@ -18,7 +18,7 @@ import java.util.function.Function;
 
 public class FrozenCaveCarver extends CaveWorldCarver {
 
-    public FrozenCaveCarver(Codec<ProbabilityConfig> c) {
+    public FrozenCaveCarver(Codec<ProbabilityFeatureConfiguration> c) {
         super(c, 64);
         this.replaceableBlocks = ImmutableSet.of(JBlocks.GRASSY_PERMAFROST, JBlocks.PERMAFROST, JBlocks.CRUMBLED_PERMAFROST);
         this.liquids = ImmutableSet.of(Fluids.LAVA, Fluids.WATER);
@@ -49,7 +49,7 @@ public class FrozenCaveCarver extends CaveWorldCarver {
     }
 
     @Override
-    protected boolean carveBlock(IChunk chunkIn, Function<BlockPos, Biome> function_, BitSet carvingMask, Random rand, BlockPos.Mutable mutable_, BlockPos.Mutable mutable1_, BlockPos.Mutable mutable2_, int int3_, int int4_, int int_, int posX, int posZ, int j, int posY, int k, MutableBoolean isSurface) {
+    protected boolean carveBlock(ChunkAccess chunkIn, Function<BlockPos, Biome> function_, BitSet carvingMask, Random rand, BlockPos.MutableBlockPos mutable_, BlockPos.MutableBlockPos mutable1_, BlockPos.MutableBlockPos mutable2_, int int3_, int int4_, int int_, int posX, int posZ, int j, int posY, int k, MutableBoolean isSurface) {
         int i = j | k << 4 | posY << 8;
         if (carvingMask.get(i)) {
             return false;

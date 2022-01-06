@@ -9,27 +9,27 @@ import net.jitl.init.JDataSerializers;
 import net.jitl.init.JSounds;
 import net.jitl.network.JBossPacket;
 import net.jitl.network.JPacketHandler;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.server.ServerBossInfo;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.util.RandHelper;
@@ -38,18 +38,36 @@ import ru.timeconqueror.timecore.api.util.lookups.EnumLookup;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class HonglowEntity extends MonsterEntity {
-	public static final DataParameter<Type> VARIANT = EntityDataManager.defineId(HonglowEntity.class, JDataSerializers.HONGLOW_VARIANT);
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 
-	public HonglowEntity(EntityType<? extends HonglowEntity> entityType, World world) {
+public class HonglowEntity extends Monster {
+	public static final EntityDataAccessor<Type> VARIANT = SynchedEntityData.defineId(HonglowEntity.class, JDataSerializers.HONGLOW_VARIANT);
+
+	public HonglowEntity(EntityType<? extends HonglowEntity> entityType, Level world) {
 		super(entityType, world);
 	}
 
 	protected void registerGoals() {
-		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(0, new FloatGoal(this));
+		this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 	}
 	
 	public Type getVariant() {
@@ -57,7 +75,7 @@ public class HonglowEntity extends MonsterEntity {
 	}
 	
 	@Override
-	public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		this.getEntityData().set(VARIANT, RandHelper.chooseEqually(Type.values()));
 	    return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
@@ -69,22 +87,22 @@ public class HonglowEntity extends MonsterEntity {
 	}
 	
 	@Override
-	public void addAdditionalSaveData(CompoundNBT nbt) {
+	public void addAdditionalSaveData(CompoundTag nbt) {
 		super.addAdditionalSaveData(nbt);
 		nbt.putInt("color", getVariant().getTypeInt());
 	}
 	
 	@Override
-	public void readAdditionalSaveData(CompoundNBT nbt) {
+	public void readAdditionalSaveData(CompoundTag nbt) {
 		super.readAdditionalSaveData(nbt);
 		this.getEntityData().set(VARIANT, Type.getVariantFromInt(nbt.getInt("color")));
 	}
 
-	public static boolean canSpawn(EntityType<? extends CreatureEntity> entityType, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+	public static boolean canSpawn(EntityType<? extends PathfinderMob> entityType, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
 		return !worldIn.getBlockState(pos).is(Blocks.WATER)
 				&& worldIn.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK)
-				&& worldIn.getBiome(pos).getBiomeCategory() == Biome.Category.MUSHROOM
-				|| worldIn.getBiome(pos).getBiomeCategory() == Biome.Category.SWAMP;
+				&& worldIn.getBiome(pos).getBiomeCategory() == Biome.BiomeCategory.MUSHROOM
+				|| worldIn.getBiome(pos).getBiomeCategory() == Biome.BiomeCategory.SWAMP;
 	}
 
 	@Override
@@ -107,7 +125,7 @@ public class HonglowEntity extends MonsterEntity {
 					poison.exclude((LivingEntity) attacker);
 				}
 				poison.spawn();
-				level.playSound(null, this.blockPosition(), JSounds.HONGO_SPORE_RELEASE.get(), SoundCategory.HOSTILE, 1.0F, 1.0F);
+				level.playSound(null, this.blockPosition(), JSounds.HONGO_SPORE_RELEASE.get(), SoundSource.HOSTILE, 1.0F, 1.0F);
 			}
     		return true;
     	} else {
@@ -115,14 +133,14 @@ public class HonglowEntity extends MonsterEntity {
     	}
 	}
 
-	public static AttributeModifierMap.MutableAttribute createAttributes() {
-		return MobEntity.createMobAttributes()
+	public static AttributeSupplier.Builder createAttributes() {
+		return Mob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 20.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
 	@Override
-	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
 		return sizeIn.height * 0.55F;
 	}
 
@@ -143,18 +161,18 @@ public class HonglowEntity extends MonsterEntity {
 	}
 
 	public enum Type {
-		RED(0, JITL.rl("textures/entity/overworld/honglow_red.png"), new EffectInstance(Effects.DAMAGE_BOOST, 500, 3), new EffectInstance(Effects.WEAKNESS, 200), Effects.REGENERATION.getColor()),
-	    GREEN(1, JITL.rl("textures/entity/overworld/honglow_green.png"), new EffectInstance(Effects.DAMAGE_RESISTANCE, 500, 3), new EffectInstance(Effects.DIG_SLOWDOWN, 200), Effects.JUMP.getColor()),
-	    BLUE(2, JITL.rl("textures/entity/overworld/honglow_blue.png"), new EffectInstance(Effects.MOVEMENT_SPEED, 500, 3), new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 200), Effects.MOVEMENT_SPEED.getColor());
+		RED(0, JITL.rl("textures/entity/overworld/honglow_red.png"), new MobEffectInstance(MobEffects.DAMAGE_BOOST, 500, 3), new MobEffectInstance(MobEffects.WEAKNESS, 200), MobEffects.REGENERATION.getColor()),
+	    GREEN(1, JITL.rl("textures/entity/overworld/honglow_green.png"), new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 500, 3), new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 200), MobEffects.JUMP.getColor()),
+	    BLUE(2, JITL.rl("textures/entity/overworld/honglow_blue.png"), new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 500, 3), new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200), MobEffects.MOVEMENT_SPEED.getColor());
 		
 		private final int variantNum;
 		private final ResourceLocation texture;
-		private final EffectInstance primaryPotionEffect;
-		private final EffectInstance secondaryPotionEffect;
+		private final MobEffectInstance primaryPotionEffect;
+		private final MobEffectInstance secondaryPotionEffect;
 		private final int cloudColor;
 		private static final EnumLookup<Type, Integer> VARIANT_FINDER = EnumLookup.make(Type.class, Type::getTypeInt);
 		
-		Type(int id, ResourceLocation location, EffectInstance goodPotion, EffectInstance badPotion, int potionColor) {
+		Type(int id, ResourceLocation location, MobEffectInstance goodPotion, MobEffectInstance badPotion, int potionColor) {
 			variantNum = id;
 			texture = location;
 			primaryPotionEffect = goodPotion;
@@ -174,11 +192,11 @@ public class HonglowEntity extends MonsterEntity {
 			return texture;
 		}
 		
-		public EffectInstance getPrimaryPotion() {
+		public MobEffectInstance getPrimaryPotion() {
 			return primaryPotionEffect;
 		}
 		
-		public EffectInstance getSecondaryPotion() {
+		public MobEffectInstance getSecondaryPotion() {
 			return secondaryPotionEffect;
 		}
 		

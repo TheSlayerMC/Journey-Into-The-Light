@@ -1,29 +1,29 @@
 package net.jitl.common.entity.projectile.base;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.ThrowableEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.ThrowableProjectile;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.Objects;
 
-public class DamagingProjectileEntity extends ThrowableEntity {
+public class DamagingProjectileEntity extends ThrowableProjectile {
     private float damage;
 
-    public DamagingProjectileEntity(EntityType<? extends DamagingProjectileEntity> type, World world) {
+    public DamagingProjectileEntity(EntityType<? extends DamagingProjectileEntity> type, Level world) {
         super(type, world);
     }
 
-    public DamagingProjectileEntity(EntityType<? extends DamagingProjectileEntity> type, World world, LivingEntity thrower, float damage) {
+    public DamagingProjectileEntity(EntityType<? extends DamagingProjectileEntity> type, Level world, LivingEntity thrower, float damage) {
         super(type, thrower, world);
         this.damage = damage;
     }
@@ -59,18 +59,18 @@ public class DamagingProjectileEntity extends ThrowableEntity {
     }
 
     @Override
-    protected void onHit(RayTraceResult result) {
+    protected void onHit(HitResult result) {
         if (!level.isClientSide) {
-            if (result.getType() == RayTraceResult.Type.ENTITY) {
-                Entity target = ((EntityRayTraceResult) result).getEntity();
+            if (result.getType() == HitResult.Type.ENTITY) {
+                Entity target = ((EntityHitResult) result).getEntity();
 
                 if (!Objects.equals(target, getOwner())) {
                     onEntityImpact(result, target);
 
                     remove();
                 }
-            } else if (result.getType() == RayTraceResult.Type.BLOCK) {
-                onBlockImpact((BlockRayTraceResult) result);
+            } else if (result.getType() == HitResult.Type.BLOCK) {
+                onBlockImpact((BlockHitResult) result);
             } else {
                 remove();
             }
@@ -83,16 +83,16 @@ public class DamagingProjectileEntity extends ThrowableEntity {
      * @param result result of projectile ray-tracing
      * @param target target of projectile. Never equals to the thrower.
      */
-    protected void onEntityImpact(RayTraceResult result, Entity target) {
+    protected void onEntityImpact(HitResult result, Entity target) {
 //        target.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
     }
 
-    protected void onBlockImpact(BlockRayTraceResult result) {
+    protected void onBlockImpact(BlockHitResult result) {
         remove();
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -102,14 +102,14 @@ public class DamagingProjectileEntity extends ThrowableEntity {
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundNBT compound) {
+    protected void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
 
         compound.putFloat("damage", damage);
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundNBT compound) {
+    protected void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
 
         damage = compound.getFloat("damage");

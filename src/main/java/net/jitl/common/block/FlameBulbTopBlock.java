@@ -2,23 +2,29 @@ package net.jitl.common.block;
 
 import net.jitl.init.JBlocks;
 import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class FlameBulbTopBlock extends AbstractTopPlantBlock {
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.GrowingPlantHeadBlock;
+import net.minecraft.world.level.block.NetherVines;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class FlameBulbTopBlock extends GrowingPlantHeadBlock {
     protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
 
-    public FlameBulbTopBlock(AbstractBlock.Properties properties) {
+    public FlameBulbTopBlock(Properties properties) {
         super(properties, Direction.UP, SHAPE, false, 0.1D);
     }
 
@@ -28,11 +34,11 @@ public class FlameBulbTopBlock extends AbstractTopPlantBlock {
      */
     @Override
     protected int getBlocksToGrowWhenBonemealed(@NotNull Random rand) {
-        return PlantBlockHelper.getBlocksToGrowWhenBonemealed(rand);
+        return NetherVines.getBlocksToGrowWhenBonemealed(rand);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
         double d0 = (double) pos.getX() + 0.5D;
         double d1 = (double) pos.getY() + 0.5D;
         double d2 = (double) pos.getZ() + 0.5D;
@@ -41,7 +47,7 @@ public class FlameBulbTopBlock extends AbstractTopPlantBlock {
     }
 
     @Override
-    public boolean isLadder(BlockState state, IWorldReader world, BlockPos pos, LivingEntity entity) {
+    public boolean isLadder(BlockState state, LevelReader world, BlockPos pos, LivingEntity entity) {
         return true;
     }
 
@@ -52,6 +58,6 @@ public class FlameBulbTopBlock extends AbstractTopPlantBlock {
 
     @Override
     protected boolean canGrowInto(@NotNull BlockState state) {
-        return PlantBlockHelper.isValidGrowthState(state);
+        return NetherVines.isValidGrowthState(state);
     }
 }

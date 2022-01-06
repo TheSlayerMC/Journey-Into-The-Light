@@ -1,17 +1,17 @@
 package net.jitl.common.item.gear.abilities;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.TieredItem;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TieredItem;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
@@ -30,7 +30,7 @@ public interface IAbility {
     //TODO: hasTag() might not be needed. Test
 
     //TODO: check if value rounding is ideal
-    default void tick(LivingEntity entity, World world, ItemStack stack) {
+    default void tick(LivingEntity entity, Level world, ItemStack stack) {
 
     }
 
@@ -42,11 +42,11 @@ public interface IAbility {
 
     }
 
-    default void rightClick(PlayerEntity player, Hand hand, World world) {
+    default void rightClick(Player player, InteractionHand hand, Level world) {
 
     }
 
-    default void breakBlock(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity entity) {
+    default void breakBlock(ItemStack stack, Level world, BlockState state, BlockPos pos, LivingEntity entity) {
 
     }
 
@@ -64,16 +64,16 @@ public interface IAbility {
         return false;
     }
 
-    default void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
+    default void equip(LivingEntity entity, EquipmentSlot slot, ItemStack stack) {
 
     }
 
-    default void unEquip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
+    default void unEquip(LivingEntity entity, EquipmentSlot slot, ItemStack stack) {
 
     }
 
     @OnlyIn(Dist.CLIENT)
-    default void fillTooltips(ItemStack stack, List<ITextComponent> tooltip) {
+    default void fillTooltips(ItemStack stack, List<Component> tooltip) {
 
     }
 
@@ -81,7 +81,7 @@ public interface IAbility {
         return original;
     }
 
-    default FullArmorAbility getFullAbility(CompoundNBT nbt) {
+    default FullArmorAbility getFullAbility(CompoundTag nbt) {
         return null;
     }
 
@@ -111,8 +111,8 @@ public interface IAbility {
         }
 
         @Override
-        default void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
-            if (!stack.hasTag()) stack.setTag(new CompoundNBT());
+        default void equip(LivingEntity entity, EquipmentSlot slot, ItemStack stack) {
+            if (!stack.hasTag()) stack.setTag(new CompoundTag());
         }
     }
 }

@@ -1,7 +1,7 @@
 package net.jitl.common.capability.player.data;
 
 import net.jitl.init.JAttributes;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import ru.timeconqueror.timecore.common.capability.property.CoffeeProperty;
 import ru.timeconqueror.timecore.common.capability.property.container.PropertyContainer;
 
@@ -12,7 +12,7 @@ public class Essence extends PropertyContainer {
     public final CoffeeProperty<Float> burnoutTime = prop("burnout", 0F).synced();
     public final CoffeeProperty<Integer> timeout = prop("timeout", 0);
 
-    public static float getMaxEssence(PlayerEntity player) {
+    public static float getMaxEssence(Player player) {
         return (float) Objects.requireNonNull(player.getAttribute(JAttributes.MAX_ESSENCE.get())).getValue();
     }
 
@@ -48,11 +48,11 @@ public class Essence extends PropertyContainer {
         return false;
     }
 
-    public void addEssence(PlayerEntity player, float add) {
+    public void addEssence(Player player, float add) {
         setEssence(Math.min(getCurrentEssence() + add, getMaxEssence(player)));
     }
 
-    public boolean consumeEssence(PlayerEntity player, float price) {
+    public boolean consumeEssence(Player player, float price) {
         if (!player.isCreative()) {
             if (hasEssence(price)) {
                 setEssence(getCurrentEssence() - price);
@@ -70,7 +70,7 @@ public class Essence extends PropertyContainer {
         return getCurrentEssence() >= price;
     }
 
-    public boolean checkEssenceEitherSide(boolean client, PlayerEntity player, float price) {
+    public boolean checkEssenceEitherSide(boolean client, Player player, float price) {
         if (client) {
             return player.isCreative() || hasEssence(price);
         }

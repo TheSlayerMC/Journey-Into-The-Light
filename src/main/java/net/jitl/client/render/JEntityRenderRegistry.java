@@ -12,8 +12,8 @@ import net.jitl.common.entity.overworld.IllagerMechEntity;
 import net.jitl.common.entity.overworld.TowerGuardianEntity;
 import net.jitl.init.JEntities;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.SpriteRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import ru.timeconqueror.timecore.api.client.render.model.TimeModelLoader;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
@@ -58,7 +58,7 @@ public class JEntityRenderRegistry {
         RenderingRegistry.registerEntityRenderingHandler(JEntities.FROZEN_GUARDIAN_TYPE, FrozenGuardianRenderer::new);
 
         //Projectiles
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_MUD_TYPE, manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
+        RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_MUD_TYPE, manager -> new ThrownItemRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
         RenderingRegistry.registerEntityRenderingHandler(JEntities.CONJURING_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/conjuring.png"), 0.5F, true));
         RenderingRegistry.registerEntityRenderingHandler(JEntities.ESSENCIA_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/essencia.png"), 0.5F, true));
         RenderingRegistry.registerEntityRenderingHandler(JEntities.KNIFE_TYPE, manager -> new KnifeRenderer(manager, Minecraft.getInstance().getItemRenderer()));

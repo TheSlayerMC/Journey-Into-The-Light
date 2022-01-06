@@ -1,20 +1,20 @@
 package net.jitl.common.item.gear.abilities;
 
 import net.jitl.common.helper.TooltipFiller;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.Level;
 
 import java.util.List;
 
 public class LuniumAbility implements IAbility.INBTUpdateAbility {
     @Override
-    public void tick(LivingEntity entity, World world, ItemStack stack) {
+    public void tick(LivingEntity entity, Level world, ItemStack stack) {
         if (!world.isClientSide()) {
-            CompoundNBT tag = stack.getTag();
+            CompoundTag tag = stack.getTag();
             float value = tag.getFloat("cooldown");
             if (stack.getDamageValue() > 0 || value < 100) {
                 value -= entity.getBrightness();
@@ -29,7 +29,7 @@ public class LuniumAbility implements IAbility.INBTUpdateAbility {
     }
 
     @Override
-    public void fillTooltips(ItemStack stack, List<ITextComponent> tooltip) {
+    public void fillTooltips(ItemStack stack, List<Component> tooltip) {
         TooltipFiller filler = new TooltipFiller(tooltip, "lunium_gear");
         filler.addOverview();
         filler.addDrawback();

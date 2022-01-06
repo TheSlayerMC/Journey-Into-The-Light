@@ -1,20 +1,22 @@
 package net.jitl.common.block;
 
 import net.jitl.init.JBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.block.SoundType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.Level;
 
 import java.util.Random;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class AncientCatalystBlock extends Block {
 
@@ -23,7 +25,7 @@ public class AncientCatalystBlock extends Block {
     }
 
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         Random random = new Random();
         int check_radius = 4;
         int totalSockets = 0;
@@ -42,9 +44,9 @@ public class AncientCatalystBlock extends Block {
             for(int i = 0; i < 50; i++)
                 worldIn.addParticle(ParticleTypes.SMOKE,pos.getX() + random.nextDouble(), pos.getY()  + random.nextDouble(), pos.getZ() + random.nextDouble(),
                     random.nextGaussian() * 0.05D, 0.15D, random.nextGaussian() * 0.05D);
-            worldIn.playSound(player, pos, SoundEvents.IRON_DOOR_OPEN, SoundCategory.BLOCKS, 1.0F, 0.2F);
+            worldIn.playSound(player, pos, SoundEvents.IRON_DOOR_OPEN, SoundSource.BLOCKS, 1.0F, 0.2F);
 
         }
-        return ActionResultType.sidedSuccess(worldIn.isClientSide);
+        return InteractionResult.sidedSuccess(worldIn.isClientSide);
     }
 }

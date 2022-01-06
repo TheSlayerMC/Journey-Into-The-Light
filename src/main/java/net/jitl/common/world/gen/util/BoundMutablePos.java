@@ -1,26 +1,28 @@
 package net.jitl.common.world.gen.util;
 
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3i;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
 
-public class BoundMutablePos extends BlockPos.Mutable {
-    private final Mutable bound;
+import net.minecraft.core.BlockPos.MutableBlockPos;
+
+public class BoundMutablePos extends MutableBlockPos {
+    private final MutableBlockPos bound;
 
     public BoundMutablePos() {
-        bound = new Mutable(0, 0, 0);
+        bound = new MutableBlockPos(0, 0, 0);
     }
 
-    public BoundMutablePos(Vector3i vec) {
+    public BoundMutablePos(Vec3i vec) {
         this(vec.getX(), vec.getY(), vec.getZ());
     }
 
     public BoundMutablePos(int x, int y, int z) {
         super(x, y, z);
-        bound = new Mutable(x, y, z);
+        bound = new MutableBlockPos(x, y, z);
     }
 
-    public BoundMutablePos bindAndSet(Vector3i vec) {
+    public BoundMutablePos bindAndSet(Vec3i vec) {
         bound.set(vec);
         set(vec);
         return this;
@@ -37,7 +39,7 @@ public class BoundMutablePos extends BlockPos.Mutable {
         return this;
     }
 
-    public BoundMutablePos moveFromBound(Vector3i vec) {
+    public BoundMutablePos moveFromBound(Vec3i vec) {
         return moveFromBound(vec.getX(), vec.getY(), vec.getZ());
     }
 

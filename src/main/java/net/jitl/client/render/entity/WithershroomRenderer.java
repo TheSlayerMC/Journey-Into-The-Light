@@ -3,16 +3,16 @@ package net.jitl.client.render.entity;
 import net.jitl.JITL;
 import net.jitl.client.render.model.HongoModel;
 import net.jitl.common.entity.overworld.WithershroomEntity;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class WithershroomRenderer extends MobRenderer<WithershroomEntity, HongoModel<WithershroomEntity>> {
-    public WithershroomRenderer(EntityRendererManager renderManagerIn) {
+    public WithershroomRenderer(EntityRenderDispatcher renderManagerIn) {
         super(renderManagerIn, new HongoModel<>(), 0.7F);
     }
 

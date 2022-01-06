@@ -4,10 +4,12 @@ import net.jitl.JITL;
 import net.jitl.common.item.JFuelItem;
 import net.jitl.common.item.StaffItem;
 import net.jitl.common.item.TestBugItem;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static ru.timeconqueror.timecore.api.util.Hacks.promise;
+
+import Item;
 
 @ObjectHolder(JITL.MODID)
 public class JItems {

@@ -1,17 +1,17 @@
 package net.jitl.client.particle;
 
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
-public class CrystalFruitParticle extends SpriteTexturedParticle {
+public class CrystalFruitParticle extends TextureSheetParticle {
 
-    private final IAnimatedSprite sprites;
+    private final SpriteSet sprites;
 
-    protected CrystalFruitParticle(ClientWorld worldIn, double x, double y, double z, double motionX, double motionY, double motionZ, IAnimatedSprite spriteWithAge) {
+    protected CrystalFruitParticle(ClientLevel worldIn, double x, double y, double z, double motionX, double motionY, double motionZ, SpriteSet spriteWithAge) {
         super(worldIn, x, y, z, motionX, motionY, motionZ);
         this.sprites = spriteWithAge;
         int i = (int) (32.0D / (Math.random() * 0.8D + 0.2D));
@@ -21,8 +21,8 @@ public class CrystalFruitParticle extends SpriteTexturedParticle {
     }
 
     @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     @Override
@@ -58,15 +58,15 @@ public class CrystalFruitParticle extends SpriteTexturedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite sprite;
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprite;
 
-        public Factory(IAnimatedSprite spriteSet) {
+        public Factory(SpriteSet spriteSet) {
             this.sprite = spriteSet;
         }
 
         @Override
-        public Particle createParticle(@NotNull BasicParticleType typeIn, @NotNull ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             return new CrystalFruitParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.sprite);
         }
     }

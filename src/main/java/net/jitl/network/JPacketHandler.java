@@ -1,7 +1,7 @@
 package net.jitl.network;
 
 import net.jitl.JITL;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
@@ -20,7 +20,7 @@ public class JPacketHandler {
             .regPacket(JBossPacket.class, new JBossPacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
             .asChannel();
 
-    public static <MSG> void sendToPlayer(ServerPlayerEntity player, MSG message) {
+    public static <MSG> void sendToPlayer(ServerPlayer player, MSG message) {
         INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
     }
 }

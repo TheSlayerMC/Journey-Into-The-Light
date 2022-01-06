@@ -2,31 +2,31 @@ package net.jitl.common.world.gen.features.boil;
 
 import com.mojang.serialization.Codec;
 import net.jitl.init.JBlocks;
-import net.minecraft.block.AbstractTopPlantBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.level.block.GrowingPlantHeadBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.Random;
 
-public class FlameBulbFeature extends Feature<NoFeatureConfig> {
-    public FlameBulbFeature(Codec<NoFeatureConfig> codec_) {
+public class FlameBulbFeature extends Feature<NoneFeatureConfiguration> {
+    public FlameBulbFeature(Codec<NoneFeatureConfiguration> codec_) {
         super(codec_);
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, NoneFeatureConfiguration config) {
         return place(reader, rand, pos, 8, /*tries*/8, /*spread*/4 /*max height*/);
     }
 
-    public static boolean place(IWorld world_, Random random_, BlockPos blockPos_, int int_, int int1_, int int2_) {
+    public static boolean place(LevelAccessor world_, Random random_, BlockPos blockPos_, int int_, int int1_, int int2_) {
         if (isInvalidPlacementLocation(world_, blockPos_)) {
             return false;
         } else {
@@ -35,13 +35,13 @@ public class FlameBulbFeature extends Feature<NoFeatureConfig> {
         }
     }
 
-    private static void placeTwistingVines(IWorld world_, Random random_, BlockPos blockPos_, int int_, int int1_, int int2_) {
-        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+    private static void placeTwistingVines(LevelAccessor world_, Random random_, BlockPos blockPos_, int int_, int int1_, int int2_) {
+        BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
         for (int i = 0; i < int_ * int_; ++i) {
-            blockpos$mutable.set(blockPos_).move(MathHelper.nextInt(random_, -int_, int_), MathHelper.nextInt(random_, -int1_, int1_), MathHelper.nextInt(random_, -int_, int_));
+            blockpos$mutable.set(blockPos_).move(Mth.nextInt(random_, -int_, int_), Mth.nextInt(random_, -int1_, int1_), Mth.nextInt(random_, -int_, int_));
             if (findFirstAirBlockAboveGround(world_, blockpos$mutable) && !isInvalidPlacementLocation(world_, blockpos$mutable)) {
-                int j = MathHelper.nextInt(random_, 1, int2_);
+                int j = Mth.nextInt(random_, 1, int2_);
                 if (random_.nextInt(6) == 0) {
                     j *= 2;
                 }
@@ -55,10 +55,10 @@ public class FlameBulbFeature extends Feature<NoFeatureConfig> {
 
     }
 
-    private static boolean findFirstAirBlockAboveGround(IWorld world_, BlockPos.Mutable mutable_) {
+    private static boolean findFirstAirBlockAboveGround(LevelAccessor world_, BlockPos.MutableBlockPos mutable_) {
         do {
             mutable_.move(0, -1, 0);
-            if (World.isOutsideBuildHeight(mutable_)) {
+            if (Level.isOutsideBuildHeight(mutable_)) {
                 return false;
             }
         } while (world_.getBlockState(mutable_).isAir());
@@ -67,11 +67,11 @@ public class FlameBulbFeature extends Feature<NoFeatureConfig> {
         return true;
     }
 
-    public static void placeWeepingVinesColumn(IWorld world_, Random random_, BlockPos.Mutable mutable_, int int_, int int1_, int int2_) {
+    public static void placeWeepingVinesColumn(LevelAccessor world_, Random random_, BlockPos.MutableBlockPos mutable_, int int_, int int1_, int int2_) {
         for (int i = 1; i <= int_; ++i) {
             if (world_.isEmptyBlock(mutable_)) {
                 if (i == int_ || !world_.isEmptyBlock(mutable_.above())) {
-                    world_.setBlock(mutable_, JBlocks.FLAME_BULB.defaultBlockState().setValue(AbstractTopPlantBlock.AGE, MathHelper.nextInt(random_, int1_, int2_)), 2);
+                    world_.setBlock(mutable_, JBlocks.FLAME_BULB.defaultBlockState().setValue(GrowingPlantHeadBlock.AGE, Mth.nextInt(random_, int1_, int2_)), 2);
                     break;
                 }
 
@@ -83,7 +83,7 @@ public class FlameBulbFeature extends Feature<NoFeatureConfig> {
 
     }
 
-    private static boolean isInvalidPlacementLocation(IWorld world_, BlockPos blockPos_) {
+    private static boolean isInvalidPlacementLocation(LevelAccessor world_, BlockPos blockPos_) {
         if (!world_.isEmptyBlock(blockPos_)) {
             return true;
         } else {

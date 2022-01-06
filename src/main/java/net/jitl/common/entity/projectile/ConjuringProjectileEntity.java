@@ -3,31 +3,31 @@ package net.jitl.common.entity.projectile;
 import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
 import net.jitl.init.JEntities;
 import net.jitl.init.JParticleManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.network.IPacket;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 //TODO maybe merge with FloroMud?
 public class ConjuringProjectileEntity extends DamagingProjectileEntity {
 
-    public ConjuringProjectileEntity(EntityType<ConjuringProjectileEntity> type, World world) {
+    public ConjuringProjectileEntity(EntityType<ConjuringProjectileEntity> type, Level world) {
         super(type, world);
     }
 
-    public ConjuringProjectileEntity(EntityType<ConjuringProjectileEntity> type, World world, LivingEntity thrower, float damage) {
+    public ConjuringProjectileEntity(EntityType<ConjuringProjectileEntity> type, Level world, LivingEntity thrower, float damage) {
         super(type, world, thrower, damage);
     }
 
-    public ConjuringProjectileEntity(World world, LivingEntity thrower, float damage) {
+    public ConjuringProjectileEntity(Level world, LivingEntity thrower, float damage) {
         super(JEntities.CONJURING_PROJECTILE_TYPE, world, thrower, damage);
     }
 
@@ -37,7 +37,7 @@ public class ConjuringProjectileEntity extends DamagingProjectileEntity {
     public void onClientTick() {
         super.onClientTick();
         int count = 2;
-        Vector3d vector3d = this.getDeltaMovement();
+        Vec3 vector3d = this.getDeltaMovement();
         double d0 = this.getX() + vector3d.x;
         double d1 = this.getY() + vector3d.y;
         double d2 = this.getZ() + vector3d.z;
@@ -53,9 +53,9 @@ public class ConjuringProjectileEntity extends DamagingProjectileEntity {
     }
 
     @Override
-    protected void onEntityImpact(RayTraceResult result, Entity target) {
+    protected void onEntityImpact(HitResult result, Entity target) {
         if (target instanceof LivingEntity && target.hurt(DamageSource.thrown(this, this.getOwner()), getDamage())) {
-            EffectInstance effectInstance = new EffectInstance(Effects.POISON, 60);
+            MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.POISON, 60);
             ((LivingEntity) target).addEffect(effectInstance);
         }
     }
@@ -66,7 +66,7 @@ public class ConjuringProjectileEntity extends DamagingProjectileEntity {
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

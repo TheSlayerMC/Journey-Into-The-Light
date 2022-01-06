@@ -3,27 +3,32 @@ package net.jitl.common.dimension;
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.DepthsPortalFrameBlock;
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.util.ITeleporter;
 import java.util.Random;
 import java.util.function.Function;
 
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+
+import ServerLevel;
+
 public class DepthsTeleporter implements ITeleporter {
 
-    protected final ServerWorld level;
+    protected final ServerLevel level;
     private final DepthsPortalBlock portal_block;
     private final Block portal_frame;
     private static final int HARDCODED_DEPTHS_HEIGHT_VALUE = 30;
     private static final int HARDCODED_WORLD_HEIGHT_LIMIT = 256;
     public static final int PORTAL_SEARCH_CHUNK_RADIUS = 4;
 
-    public DepthsTeleporter(ServerWorld worldIn, DepthsPortalBlock portal, Block frame) {
+    public DepthsTeleporter(ServerLevel worldIn, DepthsPortalBlock portal, Block frame) {
         this.level = worldIn;
         this.portal_block = portal;
         this.portal_frame = frame;
@@ -53,8 +58,8 @@ public class DepthsTeleporter implements ITeleporter {
         int chunkX;
         int chunkZ;
         if(this.level.dimension().equals(Dimensions.DEPTHS)) {
-            chunkX = (MathHelper.floor(entity.getX()) & ~0xf) / 16;
-            chunkZ = (MathHelper.floor(entity.getZ()) & ~0xf) / 16;
+            chunkX = (Mth.floor(entity.getX()) & ~0xf) / 16;
+            chunkZ = (Mth.floor(entity.getZ()) & ~0xf) / 16;
             if (!(this.placeInExistingPortal(entity, rotationYaw))) {
                 this.makePortal(new BlockPos(chunkX, getTopBlock(chunkX, chunkZ), chunkZ));
                 this.placeInExistingPortal(entity, rotationYaw);
@@ -77,7 +82,7 @@ public class DepthsTeleporter implements ITeleporter {
                 entity.xo = entity.yo = entity.zo = 0.0D;
                 return true;
             } else {
-                BlockPos.Mutable searchPos = new BlockPos.Mutable();
+                BlockPos.MutableBlockPos searchPos = new BlockPos.MutableBlockPos();
                 for(int searchX = portalLocationX - (PORTAL_SEARCH_CHUNK_RADIUS * 16); searchX < portalLocationX + (PORTAL_SEARCH_CHUNK_RADIUS * 16); searchX += 16) {
                     for (int searchZ = portalLocationZ - (PORTAL_SEARCH_CHUNK_RADIUS * 16); searchZ < portalLocationZ + (PORTAL_SEARCH_CHUNK_RADIUS * 16); searchZ += 16) {
                         searchPos.set(searchX, portalLocationY, searchZ);
@@ -124,24 +129,24 @@ public class DepthsTeleporter implements ITeleporter {
     }
 
     @Override
-    public boolean playTeleportSound(ServerPlayerEntity player, ServerWorld sourceWorld, ServerWorld destWorld) {
+    public boolean playTeleportSound(ServerPlayer player, ServerLevel sourceWorld, ServerLevel destWorld) {
         return true;
     }
 
     @Override
-    public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
-        if(entity instanceof ServerPlayerEntity) {
+    public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
+        if(entity instanceof ServerPlayer) {
             this.placeInPortal(entity, yaw);
         } else {
             this.placeInExistingPortal(entity, yaw);
         }
         entity.setPortalCooldown();
         entity = repositionEntity.apply(false);
-        if(destWorld != entity.level.getServer().getLevel(World.OVERWORLD)) {
+        if(destWorld != entity.level.getServer().getLevel(Level.OVERWORLD)) {
             entity.teleportTo(entity.getX(), getTopBlock((int) entity.getX(), (int)entity.getZ()), entity.getZ());
             System.out.println("Placed OVERWORLD Player TO DEPTHS Y:" + entity.getY());
         } else {
-            entity.teleportTo(entity.getX(), level.getHeight(Heightmap.Type.WORLD_SURFACE, (int)entity.getX(), (int)entity.getZ()), entity.getZ());
+            entity.teleportTo(entity.getX(), level.getHeight(Heightmap.Types.WORLD_SURFACE, (int)entity.getX(), (int)entity.getZ()), entity.getZ());
             System.out.println("Placed DEPTHS Player TO OVERWORLD Y:" + entity.getY());
         }
         return entity;

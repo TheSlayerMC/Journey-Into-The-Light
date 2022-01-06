@@ -1,15 +1,15 @@
 package net.jitl.client.render.entity;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.jitl.common.entity.EssenciaBoltEntity;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.resources.ResourceLocation;
+import com.mojang.math.Matrix4f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -20,12 +20,12 @@ import java.util.Random;
 //Copy of default LightningBoltRenderer, but with with red color shift and shrunk size
 @OnlyIn(Dist.CLIENT)
 public class EssenciaBoltRenderer extends EntityRenderer<EssenciaBoltEntity> {
-    public EssenciaBoltRenderer(EntityRendererManager renderManagerIn) {
+    public EssenciaBoltRenderer(EntityRenderDispatcher renderManagerIn) {
         super(renderManagerIn);
     }
 
     @Override
-    public void render(EssenciaBoltEntity entityIn, float entityYaw, float partialTicks, @NotNull MatrixStack matrixStackIn, @NotNull IRenderTypeBuffer bufferIn, int packedLightIn) {
+    public void render(EssenciaBoltEntity entityIn, float entityYaw, float partialTicks, @NotNull PoseStack matrixStackIn, @NotNull MultiBufferSource bufferIn, int packedLightIn) {
         float[] afloat = new float[8];
         float[] afloat1 = new float[8];
         float f = 0.0F;
@@ -39,7 +39,7 @@ public class EssenciaBoltRenderer extends EntityRenderer<EssenciaBoltEntity> {
             f1 += (float) (random.nextInt(11) - 5);
         }
 
-        IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.lightning());
+        VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.lightning());
         Matrix4f matrix4f = matrixStackIn.last().pose();
 
         for (int layer = 0; layer < 4; ++layer) {
@@ -110,7 +110,7 @@ public class EssenciaBoltRenderer extends EntityRenderer<EssenciaBoltEntity> {
      * @param oneDirectionExpansion     expansion from center to the left(?) border of quad
      * @param anotherDirectionExpansion expansion from center to the right(?) border  of quad
      */
-    private static void quad(Matrix4f matrix, IVertexBuilder builder, float startCenterX, float startCenterZ, int startY, float endCenterX, float endCenterZ, float r, float g, float b, float alpha, float oneDirectionExpansion, float anotherDirectionExpansion, boolean boolean_, boolean boolean1_, boolean boolean2_, boolean boolean3_) {
+    private static void quad(Matrix4f matrix, VertexConsumer builder, float startCenterX, float startCenterZ, int startY, float endCenterX, float endCenterZ, float r, float g, float b, float alpha, float oneDirectionExpansion, float anotherDirectionExpansion, boolean boolean_, boolean boolean1_, boolean boolean2_, boolean boolean3_) {
         builder.vertex(matrix, startCenterX + (boolean_ ? anotherDirectionExpansion : -anotherDirectionExpansion) + 0.5F, (float) (startY * 16), startCenterZ + (boolean1_ ? anotherDirectionExpansion : -anotherDirectionExpansion) + 0.5F).color(r, g, b, alpha).endVertex();
         builder.vertex(matrix, endCenterX + (boolean_ ? oneDirectionExpansion : -oneDirectionExpansion) + 0.5F, (float) ((startY + 1) * 16), endCenterZ + (boolean1_ ? oneDirectionExpansion : -oneDirectionExpansion) + 0.5F).color(r, g, b, alpha).endVertex();
         builder.vertex(matrix, endCenterX + (boolean2_ ? oneDirectionExpansion : -oneDirectionExpansion) + 0.5F, (float) ((startY + 1) * 16), endCenterZ + (boolean3_ ? oneDirectionExpansion : -oneDirectionExpansion) + 0.5F).color(r, g, b, alpha).endVertex();
@@ -122,6 +122,6 @@ public class EssenciaBoltRenderer extends EntityRenderer<EssenciaBoltEntity> {
      */
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull EssenciaBoltEntity entityIn) {
-        return AtlasTexture.LOCATION_BLOCKS;
+        return TextureAtlas.LOCATION_BLOCKS;
     }
 }

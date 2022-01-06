@@ -31,14 +31,14 @@ import net.jitl.common.item.throwable.KnifeItem;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.common.item.throwable.ThrowableItem;
 import net.jitl.init.*;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.MusicDiscItem;
-import net.minecraft.item.OnAStickItem;
-import net.minecraft.item.Rarity;
-import net.minecraft.loot.LootTables;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.RecordItem;
+import net.minecraft.world.item.FoodOnAStickItem;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.sounds.SoundEvents;
 import ru.timeconqueror.timecore.api.client.resource.StandardItemModelParents;
 import ru.timeconqueror.timecore.api.registry.ItemRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
@@ -97,7 +97,7 @@ public class ItemRegistrator {
         registerItem("peridot_gemstone", "Peridot Gemstone");
         registerItem("rimestone", "Rimestone");
         registerItem("redcurrant_berry", "Redcurrant Berry", () -> new Item(itemGrouped().food(JFoods.REDCURRANT)));
-        registerHandheldItem("redcurrant_on_a_stick", "Redcurrant On A Stick", () -> new OnAStickItem<>(itemGrouped(), JEntities.CAPYBARA_TYPE, 7));
+        registerHandheldItem("redcurrant_on_a_stick", "Redcurrant On A Stick", () -> new FoodOnAStickItem<>(itemGrouped(), JEntities.CAPYBARA_TYPE, 7));
         registerItem("crystal_apple", "Crystal Apple", () -> new CrystalAppleItem(itemGrouped().food(JFoods.CRYSTAL_APPLE).rarity(Rarity.EPIC)));
         registerItem("frostborn_soul", "Frostborn Soul");
         registerItem("ice_amulet", "Ice Amulet", () -> new IceAmuletItem(itemGrouped().stacksTo(1)));
@@ -139,8 +139,8 @@ public class ItemRegistrator {
 
         //todo: change loot pouches to use JITL loot tables
         registerItem("loot_pouch_basic", "Loot Pouch", () -> new LootItem(JLootTables.LOOT_POUCH_BASIC, false));
-        registerItem("loot_pouch_gold", "Gold Loot Pouch", () -> new LootItem(LootTables.FISHING_TREASURE, true));
-        registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(LootTables.END_CITY_TREASURE, true));
+        registerItem("loot_pouch_gold", "Gold Loot Pouch", () -> new LootItem(BuiltInLootTables.FISHING_TREASURE, true));
+        registerItem("loot_pouch_diamond", "Diamond Loot Pouch", () -> new LootItem(BuiltInLootTables.END_CITY_TREASURE, true));
 
         registerItem("flame_coin", "Flame Coin", FlameCoinItem::new);
 
@@ -221,13 +221,13 @@ public class ItemRegistrator {
         registerItem("heart_container_large", "Heart Container", () -> new HeartContainerItem(itemGrouped().stacksTo(1)).health(8));
         registerItem("heart_container_ultimate", "Heart Container", () -> new HeartContainerItem(itemGrouped().stacksTo(1)).health(16));
 
-        registerItem("ring_of_poison", "Ring of Poison", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.POISON::getEffect));
-        registerItem("ring_of_blindness", "Ring of Blindness", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.BLINDNESS::getEffect));
-        registerItem("ring_of_harming", "Ring of Harming", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.HARM::getEffect));
-        registerItem("ring_of_mining_fatigue", "Ring of Mining Fatigue", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.DIG_SLOWDOWN::getEffect));
-        registerItem("ring_of_nausea", "Ring of Nausea", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.CONFUSION::getEffect));
-        registerItem("ring_of_slowness", "Ring of Slowness", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.MOVEMENT_SLOWDOWN::getEffect));
-        registerItem("ring_of_withering", "Ring of Withering", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(Effects.WITHER::getEffect));
+        registerItem("ring_of_poison", "Ring of Poison", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(MobEffects.POISON::getEffect));
+        registerItem("ring_of_blindness", "Ring of Blindness", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(MobEffects.BLINDNESS::getEffect));
+        registerItem("ring_of_harming", "Ring of Harming", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(MobEffects.HARM::getEffect));
+        registerItem("ring_of_mining_fatigue", "Ring of Mining Fatigue", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(MobEffects.DIG_SLOWDOWN::getEffect));
+        registerItem("ring_of_nausea", "Ring of Nausea", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(MobEffects.CONFUSION::getEffect));
+        registerItem("ring_of_slowness", "Ring of Slowness", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(MobEffects.MOVEMENT_SLOWDOWN::getEffect));
+        registerItem("ring_of_withering", "Ring of Withering", () -> new JRingItem(itemGrouped().stacksTo(1)).effect(MobEffects.WITHER::getEffect));
 
         registerItem("dynaster_amulet", "Amulet of the Dynaster", () -> new DynasterAmuletItem(itemGrouped().stacksTo(1)));
         registerItem("cloudwalker_amulet", "Cloudwalker's Amulet", () -> new CloudwalkingAmuletItem(itemGrouped().stacksTo(1)));
@@ -247,9 +247,9 @@ public class ItemRegistrator {
 
         registerItem("pottery_shard", "Pottery Shard");
 
-        registerItem("music_disc_haunt_muskie_2", "Music Disc", () -> new MusicDiscItem(1, JSounds.HAUNT_MUSKIE_2::get, itemGrouped().stacksTo(1)));
-        registerItem("music_disc_jitl_theme", "Music Disc", () -> new MusicDiscItem(1, JSounds.MENU_MUSIC::get, itemGrouped().stacksTo(1)));
-        registerItem("music_disc_snowflakesss", "Music Disc", () -> new MusicDiscItem(1, JSounds.SNOWFLAKESSS::get, itemGrouped().stacksTo(1)));
+        registerItem("music_disc_haunt_muskie_2", "Music Disc", () -> new RecordItem(1, JSounds.HAUNT_MUSKIE_2::get, itemGrouped().stacksTo(1)));
+        registerItem("music_disc_jitl_theme", "Music Disc", () -> new RecordItem(1, JSounds.MENU_MUSIC::get, itemGrouped().stacksTo(1)));
+        registerItem("music_disc_snowflakesss", "Music Disc", () -> new RecordItem(1, JSounds.SNOWFLAKESSS::get, itemGrouped().stacksTo(1)));
     }
 
     public static void addMaterialToolsWeapons(String name, JToolTiers tiers, IAbility sworldAbility, IAbility toolAbility) {
@@ -268,17 +268,17 @@ public class ItemRegistrator {
         registerHandheldItem(name.toLowerCase() + "_shovel", name + " Shovel", () -> new JShovelItem(tiers, toolAbility));
         registerHandheldItem(name.toLowerCase() + "_hoe", name + " Hoe", () -> new JHoeItem(tiers, toolAbility));
         registerHandheldItem(name.toLowerCase() + "_multitool", name + " Multitool", () -> new MultitoolItem(tiers, toolAbility));
-        registerArmorItem(name.toLowerCase() + "_helmet", name + " Helmet", () -> new JArmorItem(armorMaterial, EquipmentSlotType.HEAD, armorAbility));
-        registerArmorItem(name.toLowerCase() + "_chestplate", name + " Chestplate", () -> new JArmorItem(armorMaterial, EquipmentSlotType.CHEST, armorAbility));
-        registerArmorItem(name.toLowerCase() + "_leggings", name + " Leggings", () -> new JArmorItem(armorMaterial, EquipmentSlotType.LEGS, armorAbility));
-        registerArmorItem(name.toLowerCase() + "_boots", name + " Boots", () -> new JArmorItem(armorMaterial, EquipmentSlotType.FEET, armorAbility));
+        registerArmorItem(name.toLowerCase() + "_helmet", name + " Helmet", () -> new JArmorItem(armorMaterial, EquipmentSlot.HEAD, armorAbility));
+        registerArmorItem(name.toLowerCase() + "_chestplate", name + " Chestplate", () -> new JArmorItem(armorMaterial, EquipmentSlot.CHEST, armorAbility));
+        registerArmorItem(name.toLowerCase() + "_leggings", name + " Leggings", () -> new JArmorItem(armorMaterial, EquipmentSlot.LEGS, armorAbility));
+        registerArmorItem(name.toLowerCase() + "_boots", name + " Boots", () -> new JArmorItem(armorMaterial, EquipmentSlot.FEET, armorAbility));
     }
 
     public static void addArmor(String name, JArmorMaterial armorMaterial, IAbility armorAbility) {
-        registerArmorItem(name.toLowerCase() + "_helmet", name + " Helmet", () -> new JArmorItem(armorMaterial, EquipmentSlotType.HEAD, armorAbility));
-        registerArmorItem(name.toLowerCase() + "_chestplate", name + " Chestplate", () -> new JArmorItem(armorMaterial, EquipmentSlotType.CHEST, armorAbility));
-        registerArmorItem(name.toLowerCase() + "_leggings", name + " Leggings", () -> new JArmorItem(armorMaterial, EquipmentSlotType.LEGS, armorAbility));
-        registerArmorItem(name.toLowerCase() + "_boots", name + " Boots", () -> new JArmorItem(armorMaterial, EquipmentSlotType.FEET, armorAbility));
+        registerArmorItem(name.toLowerCase() + "_helmet", name + " Helmet", () -> new JArmorItem(armorMaterial, EquipmentSlot.HEAD, armorAbility));
+        registerArmorItem(name.toLowerCase() + "_chestplate", name + " Chestplate", () -> new JArmorItem(armorMaterial, EquipmentSlot.CHEST, armorAbility));
+        registerArmorItem(name.toLowerCase() + "_leggings", name + " Leggings", () -> new JArmorItem(armorMaterial, EquipmentSlot.LEGS, armorAbility));
+        registerArmorItem(name.toLowerCase() + "_boots", name + " Boots", () -> new JArmorItem(armorMaterial, EquipmentSlot.FEET, armorAbility));
     }
 
     /**

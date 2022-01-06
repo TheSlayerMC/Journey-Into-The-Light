@@ -3,19 +3,21 @@ package net.jitl.common.block.base;
 import net.jitl.JITL;
 import net.jitl.api.block.GroundPredicate;
 import net.jitl.util.Logs;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.DoublePlantBlock;
-import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class JDoublePlantBlock extends DoublePlantBlock {
 
@@ -38,7 +40,7 @@ public class JDoublePlantBlock extends DoublePlantBlock {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return SHAPE;
     }
 
@@ -56,7 +58,7 @@ public class JDoublePlantBlock extends DoublePlantBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, @NotNull IWorldReader worldIn, @NotNull BlockPos pos) {
+    public boolean canSurvive(BlockState state, @NotNull LevelReader worldIn, @NotNull BlockPos pos) {
         if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
             return mayPlaceOn(state, worldIn, pos);
         } else {
@@ -67,18 +69,18 @@ public class JDoublePlantBlock extends DoublePlantBlock {
     }
 
     @Override
-    protected boolean mayPlaceOn(@NotNull BlockState state, IBlockReader worldIn, BlockPos pos) {
+    protected boolean mayPlaceOn(@NotNull BlockState state, BlockGetter worldIn, BlockPos pos) {
         BlockPos groundPos = pos.offset(plantDirection.getOpposite().getNormal());
         BlockState groundState = worldIn.getBlockState(groundPos);
 
-        if (worldIn instanceof IWorldReader) {
-            return groundPredicate.testGround((IWorldReader) worldIn, groundPos, groundState, plantDirection);
+        if (worldIn instanceof LevelReader) {
+            return groundPredicate.testGround((LevelReader) worldIn, groundPos, groundState, plantDirection);
         } else {
             JITL.LOGGER.warn(
                     "Can't test the surface for {} placement. " +
                             "The World is supposed to be {}, but is {}. ",
                     getClass().getName(),
-                    IWorldReader.class.getName(),
+                    LevelReader.class.getName(),
                     worldIn.getClass().getName());
             Logs.printReportMessage();
             return false;

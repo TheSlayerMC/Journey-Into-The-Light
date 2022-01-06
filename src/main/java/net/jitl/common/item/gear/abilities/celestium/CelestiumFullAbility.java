@@ -1,14 +1,14 @@
 package net.jitl.common.item.gear.abilities.celestium;
 
 import net.jitl.common.item.gear.abilities.FullArmorAbility;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.server.level.ServerLevel;
 
 public class CelestiumFullAbility extends FullArmorAbility {
-    public CelestiumFullAbility(CompoundNBT nbt) {
+    public CelestiumFullAbility(CompoundTag nbt) {
         super(nbt);
     }
 
@@ -22,7 +22,7 @@ public class CelestiumFullAbility extends FullArmorAbility {
             if (entity.isOnGround() && !tag.getBoolean("Jump ready")) {
                 tag.putBoolean("Jump ready", true);
                 double halfSize = entity.getBbWidth() / 2;
-                ((ServerWorld) entity.level).sendParticles(ParticleTypes.POOF, entity.getX(), entity.getY(), entity.getZ(), 200, halfSize, entity.getBbHeight(), halfSize, 0.1);
+                ((ServerLevel) entity.level).sendParticles(ParticleTypes.POOF, entity.getX(), entity.getY(), entity.getZ(), 200, halfSize, entity.getBbHeight(), halfSize, 0.1);
             }
         } else {
             tag.putInt("cooldown", cooldown - 1);
@@ -33,10 +33,10 @@ public class CelestiumFullAbility extends FullArmorAbility {
     public void keyPressed(LivingEntity entity) {
         if (!entity.isOnGround() && tag.getBoolean("Jump ready")) {
             System.out.println("Dash");
-            Vector3d look = entity.getLookAngle();
+            Vec3 look = entity.getLookAngle();
             entity.setDeltaMovement(look.x() * 2.5, 0, look.z() * 2.5);
             entity.hurtMarked = true;
-            ((ServerWorld) entity.level).sendParticles(ParticleTypes.EXPLOSION, entity.getX(), entity.getY(), entity.getZ(), 1, 0, 0, 0, 1);
+            ((ServerLevel) entity.level).sendParticles(ParticleTypes.EXPLOSION, entity.getX(), entity.getY(), entity.getZ(), 1, 0, 0, 0, 1);
             tag.putBoolean("Jump ready", false);
             tag.putInt("cooldown", 40);
         }

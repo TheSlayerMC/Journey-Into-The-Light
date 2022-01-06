@@ -1,36 +1,36 @@
 package net.jitl.client.render.tile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.jitl.JITL;
 import net.jitl.client.render.model.block.ObeliskModel;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.RenderState;
+import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.world.LightType;
-import net.minecraft.world.World;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import com.mojang.math.Vector3f;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.Level;
 
-public class ObeliskTER extends TileEntityRenderer {
+public class ObeliskTER extends BlockEntityRenderer {
 
     private ObeliskModel obelisk = new ObeliskModel();
     public static final ResourceLocation OBELISK_LOCATION = JITL.rl("textures/models/block/obelisk.png");
 
-    public ObeliskTER(TileEntityRendererDispatcher rendererDispatcherIn) {
+    public ObeliskTER(BlockEntityRenderDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
     }
 
     @Override
-    public void render(TileEntity tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+    public void render(BlockEntity tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
 
-        IVertexBuilder ivertexbuilder = bufferIn.getBuffer(obelisk(OBELISK_LOCATION));
+        VertexConsumer ivertexbuilder = bufferIn.getBuffer(obelisk(OBELISK_LOCATION));
         float timeD = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) / 16;
         int lightL = getProperLightLevel(tileEntityIn.getLevel(), tileEntityIn.getBlockPos());
 
@@ -49,13 +49,13 @@ public class ObeliskTER extends TileEntityRenderer {
     }
 
     public static RenderType obelisk(ResourceLocation resourceLocation) {
-        RenderState.TextureState textureState = new RenderState.TextureState(OBELISK_LOCATION, false, false);
-        return RenderType.create("obelisk", DefaultVertexFormats.BLOCK, 7, 256, false, true, RenderType.State.builder().setTextureState(textureState).createCompositeState(true));
+        RenderStateShard.TextureStateShard textureState = new RenderStateShard.TextureStateShard(OBELISK_LOCATION, false, false);
+        return RenderType.create("obelisk", DefaultVertexFormat.BLOCK, 7, 256, false, true, RenderType.CompositeState.builder().setTextureState(textureState).createCompositeState(true));
     }
 
-    private int getProperLightLevel(World w, BlockPos pos) {
-        int blockLight = w.getBrightness(LightType.BLOCK, pos);
-        int skyLevel = w.getBrightness(LightType.SKY, pos);
+    private int getProperLightLevel(Level w, BlockPos pos) {
+        int blockLight = w.getBrightness(LightLayer.BLOCK, pos);
+        int skyLevel = w.getBrightness(LightLayer.SKY, pos);
         return LightTexture.pack(blockLight, skyLevel);
     }
 }

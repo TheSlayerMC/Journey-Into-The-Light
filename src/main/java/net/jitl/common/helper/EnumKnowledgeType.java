@@ -1,6 +1,6 @@
 package net.jitl.common.helper;
 
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.HashMap;
 
@@ -36,11 +36,11 @@ public enum EnumKnowledgeType {
         return name;
     }
 
-    public static void writeToBuffer(EnumKnowledgeType type, PacketBuffer buf) {
+    public static void writeToBuffer(EnumKnowledgeType type, FriendlyByteBuf buf) {
         buf.writeUtf(type.getName());
     }
 
-    public static EnumKnowledgeType readFromBuffer(PacketBuffer buf) {
+    public static EnumKnowledgeType readFromBuffer(FriendlyByteBuf buf) {
         String name = buf.readUtf(Short.MAX_VALUE);
 
         return BY_NAME.get(name);

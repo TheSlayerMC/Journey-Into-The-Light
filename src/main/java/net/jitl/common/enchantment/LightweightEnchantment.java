@@ -1,11 +1,13 @@
 package net.jitl.common.enchantment;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.entity.EquipmentSlot;
+
+import net.minecraft.world.item.enchantment.Enchantment.Rarity;
 
 public class LightweightEnchantment extends Enchantment {
-    public LightweightEnchantment(Rarity rarityIn, EnchantmentType typeIn, EquipmentSlotType... slot) {
+    public LightweightEnchantment(Rarity rarityIn, EnchantmentCategory typeIn, EquipmentSlot... slot) {
         super(rarityIn, typeIn, slot);
     }
 

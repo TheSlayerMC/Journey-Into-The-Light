@@ -6,7 +6,15 @@ Journey Into The Light (or "Journey" for short), formerly known as Essence of th
 
 ## Contributing
 
- - As per the Github terms of service, you grant us the right to use your contribution under the same license as this project.
- - In addition, we request that you give us the right to change the license in the future.
+As per the Github Terms of Service, you grant us the right to use your contribution under the same license as this
+project.
 
-- Journey Into the Light uses a specialized mapping set by default which is based on the official mappings. See [Mappificator](https://github.com/alcatrazEscapee/Mappificator) in order to install that. You need to generate the same mappings as provided in build.properties (snapshot_mappings value)
+In addition, we request that you give us the right to change the license in the future.
+
+Journey Into the Light uses a specialized mapping set which adds the readable parameter names to the functions.
+See [Mappificator Project](https://github.com/alcatrazEscapee/Mappificator) in order to install that. You need to
+generate the mappings, using the command below, while you are in the root folder of that project.
+
+```
+py src/mappificator.py -p -v 1 --mc-version 1.18.1 --providers yarn parchment --yarn-version 12 --parchment-version 2021.12.19-1.18.1
+```

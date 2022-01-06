@@ -3,38 +3,40 @@ package net.jitl.common.item.throwable;
 import net.jitl.common.entity.projectile.PiercerEntity;
 import net.jitl.init.JEnchantments;
 import net.jitl.util.TriFunction;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PiercerItem extends Item {
-    protected TriFunction<World, LivingEntity, ItemStack, PiercerEntity> projectileFactory;
+import net.minecraft.world.item.Item.Properties;
 
-    public PiercerItem(Properties properties, TriFunction<World, LivingEntity, ItemStack, PiercerEntity> projectileFactory) {
+public class PiercerItem extends Item {
+    protected TriFunction<Level, LivingEntity, ItemStack, PiercerEntity> projectileFactory;
+
+    public PiercerItem(Properties properties, TriFunction<Level, LivingEntity, ItemStack, PiercerEntity> projectileFactory) {
         super(properties);
         this.projectileFactory = projectileFactory;
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
-        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ENDER_PEARL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isClientSide()) {
             PiercerEntity entity = projectileFactory.apply(worldIn, playerIn, stack);
             int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, stack);
@@ -66,14 +68,14 @@ public class PiercerItem extends Item {
             entity.setPos(playerIn.getX(), playerIn.getEyeY(), playerIn.getZ());
             entity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
             if (playerIn.isCreative()) {
-                entity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+                entity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
             } else {
                 playerIn.inventory.removeItem(stack);
             }
             worldIn.addFreshEntity(entity);
             playerIn.awardStat(Stats.ITEM_USED.get(this));
         }
-        return ActionResult.sidedSuccess(stack, worldIn.isClientSide());
+        return InteractionResultHolder.sidedSuccess(stack, worldIn.isClientSide());
     }
 
     @Override
@@ -98,7 +100,7 @@ public class PiercerItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
         //how to fuck do we add a damage tooltip to this?

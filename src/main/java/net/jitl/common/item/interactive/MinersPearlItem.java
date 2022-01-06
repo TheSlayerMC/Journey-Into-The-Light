@@ -4,22 +4,29 @@ import net.jitl.JITL;
 import net.jitl.init.JParticleManager;
 import net.jitl.init.JSounds;
 import net.jitl.util.IEssenceItem;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.Heightmap;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.Heightmap;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.util.ChatUtils;
+
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.item.Item.Properties;
 
 public class MinersPearlItem extends Item implements IEssenceItem {
 
@@ -27,7 +34,7 @@ public class MinersPearlItem extends Item implements IEssenceItem {
         super(properties);
     }
 
-    public @NotNull ActionResult<ItemStack> use(@NotNull World worldIn, @NotNull PlayerEntity playerIn, @NotNull Hand handIn) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level worldIn, @NotNull Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
         boolean canTeleport =
                 playerIn.position().y <= worldIn.getSeaLevel() - 2 &&
@@ -39,9 +46,9 @@ public class MinersPearlItem extends Item implements IEssenceItem {
             try {
                 if (canTeleport) {
                     playerIn.giveExperienceLevels(-10);
-                    playerIn.addEffect(new EffectInstance(Effects.CONFUSION, 140, 2));
-                    if (!stack.hasTag()) stack.setTag(new CompoundNBT());
-                    CompoundNBT tag = stack.getTag();
+                    playerIn.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 140, 2));
+                    if (!stack.hasTag()) stack.setTag(new CompoundTag());
+                    CompoundTag tag = stack.getTag();
                     tag.putBoolean("teleport", true);
                 }
             } catch (Exception e) {
@@ -49,8 +56,8 @@ public class MinersPearlItem extends Item implements IEssenceItem {
             }
         }
         if (canTeleport) {
-            worldIn.playSound(playerIn, playerIn.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 1.0F, 0.5F);
-            worldIn.playSound(playerIn, playerIn.blockPosition(), JSounds.MINERS_PEARL.get(), SoundCategory.PLAYERS, 1.25F, MathHelper.nextFloat(random, 0.95F, 1.55F));
+            worldIn.playSound(playerIn, playerIn.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.5F);
+            worldIn.playSound(playerIn, playerIn.blockPosition(), JSounds.MINERS_PEARL.get(), SoundSource.PLAYERS, 1.25F, Mth.nextFloat(random, 0.95F, 1.55F));
             for (int i = 0; i < 16; ++i) {
                 worldIn.addParticle(JParticleManager.MINERS_PEARL.get(),
                         playerIn.getRandomX(0.95D),
@@ -62,26 +69,26 @@ public class MinersPearlItem extends Item implements IEssenceItem {
             }
         } else {
             if (worldIn.isClientSide()) {
-                playerIn.sendMessage(ChatUtils.format(new TranslationTextComponent("jitl.message.item.miners_pearl"), TextFormatting.DARK_PURPLE), playerIn.getUUID());
+                playerIn.sendMessage(ChatUtils.format(new TranslatableComponent("jitl.message.item.miners_pearl"), ChatFormatting.DARK_PURPLE), playerIn.getUUID());
             }
-            worldIn.playSound(playerIn, playerIn.blockPosition(), JSounds.MINERS_PEARL.get(), SoundCategory.PLAYERS, 1.25F, 0.5F);
+            worldIn.playSound(playerIn, playerIn.blockPosition(), JSounds.MINERS_PEARL.get(), SoundSource.PLAYERS, 1.25F, 0.5F);
         }
-        return new ActionResult<>(ActionResultType.PASS, stack);
+        return new InteractionResultHolder<>(InteractionResult.PASS, stack);
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+    public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected) {
         if (stack.hasTag()) {
-            CompoundNBT tag = stack.getTag();
+            CompoundTag tag = stack.getTag();
             if (tag.getBoolean("teleport")) {
-                PlayerEntity player = (PlayerEntity) entity;
+                Player player = (Player) entity;
                 int teleportTimer = tag.getInt("timer");
                 System.out.println(teleportTimer);
                 if (teleportTimer >= 10) {
-                    if (player.level.dimension() == World.OVERWORLD) {
-                        player.teleportTo(player.getX(), world.getHeightmapPos(Heightmap.Type.WORLD_SURFACE, player.blockPosition()).getY(), player.getZ());
+                    if (player.level.dimension() == Level.OVERWORLD) {
+                        player.teleportTo(player.getX(), world.getHeightmapPos(Heightmap.Types.WORLD_SURFACE, player.blockPosition()).getY(), player.getZ());
                     } else {
-                        ChatUtils.format(new TranslationTextComponent("jitl.message.item.miners_pearl"), TextFormatting.DARK_PURPLE);
+                        ChatUtils.format(new TranslatableComponent("jitl.message.item.miners_pearl"), ChatFormatting.DARK_PURPLE);
                     }
                     tag.putInt("timer", 0);
                     tag.putBoolean("teleport", false);

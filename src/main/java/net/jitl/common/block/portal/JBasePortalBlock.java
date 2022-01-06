@@ -3,26 +3,26 @@ package net.jitl.common.block.portal;
 import net.jitl.common.dimension.BaseTeleporter;
 import net.jitl.common.dimension.Dimensions;
 import net.jitl.init.JBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.village.PointOfInterestType;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -30,15 +30,17 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.function.Supplier;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class JBasePortalBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     protected static final VoxelShape X_AABB = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 10.0D);
     protected static final VoxelShape Z_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
-    private final RegistryKey<World> dimensionID;
+    private final ResourceKey<Level> dimensionID;
     private final Supplier<Block> frame;
 
-    public JBasePortalBlock(Properties properties, RegistryKey<World> dimID, Supplier<Block> frame) {
+    public JBasePortalBlock(Properties properties, ResourceKey<Level> dimID, Supplier<Block> frame) {
         super(properties);
         this.dimensionID = dimID;
         this.frame = frame;
@@ -46,7 +48,7 @@ public class JBasePortalBlock extends Block {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         switch (state.getValue(AXIS)) {
             case Z:
                 return Z_AABB;
@@ -57,21 +59,21 @@ public class JBasePortalBlock extends Block {
     }
 
     @Override
-    public void randomTick(@NotNull BlockState state, @NotNull ServerWorld worldIn, @NotNull BlockPos pos, @NotNull Random random) {
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel worldIn, @NotNull BlockPos pos, @NotNull Random random) {
         //make particals call in constructor
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         Direction.Axis direction$axis = facing.getAxis();
         Direction.Axis direction$axis1 = stateIn.getValue(AXIS);
         boolean flag = direction$axis1 != direction$axis && direction$axis.isHorizontal();
-        return !flag && facingState.getBlock() != this && !(new JBasePortalBlock.Size(worldIn, currentPos, direction$axis1, getBlock(), frame.get())).validatePortal() ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return !flag && facingState.getBlock() != this && !(new Size(worldIn, currentPos, direction$axis1, getBlock(), frame.get())).validatePortal() ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
 
     @Override
-    public ItemStack getCloneItemStack(IBlockReader worldIn, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
         return ItemStack.EMPTY;
     }
 
@@ -94,13 +96,13 @@ public class JBasePortalBlock extends Block {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AXIS);
     }
 
 
     @Override
-    public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entity) {
         if (!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
             if (entity.isOnPortalCooldown()) {
                 entity.setPortalCooldown();
@@ -108,13 +110,13 @@ public class JBasePortalBlock extends Block {
                 if (!entity.level.isClientSide && !pos.equals(entity.portalEntrancePos)) {
                     entity.portalEntrancePos = pos.immutable();
                 }
-                World entityWorld = entity.level;
+                Level entityWorld = entity.level;
                 if (entityWorld != null) {
                     MinecraftServer minecraftserver = entityWorld.getServer();
                     if (minecraftserver != null) {
-                        RegistryKey<World> destination = entity.level.dimension() == dimensionID ? World.OVERWORLD : dimensionID;
-                        ServerWorld destinationWorld = minecraftserver.getLevel(destination);
-                        PointOfInterestType poi = Dimensions.EUCA_PORTAL.get();
+                        ResourceKey<Level> destination = entity.level.dimension() == dimensionID ? Level.OVERWORLD : dimensionID;
+                        ServerLevel destinationWorld = minecraftserver.getLevel(destination);
+                        PoiType poi = Dimensions.EUCA_PORTAL.get();
                         if (this == JBlocks.EUCA_PORTAL)
                             poi = Dimensions.EUCA_PORTAL.get();
                         if (this == JBlocks.FROZEN_PORTAL)
@@ -134,8 +136,8 @@ public class JBasePortalBlock extends Block {
         }
     }
 
-    public boolean makePortal(IWorld worldIn, BlockPos pos) {
-        JBasePortalBlock.Size portal = this.isPortal(worldIn, pos);
+    public boolean makePortal(LevelAccessor worldIn, BlockPos pos) {
+        Size portal = this.isPortal(worldIn, pos);
         if (portal != null) {
             portal.createPortalBlocks();
             return true;
@@ -144,18 +146,18 @@ public class JBasePortalBlock extends Block {
         }
     }
 
-    public JBasePortalBlock.Size isPortal(IWorld worldIn, BlockPos pos) {
-        JBasePortalBlock.Size portalX = new Size(worldIn, pos, Direction.Axis.X, this, worldIn.getBlockState(pos.below()).getBlock());
+    public Size isPortal(LevelAccessor worldIn, BlockPos pos) {
+        Size portalX = new Size(worldIn, pos, Direction.Axis.X, this, worldIn.getBlockState(pos.below()).getBlock());
         if (portalX.isValid() && portalX.portalBlockCount == 0) {
             return portalX;
         } else {
-            JBasePortalBlock.Size portalZ = new Size(worldIn, pos, Direction.Axis.Z, this, worldIn.getBlockState(pos.below()).getBlock());
+            Size portalZ = new Size(worldIn, pos, Direction.Axis.Z, this, worldIn.getBlockState(pos.below()).getBlock());
             return portalZ.isValid() && portalZ.portalBlockCount == 0 ? portalZ : null;
         }
     }
 
     public static class Size {
-        private final IWorld world;
+        private final LevelAccessor world;
         private final Direction.Axis axis;
         private final Direction rightDir;
         private final Direction leftDir;
@@ -167,7 +169,7 @@ public class JBasePortalBlock extends Block {
         private final Block portal;
         private final Block frame;
 
-        public Size(IWorld worldIn, BlockPos pos, Direction.Axis axisIn, Block portal, Block frame) {
+        public Size(LevelAccessor worldIn, BlockPos pos, Direction.Axis axisIn, Block portal, Block frame) {
             this.world = worldIn;
             this.axis = axisIn;
             this.portal = portal;

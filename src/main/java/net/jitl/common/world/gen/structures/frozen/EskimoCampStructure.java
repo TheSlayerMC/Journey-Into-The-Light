@@ -4,55 +4,57 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.jitl.JITL;
 import net.jitl.init.JEntities;
-import net.minecraft.util.SharedSeedRandom;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.MobSpawnInfo;
-import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.jigsaw.JigsawManager;
-import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.structure.StructureStart;
-import net.minecraft.world.gen.feature.structure.VillageConfig;
-import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.structures.JigsawPlacement;
+import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
+import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.structure.StructureStart;
+import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import ru.timeconqueror.timecore.api.util.GenHelper;
 
 import java.util.List;
 
-public class EskimoCampStructure extends Structure<NoFeatureConfig> {
-    private static final List<MobSpawnInfo.Spawners> SPAWNERS_LIST = ImmutableList.of(
-            new MobSpawnInfo.Spawners(JEntities.ESKIMO_TYPE, 1, 1, 1)
+import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
+
+public class EskimoCampStructure extends StructureFeature<NoneFeatureConfiguration> {
+    private static final List<MobSpawnSettings.SpawnerData> SPAWNERS_LIST = ImmutableList.of(
+            new MobSpawnSettings.SpawnerData(JEntities.ESKIMO_TYPE, 1, 1, 1)
     );
 
-    public EskimoCampStructure(Codec<NoFeatureConfig> codec) {
+    public EskimoCampStructure(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return EskimoCampStructure.Start::new;
+    public StructureStartFactory<NoneFeatureConfiguration> getStartFactory() {
+        return Start::new;
     }
 
     @Override
-    public GenerationStage.Decoration step() {
-        return GenerationStage.Decoration.SURFACE_STRUCTURES;
+    public GenerationStep.Decoration step() {
+        return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
     @Override
-    public List<MobSpawnInfo.Spawners> getDefaultSpawnList() {
+    public List<MobSpawnSettings.SpawnerData> getDefaultSpawnList() {
         return SPAWNERS_LIST;
     }
 
     @Override
-    protected boolean isFeatureChunk(ChunkGenerator chunkGenerator_, BiomeProvider biomeProvider_, long long_, SharedSeedRandom sharedSeedRandom_, int int_, int int1_, Biome biome_, ChunkPos chunkPos_, NoFeatureConfig featureConfig_) {
+    protected boolean isFeatureChunk(ChunkGenerator chunkGenerator_, BiomeSource biomeProvider_, long long_, WorldgenRandom sharedSeedRandom_, int int_, int int1_, Biome biome_, ChunkPos chunkPos_, NoneFeatureConfiguration featureConfig_) {
         for (Biome biome : biomeProvider_.getBiomesWithin(int_ * 16 + 9, chunkGenerator_.getSeaLevel(), int1_ * 16 + 9, 32)) {
             if (!biome.getGenerationSettings().isValidStart(this)) {
                 return false;
@@ -61,14 +63,14 @@ public class EskimoCampStructure extends Structure<NoFeatureConfig> {
         return true;
     }
 
-    public static class Start extends StructureStart<NoFeatureConfig> {
+    public static class Start extends StructureStart<NoneFeatureConfiguration> {
 
-        public Start(Structure<NoFeatureConfig> structure_, int int_, int int1_, MutableBoundingBox mutableBoundingBox_, int int2_, long long_) {
+        public Start(StructureFeature<NoneFeatureConfiguration> structure_, int int_, int int1_, BoundingBox mutableBoundingBox_, int int2_, long long_) {
             super(structure_, int_, int1_, mutableBoundingBox_, int2_, long_);
         }
 
         @Override
-        public void generatePieces(DynamicRegistries dynamicRegistries_, ChunkGenerator chunkGenerator_, TemplateManager templateManager_, int x, int z, Biome biome_, NoFeatureConfig featureConfig_) {
+        public void generatePieces(RegistryAccess dynamicRegistries_, ChunkGenerator chunkGenerator_, StructureManager templateManager_, int x, int z, Biome biome_, NoneFeatureConfiguration featureConfig_) {
             int chunkX = (x << 4) + 7;
             int chunkZ = (z << 4) + 7;
 
@@ -76,10 +78,10 @@ public class EskimoCampStructure extends Structure<NoFeatureConfig> {
             surface -= 1;
 
             BlockPos pos = new BlockPos(chunkX, surface, chunkZ);
-            if (chunkGenerator_.getBaseHeight(chunkX, chunkZ, Heightmap.Type.WORLD_SURFACE_WG) > 0) {
-                JigsawManager.addPieces(dynamicRegistries_,
-                        new VillageConfig(() -> dynamicRegistries_.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(JITL.rl("frozen/eskimo_camp/starting_well")), 2),
-                        AbstractVillagePiece::new,
+            if (chunkGenerator_.getBaseHeight(chunkX, chunkZ, Heightmap.Types.WORLD_SURFACE_WG) > 0) {
+                JigsawPlacement.addPieces(dynamicRegistries_,
+                        new JigsawConfiguration(() -> dynamicRegistries_.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(JITL.rl("frozen/eskimo_camp/starting_well")), 2),
+                        PoolElementStructurePiece::new,
                         chunkGenerator_,
                         templateManager_,
                         pos,

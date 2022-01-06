@@ -1,6 +1,6 @@
 package net.jitl.client.eventhandler;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.JITL;
 import net.jitl.client.render.gui.button.ToggleMenuButton;
@@ -16,9 +16,9 @@ import net.jitl.config.JConfigs;
 import net.jitl.init.JEffects;
 import net.jitl.util.IEssenceItem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.MainMenuScreen;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
+import net.minecraft.client.gui.screens.TitleScreen;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
@@ -35,7 +35,7 @@ public class GuiEventHandler {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void overrideMainMenu(GuiOpenEvent event) {
 		if (JConfigs.CLIENT.GUI_CATEGORY.isJITLMenuEnabled()) {
-			if (event.getGui() instanceof MainMenuScreen) {
+			if (event.getGui() instanceof TitleScreen) {
 				event.setGui(new JMainMenuGui());
 			}
 		}
@@ -50,12 +50,12 @@ public class GuiEventHandler {
 		ToggleMenuButton buttonToggleMenu = new ToggleMenuButton(x, 0, (action) -> {
 			guiConfig.setJITLMenu(!guiConfig.isJITLMenuEnabled());
 			if (!guiConfig.isJITLMenuEnabled()) {
-				minecraft.setScreen(new MainMenuScreen());
+				minecraft.setScreen(new TitleScreen());
 			} else {
 				minecraft.setScreen(new JMainMenuGui());
 			}
 		});
-		if (event.getGui() instanceof MainMenuScreen) {
+		if (event.getGui() instanceof TitleScreen) {
 			if (guiConfig.isToggleMenuButtonEnabled()) {
 				event.addWidget(buttonToggleMenu);
 			}
@@ -77,7 +77,7 @@ public class GuiEventHandler {
 	public static void renderFrostburnOverlay(RenderGameOverlayEvent.Pre event) {
 		if (event.getType() == RenderGameOverlayEvent.ElementType.VIGNETTE) {
 			Minecraft minecraft = Minecraft.getInstance();
-			PlayerEntity player = minecraft.player;
+			Player player = minecraft.player;
 			if (player != null && player.hasEffect(JEffects.FROSTBURN.get())) {
 				RenderFrostburnOverlay.render(minecraft);
 			}
@@ -88,9 +88,9 @@ public class GuiEventHandler {
 	public static void renderEssenceBar(RenderGameOverlayEvent.Post event) {
 		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
 			Minecraft minecraft = Minecraft.getInstance();
-			PlayerEntity player = minecraft.player;
+			Player player = minecraft.player;
 			if (player != null && !player.isCreative() && !player.isSpectator()) {
-				MatrixStack matrixStack = event.getMatrixStack();
+				PoseStack matrixStack = event.getMatrixStack();
 				JPlayer cap = JPlayer.from(player);
 				if (cap != null) {
 					float currentEssence = cap.essence.getCurrentEssence();

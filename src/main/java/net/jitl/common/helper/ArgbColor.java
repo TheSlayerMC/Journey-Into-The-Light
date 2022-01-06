@@ -1,6 +1,6 @@
 package net.jitl.common.helper;
 
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
 
 public class ArgbColor {
     public static final int BLUE = 0x006cff;
@@ -20,7 +20,7 @@ public class ArgbColor {
      * Throws {@link IllegalArgumentException} if provided format is not color.
      */
     @SuppressWarnings("ConstantConditions")
-    public static int from(TextFormatting format) {
+    public static int from(ChatFormatting format) {
         if (format.isColor()) {
             return format.getColor();
         } else {

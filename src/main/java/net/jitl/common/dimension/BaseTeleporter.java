@@ -2,25 +2,25 @@ package net.jitl.common.dimension;
 
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.TeleportationRepositioner;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.village.PointOfInterest;
-import net.minecraft.village.PointOfInterestManager;
-import net.minecraft.village.PointOfInterestType;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
-import net.minecraft.world.border.WorldBorder;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.server.TicketType;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.BlockUtil;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.entity.ai.village.poi.PoiRecord;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.border.WorldBorder;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
 
 import javax.annotation.Nullable;
@@ -28,15 +28,25 @@ import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Function;
 
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.portal.PortalInfo;
+import net.minecraft.world.level.portal.PortalShape;
+
+import PoiType;
+import ResourceKey;
+import ServerLevel;
+
 public class BaseTeleporter implements ITeleporter {
 
-    protected final ServerWorld level;
+    protected final ServerLevel level;
     private final JBasePortalBlock portal_block;
     private final Block portal_frame;
-    private final PointOfInterestType poi;
-    private final RegistryKey<World> destination;
+    private final PoiType poi;
+    private final ResourceKey<Level> destination;
 
-    public BaseTeleporter(ServerWorld worldIn, JBasePortalBlock portal, Block frame, PointOfInterestType poi, RegistryKey<World> destination) {
+    public BaseTeleporter(ServerLevel worldIn, JBasePortalBlock portal, Block frame, PoiType poi, ResourceKey<Level> destination) {
         this.level = worldIn;
         this.portal_block = portal;
         this.portal_frame = frame;
@@ -44,11 +54,11 @@ public class BaseTeleporter implements ITeleporter {
         this.destination = destination;
     }
 
-    public Optional<TeleportationRepositioner.Result> getExistingPortal(BlockPos pos) {
-        PointOfInterestManager poiManager = this.level.getPoiManager();
+    public Optional<BlockUtil.FoundRectangle> getExistingPortal(BlockPos pos) {
+        PoiManager poiManager = this.level.getPoiManager();
         poiManager.ensureLoadedAndValid(this.level, pos, 64);
-        Optional<PointOfInterest> optional = poiManager.getInSquare((poiType) ->
-                poiType == poi, pos, 64, PointOfInterestManager.Status.ANY).sorted(Comparator.<PointOfInterest>comparingDouble((poi) ->
+        Optional<PoiRecord> optional = poiManager.getInSquare((poiType) ->
+                poiType == poi, pos, 64, PoiManager.Occupancy.ANY).sorted(Comparator.<PoiRecord>comparingDouble((poi) ->
                 poi.getPos().distSqr(pos)).thenComparingInt((poi) ->
                 poi.getPos().getY())).filter((poi) ->
                 this.level.getBlockState(poi.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS)).findFirst();
@@ -56,12 +66,12 @@ public class BaseTeleporter implements ITeleporter {
             BlockPos blockpos = poi.getPos();
             this.level.getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, blockpos);
             BlockState blockstate = this.level.getBlockState(blockpos);
-            return TeleportationRepositioner.getLargestRectangleAround(blockpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, (posIn) ->
+            return BlockUtil.getLargestRectangleAround(blockpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, (posIn) ->
                     this.level.getBlockState(posIn) == blockstate);
         });
     }
 
-    public Optional<TeleportationRepositioner.Result> makePortal(BlockPos pos, Direction.Axis axis) {
+    public Optional<BlockUtil.FoundRectangle> makePortal(BlockPos pos, Direction.Axis axis) {
         Direction direction = Direction.get(Direction.AxisDirection.POSITIVE, axis);
         double d0 = -1.0D;
         BlockPos blockpos = null;
@@ -69,10 +79,10 @@ public class BaseTeleporter implements ITeleporter {
         BlockPos blockpos1 = null;
         WorldBorder worldborder = this.level.getWorldBorder();
         int dimensionLogicalHeight = this.level.getHeight() - 1;
-        BlockPos.Mutable mutablePos = pos.mutable();
+        BlockPos.MutableBlockPos mutablePos = pos.mutable();
 
-        for (BlockPos.Mutable blockpos$mutable1 : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
-            int j = Math.min(dimensionLogicalHeight, this.level.getHeight(Heightmap.Type.MOTION_BLOCKING, blockpos$mutable1.getX(), blockpos$mutable1.getZ()));
+        for (BlockPos.MutableBlockPos blockpos$mutable1 : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
+            int j = Math.min(dimensionLogicalHeight, this.level.getHeight(Heightmap.Types.MOTION_BLOCKING, blockpos$mutable1.getX(), blockpos$mutable1.getZ()));
             if (worldborder.isWithinBounds(blockpos$mutable1) && worldborder.isWithinBounds(blockpos$mutable1.move(direction, 1))) {
                 blockpos$mutable1.move(direction.getOpposite(), 1);
 
@@ -112,7 +122,7 @@ public class BaseTeleporter implements ITeleporter {
         }
 
         if (d0 == -1.0D) {
-            blockpos = (new BlockPos(pos.getX(), MathHelper.clamp(pos.getY(), 70, this.level.getHeight() - 10), pos.getZ())).immutable();
+            blockpos = (new BlockPos(pos.getX(), Mth.clamp(pos.getY(), 70, this.level.getHeight() - 10), pos.getZ())).immutable();
             Direction direction1 = direction.getClockWise();
             if (!worldborder.isWithinBounds(blockpos)) {
                 return Optional.empty();
@@ -147,10 +157,10 @@ public class BaseTeleporter implements ITeleporter {
             }
         }
 
-        return Optional.of(new TeleportationRepositioner.Result(blockpos.immutable(), 2, 3));
+        return Optional.of(new BlockUtil.FoundRectangle(blockpos.immutable(), 2, 3));
     }
 
-    private boolean checkRegionForPlacement(BlockPos originalPos, BlockPos.Mutable offsetPos, Direction directionIn, int offsetScale) {
+    private boolean checkRegionForPlacement(BlockPos originalPos, BlockPos.MutableBlockPos offsetPos, Direction directionIn, int offsetScale) {
         Direction direction = directionIn.getClockWise();
 
         for (int i = -1; i < 3; ++i) {
@@ -171,7 +181,7 @@ public class BaseTeleporter implements ITeleporter {
 
     @Nullable
     @Override
-    public PortalInfo getPortalInfo(Entity entity, ServerWorld destWorld, Function<ServerWorld, PortalInfo> defaultPortalInfo) {
+    public PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
         boolean destinationIsDim = destWorld.dimension() == destination;
         if (entity.level.dimension() != destination && !destinationIsDim) {
             return null;
@@ -182,27 +192,27 @@ public class BaseTeleporter implements ITeleporter {
             double maxX = Math.min(2.9999872E7D, border.getMaxX() - 16.0D);
             double maxZ = Math.min(2.9999872E7D, border.getMaxZ() - 16.0D);
             double coordinateDifference = DimensionType.getTeleportationScale(entity.level.dimensionType(), destWorld.dimensionType());
-            BlockPos blockpos = new BlockPos(MathHelper.clamp(entity.getX() * coordinateDifference, minX, maxX), entity.getY(), MathHelper.clamp(entity.getZ() * coordinateDifference, minZ, maxZ));
+            BlockPos blockpos = new BlockPos(Mth.clamp(entity.getX() * coordinateDifference, minX, maxX), entity.getY(), Mth.clamp(entity.getZ() * coordinateDifference, minZ, maxZ));
             return this.getOrMakePortal(entity, blockpos).map((result) -> {
                 BlockState blockstate = entity.level.getBlockState(entity.portalEntrancePos);
                 Direction.Axis axis;
-                Vector3d vector3d;
+                Vec3 vector3d;
                 if (blockstate.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
                     axis = blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS);
-                    TeleportationRepositioner.Result rectangle = TeleportationRepositioner.getLargestRectangleAround(entity.portalEntrancePos, axis, 21, Direction.Axis.Y, 21, (pos) -> entity.level.getBlockState(pos) == blockstate);
+                    BlockUtil.FoundRectangle rectangle = BlockUtil.getLargestRectangleAround(entity.portalEntrancePos, axis, 21, Direction.Axis.Y, 21, (pos) -> entity.level.getBlockState(pos) == blockstate);
                     vector3d = entity.getRelativePortalPosition(axis, rectangle);
                 } else {
                     axis = Direction.Axis.X;
-                    vector3d = new Vector3d(0.5D, 0.0D, 0.0D);
+                    vector3d = new Vec3(0.5D, 0.0D, 0.0D);
                 }
 
-                return PortalSize.createPortalInfo(destWorld, result, axis, vector3d, entity.getDimensions(entity.getPose()), entity.getDeltaMovement(), entity.yRot, entity.xRot);
+                return PortalShape.createPortalInfo(destWorld, result, axis, vector3d, entity.getDimensions(entity.getPose()), entity.getDeltaMovement(), entity.yRot, entity.xRot);
             }).orElse(null);
         }
     }
 
-    protected Optional<TeleportationRepositioner.Result> getOrMakePortal(Entity entity, BlockPos pos) {
-        Optional<TeleportationRepositioner.Result> existingPortal = this.getExistingPortal(pos);
+    protected Optional<BlockUtil.FoundRectangle> getOrMakePortal(Entity entity, BlockPos pos) {
+        Optional<BlockUtil.FoundRectangle> existingPortal = this.getExistingPortal(pos);
         if (existingPortal.isPresent()) {
             return existingPortal;
         } else {
@@ -212,7 +222,7 @@ public class BaseTeleporter implements ITeleporter {
     }
 
     @Override
-    public boolean playTeleportSound(ServerPlayerEntity player, ServerWorld sourceWorld, ServerWorld destWorld) {
+    public boolean playTeleportSound(ServerPlayer player, ServerLevel sourceWorld, ServerLevel destWorld) {
         return true;
     }
 }

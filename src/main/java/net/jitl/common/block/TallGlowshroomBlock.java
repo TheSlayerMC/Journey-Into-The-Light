@@ -2,13 +2,17 @@ package net.jitl.common.block;
 
 import net.jitl.api.block.GroundPredicate;
 import net.jitl.common.block.base.JDoublePlantBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
 import org.jetbrains.annotations.NotNull;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
+import VoxelShape;
 
 public class TallGlowshroomBlock extends JDoublePlantBlock {
 
@@ -20,7 +24,7 @@ public class TallGlowshroomBlock extends JDoublePlantBlock {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return HITBOX;
     }
 }

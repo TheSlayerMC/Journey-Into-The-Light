@@ -2,15 +2,20 @@ package net.jitl.common.item;
 
 import net.jitl.init.JTabs;
 import net.jitl.util.JItemProperties;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.*;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
+
+import Block;
 
 public class SeedsItem extends Item {
 
@@ -22,9 +27,9 @@ public class SeedsItem extends Item {
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context) {
-        World world = context.getLevel();
-        PlayerEntity player = context.getPlayer();
+    public InteractionResult useOn(UseOnContext context) {
+        Level world = context.getLevel();
+        Player player = context.getPlayer();
         BlockPos blockpos = context.getClickedPos();
         if(context.getClickedFace() != Direction.DOWN && world.isEmptyBlock(blockpos.above())) {
             BlockState blockstate = world.getBlockState(blockpos);
@@ -33,9 +38,9 @@ public class SeedsItem extends Item {
                     world.setBlock(blockpos.above(), cropBlock.defaultBlockState(), 11);
                     if(!player.isCreative()) context.getItemInHand().shrink(1);
                 }
-                return ActionResultType.sidedSuccess(world.isClientSide);
+                return InteractionResult.sidedSuccess(world.isClientSide);
             }
         }
-        return ActionResultType.PASS;
+        return InteractionResult.PASS;
     }
 }

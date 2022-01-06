@@ -1,11 +1,11 @@
 package net.jitl.client.render.entity;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.common.entity.base.BossCrystalEntity;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.resources.ResourceLocation;
 import ru.timeconqueror.timecore.animation.renderer.AnimatedEntityRenderer;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 import ru.timeconqueror.timecore.client.render.model.TimeModelRenderer;
@@ -13,12 +13,12 @@ import ru.timeconqueror.timecore.client.render.model.TimeModelRenderer;
 import java.util.Objects;
 
 public class BossCrystalRenderer extends AnimatedEntityRenderer<BossCrystalEntity, TimeEntityModel<BossCrystalEntity>> {
-    public BossCrystalRenderer(EntityRendererManager rendererManager) {
+    public BossCrystalRenderer(EntityRenderDispatcher rendererManager) {
         super(rendererManager, JEntityRenderRegistry.bossCrystalModel);
     }
 
     @Override
-    protected void setupAnimations(BossCrystalEntity entity, MatrixStack matrixStackIn, float partialTicks) {
+    protected void setupAnimations(BossCrystalEntity entity, PoseStack matrixStackIn, float partialTicks) {
         super.setupAnimations(entity, matrixStackIn, partialTicks);
 
         Minecraft minecraft = Minecraft.getInstance();

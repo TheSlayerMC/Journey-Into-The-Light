@@ -3,25 +3,27 @@ package net.jitl.common.world.gen.foliageplacer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.jitl.init.JFoliagePlacers;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.FeatureSpread;
-import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
-import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.LevelSimulatedRW;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.util.UniformInt;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 import java.util.Set;
+
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer.FoliageAttachment;
 
 public class SphericalFoliagePlacer extends BlobFoliagePlacer {
     public static final Codec<SphericalFoliagePlacer> CODEC = RecordCodecBuilder.create((instance_) -> {
         return blobParts(instance_).apply(instance_, SphericalFoliagePlacer::new);
     });
 
-    public SphericalFoliagePlacer(FeatureSpread featureSpread_, FeatureSpread featureSpread1_, int int_) {
+    public SphericalFoliagePlacer(UniformInt featureSpread_, UniformInt featureSpread1_, int int_) {
         super(featureSpread_, featureSpread1_, int_);
     }
 
@@ -31,7 +33,7 @@ public class SphericalFoliagePlacer extends BlobFoliagePlacer {
     }
 
     @Override
-    protected void createFoliage(@NotNull IWorldGenerationReader reader, @NotNull Random rand, @NotNull BaseTreeFeatureConfig baseTreeFeatureConfig_, int int_, Foliage foliage_, int int1_, int int2_, Set<BlockPos> set_, int int3_, MutableBoundingBox mutableBoundingBox_) {
+    protected void createFoliage(@NotNull LevelSimulatedRW reader, @NotNull Random rand, @NotNull TreeConfiguration baseTreeFeatureConfig_, int int_, FoliageAttachment foliage_, int int1_, int int2_, Set<BlockPos> set_, int int3_, BoundingBox mutableBoundingBox_) {
         int size = int2_ + foliage_.radiusOffset();
         BlockPos pos = foliage_.foliagePos().above(int3_);
         pos = pos.offset(Direction.UP.getNormal());
@@ -65,7 +67,7 @@ public class SphericalFoliagePlacer extends BlobFoliagePlacer {
     }
 
     @Override
-    public int foliageHeight(@NotNull Random random_, int int_, @NotNull BaseTreeFeatureConfig baseTreeFeatureConfig_) {
+    public int foliageHeight(@NotNull Random random_, int int_, @NotNull TreeConfiguration baseTreeFeatureConfig_) {
         return 0;
     }
 

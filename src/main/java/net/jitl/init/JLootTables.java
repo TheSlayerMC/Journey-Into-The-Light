@@ -1,7 +1,9 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+
+import ResourceLocation;
 
 public class JLootTables {
 

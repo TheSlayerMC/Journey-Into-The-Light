@@ -1,25 +1,27 @@
 package net.jitl.common.block.base;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Random;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class AttachedBlock extends Block {
     protected static final VoxelShape DOWN_AABB = Block.box(3, (16 - 5), 3, (16 - 3), 16.0D, (16 - 3));
@@ -37,7 +39,7 @@ public class AttachedBlock extends Block {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
         switch (direction) {
             case DOWN:
@@ -56,7 +58,7 @@ public class AttachedBlock extends Block {
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
         if (!worldIn.isAreaLoaded(pos, 1)) {
             return;
         }
@@ -67,9 +69,9 @@ public class AttachedBlock extends Block {
 
     @Nullable
     @Override
-    public BlockState getStateForPlacement(@NotNull BlockItemUseContext blockItemUseContext) {
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext blockItemUseContext) {
         BlockState blockstate = this.defaultBlockState();
-        IWorldReader worldReader = blockItemUseContext.getLevel();
+        LevelReader worldReader = blockItemUseContext.getLevel();
         BlockPos blockPos = blockItemUseContext.getClickedPos();
 
         Direction[] directions = blockItemUseContext.getNearestLookingDirections();
@@ -86,7 +88,7 @@ public class AttachedBlock extends Block {
     }
 
     @Override
-    public boolean canSurvive(BlockState blockState, IWorldReader reader, BlockPos blockPos) {
+    public boolean canSurvive(BlockState blockState, LevelReader reader, BlockPos blockPos) {
         Direction direction = blockState.getValue(FACING);
         BlockPos newPos = blockPos.relative(direction.getOpposite());
         BlockState newState = reader.getBlockState(newPos);
@@ -94,7 +96,7 @@ public class AttachedBlock extends Block {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (!stateIn.canSurvive(worldIn, currentPos)) {
             worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
         }
@@ -102,7 +104,7 @@ public class AttachedBlock extends Block {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 

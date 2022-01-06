@@ -5,14 +5,14 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import net.jitl.init.JLootConditions;
-import net.minecraft.loot.ILootSerializer;
-import net.minecraft.loot.LootConditionType;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.level.storage.loot.Serializer;
+import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-public class GetTablesCondition implements ILootCondition {
+public class GetTablesCondition implements LootItemCondition {
     private final ResourceLocation[] tables;
 
     public GetTablesCondition(ResourceLocation[] tables) {
@@ -20,7 +20,7 @@ public class GetTablesCondition implements ILootCondition {
     }
 
     @Override
-    public @NotNull LootConditionType getType() {
+    public @NotNull LootItemConditionType getType() {
         return JLootConditions.GET_TABLE;
     }
 
@@ -32,7 +32,7 @@ public class GetTablesCondition implements ILootCondition {
         return false;
     }
 
-    public static class Serializer implements ILootSerializer<GetTablesCondition> {
+    public static class Serializer implements Serializer<GetTablesCondition> {
 
         @Override
         public void serialize(@NotNull JsonObject jsonObject, GetTablesCondition getTableCondition, @NotNull JsonSerializationContext jsonSerializationContext) {

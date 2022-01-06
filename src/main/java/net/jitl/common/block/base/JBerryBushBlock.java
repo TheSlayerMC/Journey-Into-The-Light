@@ -1,46 +1,52 @@
 package net.jitl.common.block.base;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.SweetBerryBushBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-public class JBerryBushBlock extends SweetBerryBushBlock implements IGrowable {
-	private final Supplier<IItemProvider> berrySup;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.level.ItemLike;
 
-	public JBerryBushBlock(AbstractBlock.Properties properties, Supplier<IItemProvider> berrySup) {
+public class JBerryBushBlock extends SweetBerryBushBlock implements BonemealableBlock {
+	private final Supplier<ItemLike> berrySup;
+
+	public JBerryBushBlock(Properties properties, Supplier<ItemLike> berrySup) {
 		super(properties);
 		this.berrySup = berrySup;
 	}
 
 	@Override
-	public @NotNull ItemStack getCloneItemStack(@NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull BlockState state) {
+	public @NotNull ItemStack getCloneItemStack(@NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull BlockState state) {
 		return new ItemStack(berrySup.get());
 	}
 
 	//copypaste except for berrySup.get()
-	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		int i = state.getValue(AGE);
 		boolean flag = i == 3;
 		if (!flag && player.getItemInHand(handIn).getItem() == Items.BONE_MEAL) {
-			return ActionResultType.PASS;
+			return InteractionResult.PASS;
 		} else if (i > 1) {
 			int j = 1 + worldIn.random.nextInt(2);
 			popResource(worldIn, pos, new ItemStack(berrySup.get(), j + (flag ? 1 : 0)));
-			worldIn.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.random.nextFloat() * 0.4F);
+			worldIn.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + worldIn.random.nextFloat() * 0.4F);
 			worldIn.setBlock(pos, state.setValue(AGE, 1), 2);
-			return ActionResultType.sidedSuccess(worldIn.isClientSide);
+			return InteractionResult.sidedSuccess(worldIn.isClientSide);
 		} else {
 			return super.use(state, worldIn, pos, player, handIn, hit);
 		}

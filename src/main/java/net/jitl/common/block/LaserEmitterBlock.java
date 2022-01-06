@@ -1,34 +1,36 @@
 package net.jitl.common.block;
 
 import net.jitl.common.tile.LaserEmitterTile;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ContainerBlock;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
 import org.jetbrains.annotations.Nullable;
 
-public class LaserEmitterBlock extends ContainerBlock {
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
+public class LaserEmitterBlock extends BaseEntityBlock {
     public LaserEmitterBlock(Properties builder) {
         super(builder);
     }
 
     @Nullable
     @Override
-    public TileEntity newBlockEntity(IBlockReader worldIn) {
+    public BlockEntity newBlockEntity(BlockGetter worldIn) {
         return new LaserEmitterTile();
     }
 
     @Override
-    public BlockRenderType getRenderShape(BlockState state) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return super.getShape(state, worldIn, pos, context);
     }
 }

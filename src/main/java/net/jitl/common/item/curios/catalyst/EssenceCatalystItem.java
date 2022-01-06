@@ -5,12 +5,14 @@ import com.google.common.collect.Multimap;
 import net.jitl.JITL;
 import net.jitl.common.item.curios.JCurioItem;
 import net.jitl.init.JAttributes;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.UUID;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class EssenceCatalystItem extends JCurioItem {
     public float maxEssence;

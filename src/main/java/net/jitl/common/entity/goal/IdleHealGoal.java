@@ -1,13 +1,13 @@
 package net.jitl.common.entity.goal;
 
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.goal.Goal;
 
 public class IdleHealGoal extends Goal {
-    private final MobEntity mob;
+    private final Mob mob;
     private final float healAmount;
 
-    public IdleHealGoal(MobEntity mob, int ticksToFull) {
+    public IdleHealGoal(Mob mob, int ticksToFull) {
         this.mob = mob;
         healAmount = mob.getMaxHealth() / ticksToFull;
     }

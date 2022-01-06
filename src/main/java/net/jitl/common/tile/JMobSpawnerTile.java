@@ -1,27 +1,27 @@
 package net.jitl.common.tile;
 
 import net.jitl.init.JTiles;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.WeightedSpawnerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.spawner.AbstractSpawner;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.level.block.entity.TickableBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.SpawnData;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.BaseSpawner;
 
 import javax.annotation.Nullable;
 
-public class JMobSpawnerTile extends TileEntity implements ITickableTileEntity {
+public class JMobSpawnerTile extends BlockEntity implements TickableBlockEntity {
 
-    private final AbstractSpawner spawner = new AbstractSpawner() {
+    private final BaseSpawner spawner = new BaseSpawner() {
         public void broadcastEvent(int id) {
             JMobSpawnerTile.this.level.blockEvent(JMobSpawnerTile.this.worldPosition, Blocks.SPAWNER, id, 0);
         }
 
-        public World getLevel() {
+        public Level getLevel() {
             return JMobSpawnerTile.this.level;
         }
 
@@ -29,7 +29,7 @@ public class JMobSpawnerTile extends TileEntity implements ITickableTileEntity {
             return JMobSpawnerTile.this.worldPosition;
         }
 
-        public void setNextSpawnData(WeightedSpawnerEntity nextSpawnData) {
+        public void setNextSpawnData(SpawnData nextSpawnData) {
             super.setNextSpawnData(nextSpawnData);
             if (this.getLevel() != null) {
                 BlockState blockstate = this.getLevel().getBlockState(this.getPos());
@@ -44,13 +44,13 @@ public class JMobSpawnerTile extends TileEntity implements ITickableTileEntity {
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
+    public void load(BlockState state, CompoundTag nbt) {
         super.load(state, nbt);
         this.spawner.load(nbt);
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    public CompoundTag save(CompoundTag compound) {
         super.save(compound);
         this.spawner.save(compound);
         return compound;
@@ -63,13 +63,13 @@ public class JMobSpawnerTile extends TileEntity implements ITickableTileEntity {
 
     @Override
     @Nullable
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(this.worldPosition, 1, this.getUpdateTag());
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return new ClientboundBlockEntityDataPacket(this.worldPosition, 1, this.getUpdateTag());
     }
 
     @Override
-    public CompoundNBT getUpdateTag() {
-        CompoundNBT compoundnbt = this.save(new CompoundNBT());
+    public CompoundTag getUpdateTag() {
+        CompoundTag compoundnbt = this.save(new CompoundTag());
         compoundnbt.remove("SpawnPotentials");
         return compoundnbt;
     }
@@ -84,7 +84,7 @@ public class JMobSpawnerTile extends TileEntity implements ITickableTileEntity {
         return true;
     }
 
-    public AbstractSpawner getSpawner() {
+    public BaseSpawner getSpawner() {
         return this.spawner;
     }
 }

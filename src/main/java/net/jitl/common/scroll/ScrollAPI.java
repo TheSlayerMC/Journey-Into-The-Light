@@ -1,6 +1,6 @@
 package net.jitl.common.scroll;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;

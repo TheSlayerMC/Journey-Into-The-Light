@@ -10,12 +10,12 @@ import kotlin.collections.ArraysKt;
 import net.jitl.mixins.client.UnlockedBlockModelDeserializer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.model.*;
-import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.client.renderer.texture.MissingTextureSprite;
+import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.resources.IResourceManager;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.CompositeModel;
 import net.minecraftforge.client.model.IModelConfiguration;
 import net.minecraftforge.client.model.IModelLoader;
@@ -27,6 +27,16 @@ import ru.timeconqueror.timecore.api.util.RandHelper;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.BlockModel;
+import net.minecraft.client.renderer.block.model.ItemOverrides;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelState;
+import net.minecraft.client.resources.model.SimpleBakedModel;
+import net.minecraft.client.resources.model.UnbakedModel;
 
 /**
  * The highest "parent" property is for items, because for now they have weird behavior without this property.
@@ -41,28 +51,28 @@ public class EmissiveModelGeometry implements IModelGeometry<EmissiveModelGeomet
     private final BlockModel emissiveModel;
     @Nullable
     private final BlockModel normalModel;
-    private final BiFunction<EmissiveModelGeometry, IModelConfiguration, RenderMaterial> particleMaterialSupplier;
+    private final BiFunction<EmissiveModelGeometry, IModelConfiguration, Material> particleMaterialSupplier;
 
-    public EmissiveModelGeometry(@Nullable BlockModel emissiveModel, @Nullable BlockModel normalModel, BiFunction<EmissiveModelGeometry, IModelConfiguration, RenderMaterial> particleMaterialSupplier) {
+    public EmissiveModelGeometry(@Nullable BlockModel emissiveModel, @Nullable BlockModel normalModel, BiFunction<EmissiveModelGeometry, IModelConfiguration, Material> particleMaterialSupplier) {
         this.emissiveModel = emissiveModel;
         this.normalModel = normalModel;
         this.particleMaterialSupplier = particleMaterialSupplier;
     }
 
     @Override
-    public IBakedModel bake(IModelConfiguration owner, ModelBakery bakery, Function<RenderMaterial, TextureAtlasSprite> spriteGetter, IModelTransform modelTransform, ItemOverrideList overrides, ResourceLocation modelLocation) {
-        ImmutableMap.Builder<String, IBakedModel> builder = new ImmutableMap.Builder<>();
+    public BakedModel bake(IModelConfiguration owner, ModelBakery bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelTransform, ItemOverrides overrides, ResourceLocation modelLocation) {
+        ImmutableMap.Builder<String, BakedModel> builder = new ImmutableMap.Builder<>();
 
-        RenderMaterial particleLocation = particleMaterialSupplier.apply(this, owner);
+        Material particleLocation = particleMaterialSupplier.apply(this, owner);
         TextureAtlasSprite particleSprite = spriteGetter.apply(particleLocation);
 
         if (normalModel != null) {
-            IBakedModel bakedNormal = normalModel.bake(bakery, spriteGetter, modelTransform, modelLocation);
+            BakedModel bakedNormal = normalModel.bake(bakery, spriteGetter, modelTransform, modelLocation);
             if (bakedNormal != null) builder.put(ModelType.NORMAL.getName(), bakedNormal);
         }
 
         if (emissiveModel != null) {
-            IBakedModel bakedEmissive = emissiveModel.bake(bakery, spriteGetter, modelTransform, modelLocation);
+            BakedModel bakedEmissive = emissiveModel.bake(bakery, spriteGetter, modelTransform, modelLocation);
             if (bakedEmissive instanceof SimpleBakedModel) {
                 List<BakedQuad> quads = bakedEmissive.getQuads(null, null, RandHelper.RAND, EmptyModelData.INSTANCE);
                 quads = lightQuads(quads);
@@ -116,8 +126,8 @@ public class EmissiveModelGeometry implements IModelGeometry<EmissiveModelGeomet
     }
 
     @Override
-    public Collection<RenderMaterial> getTextures(IModelConfiguration owner, Function<ResourceLocation, IUnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
-        Set<RenderMaterial> materials = new HashSet<>();
+    public Collection<Material> getTextures(IModelConfiguration owner, Function<ResourceLocation, UnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
+        Set<Material> materials = new HashSet<>();
 
         materials.add(particleMaterialSupplier.apply(this, owner));
 
@@ -138,7 +148,7 @@ public class EmissiveModelGeometry implements IModelGeometry<EmissiveModelGeomet
         }
 
         @Override
-        public void onResourceManagerReload(IResourceManager resourceManager) {
+        public void onResourceManagerReload(ResourceManager resourceManager) {
 
         }
 
@@ -160,7 +170,7 @@ public class EmissiveModelGeometry implements IModelGeometry<EmissiveModelGeomet
 
             String particlesProp = modelContents.get(PARTICLE_PROP_NAME).getAsString();
 
-            BiFunction<EmissiveModelGeometry, IModelConfiguration, RenderMaterial> particlesSupplier;
+            BiFunction<EmissiveModelGeometry, IModelConfiguration, Material> particlesSupplier;
             if (particlesProp.startsWith("#")) {
                 ModelType modelType = ModelType.fromName(particlesProp.substring(1));
                 if (modelType == null)
@@ -169,12 +179,12 @@ public class EmissiveModelGeometry implements IModelGeometry<EmissiveModelGeomet
                 particlesSupplier = createParticleRenderMaterialSupplier(modelType);
             } else {
                 particlesSupplier = (geometry, configuration) -> {
-                    Either<RenderMaterial, String> textureLocation = UnlockedBlockModelDeserializer.parseTextureLocationOrReference(AtlasTexture.LOCATION_BLOCKS, particlesProp);
+                    Either<Material, String> textureLocation = UnlockedBlockModelDeserializer.parseTextureLocationOrReference(TextureAtlas.LOCATION_BLOCKS, particlesProp);
 
                     if (textureLocation.left().isPresent()) {
                         return textureLocation.left().get();
                     } else {
-                        return new RenderMaterial(AtlasTexture.LOCATION_BLOCKS, MissingTextureSprite.getLocation());
+                        return new Material(TextureAtlas.LOCATION_BLOCKS, MissingTextureAtlasSprite.getLocation());
                     }
                 };
             }
@@ -183,7 +193,7 @@ public class EmissiveModelGeometry implements IModelGeometry<EmissiveModelGeomet
         }
     }
 
-    private static BiFunction<EmissiveModelGeometry, IModelConfiguration, RenderMaterial> createParticleRenderMaterialSupplier(ModelType type) {
+    private static BiFunction<EmissiveModelGeometry, IModelConfiguration, Material> createParticleRenderMaterialSupplier(ModelType type) {
         return (geometry, configuration) -> {
             BlockModel model;
 

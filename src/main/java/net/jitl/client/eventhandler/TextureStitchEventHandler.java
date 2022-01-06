@@ -1,7 +1,7 @@
 package net.jitl.client.eventhandler;
 
 import net.jitl.JITL;
-import net.minecraft.inventory.container.PlayerContainer;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -12,7 +12,7 @@ public class TextureStitchEventHandler {
 
     @SubscribeEvent
     public static void stitchTextures(TextureStitchEvent.Pre evt) {
-        if (evt.getMap().location() == PlayerContainer.BLOCK_ATLAS) {
+        if (evt.getMap().location() == InventoryMenu.BLOCK_ATLAS) {
             evt.addSprite(JITL.rl("gui/curios/heart_container"));
             evt.addSprite(JITL.rl("gui/curios/catalyst"));
         }

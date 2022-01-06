@@ -2,45 +2,45 @@ package net.jitl.client.render.model.frozen;
 
 import com.google.common.collect.ImmutableList;
 import net.jitl.common.entity.frozen.ShiveringRamEntity;
-import net.minecraft.client.renderer.entity.model.AgeableModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.util.Mth;
 
-public class ShiveringRamWoolModel<T extends ShiveringRamEntity> extends AgeableModel<T> {
+public class ShiveringRamWoolModel<T extends ShiveringRamEntity> extends AgeableListModel<T> {
     private float headXRot;
 
-    private final ModelRenderer body_wool;
-    private final ModelRenderer head_wool;
-    private final ModelRenderer leg0_wool;
-    private final ModelRenderer leg1_wool;
-    private final ModelRenderer leg2_wool;
-    private final ModelRenderer leg3_wool;
+    private final ModelPart body_wool;
+    private final ModelPart head_wool;
+    private final ModelPart leg0_wool;
+    private final ModelPart leg1_wool;
+    private final ModelPart leg2_wool;
+    private final ModelPart leg3_wool;
 
     public ShiveringRamWoolModel() {
         texWidth = 128;
         texHeight = 128;
 
-        body_wool = new ModelRenderer(this);
+        body_wool = new ModelPart(this);
         body_wool.setPos(0.0F, 5.0F, 2.0F);
         body_wool.texOffs(0, 24).addBox(-4.0F, 2.0859F, -9.1072F, 8.0F, 6.0F, 16.0F, 1.75F, false);
 
-        head_wool = new ModelRenderer(this);
+        head_wool = new ModelPart(this);
         head_wool.setPos(0.0F, 6.0F, -8.0F);
         head_wool.texOffs(32, 24).addBox(-3.0F, -4.0F, -4.0F, 6.0F, 6.0F, 6.0F, 0.6F, false);
 
-        leg0_wool = new ModelRenderer(this);
+        leg0_wool = new ModelPart(this);
         leg0_wool.setPos(3.0F, 12.0F, 7.0F);
         leg0_wool.texOffs(0, 58).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, 0.5F, false);
 
-        leg1_wool = new ModelRenderer(this);
+        leg1_wool = new ModelPart(this);
         leg1_wool.setPos(-3.0F, 12.0F, 7.0F);
         leg1_wool.texOffs(56, 30).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, 0.5F, false);
 
-        leg2_wool = new ModelRenderer(this);
+        leg2_wool = new ModelPart(this);
         leg2_wool.setPos(3.0F, 12.0F, -5.0F);
         leg2_wool.texOffs(52, 52).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, 0.5F, false);
 
-        leg3_wool = new ModelRenderer(this);
+        leg3_wool = new ModelPart(this);
         leg3_wool.setPos(-3.0F, 12.0F, -5.0F);
         leg3_wool.texOffs(36, 52).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, 0.5F, false);
     }
@@ -58,19 +58,19 @@ public class ShiveringRamWoolModel<T extends ShiveringRamEntity> extends Ageable
         this.head_wool.yRot = netHeadYaw * ((float) Math.PI / 180F);
         this.head_wool.xRot = this.headXRot;
 
-        this.leg0_wool.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.leg1_wool.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.leg2_wool.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.leg3_wool.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.leg0_wool.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.leg1_wool.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.leg2_wool.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.leg3_wool.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 
     @Override
-    protected Iterable<ModelRenderer> headParts() {
+    protected Iterable<ModelPart> headParts() {
         return ImmutableList.of(head_wool);
     }
 
     @Override
-    protected Iterable<ModelRenderer> bodyParts() {
+    protected Iterable<ModelPart> bodyParts() {
         return ImmutableList.of(
                 body_wool,
                 leg3_wool,

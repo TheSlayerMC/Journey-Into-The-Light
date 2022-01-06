@@ -1,40 +1,40 @@
 package net.jitl.client.render.tile;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.common.tile.PedestalTile;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
+import net.minecraft.world.item.ItemStack;
+import com.mojang.math.Vector3f;
 
-public class PedestalTER extends TileEntityRenderer<PedestalTile> {
+public class PedestalTER extends BlockEntityRenderer<PedestalTile> {
 
     private final ItemRenderer renderEntity;
 
-    public PedestalTER(TileEntityRendererDispatcher rendererDispatcherIn) {
+    public PedestalTER(BlockEntityRenderDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
         this.renderEntity = Minecraft.getInstance().getItemRenderer();
     }
 
     @Override
-    public void render(PedestalTile e, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+    public void render(PedestalTile e, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         ItemStack i = e.getItem(0);
         renderItem(i, new double[]{0.5D, 1.55D, 0.5D}, matrixStackIn, bufferIn, combinedOverlayIn, combinedLightIn, 1.0F);
     }
 
-    private void renderItem(ItemStack stack, double[] translation, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedOverlay, int lightLevel, float scale) {
+    private void renderItem(ItemStack stack, double[] translation, PoseStack matrixStack, MultiBufferSource buffer, int combinedOverlay, int lightLevel, float scale) {
         matrixStack.pushPose();
         float timeD = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) / 16;
         matrixStack.translate(translation[0], translation[1], translation[2]);
         matrixStack.mulPose(Vector3f.YP.rotation(timeD));
         matrixStack.scale(scale, scale, scale);
-        IBakedModel model = renderEntity.getModel(stack, null, null);
-        this.renderEntity.render(stack, ItemCameraTransforms.TransformType.GROUND, true, matrixStack, buffer, lightLevel, combinedOverlay, model);
+        BakedModel model = renderEntity.getModel(stack, null, null);
+        this.renderEntity.render(stack, ItemTransforms.TransformType.GROUND, true, matrixStack, buffer, lightLevel, combinedOverlay, model);
         matrixStack.popPose();
     }
 }

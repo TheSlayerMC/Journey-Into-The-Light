@@ -1,33 +1,37 @@
 package net.jitl.common.item.curios.ring;
 
 import net.jitl.common.item.curios.JCurioItem;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.Effect;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.effect.MobEffect;
 
 import java.util.function.Supplier;
 
+import net.minecraft.world.item.Item.Properties;
+
+import MobEffect;
+
 public class JRingItem extends JCurioItem {
-    private Effect potion;
+    private MobEffect potion;
 
     public JRingItem(Properties properties) {
         super(properties);
     }
 
-    public JRingItem effect(Supplier<Effect> effectSupplier) {
+    public JRingItem effect(Supplier<MobEffect> effectSupplier) {
         this.potion = effectSupplier.get();
         return this;
     }
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        if (!(livingEntity instanceof PlayerEntity)) return;
+        if (!(livingEntity instanceof Player)) return;
 
         if (!livingEntity.level.isClientSide()) {
-            if (!stack.hasTag()) stack.setTag(new CompoundNBT());
-            CompoundNBT tag = stack.getTag();
+            if (!stack.hasTag()) stack.setTag(new CompoundTag());
+            CompoundTag tag = stack.getTag();
             int cooldown = tag.getInt("cooldown");
             if (cooldown == 0) {
                 if (livingEntity.hasEffect(potion)) {

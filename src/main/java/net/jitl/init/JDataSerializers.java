@@ -2,25 +2,27 @@ package net.jitl.init;
 
 import net.jitl.common.entity.overworld.HonglowEntity;
 import net.jitl.common.entity.overworld.HonglowEntity.Type;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.datasync.IDataSerializer;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DataSerializerEntry;
 
+import EntityDataSerializer;
+
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JDataSerializers {
-	public static final IDataSerializer<HonglowEntity.Type> HONGLOW_VARIANT = new IDataSerializer<HonglowEntity.Type>() {
+	public static final EntityDataSerializer<Type> HONGLOW_VARIANT = new EntityDataSerializer<Type>() {
 	    @Override
-		public void write(PacketBuffer buf, Type value) {
+		public void write(FriendlyByteBuf buf, Type value) {
 			buf.writeEnum(value);
 			
 		}
 		
 		@Override
-		public HonglowEntity.Type read(PacketBuffer buf) {
-			return buf.readEnum(HonglowEntity.Type.class);
+		public Type read(FriendlyByteBuf buf) {
+			return buf.readEnum(Type.class);
 		}
 
 		@Override

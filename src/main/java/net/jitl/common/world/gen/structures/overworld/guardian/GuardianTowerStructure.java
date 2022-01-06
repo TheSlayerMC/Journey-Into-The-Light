@@ -3,39 +3,41 @@ package net.jitl.common.world.gen.structures.overworld.guardian;
 import com.mojang.serialization.Codec;
 import net.jitl.JITL;
 import net.jitl.init.JStructures;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.structure.StructureStart;
-import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.structure.StructureStart;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import ru.timeconqueror.timecore.api.util.GenHelper;
 
-public class GuardianTowerStructure extends Structure<NoFeatureConfig> {
-    public GuardianTowerStructure(Codec<NoFeatureConfig> codec) {
+import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
+
+public class GuardianTowerStructure extends StructureFeature<NoneFeatureConfiguration> {
+    public GuardianTowerStructure(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public IStartFactory<NoFeatureConfig> getStartFactory() {
+    public StructureStartFactory<NoneFeatureConfiguration> getStartFactory() {
         return Start::new;
     }
 
     @Override
-    public GenerationStage.Decoration step() {
-        return GenerationStage.Decoration.SURFACE_STRUCTURES;
+    public GenerationStep.Decoration step() {
+        return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
-    public static class Start extends StructureStart<NoFeatureConfig> {
-        public Start(Structure<NoFeatureConfig> structure, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox_, int references, long seed) {
+    public static class Start extends StructureStart<NoneFeatureConfiguration> {
+        public Start(StructureFeature<NoneFeatureConfiguration> structure, int chunkX, int chunkZ, BoundingBox mutableBoundingBox_, int references, long seed) {
             super(structure, chunkX, chunkZ, mutableBoundingBox_, references, seed);
         }
 
-        public void generatePieces(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome_, NoFeatureConfig featureConfig_) {
+        public void generatePieces(RegistryAccess dynamicRegistries, ChunkGenerator chunkGenerator, StructureManager templateManager, int chunkX, int chunkZ, Biome biome_, NoneFeatureConfiguration featureConfig_) {
             int x = chunkX << 4;
             int z = chunkZ << 4;
 

@@ -1,25 +1,25 @@
 package net.jitl.common.entity;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
-public class EssenciaBoltEntity extends LightningBoltEntity {
-	private static final DataParameter<Integer> DATA_COLOR_ID = EntityDataManager.defineId(EssenciaBoltEntity.class, DataSerializers.INT);
+public class EssenciaBoltEntity extends LightningBolt {
+	private static final EntityDataAccessor<Integer> DATA_COLOR_ID = SynchedEntityData.defineId(EssenciaBoltEntity.class, EntityDataSerializers.INT);
 
-    public EssenciaBoltEntity(EntityType<? extends LightningBoltEntity> entityType, World worldIn) {
+    public EssenciaBoltEntity(EntityType<? extends LightningBolt> entityType, Level worldIn) {
         super(entityType, worldIn);
     }
 
     @Override
-    public @NotNull IPacket<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -38,13 +38,13 @@ public class EssenciaBoltEntity extends LightningBoltEntity {
     }
 
     @Override
-	public void addAdditionalSaveData(CompoundNBT compound) {
+	public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("Color", getARGB());
     }
 
 	@Override
-	public void readAdditionalSaveData(CompoundNBT compound) {
+	public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.setARGB(compound.getInt("Color"));
     }

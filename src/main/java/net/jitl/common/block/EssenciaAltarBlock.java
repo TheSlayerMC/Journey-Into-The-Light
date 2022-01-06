@@ -2,15 +2,17 @@ package net.jitl.common.block;
 
 import net.jitl.common.block.base.JTileContainerBlock;
 import net.jitl.common.tile.EssenciaAltarTile;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.Level;
 import ru.timeconqueror.timecore.api.util.WorldUtils;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class EssenciaAltarBlock extends JTileContainerBlock {
     public EssenciaAltarBlock(Properties properties) {
@@ -18,14 +20,14 @@ public class EssenciaAltarBlock extends JTileContainerBlock {
     }
 
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (!worldIn.isClientSide() && handIn == Hand.MAIN_HAND && worldIn.isNight()) {
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        if (!worldIn.isClientSide() && handIn == InteractionHand.MAIN_HAND && worldIn.isNight()) {
             WorldUtils.forTileWithReqt(worldIn, pos, EssenciaAltarTile.class, tile -> {
-                tile.onRightClick(((ServerPlayerEntity) player), player.getItemInHand(handIn));
+                tile.onRightClick(((ServerPlayer) player), player.getItemInHand(handIn));
             });
         }
 
-        return ActionResultType.sidedSuccess(worldIn.isClientSide());
+        return InteractionResult.sidedSuccess(worldIn.isClientSide());
     }
 
     /*@Override

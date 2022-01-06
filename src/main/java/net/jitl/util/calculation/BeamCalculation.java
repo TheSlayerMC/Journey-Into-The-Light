@@ -1,23 +1,25 @@
 package net.jitl.util.calculation;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.projectile.ProjectileHelper;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.vector.Quaternion;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.world.World;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.ClipContext;
+import com.mojang.math.Quaternion;
+import net.minecraft.world.phys.Vec3;
+import com.mojang.math.Vector3f;
+import net.minecraft.world.level.Level;
 import ru.timeconqueror.timecore.api.util.VecUtils;
 
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+import Vec3;
+
 public class BeamCalculation {
-    private static final Vector3d BLOCK_CENTER = new Vector3d(0.5, 0.5, 0.5);
+    private static final Vec3 BLOCK_CENTER = new Vec3(0.5, 0.5, 0.5);
 
     /**
      * Calculates beam data till the first found block, through which the beam won't pass.
@@ -28,7 +30,7 @@ public class BeamCalculation {
      * @param rotation          beam rotation
      * @param beamMaxLength     max beam length in blocks
      */
-    public static TillBlockResult tillBlock(World world, BlockPos sourcePos, Vector3d beamRelativeStart, Quaternion rotation, int beamMaxLength) {
+    public static TillBlockResult tillBlock(Level world, BlockPos sourcePos, Vec3 beamRelativeStart, Quaternion rotation, int beamMaxLength) {
         Vector3f beamStart = new Vector3f(beamRelativeStart);
         beamStart.transform(rotation);
 
@@ -42,23 +44,23 @@ public class BeamCalculation {
         VecUtils.addToFirst(rayTraceStart, BLOCK_CENTER);
         VecUtils.addToFirst(beamEnd, BLOCK_CENTER);
 
-        Vector3d blockPos = VecUtils.vec3d(sourcePos);
-        Vector3d absRayTraceStart = VecUtils.add(blockPos, rayTraceStart);
+        Vec3 blockPos = VecUtils.vec3d(sourcePos);
+        Vec3 absRayTraceStart = VecUtils.add(blockPos, rayTraceStart);
 
-        BlockRayTraceResult rayTraceResult = world.clip(new RayTraceContext(absRayTraceStart, VecUtils.add(blockPos, beamEnd), RayTraceContext.BlockMode.VISUAL, RayTraceContext.FluidMode.NONE, null));
-        Vector3d absRayTraceEnd = rayTraceResult.getLocation();
+        BlockHitResult rayTraceResult = world.clip(new ClipContext(absRayTraceStart, VecUtils.add(blockPos, beamEnd), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, null));
+        Vec3 absRayTraceEnd = rayTraceResult.getLocation();
 
         return new TillBlockResult(beamStart, absRayTraceStart, absRayTraceEnd, sourcePos);
     }
 
-    public static void forAllEntitiesOnWay(World world, TillBlockResult beamTillBlock, Predicate<Entity> filter, Consumer<Entity> action) {
-        Vector3d rayTraceStart = beamTillBlock.getRayTraceStart();
-        Vector3d rayTraceEnd = beamTillBlock.getRayTraceEnd();
+    public static void forAllEntitiesOnWay(Level world, TillBlockResult beamTillBlock, Predicate<Entity> filter, Consumer<Entity> action) {
+        Vec3 rayTraceStart = beamTillBlock.getRayTraceStart();
+        Vec3 rayTraceEnd = beamTillBlock.getRayTraceEnd();
 
         raytraceEntitiesOnWay(world,
                 rayTraceStart,
                 rayTraceEnd,
-                new AxisAlignedBB(rayTraceStart.x(),
+                new AABB(rayTraceStart.x(),
                         rayTraceStart.y(),
                         rayTraceStart.z(),
                         rayTraceEnd.x(),
@@ -72,10 +74,10 @@ public class BeamCalculation {
     /**
      * Modified version of {@link ProjectileHelper#getEntityHitResult(World, Entity, Vector3d, Vector3d, AxisAlignedBB, Predicate)}
      */
-    private static void raytraceEntitiesOnWay(World worldIn, Vector3d startVec, Vector3d endVec, AxisAlignedBB boundingBox, Predicate<Entity> filter, Consumer<Entity> doForEveryEntity) {
+    private static void raytraceEntitiesOnWay(Level worldIn, Vec3 startVec, Vec3 endVec, AABB boundingBox, Predicate<Entity> filter, Consumer<Entity> doForEveryEntity) {
         for (Entity entity : worldIn.getEntities((Entity) null, boundingBox, filter)) {
-            AxisAlignedBB axisalignedbb = entity.getBoundingBox();
-            Optional<Vector3d> optional = axisalignedbb.clip(startVec, endVec);
+            AABB axisalignedbb = entity.getBoundingBox();
+            Optional<Vec3> optional = axisalignedbb.clip(startVec, endVec);
             if (optional.isPresent() || axisalignedbb.contains(startVec) || axisalignedbb.contains(endVec)) {
                 doForEveryEntity.accept(entity);
             }
@@ -100,15 +102,15 @@ public class BeamCalculation {
          * Our raytrace process starts at this point.
          * This field can be considered as raytrace end vector till the first neighbour block.
          */
-        private final Vector3d rayTraceStart;
+        private final Vec3 rayTraceStart;
         /**
          * End of raytrace, the actual beam end.
          */
-        private final Vector3d rayTraceEnd;
+        private final Vec3 rayTraceEnd;
 
         private final BlockPos sourcePos;
 
-        public TillBlockResult(Vector3f beamStart, Vector3d rayTraceStart, Vector3d rayTraceEnd, BlockPos sourcePos) {
+        public TillBlockResult(Vector3f beamStart, Vec3 rayTraceStart, Vec3 rayTraceEnd, BlockPos sourcePos) {
             this.beamStart = beamStart;
             this.rayTraceStart = rayTraceStart;
             this.rayTraceEnd = rayTraceEnd;
@@ -126,11 +128,11 @@ public class BeamCalculation {
             return copy;
         }
 
-        public Vector3d getRayTraceEnd() {
+        public Vec3 getRayTraceEnd() {
             return rayTraceEnd;
         }
 
-        public Vector3d getRayTraceStart() {
+        public Vec3 getRayTraceStart() {
             return rayTraceStart;
         }
 

@@ -2,13 +2,13 @@ package net.jitl.common.world.gen.features.euca;
 
 import com.mojang.serialization.Codec;
 import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
 import java.util.Random;
 
@@ -18,16 +18,16 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
     }
 
     @Override
-    public boolean place(ISeedReader reader, ChunkGenerator generator, Random random, BlockPos pos, EucaTreeFeatureConfig config) {
+    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random random, BlockPos pos, EucaTreeFeatureConfig config) {
         int xPos = pos.getX() + random.nextInt(6) - random.nextInt(4);
         int zPos = pos.getZ() + random.nextInt(6) - random.nextInt(4);
-        int yPos = reader.getHeight(Heightmap.Type.WORLD_SURFACE_WG, xPos, zPos) - 1;
+        int yPos = reader.getHeight(Heightmap.Types.WORLD_SURFACE_WG, xPos, zPos) - 1;
 
         if (!config.spawnBlock.test(reader.getBlockState(pos.below()), random)) {
             return false;
         } else {
             int treeHeight = random.nextInt(config.minHeight) + random.nextInt(2) + config.maxHeight;
-            BlockPos.Mutable stumpPos = pos.mutable();
+            BlockPos.MutableBlockPos stumpPos = pos.mutable();
             stumpPos.set(xPos, yPos, zPos);
 
             int stumpHeight = random.nextInt(2) + 2;
@@ -40,24 +40,24 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
                 placeLog(reader, stumpPos, random, config);
             }
 
-            BlockPos.Mutable leafPos = stumpPos.move(Direction.DOWN);
+            BlockPos.MutableBlockPos leafPos = stumpPos.move(Direction.DOWN);
             createCrown(reader, leafPos, random, config);
             return true;
         }
     }
 
-    private void placeLog(ISeedReader reader, BlockPos.Mutable pos, Random rand, EucaTreeFeatureConfig config) {
+    private void placeLog(WorldGenLevel reader, BlockPos.MutableBlockPos pos, Random rand, EucaTreeFeatureConfig config) {
         setBlock(reader, pos.move(Direction.UP), config.logBlock.getState(rand, pos));
     }
 
-    private void placeStumps(ISeedReader reader, BlockPos.Mutable logPos, Random rand, EucaTreeFeatureConfig config) {
+    private void placeStumps(WorldGenLevel reader, BlockPos.MutableBlockPos logPos, Random rand, EucaTreeFeatureConfig config) {
         setBlock(reader, logPos.move(Direction.UP).offset(Direction.EAST.getNormal()), config.logBlock.getState(rand, logPos));
         setBlock(reader, logPos.offset(Direction.WEST.getNormal()), config.logBlock.getState(rand, logPos));
         setBlock(reader, logPos.offset(Direction.NORTH.getNormal()), config.logBlock.getState(rand, logPos));
         setBlock(reader, logPos.offset(Direction.SOUTH.getNormal()), config.logBlock.getState(rand, logPos));
     }
 
-    private void createCrown(ISeedReader reader, BlockPos pos, Random rand, EucaTreeFeatureConfig config) {
+    private void createCrown(WorldGenLevel reader, BlockPos pos, Random rand, EucaTreeFeatureConfig config) {
         int size = config.leafSize;
         pos = pos.offset(Direction.UP.getNormal());
         for (byte x = 0; x <= size; x++) {
@@ -89,7 +89,7 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
         }
     }
 
-    private void placeLeaves(ISeedReader reader, BlockPos pos, Random rand, EucaTreeFeatureConfig config) {
+    private void placeLeaves(WorldGenLevel reader, BlockPos pos, Random rand, EucaTreeFeatureConfig config) {
         if(reader.getBlockState(pos).getBlock() == Blocks.AIR)
             setBlock(reader, pos, config.leafBlock.getState(rand, pos));
     }

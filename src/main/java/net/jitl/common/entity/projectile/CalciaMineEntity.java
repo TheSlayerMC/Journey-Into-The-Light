@@ -2,11 +2,11 @@ package net.jitl.common.entity.projectile;
 
 import net.jitl.init.JEntities;
 import net.minecraft.entity.*;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.util.Requirements;
@@ -14,14 +14,20 @@ import ru.timeconqueror.timecore.api.util.Requirements;
 import java.awt.*;
 import java.util.UUID;
 
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
+
 public class CalciaMineEntity extends Entity {
     UUID owner;
 
-    public CalciaMineEntity(EntityType<?> entityTypeIn, World worldIn) {
+    public CalciaMineEntity(EntityType<?> entityTypeIn, Level worldIn) {
         super(entityTypeIn, worldIn);
     }
 
-    public CalciaMineEntity(LivingEntity entity, World world) {
+    public CalciaMineEntity(LivingEntity entity, Level world) {
         this(JEntities.CALCIA_MINE_TYPE, world);
         owner = entity.getUUID();
     }
@@ -54,34 +60,34 @@ public class CalciaMineEntity extends Entity {
     }
 
     @Override
-    public EntitySize getDimensions(Pose poseIn) {
-        return EntitySize.fixed(3, 3);
+    public EntityDimensions getDimensions(Pose poseIn) {
+        return EntityDimensions.fixed(3, 3);
     }
 
     @Override
     protected void defineSynchedData() {}
 
     @Override
-    protected void readAdditionalSaveData(CompoundNBT compound) {
+    protected void readAdditionalSaveData(CompoundTag compound) {
         this.tickCount = compound.getInt("time");
         this.owner = compound.getUUID("owner");
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundNBT compound) {
+    protected void addAdditionalSaveData(CompoundTag compound) {
         compound.putInt("time", this.tickCount);
         compound.putUUID("owner", this.owner);
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Nullable
     private LivingEntity getEntityFromUUID(UUID id) {
         Requirements.onServer(level);
-        ServerWorld world = (ServerWorld) level;
+        ServerLevel world = (ServerLevel) level;
 
         Entity entity = world.getEntity(id);
         // instance of is here because some mobs could have the same uuid

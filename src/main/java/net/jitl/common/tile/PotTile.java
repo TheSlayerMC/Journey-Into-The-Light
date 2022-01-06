@@ -1,21 +1,21 @@
 package net.jitl.common.tile;
 
 import net.jitl.init.JTiles;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.LockableLootTileEntity;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Containers;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.TickableBlockEntity;
+import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import org.jetbrains.annotations.NotNull;
 
-public class PotTile extends LockableLootTileEntity implements ITickableTileEntity {
+public class PotTile extends RandomizableContainerBlockEntity implements TickableBlockEntity {
     private NonNullList<ItemStack> inventory = NonNullList.withSize(27, ItemStack.EMPTY);
     private boolean hasFallen;
 
@@ -34,7 +34,7 @@ public class PotTile extends LockableLootTileEntity implements ITickableTileEnti
     }
 
     @Override
-    protected @NotNull Container createMenu(int id, @NotNull PlayerInventory player) {
+    protected @NotNull AbstractContainerMenu createMenu(int id, @NotNull Inventory player) {
         return null;
     }
 
@@ -44,39 +44,39 @@ public class PotTile extends LockableLootTileEntity implements ITickableTileEnti
     }
 
     @Override
-    public @NotNull CompoundNBT getUpdateTag() {
-        return this.save(new CompoundNBT());
+    public @NotNull CompoundTag getUpdateTag() {
+        return this.save(new CompoundTag());
     }
 
     @Override
-    public @NotNull CompoundNBT save(@NotNull CompoundNBT compound) {
+    public @NotNull CompoundTag save(@NotNull CompoundTag compound) {
         super.save(compound);
         if (!this.trySaveLootTable(compound)) {
-            ItemStackHelper.saveAllItems(compound, this.inventory);
+            ContainerHelper.saveAllItems(compound, this.inventory);
         }
         return compound;
     }
 
     @Override
-    public void load(@NotNull BlockState state, @NotNull CompoundNBT nbt) {
+    public void load(@NotNull BlockState state, @NotNull CompoundTag nbt) {
         super.load(state, nbt);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         if (!this.tryLoadLootTable(nbt)) {
-            ItemStackHelper.loadAllItems(nbt, this.inventory);
+            ContainerHelper.loadAllItems(nbt, this.inventory);
         }
         hasFallen = nbt.getBoolean("fallen");
     }
 
     @Override
-    protected @NotNull ITextComponent getDefaultName() {
-        return new TranslationTextComponent("jitl.tile.pot");
+    protected @NotNull Component getDefaultName() {
+        return new TranslatableComponent("jitl.tile.pot");
     }
 
     @Override
     public void tick() {
         if (hasFallen) {
             if (level != null) {
-                InventoryHelper.dropContents(level, getBlockPos(), this);
+                Containers.dropContents(level, getBlockPos(), this);
                 level.destroyBlock(getBlockPos(), true);
                 setRemoved();
             }

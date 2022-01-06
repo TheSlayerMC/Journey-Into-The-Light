@@ -3,22 +3,22 @@ package net.jitl.common.entity.overworld;
 import net.jitl.common.entity.projectile.FloroMudEntity;
 import net.jitl.init.JAnimations;
 import net.jitl.init.JSounds;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.WolfEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.TimeCore;
@@ -36,6 +36,22 @@ import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
 import java.util.EnumSet;
 import java.util.Random;
 
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.Goal.Flag;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.RangedAttackMob;
+
 /**
  * How vanilla tasks work:
  * If flags, from which task's mutex consists of, are disabled, then tasks with this mutex won't be run.
@@ -45,8 +61,8 @@ import java.util.Random;
  * <p>
  * If task has a lower priority (higher number), it's checked by system if it can work in parallel (if mutex isn't the same).
  */
-public class FloroEntity extends MonsterEntity implements IRangedAttackMob, AnimatedObject<FloroEntity> {
-    private static final DataParameter<Boolean> HIDDEN = EntityDataManager.defineId(FloroEntity.class, DataSerializers.BOOLEAN);
+public class FloroEntity extends Monster implements RangedAttackMob, AnimatedObject<FloroEntity> {
+    private static final EntityDataAccessor<Boolean> HIDDEN = SynchedEntityData.defineId(FloroEntity.class, EntityDataSerializers.BOOLEAN);
 
     private static final Lazy<DelayedAction<FloroEntity, AnimatedRangedAttackGoal.ActionData>> RANGED_ATTACK_ACTION;
     private static final Lazy<DelayedAction<FloroEntity, Object>> REVEALING_ACTION;
@@ -72,7 +88,7 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
     //server side only
     private boolean isHiding = false;
 
-    public FloroEntity(EntityType<? extends FloroEntity> type, World world) {
+    public FloroEntity(EntityType<? extends FloroEntity> type, Level world) {
         super(type, world);
 
         animationSystem = AnimationSystemBuilder.forEntity(this, world, builder -> {
@@ -85,7 +101,7 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
         });
     }
 
-    public static boolean canSpawn(EntityType<? extends MonsterEntity> entityType, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+    public static boolean canSpawn(EntityType<? extends Monster> entityType, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
         return !worldIn.getBlockState(pos).is(Blocks.WATER) && worldIn.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK);
     }
 
@@ -97,14 +113,14 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
 
         compound.putBoolean("hidden", isHidden());
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
 
         if (compound.contains("hidden")) {
@@ -124,21 +140,21 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
         goalSelector.addGoal(0, new FloroRevealingGoal()); //mutex 1
         goalSelector.addGoal(1, new FloroHidingGoal()); //mutex 1
         goalSelector.addGoal(2, new FloroHiddenGoal()); //mutex 1
-        goalSelector.addGoal(3, new SwimGoal(this));//mutex 4
-        goalSelector.addGoal(4, new AvoidEntityGoal<>(this, WolfEntity.class, 6.0F, 1.0D, 1.2D));//mutex 1
+        goalSelector.addGoal(3, new FloatGoal(this));//mutex 4
+        goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Wolf.class, 6.0F, 1.0D, 1.2D));//mutex 1
 
         goalSelector.addGoal(5, new AnimatedRangedAttackGoal<>(this, RANGED_ATTACK_ACTION.get(), 1.0F, 16.0F));//mutex 3
 
-        goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));//mutex 1
-        goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));//mutex 2
-        goalSelector.addGoal(7, new LookRandomlyGoal(this));//mutex 3
+        goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));//mutex 1
+        goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));//mutex 2
+        goalSelector.addGoal(7, new RandomLookAroundGoal(this));//mutex 3
 
         targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 5/*will target if rand.next(chance) == 0*/, true, false, null));
+        targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 5/*will target if rand.next(chance) == 0*/, true, false, null));
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 25)
                 .add(Attributes.FOLLOW_RANGE, 25)
                 .add(Attributes.MOVEMENT_SPEED, 0.26);
@@ -152,11 +168,11 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
             }
 
             if (canMove()) {
-                goalSelector.enableControlFlag(Goal.Flag.LOOK);
-                goalSelector.enableControlFlag(Goal.Flag.JUMP);
+                goalSelector.enableControlFlag(Flag.LOOK);
+                goalSelector.enableControlFlag(Flag.JUMP);
             } else {
-                goalSelector.disableControlFlag(Goal.Flag.LOOK);
-                goalSelector.disableControlFlag(Goal.Flag.JUMP); //actually doesn't help in some situations as these tasks still can be activated, if executingTasks list in EntityAITasks is empty.
+                goalSelector.disableControlFlag(Flag.LOOK);
+                goalSelector.disableControlFlag(Flag.JUMP); //actually doesn't help in some situations as these tasks still can be activated, if executingTasks list in EntityAITasks is empty.
             }
         }
 
@@ -194,7 +210,7 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
         double dX = target.getX() - this.getX();
         double dY = target.getY(0.3333333333333333D) - projectile.getY();
         double dZ = target.getZ() - this.getZ();
-        double distortion = MathHelper.sqrt(dX * dX + dZ * dZ);
+        double distortion = Mth.sqrt(dX * dX + dZ * dZ);
         projectile.shoot(dX, dY + distortion * 0.20000000298023224D, dZ, 1.6F, (float) (7 - this.level.getDifficulty().getId()));
         this.playSound(JSounds.MUD_BLOCK_BREAK.get(), 1.0F, 0.85F);
 
@@ -215,7 +231,7 @@ public class FloroEntity extends MonsterEntity implements IRangedAttackMob, Anim
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return sizeIn.height * 0.78F;
     }
 

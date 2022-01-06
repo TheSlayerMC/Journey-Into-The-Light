@@ -6,30 +6,30 @@ import net.jitl.JITL;
 import net.jitl.common.entity.base.JEntityAction;
 import net.jitl.common.entity.tasks.FrozenTrollTasks;
 import net.jitl.init.JSounds;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.brain.Brain;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.ai.brain.sensor.Sensor;
-import net.minecraft.entity.ai.brain.sensor.SensorType;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.Brain;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.ai.sensing.Sensor;
+import net.minecraft.world.entity.ai.sensing.SensorType;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,11 +37,24 @@ import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Random;
 
-public class FrozenTrollEntity extends MonsterEntity {
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.Brain.Provider;
 
-    private static final DataParameter<Boolean> IS_ANGRY_ID = EntityDataManager.defineId(FrozenTrollEntity.class, DataSerializers.BOOLEAN);
+public class FrozenTrollEntity extends Monster {
 
-    private final Inventory inventory = new Inventory(8);
+    private static final EntityDataAccessor<Boolean> IS_ANGRY_ID = SynchedEntityData.defineId(FrozenTrollEntity.class, EntityDataSerializers.BOOLEAN);
+
+    private final SimpleContainer inventory = new SimpleContainer(8);
 
     protected static final ImmutableList<SensorType<? extends Sensor<? super FrozenTrollEntity>>> SENSOR_TYPES = ImmutableList.of(
             SensorType.NEAREST_LIVING_ENTITIES,
@@ -74,32 +87,32 @@ public class FrozenTrollEntity extends MonsterEntity {
             MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM,
             MemoryModuleType.ATE_RECENTLY);
 
-    public FrozenTrollEntity(EntityType<? extends FrozenTrollEntity> entityType, World world) {
+    public FrozenTrollEntity(EntityType<? extends FrozenTrollEntity> entityType, Level world) {
         super(entityType, world);
         this.setCanPickUpLoot(true);
     }
 
-    public static boolean canSpawn(EntityType<? extends CreatureEntity> entityType, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+    public static boolean canSpawn(EntityType<? extends PathfinderMob> entityType, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
         return !worldIn.getBlockState(pos).is(Blocks.WATER)
                 || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("frozen_wastes"))
                 || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("dying_forest"))
                 || Objects.equals(worldIn.getBiome(pos).getRegistryName(), JITL.rl("bitterwood_forest"));
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
-    public void addAdditionalSaveData(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.put("Inventory", this.inventory.createTag());
         compound.putBoolean("angry", this.entityData.get(IS_ANGRY_ID));
     }
 
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.inventory.fromTag(compound.getList("Inventory", 10));
         setAngry(compound.getBoolean("angry"));
@@ -126,7 +139,7 @@ public class FrozenTrollEntity extends MonsterEntity {
 
     protected void customServerAiStep() {
         this.level.getProfiler().push("frozenTrollBrain");
-        this.getBrain().tick((ServerWorld) this.level, this);
+        this.getBrain().tick((ServerLevel) this.level, this);
         this.level.getProfiler().pop();
         FrozenTrollTasks.updateActivity(this);
 
@@ -141,7 +154,7 @@ public class FrozenTrollEntity extends MonsterEntity {
         return this.brain.getMemory(MemoryModuleType.ATTACK_TARGET).orElse(null);
     }
 
-    protected int getExperienceReward(PlayerEntity player) {
+    protected int getExperienceReward(Player player) {
         return this.xpReward;
     }
 
@@ -174,10 +187,10 @@ public class FrozenTrollEntity extends MonsterEntity {
 
     public void holdInOffHand(ItemStack itemStack_) {
         if (itemStack_.getItem() == FrozenTrollTasks.BARTERING_ITEM) {
-            this.setItemSlot(EquipmentSlotType.OFFHAND, itemStack_);
-            this.setGuaranteedDrop(EquipmentSlotType.OFFHAND);
+            this.setItemSlot(EquipmentSlot.OFFHAND, itemStack_);
+            this.setGuaranteedDrop(EquipmentSlot.OFFHAND);
         } else {
-            this.setItemSlotAndDropWhenKilled(EquipmentSlotType.OFFHAND, itemStack_);
+            this.setItemSlotAndDropWhenKilled(EquipmentSlot.OFFHAND, itemStack_);
         }
     }
 
@@ -190,7 +203,7 @@ public class FrozenTrollEntity extends MonsterEntity {
     }
 
     @Override
-    protected Brain.@NotNull BrainCodec<FrozenTrollEntity> brainProvider() {
+    protected @NotNull Provider<FrozenTrollEntity> brainProvider() {
         return Brain.provider(MEMORY_TYPES, SENSOR_TYPES);
     }
 
@@ -205,15 +218,15 @@ public class FrozenTrollEntity extends MonsterEntity {
     }
 
     @Override
-    public ActionResultType mobInteract(PlayerEntity playerEntity_, Hand hand_) {
-        ActionResultType actionresulttype = super.mobInteract(playerEntity_, hand_);
+    public InteractionResult mobInteract(Player playerEntity_, InteractionHand hand_) {
+        InteractionResult actionresulttype = super.mobInteract(playerEntity_, hand_);
         if (actionresulttype.consumesAction()) {
             return actionresulttype;
         } else if (!this.level.isClientSide) {
             return FrozenTrollTasks.mobInteract(this, playerEntity_, hand_);
         } else {
             boolean flag = FrozenTrollTasks.canAdmire(this, playerEntity_.getItemInHand(hand_)) && this.getArmPose() != JEntityAction.ADMIRING_ITEM;
-            return flag ? ActionResultType.SUCCESS : ActionResultType.PASS;
+            return flag ? InteractionResult.SUCCESS : InteractionResult.PASS;
         }
     }
 

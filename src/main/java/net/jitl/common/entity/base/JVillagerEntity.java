@@ -3,43 +3,43 @@ package net.jitl.common.entity.base;
 import com.google.common.collect.Sets;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.INPC;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.merchant.IMerchant;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.item.MerchantOffers;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.npc.Npc;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.item.trading.Merchant;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.item.trading.MerchantOffers;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public abstract class JVillagerEntity extends CreatureEntity implements INPC, IMerchant, IMob {
-    private PlayerEntity playerEntity;
+public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merchant, Enemy {
+    private Player playerEntity;
     protected MerchantOffers offers;
 
-    public JVillagerEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
+    public JVillagerEntity(EntityType<? extends PathfinderMob> type, Level worldIn) {
         super(type, worldIn);
     }
 
     @Override
-    public void setTradingPlayer(@Nullable PlayerEntity player) {
+    public void setTradingPlayer(@Nullable Player player) {
         playerEntity = player;
     }
 
     @Nullable
     @Override
-    public PlayerEntity getTradingPlayer() {
+    public Player getTradingPlayer() {
         return playerEntity;
     }
 
@@ -52,26 +52,26 @@ public abstract class JVillagerEntity extends CreatureEntity implements INPC, IM
         return offers;
     }
 
-    protected abstract Int2ObjectMap<VillagerTrades.ITrade[]> getVillagerTrades();
+    protected abstract Int2ObjectMap<VillagerTrades.ItemListing[]> getVillagerTrades();
 
     @Nullable
     protected abstract Screen getDialogue();
 
     protected void provideTrades() {
-        VillagerTrades.ITrade[] trades = getVillagerTrades().get(1);
+        VillagerTrades.ItemListing[] trades = getVillagerTrades().get(1);
         if (trades != null) {
             MerchantOffers merchantOffers = getOffers();
             addTrades(merchantOffers, trades);
         }
     }
 
-    protected void addTrades(MerchantOffers offers, VillagerTrades.ITrade[] trades) {
+    protected void addTrades(MerchantOffers offers, VillagerTrades.ItemListing[] trades) {
         Set<Integer> set = Sets.newHashSet();
         for (int i = 0; i < trades.length; ++i) {
             set.add(i);
         }
         for (int int1 : set) {
-            VillagerTrades.ITrade villagerTrades = trades[int1];
+            VillagerTrades.ItemListing villagerTrades = trades[int1];
             MerchantOffer merchantoffer = villagerTrades.getOffer(this, random);
             if (merchantoffer != null) {
                 offers.add(merchantoffer);
@@ -89,29 +89,29 @@ public abstract class JVillagerEntity extends CreatureEntity implements INPC, IM
         if (offer.shouldRewardExp()) {
             int i = 3 + random.nextInt(4);
             double y = getY() + getBbHeight() / 2;
-            level.addFreshEntity(new ExperienceOrbEntity(level, getX(), y, getZ(), i));
+            level.addFreshEntity(new ExperienceOrb(level, getX(), y, getZ(), i));
         }
     }
 
     @Override
-    public ActionResultType mobInteract(PlayerEntity playerEntity, Hand playerHand) {
+    public InteractionResult mobInteract(Player playerEntity, InteractionHand playerHand) {
         if (isAlive() && this.playerEntity == null) {
             if (getDialogue() == null) {
                 if (getOffers().isEmpty()) {
-                    return ActionResultType.sidedSuccess(level.isClientSide());
+                    return InteractionResult.sidedSuccess(level.isClientSide());
                 } else {
                     if (!level.isClientSide()) {
                         setTradingPlayer(playerEntity);
                         openTradingScreen(playerEntity, getDisplayName(), 1);
                     }
-                    return ActionResultType.sidedSuccess(level.isClientSide());
+                    return InteractionResult.sidedSuccess(level.isClientSide());
                 }
             } else {
                 if (level.isClientSide()) {
                     Minecraft minecraft = Minecraft.getInstance();
                     minecraft.setScreen(getDialogue());
                 }
-                return ActionResultType.sidedSuccess(level.isClientSide());
+                return InteractionResult.sidedSuccess(level.isClientSide());
             }
         } else {
             return super.mobInteract(playerEntity, playerHand);
@@ -123,7 +123,7 @@ public abstract class JVillagerEntity extends CreatureEntity implements INPC, IM
     }
 
     @Override
-    public @NotNull World getLevel() {
+    public @NotNull Level getLevel() {
         return level;
     }
 

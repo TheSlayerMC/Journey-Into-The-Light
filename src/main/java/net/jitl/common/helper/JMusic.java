@@ -1,6 +1,8 @@
 package net.jitl.common.helper;
 
-import net.minecraft.util.SoundEvent;
+import net.minecraft.sounds.SoundEvent;
+
+import SoundEvent;
 
 public class JMusic {
     private SoundEvent event;

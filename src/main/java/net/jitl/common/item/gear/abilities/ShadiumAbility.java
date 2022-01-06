@@ -2,28 +2,30 @@ package net.jitl.common.item.gear.abilities;
 
 import javafx.util.Pair;
 import net.jitl.common.helper.TooltipFiller;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.Level;
 
 import java.util.List;
 import java.util.UUID;
+
+import Pair;
 
 public interface ShadiumAbility {
     default float scaleWithDarkness(Entity entity, float original) {
@@ -35,10 +37,10 @@ public interface ShadiumAbility {
         private static final UUID ID = UUID.fromString("6f56284c-ac30-4490-a06a-b11517d87e91");
 
         @Override
-        public void tick(LivingEntity entity, World world, ItemStack stack) {
+        public void tick(LivingEntity entity, Level world, ItemStack stack) {
             if (!world.isClientSide() && entity.getMainHandItem() == stack) {
                 float bonus = scaleWithDarkness(entity, 4F);
-                ModifiableAttributeInstance attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
+                AttributeInstance attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
                 attribute.removeModifier(ID);
                 attribute.addTransientModifier(new AttributeModifier(ID,
                         "Shadium sword",
@@ -50,11 +52,11 @@ public interface ShadiumAbility {
         }
 
         @Override
-        public void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
-            if (!stack.hasTag()) stack.setTag(new CompoundNBT());
-            if (slot == EquipmentSlotType.MAINHAND) {
+        public void equip(LivingEntity entity, EquipmentSlot slot, ItemStack stack) {
+            if (!stack.hasTag()) stack.setTag(new CompoundTag());
+            if (slot == EquipmentSlot.MAINHAND) {
                 float bonus = scaleWithDarkness(entity, 4F);
-                ModifiableAttributeInstance attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
+                AttributeInstance attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
                 if (attribute.getModifier(ID) == null) {
                     attribute.addTransientModifier(new AttributeModifier(ID,
                             "Shadium sword",
@@ -67,19 +69,19 @@ public interface ShadiumAbility {
         }
 
         @Override
-        public void unEquip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
-            if (slot == EquipmentSlotType.MAINHAND) {
+        public void unEquip(LivingEntity entity, EquipmentSlot slot, ItemStack stack) {
+            if (slot == EquipmentSlot.MAINHAND) {
                 entity.getAttribute(Attributes.ATTACK_DAMAGE).removeModifier(ID);
                 System.out.println("Unequip");
             }
         }
 
         @Override
-        public void fillTooltips(ItemStack stack, List<ITextComponent> tooltip) {
+        public void fillTooltips(ItemStack stack, List<Component> tooltip) {
             TooltipFiller filler = new TooltipFiller(tooltip, "shadium_sword");
             filler.addOverview();
             filler.addDetail();
-            PlayerEntity player = Minecraft.getInstance().player;
+            Player player = Minecraft.getInstance().player;
             if (player != null && player.getMainHandItem().equals(stack)) {
                 filler.addBreak();
                 filler.addValue(Math.floor(stack.getTag().getFloat("darkness") * 100) / 100);
@@ -89,7 +91,7 @@ public interface ShadiumAbility {
 
     class ShadiumToolAbility implements IAbility.INBTUpdateAbility, ShadiumAbility {
         @Override
-        public void tick(LivingEntity entity, World world, ItemStack stack) {
+        public void tick(LivingEntity entity, Level world, ItemStack stack) {
             if (!world.isClientSide() && entity.getMainHandItem() == stack) {
                 stack.getTag().putFloat("darkness", scaleWithDarkness(entity, 0.5F));
             }
@@ -105,11 +107,11 @@ public interface ShadiumAbility {
         }
 
         @Override
-        public void fillTooltips(ItemStack stack, List<ITextComponent> tooltip) {
+        public void fillTooltips(ItemStack stack, List<Component> tooltip) {
             TooltipFiller filler = new TooltipFiller(tooltip, "shadium_tool");
             filler.addOverview();
             filler.addDetail();
-            PlayerEntity player = Minecraft.getInstance().player;
+            Player player = Minecraft.getInstance().player;
             if (player != null && player.getMainHandItem().equals(stack)) {
                 filler.addBreak();
                 filler.addValue((int) (stack.getTag().getFloat("darkness") * 100));

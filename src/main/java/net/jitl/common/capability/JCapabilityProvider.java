@@ -10,12 +10,12 @@ import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
 import net.jitl.common.capability.pressedkeys.IPressedKeysCapability;
 import net.jitl.common.capability.pressedkeys.PressedKeysCapability;
 import net.jitl.common.capability.pressedkeys.PressedKeysStorage;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.util.Direction;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.*;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.util.Hacks;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
-public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
+public class JCapabilityProvider implements ICapabilitySerializable<Tag> {
     @CapabilityInject(IArmorSetCapability.class)
     public static final Capability<IArmorSetCapability> ARMOR = Hacks.promise();
 
@@ -56,13 +56,13 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
     }
 
     @Override
-    public INBT serializeNBT() {
+    public Tag serializeNBT() {
         return armorInstance.getNBT();
     }
 
     @Override
-    public void deserializeNBT(INBT nbt) {
-        armorInstance.setNBT((CompoundNBT) nbt);
+    public void deserializeNBT(Tag nbt) {
+        armorInstance.setNBT((CompoundTag) nbt);
     }
 
     public static void registerCapabilities() {
@@ -76,7 +76,7 @@ public class JCapabilityProvider implements ICapabilitySerializable<INBT> {
         Entity entity = event.getObject();
         if (!entity.level.isClientSide()) {
             if (entity instanceof LivingEntity) {
-                if (entity instanceof PlayerEntity) {
+                if (entity instanceof Player) {
                     event.addCapability(JITL.rl("journey_player_data"), new JCapabilityProvider());
                 }
                 event.addCapability(JITL.rl("current_armor"), new JCapabilityProvider());

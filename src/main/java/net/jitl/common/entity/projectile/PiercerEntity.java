@@ -4,29 +4,35 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
 import net.minecraft.entity.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem {
-    private static final DataParameter<ItemStack> STACK = EntityDataManager.defineId(PiercerEntity.class, DataSerializers.ITEM_STACK);
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.projectile.ItemSupplier;
+
+public class PiercerEntity extends AbstractArrow implements ItemSupplier {
+    private static final EntityDataAccessor<ItemStack> STACK = SynchedEntityData.defineId(PiercerEntity.class, EntityDataSerializers.ITEM_STACK);
 
     private float velocityMultiplier;
     private double rangeAddend;
@@ -38,7 +44,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     private int maxBounces;
     public int soundTickCount;
 
-    public PiercerEntity(LivingEntity shooter, World worldIn, ItemStack stack, int maxBounces, float damage) {
+    public PiercerEntity(LivingEntity shooter, Level worldIn, ItemStack stack, int maxBounces, float damage) {
         super(JEntities.PIERCER_TYPE, shooter, worldIn);
         setStack(stack.copy());
         this.setSoundEvent(JSounds.PIERCER.get());
@@ -46,7 +52,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
         setBaseDamage(damage);
     }
 
-    public PiercerEntity(EntityType<PiercerEntity> eucaPiercerEntityEntityType, World world) {
+    public PiercerEntity(EntityType<PiercerEntity> eucaPiercerEntityEntityType, Level world) {
         super(eucaPiercerEntityEntityType, world);
         this.setSoundEvent(JSounds.PIERCER.get());
     }
@@ -97,7 +103,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
             if (++currentBounces <= maxBounces) {
                 List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4D + getRangeAddend()));
                 for (LivingEntity e : entitiesNear) {
-                    if (e != this.getOwner() && this.pathTo(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e.getClassification(false) == EntityClassification.MONSTER) { //check whether this entity is a valid target
+                    if (e != this.getOwner() && this.pathTo(e) && e.invulnerableTime == 0 && !e.isDeadOrDying() && e.getClassification(false) == MobCategory.MONSTER) { //check whether this entity is a valid target
                         if (bounceTo == null || this.distanceTo(e) < this.distanceTo(bounceTo)) { //compare new candidate to previous one
                             bounceTo = e;
                         }
@@ -106,7 +112,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
             }
             if (bounceTo == null) bounceTo = getOwner(); //default to owner if it's out of bounces
 
-            Vector3d movement = new Vector3d(bounceTo.getX(), bounceTo.getY(0.8), bounceTo.getZ()).subtract(this.getX(), this.getY(0.5), this.getZ());
+            Vec3 movement = new Vec3(bounceTo.getX(), bounceTo.getY(0.8), bounceTo.getZ()).subtract(this.getX(), this.getY(0.5), this.getZ());
             this.setDeltaMovement(movement.scale(((0.7 + getVelocityMultiplier() / 6.5) / movement.length()) * this.getDeltaMovement().length()));
 
             launch = false;
@@ -115,7 +121,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
             Entity entity = this.getOwner();
             if (isInGround() && isAcceptibleReturnOwner() && entity != null) {
                 this.setNoPhysics(true);
-                Vector3d vector3d = new Vector3d(entity.getX() - this.getX(), entity.getEyeY() - this.getY(), entity.getZ() - this.getZ());
+                Vec3 vector3d = new Vec3(entity.getX() - this.getX(), entity.getEyeY() - this.getY(), entity.getZ() - this.getZ());
                 this.setPosRaw(this.getX(), this.getY() + vector3d.y * 0.015D * (double) faithfulLevel, this.getZ());
                 if (this.level.isClientSide) {
                     this.yOld = this.getY();
@@ -124,7 +130,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
                 double d0 = 0.15D * (double) faithfulLevel;
                 this.setDeltaMovement(this.getDeltaMovement().scale(0.95D).add(vector3d.normalize().scale(d0)));
                 if (this.soundTickCount == 0) {
-                    this.playSound(JSounds.PIERCER_RETURN.get(), 10.0F, MathHelper.nextFloat(random, 0.8F, 1.2F));
+                    this.playSound(JSounds.PIERCER_RETURN.get(), 10.0F, Mth.nextFloat(random, 0.8F, 1.2F));
                 }
 
                 ++this.soundTickCount;
@@ -135,7 +141,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     private boolean isAcceptibleReturnOwner() {
         Entity entity = this.getOwner();
         if (entity != null && entity.isAlive()) {
-            return !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();
+            return !(entity instanceof ServerPlayer) || !entity.isSpectator();
         } else {
             return false;
         }
@@ -145,18 +151,18 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
      * Variant of LivingEntity's canSee modified to line up with the piercer's attempted path
      */
     private boolean pathTo(Entity entityIn) {
-        Vector3d vector3d = new Vector3d(this.getX(), this.getY(0.5), this.getZ());
-        Vector3d vector3d1 = new Vector3d(entityIn.getX(), entityIn.getY(0.8), entityIn.getZ());
-        return this.level.clip(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this)).getType() == RayTraceResult.Type.MISS;
+        Vec3 vector3d = new Vec3(this.getX(), this.getY(0.5), this.getZ());
+        Vec3 vector3d1 = new Vec3(entityIn.getX(), entityIn.getY(0.8), entityIn.getZ());
+        return this.level.clip(new ClipContext(vector3d, vector3d1, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this)).getType() == HitResult.Type.MISS;
     }
 
     @Override
-    protected void onHitEntity(EntityRayTraceResult entityRayTraceResult_) {
+    protected void onHitEntity(EntityHitResult entityRayTraceResult_) {
         Entity entity = entityRayTraceResult_.getEntity();
         if (entity instanceof LivingEntity && entity != this.getOwner()) {
             if (!level.isClientSide()) {
-                if (getOwner() instanceof ServerPlayerEntity) {
-                    ServerPlayerEntity player = (ServerPlayerEntity) getOwner();
+                if (getOwner() instanceof ServerPlayer) {
+                    ServerPlayer player = (ServerPlayer) getOwner();
                     getStack().hurt(1, player.getRandom(), player);
                 }
 
@@ -172,12 +178,12 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     }
 
     @Override
-    public void playerTouch(PlayerEntity entityIn) {
+    public void playerTouch(Player entityIn) {
         if (!this.level.isClientSide) {
             boolean isOwner = this.getOwner().getUUID() == entityIn.getUUID();
             if ((isOwner && currentBounces > 0) || ((this.inGround || this.isNoPhysics()) && this.shakeTime <= 0)) {
-                boolean flag = this.pickup == AbstractArrowEntity.PickupStatus.ALLOWED || this.pickup == AbstractArrowEntity.PickupStatus.CREATIVE_ONLY && entityIn.abilities.instabuild || this.isNoPhysics() && isOwner;
-                if (this.pickup == AbstractArrowEntity.PickupStatus.ALLOWED && !entityIn.inventory.add(this.getPickupItem())) {
+                boolean flag = this.pickup == Pickup.ALLOWED || this.pickup == Pickup.CREATIVE_ONLY && entityIn.abilities.instabuild || this.isNoPhysics() && isOwner;
+                if (this.pickup == Pickup.ALLOWED && !entityIn.inventory.add(this.getPickupItem())) {
                     flag = false;
                 }
 
@@ -194,9 +200,9 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT nbt) {
+    public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
-        nbt.put("stack", getStack().save(new CompoundNBT()));
+        nbt.put("stack", getStack().save(new CompoundTag()));
         nbt.putInt("bounces", currentBounces);
         nbt.putInt("maxBounces", maxBounces);
         nbt.putFloat("velocityMultiplier", velocityMultiplier);
@@ -205,7 +211,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT nbt) {
+    public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         setStack(ItemStack.of(nbt.getCompound("stack")));
         if (getStack().isEmpty()) remove();
@@ -236,7 +242,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     }
 
     @Override
-    public @NotNull IPacket<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -247,7 +253,7 @@ public class PiercerEntity extends AbstractArrowEntity implements IRendersAsItem
     }
 
     @Override
-    public void onSyncedDataUpdated(DataParameter<?> key) {
+    public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
         if (key == STACK) {
             getStack().setEntityRepresentation(this);
         }

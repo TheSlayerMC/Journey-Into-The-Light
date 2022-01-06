@@ -1,11 +1,11 @@
 package net.jitl.common.enchantment;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.entity.EquipmentSlot;
 
 public class FaithfulEnchantment extends Enchantment {
-    public FaithfulEnchantment(Enchantment.Rarity rarityIn, EnchantmentType enchantmentType, EquipmentSlotType... slots) {
+    public FaithfulEnchantment(Rarity rarityIn, EnchantmentCategory enchantmentType, EquipmentSlot... slots) {
         super(rarityIn, enchantmentType, slots);
     }
 

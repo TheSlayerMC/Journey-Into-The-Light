@@ -1,15 +1,19 @@
 package net.jitl.common.item.curios.amulet;
 
 import net.jitl.common.item.curios.JCurioItem;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.UUID;
+
+import net.minecraft.world.item.Item.Properties;
+
+import AttributeModifier;
 
 public class IceAmuletItem extends JCurioItem {
     protected static final UUID SPEED_MODIFIER = UUID.fromString("758787ea-2eda-4941-8f41-4e3efd1a95a7");
@@ -27,10 +31,10 @@ public class IceAmuletItem extends JCurioItem {
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        PlayerEntity player = (PlayerEntity) livingEntity;
-        ModifiableAttributeInstance attribMovementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
-        ModifiableAttributeInstance attribAttackDamage = player.getAttribute(Attributes.ATTACK_DAMAGE);
-        ModifiableAttributeInstance attribAttackSpeed = player.getAttribute(Attributes.ATTACK_SPEED);
+        Player player = (Player) livingEntity;
+        AttributeInstance attribMovementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
+        AttributeInstance attribAttackDamage = player.getAttribute(Attributes.ATTACK_DAMAGE);
+        AttributeInstance attribAttackSpeed = player.getAttribute(Attributes.ATTACK_SPEED);
 
         if (player.level.getBiome(player.blockPosition()).getBaseTemperature() <= 0.2F) {
             if (!attribMovementSpeed.hasModifier(SPEED_MOD)) {
@@ -57,9 +61,9 @@ public class IceAmuletItem extends JCurioItem {
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        ModifiableAttributeInstance attribMovementSpeed = slotContext.getWearer().getAttribute(Attributes.MOVEMENT_SPEED);
-        ModifiableAttributeInstance attribAttackDamage = slotContext.getWearer().getAttribute(Attributes.ATTACK_DAMAGE);
-        ModifiableAttributeInstance attribAttackSpeed = slotContext.getWearer().getAttribute(Attributes.ATTACK_SPEED);
+        AttributeInstance attribMovementSpeed = slotContext.getWearer().getAttribute(Attributes.MOVEMENT_SPEED);
+        AttributeInstance attribAttackDamage = slotContext.getWearer().getAttribute(Attributes.ATTACK_DAMAGE);
+        AttributeInstance attribAttackSpeed = slotContext.getWearer().getAttribute(Attributes.ATTACK_SPEED);
 
         if (attribMovementSpeed.hasModifier(SPEED_MOD)) {
             attribMovementSpeed.removeModifier(SPEED_MOD);

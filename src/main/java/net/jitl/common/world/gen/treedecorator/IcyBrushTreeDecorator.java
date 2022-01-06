@@ -3,16 +3,16 @@ package net.jitl.common.world.gen.treedecorator;
 import com.mojang.serialization.Codec;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JTreeDecorators;
-import net.minecraft.block.VineBlock;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorldWriter;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.treedecorator.TreeDecorator;
-import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
+import net.minecraft.world.level.block.VineBlock;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.LevelWriter;
+import net.minecraft.world.level.LevelSimulatedRW;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 
 import java.util.List;
 import java.util.Random;
@@ -26,7 +26,7 @@ public class IcyBrushTreeDecorator extends TreeDecorator {
         return JTreeDecorators.ICY_BRUSH_TREE_DECORATOR.get();
     }
 
-    public void place(ISeedReader seedReader_, Random random_, List<BlockPos> list_, List<BlockPos> list1_, Set<BlockPos> set_, MutableBoundingBox mutableBoundingBox_) {
+    public void place(WorldGenLevel seedReader_, Random random_, List<BlockPos> list_, List<BlockPos> list1_, Set<BlockPos> set_, BoundingBox mutableBoundingBox_) {
         list1_.forEach((blockPos1_) -> {
             int chance = 1;
             if (random_.nextInt(chance) == 0) {
@@ -59,7 +59,7 @@ public class IcyBrushTreeDecorator extends TreeDecorator {
         });
     }
 
-    private void addHangingVine(IWorldGenerationReader worldGenerationReader_, Random random, BlockPos blockPos_, BooleanProperty booleanProperty_, Set<BlockPos> set_, MutableBoundingBox mutableBoundingBox_) {
+    private void addHangingVine(LevelSimulatedRW worldGenerationReader_, Random random, BlockPos blockPos_, BooleanProperty booleanProperty_, Set<BlockPos> set_, BoundingBox mutableBoundingBox_) {
         this.placeBrush(worldGenerationReader_, blockPos_, booleanProperty_, set_, mutableBoundingBox_);
         int i = random.nextInt(4) + 3;
 
@@ -69,7 +69,7 @@ public class IcyBrushTreeDecorator extends TreeDecorator {
         }
     }
 
-    protected void placeBrush(IWorldWriter worldWriter_, BlockPos blockPos_, BooleanProperty booleanProperty_, Set<BlockPos> set_, MutableBoundingBox mutableBoundingBox_) {
+    protected void placeBrush(LevelWriter worldWriter_, BlockPos blockPos_, BooleanProperty booleanProperty_, Set<BlockPos> set_, BoundingBox mutableBoundingBox_) {
         this.setBlock(worldWriter_, blockPos_, JBlocks.ICY_BRUSH.defaultBlockState().setValue(booleanProperty_, true), set_, mutableBoundingBox_);
     }
 

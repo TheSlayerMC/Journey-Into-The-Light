@@ -1,18 +1,18 @@
 package net.jitl.client.particle;
 
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
-public class SnowflakeParticle extends SpriteTexturedParticle {
+public class SnowflakeParticle extends TextureSheetParticle {
 
-    private final IAnimatedSprite sprites;
+    private final SpriteSet sprites;
 
-    protected SnowflakeParticle(ClientWorld worldIn, double x, double y, double z, double motionX, double motionY, double motionZ, IAnimatedSprite spriteWithAge) {
+    protected SnowflakeParticle(ClientLevel worldIn, double x, double y, double z, double motionX, double motionY, double motionZ, SpriteSet spriteWithAge) {
         super(worldIn, x, y, z, motionX, motionY, motionZ);
         this.sprites = spriteWithAge;
         int i = (int) (32.0D / (Math.random() * 0.8D + 0.2D));
@@ -22,8 +22,8 @@ public class SnowflakeParticle extends SpriteTexturedParticle {
     }
 
     @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class SnowflakeParticle extends SpriteTexturedParticle {
     @Override
     public int getLightColor(float partialTick) {
         float f = ((float) this.age + partialTick) / (float) this.lifetime;
-        f = MathHelper.clamp(f, 0.0F, 1.0F);
+        f = Mth.clamp(f, 0.0F, 1.0F);
         int i = super.getLightColor(partialTick);
         int j = i & 255;
         int k = i >> 16 & 255;
@@ -74,14 +74,14 @@ public class SnowflakeParticle extends SpriteTexturedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite sprite;
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprite;
 
-        public Factory(IAnimatedSprite spriteSet) {
+        public Factory(SpriteSet spriteSet) {
             this.sprite = spriteSet;
         }
 
-        public Particle createParticle(@NotNull BasicParticleType typeIn, @NotNull ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             return new SnowflakeParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.sprite);
         }
     }

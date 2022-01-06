@@ -1,12 +1,12 @@
 package net.jitl.common.knowledge;
 
 import net.jitl.common.helper.EnumKnowledgeType;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.HashMap;
 
-public class PlayerStatsImpl extends SerializableInnerCap<CompoundNBT, PlayerStatsImpl> implements PlayerStats {
+public class PlayerStatsImpl extends SerializableInnerCap<CompoundTag, PlayerStatsImpl> implements PlayerStats {
 
 	private final HashMap<EnumKnowledgeType, KnowledgeStorageImpl> knowledgeMap;
 	private int sentacoinValue = 0;
@@ -57,11 +57,11 @@ public class PlayerStatsImpl extends SerializableInnerCap<CompoundNBT, PlayerSta
 	}
 
 	@Override
-	public CompoundNBT serializeNBT() {
-		CompoundNBT compound = new CompoundNBT();
+	public CompoundTag serializeNBT() {
+		CompoundTag compound = new CompoundTag();
 		compound.putInt("sentacoin_value", sentacoinValue);
 
-		CompoundNBT knowledgeTag = new CompoundNBT();
+		CompoundTag knowledgeTag = new CompoundTag();
 		knowledgeMap.forEach((type, storage) -> knowledgeTag.put(type.getName(), storage.serializeNBT()));
 		compound.put("knowledge", knowledgeTag);
 
@@ -69,13 +69,13 @@ public class PlayerStatsImpl extends SerializableInnerCap<CompoundNBT, PlayerSta
 	}
 
 	@Override
-	public void deserializeNBT(CompoundNBT tag) {
+	public void deserializeNBT(CompoundTag tag) {
 		sentacoinValue = tag.getInt("sentacoin_value");
 
-		CompoundNBT knowledgeMapTag = tag.getCompound("knowledge");
+		CompoundTag knowledgeMapTag = tag.getCompound("knowledge");
 
 		knowledgeMap.forEach((type, storage) -> {
-			CompoundNBT knowledgeTag = knowledgeMapTag.getCompound(type.getName());
+			CompoundTag knowledgeTag = knowledgeMapTag.getCompound(type.getName());
 
 			//noinspection ConstantConditions
 			if (knowledgeTag != null) {
@@ -85,7 +85,7 @@ public class PlayerStatsImpl extends SerializableInnerCap<CompoundNBT, PlayerSta
 	}
 
 	@Override
-	public void writeToBuffer(PacketBuffer buffer) {
+	public void writeToBuffer(FriendlyByteBuf buffer) {
 		buffer.writeInt(sentacoinValue);
 
 		buffer.writeInt(knowledgeMap.size());
@@ -96,7 +96,7 @@ public class PlayerStatsImpl extends SerializableInnerCap<CompoundNBT, PlayerSta
 	}
 
 	@Override
-	public void readFromBuffer(PacketBuffer buffer) {
+	public void readFromBuffer(FriendlyByteBuf buffer) {
 		sentacoinValue = buffer.readInt();
 
 		int size = buffer.readInt();

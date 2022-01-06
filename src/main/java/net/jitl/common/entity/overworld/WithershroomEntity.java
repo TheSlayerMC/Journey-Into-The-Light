@@ -2,70 +2,80 @@ package net.jitl.common.entity.overworld;
 
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
 import net.jitl.init.JSounds;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowerBlock;
-import net.minecraft.block.GrassBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.GrassBlock;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.WitherSkullEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.WitherSkull;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
-public class WithershroomEntity extends MonsterEntity {
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.Pose;
+
+public class WithershroomEntity extends Monster {
 
     public boolean canGenerateRose;
 
-    public WithershroomEntity(EntityType<? extends WithershroomEntity> entityType, World world) {
+    public WithershroomEntity(EntityType<? extends WithershroomEntity> entityType, Level world) {
         super(entityType, world);
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
     }
 
-    public static boolean canSpawn(EntityType<? extends CreatureEntity> entityType, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+    public static boolean canSpawn(EntityType<? extends PathfinderMob> entityType, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
         return !worldIn.getBlockState(pos).is(Blocks.WATER)
                 && worldIn.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK)
-                && worldIn.getBiome(pos).getBiomeCategory() == Biome.Category.MUSHROOM
-                || worldIn.getBiome(pos).getBiomeCategory() == Biome.Category.SWAMP;
+                && worldIn.getBiome(pos).getBiomeCategory() == Biome.BiomeCategory.MUSHROOM
+                || worldIn.getBiome(pos).getBiomeCategory() == Biome.BiomeCategory.SWAMP;
     }
 
     @Override
-    public @NotNull CreatureAttribute getMobType() {
-        return CreatureAttribute.UNDEAD;
+    public @NotNull MobType getMobType() {
+        return MobType.UNDEAD;
     }
 
     @Override
     public void tick() {
         if (this.isAlive()) {
             if (tickCount % 600 == 0) { //for every 600 ticks, we check surrounding entities for creepers
-                List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(CreeperEntity.class, this.getBoundingBox().inflate(4D));
+                List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(Creeper.class, this.getBoundingBox().inflate(4D));
                 if (!entitiesNear.isEmpty()) {
                     spawnEffectCloud(); //if a creeper is nearby, we spawn an effect cloud, and set canGenerateRose to true
                 }
@@ -84,7 +94,7 @@ public class WithershroomEntity extends MonsterEntity {
     @Override
     public boolean hurt(@NotNull DamageSource source, float amount) {
         Entity entity = source.getDirectEntity();
-        if (entity instanceof WitherSkullEntity) {
+        if (entity instanceof WitherSkull) {
             return false;
         } else if (super.hurt(source, amount) && random.nextInt(10) == 0) {
             if (source != DamageSource.OUT_OF_WORLD && source != DamageSource.MAGIC) {
@@ -100,13 +110,13 @@ public class WithershroomEntity extends MonsterEntity {
         canGenerateRose = true;
         JEffectCloudEntity poison = new JEffectCloudEntity(this, this.level, this.getX(), this.getY(), this.getZ(), 0.5F);
         poison.excludeOwner();
-        poison.addPrimaryEffect(new EffectInstance(Effects.WITHER, 60, 1));
-        poison.addPrimaryEffect(new EffectInstance(Effects.CONFUSION, 200));
+        poison.addPrimaryEffect(new MobEffectInstance(MobEffects.WITHER, 60, 1));
+        poison.addPrimaryEffect(new MobEffectInstance(MobEffects.CONFUSION, 200));
         poison.addSizeKey(10, 4);
         poison.addSizeKey(200, 0);
-        poison.setColor(Effects.WITHER.getColor());
+        poison.setColor(MobEffects.WITHER.getColor());
         poison.spawn();
-        level.playSound(null, this.blockPosition(), JSounds.HONGO_SPORE_RELEASE.get(), SoundCategory.HOSTILE, 1.0F, 1.0F);
+        level.playSound(null, this.blockPosition(), JSounds.HONGO_SPORE_RELEASE.get(), SoundSource.HOSTILE, 1.0F, 1.0F);
     }
 
     public void replaceWithWitherRose() {
@@ -118,24 +128,24 @@ public class WithershroomEntity extends MonsterEntity {
         });
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
     @Override
-    public boolean addEffect(EffectInstance effectInstanceIn) {
+    public boolean addEffect(MobEffectInstance effectInstanceIn) {
         return false;
     }
 
     @Override
-    public boolean canBeAffected(EffectInstance potioneffectIn) {
-        return potioneffectIn.getEffect() != Effects.WITHER && super.canBeAffected(potioneffectIn);
+    public boolean canBeAffected(MobEffectInstance potioneffectIn) {
+        return potioneffectIn.getEffect() != MobEffects.WITHER && super.canBeAffected(potioneffectIn);
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return sizeIn.height * 0.55F;
     }
 
@@ -156,13 +166,13 @@ public class WithershroomEntity extends MonsterEntity {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putBoolean("generateRoses", canGenerateRose);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("generateRoses")) {
             canGenerateRose = compound.getBoolean("generateRoses");

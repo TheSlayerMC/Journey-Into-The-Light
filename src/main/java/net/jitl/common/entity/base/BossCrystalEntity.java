@@ -4,22 +4,22 @@ import net.jitl.JITL;
 import net.jitl.init.JEntities;
 import net.jitl.init.JSounds;
 import net.jitl.util.LootHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
@@ -37,11 +37,11 @@ public class BossCrystalEntity extends Entity implements IEntityAdditionalSpawnD
     private Type type;
     private final AnimationSystem<BossCrystalEntity> animationSystem;
 
-    public BossCrystalEntity(World worldIn) {
+    public BossCrystalEntity(Level worldIn) {
         this(JEntities.BOSS_CRYSTAL_TYPE, worldIn);
     }
 
-    public BossCrystalEntity(EntityType<?> entityTypeIn, World worldIn) {
+    public BossCrystalEntity(EntityType<?> entityTypeIn, Level worldIn) {
         super(entityTypeIn, worldIn);
         animationSystem = AnimationSystemBuilder.forEntity(this, worldIn,
                 builder -> {
@@ -54,7 +54,7 @@ public class BossCrystalEntity extends Entity implements IEntityAdditionalSpawnD
         return animationSystem;
     }
 
-    public static BossCrystalEntity create(World world, Vector3d pos, Type type, List<ItemStack> items) {
+    public static BossCrystalEntity create(Level world, Vec3 pos, Type type, List<ItemStack> items) {
         BossCrystalEntity crystal = new BossCrystalEntity(world);
         crystal.storedItems.addAll(items);
         crystal.setPos(pos.x, pos.y, pos.z);
@@ -64,7 +64,7 @@ public class BossCrystalEntity extends Entity implements IEntityAdditionalSpawnD
         return crystal;
     }
 
-    public static BossCrystalEntity create(ServerWorld world, Vector3d pos, Type type, @Nullable ServerPlayerEntity player, ResourceLocation lootTable, long lootTableSeed) {
+    public static BossCrystalEntity create(ServerLevel world, Vec3 pos, Type type, @Nullable ServerPlayer player, ResourceLocation lootTable, long lootTableSeed) {
         return create(world, pos, type, genItemList(world, player, lootTable, lootTableSeed));
     }
 
@@ -78,19 +78,19 @@ public class BossCrystalEntity extends Entity implements IEntityAdditionalSpawnD
     }
 
     @Override
-    protected void readAdditionalSaveData(@NotNull CompoundNBT compound) {
-        ItemStackHelper.loadAllItems(compound, storedItems);
+    protected void readAdditionalSaveData(@NotNull CompoundTag compound) {
+        ContainerHelper.loadAllItems(compound, storedItems);
         type = getTypeFromIndex(compound.getInt("type"));
     }
 
     @Override
-    protected void addAdditionalSaveData(@NotNull CompoundNBT compound) {
-        ItemStackHelper.saveAllItems(compound, storedItems);
+    protected void addAdditionalSaveData(@NotNull CompoundTag compound) {
+        ContainerHelper.saveAllItems(compound, storedItems);
         compound.putInt("type", type.ordinal());
     }
 
     @Override
-    public @NotNull ActionResultType interact(@NotNull PlayerEntity player, @NotNull Hand handIn) {
+    public @NotNull InteractionResult interact(@NotNull Player player, @NotNull InteractionHand handIn) {
         JITL.LOGGER.info("interact");
         if (!level.isClientSide()) {
             for (Iterator<ItemStack> iterator = storedItems.iterator(); iterator.hasNext(); ) {
@@ -109,10 +109,10 @@ public class BossCrystalEntity extends Entity implements IEntityAdditionalSpawnD
                 remove();
             }
         }
-        return ActionResultType.PASS;
+        return InteractionResult.PASS;
     }
 
-    public static List<ItemStack> genItemList(ServerWorld world, @Nullable ServerPlayerEntity player, ResourceLocation lootTable, long lootTableSeed) {
+    public static List<ItemStack> genItemList(ServerLevel world, @Nullable ServerPlayer player, ResourceLocation lootTable, long lootTableSeed) {
         Random random;
         if (lootTableSeed == 0L) {
             random = new Random();
@@ -128,17 +128,17 @@ public class BossCrystalEntity extends Entity implements IEntityAdditionalSpawnD
     }
 
     @Override
-    public @NotNull IPacket<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    public void writeSpawnData(PacketBuffer buffer) {
+    public void writeSpawnData(FriendlyByteBuf buffer) {
         buffer.writeInt(type.ordinal());
     }
 
     @Override
-    public void readSpawnData(PacketBuffer buffer) {
+    public void readSpawnData(FriendlyByteBuf buffer) {
         type = getTypeFromIndex(buffer.readInt());
     }
 

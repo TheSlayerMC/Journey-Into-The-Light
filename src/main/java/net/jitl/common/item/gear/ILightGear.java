@@ -1,7 +1,7 @@
 package net.jitl.common.item.gear;
 
 import net.jitl.common.helper.TooltipFiller;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;

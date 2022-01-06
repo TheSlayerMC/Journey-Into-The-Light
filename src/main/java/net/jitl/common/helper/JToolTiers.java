@@ -2,11 +2,11 @@ package net.jitl.common.helper;
 
 import mcp.MethodsReturnNonnullByDefault;
 import net.jitl.init.JItems;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
 
-public enum JToolTiers implements IItemTier {
+public enum JToolTiers implements Tier {
     SAPPHIRE(1461, 10F, 8F, 5F, 3F, 1.6F, JItems.SAPPHIRE),
     SHADIUM(1461, 10F, 8F, 5F, 3F, 1.6F, JItems.SHADIUM_INGOT),
     LUNIUM(1490, 12F, 8F, 6F, 4F, 1.7F, JItems.LUNIUM_INGOT),

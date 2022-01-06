@@ -1,22 +1,24 @@
 package net.jitl.common.scroll;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 
 import java.util.List;
+
+import Component;
 
 /*
  * Code by TimeConqueror
  */
 public class TextDescComponent implements IDescComponent {
-    private final ITextComponent langKey;
+    private final Component langKey;
     private int contentHeight;
-    private List<IReorderingProcessor> wrappedText;
+    private List<FormattedCharSequence> wrappedText;
 
-    public TextDescComponent(ITextComponent langKey) {
+    public TextDescComponent(Component langKey) {
         this.langKey = langKey;
     }
 
@@ -26,10 +28,10 @@ public class TextDescComponent implements IDescComponent {
     }
 
     @Override
-    public void drawContentPart(MatrixStack matrixStack, int x0, int y0, int width) {
+    public void drawContentPart(PoseStack matrixStack, int x0, int y0, int width) {
         int i = y0;
 
-        for (IReorderingProcessor s : wrappedText) {
+        for (FormattedCharSequence s : wrappedText) {
             Minecraft.getInstance().font.draw(matrixStack, s, x0, i, 0x0000F);
             i += Minecraft.getInstance().font.lineHeight;
         }
@@ -37,7 +39,7 @@ public class TextDescComponent implements IDescComponent {
 
     @Override
     public void determineContentPartHeight(int width) {
-        wrappedText = Minecraft.getInstance().font.split(new TranslationTextComponent(String.valueOf(langKey)), width);
+        wrappedText = Minecraft.getInstance().font.split(new TranslatableComponent(String.valueOf(langKey)), width);
         contentHeight = Minecraft.getInstance().font.lineHeight * wrappedText.size();
     }
 }

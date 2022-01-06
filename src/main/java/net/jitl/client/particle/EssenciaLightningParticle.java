@@ -1,9 +1,9 @@
 package net.jitl.client.particle;
 
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -11,28 +11,28 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
-public class EssenciaLightningParticle extends SpriteTexturedParticle {
+public class EssenciaLightningParticle extends TextureSheetParticle {
     private static final Random RANDOM = new Random();
-    private final IAnimatedSprite sprites;
+    private final SpriteSet sprites;
 
-    private EssenciaLightningParticle(ClientWorld clientWorld, double x, double y, double z, double double1_, double motionY, double double_, IAnimatedSprite spriteWithAge) {
+    private EssenciaLightningParticle(ClientLevel clientWorld, double x, double y, double z, double double1_, double motionY, double double_, SpriteSet spriteWithAge) {
         super(clientWorld, x, y, z, 0.5D - RANDOM.nextDouble(), motionY, 0.5D - RANDOM.nextDouble());
         this.sprites = spriteWithAge;
         this.quadSize *= 2.75F;
-        this.lifetime = MathHelper.nextInt(RANDOM, 3, 5);
+        this.lifetime = Mth.nextInt(RANDOM, 3, 5);
         this.hasPhysics = false;
         this.setSpriteFromAge(spriteWithAge);
     }
 
     @Override
-    public @NotNull IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+    public @NotNull ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @Override
     public int getLightColor(float partialTick) {
         float f = ((float) this.age + partialTick) / (float) this.lifetime;
-        f = MathHelper.clamp(f, 0.0F, 1.0F);
+        f = Mth.clamp(f, 0.0F, 1.0F);
         int i = super.getLightColor(partialTick);
         int j = i & 255;
         int k = i >> 16 & 255;
@@ -67,14 +67,14 @@ public class EssenciaLightningParticle extends SpriteTexturedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite sprite;
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprite;
 
-        public Factory(IAnimatedSprite spriteSet) {
+        public Factory(SpriteSet spriteSet) {
             this.sprite = spriteSet;
         }
 
-        public Particle createParticle(@NotNull BasicParticleType typeIn, @NotNull ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             return new EssenciaLightningParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.sprite);
         }
     }

@@ -2,11 +2,11 @@ package net.jitl.common.item.gear.abilities.mekyum;
 
 import net.jitl.common.helper.TooltipFiller;
 import net.jitl.common.item.gear.abilities.IAbility;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.item.SwordItem;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -25,7 +25,7 @@ public class MekyumSwordAbility implements IAbility {
     }
 
     @Override
-    public void fillTooltips(ItemStack stack, List<ITextComponent> tooltip) {
+    public void fillTooltips(ItemStack stack, List<Component> tooltip) {
         TooltipFiller filler = new TooltipFiller(tooltip, "mekyum_sword");
         filler.addOverview();
     }

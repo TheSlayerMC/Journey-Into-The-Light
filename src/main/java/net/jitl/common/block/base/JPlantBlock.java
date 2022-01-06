@@ -5,14 +5,14 @@ import net.jitl.api.block.GroundPredicate;
 import net.jitl.init.JBlocks;
 import net.jitl.util.Logs;
 import net.minecraft.block.*;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.IForgeShearable;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,7 +20,15 @@ import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class JPlantBlock extends BushBlock implements IGrowable, IForgeShearable {
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class JPlantBlock extends BushBlock implements BonemealableBlock, IForgeShearable {
     protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 13.0D, 12.0D);
     protected static final VoxelShape TALL_SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 30.0D, 12.0D);
 
@@ -70,7 +78,7 @@ public class JPlantBlock extends BushBlock implements IGrowable, IForgeShearable
     }
 
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return this == JBlocks.TALL_FUNGI ? TALL_SHAPE : SHAPE;
     }
 
@@ -78,17 +86,17 @@ public class JPlantBlock extends BushBlock implements IGrowable, IForgeShearable
      * Whether this IGrowable can grow
      */
     @Override
-    public boolean isValidBonemealTarget(@NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(@NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull BlockState state, boolean isClient) {
         return grownPlant.get() != null;
     }
 
     @Override
-    public boolean isBonemealSuccess(@NotNull World worldIn, @NotNull Random rand, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public boolean isBonemealSuccess(@NotNull Level worldIn, @NotNull Random rand, @NotNull BlockPos pos, @NotNull BlockState state) {
         return grownPlant.get() != null;
     }
 
     @Override
-    public void performBonemeal(@NotNull ServerWorld worldIn, @NotNull Random rand, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public void performBonemeal(@NotNull ServerLevel worldIn, @NotNull Random rand, @NotNull BlockPos pos, @NotNull BlockState state) {
         JDoublePlantBlock doubleplantblock = (JDoublePlantBlock) (grownPlant.get());
         if (grownPlant.get() != null) {
             if (doubleplantblock.defaultBlockState().canSurvive(worldIn, pos) && worldIn.isEmptyBlock(pos.above())) {
@@ -98,23 +106,23 @@ public class JPlantBlock extends BushBlock implements IGrowable, IForgeShearable
     }
 
     @Override
-    public boolean canSurvive(@NotNull BlockState state, @NotNull IWorldReader worldIn, @NotNull BlockPos pos) {
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader worldIn, @NotNull BlockPos pos) {
         return mayPlaceOn(state, worldIn, pos);
     }
 
     @Override
-    protected boolean mayPlaceOn(@NotNull BlockState state, IBlockReader worldIn, BlockPos pos) {
+    protected boolean mayPlaceOn(@NotNull BlockState state, BlockGetter worldIn, BlockPos pos) {
         BlockPos groundPos = pos.offset(plantDirection.getOpposite().getNormal());
         BlockState groundState = worldIn.getBlockState(groundPos);
 
-        if (worldIn instanceof IWorldReader) {
-            return groundPredicate.testGround((IWorldReader) worldIn, groundPos, groundState, plantDirection);
+        if (worldIn instanceof LevelReader) {
+            return groundPredicate.testGround((LevelReader) worldIn, groundPos, groundState, plantDirection);
         } else {
             JITL.LOGGER.warn(
                     "Can't test the surface for {} placement. " +
                             "The World is supposed to be {}, but is {}. ",
                     getClass().getName(),
-                    IWorldReader.class.getName(),
+                    LevelReader.class.getName(),
                     worldIn.getClass().getName());
             Logs.printReportMessage();
             return false;
@@ -125,7 +133,7 @@ public class JPlantBlock extends BushBlock implements IGrowable, IForgeShearable
      * Get the OffsetType for this Block. Determines if the model is rendered slightly offset.
      */
     @Override
-    public AbstractBlock.@NotNull OffsetType getOffsetType() {
-        return offset ? AbstractBlock.OffsetType.XYZ : super.getOffsetType();
+    public @NotNull OffsetType getOffsetType() {
+        return offset ? OffsetType.XYZ : super.getOffsetType();
     }
 }

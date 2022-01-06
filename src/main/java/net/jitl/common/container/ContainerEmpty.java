@@ -1,23 +1,23 @@
 package net.jitl.common.container;
 
 import net.jitl.common.helper.JourneyContainers;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.network.FriendlyByteBuf;
 
-public class ContainerEmpty extends Container {
+public class ContainerEmpty extends AbstractContainerMenu {
 
     public ContainerEmpty() {
         super(JourneyContainers.EMPTY_CONTAINER, 200);
     }
 
     @Override
-    public boolean stillValid(PlayerEntity playerIn) {
+    public boolean stillValid(Player playerIn) {
         return false;
     }
 
-    public static ContainerEmpty createContainerClientSide(int windowID, PlayerInventory playerInventory, PacketBuffer extraData) {
+    public static ContainerEmpty createContainerClientSide(int windowID, Inventory playerInventory, FriendlyByteBuf extraData) {
         try {
             return new ContainerEmpty();
         } catch (IllegalArgumentException iae) {

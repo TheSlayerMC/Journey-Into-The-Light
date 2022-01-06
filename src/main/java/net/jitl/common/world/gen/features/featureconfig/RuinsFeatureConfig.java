@@ -2,17 +2,17 @@ package net.jitl.common.world.gen.features.featureconfig;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.WeightedList;
-import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.behavior.WeightedList;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 
-public class RuinsFeatureConfig implements IFeatureConfig {
+public class RuinsFeatureConfig implements FeatureConfiguration {
 
 	public static final Codec<RuinsFeatureConfig> CODEC = RecordCodecBuilder.create((instance) ->
 			instance.group(RuleTest.CODEC.fieldOf("spawn_block").forGetter((ruinsFeatureConfig -> ruinsFeatureConfig.spawnBlock)),
-                    WeightedBlockStateProvider.CODEC.fieldOf("ruined_blocks_provider").forGetter((ruinsFeatureConfig) -> ruinsFeatureConfig.ruinedBlocksProvider),
+                    WeightedStateProvider.CODEC.fieldOf("ruined_blocks_provider").forGetter((ruinsFeatureConfig) -> ruinsFeatureConfig.ruinedBlocksProvider),
                     Codec.INT.fieldOf("max_spreading").forGetter((ruinsFeatureConfig) -> ruinsFeatureConfig.maxSpreading),
                     Codec.INT.fieldOf("max_height").forGetter((ruinsFeatureConfig) -> ruinsFeatureConfig.maxHeight),
                     Codec.INT.fieldOf("max_columns").forGetter((ruinsFeatureConfig) -> ruinsFeatureConfig.maxColumns),
@@ -20,13 +20,13 @@ public class RuinsFeatureConfig implements IFeatureConfig {
             ).apply(instance, RuinsFeatureConfig::new));
 
     public final RuleTest spawnBlock;
-    public final WeightedBlockStateProvider ruinedBlocksProvider;
+    public final WeightedStateProvider ruinedBlocksProvider;
     public int maxSpreading;
     public int maxHeight;
     public int maxColumns;
     public final WeightedList<ResourceLocation> lootWeightedList;
 
-    public RuinsFeatureConfig(RuleTest spawnBlock, WeightedBlockStateProvider ruinedBlocksProvider, int maxSpreading, int maxHeight, int maxColumns, WeightedList<ResourceLocation> lootWeightedList) {
+    public RuinsFeatureConfig(RuleTest spawnBlock, WeightedStateProvider ruinedBlocksProvider, int maxSpreading, int maxHeight, int maxColumns, WeightedList<ResourceLocation> lootWeightedList) {
         this.spawnBlock = spawnBlock;
         this.ruinedBlocksProvider = ruinedBlocksProvider;
         this.maxSpreading = maxSpreading;

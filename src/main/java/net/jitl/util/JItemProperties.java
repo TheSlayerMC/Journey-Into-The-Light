@@ -1,7 +1,7 @@
 package net.jitl.util;
 
 import net.jitl.init.JTabs;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import ru.timeconqueror.timecore.api.registry.util.ItemPropsFactory;
 
 public class JItemProperties {

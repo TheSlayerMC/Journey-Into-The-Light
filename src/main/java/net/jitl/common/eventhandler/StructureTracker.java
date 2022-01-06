@@ -6,7 +6,7 @@ import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
 import net.jitl.common.helper.EnumStructureMusic;
 import net.jitl.network.JPacketHandler;
 import net.jitl.network.SCurrentStructurePacket;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -22,7 +22,7 @@ public class StructureTracker {
     @SubscribeEvent()
     public static void onPlayerTick(TickEvent.PlayerTickEvent structureEvent) {
         if (structureEvent.side == LogicalSide.SERVER && structureEvent.phase == TickEvent.Phase.START) {
-            ServerPlayerEntity player = (ServerPlayerEntity) structureEvent.player;
+            ServerPlayer player = (ServerPlayer) structureEvent.player;
             ICurrentStructureCapability capability = JCapabilityProvider.getCapability(player, JCapabilityProvider.STRUCTURE);
             if (capability != null) {
                 int id = findStructure(player);
@@ -35,7 +35,7 @@ public class StructureTracker {
         }
     }
 
-    private static int findStructure(ServerPlayerEntity player) {
+    private static int findStructure(ServerPlayer player) {
         for (EnumStructureMusic currentStructure : EnumStructureMusic.values()) {
             if (player.getLevel().structureFeatureManager().getStructureAt(player.blockPosition(), true, currentStructure.getStructure()).isValid()) {
                 return currentStructure.getID();

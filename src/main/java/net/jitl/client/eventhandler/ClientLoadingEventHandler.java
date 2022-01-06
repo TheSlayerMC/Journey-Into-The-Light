@@ -4,7 +4,7 @@ import net.jitl.client.Models;
 import net.jitl.client.world.BoilRenderInfo;
 import net.jitl.client.world.FrozenRenderInfo;
 import net.jitl.init.JDimensions;
-import net.minecraft.client.world.DimensionRenderInfo;
+import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -20,8 +20,8 @@ public class ClientLoadingEventHandler {
     private static void onClientSetup(FMLClientSetupEvent event) {
         KeybindEventHandler.registerKeys(event);
         event.enqueueWork(() -> {
-            DimensionRenderInfo.EFFECTS.put(JDimensions.FROZEN.location(), new FrozenRenderInfo());
-            DimensionRenderInfo.EFFECTS.put(JDimensions.BOIL.location(), new BoilRenderInfo());
+            DimensionSpecialEffects.EFFECTS.put(JDimensions.FROZEN.location(), new FrozenRenderInfo());
+            DimensionSpecialEffects.EFFECTS.put(JDimensions.BOIL.location(), new BoilRenderInfo());
         });
     }
 }

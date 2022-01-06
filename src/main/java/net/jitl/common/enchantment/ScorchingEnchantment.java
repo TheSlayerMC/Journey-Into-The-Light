@@ -1,11 +1,11 @@
 package net.jitl.common.enchantment;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.entity.EquipmentSlot;
 
 public class ScorchingEnchantment extends Enchantment {
-    public ScorchingEnchantment(Enchantment.Rarity rarityIn, EnchantmentType type, EquipmentSlotType... slots) {
+    public ScorchingEnchantment(Rarity rarityIn, EnchantmentCategory type, EquipmentSlot... slots) {
         super(rarityIn, type, slots);
     }
 

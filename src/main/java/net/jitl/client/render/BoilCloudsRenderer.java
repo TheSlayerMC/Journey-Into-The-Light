@@ -1,24 +1,27 @@
 package net.jitl.client.render;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.JITL;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
-import net.minecraft.client.settings.CloudOption;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.VertexBuffer;
+import net.minecraft.client.CloudStatus;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.ICloudRenderHandler;
 
+import CloudStatus;
+import Vec3;
+
 public class BoilCloudsRenderer implements ICloudRenderHandler {
-    private CloudOption prevCloudsType;
-    private Vector3d prevCloudColor = Vector3d.ZERO;
+    private CloudStatus prevCloudsType;
+    private Vec3 prevCloudColor = Vec3.ZERO;
     private VertexBuffer cloudBuffer;
     private int prevCloudX = Integer.MIN_VALUE;
     private int prevCloudY = Integer.MIN_VALUE;
@@ -28,7 +31,7 @@ public class BoilCloudsRenderer implements ICloudRenderHandler {
     private static final ResourceLocation CLOUDS_LOCATION = JITL.rl("textures/environment/boil_clouds.png");
 
     @Override
-    public void render(int ticks, float partialTicks, MatrixStack matrixStackIn, ClientWorld level, Minecraft minecraft, double viewEntityX, double viewEntityY, double viewEntityZ) {
+    public void render(int ticks, float partialTicks, PoseStack matrixStackIn, ClientLevel level, Minecraft minecraft, double viewEntityX, double viewEntityY, double viewEntityZ) {
         float f = level.effects().getCloudHeight();
         if (!Float.isNaN(f)) {
             RenderSystem.disableCull();
@@ -43,12 +46,12 @@ public class BoilCloudsRenderer implements ICloudRenderHandler {
             double d2 = (viewEntityX + d1) / 12.0D;
             double d3 = f - (float) viewEntityY + 0.33F;
             double d4 = viewEntityZ / 12.0D + (double) 0.33F;
-            d2 = d2 - (double) (MathHelper.floor(d2 / 2048.0D) * 2048);
-            d4 = d4 - (double) (MathHelper.floor(d4 / 2048.0D) * 2048);
-            float f3 = (float) (d2 - (double) MathHelper.floor(d2));
-            float f4 = (float) (d3 / 4.0D - (double) MathHelper.floor(d3 / 4.0D)) * 4.0F;
-            float f5 = (float) (d4 - (double) MathHelper.floor(d4));
-            Vector3d vector3d = level.getCloudColor(partialTicks);
+            d2 = d2 - (double) (Mth.floor(d2 / 2048.0D) * 2048);
+            d4 = d4 - (double) (Mth.floor(d4 / 2048.0D) * 2048);
+            float f3 = (float) (d2 - (double) Mth.floor(d2));
+            float f4 = (float) (d3 / 4.0D - (double) Mth.floor(d3 / 4.0D)) * 4.0F;
+            float f5 = (float) (d4 - (double) Mth.floor(d4));
+            Vec3 vector3d = level.getCloudColor(partialTicks);
             int i = (int) Math.floor(d2);
             int j = (int) Math.floor(d3 / 4.0D);
             int k = (int) Math.floor(d4);
@@ -63,12 +66,12 @@ public class BoilCloudsRenderer implements ICloudRenderHandler {
 
             if (this.generateClouds) {
                 this.generateClouds = false;
-                BufferBuilder bufferbuilder = Tessellator.getInstance().getBuilder();
+                BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
                 if (this.cloudBuffer != null) {
                     this.cloudBuffer.close();
                 }
 
-                this.cloudBuffer = new VertexBuffer(DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
+                this.cloudBuffer = new VertexBuffer(DefaultVertexFormat.POSITION_TEX_COLOR_NORMAL);
                 this.buildClouds(bufferbuilder, d2, d3, d4, vector3d);
                 bufferbuilder.end();
                 this.cloudBuffer.upload(bufferbuilder);
@@ -80,8 +83,8 @@ public class BoilCloudsRenderer implements ICloudRenderHandler {
             matrixStackIn.translate(-f3, f4, -f5);
             if (this.cloudBuffer != null) {
                 this.cloudBuffer.bind();
-                DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL.setupBufferState(0L);
-                int i1 = prevCloudsType == CloudOption.FANCY ? 0 : 1;
+                DefaultVertexFormat.POSITION_TEX_COLOR_NORMAL.setupBufferState(0L);
+                int i1 = prevCloudsType == CloudStatus.FANCY ? 0 : 1;
 
                 for (int l = i1; l < 2; ++l) {
                     if (l == 0) {
@@ -94,7 +97,7 @@ public class BoilCloudsRenderer implements ICloudRenderHandler {
                 }
 
                 VertexBuffer.unbind();
-                DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL.clearBufferState();
+                DefaultVertexFormat.POSITION_TEX_COLOR_NORMAL.clearBufferState();
             }
 
             matrixStackIn.popPose();
@@ -106,9 +109,9 @@ public class BoilCloudsRenderer implements ICloudRenderHandler {
         }
     }
 
-    private void buildClouds(BufferBuilder bufferIn, double cloudsX, double cloudsY, double cloudsZ, Vector3d cloudsColor) {
-        float f3 = (float) MathHelper.floor(cloudsX) * 0.00390625F;
-        float f4 = (float) MathHelper.floor(cloudsZ) * 0.00390625F;
+    private void buildClouds(BufferBuilder bufferIn, double cloudsX, double cloudsY, double cloudsZ, Vec3 cloudsColor) {
+        float f3 = (float) Mth.floor(cloudsX) * 0.00390625F;
+        float f4 = (float) Mth.floor(cloudsZ) * 0.00390625F;
         float f5 = (float) cloudsColor.x;
         float f6 = (float) cloudsColor.y;
         float f7 = (float) cloudsColor.z;
@@ -121,9 +124,9 @@ public class BoilCloudsRenderer implements ICloudRenderHandler {
         float f14 = f5 * 0.8F;
         float f15 = f6 * 0.8F;
         float f16 = f7 * 0.8F;
-        bufferIn.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
+        bufferIn.begin(7, DefaultVertexFormat.POSITION_TEX_COLOR_NORMAL);
         float f17 = (float) Math.floor(cloudsY / 4.0D) * 4.0F;
-        if (prevCloudsType == CloudOption.FANCY) {
+        if (prevCloudsType == CloudStatus.FANCY) {
             for (int k = -3; k <= 4; ++k) {
                 for (int l = -3; l <= 4; ++l) {
                     float f18 = (float) (k * 8);

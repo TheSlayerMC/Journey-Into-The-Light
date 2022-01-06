@@ -3,16 +3,18 @@ package net.jitl.common.loot.modifiers;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import net.jitl.util.LootHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 
 import javax.annotation.Nonnull;
 import java.util.List;
+
+import ResourceLocation;
 
 public class InjectTableModifier extends LootModifier {
 
@@ -23,7 +25,7 @@ public class InjectTableModifier extends LootModifier {
      *
      * @param conditionsIn the ILootConditions that need to be matched before the loot is modified.
      */
-    protected InjectTableModifier(ILootCondition[] conditionsIn, ResourceLocation lootTable) {
+    protected InjectTableModifier(LootItemCondition[] conditionsIn, ResourceLocation lootTable) {
         super(conditionsIn);
         this.newTable = lootTable;
     }
@@ -36,7 +38,7 @@ public class InjectTableModifier extends LootModifier {
         return generatedLoot;
     }
 
-    public ILootCondition[] getConditions() {
+    public LootItemCondition[] getConditions() {
         return conditions;
     }
 
@@ -47,7 +49,7 @@ public class InjectTableModifier extends LootModifier {
     public static class Serializer extends GlobalLootModifierSerializer<InjectTableModifier> {
 
         @Override
-        public InjectTableModifier read(ResourceLocation location, JsonObject object, ILootCondition[] ailootcondition) {
+        public InjectTableModifier read(ResourceLocation location, JsonObject object, LootItemCondition[] ailootcondition) {
             JsonPrimitive newTableProperty = object.getAsJsonPrimitive("new_table");
             ResourceLocation newTable = new ResourceLocation(newTableProperty.getAsString());
             return new InjectTableModifier(ailootcondition, newTable);
@@ -55,7 +57,7 @@ public class InjectTableModifier extends LootModifier {
 
         @Override
         public JsonObject write(InjectTableModifier instance) {
-            ILootCondition[] conditions = instance.getConditions();
+            LootItemCondition[] conditions = instance.getConditions();
             ResourceLocation newTable = instance.getNewTable();
 
             JsonObject jsonObject = this.makeConditions(conditions);

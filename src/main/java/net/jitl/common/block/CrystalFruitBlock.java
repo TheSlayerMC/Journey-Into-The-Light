@@ -2,19 +2,21 @@ package net.jitl.common.block;
 
 import net.jitl.init.JBlocks;
 import net.jitl.init.JParticleManager;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class CrystalFruitBlock extends Block {
     public CrystalFruitBlock(Properties properties) {
@@ -23,7 +25,7 @@ public class CrystalFruitBlock extends Block {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void animateTick(@NotNull BlockState stateIn, @NotNull World worldIn, @NotNull BlockPos pos, Random rand) {
+    public void animateTick(@NotNull BlockState stateIn, @NotNull Level worldIn, @NotNull BlockPos pos, Random rand) {
         if (rand.nextInt(2) == 0) {
             double d0 = (double) pos.getX() + rand.nextDouble();
             double d1 = (double) pos.getY() - 0.04D;
@@ -33,7 +35,7 @@ public class CrystalFruitBlock extends Block {
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
         if (!worldIn.isAreaLoaded(pos, 1)) {
             return;
         }
@@ -43,7 +45,7 @@ public class CrystalFruitBlock extends Block {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (!stateIn.canSurvive(worldIn, currentPos)) {
             worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
         }
@@ -51,7 +53,7 @@ public class CrystalFruitBlock extends Block {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         BlockPos blockpos = pos.above();
         BlockState blockstate = worldIn.getBlockState(blockpos);
         Block block = blockstate.getBlock();

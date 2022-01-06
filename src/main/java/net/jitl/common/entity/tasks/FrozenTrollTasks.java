@@ -5,32 +5,59 @@ import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
 import net.jitl.common.entity.frozen.FrozenTrollEntity;
 import net.jitl.init.*;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.entity.ai.brain.Brain;
-import net.minecraft.entity.ai.brain.BrainUtil;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.ai.brain.schedule.Activity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.util.RandomPos;
+import net.minecraft.world.entity.ai.Brain;
+import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.entity.ai.brain.task.*;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.loot.LootTable;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.util.*;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.ai.behavior.Behavior;
+import net.minecraft.world.entity.ai.behavior.DoNothing;
+import net.minecraft.world.entity.ai.behavior.GoToWantedItem;
+import net.minecraft.world.entity.ai.behavior.InteractWith;
+import net.minecraft.world.entity.ai.behavior.InteractWithDoor;
+import net.minecraft.world.entity.ai.behavior.LookAtTargetSink;
+import net.minecraft.world.entity.ai.behavior.MeleeAttack;
+import net.minecraft.world.entity.ai.behavior.MoveToTargetSink;
+import net.minecraft.world.entity.ai.behavior.RandomStroll;
+import net.minecraft.world.entity.ai.behavior.RunIf;
+import net.minecraft.world.entity.ai.behavior.RunOne;
+import net.minecraft.world.entity.ai.behavior.RunSometimes;
+import net.minecraft.world.entity.ai.behavior.SetEntityLookTarget;
+import net.minecraft.world.entity.ai.behavior.SetLookAndInteract;
+import net.minecraft.world.entity.ai.behavior.SetWalkTargetFromAttackTargetIfTargetOutOfReach;
+import net.minecraft.world.entity.ai.behavior.SetWalkTargetFromLookTarget;
+import net.minecraft.world.entity.ai.behavior.StartAttacking;
+import net.minecraft.world.entity.ai.behavior.StopAttackingIfTargetInvalid;
+import net.minecraft.world.entity.ai.behavior.StopBeingAngryIfTargetDead;
+
+import Brain;
+import Item;
 
 public class FrozenTrollTasks {
 
@@ -52,16 +79,16 @@ public class FrozenTrollTasks {
     }
 
     private static void initCoreActivity(Brain<FrozenTrollEntity> brain_) {
-        brain_.addActivity(Activity.CORE, 0, ImmutableList.<Task<? super FrozenTrollEntity>>of(
-                new LookTask(45, 90), new WalkToTargetTask(), new InteractWithDoorTask(),
+        brain_.addActivity(Activity.CORE, 0, ImmutableList.<Behavior<? super FrozenTrollEntity>>of(
+                new LookAtTargetSink(45, 90), new MoveToTargetSink(), new InteractWithDoor(),
                 new FrozenTrollStartAdmiringItemTask(),
                 new FrozenTrollAdmireItemTask(120),
-                new GetAngryTask()));
+                new StopBeingAngryIfTargetDead()));
     }
 
     private static void initAdmireItemActivity(Brain<FrozenTrollEntity> brain_) {
-        brain_.addActivityAndRemoveMemoryWhenStopped(Activity.ADMIRE_ITEM, 10, ImmutableList.<Task<? super FrozenTrollEntity>>of(
-                new PickupWantedItemTask<>(FrozenTrollTasks::isNotHoldingLovedItemInOffHand, 1.0F, true, 9),
+        brain_.addActivityAndRemoveMemoryWhenStopped(Activity.ADMIRE_ITEM, 10, ImmutableList.<Behavior<? super FrozenTrollEntity>>of(
+                new GoToWantedItem<>(FrozenTrollTasks::isNotHoldingLovedItemInOffHand, 1.0F, true, 9),
                 new FrozenTrollForgetAdmiringItemTask(9),
                 new FrozenTrollStopReachingItemTask(200, 200)),
                 MemoryModuleType.ADMIRING_ITEM);
@@ -69,32 +96,32 @@ public class FrozenTrollTasks {
 
     private static void initIdleActivity(Brain<FrozenTrollEntity> brain_) {
         brain_.addActivity(Activity.IDLE, 10, ImmutableList.of(
-                new LookAtEntityTask(FrozenTrollTasks::isPlayerHoldingLovedItem, 14.0F),
-                new ForgetAttackTargetTask<>(FrozenTrollEntity::isAlive, FrozenTrollTasks::findNearestValidAttackTarget),
+                new SetEntityLookTarget(FrozenTrollTasks::isPlayerHoldingLovedItem, 14.0F),
+                new StartAttacking<>(FrozenTrollEntity::isAlive, FrozenTrollTasks::findNearestValidAttackTarget),
                 new FrozenTrollCongregateTask(),
                 createIdleLookBehaviors(),
                 createIdleMovementBehaviors(),
-                new FindInteractionAndLookTargetTask(EntityType.PLAYER, 4)));
+                new SetLookAndInteract(EntityType.PLAYER, 4)));
     }
 
     private static void initFightActivity(FrozenTrollEntity frozenTrollEntity, Brain<FrozenTrollEntity> frozenTrollEntityBrain) {
-        frozenTrollEntityBrain.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.<Task<? super FrozenTrollEntity>>of(
-                new FindNewAttackTargetTask<>((livingEntity8_) ->
+        frozenTrollEntityBrain.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.<Behavior<? super FrozenTrollEntity>>of(
+                new StopAttackingIfTargetInvalid<>((livingEntity8_) ->
                         !isNearestValidAttackTarget(frozenTrollEntity, livingEntity8_)),
-                new MoveToTargetTask(1.4F), new AttackTargetTask(20)), MemoryModuleType.ATTACK_TARGET);
+                new SetWalkTargetFromAttackTargetIfTargetOutOfReach(1.4F), new MeleeAttack(20)), MemoryModuleType.ATTACK_TARGET);
     }
 
-    private static FirstShuffledTask<FrozenTrollEntity> createIdleLookBehaviors() {
-        return new FirstShuffledTask<>(ImmutableList.of(Pair.of(new LookAtEntityTask(EntityType.PLAYER, 8.0F), 1), Pair.of(new LookAtEntityTask(JEntities.FROZEN_TROLL_TYPE, 8.0F), 1), Pair.of(new LookAtEntityTask(8.0F), 1), Pair.of(new DummyTask(30, 60), 1)));
+    private static RunOne<FrozenTrollEntity> createIdleLookBehaviors() {
+        return new RunOne<>(ImmutableList.of(Pair.of(new SetEntityLookTarget(EntityType.PLAYER, 8.0F), 1), Pair.of(new SetEntityLookTarget(JEntities.FROZEN_TROLL_TYPE, 8.0F), 1), Pair.of(new SetEntityLookTarget(8.0F), 1), Pair.of(new DoNothing(30, 60), 1)));
     }
 
-    private static FirstShuffledTask<FrozenTrollEntity> createIdleMovementBehaviors() {
-        return new FirstShuffledTask<>(ImmutableList.of(
-                Pair.of(new WalkRandomlyTask(1.2F), 2),
-                Pair.of(new RunSometimesTask<>(new WalkRandomlyTask(1.4F), RangedInteger.of(30, 60)), 2),
-                Pair.of(InteractWithEntityTask.of(JEntities.FROZEN_TROLL_TYPE, 8, MemoryModuleType.INTERACTION_TARGET, 1.2F, 2), 2),
-                Pair.of(new SupplementedTask<>(FrozenTrollTasks::doesntSeeAnyPlayerHoldingLovedItem, new WalkTowardsLookTargetTask(1.2F, 3)), 2),
-                Pair.of(new DummyTask(30, 60), 1)));
+    private static RunOne<FrozenTrollEntity> createIdleMovementBehaviors() {
+        return new RunOne<>(ImmutableList.of(
+                Pair.of(new RandomStroll(1.2F), 2),
+                Pair.of(new RunSometimes<>(new RandomStroll(1.4F), IntRange.of(30, 60)), 2),
+                Pair.of(InteractWith.of(JEntities.FROZEN_TROLL_TYPE, 8, MemoryModuleType.INTERACTION_TARGET, 1.2F, 2), 2),
+                Pair.of(new RunIf<>(FrozenTrollTasks::doesntSeeAnyPlayerHoldingLovedItem, new SetWalkTargetFromLookTarget(1.2F, 3)), 2),
+                Pair.of(new DoNothing(30, 60), 1)));
     }
 
     private static boolean isNearestValidAttackTarget(FrozenTrollEntity frozenTrollEntity, LivingEntity livingEntity_) {
@@ -103,34 +130,34 @@ public class FrozenTrollTasks {
 
     private static Optional<? extends LivingEntity> findNearestValidAttackTarget(FrozenTrollEntity frozenTrollEntity) {
         Brain<FrozenTrollEntity> brain = frozenTrollEntity.getBrain();
-        Optional<LivingEntity> optional = BrainUtil.getLivingEntityFromUUIDMemory(frozenTrollEntity, MemoryModuleType.ANGRY_AT);
+        Optional<LivingEntity> optional = BehaviorUtils.getLivingEntityFromUUIDMemory(frozenTrollEntity, MemoryModuleType.ANGRY_AT);
         if (optional.isPresent() && isAttackAllowed(optional.get())) {
             return optional;
         } else {
             if (brain.hasMemoryValue(MemoryModuleType.UNIVERSAL_ANGER)) {
-                Optional<PlayerEntity> optional1 = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER);
+                Optional<Player> optional1 = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER);
                 if (optional1.isPresent()) {
                     return optional1;
                 }
             }
 
-            Optional<MobEntity> optional3 = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_NEMESIS);
+            Optional<Mob> optional3 = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_NEMESIS);
             if (optional3.isPresent()) {
                 return optional3;
             } else {
-                Optional<PlayerEntity> optional2 = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_PLAYER);
+                Optional<Player> optional2 = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_PLAYER);
                 return optional2.isPresent() && isAttackAllowed(optional2.get()) ? optional2 : Optional.empty();
             }
         }
     }
 
     private static boolean isAttackAllowed(LivingEntity livingEntity_) {
-        return EntityPredicates.ATTACK_ALLOWED.test(livingEntity_);
+        return EntitySelector.ATTACK_ALLOWED.test(livingEntity_);
     }
 
     protected static void stopHoldingOffHandItem(FrozenTrollEntity frozenTrollEntity, boolean boolean_) {
-        ItemStack itemstack = frozenTrollEntity.getItemInHand(Hand.OFF_HAND);
-        frozenTrollEntity.setItemInHand(Hand.OFF_HAND, ItemStack.EMPTY);
+        ItemStack itemstack = frozenTrollEntity.getItemInHand(InteractionHand.OFF_HAND);
+        frozenTrollEntity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
         boolean flag = itemstack.getItem() == BARTERING_ITEM;
         if (boolean_ && flag) {
             throwItems(frozenTrollEntity, getBarterResponseItems(frozenTrollEntity));
@@ -148,7 +175,7 @@ public class FrozenTrollTasks {
     }
 
     private static void throwItems(FrozenTrollEntity frozenTrollEntity, List<ItemStack> list_) {
-        Optional<PlayerEntity> optional = frozenTrollEntity.getBrain().getMemory(MemoryModuleType.NEAREST_VISIBLE_PLAYER);
+        Optional<Player> optional = frozenTrollEntity.getBrain().getMemory(MemoryModuleType.NEAREST_VISIBLE_PLAYER);
         if (optional.isPresent()) {
             throwItemsTowardPlayer(frozenTrollEntity, optional.get(), list_);
         } else {
@@ -161,16 +188,16 @@ public class FrozenTrollTasks {
         throwItemsTowardPos(frozenTrollEntity, list_, getRandomNearbyPos(frozenTrollEntity));
     }
 
-    private static void throwItemsTowardPlayer(FrozenTrollEntity frozenTrollEntity, PlayerEntity playerEntity_, List<ItemStack> list_) {
+    private static void throwItemsTowardPlayer(FrozenTrollEntity frozenTrollEntity, Player playerEntity_, List<ItemStack> list_) {
         throwItemsTowardPos(frozenTrollEntity, list_, playerEntity_.position());
     }
 
-    private static void throwItemsTowardPos(FrozenTrollEntity frozenTrollEntity, List<ItemStack> list_, Vector3d vector3d_) {
+    private static void throwItemsTowardPos(FrozenTrollEntity frozenTrollEntity, List<ItemStack> list_, Vec3 vector3d_) {
         if (!list_.isEmpty()) {
-            frozenTrollEntity.swing(Hand.OFF_HAND);
+            frozenTrollEntity.swing(InteractionHand.OFF_HAND);
 
             for (ItemStack itemstack : list_) {
-                BrainUtil.throwItem(frozenTrollEntity, itemstack, vector3d_.add(0.0D, 1.0D, 0.0D));
+                BehaviorUtils.throwItem(frozenTrollEntity, itemstack, vector3d_.add(0.0D, 1.0D, 0.0D));
             }
         }
 
@@ -178,7 +205,7 @@ public class FrozenTrollTasks {
 
     private static List<ItemStack> getBarterResponseItems(FrozenTrollEntity frozenTrollEntity) {
         LootTable loottable = Objects.requireNonNull(frozenTrollEntity.level.getServer()).getLootTables().get(JLootTables.FROZEN_TROLL_TRADES);
-        return loottable.getRandomItems((new LootContext.Builder((ServerWorld) frozenTrollEntity.level)).withParameter(LootParameters.THIS_ENTITY, frozenTrollEntity).withRandom(frozenTrollEntity.level.random).create(LootParameterSets.PIGLIN_BARTER));
+        return loottable.getRandomItems((new LootContext.Builder((ServerLevel) frozenTrollEntity.level)).withParameter(LootContextParams.THIS_ENTITY, frozenTrollEntity).withRandom(frozenTrollEntity.level.random).create(LootContextParamSets.PIGLIN_BARTER));
     }
 
     private static boolean doesntSeeAnyPlayerHoldingLovedItem(LivingEntity livingEntity_) {
@@ -238,16 +265,16 @@ public class FrozenTrollTasks {
         }
     }
 
-    public static ActionResultType mobInteract(FrozenTrollEntity frozenTrollEntity, PlayerEntity playerEntity_, Hand hand_) {
+    public static InteractionResult mobInteract(FrozenTrollEntity frozenTrollEntity, Player playerEntity_, InteractionHand hand_) {
         ItemStack itemstack = playerEntity_.getItemInHand(hand_);
         if (canAdmire(frozenTrollEntity, itemstack)) {
             ItemStack itemstack1 = itemstack.split(1);
             holdInOffhand(frozenTrollEntity, itemstack1);
             admireGoldItem(frozenTrollEntity);
             stopWalking(frozenTrollEntity);
-            return ActionResultType.CONSUME;
+            return InteractionResult.CONSUME;
         } else {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
     }
 
@@ -262,7 +289,7 @@ public class FrozenTrollTasks {
 
     private static void holdInOffhand(FrozenTrollEntity frozenTrollEntity, ItemStack itemStack_) {
         if (isHoldingItemInOffHand(frozenTrollEntity)) {
-            frozenTrollEntity.spawnAtLocation(frozenTrollEntity.getItemInHand(Hand.OFF_HAND));
+            frozenTrollEntity.spawnAtLocation(frozenTrollEntity.getItemInHand(InteractionHand.OFF_HAND));
         }
 
         frozenTrollEntity.holdInOffHand(itemStack_);
@@ -322,8 +349,8 @@ public class FrozenTrollTasks {
         return livingEntity_.getType() == EntityType.PLAYER && livingEntity_.isHolding(FrozenTrollTasks::isLovedItem);
     }
 
-    private static Vector3d getRandomNearbyPos(FrozenTrollEntity frozenTrollEntity) {
-        Vector3d vector3d = RandomPositionGenerator.getLandPos(frozenTrollEntity, 4, 2);
+    private static Vec3 getRandomNearbyPos(FrozenTrollEntity frozenTrollEntity) {
+        Vec3 vector3d = RandomPos.getLandPos(frozenTrollEntity, 4, 2);
         return vector3d == null ? frozenTrollEntity.position() : vector3d;
     }
 }

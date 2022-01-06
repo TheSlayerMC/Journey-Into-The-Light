@@ -3,7 +3,7 @@ package net.jitl.common.capability.pressedkeys;
 import net.jitl.client.eventhandler.KeybindEventHandler;
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 
 import java.util.Optional;
 
@@ -32,7 +32,7 @@ public class PressedKeysCapability implements IPressedKeysCapability {
         return amulet;
     }
 
-    public static boolean isAmuletPressedEitherSide(PlayerEntity player) {
+    public static boolean isAmuletPressedEitherSide(Player player) {
         if (KeybindEventHandler.keyAmulet != null) return KeybindEventHandler.keyAmulet.isDown();
         IPressedKeysCapability capability = JCapabilityProvider.getCapability(player, JCapabilityProvider.KEYS);
         return (capability != null && capability.isAmuletPressed());

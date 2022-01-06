@@ -4,28 +4,30 @@ import net.jitl.common.block.base.JFallingTileContainerBlock;
 import net.jitl.common.tile.PotTile;
 import net.jitl.init.JSounds;
 import net.jitl.util.JBlockProperties;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.FallingBlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
+
+import VoxelShape;
 
 public class AncientPotteryBlock extends JFallingTileContainerBlock {
 
@@ -34,24 +36,24 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull IBlockReader worldIn, @NotNull BlockPos pos, @NotNull ISelectionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         VoxelShape middle = Block.box(1.0D, 14.0D, 1.0D, 15.0D, 2.0D, 15.0D);
         VoxelShape bottom = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 0.0D, 14.0D);
         VoxelShape top = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D);
         VoxelShape topMid = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 18.0D, 11.0D);
         VoxelShape lip = Block.box(4.0D, 18.0D, 4.0D, 12.0D, 20.0D, 12.0D);
 
-        return VoxelShapes.or(middle, bottom, top, lip, topMid);
+        return Shapes.or(middle, bottom, top, lip, topMid);
     }
 
     //TODO: "destroy" method only gets called when a player destroys the block.
     // need to find a solution so other causes of destruction, like explosions, also drop inventory contents
 
     @Override
-    public void destroy(IWorld worldIn, BlockPos pos, BlockState state) {
-        TileEntity tileentity = worldIn.getBlockEntity(pos);
-        if (tileentity instanceof IInventory) {
-            InventoryHelper.dropContents((World) worldIn, pos, (IInventory) tileentity);
+    public void destroy(LevelAccessor worldIn, BlockPos pos, BlockState state) {
+        BlockEntity tileentity = worldIn.getBlockEntity(pos);
+        if (tileentity instanceof Container) {
+            Containers.dropContents((Level) worldIn, pos, (Container) tileentity);
         }
     }
 
@@ -70,20 +72,20 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
     }*/
 
     @Override
-    public void onLand(World worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, FallingBlockEntity fallingBlock) {
+    public void onLand(Level worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, FallingBlockEntity fallingBlock) {
         fallingBlock.blockData.putBoolean("fallen", true);
     }
 
     @Override
     protected void falling(FallingBlockEntity fallingEntity) {
-        TileEntity tileEntity = fallingEntity.level.getBlockEntity(fallingEntity.blockPosition());
+        BlockEntity tileEntity = fallingEntity.level.getBlockEntity(fallingEntity.blockPosition());
         if (tileEntity instanceof PotTile) {
-            fallingEntity.blockData = tileEntity.save(new CompoundNBT());
+            fallingEntity.blockData = tileEntity.save(new CompoundTag());
         }
     }
 
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         if (!worldIn.isClientSide()) {
             if (worldIn.getBlockEntity(pos) instanceof PotTile) {
                 PotTile potTile = (PotTile) worldIn.getBlockEntity(pos);
@@ -101,14 +103,14 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
                     }
                     if (stack.isEmpty() || stack.getCount() != prevStack.getCount()) {
                         player.setItemInHand(handIn, stack);
-                        return ActionResultType.SUCCESS;
+                        return InteractionResult.SUCCESS;
                     }
-                    worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
             }
-            return ActionResultType.sidedSuccess(worldIn.isClientSide);
+            return InteractionResult.sidedSuccess(worldIn.isClientSide);
         }
-        return ActionResultType.sidedSuccess(worldIn.isClientSide);
+        return InteractionResult.sidedSuccess(worldIn.isClientSide);
     }
 }
 

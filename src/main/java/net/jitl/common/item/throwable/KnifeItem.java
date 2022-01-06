@@ -2,30 +2,32 @@ package net.jitl.common.item.throwable;
 
 import net.jitl.common.entity.projectile.KnifeEntity;
 import net.jitl.util.TriFunction;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.Level;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class KnifeItem extends Item {
-    protected TriFunction<LivingEntity, World, ItemStack, KnifeEntity> projectileFactory;
+    protected TriFunction<LivingEntity, Level, ItemStack, KnifeEntity> projectileFactory;
 
-    public KnifeItem(Properties properties, TriFunction<LivingEntity, World, ItemStack, KnifeEntity> projectileFactory) {
+    public KnifeItem(Properties properties, TriFunction<LivingEntity, Level, ItemStack, KnifeEntity> projectileFactory) {
         super(properties);
         this.projectileFactory = projectileFactory;
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack stack = playerIn.getItemInHand(handIn);
-        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+        worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ENDER_PEARL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isClientSide()) {
             KnifeEntity entity = projectileFactory.apply(playerIn, worldIn, stack);
 
@@ -33,14 +35,14 @@ public class KnifeItem extends Item {
             entity.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
 
             if (playerIn.isCreative()) {
-                entity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+                entity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
             } else {
                 stack.shrink(1);
             }
             worldIn.addFreshEntity(entity);
             playerIn.awardStat(Stats.ITEM_USED.get(this));
         }
-        return ActionResult.sidedSuccess(stack, worldIn.isClientSide());
+        return InteractionResultHolder.sidedSuccess(stack, worldIn.isClientSide());
     }
 
     @Override

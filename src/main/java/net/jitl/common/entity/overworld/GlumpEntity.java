@@ -1,30 +1,36 @@
 package net.jitl.common.entity.overworld;
 
 import net.jitl.init.JSounds;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.AnimationSystem;
 import ru.timeconqueror.timecore.api.animation.AnimatedObject;
 import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
 
-public class GlumpEntity extends CreatureEntity implements AnimatedObject<GlumpEntity> {
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.Pose;
+
+public class GlumpEntity extends PathfinderMob implements AnimatedObject<GlumpEntity> {
 
     private final AnimationSystem<GlumpEntity> animationSystem;
 
-    public GlumpEntity(EntityType<? extends GlumpEntity> entityType, World world) {
+    public GlumpEntity(EntityType<? extends GlumpEntity> entityType, Level world) {
         super(entityType, world);
         animationSystem = AnimationSystemBuilder.forEntity(this, world,
                 builder -> {
@@ -34,20 +40,20 @@ public class GlumpEntity extends CreatureEntity implements AnimatedObject<GlumpE
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes()
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return sizeIn.height * 0.6F;
     }
 

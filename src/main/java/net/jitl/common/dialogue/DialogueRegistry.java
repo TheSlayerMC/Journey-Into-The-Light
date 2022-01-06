@@ -1,6 +1,6 @@
 package net.jitl.common.dialogue;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;

@@ -1,18 +1,18 @@
 package net.jitl.client.render.entity;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
 import net.jitl.client.render.model.frozen.CapybaraModel;
 import net.jitl.common.entity.frozen.CapybaraEntity;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.SaddleLayer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 public class CapybaraRenderer extends MobRenderer<CapybaraEntity, CapybaraModel<CapybaraEntity>> {
 
-    public CapybaraRenderer(EntityRendererManager renderManagerIn) {
+    public CapybaraRenderer(EntityRenderDispatcher renderManagerIn) {
         super(renderManagerIn, new CapybaraModel(), 0.5F);
         this.addLayer(new SaddleLayer<>(this, new CapybaraModel<>(), JITL.rl("textures/entity/frozen/capybara_saddle.png")));
     }
@@ -23,7 +23,7 @@ public class CapybaraRenderer extends MobRenderer<CapybaraEntity, CapybaraModel<
     }
 
     @Override
-    protected void scale(CapybaraEntity entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+    protected void scale(CapybaraEntity entitylivingbaseIn, PoseStack matrixStackIn, float partialTickTime) {
         float f = 1.5F;
         matrixStackIn.scale(f, f, f);
     }

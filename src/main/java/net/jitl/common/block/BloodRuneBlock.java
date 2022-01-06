@@ -5,21 +5,23 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JParticleManager;
 import net.jitl.init.JSounds;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class BloodRuneBlock extends Block {
 
@@ -28,10 +30,10 @@ public class BloodRuneBlock extends Block {
 	}
 
 	@Override
-	public @NotNull ActionResultType use(@NotNull BlockState state, @NotNull World worldIn, @NotNull BlockPos pos, PlayerEntity player, @NotNull Hand handIn, @NotNull BlockRayTraceResult hit) {
+	public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
 		ItemStack inHandItem = player.getItemInHand(handIn);
 		if (inHandItem.getItem() == JItems.POWDER_OF_ESSENCIA) {
-			for (ItemEntity itementity : worldIn.getEntitiesOfClass(ItemEntity.class, new AxisAlignedBB(pos.above()))) {
+			for (ItemEntity itementity : worldIn.getEntitiesOfClass(ItemEntity.class, new AABB(pos.above()))) {
 				Block rune = null;
 				if (itementity.getItem().getItem() == Items.ROTTEN_FLESH) {
 //					rune = JBlocks.BLOOD_RUNE_FLESH;
@@ -55,7 +57,7 @@ public class BloodRuneBlock extends Block {
                     worldIn.addFreshEntity(essenciaBoltEntity);
                     worldIn.setBlock(pos, rune.defaultBlockState(), 1);
                     itementity.remove();
-                    worldIn.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundCategory.BLOCKS, 1.0F, player.getRandom().nextFloat() + 0.5F);
+                    worldIn.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundSource.BLOCKS, 1.0F, player.getRandom().nextFloat() + 0.5F);
                     if (!player.isCreative()) {
                         inHandItem.shrink(1);
                     }
@@ -63,16 +65,16 @@ public class BloodRuneBlock extends Block {
 						spawnParticles(worldIn, player, pos);
 					}
 				} else {
-					return ActionResultType.FAIL;
+					return InteractionResult.FAIL;
 				}
 			}
 		}
-		return ActionResultType.PASS;
+		return InteractionResult.PASS;
 	}
 
-	public void spawnParticles(World worldIn, PlayerEntity player, BlockPos pos) {
+	public void spawnParticles(Level worldIn, Player player, BlockPos pos) {
 		for (int i = 0; i < 6; i++) {
-			IParticleData particle = JParticleManager.RED_FLAME.get();
+			ParticleOptions particle = JParticleManager.RED_FLAME.get();
 			int posThreshold = 16;
 			int speedThreshold = 64;
 			float posRandom0 = (float) player.getRandom().nextInt(2 + i) / posThreshold;

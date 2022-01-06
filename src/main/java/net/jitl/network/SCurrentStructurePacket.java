@@ -2,7 +2,7 @@ package net.jitl.network;
 
 import net.jitl.client.eventhandler.music.StructureMusicHandler;
 import net.jitl.common.helper.EnumStructureMusic;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fml.network.NetworkEvent;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.common.packet.ITimePacketHandler;
@@ -16,12 +16,12 @@ public class SCurrentStructurePacket {
 
     public static class Handler implements ITimePacketHandler<SCurrentStructurePacket> {
         @Override
-        public void encode(SCurrentStructurePacket packet, PacketBuffer buffer) {
+        public void encode(SCurrentStructurePacket packet, FriendlyByteBuf buffer) {
             buffer.writeInt(packet.storedID);
         }
 
         @Override
-        public @NotNull SCurrentStructurePacket decode(PacketBuffer buffer) {
+        public @NotNull SCurrentStructurePacket decode(FriendlyByteBuf buffer) {
             return new SCurrentStructurePacket(buffer.readInt());
         }
 

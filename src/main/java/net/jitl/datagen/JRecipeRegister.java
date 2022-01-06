@@ -3,10 +3,10 @@ package net.jitl.datagen;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JItems;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.item.Items;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.world.item.Items;
 
 import java.util.function.Consumer;
 
@@ -17,7 +17,7 @@ public class JRecipeRegister extends JRecipeProvider {
 	}
 
 	@Override
-	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
+	protected void buildShapelessRecipes(Consumer<FinishedRecipe> recipeConsumer) {
 		buildBlockRecipes(recipeConsumer);
 		buildItemRecipes(recipeConsumer);
 		buildToolRecipes(recipeConsumer);
@@ -27,7 +27,7 @@ public class JRecipeRegister extends JRecipeProvider {
 		buildSmithingRecipes(recipeConsumer);
 	}
 
-	public void buildBlockRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
+	public void buildBlockRecipes(Consumer<FinishedRecipe> recipeConsumer) {
 		addOreBlockRecipe(recipeConsumer, JItems.SAPPHIRE, JBlocks.SAPPHIRE_BLOCK);
 		addOreBlockRecipe(recipeConsumer, JItems.LUNIUM_INGOT, JBlocks.LUNIUM_BLOCK);
 		addOreBlockRecipe(recipeConsumer, JItems.SHADIUM_INGOT, JBlocks.SHADIUM_BLOCK);
@@ -45,7 +45,7 @@ public class JRecipeRegister extends JRecipeProvider {
 		add2x2Recipe(recipeConsumer, JItems.MUD_BALL, JBlocks.BLOCK_OF_MUD);
 	}
 
-	public void buildItemRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
+	public void buildItemRecipes(Consumer<FinishedRecipe> recipeConsumer) {
 		add3x3Recipe(recipeConsumer, JItems.FIRESTONE_SHARD, JItems.FIRESTONE_CLUMP);
 
 		ShapelessRecipeBuilder.shapeless(JItems.MUD_BALL, 4)
@@ -82,7 +82,7 @@ public class JRecipeRegister extends JRecipeProvider {
 
 	}
 
-	public void buildToolRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
+	public void buildToolRecipes(Consumer<FinishedRecipe> recipeConsumer) {
 		addToolsetAndArmorRecipes(recipeConsumer, JItems.OBSIDIAN_ROD, JItems.SAPPHIRE, RecipePrefix.SAPPHIRE);
 	}
 
@@ -101,7 +101,7 @@ public class JRecipeRegister extends JRecipeProvider {
 //		addCookingRecipe();
 	}
 
-	public void buildSmithingRecipes(Consumer<IFinishedRecipe> recipeConsumer) {
+	public void buildSmithingRecipes(Consumer<FinishedRecipe> recipeConsumer) {
 		addSmithingRecipe(recipeConsumer, Items.DIAMOND_HELMET, JItems.LUNIUM_INGOT, JItems.LUNIUM_HELMET);
 		addSmithingRecipe(recipeConsumer, Items.DIAMOND_CHESTPLATE, JItems.LUNIUM_INGOT, JItems.LUNIUM_CHESTPLATE);
 		addSmithingRecipe(recipeConsumer, Items.DIAMOND_LEGGINGS, JItems.LUNIUM_INGOT, JItems.LUNIUM_LEGGINGS);

@@ -1,6 +1,6 @@
 package net.jitl.common.dialogue;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class DialogueBuilder {
     public static DialogueNode branch(NodeBuilder rootBuilder) {

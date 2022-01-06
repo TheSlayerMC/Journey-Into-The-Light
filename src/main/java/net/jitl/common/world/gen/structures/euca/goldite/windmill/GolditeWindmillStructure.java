@@ -3,41 +3,44 @@ package net.jitl.common.world.gen.structures.euca.goldite.windmill;
 import com.mojang.serialization.Codec;
 import net.jitl.JITL;
 import net.jitl.init.JStructures;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.structure.StructureStart;
-import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.structure.StructureStart;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.util.GenHelper;
 
-public class GolditeWindmillStructure extends Structure<NoFeatureConfig> {
+import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
+import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
 
-    public GolditeWindmillStructure(Codec<NoFeatureConfig> codec) {
+public class GolditeWindmillStructure extends StructureFeature<NoneFeatureConfiguration> {
+
+    public GolditeWindmillStructure(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public @NotNull IStartFactory<NoFeatureConfig> getStartFactory() {
+    public @NotNull StructureStartFactory<NoneFeatureConfiguration> getStartFactory() {
         return Start::new;
     }
 
     @Override
-    public GenerationStage.@NotNull Decoration step() {
-        return GenerationStage.Decoration.SURFACE_STRUCTURES;
+    public @NotNull Decoration step() {
+        return Decoration.SURFACE_STRUCTURES;
     }
 
-    public static class Start extends StructureStart<NoFeatureConfig> {
-        public Start(Structure<NoFeatureConfig> structure, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox_, int references, long seed) {
+    public static class Start extends StructureStart<NoneFeatureConfiguration> {
+        public Start(StructureFeature<NoneFeatureConfiguration> structure, int chunkX, int chunkZ, BoundingBox mutableBoundingBox_, int references, long seed) {
             super(structure, chunkX, chunkZ, mutableBoundingBox_, references, seed);
         }
 
-        public void generatePieces(@NotNull DynamicRegistries dynamicRegistries, @NotNull ChunkGenerator chunkGenerator, @NotNull TemplateManager templateManager, int chunkX, int chunkZ, @NotNull Biome biome_, @NotNull NoFeatureConfig featureConfig_) {
+        public void generatePieces(@NotNull RegistryAccess dynamicRegistries, @NotNull ChunkGenerator chunkGenerator, @NotNull StructureManager templateManager, int chunkX, int chunkZ, @NotNull Biome biome_, @NotNull NoneFeatureConfiguration featureConfig_) {
             int x = chunkX << 4;
             int z = chunkZ << 4;
 
