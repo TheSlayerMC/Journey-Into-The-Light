@@ -1,13 +1,12 @@
 package net.jitl.client.render.gui.button;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -48,7 +47,7 @@ public class JImageButton extends ImageButton {
 	public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		if (this.visible) {
 			Minecraft minecraft = Minecraft.getInstance();
-			minecraft.getTextureManager().bind(resourceLocation);
+			minecraft.getTextureManager().bindForSetup(resourceLocation);
 
 			RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.alpha);
 

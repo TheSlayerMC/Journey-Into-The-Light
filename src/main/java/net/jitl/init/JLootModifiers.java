@@ -3,8 +3,8 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.jitl.common.loot.modifiers.InjectTableModifier;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import ru.timeconqueror.timecore.api.registry.SimpleForgeRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 

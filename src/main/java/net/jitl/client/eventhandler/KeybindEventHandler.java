@@ -1,19 +1,15 @@
 package net.jitl.client.eventhandler;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.jitl.client.render.screen.ScreenPlayerStats;
 import net.jitl.network.JPacketHandler;
 import net.jitl.network.KeyPressedPacket;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.KeyMapping;
-import com.mojang.blaze3d.platform.InputConstants;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.lwjgl.glfw.GLFW;
-
-import KeyMapping;
 
 public class KeybindEventHandler {
 
@@ -40,7 +36,7 @@ public class KeybindEventHandler {
             if (action == GLFW.GLFW_PRESS) {
                 if (key == keyStats.getKey()) {
                     System.out.println("Stats");
-                    MINECRAFT.setScreen(new ScreenPlayerStats(MINECRAFT.player.inventory));
+                    MINECRAFT.setScreen(new ScreenPlayerStats(MINECRAFT.player.getInventory()));
                 } else {
                     handleAbilityKeys(key, action);
                 }

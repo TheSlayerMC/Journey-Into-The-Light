@@ -5,23 +5,22 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JParticleManager;
 import net.jitl.init.JSounds;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class BloodRuneBlock extends Block {
 
@@ -56,7 +55,7 @@ public class BloodRuneBlock extends Block {
 
                     worldIn.addFreshEntity(essenciaBoltEntity);
                     worldIn.setBlock(pos, rune.defaultBlockState(), 1);
-                    itementity.remove();
+                    itementity.remove(Entity.RemovalReason.DISCARDED);
                     worldIn.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundSource.BLOCKS, 1.0F, player.getRandom().nextFloat() + 0.5F);
                     if (!player.isCreative()) {
                         inHandItem.shrink(1);

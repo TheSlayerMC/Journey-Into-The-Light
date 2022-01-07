@@ -1,13 +1,12 @@
 package net.jitl.common.block.base;
 
 import net.jitl.util.JBlockProperties;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
 import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
 
@@ -22,7 +21,7 @@ public class JBlock extends Block {
 
     @Override
     public boolean isFireSource(BlockState state, LevelReader world, BlockPos pos, Direction side) {
-        return blockP == JBlockProperties.HOLD_FIRE ? true : super.isFireSource(state, world, pos, side);
+        return blockP == JBlockProperties.HOLD_FIRE || super.isFireSource(state, world, pos, side);
     }
 
     @Override

@@ -2,40 +2,33 @@ package net.jitl.common.entity.frozen;
 
 import net.jitl.JITL;
 import net.jitl.init.JParticleManager;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.entity.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Random;
-
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.Pose;
 
 public class PhantasmEntity extends Mob implements Enemy {
     public float targetSquish;
@@ -143,9 +136,9 @@ public class PhantasmEntity extends Mob implements Enemy {
     }
 
     @Override
-    public void remove(boolean keepData) {
+    public void remove(@NotNull RemovalReason removalReason) {
         int i = 1;
-        if (!this.level.isClientSide && i > 1 && this.isDeadOrDying() && !this.removed) {
+        if (!this.level.isClientSide && i > 1 && this.isDeadOrDying()) {
             Component itextcomponent = this.getCustomName();
             boolean flag = this.isNoAi();
             float f = (float) i / 4.0F;
@@ -168,7 +161,7 @@ public class PhantasmEntity extends Mob implements Enemy {
             }
         }
 
-        super.remove(keepData);
+        super.remove(removalReason);
     }
 
     /**
@@ -193,7 +186,7 @@ public class PhantasmEntity extends Mob implements Enemy {
     protected void dealDamage(LivingEntity entityIn) {
         if (this.isAlive()) {
             int i = 1;
-            if (this.distanceToSqr(entityIn) < 0.6D * (double) i * 0.6D * (double) i && this.canSee(entityIn) && entityIn.hurt(DamageSource.mobAttack(this), this.getAttackDamage())) {
+            if (this.distanceToSqr(entityIn) < 0.6D * (double) i * 0.6D * (double) i && this.hasLineOfSight(entityIn) && entityIn.hurt(DamageSource.mobAttack(this), this.getAttackDamage())) {
                 this.playSound(SoundEvents.SLIME_ATTACK, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                 this.doEnchantDamageEffects(this, entityIn);
             }
@@ -291,7 +284,7 @@ public class PhantasmEntity extends Mob implements Enemy {
             } else if (!livingentity.isAlive()) {
                 return false;
             } else {
-                return (!(livingentity instanceof Player) || !((Player) livingentity).abilities.invulnerable) && this.slime.getMoveControl() instanceof MoveHelperController;
+                return (!(livingentity instanceof Player) || !livingentity.isInvulnerable()) && this.slime.getMoveControl() instanceof MoveHelperController;
             }
         }
 
@@ -312,7 +305,7 @@ public class PhantasmEntity extends Mob implements Enemy {
                 return false;
             } else if (!livingentity.isAlive()) {
                 return false;
-            } else if (livingentity instanceof Player && ((Player) livingentity).abilities.invulnerable) {
+            } else if (livingentity instanceof Player && livingentity.isInvulnerable()) {
                 return false;
             } else {
                 return --this.growTiredTimer > 0;
@@ -324,7 +317,7 @@ public class PhantasmEntity extends Mob implements Enemy {
          */
         public void tick() {
             this.slime.lookAt(Objects.requireNonNull(this.slime.getTarget()), 10.0F, 10.0F);
-            ((MoveHelperController) this.slime.getMoveControl()).setDirection(this.slime.yRot, this.slime.isDealsDamage());
+            ((MoveHelperController) this.slime.getMoveControl()).setDirection(this.slime.getYRot(), this.slime.isDealsDamage());
         }
     }
 
@@ -421,7 +414,7 @@ public class PhantasmEntity extends Mob implements Enemy {
         public MoveHelperController(PhantasmEntity slimeIn) {
             super(slimeIn);
             this.slime = slimeIn;
-            this.yRot = 180.0F * slimeIn.yRot / (float) Math.PI;
+            this.yRot = 180.0F * slimeIn.getYRot() / (float) Math.PI;
         }
 
         public void setDirection(float yRotIn, boolean aggressive) {
@@ -435,9 +428,9 @@ public class PhantasmEntity extends Mob implements Enemy {
         }
 
         public void tick() {
-            this.mob.yRot = this.rotlerp(this.mob.yRot, this.yRot, 90.0F);
-            this.mob.yHeadRot = this.mob.yRot;
-            this.mob.yBodyRot = this.mob.yRot;
+            this.mob.setYRot(this.rotlerp(this.mob.getYRot(), this.yRot, 90.0F));
+            this.mob.yHeadRot = this.mob.getYRot();
+            this.mob.yBodyRot = this.mob.getYRot();
             if (this.operation != Operation.MOVE_TO) {
                 this.mob.setZza(0.0F);
             } else {

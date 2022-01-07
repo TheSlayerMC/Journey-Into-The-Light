@@ -3,8 +3,6 @@ package net.jitl.common.item;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class JFuelItem extends Item {
 
 	public final int burnTime;
@@ -14,7 +12,7 @@ public class JFuelItem extends Item {
 		this.burnTime = burnTime;
 	}
 
-	@Override
+	@Override //TODO: how does fuel work now?
 	public int getBurnTime(ItemStack itemStack) {
 		return burnTime;
 	}

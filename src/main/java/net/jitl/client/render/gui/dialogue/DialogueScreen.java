@@ -1,16 +1,16 @@
 package net.jitl.client.render.gui.dialogue;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.dialogue.ClientDialogueNode;
 import net.jitl.client.render.gui.base.JScreen;
 import net.jitl.client.render.gui.button.NoTextureButton;
 import net.jitl.client.util.Rectangle;
-import net.minecraft.client.gui.screens.inventory.InventoryScreen;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -82,7 +82,7 @@ public class DialogueScreen extends JScreen {
         int x = mobTextRect.left() + INDENT * -(INDENT_OFFSET);
 
         for (String option : options) {
-            addButton(new NoTextureButton(x, startY, new TranslatableComponent(option)));
+            addWidget(new NoTextureButton(x, startY, new TranslatableComponent(option)));
             startY += incrementor;
         }
     }

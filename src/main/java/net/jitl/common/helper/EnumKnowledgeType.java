@@ -5,7 +5,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import java.util.HashMap;
 
 public enum EnumKnowledgeType {
-
     OVERWORLD("overworld"),
     NETHER("nether"),
     END("end"),

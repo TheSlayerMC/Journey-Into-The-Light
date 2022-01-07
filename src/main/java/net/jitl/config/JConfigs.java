@@ -12,7 +12,7 @@ public class JConfigs {
 	@AutoRegistrable
 	private static final ConfigRegister CONFIG_REGISTER = new ConfigRegister(JITL.MODID);
 
-	@AutoRegistrable.InitMethod
+	@AutoRegistrable.Init
 	private static void register() {
 		CONFIG_REGISTER.register(CLIENT);
 		CONFIG_REGISTER.register(COMMON);

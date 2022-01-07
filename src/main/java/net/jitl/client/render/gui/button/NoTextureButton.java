@@ -2,11 +2,13 @@ package net.jitl.client.render.gui.button;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.common.helper.ArgbColor;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
-import net.minecraft.ChatFormatting;
+import org.jetbrains.annotations.NotNull;
 
 public class NoTextureButton extends AbstractWidget {
     public NoTextureButton(int x, int y, int width, int height, Component title) {
@@ -35,5 +37,10 @@ public class NoTextureButton extends AbstractWidget {
             }
             drawString(matrixStack, fontrenderer, this.getMessage(), this.x + this.width / this.x, this.y + (this.height - 8) / 2, j);
         }
+    }
+
+    @Override
+    public void updateNarration(@NotNull NarrationElementOutput narrationElementOutput_) {
+
     }
 }

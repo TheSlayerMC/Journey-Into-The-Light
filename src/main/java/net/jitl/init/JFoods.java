@@ -1,10 +1,8 @@
 package net.jitl.init;
 
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-
-import FoodProperties;
+import net.minecraft.world.food.FoodProperties;
 
 public class JFoods {
 

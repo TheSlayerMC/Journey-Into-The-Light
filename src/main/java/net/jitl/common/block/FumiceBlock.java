@@ -2,24 +2,20 @@ package net.jitl.common.block;
 
 import com.google.common.collect.Lists;
 import net.jitl.init.JBlocks;
-import net.minecraft.block.*;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.core.Direction;
-import net.minecraft.util.Tuple;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.level.Level;
-
-import java.util.Queue;
-
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BucketPickup;
 import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Material;
+
+import java.util.Queue;
 
 public class FumiceBlock extends Block {
 
@@ -63,7 +59,7 @@ public class FumiceBlock extends Block {
                 FluidState fluidstate = worldIn.getFluidState(blockpos1);
                 Material material = blockstate.getMaterial();
                 if (fluidstate.is(FluidTags.LAVA)) {
-                    if (blockstate.getBlock() instanceof BucketPickup && ((BucketPickup) blockstate.getBlock()).takeLiquid(worldIn, blockpos1, blockstate) != Fluids.EMPTY) {
+                    if (blockstate.getBlock() instanceof BucketPickup && ((BucketPickup) blockstate.getBlock()).pickupBlock(worldIn, blockpos1, blockstate).isEmpty()) {
                         ++i;
                         if (j < 6) {
                             queue.add(new Tuple<>(blockpos1, j + 1));

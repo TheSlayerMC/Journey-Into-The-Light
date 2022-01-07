@@ -1,19 +1,16 @@
 package net.jitl.common.block;
 
 import net.jitl.init.JBlocks;
-import net.minecraft.block.*;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.LevelReader;
-import org.jetbrains.annotations.NotNull;
-
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantBodyBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class FlameBulbBlock extends GrowingPlantBodyBlock {
     public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
@@ -32,7 +29,7 @@ public class FlameBulbBlock extends GrowingPlantBodyBlock {
         BlockPos blockpos = pos.relative(this.growthDirection.getOpposite());
         BlockState blockstate = worldIn.getBlockState(blockpos);
         Block block = blockstate.getBlock();
-        if (!this.canAttachToBlock(block)) {
+        if (!this.canAttachTo(state)) {
             return false;
         } else {
             return block == this.getHeadBlock() || block == this.getBodyBlock() || blockstate.getMaterial().isSolid();

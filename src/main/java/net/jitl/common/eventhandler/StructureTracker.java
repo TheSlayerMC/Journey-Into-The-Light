@@ -11,9 +11,6 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.network.PacketDistributor;
-
-import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class StructureTracker {
@@ -37,7 +34,7 @@ public class StructureTracker {
 
     private static int findStructure(ServerPlayer player) {
         for (EnumStructureMusic currentStructure : EnumStructureMusic.values()) {
-            if (player.getLevel().structureFeatureManager().getStructureAt(player.blockPosition(), true, currentStructure.getStructure()).isValid()) {
+            if (player.getLevel().structureFeatureManager().getStructureAt(player.blockPosition(), currentStructure.getStructure()).isValid()) {
                 return currentStructure.getID();
             }
         }

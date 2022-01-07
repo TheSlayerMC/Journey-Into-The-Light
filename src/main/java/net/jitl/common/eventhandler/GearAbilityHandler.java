@@ -9,11 +9,11 @@ import net.jitl.common.item.gear.JGear;
 import net.jitl.common.item.gear.abilities.FullArmorAbility;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Arrow;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.item.*;
+import net.minecraft.world.item.*;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -23,12 +23,6 @@ import net.minecraftforge.fml.common.Mod;
 import ru.timeconqueror.timecore.api.common.event.LivingUpdateEndEvent;
 
 import java.util.ArrayList;
-
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ArmorMaterials;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class GearAbilityHandler {

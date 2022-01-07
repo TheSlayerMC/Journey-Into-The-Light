@@ -3,19 +3,14 @@ package net.jitl.datagen;
 import net.jitl.JITL;
 import net.jitl.init.JStructures;
 import net.minecraft.world.item.Items;
-import net.minecraft.loot.*;
-import net.minecraft.world.level.storage.loot.functions.ExplorationMapFunction;
 import net.minecraft.world.level.saveddata.maps.MapDecoration;
-import ru.timeconqueror.timecore.api.devtools.gen.loottable.LootTableSet;
-
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.RandomValueBounds;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ExplorationMapFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-
-import LootContextParamSet;
+import ru.timeconqueror.timecore.api.devtools.gen.loottable.LootTableSet;
 
 public class JChestLootTableSet extends LootTableSet {
     @Override

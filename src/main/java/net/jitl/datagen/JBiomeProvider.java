@@ -1,6 +1,5 @@
 package net.jitl.datagen;
 
-import net.minecraft.data.worldgen.biome.BiomeReport;
 import net.minecraft.data.DataGenerator;
 
 public class JBiomeProvider extends BiomeReport {

@@ -9,8 +9,6 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 
-import Item;
-
 @ObjectHolder(JITL.MODID)
 public class JItems {
 

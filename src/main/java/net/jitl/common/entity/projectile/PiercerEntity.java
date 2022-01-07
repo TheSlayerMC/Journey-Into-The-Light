@@ -3,33 +3,31 @@ package net.jitl.common.entity.projectile;
 import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
-import net.minecraft.entity.*;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ItemSupplier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class PiercerEntity extends AbstractArrow implements ItemSupplier {
     private static final EntityDataAccessor<ItemStack> STACK = SynchedEntityData.defineId(PiercerEntity.class, EntityDataSerializers.ITEM_STACK);
@@ -182,14 +180,14 @@ public class PiercerEntity extends AbstractArrow implements ItemSupplier {
         if (!this.level.isClientSide) {
             boolean isOwner = this.getOwner().getUUID() == entityIn.getUUID();
             if ((isOwner && currentBounces > 0) || ((this.inGround || this.isNoPhysics()) && this.shakeTime <= 0)) {
-                boolean flag = this.pickup == Pickup.ALLOWED || this.pickup == Pickup.CREATIVE_ONLY && entityIn.abilities.instabuild || this.isNoPhysics() && isOwner;
-                if (this.pickup == Pickup.ALLOWED && !entityIn.inventory.add(this.getPickupItem())) {
+                boolean flag = this.pickup == Pickup.ALLOWED || this.pickup == Pickup.CREATIVE_ONLY && entityIn.canUseGameMasterBlocks() || this.isNoPhysics() && isOwner;
+                if (this.pickup == Pickup.ALLOWED && !entityIn.getInventory().add(this.getPickupItem())) {
                     flag = false;
                 }
 
                 if (flag) {
                     entityIn.take(this, 1);
-                    this.remove();
+                    this.remove(RemovalReason.DISCARDED);
                 }
             }
         }
@@ -214,7 +212,7 @@ public class PiercerEntity extends AbstractArrow implements ItemSupplier {
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         setStack(ItemStack.of(nbt.getCompound("stack")));
-        if (getStack().isEmpty()) remove();
+        if (getStack().isEmpty()) remove(RemovalReason.DISCARDED);
         currentBounces = nbt.getInt("bounces");
         maxBounces = nbt.getInt("maxBounces");
         velocityMultiplier = nbt.getFloat("velocityMultiplier");

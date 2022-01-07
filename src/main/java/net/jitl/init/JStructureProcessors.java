@@ -6,8 +6,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import ru.timeconqueror.timecore.api.registry.StructureProcessorTypeRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
-import StructureProcessorType;
-
 public class JStructureProcessors {
     @AutoRegistrable
     private static final StructureProcessorTypeRegister REGISTER = new StructureProcessorTypeRegister(JITL.MODID);

@@ -1,7 +1,6 @@
 package net.jitl.common.helper;
 
 public enum EnumHarvestLevel {
-
 	WOOD(0),
 	STONE(1),
 	IRON(2),

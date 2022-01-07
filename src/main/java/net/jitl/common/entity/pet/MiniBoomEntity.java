@@ -1,34 +1,29 @@
 package net.jitl.common.entity.pet;
 
 import net.jitl.common.entity.goal.MiniBoomSwellGoal;
-import net.jitl.common.entity.overworld.WithershroomEntity;
-import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
-import net.jitl.init.JEntities;
-import net.jitl.init.JSounds;
-import net.minecraft.entity.*;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.entity.projectile.WitherSkullEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.*;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -36,18 +31,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.UUID;
-
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgableMob;
-import net.minecraft.world.entity.AreaEffectCloud;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PowerableMob;
 
 public class MiniBoomEntity extends TamableAnimal implements PowerableMob {
 
@@ -59,7 +42,7 @@ public class MiniBoomEntity extends TamableAnimal implements PowerableMob {
     private int maxSwell = 30;
     private int explosionRadius = 3;
     private int cooldownTimer;
-    private int cooldownReset = 100;
+    private final int cooldownReset = 100;
 
     static {
         DATA_SWELL_DIR = SynchedEntityData.defineId(MiniBoomEntity.class, EntityDataSerializers.INT);
@@ -89,8 +72,8 @@ public class MiniBoomEntity extends TamableAnimal implements PowerableMob {
     }
 
     @Override
-    public boolean causeFallDamage(float f, float f1) {
-        boolean flag = super.causeFallDamage(f, f1);
+    public boolean causeFallDamage(float f, float f1, DamageSource source) {
+        boolean flag = super.causeFallDamage(f, f1, source);
         this.swell = (int)((float)this.swell + f * 1.5F);
         if (this.swell > this.maxSwell - 5) {
             this.swell = this.maxSwell - 5;
@@ -110,11 +93,11 @@ public class MiniBoomEntity extends TamableAnimal implements PowerableMob {
     @Override
     public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
-        if ((Boolean)this.entityData.get(DATA_IS_POWERED)) {
+        if (this.entityData.get(DATA_IS_POWERED)) {
             nbt.putBoolean("powered", true);
         }
-        nbt.putInt("Cooldown", (int)this.cooldownTimer);
-        nbt.putInt("CooldownReset", (int)this.cooldownReset);
+        nbt.putInt("Cooldown", this.cooldownTimer);
+        nbt.putInt("CooldownReset", this.cooldownReset);
         nbt.putShort("Fuse", (short)this.maxSwell);
         nbt.putByte("ExplosionRadius", (byte)this.explosionRadius);
         nbt.putBoolean("ignited", this.isIgnited());
@@ -164,7 +147,7 @@ public class MiniBoomEntity extends TamableAnimal implements PowerableMob {
                      if(cooldownTimer <= 0) {
                         this.swell = 0;
                         this.explode();
-                        setTarget((LivingEntity) null);
+                        setTarget(null);
                         this.targetSelector.removeGoal(new NearestAttackableTargetGoal(this, Monster.class, true));
                         this.cooldownTimer = this.cooldownReset;
                  }
@@ -179,7 +162,7 @@ public class MiniBoomEntity extends TamableAnimal implements PowerableMob {
     }
 
     public boolean isPowered() {
-        return (Boolean)this.entityData.get(DATA_IS_POWERED);
+        return this.entityData.get(DATA_IS_POWERED);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -188,7 +171,7 @@ public class MiniBoomEntity extends TamableAnimal implements PowerableMob {
     }
 
     public int getSwellDir() {
-        return (Integer)this.entityData.get(DATA_SWELL_DIR);
+        return this.entityData.get(DATA_SWELL_DIR);
     }
 
     @Override
@@ -204,11 +187,7 @@ public class MiniBoomEntity extends TamableAnimal implements PowerableMob {
     @Override
     public boolean hurt(@NotNull DamageSource source, float amount) {
         super.hurt(source, amount);
-        if(source.isExplosion()) {
-            return false;
-        } else {
-            return true;
-        }
+        return !source.isExplosion();
     }
 
     @Override
@@ -264,7 +243,7 @@ public class MiniBoomEntity extends TamableAnimal implements PowerableMob {
     }
 
     public boolean isIgnited() {
-        return (Boolean)this.entityData.get(DATA_IS_IGNITED);
+        return this.entityData.get(DATA_IS_IGNITED);
     }
 
     public void ignite() {
@@ -273,7 +252,7 @@ public class MiniBoomEntity extends TamableAnimal implements PowerableMob {
 
     @Nullable
     @Override
-    public AgableMob getBreedOffspring(ServerLevel serverWorld, AgableMob ageableEntity) {
+    public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageableEntity) {
         return null;
     }
 }

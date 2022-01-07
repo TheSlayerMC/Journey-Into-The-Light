@@ -1,12 +1,10 @@
 package net.jitl.common.entity.goal;
 
-import java.util.EnumSet;
-
 import net.jitl.common.entity.pet.MiniBoomEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.Goal.Flag;
-import net.minecraft.entity.monster.CreeperEntity;
+
+import java.util.EnumSet;
 
 public class MiniBoomSwellGoal extends Goal {
 
@@ -41,7 +39,7 @@ public class MiniBoomSwellGoal extends Goal {
             this.boom.setSwellDir(-1);
         } else if (this.boom.distanceToSqr(this.target) > 49.0D) {
             this.boom.setSwellDir(-1);
-        } else if (!this.boom.getSensing().canSee(this.target)) {
+        } else if (!this.boom.getSensing().hasLineOfSight(this.target)) {
             this.boom.setSwellDir(-1);
         } else {
             this.boom.setSwellDir(1);

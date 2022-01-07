@@ -1,12 +1,10 @@
 package net.jitl.common.capability.armorability;
 
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import org.jetbrains.annotations.Nullable;
-
-import Tag;
 
 public class ArmorSetStorage implements Capability.IStorage<IArmorSetCapability> {
 

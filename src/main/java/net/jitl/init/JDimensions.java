@@ -1,12 +1,10 @@
 package net.jitl.init;
 
 import net.jitl.JITL;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.Registry;
-import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
-
-import ResourceKey;
+import net.minecraft.world.level.dimension.DimensionType;
 
 public class JDimensions {
 	public static final ResourceKey<DimensionType> EUCA = ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, JITL.rl("euca"));

@@ -1,34 +1,38 @@
 package net.jitl.client.render.gui.menu;
 
 import com.google.common.util.concurrent.Runnables;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
 import net.jitl.client.render.gui.button.JButton;
 import net.jitl.client.render.gui.button.JImageButton;
-import net.minecraft.client.gui.screens.AccessibilityOptionsScreen;
-import net.minecraft.network.chat.CommonComponents;
-import net.minecraft.client.gui.screen.*;
-import net.minecraft.client.gui.components.toasts.SystemToast;
-import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.renderer.PanoramaRenderer;
-import net.minecraft.client.renderer.CubeMap;
-import net.minecraft.client.resources.language.I18n;
-import net.minecraft.realms.RealmsBridge;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.SharedConstants;
 import net.minecraft.Util;
-import net.minecraft.util.Mth;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.toasts.SystemToast;
+import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.gui.screens.*;
+import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
+import net.minecraft.client.gui.screens.multiplayer.SafetyScreen;
+import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
+import net.minecraft.client.renderer.CubeMap;
+import net.minecraft.client.renderer.PanoramaRenderer;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.realms.RealmsBridge;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.levelgen.WorldGenSettings;
 import net.minecraft.world.level.storage.LevelStorageSource;
 import net.minecraft.world.level.storage.LevelSummary;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.gui.ModListScreen;
 import net.minecraftforge.client.gui.NotificationModUpdateScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,16 +40,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
-
-import net.minecraft.client.gui.screens.ConfirmScreen;
-import net.minecraft.client.gui.screens.LanguageSelectScreen;
-import net.minecraft.client.gui.screens.OptionsScreen;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.TitleScreen;
-import net.minecraft.client.gui.screens.WinScreen;
-import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
-import net.minecraft.client.gui.screens.multiplayer.SafetyScreen;
-import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
 
 @OnlyIn(Dist.CLIENT)
 public class JMainMenuGui extends TitleScreen {
@@ -118,22 +112,22 @@ public class JMainMenuGui extends TitleScreen {
 			this.createDemoMenuOptions(j, 24);
 		} else {
 			this.createNormalMenuOptions(j);
-			modButton = this.addButton(new JButton(this.width / 2 - 206, 30 + j - 15, 200, 20, new TranslatableComponent("fml.menu.mods"), button -> {
-				this.minecraft.setScreen(new net.minecraftforge.fml.client.gui.screen.ModListScreen(this));
+			modButton = this.addWidget(new JButton(this.width / 2 - 206, 30 + j - 15, 200, 20, new TranslatableComponent("fml.menu.mods"), button -> {
+				this.minecraft.setScreen(new ModListScreen(this));
 			}, false));
 		}
 		NotificationModUpdateScreen modUpdateNotification = NotificationModUpdateScreen.init(this, modButton);
 
-		this.addButton(new JImageButton(this.width / 2 - 206, j + 75, 20, 20, 0, 0, 20, LANGUAGE_TEXTURE, 20, 40, (button9_) -> {
+		this.addWidget(new JImageButton(this.width / 2 - 206, j + 75, 20, 20, 0, 0, 20, LANGUAGE_TEXTURE, 20, 40, (button9_) -> {
 			this.minecraft.setScreen(new LanguageSelectScreen(this, this.minecraft.options, this.minecraft.getLanguageManager()));
 		}, new TranslatableComponent("narrator.button.language")));
-		this.addButton(new JButton(this.width / 2 - 206, j + 72 + 12 - 39, 200, 20, new TranslatableComponent("menu.options"), (button8_) -> {
+		this.addWidget(new JButton(this.width / 2 - 206, j + 72 + 12 - 39, 200, 20, new TranslatableComponent("menu.options"), (button8_) -> {
 			this.minecraft.setScreen(new OptionsScreen(this, this.minecraft.options));
 		}, false));
-		this.addButton(new JButton(this.width / 2 + 5, j + 72 + 12 - 39, 200, 20, new TranslatableComponent("menu.quit"), (button7_) -> {
+		this.addWidget(new JButton(this.width / 2 + 5, j + 72 + 12 - 39, 200, 20, new TranslatableComponent("menu.quit"), (button7_) -> {
 			this.minecraft.stop();
 		}, true));
-		this.addButton(new JImageButton(this.width / 2 + 185, j + 75, 20, 20, 0, 0, 20, ACCESSIBILITY_TEXTURE, 32, 64, (button6_) -> {
+		this.addWidget(new JImageButton(this.width / 2 + 185, j + 75, 20, 20, 0, 0, 20, ACCESSIBILITY_TEXTURE, 32, 64, (button6_) -> {
 			this.minecraft.setScreen(new AccessibilityOptionsScreen(this, this.minecraft.options));
 		}, new TranslatableComponent("narrator.button.accessibility")));
 		this.minecraft.setConnectedToRealms(false);
@@ -153,7 +147,7 @@ public class JMainMenuGui extends TitleScreen {
 	 * Adds Singleplayer and Multiplayer buttons on Main Menu for players who have bought the game.
 	 */
 	private void createNormalMenuOptions(int yIn) {
-		this.addButton(new JButton(this.width / 2 - 206, yIn - 15, 200, 20, new TranslatableComponent("menu.singleplayer"), (button5_) -> {
+		this.addWidget(new JButton(this.width / 2 - 206, yIn - 15, 200, 20, new TranslatableComponent("menu.singleplayer"), (button5_) -> {
 			assert this.minecraft != null;
 			this.minecraft.setScreen(new SelectWorldScreen(this));
 		}, false));
@@ -165,11 +159,11 @@ public class JMainMenuGui extends TitleScreen {
 			}
 
 		};
-		(this.addButton(new JButton(this.width / 2 + 5, yIn - 15, 200, 20, new TranslatableComponent("menu.multiplayer"), (button4_) -> {
+		(this.addWidget(new JButton(this.width / 2 + 5, yIn - 15, 200, 20, new TranslatableComponent("menu.multiplayer"), (button4_) -> {
 			Screen screen = this.minecraft.options.skipMultiplayerWarning ? new JoinMultiplayerScreen(this) : new SafetyScreen(this);
 			this.minecraft.setScreen(screen);
 		}, button$itooltip, true))).active = flag;
-		(this.addButton(new JButton(this.width / 2 + 5, yIn + 15, 200, 20, new TranslatableComponent("menu.online"), (button3_) -> {
+		(this.addWidget(new JButton(this.width / 2 + 5, yIn + 15, 200, 20, new TranslatableComponent("menu.online"), (button3_) -> {
 			this.realmsButtonClicked();
 		}, button$itooltip, true))).active = flag;
 	}
@@ -179,7 +173,7 @@ public class JMainMenuGui extends TitleScreen {
 	 */
 	private void createDemoMenuOptions(int yIn, int rowHeightIn) {
 		boolean flag = this.checkDemoWorldPresence();
-		this.addButton(new Button(this.width / 2 - 100, yIn, 200, 20, new TranslatableComponent("menu.playdemo"), (button2_) -> {
+		this.addWidget(new Button(this.width / 2 - 100, yIn, 200, 20, new TranslatableComponent("menu.playdemo"), (button2_) -> {
 			if (flag) {
 				this.minecraft.loadLevel("Demo_World");
 			} else {
@@ -188,7 +182,7 @@ public class JMainMenuGui extends TitleScreen {
 			}
 
 		}));
-		this.resetDemoButton = this.addButton(new Button(this.width / 2 - 100, yIn + rowHeightIn * 1, 200, 20, new TranslatableComponent("menu.resetdemo"), (button_) -> {
+		this.resetDemoButton = this.addWidget(new Button(this.width / 2 - 100, yIn + rowHeightIn * 1, 200, 20, new TranslatableComponent("menu.resetdemo"), (button_) -> {
 			LevelStorageSource saveformat = this.minecraft.getLevelSource();
 
 			try (LevelStorageSource.LevelStorageAccess saveformat$levelsave = saveformat.createAccess("Demo_World")) {
@@ -231,7 +225,7 @@ public class JMainMenuGui extends TitleScreen {
 		this.panorama.render(partialTicks, Mth.clamp(f, 0.0F, 1.0F));
 		int j = this.width / 2 - 137;
 		assert this.minecraft != null;
-		this.minecraft.getTextureManager().bind(PANORAMA_OVERLAY);
+		this.minecraft.getTextureManager().bindForSetup(PANORAMA_OVERLAY);
 		RenderSystem.enableBlend();
 		RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.fading ? (float) Mth.ceil(Mth.clamp(f, 0.0F, 1.0F)) : 1.0F);
@@ -239,7 +233,7 @@ public class JMainMenuGui extends TitleScreen {
 		float f1 = this.fading ? Mth.clamp(f - 1.0F, 0.0F, 1.0F) : 1.0F;
 		int l = Mth.ceil(f1 * 255.0F) << 24;
 		if ((l & -67108864) != 0) {
-			this.minecraft.getTextureManager().bind(MINECRAFT_LOGO);
+			this.minecraft.getTextureManager().bindForSetup(MINECRAFT_LOGO);
 			RenderSystem.color4f(1.0F, 1.0F, 1.0F, f1);
 			blit(matrixStack, j + 23, 36, 0.0F, 0.0F, 227, 55, 227, 55);
 

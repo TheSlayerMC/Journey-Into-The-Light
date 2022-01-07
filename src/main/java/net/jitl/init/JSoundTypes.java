@@ -1,7 +1,7 @@
 package net.jitl.init;
 
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.SoundType;
 import ru.timeconqueror.timecore.api.common.block.TimeSoundType;
 
 public class JSoundTypes {
@@ -9,38 +9,38 @@ public class JSoundTypes {
 	public static final SoundType MUD = new TimeSoundType(
 			1.0F,
 			1.0F,
-			JSounds.MUD_BLOCK_BREAK::get,
-			JSounds.MUD_BLOCK_DIG::get,
-			JSounds.MUD_BLOCK_BREAK::get,
-			JSounds.MUD_BLOCK_DIG::get,
-			JSounds.MUD_BLOCK_BREAK::get);
+			JSounds.MUD_BLOCK_BREAK,
+			JSounds.MUD_BLOCK_DIG,
+			JSounds.MUD_BLOCK_BREAK,
+			JSounds.MUD_BLOCK_DIG,
+			JSounds.MUD_BLOCK_BREAK);
 
 	public static final SoundType POTTERY = new TimeSoundType(
 			1.0F,
 			1.0F,
-			JSounds.POTTERY_BREAK::get,
-			JSounds.POTTERY_DIG::get,
-			JSounds.POTTERY_DIG::get,
-			JSounds.POTTERY_DIG::get,
-			JSounds.POTTERY_BREAK::get);
+			JSounds.POTTERY_BREAK,
+			JSounds.POTTERY_DIG,
+			JSounds.POTTERY_DIG,
+			JSounds.POTTERY_DIG,
+			JSounds.POTTERY_BREAK);
 
 	public static final SoundType LUNIUM_BLOCK = new TimeSoundType(
 			1.0F,
 			1.0F,
-			JSounds.LUNIUM_BLOCK_BREAK::get,
-			JSounds.LUNIUM_BLOCK_DIG::get,
-			JSounds.LUNIUM_BLOCK_BREAK::get,
-			JSounds.LUNIUM_BLOCK_DIG::get,
-			JSounds.LUNIUM_BLOCK_BREAK::get);
+			JSounds.LUNIUM_BLOCK_BREAK,
+			JSounds.LUNIUM_BLOCK_DIG,
+			JSounds.LUNIUM_BLOCK_BREAK,
+			JSounds.LUNIUM_BLOCK_DIG,
+			JSounds.LUNIUM_BLOCK_BREAK);
 
 	public static final SoundType LUNIUM_ORE = new TimeSoundType(
 			1.0F,
 			1.0F,
-			JSounds.LUNIUM_ORE_BREAK::get,
+			JSounds.LUNIUM_ORE_BREAK,
 			() -> SoundEvents.STONE_HIT,
-			JSounds.LUNIUM_ORE_BREAK::get,
+			JSounds.LUNIUM_ORE_BREAK,
 			() -> SoundEvents.STONE_HIT,
-			JSounds.LUNIUM_ORE_BREAK::get);
+			JSounds.LUNIUM_ORE_BREAK);
 
 	public static final SoundType CRYSTAL_FRUIT = new TimeSoundType(
 			1.0F,
@@ -54,43 +54,43 @@ public class JSoundTypes {
 	public static final SoundType SHADIUM_BLOCK = new TimeSoundType(
 			1.0F,
 			1.0F,
-			JSounds.SHADIUM_BLOCK_BREAK::get,
-			JSounds.SHADIUM_BLOCK_DIG::get,
-			JSounds.SHADIUM_BLOCK_BREAK::get,
-			JSounds.SHADIUM_BLOCK_DIG::get,
-			JSounds.SHADIUM_BLOCK_BREAK::get);
+			JSounds.SHADIUM_BLOCK_BREAK,
+			JSounds.SHADIUM_BLOCK_DIG,
+			JSounds.SHADIUM_BLOCK_BREAK,
+			JSounds.SHADIUM_BLOCK_DIG,
+			JSounds.SHADIUM_BLOCK_BREAK);
 
 	public static final SoundType SHADIUM_ORE = new TimeSoundType(
 			1.0F,
 			1.0F,
-			JSounds.SHADIUM_ORE_BREAK::get,
+			JSounds.SHADIUM_ORE_BREAK,
 			() -> SoundEvents.STONE_HIT,
-			JSounds.SHADIUM_ORE_BREAK::get,
+			JSounds.SHADIUM_ORE_BREAK,
 			() -> SoundEvents.STONE_HIT,
-			JSounds.SHADIUM_ORE_BREAK::get);
+			JSounds.SHADIUM_ORE_BREAK);
 
 	public static final SoundType BRICK = new TimeSoundType(
 			1.0F,
 			1.0F,
-			JSounds.BRICK_BLOCK_BREAK::get,
-			JSounds.BRICK_BLOCK_DIG::get,
-			JSounds.BRICK_BLOCK_BREAK::get,
-			JSounds.BRICK_BLOCK_DIG::get,
-			JSounds.BRICK_BLOCK_BREAK::get);
+			JSounds.BRICK_BLOCK_BREAK,
+			JSounds.BRICK_BLOCK_DIG,
+			JSounds.BRICK_BLOCK_BREAK,
+			JSounds.BRICK_BLOCK_DIG,
+			JSounds.BRICK_BLOCK_BREAK);
 
 	public static final SoundType FUMICE = new TimeSoundType(
 			1.0F,
 			1.0F,
-			JSounds.FUMICE_BLOCK_BREAK::get,
-			JSounds.FUMICE_BLOCK_DIG::get,
-			JSounds.FUMICE_BLOCK_BREAK::get,
-			JSounds.FUMICE_BLOCK_DIG::get,
-            JSounds.FUMICE_BLOCK_BREAK::get);
+			JSounds.FUMICE_BLOCK_BREAK,
+			JSounds.FUMICE_BLOCK_DIG,
+			JSounds.FUMICE_BLOCK_BREAK,
+			JSounds.FUMICE_BLOCK_DIG,
+            JSounds.FUMICE_BLOCK_BREAK);
 
     public static final SoundType ICE_CRYSTAL = new TimeSoundType(
             1.0F,
             1.0F,
-            JSounds.ICE_CRYSTAL_BREAK::get,
+			JSounds.ICE_CRYSTAL_BREAK,
             () -> SoundEvents.GLASS_HIT,
             () -> SoundEvents.GLASS_PLACE,
             () -> SoundEvents.GLASS_HIT,
@@ -99,27 +99,27 @@ public class JSoundTypes {
     public static final SoundType GRASSY_PERMAFROST = new TimeSoundType(
             1.0F,
             1.0F,
-            JSounds.GRASSY_PERMAFROST_BREAK::get,
-            JSounds.GRASSY_PERMAFROST_DIG::get,
-            JSounds.GRASSY_PERMAFROST_BREAK::get,
-            JSounds.GRASSY_PERMAFROST_DIG::get,
-            JSounds.GRASSY_PERMAFROST_BREAK::get);
+			JSounds.GRASSY_PERMAFROST_BREAK,
+            JSounds.GRASSY_PERMAFROST_DIG,
+            JSounds.GRASSY_PERMAFROST_BREAK,
+            JSounds.GRASSY_PERMAFROST_DIG,
+            JSounds.GRASSY_PERMAFROST_BREAK);
 
     public static final SoundType CRUMBLED_PERMAFROST = new TimeSoundType(
             1.0F,
             1.0F,
-            JSounds.CRUMBLED_PERMAFROST_BREAK::get,
-            JSounds.CRUMBLED_PERMAFROST_DIG::get,
-            JSounds.CRUMBLED_PERMAFROST_BREAK::get,
-            JSounds.CRUMBLED_PERMAFROST_DIG::get,
-            JSounds.CRUMBLED_PERMAFROST_BREAK::get);
+            JSounds.CRUMBLED_PERMAFROST_BREAK,
+            JSounds.CRUMBLED_PERMAFROST_DIG,
+            JSounds.CRUMBLED_PERMAFROST_BREAK,
+            JSounds.CRUMBLED_PERMAFROST_DIG,
+            JSounds.CRUMBLED_PERMAFROST_BREAK);
 
     public static final SoundType PERMAFROST = new TimeSoundType(
             1.0F,
             1.0F,
-            JSounds.PERMAFROST_BREAK::get,
-            JSounds.PERMAFROST_DIG::get,
-            JSounds.PERMAFROST_BREAK::get,
-            JSounds.PERMAFROST_DIG::get,
-            JSounds.PERMAFROST_BREAK::get);
+            JSounds.PERMAFROST_BREAK,
+            JSounds.PERMAFROST_DIG,
+            JSounds.PERMAFROST_BREAK,
+            JSounds.PERMAFROST_DIG,
+            JSounds.PERMAFROST_BREAK);
 }

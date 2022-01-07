@@ -1,9 +1,8 @@
 package net.jitl.common.helper;
 
-import mcp.MethodsReturnNonnullByDefault;
 import net.jitl.init.JItems;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public enum JToolTiers implements Tier {
@@ -86,7 +85,6 @@ public enum JToolTiers implements Tier {
         return enchantmentValue;
     }
 
-    @MethodsReturnNonnullByDefault
     @Override
     public Ingredient getRepairIngredient() {
         return repairIngredient;

@@ -2,12 +2,9 @@ package net.jitl.common.helper;
 
 import net.jitl.common.container.ContainerEmpty;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import MenuType;
 
 @Mod.EventBusSubscriber
 public class JourneyContainers {

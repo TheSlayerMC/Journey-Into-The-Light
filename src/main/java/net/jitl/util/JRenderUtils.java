@@ -5,7 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
-import net.minecraftforge.fml.client.gui.GuiUtils;
+import net.minecraftforge.client.gui.GuiUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +24,7 @@ public class JRenderUtils {
 
 		public static void renderWrappedToolTip(PoseStack matrixStack, List<? extends FormattedText> tooltips, int mouseX, int mouseY, int textWidth, int textHeight, Font font) {
 			GuiUtils.drawHoveringText(matrixStack, tooltips, mouseX, mouseY, textWidth, textHeight, -1, font);
+			//FIXME drawHoveringText method is gone
 		}
 	}
 }

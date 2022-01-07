@@ -4,17 +4,17 @@ import net.jitl.JITL;
 import net.jitl.common.effect.EssenceRegenEffect;
 import net.jitl.common.effect.FrostburnEffect;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import ru.timeconqueror.timecore.api.registry.SimpleForgeRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 public class JEffects {
     @AutoRegistrable
-    public static SimpleForgeRegister<MobEffect> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.POTIONS, JITL.MODID);
+    public static SimpleForgeRegister<MobEffect> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.MOB_EFFECTS, JITL.MODID);
 
     public static final RegistryObject<MobEffect> ESSENCE_REGEN =
             REGISTER.register("essence_regen", () -> new EssenceRegenEffect(MobEffectCategory.BENEFICIAL, 0xff3600));
@@ -24,7 +24,7 @@ public class JEffects {
 
     public static class JPotions {
         @AutoRegistrable
-        public static SimpleForgeRegister<Potion> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.POTION_TYPES, JITL.MODID);
+        public static SimpleForgeRegister<Potion> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.POTIONS, JITL.MODID);
 
         public static final RegistryObject<Potion> ESSENCE_REGEN =
                 REGISTER.register("essence_regen", () -> new Potion("essence_regen", new MobEffectInstance(JEffects.ESSENCE_REGEN.get(), 900, 1)));

@@ -2,20 +2,17 @@ package net.jitl.common.block.base;
 
 import net.jitl.init.JBlocks;
 import net.jitl.util.JBlockProperties;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.World;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -49,7 +46,7 @@ public class JBlockStalagmite extends Block {
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if(!stateIn.canSurvive(worldIn, currentPos)) {
-            worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
+            worldIn.scheduleTick(currentPos, this, 1);
         }
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
@@ -58,9 +55,6 @@ public class JBlockStalagmite extends Block {
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         BlockState blockstate = worldIn.getBlockState(pos.below());
         Material material = blockstate.getMaterial();
-        if(material.isSolid() || blockstate.getBlock() instanceof JBlockStalagmite) {
-            return true;
-        }
-        return false;
+        return material.isSolid() || blockstate.getBlock() instanceof JBlockStalagmite;
     }
 }

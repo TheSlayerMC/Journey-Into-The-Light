@@ -1,17 +1,17 @@
 package net.jitl.client.render.screen;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
 import net.jitl.common.container.ContainerEmpty;
 import net.jitl.common.helper.ArgbColor;
 import net.jitl.common.helper.EnumKnowledgeType;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
@@ -39,8 +39,8 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         int j = (this.height - this.imageHeight) / 2;
         int k = j + 16 + 2;
 
-        this.nextButton = this.addButton(new PageButton(i + 5, k, false, (button_) -> { }));
-        this.previousButton = this.addButton(new PageButton(i + 5, k + 20, true, (button_) -> { }));
+        this.nextButton = this.addWidget(new PageButton(i + 5, k, false, (button_) -> { }));
+        this.previousButton = this.addWidget(new PageButton(i + 5, k + 20, true, (button_) -> { }));
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         RenderSystem.pushMatrix();
         RenderSystem.enableRescaleNormal();
         assert minecraft != null;
-        minecraft.getTextureManager().bind(background);
+        minecraft.getTextureManager().bindForSetup(background);
         blit(matrixStack, x, y, 0, 0, imageWidth, imageHeight);
         switch(pageNumber) {
             case 0:
@@ -123,9 +123,9 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         int k = (width - imageWidth) / 2;
         int l = (height - imageHeight) / 2;
         assert minecraft != null;
-        minecraft.getTextureManager().bind(background);
+        minecraft.getTextureManager().bindForSetup(background);
         blit(matrixStack, k + x - 4, l + y - 4, 138, 212, 115, 40);
-        minecraft.getTextureManager().bind(knowledge_sprite);
+        minecraft.getTextureManager().bindForSetup(knowledge_sprite);
         blit(matrixStack, k + x, l + y, spriteX, spriteY, 32, 32);
         font.draw(matrixStack, s, k + x + 35, l + y + 5, 4210752);
         if(s.equals("Sentacoins:"))
@@ -142,7 +142,7 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         RenderSystem.pushMatrix();
         RenderSystem.enableRescaleNormal();
         assert minecraft != null;
-        minecraft.getTextureManager().bind(knowledge_sprite);
+        minecraft.getTextureManager().bindForSetup(knowledge_sprite);
 
         //PlayerStats.KnowledgeStorage knowledge = stats.getKnowledge(type);
 
@@ -197,7 +197,7 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         @Override
         public void renderButton(@NotNull PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
             assert minecraft != null;
-            minecraft.getTextureManager().bind(JITL.rl("textures/gui/stats.png"));
+            minecraft.getTextureManager().bindForSetup(JITL.rl("textures/gui/stats.png"));
             RenderSystem.pushMatrix();
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();

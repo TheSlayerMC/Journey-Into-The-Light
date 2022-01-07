@@ -1,14 +1,12 @@
 package net.jitl.client.render.gui;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.jitl.client.render.gui.BossBarRenderer;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.util.RenderUtils;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class EyeBarRenderer extends BossBarRenderer {
@@ -39,7 +37,7 @@ public class EyeBarRenderer extends BossBarRenderer {
             nonRed = 1.0F;
         }
         RenderSystem.color4f(1.0F, nonRed, nonRed, 1.0F);
-        minecraft.getTextureManager().bind(texture);
+        minecraft.getTextureManager().bindForSetup(texture);
 
         /*stack.scale(2F, 2F, 2F);
         stack.translate(-100, 0, 0);*/

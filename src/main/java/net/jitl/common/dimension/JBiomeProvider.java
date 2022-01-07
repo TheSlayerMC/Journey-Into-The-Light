@@ -10,13 +10,13 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.doubles.DoubleArrayList;
 import it.unimi.dsi.fastutil.doubles.DoubleList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.core.Registry;
-import net.minecraft.resources.RegistryLookupCodec;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.data.worldgen.biome.Biomes;
+import net.minecraft.resources.RegistryLookupCodec;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -29,6 +29,8 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+
+//TODO: I think this can be removed
 public class JBiomeProvider extends BiomeSource {
 
     public static final MapCodec<JBiomeProvider> DIRECT_CODEC = RecordCodecBuilder.mapCodec((builder) ->

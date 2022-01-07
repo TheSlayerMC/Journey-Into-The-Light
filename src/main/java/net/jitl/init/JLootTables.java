@@ -3,8 +3,6 @@ package net.jitl.init;
 import net.jitl.JITL;
 import net.minecraft.resources.ResourceLocation;
 
-import ResourceLocation;
-
 public class JLootTables {
 
     public static final ResourceLocation LOOT_POUCH_BASIC = register("gameplay/loot_pouch_basic");

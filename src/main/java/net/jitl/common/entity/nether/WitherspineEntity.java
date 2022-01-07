@@ -1,7 +1,6 @@
 package net.jitl.common.entity.nether;
 
 import net.jitl.init.JAnimations;
-import net.minecraft.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;

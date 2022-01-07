@@ -1,18 +1,18 @@
 package net.jitl.common.entity.projectile.base;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
 
 import java.util.Objects;
 
@@ -43,7 +43,7 @@ public class DamagingProjectileEntity extends ThrowableProjectile {
 
         if (!level.isClientSide) {
             if (shouldDespawn()) {
-                remove();
+                remove(RemovalReason.DISCARDED);
             }
         } else {
             onClientTick();
@@ -67,12 +67,12 @@ public class DamagingProjectileEntity extends ThrowableProjectile {
                 if (!Objects.equals(target, getOwner())) {
                     onEntityImpact(result, target);
 
-                    remove();
+                    remove(RemovalReason.DISCARDED);
                 }
             } else if (result.getType() == HitResult.Type.BLOCK) {
                 onBlockImpact((BlockHitResult) result);
             } else {
-                remove();
+                remove(RemovalReason.DISCARDED);
             }
         }
     }
@@ -88,7 +88,7 @@ public class DamagingProjectileEntity extends ThrowableProjectile {
     }
 
     protected void onBlockImpact(BlockHitResult result) {
-        remove();
+        remove(RemovalReason.DISCARDED);
     }
 
     @Override

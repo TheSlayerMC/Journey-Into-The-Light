@@ -1,17 +1,13 @@
 package net.jitl.client.render.gui;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.util.RenderUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.Util;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-
-import LivingEntity;
-import ResourceLocation;
 
 public class BossBarRenderer {
     protected final LivingEntity boss;
@@ -46,7 +42,7 @@ public class BossBarRenderer {
             nonRed = 1.0F;
         }
         RenderSystem.color4f(1.0F, nonRed, nonRed, 1.0F);
-        minecraft.getTextureManager().bind(texture);
+        minecraft.getTextureManager().bindForSetup(texture);
 
         RenderUtils.blit(stack, x - timeWidth / 2, y, timeWidth, 9, 0, 10, 182, 9, 182, 19);
         RenderUtils.blit(stack, x - timeWidth / 2, y, (int) (timeWidth * healthWidth), 9, 0, 0, (int) (182 * healthWidth),  9, 182, 19);

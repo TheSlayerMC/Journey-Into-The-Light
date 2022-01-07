@@ -2,22 +2,19 @@ package net.jitl.common.dimension;
 
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.DepthsPortalFrameBlock;
-import net.minecraft.block.*;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.common.util.ITeleporter;
-import java.util.Random;
-import java.util.function.Function;
-
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.common.util.ITeleporter;
 
-import ServerLevel;
+import java.util.Random;
+import java.util.function.Function;
 
 public class DepthsTeleporter implements ITeleporter {
 

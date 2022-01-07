@@ -4,18 +4,18 @@ import net.jitl.JITL;
 import net.jitl.init.JSounds;
 import net.jitl.init.JTabs;
 import net.jitl.util.LootHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.stats.Stats;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
@@ -42,7 +42,7 @@ public class LootItem extends Item {
                 worldIn.addFreshEntity(item);
             }
             playerMP.getItemInHand(handIn).shrink(1);
-            worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), JSounds.LOOT.get(), SoundSource.NEUTRAL, 0.75F, Mth.nextFloat(random, 0.75F, 1.25F));
+            worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), JSounds.LOOT.get(), SoundSource.NEUTRAL, 0.75F, Mth.nextFloat(playerMP.getRandom(), 0.75F, 1.25F));
         }
         JITL.LOGGER.info(this.lootTable.toString());
         playerIn.awardStat(Stats.ITEM_USED.get(this));

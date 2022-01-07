@@ -4,11 +4,11 @@ import net.jitl.common.capability.player.JPlayer;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JDimensions;
 import net.jitl.init.JItems;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.DrawHighlightEvent;
+import net.minecraftforge.client.event.DrawSelectionEvent;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -29,7 +29,7 @@ public class ClientEventHandler {
         KeybindEventHandler.onKeyPressed(event);
     }
 
-    private static void onBlockHighlight(DrawHighlightEvent.HighlightBlock event) {
+    private static void onBlockHighlight(DrawSelectionEvent.HighlightBlock event) {
         BlockPos blockPos = event.getTarget().getBlockPos();
         BlockState state = ClientProxy.world().getBlockState(blockPos);
         if (state.getBlock() == JBlocks.GUARDIAN_TOWER_BRAIN && !JItems.TEST_BUG.isInMainHand(ClientProxy.player())) {

@@ -6,7 +6,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.GrassBlock;
-import net.minecraft.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -75,7 +74,7 @@ public class WithershroomEntity extends Monster {
     public void tick() {
         if (this.isAlive()) {
             if (tickCount % 600 == 0) { //for every 600 ticks, we check surrounding entities for creepers
-                List<LivingEntity> entitiesNear = this.level.getEntitiesOfClass(Creeper.class, this.getBoundingBox().inflate(4D));
+                List<Creeper> entitiesNear = this.level.getEntitiesOfClass(Creeper.class, this.getBoundingBox().inflate(4D));
                 if (!entitiesNear.isEmpty()) {
                     spawnEffectCloud(); //if a creeper is nearby, we spawn an effect cloud, and set canGenerateRose to true
                 }
@@ -132,11 +131,6 @@ public class WithershroomEntity extends Monster {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
-    }
-
-    @Override
-    public boolean addEffect(MobEffectInstance effectInstanceIn) {
-        return false;
     }
 
     @Override

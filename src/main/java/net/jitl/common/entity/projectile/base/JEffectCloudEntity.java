@@ -1,37 +1,27 @@
 package net.jitl.common.entity.projectile.base;
 
 import net.jitl.init.JEntities;
-import net.minecraft.entity.*;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.util.Mth;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.util.Pair;
 import ru.timeconqueror.timecore.api.util.Requirements;
 
 import java.util.*;
-
-//TODO test effects
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Pose;
-
-import EntityDataAccessor;
 
 public class JEffectCloudEntity extends Entity {
     public static final EntityDataAccessor<Float> RADIUS = SynchedEntityData.defineId(JEffectCloudEntity.class, EntityDataSerializers.FLOAT); //the current radius of the cloud
@@ -143,7 +133,7 @@ public class JEffectCloudEntity extends Entity {
             for (int pairCount = 0; pairCount < sizes.size(); pairCount++) {
                 if (sizes.get(pairCount).left() < this.tickCount) { //check if the cloud has already been at the specified time-size pair
                     if (pairCount == sizes.size() - 1) { //make sure there is actually another pair (otherwise the cloud has completed its life cycle)
-                        this.remove();
+                        this.remove(RemovalReason.DISCARDED);
                         return;
                     } else if (sizes.get(pairCount + 1).left() > this.tickCount) { //the cloud is between this pair and the previous one
                         previousPair = sizes.get(pairCount);

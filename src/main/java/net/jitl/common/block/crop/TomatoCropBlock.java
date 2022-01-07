@@ -4,8 +4,6 @@ import net.jitl.common.block.base.JCropBlock;
 import net.jitl.init.JItems;
 import net.minecraft.world.item.Item;
 
-import Item;
-
 public class TomatoCropBlock extends JCropBlock {
 
     @Override

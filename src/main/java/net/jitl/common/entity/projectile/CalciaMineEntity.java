@@ -1,24 +1,17 @@
 package net.jitl.common.entity.projectile;
 
 import net.jitl.init.JEntities;
-import net.minecraft.entity.*;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.util.Requirements;
 
-import java.awt.*;
 import java.util.UUID;
-
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Pose;
 
 public class CalciaMineEntity extends Entity {
     UUID owner;

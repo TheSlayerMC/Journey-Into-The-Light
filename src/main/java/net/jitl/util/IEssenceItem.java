@@ -1,7 +1,5 @@
 package net.jitl.util;
 
-import net.minecraft.item.Item;
-
 public interface IEssenceItem {
     /**
      * interface used to group all Essence-related items under one umbrella

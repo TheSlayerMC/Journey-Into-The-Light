@@ -1,16 +1,12 @@
 package net.jitl.common.block.base;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.level.BlockGetter;
 import org.jetbrains.annotations.NotNull;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
-import VoxelShape;
 
 public class JSingleDoublePlantBlock extends JPlantBlock {
 

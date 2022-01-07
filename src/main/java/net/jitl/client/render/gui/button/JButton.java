@@ -1,19 +1,16 @@
 package net.jitl.client.render.gui.button;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import net.minecraft.client.gui.components.Button.OnPress;
-import net.minecraft.client.gui.components.Button.OnTooltip;
 
 @OnlyIn(Dist.CLIENT)
 public class JButton extends Button {
@@ -39,9 +36,9 @@ public class JButton extends Button {
 			Minecraft minecraft = Minecraft.getInstance();
 			Font fontrenderer = minecraft.font;
 			if (!this.isMirrored) {
-				minecraft.getTextureManager().bind(BUTTONS_NORMAL);
+				minecraft.getTextureManager().bindForSetup(BUTTONS_NORMAL);
 			} else {
-				minecraft.getTextureManager().bind(BUTTONS_MIRRORED);
+				minecraft.getTextureManager().bindForSetup(BUTTONS_MIRRORED);
 			}
 			RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.alpha);
 

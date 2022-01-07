@@ -6,15 +6,13 @@ import net.jitl.common.enchantment.FaithfulEnchantment;
 import net.jitl.common.enchantment.LightweightEnchantment;
 import net.jitl.common.enchantment.ScorchingEnchantment;
 import net.jitl.common.item.throwable.PiercerItem;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import ru.timeconqueror.timecore.api.registry.SimpleForgeRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
-
-import EnchantmentCategory;
 
 public class JEnchantments {
 

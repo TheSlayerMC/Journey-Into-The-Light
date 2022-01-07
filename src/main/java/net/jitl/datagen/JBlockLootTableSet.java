@@ -2,20 +2,16 @@ package net.jitl.datagen;
 
 import net.jitl.init.JBlocks;
 import net.jitl.init.JItems;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.Item;
-import net.minecraft.loot.*;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
-import ru.timeconqueror.timecore.api.devtools.gen.loottable.BlockLootTableSet;
-
-import net.minecraft.world.level.storage.loot.ConstantIntValue;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.RandomValueBounds;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import ru.timeconqueror.timecore.api.devtools.gen.loottable.BlockLootTableSet;
 
 public class JBlockLootTableSet extends BlockLootTableSet {
 

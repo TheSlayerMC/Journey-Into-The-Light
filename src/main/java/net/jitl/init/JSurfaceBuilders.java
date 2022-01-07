@@ -2,14 +2,13 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.jitl.common.world.gen.surfacebuilders.TestSurfaceBuilder;
-import net.minecraft.world.level.levelgen.surfacebuilders.SurfaceBuilder;
-import net.minecraft.world.level.levelgen.surfacebuilders.SurfaceBuilderBaseConfiguration;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import ru.timeconqueror.timecore.api.registry.SimpleForgeRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 public class JSurfaceBuilders {
+
+    //TODO: surface builders dont exist anymore
 
     @AutoRegistrable
     private static final SimpleForgeRegister<SurfaceBuilder<?>> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.SURFACE_BUILDERS, JITL.MODID);

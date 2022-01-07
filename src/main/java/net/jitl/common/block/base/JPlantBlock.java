@@ -4,29 +4,25 @@ import net.jitl.JITL;
 import net.jitl.api.block.GroundPredicate;
 import net.jitl.init.JBlocks;
 import net.jitl.util.Logs;
-import net.minecraft.block.*;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.IForgeShearable;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.Supplier;
-
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-import net.minecraft.world.level.block.state.BlockState;
 
 public class JPlantBlock extends BushBlock implements BonemealableBlock, IForgeShearable {
     protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 13.0D, 12.0D);
@@ -36,7 +32,7 @@ public class JPlantBlock extends BushBlock implements BonemealableBlock, IForgeS
     private Direction plantDirection = Direction.UP;
 
     private GroundPredicate groundPredicate;
-    private boolean offset;
+    private final boolean offset;
 
     public JPlantBlock(Properties properties) {
         this(properties, true);
@@ -100,7 +96,7 @@ public class JPlantBlock extends BushBlock implements BonemealableBlock, IForgeS
         JDoublePlantBlock doubleplantblock = (JDoublePlantBlock) (grownPlant.get());
         if (grownPlant.get() != null) {
             if (doubleplantblock.defaultBlockState().canSurvive(worldIn, pos) && worldIn.isEmptyBlock(pos.above())) {
-                doubleplantblock.placeAt(worldIn, pos, 2);
+                DoublePlantBlock.placeAt(worldIn, state, pos, 2);
             }
         }
     }

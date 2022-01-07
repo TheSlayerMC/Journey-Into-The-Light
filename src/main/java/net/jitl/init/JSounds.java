@@ -2,10 +2,7 @@ package net.jitl.init;
 
 import net.jitl.JITL;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.block.SoundEvent;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.RegistryObject;
-import ru.timeconqueror.timecore.api.common.sound.SoundEvent;
 import ru.timeconqueror.timecore.api.registry.SoundRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 

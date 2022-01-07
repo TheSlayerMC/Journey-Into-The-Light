@@ -1,16 +1,14 @@
 package net.jitl.common.helper;
 
-import mcp.MethodsReturnNonnullByDefault;
 import net.jitl.JITL;
 import net.jitl.init.JItems;
-import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.Blocks;
 
 public enum JArmorMaterial implements ArmorMaterial {
 

@@ -3,21 +3,18 @@ package net.jitl.network;
 import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.common.helper.JBossInfo;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.server.ServerBossInfo;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.network.NetworkEvent;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.common.packet.ITimePacketHandler;
-import ru.timeconqueror.timecore.api.util.Requirements;
 
 import java.io.IOException;
 import java.util.UUID;
 
 public class JBossPacket {
 
-    private Operation addOrRemove;
+    private final Operation addOrRemove;
     private final UUID barUUID;
     private final int bossNum;
 

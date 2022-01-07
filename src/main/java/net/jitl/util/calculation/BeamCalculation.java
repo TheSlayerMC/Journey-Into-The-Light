@@ -1,22 +1,19 @@
 package net.jitl.util.calculation;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.entity.projectile.ProjectileHelper;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.level.ClipContext;
 import com.mojang.math.Quaternion;
-import net.minecraft.world.phys.Vec3;
 import com.mojang.math.Vector3f;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import ru.timeconqueror.timecore.api.util.VecUtils;
 
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-
-import Vec3;
 
 public class BeamCalculation {
     private static final Vec3 BLOCK_CENTER = new Vec3(0.5, 0.5, 0.5);

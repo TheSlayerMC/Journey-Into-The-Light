@@ -1,7 +1,7 @@
 package net.jitl.client.eventhandler;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
 import net.jitl.client.render.gui.button.ToggleMenuButton;
 import net.jitl.client.render.gui.menu.JMainMenuGui;
@@ -20,9 +20,9 @@ import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.client.event.ScreenOpenEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -33,19 +33,19 @@ public class GuiEventHandler {
 	private static float burnoutTransparency;
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public static void overrideMainMenu(GuiOpenEvent event) {
+	public static void overrideMainMenu(ScreenOpenEvent event) {
 		if (JConfigs.CLIENT.GUI_CATEGORY.isJITLMenuEnabled()) {
-			if (event.getGui() instanceof TitleScreen) {
-				event.setGui(new JMainMenuGui());
+			if (event.getScreen() instanceof TitleScreen) {
+				event.setScreen(new JMainMenuGui());
 			}
 		}
 	}
 
 	@SubscribeEvent()
-	public static void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
+	public static void onGuiInit(ScreenEvent.InitScreenEvent.Post event) {
 		JClientConfig.GuiCategory guiConfig = JConfigs.CLIENT.GUI_CATEGORY;
 		Minecraft minecraft = Minecraft.getInstance();
-		int x = event.getGui().width / 1024;
+		int x = event.getScreen().width / 1024;
 
 		ToggleMenuButton buttonToggleMenu = new ToggleMenuButton(x, 0, (action) -> {
 			guiConfig.setJITLMenu(!guiConfig.isJITLMenuEnabled());
@@ -55,9 +55,9 @@ public class GuiEventHandler {
 				minecraft.setScreen(new JMainMenuGui());
 			}
 		});
-		if (event.getGui() instanceof TitleScreen) {
+		if (event.getScreen() instanceof TitleScreen) {
 			if (guiConfig.isToggleMenuButtonEnabled()) {
-				event.addWidget(buttonToggleMenu);
+				event.addListener(buttonToggleMenu);
 			}
 		}
 	}
@@ -65,7 +65,7 @@ public class GuiEventHandler {
 	@SubscribeEvent
 	public static void renderBossBars(RenderGameOverlayEvent.BossInfo event) {
 		if (!event.isCanceled()) {
-			IJourneyBoss boss = JBossInfo.map.get(event.getBossInfo().getId());
+			IJourneyBoss boss = JBossInfo.map.get(event.getBossEvent().getId());
 			if (boss != null) {
 				event.setCanceled(true);
 				boss.getBossBar().render(event);
@@ -75,7 +75,7 @@ public class GuiEventHandler {
 
 	@SubscribeEvent()
 	public static void renderFrostburnOverlay(RenderGameOverlayEvent.Pre event) {
-		if (event.getType() == RenderGameOverlayEvent.ElementType.VIGNETTE) {
+		if (event.getType() == RenderGameOverlayEvent.ElementType.LAYER) { //TODO: test. used to be "VIGNETTE" overlay type.
 			Minecraft minecraft = Minecraft.getInstance();
 			Player player = minecraft.player;
 			if (player != null && player.hasEffect(JEffects.FROSTBURN.get())) {
@@ -117,7 +117,8 @@ public class GuiEventHandler {
 						int w = event.getWindow().getGuiScaledWidth() / 2 - 91;
 
 						RenderSystem.color4f(1.0F, 1.0F, 1.0F, transparency);
-						minecraft.getTextureManager().bind(JITL.tl("gui/essence.png").fullLocation());
+						//FIXME: "bindForSetup" this is wrong, i believe. textures are now bound by shaders (?)
+						minecraft.getTextureManager().bindForSetup(JITL.tl("gui/essence.png").fullLocation());
 						RenderUtils.blit(matrixStack, w, l, 0, 5, 81, 5, 81, 15);
 
 						if (cooldownActive) {
