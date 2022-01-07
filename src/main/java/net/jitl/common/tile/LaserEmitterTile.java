@@ -32,8 +32,7 @@ public class LaserEmitterTile extends InitableTile {
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state_, LaserEmitterTile blockEntity_) {
-        //Fixme
-        BeamCalculation.TillBlockResult beamTillBlock = BeamCalculation.tillBlock(level, pos, BEAM_OFFSET, getLaserRotation(0), MAX_DISTANCE);
+        BeamCalculation.TillBlockResult beamTillBlock = BeamCalculation.tillBlock(level, pos, BEAM_OFFSET, blockEntity_.getLaserRotation(0), MAX_DISTANCE);
 
         BeamCalculation.forAllEntitiesOnWay(level, beamTillBlock, entity -> true, entity -> {
             System.out.println("Found!");
