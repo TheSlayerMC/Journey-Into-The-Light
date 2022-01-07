@@ -6,6 +6,7 @@ import net.jitl.JITL;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -35,18 +36,14 @@ public class JButton extends Button {
 		if (this.visible) {
 			Minecraft minecraft = Minecraft.getInstance();
 			Font fontrenderer = minecraft.font;
+			RenderSystem.setShader(GameRenderer::getPositionTexShader);
 			if (!this.isMirrored) {
-				minecraft.getTextureManager().bindForSetup(BUTTONS_NORMAL);
+				RenderSystem.setShaderTexture(0, BUTTONS_NORMAL);
 			} else {
-				minecraft.getTextureManager().bindForSetup(BUTTONS_MIRRORED);
+				RenderSystem.setShaderTexture(0, BUTTONS_MIRRORED);
 			}
-			RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.alpha);
-
-			isHovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width
-					&& mouseY < this.y + this.height;
-
-			int i = this.getYImage(this.isHovered());
-
+			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
+			int i = this.getYImage(this.isHoveredOrFocused());
 			RenderSystem.enableBlend();
 			RenderSystem.defaultBlendFunc();
 			RenderSystem.enableDepthTest();
@@ -62,7 +59,7 @@ public class JButton extends Button {
 				j = getFGColor();
 			} else if (!this.isFocused()) {
 				j = 10526880;
-			} else if (this.isHovered()) {
+			} else if (this.isHovered) {
 				j = 16777120;
 			}
 			drawCenteredString(matrixStack, fontrenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | Mth.ceil(this.alpha * 255.0F) << 24);

@@ -6,6 +6,7 @@ import net.jitl.client.util.RenderUtils;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
@@ -36,13 +37,17 @@ public class EyeBarRenderer extends BossBarRenderer {
         } else {
             nonRed = 1.0F;
         }
-        RenderSystem.color4f(1.0F, nonRed, nonRed, 1.0F);
+
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0, texture);
+        RenderSystem.setShaderColor(1.0F, nonRed, nonRed, 1.0F);
+
         minecraft.getTextureManager().bindForSetup(texture);
 
         /*stack.scale(2F, 2F, 2F);
         stack.translate(-100, 0, 0);*/
         RenderUtils.blit(stack, x - timeWidth / 2, y, timeWidth, 7, 7, 8, 182, 7, 196, 15);
-        RenderUtils.blit(stack, x - timeWidth / 2, y, (int) (timeWidth * healthWidth), 7, 7, 0, (int) (182 * healthWidth),  7, 196, 15);
+        RenderUtils.blit(stack, x - timeWidth / 2, y, (int) (timeWidth * healthWidth), 7, 7, 0, (int) (182 * healthWidth), 7, 196, 15);
         if (((SoulWatcherEntity) boss).isClosed()) {
             RenderUtils.blit(stack, x - 91 + 4, y + 1, 6, 5, 0, 1, 6, 5, 196, 15); //render left eye
             RenderUtils.blit(stack, x - 91 + 172, y + 1, 6, 5, 190, 1, 6, 5, 196, 15); //render left eye

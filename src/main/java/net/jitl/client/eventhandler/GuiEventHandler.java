@@ -17,6 +17,7 @@ import net.jitl.init.JEffects;
 import net.jitl.util.IEssenceItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -75,7 +76,7 @@ public class GuiEventHandler {
 
 	@SubscribeEvent()
 	public static void renderFrostburnOverlay(RenderGameOverlayEvent.Pre event) {
-		if (event.getType() == RenderGameOverlayEvent.ElementType.LAYER) { //TODO: test. used to be "VIGNETTE" overlay type.
+		if (event.getType() == RenderGameOverlayEvent.ElementType.LAYER) { //TODO: test. used to be "VIGNETTE" overlay type. ~ Dizzle
 			Minecraft minecraft = Minecraft.getInstance();
 			Player player = minecraft.player;
 			if (player != null && player.hasEffect(JEffects.FROSTBURN.get())) {
@@ -116,15 +117,17 @@ public class GuiEventHandler {
 						int l = event.getWindow().getGuiScaledHeight() - 32 + 3;
 						int w = event.getWindow().getGuiScaledWidth() / 2 - 91;
 
-						RenderSystem.color4f(1.0F, 1.0F, 1.0F, transparency);
-						//FIXME: "bindForSetup" this is wrong, i believe. textures are now bound by shaders (?)
-						minecraft.getTextureManager().bindForSetup(JITL.tl("gui/essence.png").fullLocation());
+						RenderSystem.setShader(GameRenderer::getPositionTexShader);
+						RenderSystem.setShaderTexture(0, JITL.tl("gui/essence.png").fullLocation());
+						RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, transparency);
+
 						RenderUtils.blit(matrixStack, w, l, 0, 5, 81, 5, 81, 15);
 
 						if (cooldownActive) {
 							float sin = (float) Math.sin((float) player.tickCount / 5F) / 2F + 0.5F; //sin function ranging from 0 to 1
 							float cooldownFade = Math.min(cooldown, 10) / 10; //when the cooldown starts getting close to zero, it fades out
-							RenderSystem.color4f(1.0F, 1.0F, 1.0F, sin * cooldownFade);
+
+							RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, sin * cooldownFade); //TODO: test me ~ Dizzle
 							RenderUtils.blit(matrixStack, w, l, 0, 0, 81, 5, 81, 15);
 						} else {
 							int i = (int) ((currentEssence / maxEssence) * 81);
@@ -133,7 +136,7 @@ public class GuiEventHandler {
 
 
 						if (burnoutTransparency > 0) {
-							RenderSystem.color4f(1.0F, 1.0F, 1.0F, burnoutTransparency);
+							RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, burnoutTransparency);
 							RenderUtils.blit(matrixStack, w, l, 0, 10, 81, 5, 81, 15);
 						}
 					}

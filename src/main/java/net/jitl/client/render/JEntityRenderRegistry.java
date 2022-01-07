@@ -14,10 +14,14 @@ import net.jitl.init.JEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import ru.timeconqueror.timecore.api.client.render.model.TimeModelLoader;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
+@Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class JEntityRenderRegistry {
 
     public static TimeEntityModel<FloroEntity> floroModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/floro.json"));
@@ -29,45 +33,44 @@ public class JEntityRenderRegistry {
     public static TimeEntityModel<BossCrystalEntity> bossCrystalModel = TimeModelLoader.loadJsonEntityModel(
             new ResourceLocation(JITL.MODID, "models/entity/boss_crystal.json"), JRenderTypes::transparentCutout);
 
-    public static void registerEntityRenders() {
-
+    @SubscribeEvent
+    public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
         //Misc
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.ESSENCIA_BOLT_TYPE, EssenciaBoltRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.EFFECT_CLOUD_TYPE, ParticleProjectileRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.BOSS_CRYSTAL_TYPE, BossCrystalRenderer::new);
-
+        event.registerEntityRenderer(JEntities.ESSENCIA_BOLT_TYPE, EssenciaBoltRenderer::new);
+        event.registerEntityRenderer(JEntities.EFFECT_CLOUD_TYPE, ParticleProjectileRenderer::new);
+        event.registerEntityRenderer(JEntities.BOSS_CRYSTAL_TYPE, BossCrystalRenderer::new);
 
         //Mobs
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_TYPE, FloroRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.HONGO_TYPE, HongoRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.WITHERSHROOM_TYPE, WithershroomRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.HONGLOW_TYPE, HonglowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.GLUMP_TYPE, GlumpRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.FROZEN_TROLL_TYPE, FrozenTrollRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.SHATTERER_TYPE, ShattererRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.SHIVERING_RAM_TYPE, ShiveringRamRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.PHANTASM_TYPE, PhantasmRenderer::new);
+        event.registerEntityRenderer(JEntities.FLORO_TYPE, FloroRenderer::new);
+        event.registerEntityRenderer(JEntities.HONGO_TYPE, HongoRenderer::new);
+        event.registerEntityRenderer(JEntities.WITHERSHROOM_TYPE, WithershroomRenderer::new);
+        event.registerEntityRenderer(JEntities.HONGLOW_TYPE, HonglowRenderer::new);
+        event.registerEntityRenderer(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
+        event.registerEntityRenderer(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);
+        event.registerEntityRenderer(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
+        event.registerEntityRenderer(JEntities.GLUMP_TYPE, GlumpRenderer::new);
+        event.registerEntityRenderer(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
+        event.registerEntityRenderer(JEntities.FROZEN_TROLL_TYPE, FrozenTrollRenderer::new);
+        event.registerEntityRenderer(JEntities.SHATTERER_TYPE, ShattererRenderer::new);
+        event.registerEntityRenderer(JEntities.SHIVERING_RAM_TYPE, ShiveringRamRenderer::new);
+        event.registerEntityRenderer(JEntities.PHANTASM_TYPE, PhantasmRenderer::new);
 
         //NPC
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.MAGE_TYPE, MageRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.ESKIMO_TYPE, EskimoRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.FROZEN_GUARDIAN_TYPE, FrozenGuardianRenderer::new);
+        event.registerEntityRenderer(JEntities.MAGE_TYPE, MageRenderer::new);
+        event.registerEntityRenderer(JEntities.ESKIMO_TYPE, EskimoRenderer::new);
+        event.registerEntityRenderer(JEntities.FROZEN_GUARDIAN_TYPE, FrozenGuardianRenderer::new);
 
         //Projectiles
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.FLORO_MUD_TYPE, manager -> new ThrownItemRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.CONJURING_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/conjuring.png"), 0.5F, true));
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.ESSENCIA_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/essencia.png"), 0.5F, true));
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.KNIFE_TYPE, manager -> new KnifeRenderer(manager, Minecraft.getInstance().getItemRenderer()));
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.PIERCER_TYPE, manager -> new PiercerRenderer(manager, Minecraft.getInstance().getItemRenderer()));
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.CALCIA_MINE_TYPE, ParticleProjectileRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.CALCIA_BURST_TYPE, ParticleProjectileRenderer::new);
+        event.registerEntityRenderer(JEntities.FLORO_MUD_TYPE, ThrownItemRenderer::new);
+        event.registerEntityRenderer(JEntities.CONJURING_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/conjuring.png"), 0.5F, true));
+        event.registerEntityRenderer(JEntities.ESSENCIA_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/essencia.png"), 0.5F, true));
+        event.registerEntityRenderer(JEntities.KNIFE_TYPE, manager -> new KnifeRenderer(manager, Minecraft.getInstance().getItemRenderer()));
+        event.registerEntityRenderer(JEntities.PIERCER_TYPE, manager -> new PiercerRenderer(manager, Minecraft.getInstance().getItemRenderer()));
+        event.registerEntityRenderer(JEntities.CALCIA_MINE_TYPE, ParticleProjectileRenderer::new);
+        event.registerEntityRenderer(JEntities.CALCIA_BURST_TYPE, ParticleProjectileRenderer::new);
 
         //PETS
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.MINI_BOOM_TYPE, MiniBoomRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(JEntities.CAPYBARA_TYPE, CapybaraRenderer::new);
+        event.registerEntityRenderer(JEntities.MINI_BOOM_TYPE, MiniBoomRenderer::new);
+        event.registerEntityRenderer(JEntities.CAPYBARA_TYPE, CapybaraRenderer::new);
     }
 }

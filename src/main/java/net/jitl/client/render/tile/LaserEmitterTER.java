@@ -2,35 +2,33 @@ package net.jitl.client.render.tile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Quaternion;
+import com.mojang.math.Vector3f;
 import net.jitl.JITL;
 import net.jitl.client.Models;
 import net.jitl.client.render.JRenderTypes;
 import net.jitl.common.tile.LaserEmitterTile;
 import net.jitl.util.calculation.BeamCalculation;
 import net.jitl.util.calculation.BeamCalculation.TillBlockResult;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.Camera;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.BlockPos;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Quaternion;
-import net.minecraft.world.phys.Vec3;
-import com.mojang.math.Vector3f;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.model.animation.Animation;
+import net.minecraft.world.phys.Vec3;
 import ru.timeconqueror.timecore.api.util.VecUtils;
 import ru.timeconqueror.timecore.client.render.model.TimeModel;
 
 //TODO optimize - TimeCore- add registry for buffers to endBatch them in WorldRenderer to heavily increase FPS
-public class LaserEmitterTER extends BlockEntityRenderer<LaserEmitterTile> {
+public class LaserEmitterTER implements BlockEntityRenderer<LaserEmitterTile> {
     private static final RenderType TYPE_LASER_BEAM = JRenderTypes.laserBeam(JITL.rl("textures/tile/laser_beam.png"));
 
-    public LaserEmitterTER(BlockEntityRenderDispatcher rendererDispatcherIn) {
-        super(rendererDispatcherIn);
+    public LaserEmitterTER(BlockEntityRendererProvider.Context context) {
     }
 
     @Override

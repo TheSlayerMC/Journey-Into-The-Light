@@ -1,23 +1,22 @@
 package net.jitl.client.render.tile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 import net.jitl.common.tile.PedestalTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.item.ItemStack;
-import com.mojang.math.Vector3f;
 
-public class PedestalTER extends BlockEntityRenderer<PedestalTile> {
+public class PedestalTER implements BlockEntityRenderer<PedestalTile> {
 
     private final ItemRenderer renderEntity;
 
-    public PedestalTER(BlockEntityRenderDispatcher rendererDispatcherIn) {
-        super(rendererDispatcherIn);
+    public PedestalTER(BlockEntityRendererProvider.Context context) {
         this.renderEntity = Minecraft.getInstance().getItemRenderer();
     }
 
@@ -33,7 +32,8 @@ public class PedestalTER extends BlockEntityRenderer<PedestalTile> {
         matrixStack.translate(translation[0], translation[1], translation[2]);
         matrixStack.mulPose(Vector3f.YP.rotation(timeD));
         matrixStack.scale(scale, scale, scale);
-        BakedModel model = renderEntity.getModel(stack, null, null);
+        BakedModel model = renderEntity.getModel(stack, null, null, 0);
+
         this.renderEntity.render(stack, ItemTransforms.TransformType.GROUND, true, matrixStack, buffer, lightLevel, combinedOverlay, model);
         matrixStack.popPose();
     }

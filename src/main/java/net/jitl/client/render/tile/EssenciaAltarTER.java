@@ -2,24 +2,24 @@ package net.jitl.client.render.tile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Vector3f;
 import net.jitl.JITL;
 import net.jitl.client.render.JRenderTypes;
 import net.jitl.common.tile.EssenciaAltarTile;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import ru.timeconqueror.timecore.api.util.HorizontalDirection;
 
 import java.util.Random;
+
 //TODO add path increasing start from the center block
-public class EssenciaAltarTER extends BlockEntityRenderer<EssenciaAltarTile> {
+public class EssenciaAltarTER implements BlockEntityRenderer<EssenciaAltarTile> {
     private static final Random RANDOM = new Random();
 
-    public EssenciaAltarTER(BlockEntityRenderDispatcher rendererDispatcherIn) {
-        super(rendererDispatcherIn);
+    public EssenciaAltarTER(BlockEntityRendererProvider.Context context) {
     }
 
     @Override

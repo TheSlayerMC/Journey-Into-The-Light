@@ -1,23 +1,19 @@
 package net.jitl.client.render;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
 import net.jitl.JITL;
-import net.minecraft.client.Minecraft;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.VertexBuffer;
 import net.minecraft.client.CloudStatus;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.FogRenderer;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.ICloudRenderHandler;
-
-import CloudStatus;
-import Vec3;
 
 public class FrozenCloudsRenderer implements ICloudRenderHandler {
     private CloudStatus prevCloudsType;
@@ -36,11 +32,8 @@ public class FrozenCloudsRenderer implements ICloudRenderHandler {
         if (!Float.isNaN(f)) {
             RenderSystem.disableCull();
             RenderSystem.enableBlend();
-            RenderSystem.enableAlphaTest();
             RenderSystem.enableDepthTest();
-            RenderSystem.defaultAlphaFunc();
             RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            RenderSystem.enableFog();
             RenderSystem.depthMask(true);
             double d1 = ((float) ticks + partialTicks) * 0.3F;
             double d2 = (viewEntityX + d1) / 12.0D;
@@ -71,19 +64,19 @@ public class FrozenCloudsRenderer implements ICloudRenderHandler {
                     this.cloudBuffer.close();
                 }
 
-                this.cloudBuffer = new VertexBuffer(DefaultVertexFormat.POSITION_TEX_COLOR_NORMAL);
+                this.cloudBuffer = new VertexBuffer();
                 this.buildClouds(bufferbuilder, d2, d3, d4, vector3d);
                 bufferbuilder.end();
                 this.cloudBuffer.upload(bufferbuilder);
             }
+            RenderSystem.setShader(GameRenderer::getPositionTexColorNormalShader);
+            RenderSystem.setShaderTexture(0, CLOUDS_LOCATION);
+            FogRenderer.levelFogColor();
 
-            minecraft.textureManager.bind(CLOUDS_LOCATION);
             matrixStackIn.pushPose();
             matrixStackIn.scale(12.0F, 1.0F, 12.0F);
             matrixStackIn.translate(-f3, f4, -f5);
             if (this.cloudBuffer != null) {
-                this.cloudBuffer.bind();
-                DefaultVertexFormat.POSITION_TEX_COLOR_NORMAL.setupBufferState(0L);
                 int i1 = prevCloudsType == CloudStatus.FANCY ? 0 : 1;
 
                 for (int l = i1; l < 2; ++l) {
@@ -93,7 +86,11 @@ public class FrozenCloudsRenderer implements ICloudRenderHandler {
                         RenderSystem.colorMask(true, true, true, true);
                     }
 
-                    this.cloudBuffer.draw(matrixStackIn.last().pose(), 7);
+                    ShaderInstance shaderinstance = RenderSystem.getShader();
+                    //FIXME: Forge ICloudRenderHandler isn't up to snuff, so Matrix4f isn't supplied by the method.
+                    // So... I guess we'll just leave this disabled for now?
+                    // ~ Dizzle
+                    this.cloudBuffer.drawWithShader(matrixStackIn.last().pose(), matrix4f, shaderinstance);
                 }
 
                 VertexBuffer.unbind();
@@ -101,11 +98,9 @@ public class FrozenCloudsRenderer implements ICloudRenderHandler {
             }
 
             matrixStackIn.popPose();
-            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-            RenderSystem.disableAlphaTest();
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             RenderSystem.enableCull();
             RenderSystem.disableBlend();
-            RenderSystem.disableFog();
         }
     }
 
@@ -124,7 +119,7 @@ public class FrozenCloudsRenderer implements ICloudRenderHandler {
         float f14 = f5 * 0.8F;
         float f15 = f6 * 0.8F;
         float f16 = f7 * 0.8F;
-        bufferIn.begin(7, DefaultVertexFormat.POSITION_TEX_COLOR_NORMAL);
+        bufferIn.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR_NORMAL);
         float f17 = (float) Math.floor(cloudsY / 4.0D) * 4.0F;
         if (prevCloudsType == CloudStatus.FANCY) {
             for (int k = -3; k <= 4; ++k) {

@@ -8,10 +8,6 @@ import net.jitl.util.JRenderUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 
-import net.minecraft.client.gui.components.Button.OnPress;
-
-import Component;
-
 public class ToggleMenuButton extends JImageButton {
 
 	JClientConfig clientConfig = JConfigs.CLIENT;
@@ -30,7 +26,7 @@ public class ToggleMenuButton extends JImageButton {
 	@Override
 	public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		super.renderButton(matrixStack, mouseX, mouseY, partialTicks);
-		if (isHovered()) {
+		if (isHovered) {
 			Component textKey = menuEnabled ? DISABLE_JITL_MENU : ENABLE_JITL_MENU;
 			JRenderUtils.Text.renderTooltip(matrixStack, textKey, 16, 0, TEXT_WIDTH, TEXT_HEIGHT);
 		}

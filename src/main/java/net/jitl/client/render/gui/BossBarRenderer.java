@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.util.RenderUtils;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -41,11 +42,13 @@ public class BossBarRenderer {
         } else {
             nonRed = 1.0F;
         }
-        RenderSystem.color4f(1.0F, nonRed, nonRed, 1.0F);
-        minecraft.getTextureManager().bindForSetup(texture);
+
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0, texture);
+        RenderSystem.setShaderColor(1.0F, nonRed, nonRed, 1.0F);
 
         RenderUtils.blit(stack, x - timeWidth / 2, y, timeWidth, 9, 0, 10, 182, 9, 182, 19);
-        RenderUtils.blit(stack, x - timeWidth / 2, y, (int) (timeWidth * healthWidth), 9, 0, 0, (int) (182 * healthWidth),  9, 182, 19);
+        RenderUtils.blit(stack, x - timeWidth / 2, y, (int) (timeWidth * healthWidth), 9, 0, 0, (int) (182 * healthWidth), 9, 182, 19);
 
         if (time > 1) {
             RenderUtils.drawCenteredString(stack, minecraft.font, boss.getName(), x, y - 9, 255, (int) (255 * nonRed), (int) (255 * nonRed), (int) Math.min(255, (time - 1) * 255));

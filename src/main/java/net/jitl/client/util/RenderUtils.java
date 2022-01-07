@@ -1,23 +1,19 @@
 package net.jitl.client.util;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.gui.Font;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.BufferUploader;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import net.minecraft.util.FormattedCharSequence;
-import net.minecraft.util.math.MathHelper;
+import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
 
 import java.util.function.BiConsumer;
 
 /**
- * Copy of {@link net.minecraft.client.gui.AbstractGui} with static context
+ * Copy of {@link net.minecraft.client.gui.GuiComponent} with static context
  */
 public class RenderUtils {
 
@@ -48,7 +44,7 @@ public class RenderUtils {
         RenderSystem.enableBlend();
         RenderSystem.disableTexture();
         RenderSystem.defaultBlendFunc();
-        bufferbuilder.begin(7, DefaultVertexFormat.POSITION_COLOR);
+        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferbuilder.vertex(matrix, (float) minX, (float) maxY, 0.0F).color(f, f1, f2, f3).endVertex();
         bufferbuilder.vertex(matrix, (float) maxX, (float) maxY, 0.0F).color(f, f1, f2, f3).endVertex();
         bufferbuilder.vertex(matrix, (float) maxX, (float) minY, 0.0F).color(f, f1, f2, f3).endVertex();
@@ -62,17 +58,14 @@ public class RenderUtils {
     public void fillGradient(PoseStack matrixStack, int x1, int y1, int x2, int y2, int colorFrom, int colorTo) {
         RenderSystem.disableTexture();
         RenderSystem.enableBlend();
-        RenderSystem.disableAlphaTest();
         RenderSystem.defaultBlendFunc();
-        RenderSystem.shadeModel(7425);
+        RenderSystem.setShader(GameRenderer::getPositionColorShader);
         Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuilder();
-        bufferbuilder.begin(7, DefaultVertexFormat.POSITION_COLOR);
+        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         fillGradient(matrixStack.last().pose(), bufferbuilder, x1, y1, x2, y2, this.blitOffset, colorFrom, colorTo);
         tessellator.end();
-        RenderSystem.shadeModel(7424);
         RenderSystem.disableBlend();
-        RenderSystem.enableAlphaTest();
         RenderSystem.enableTexture();
     }
 
@@ -140,13 +133,12 @@ public class RenderUtils {
 
     private static void innerBlit(Matrix4f matrix, int x1, int x2, int y1, int y2, int blitOffset, float minU, float maxU, float minV, float maxV) {
         BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
-        bufferbuilder.begin(7, DefaultVertexFormat.POSITION_TEX);
+        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferbuilder.vertex(matrix, (float) x1, (float) y2, (float) blitOffset).uv(minU, maxV).endVertex();
         bufferbuilder.vertex(matrix, (float) x2, (float) y2, (float) blitOffset).uv(maxU, maxV).endVertex();
         bufferbuilder.vertex(matrix, (float) x2, (float) y1, (float) blitOffset).uv(maxU, minV).endVertex();
         bufferbuilder.vertex(matrix, (float) x1, (float) y1, (float) blitOffset).uv(minU, minV).endVertex();
         bufferbuilder.end();
-        RenderSystem.enableAlphaTest();
         BufferUploader.end(bufferbuilder);
     }
 }
