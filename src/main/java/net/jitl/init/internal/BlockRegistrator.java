@@ -104,7 +104,7 @@ public class BlockRegistrator {
                 "ancient_stone",
                 "ancient_stone_side");
         registerSpeciallyRenderedBlock("ancient_obelisk", "Ancient Obelisk",
-                () -> new JTileContainerBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create().noOcclusion(), (blockState, iBlockReader) -> new ObeliskTile()));
+                () -> new JTileContainerBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create().noOcclusion(), (pos, state) -> new ObeliskTile(pos, state)));
 
         registerEmissiveRenderedBlock("ancient_stone_runic_0", "Ancient Runic Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()),
                 BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_0")), BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_0_overlay")));

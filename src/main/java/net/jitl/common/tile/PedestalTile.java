@@ -1,6 +1,7 @@
 package net.jitl.common.tile;
 
 import net.jitl.init.JTiles;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.ContainerHelper;
@@ -16,8 +17,8 @@ import org.jetbrains.annotations.NotNull;
 public class PedestalTile extends RandomizableContainerBlockEntity {
     private NonNullList<ItemStack> inventory = NonNullList.withSize(2, ItemStack.EMPTY);
 
-    public PedestalTile() {
-        super(JTiles.PEDESTAL);
+    public PedestalTile(BlockPos pos, BlockState state) {
+        super(JTiles.PEDESTAL, pos, state);
     }
 
     @Override
@@ -46,8 +47,8 @@ public class PedestalTile extends RandomizableContainerBlockEntity {
     }
 
     @Override
-    public void load(@NotNull BlockState state, @NotNull CompoundTag nbt) {
-        super.load(state, nbt);
+    public void load(@NotNull CompoundTag nbt) {
+        super.load(nbt);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(nbt, this.inventory);
     }

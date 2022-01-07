@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 public class JBlockPedestal extends JTileContainerBlock {
 
     public JBlockPedestal() {
-        super(JBlockProperties.STONE_PROPS.create(), (blockState, iBlockReader) -> new PedestalTile());
+        super(JBlockProperties.STONE_PROPS.create(), PedestalTile::new);
     }
 
     @Override

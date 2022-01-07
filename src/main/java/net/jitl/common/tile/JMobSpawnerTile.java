@@ -14,10 +14,11 @@ import net.minecraft.world.level.BaseSpawner;
 
 import javax.annotation.Nullable;
 
-public class JMobSpawnerTile extends BlockEntity implements TickableBlockEntity {
+public class JMobSpawnerTile extends BlockEntity{
 
     private final BaseSpawner spawner = new BaseSpawner() {
-        public void broadcastEvent(int id) {
+        @Override
+        public void broadcastEvent(Level level_, BlockPos pos_, int int_) {
             JMobSpawnerTile.this.level.blockEvent(JMobSpawnerTile.this.worldPosition, Blocks.SPAWNER, id, 0);
         }
 
@@ -29,23 +30,23 @@ public class JMobSpawnerTile extends BlockEntity implements TickableBlockEntity 
             return JMobSpawnerTile.this.worldPosition;
         }
 
-        public void setNextSpawnData(SpawnData nextSpawnData) {
-            super.setNextSpawnData(nextSpawnData);
+        @Override
+        public void setNextSpawnData(Level level, BlockPos pos, SpawnData nextSpawnData) {
+            super.setNextSpawnData(level, pos, nextSpawnData);
             if (this.getLevel() != null) {
                 BlockState blockstate = this.getLevel().getBlockState(this.getPos());
                 this.getLevel().sendBlockUpdated(JMobSpawnerTile.this.worldPosition, blockstate, blockstate, 4);
             }
-
         }
     };
 
-    public JMobSpawnerTile() {
-        super(JTiles.MOB_SPAWNER);
+    public JMobSpawnerTile(BlockPos pos, BlockState state) {
+        super(JTiles.MOB_SPAWNER, pos, state);
     }
 
     @Override
-    public void load(BlockState state, CompoundTag nbt) {
-        super.load(state, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
         this.spawner.load(nbt);
     }
 
