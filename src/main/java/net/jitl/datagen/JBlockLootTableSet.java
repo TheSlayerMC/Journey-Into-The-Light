@@ -11,6 +11,10 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.providers.number.BinomialDistributionGenerator;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.NumberProviders;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import ru.timeconqueror.timecore.api.devtools.gen.loottable.BlockLootTableSet;
 
 public class JBlockLootTableSet extends BlockLootTableSet {
@@ -183,7 +187,7 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 	 * @param dropWithoutSilkTouch The item dropped when the tool doesn't have silktouch applied.
 	 */
 	protected static LootTable.Builder createSilkTouchWithExtraLuckDispatchTable(Block silkTouchDrop, ItemLike dropWithoutSilkTouch, int minimumQuantity, int maximumQuantity) {
-		return createSilkTouchDispatchTable(silkTouchDrop, applyExplosionDecay(LootItem.lootTableItem(dropWithoutSilkTouch).apply(SetItemCountFunction.setCount(RandomValueBounds.between(minimumQuantity, maximumQuantity))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+		return createSilkTouchDispatchTable(silkTouchDrop, applyExplosionDecay(LootItem.lootTableItem(dropWithoutSilkTouch).apply(SetItemCountFunction.setCount(UniformGenerator.between(minimumQuantity, maximumQuantity))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
 	}
 
 	/**
@@ -193,6 +197,6 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 	 */
 	protected static LootTable.Builder createSingleItemWithExplosionDecayTable(ItemLike drop) {
 		return LootTable.lootTable()
-				.withPool(applyExplosionDecay(LootPool.lootPool().setRolls(ConstantIntValue.exactly(1)).add(LootItem.lootTableItem(drop))));
+				.withPool(applyExplosionDecay(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(drop))));
 	}
 }
