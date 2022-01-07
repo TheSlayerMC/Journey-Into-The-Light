@@ -68,7 +68,7 @@ public class JBasePortalBlock extends Block {
         Direction.Axis direction$axis = facing.getAxis();
         Direction.Axis direction$axis1 = stateIn.getValue(AXIS);
         boolean flag = direction$axis1 != direction$axis && direction$axis.isHorizontal();
-        return !flag && facingState.getBlock() != this && !(new Size(worldIn, currentPos, direction$axis1, getBlock(), frame.get())).validatePortal() ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return !flag && facingState.getBlock() != this && !(new Size(worldIn, currentPos, direction$axis1, this, frame.get())).validatePortal() ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
 
@@ -205,13 +205,13 @@ public class JBasePortalBlock extends Block {
             int i;
             for(i = 0; i < 22; ++i) {
                 BlockPos blockpos = pos.relative(directionIn, i);
-                if (!this.canConnect(this.world.getBlockState(blockpos)) || !(this.world.getBlockState(blockpos.below()).getBlock().is(this.world.getBlockState(pos.below()).getBlock()))) {
+                if (!this.canConnect(this.world.getBlockState(blockpos)) || !(this.world.getBlockState(blockpos.below()).getBlock() == this.world.getBlockState(pos.below()).getBlock())) {
                     break;
                 }
             }
 
             BlockPos framePos = pos.relative(directionIn, i);
-            return this.world.getBlockState(framePos).getBlock().is(this.world.getBlockState(pos.below()).getBlock()) ? i : 0;
+            return this.world.getBlockState(framePos).getBlock() == this.world.getBlockState(pos.below()).getBlock() ? i : 0;
         }
 
         public int getHeight() {
@@ -228,23 +228,23 @@ public class JBasePortalBlock extends Block {
                 for(int i = 0; i < this.width; ++i) {
                     BlockPos blockpos = this.bottomLeft.relative(this.rightDir, i).above(this.height);
                     BlockState blockstate = this.world.getBlockState(blockpos);
-                    if (!this.canConnect(blockstate)) {
+                    if(!this.canConnect(blockstate)) {
                         break label56;
                     }
 
                     Block block = blockstate.getBlock();
-                    if (block == this.portal) {
-                        ++this.portalBlockCount;
+                    if(block == this.portal) {
+                        this.portalBlockCount++;
                     }
 
-                    if (i == 0) {
+                    if(i == 0) {
                         BlockPos framePos = blockpos.relative(this.leftDir);
-                        if (!(this.world.getBlockState(framePos).getBlock().is(this.world.getBlockState(framePos).getBlock()))) {
+                        if(!(this.world.getBlockState(framePos).getBlock() == this.world.getBlockState(framePos).getBlock())) {
                             break label56;
                         }
-                    } else if (i == this.width - 1) {
+                    } else if(i == this.width - 1) {
                         BlockPos framePos = blockpos.relative(this.rightDir);
-                        if (!(this.world.getBlockState(framePos).getBlock().is(this.world.getBlockState(framePos).getBlock()))) {
+                        if (!(this.world.getBlockState(framePos).getBlock() == this.world.getBlockState(framePos).getBlock())) {
                             break label56;
                         }
                     }
@@ -253,13 +253,13 @@ public class JBasePortalBlock extends Block {
 
             for(int j = 0; j < this.width; ++j) {
                 BlockPos framePos = this.bottomLeft.relative(this.rightDir, j).above(this.height);
-                if (!(this.world.getBlockState(framePos).getBlock().is(this.world.getBlockState(framePos).getBlock()))) {
+                if (!(this.world.getBlockState(framePos).getBlock() == this.world.getBlockState(framePos).getBlock())) {
                     this.height = 0;
                     break;
                 }
             }
 
-            if (this.height <= 21 && this.height >= 3) {
+            if(this.height <= 21 && this.height >= 3) {
                 return this.height;
             } else {
                 this.bottomLeft = null;

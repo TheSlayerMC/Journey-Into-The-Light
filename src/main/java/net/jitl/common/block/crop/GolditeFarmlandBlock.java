@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -87,12 +88,11 @@ public class GolditeFarmlandBlock extends Block {
     }
 
     @Override
-    public void fallOn(Level worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+    public void fallOn(Level worldIn, BlockState state, BlockPos pos, Entity entityIn, float fallDistance) {
         if (!worldIn.isClientSide && net.minecraftforge.common.ForgeHooks.onFarmlandTrample(worldIn, pos, JBlocks.GOLDITE_DIRT.defaultBlockState(), fallDistance, entityIn)) { // Forge: Move logic to Entity#canTrample
             turnToDirt(worldIn.getBlockState(pos), worldIn, pos);
         }
-
-        super.fallOn(worldIn, pos, entityIn, fallDistance);
+        super.fallOn(worldIn, state, pos, entityIn, fallDistance);
     }
 
     public static void turnToDirt(BlockState state, Level worldIn, BlockPos pos) {
