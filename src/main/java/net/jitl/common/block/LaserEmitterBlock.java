@@ -1,22 +1,19 @@
 package net.jitl.common.block;
 
 import net.jitl.common.tile.LaserEmitterTile;
-import net.jitl.common.tile.base.InitableTile;
+import net.jitl.init.JTiles;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.level.BlockGetter;
 import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class LaserEmitterBlock extends BaseEntityBlock {
 
@@ -43,11 +40,11 @@ public class LaserEmitterBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level_, BlockState state_, BlockEntityType<T> blockEntityType_) {
-        return super.getTicker(level_, state_, blockEntityType_);
+        return createTicker(level_, blockEntityType_, JTiles.LASER_EMITTER);
     }
 
     @javax.annotation.Nullable
-    protected static <T extends BlockEntity> BlockEntityTicker<T> createTicker(Level level_, BlockEntityType<T> givenType_, BlockEntityType<? extends LaserEmitterTile> expectedType_) {
-        return level_.isClientSide ? null : createTickerHelper(givenType_, expectedType_, LaserEmitterTile::serverTick);
+    protected <T extends BlockEntity> BlockEntityTicker<T> createTicker(Level level_, BlockEntityType<T> givenType_, BlockEntityType<? extends LaserEmitterTile> expectedType_) {
+        return level_.isClientSide ? null : createTickerHelper(givenType_, expectedType_, expectedType_);
     }
 }

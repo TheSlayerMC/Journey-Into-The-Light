@@ -1,25 +1,18 @@
 package net.jitl.common.tile;
 
+import com.mojang.math.Quaternion;
+import com.mojang.math.Vector3f;
 import net.jitl.common.tile.base.InitableTile;
 import net.jitl.init.JTiles;
 import net.jitl.util.calculation.BeamCalculation;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.block.entity.TickableBlockEntity;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.util.Mth;
-import com.mojang.math.Quaternion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import com.mojang.math.Vector3f;
 import ru.timeconqueror.timecore.api.common.tile.SerializationType;
-
-import javax.annotation.Nullable;
 
 //TODO beam burning particles near beam end vector
 public class LaserEmitterTile extends InitableTile {
@@ -38,15 +31,13 @@ public class LaserEmitterTile extends InitableTile {
         activationTime = level.getGameTime();
     }
 
-    public void serverTick(Level level, BlockPos pos, BlockState state_, AbstractFurnaceBlockEntity blockEntity_) {
-        BeamCalculation.TillBlockResult beamTillBlock = BeamCalculation.tillBlock(level, getBlockPos(), BEAM_OFFSET, getLaserRotation(0), MAX_DISTANCE);
+    public void serverTick(Level level, BlockPos pos, BlockState state_, LaserEmitterTile blockEntity_) {
+        BeamCalculation.TillBlockResult beamTillBlock = BeamCalculation.tillBlock(level, pos, BEAM_OFFSET, getLaserRotation(0), MAX_DISTANCE);
 
         BeamCalculation.forAllEntitiesOnWay(level, beamTillBlock, entity -> true, entity -> {
             System.out.println("Found!");
         });
     }
-
-
 
     @Override
     protected void writeNBT(CompoundTag nbt, SerializationType type) {
