@@ -7,6 +7,7 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.jitl.JITL;
 import net.jitl.init.JEnchantments;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
@@ -35,6 +36,6 @@ public class JITLJeiPlugin implements IModPlugin {
             return ambitBook;
         }).collect(Collectors.toList());
         JITL.LOGGER.info("registered books?");
-        registration.addIngredientInfo(ambitBooks, VanillaTypes.ITEM, "The is awsome. it is cool! you can do something. !");
+        registration.addIngredientInfo(ambitBooks, VanillaTypes.ITEM, new TextComponent("The is awsome. it is cool! you can do something. !"));
     }
 }

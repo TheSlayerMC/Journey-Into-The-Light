@@ -2,6 +2,7 @@ package net.jitl.datagen;
 
 import net.jitl.JITL;
 import net.minecraft.data.*;
+import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -13,13 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
-import net.minecraft.data.recipes.UpgradeRecipeBuilder;
-
-public class JRecipeProvider extends ForgeRecipeProvider {
+public class JRecipeProvider extends RecipeProvider {
 
 	public JRecipeProvider(DataGenerator generatorIn) {
 		super(generatorIn);
@@ -161,7 +156,7 @@ public class JRecipeProvider extends ForgeRecipeProvider {
 	/**
 	 * Helps simplify recipe creation.
 	 * Allows the ingredient to be referenced with a prefix and suffix, instead of having to be referenced directly in the method or constructor.
-	 * This is useful in the case of bulk registering, as seen in the {@link #addArmorRecipes(Consumer, IItemProvider, RecipePrefix)} method
+	 * This is useful in the case of bulk registering, as seen in the {@link #addArmorRecipes(Consumer, ItemLike, RecipePrefix)} (Consumer, IItemProvider, RecipePrefix)} method
 	 *
 	 * @param registryName
 	 * @return

@@ -17,7 +17,6 @@ public class DataGenStartPoint {
                 .addSet(new JBlockLootTableSet())
                 .addSet(new JChestLootTableSet());
         JRecipeRegister recipeProvider = new JRecipeRegister(dataGenerator);
-        JBiomeProvider biomeProvider = new JBiomeProvider(dataGenerator);
 
         //Adds data providers
         dataGenerator.addProvider(lootTableGenerator);

@@ -15,9 +15,9 @@ public class JRecipeRegister extends JRecipeProvider {
 	public JRecipeRegister(DataGenerator generatorIn) {
 		super(generatorIn);
 	}
-
+	
 	@Override
-	protected void buildShapelessRecipes(Consumer<FinishedRecipe> recipeConsumer) {
+	protected void buildCraftingRecipes(Consumer<FinishedRecipe> recipeConsumer) {
 		buildBlockRecipes(recipeConsumer);
 		buildItemRecipes(recipeConsumer);
 		buildToolRecipes(recipeConsumer);
