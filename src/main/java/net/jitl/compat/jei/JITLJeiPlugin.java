@@ -7,18 +7,16 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.jitl.JITL;
 import net.jitl.init.JEnchantments;
-import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import ResourceLocation;
 
 @JeiPlugin
 public class JITLJeiPlugin implements IModPlugin {
