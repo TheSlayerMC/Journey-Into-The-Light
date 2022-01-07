@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,7 +25,11 @@ public class JGlowstoneBlobFeature extends Feature<NoneFeatureConfiguration> {
 		this.blockToPlace = blockToPlace;
 	}
 
-	public boolean place(WorldGenLevel reader, @NotNull ChunkGenerator generator, @NotNull Random rand, @NotNull BlockPos pos, @NotNull NoneFeatureConfiguration config) {
+	@Override
+	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+		BlockPos pos = context.origin();
+		WorldGenLevel reader = context.level();
+		Random rand = context.random();
 		if (!reader.isEmptyBlock(pos)) {
 			return false;
 		} else {
@@ -36,7 +41,7 @@ public class JGlowstoneBlobFeature extends Feature<NoneFeatureConfiguration> {
 
 				for (int i = 0; i < 1500; ++i) {
 					BlockPos blockpos = pos.offset(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
-					if (reader.getBlockState(blockpos).isAir(reader, blockpos)) {
+					if (reader.getBlockState(blockpos).isAir()) {
 						int j = 0;
 
 						for (Direction direction : Direction.values()) {
@@ -59,4 +64,5 @@ public class JGlowstoneBlobFeature extends Feature<NoneFeatureConfiguration> {
 			}
 		}
 	}
+
 }

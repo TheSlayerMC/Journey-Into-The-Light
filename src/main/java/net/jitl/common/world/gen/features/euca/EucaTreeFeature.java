@@ -9,6 +9,8 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.Random;
 
@@ -18,30 +20,34 @@ public class EucaTreeFeature extends Feature<EucaTreeFeatureConfig> {
     }
 
     @Override
-    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random random, BlockPos pos, EucaTreeFeatureConfig config) {
+    public boolean place(FeaturePlaceContext<EucaTreeFeatureConfig> context) {
+        BlockPos pos = context.origin();
+        WorldGenLevel reader = context.level();
+        Random random = context.random();
+
         int xPos = pos.getX() + random.nextInt(6) - random.nextInt(4);
         int zPos = pos.getZ() + random.nextInt(6) - random.nextInt(4);
         int yPos = reader.getHeight(Heightmap.Types.WORLD_SURFACE_WG, xPos, zPos) - 1;
 
-        if (!config.spawnBlock.test(reader.getBlockState(pos.below()), random)) {
+        if (!context.config().spawnBlock.test(reader.getBlockState(pos.below()), random)) {
             return false;
         } else {
-            int treeHeight = random.nextInt(config.minHeight) + random.nextInt(2) + config.maxHeight;
+            int treeHeight = random.nextInt(context.config().minHeight) + random.nextInt(2) + context.config().maxHeight;
             BlockPos.MutableBlockPos stumpPos = pos.mutable();
             stumpPos.set(xPos, yPos, zPos);
 
             int stumpHeight = random.nextInt(2) + 2;
 
             for (int i = 0; i < stumpHeight; i++) {
-                placeStumps(reader, stumpPos, random, config);
+                placeStumps(reader, stumpPos, random, context.config());
             }
 
             for (int i = 0; i < treeHeight; i++) {
-                placeLog(reader, stumpPos, random, config);
+                placeLog(reader, stumpPos, random, context.config());
             }
 
             BlockPos.MutableBlockPos leafPos = stumpPos.move(Direction.DOWN);
-            createCrown(reader, leafPos, random, config);
+            createCrown(reader, leafPos, random, context.config());
             return true;
         }
     }

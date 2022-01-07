@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import ru.timeconqueror.timecore.api.util.GenHelper;
@@ -19,7 +20,10 @@ public class TorridCrystalFeature extends Feature<BlockStateConfiguration> {
     }
 
     @Override
-    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateConfiguration config) {
+    public boolean place(FeaturePlaceContext<BlockStateConfiguration> context) {
+        BlockPos pos = context.origin();
+        WorldGenLevel reader = context.level();
+        Random rand = context.random();
         if (!(reader.getBlockState(pos.below()).getMaterial().isSolid())) {
             return false;
         } else {

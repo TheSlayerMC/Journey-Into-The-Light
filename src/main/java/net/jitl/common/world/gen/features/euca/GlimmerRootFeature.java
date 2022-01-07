@@ -11,6 +11,7 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,7 +25,10 @@ public class GlimmerRootFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     @Override
-    public boolean place(WorldGenLevel reader, @NotNull ChunkGenerator generator, @NotNull Random rand, @NotNull BlockPos pos, @NotNull NoneFeatureConfiguration config) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        BlockPos pos = context.origin();
+        WorldGenLevel reader = context.level();
+        Random random = context.random();
         if (!reader.isEmptyBlock(pos)) {
             return false;
         } else {
@@ -32,7 +36,7 @@ public class GlimmerRootFeature extends Feature<NoneFeatureConfiguration> {
             if (!blockstate.is(JBlocks.GOLDITE_STONE)) {
                 return false;
             } else {
-                this.placeOnRoof(reader, rand, pos);
+                this.placeOnRoof(reader, random, pos);
                 return true;
             }
         }

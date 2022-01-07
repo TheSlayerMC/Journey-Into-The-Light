@@ -12,6 +12,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.Random;
@@ -22,8 +23,8 @@ public class FlameBulbFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     @Override
-    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, NoneFeatureConfiguration config) {
-        return place(reader, rand, pos, 8, /*tries*/8, /*spread*/4 /*max height*/);
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context_) {
+        return place(context_.level(), context_.random(), context_.origin(), 8, /*tries*/8, /*spread*/4 /*max height*/);
     }
 
     public static boolean place(LevelAccessor world_, Random random_, BlockPos blockPos_, int int_, int int1_, int int2_) {
@@ -58,7 +59,7 @@ public class FlameBulbFeature extends Feature<NoneFeatureConfiguration> {
     private static boolean findFirstAirBlockAboveGround(LevelAccessor world_, BlockPos.MutableBlockPos mutable_) {
         do {
             mutable_.move(0, -1, 0);
-            if (Level.isOutsideBuildHeight(mutable_)) {
+            if (Level.isInSpawnableBounds(mutable_)) {
                 return false;
             }
         } while (world_.getBlockState(mutable_).isAir());

@@ -6,6 +6,7 @@ import com.mojang.serialization.Codec;
 import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
@@ -134,19 +135,23 @@ public class JTreeFeature extends Feature<JBaseTreeFeatureConfig> {
     }
 
     @Override
-    public final boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, JBaseTreeFeatureConfig config) {
+    public boolean place(FeaturePlaceContext<JBaseTreeFeatureConfig> context) {
+        BlockPos pos = context.origin();
+        WorldGenLevel reader = context.level();
+        Random rand = context.random();
+
         Set<BlockPos> set = Sets.newHashSet();
         Set<BlockPos> set1 = Sets.newHashSet();
         Set<BlockPos> set2 = Sets.newHashSet();
         BoundingBox mutableboundingbox = BoundingBox.getUnknownBox();
-        boolean flag = this.doPlace(reader, rand, pos, set, set1, mutableboundingbox, config);
+        boolean flag = this.doPlace(reader, rand, pos, set, set1, mutableboundingbox, context.config());
         if (mutableboundingbox.x0 <= mutableboundingbox.x1 && flag && !set.isEmpty()) {
-            if (!config.decorators.isEmpty()) {
+            if (!context.config().decorators.isEmpty()) {
                 List<BlockPos> list = Lists.newArrayList(set);
                 List<BlockPos> list1 = Lists.newArrayList(set1);
                 list.sort(Comparator.comparingInt(Vec3i::getY));
                 list1.sort(Comparator.comparingInt(Vec3i::getY));
-                config.decorators.forEach((treeDecorator_) -> {
+                context.config().decorators.forEach((treeDecorator_) -> {
                     treeDecorator_.place(reader, rand, list, list1, set2, mutableboundingbox);
                 });
             }

@@ -11,6 +11,7 @@ import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
 import net.jitl.common.world.gen.treedecorator.*;
 import net.jitl.util.JRuleTests;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.behavior.ShufflingList;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,6 +35,7 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 import ru.timeconqueror.timecore.api.registry.PlacedFeatureRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 import ru.timeconqueror.timecore.api.registry.util.Promised;
+import ru.timeconqueror.timecore.storage.Features;
 
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -96,7 +98,7 @@ public class JConfiguredFeatures {
                                     5,
                                     5,
                                     8,
-                                    new WeightedList<ResourceLocation>()
+                                    new ShufflingList.WeightedEntry<ResourceLocation>()
                                             .add(BuiltInLootTables.ABANDONED_MINESHAFT, 5)
                                             .add(BuiltInLootTables.SIMPLE_DUNGEON, 6)
                                             .add(BuiltInLootTables.STRONGHOLD_CORRIDOR, 2)))

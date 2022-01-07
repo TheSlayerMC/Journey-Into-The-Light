@@ -9,6 +9,7 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.Random;
@@ -19,7 +20,11 @@ public class ScorchedStalagmiteFeature extends Feature<NoneFeatureConfiguration>
     }
 
     @Override
-    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, NoneFeatureConfiguration config) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        BlockPos pos = context.origin();
+        WorldGenLevel reader = context.level();
+        Random rand = context.random();
+        
         pos = reader.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, pos);
         if (reader.getBlockState(pos.below()) != JBlocks.SCORCHED_RUBBLE.defaultBlockState()) {
             return false;

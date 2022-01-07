@@ -2,16 +2,14 @@ package net.jitl.common.world.gen.features.frozen;
 
 import com.mojang.serialization.Codec;
 import net.jitl.init.JBlocks;
-import net.jitl.util.JRuleTests;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.Random;
@@ -23,7 +21,10 @@ public class FrozenIceSpikeFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     @Override
-    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos1, NoneFeatureConfiguration config) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        BlockPos pos1 = context.origin();
+        WorldGenLevel reader = context.level();
+        Random rand = context.random();
 
             BlockPos pos2 = new BlockPos(pos1.getX(),reader.getHeight(Heightmap.Types.WORLD_SURFACE_WG, pos1.getX(), pos1.getZ()) - 1, pos1.getZ());
 
@@ -47,14 +48,14 @@ public class FrozenIceSpikeFeature extends Feature<NoneFeatureConfiguration> {
                         if ((i1 == 0 && j1 == 0 || !(f1 * f1 + f2 * f2 > f * f)) && (i1 != -l && i1 != l && j1 != -l && j1 != l || !(rand.nextFloat() > 0.75F))) {
                             BlockState blockstate = reader.getBlockState(pos.offset(i1, k, j1));
                             Block block = blockstate.getBlock();
-                            if (blockstate.isAir(reader, pos.offset(i1, k, j1)) || block == JBlocks.FROSTY_ICE) {
+                            if (blockstate.isAir() || block == JBlocks.FROSTY_ICE) {
                                 this.setBlock(reader, pos.offset(i1, k, j1), JBlocks.FROSTY_ICE.defaultBlockState());
                             }
 
                             if (k != 0 && l > 1) {
                                 blockstate = reader.getBlockState(pos.offset(i1, -k, j1));
                                 block = blockstate.getBlock();
-                                if (blockstate.isAir(reader, pos.offset(i1, -k, j1)) || block == JBlocks.FROSTY_ICE) {
+                                if (blockstate.isAir() || block == JBlocks.FROSTY_ICE) {
                                     this.setBlock(reader, pos.offset(i1, -k, j1), JBlocks.FROSTY_ICE.defaultBlockState());
                                 }
                             }
@@ -78,7 +79,7 @@ public class FrozenIceSpikeFeature extends Feature<NoneFeatureConfiguration> {
                     while (blockpos.getY() > 50) {
                         BlockState blockstate1 = reader.getBlockState(blockpos);
                         Block block1 = blockstate1.getBlock();
-                        if (!blockstate1.isAir(reader, blockpos) && block1 != JBlocks.FROSTY_ICE) {
+                        if (!blockstate1.isAir() && block1 != JBlocks.FROSTY_ICE) {
                             break;
                         }
                         this.setBlock(reader, blockpos, JBlocks.FROSTY_ICE.defaultBlockState());

@@ -10,6 +10,7 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.Random;
@@ -20,7 +21,11 @@ public class SulphurCrystalFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     @Override
-    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos1, NoneFeatureConfiguration config) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        BlockPos pos1 = context.origin();
+        WorldGenLevel reader = context.level();
+        Random rand = context.random();
+
         if (reader.getBlockState(pos1.below()) != JBlocks.VOLCANIC_SAND.defaultBlockState()) {
             return false;
         } else {
@@ -40,9 +45,9 @@ public class SulphurCrystalFeature extends Feature<NoneFeatureConfiguration> {
                     for (int j1 = -l; j1 <= l; ++j1) {
                         float f2 = (float) Mth.abs(j1) - 0.5F;
                         if ((i1 == 0 && j1 == 0 || !(f1 * f1 + f2 * f2 > f * f)) && (i1 != -l && i1 != l && j1 != -l && j1 != l || !(rand.nextFloat() > 0.75F))) {
-                            BlockState blockstate = reader.getBlockState(pos.offset(i1, k, j1));
+                            BlockState blockstate = reader.getBlockState(pos.offset(i1, k - 12, j1));
                             Block block = blockstate.getBlock();
-                            if (blockstate.isAir(reader, pos.offset(i1, k - 12, j1)) || block == JBlocks.SULPHUR_ROCK) {
+                            if (blockstate.isAir() || block == JBlocks.SULPHUR_ROCK) {
                                 this.setBlock(reader, pos.offset(i1, k - 12, j1), JBlocks.SULPHUR_ROCK.defaultBlockState());
                             }
                         }

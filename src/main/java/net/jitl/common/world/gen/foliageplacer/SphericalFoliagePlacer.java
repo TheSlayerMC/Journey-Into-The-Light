@@ -5,6 +5,9 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.jitl.init.JFoliagePlacers;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.LevelSimulatedRW;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -15,10 +18,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 import java.util.Set;
+import java.util.function.BiConsumer;
 
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer.FoliageAttachment;
 
 public class SphericalFoliagePlacer extends BlobFoliagePlacer {
+
     public static final Codec<SphericalFoliagePlacer> CODEC = RecordCodecBuilder.create((instance_) -> {
         return blobParts(instance_).apply(instance_, SphericalFoliagePlacer::new);
     });
@@ -33,9 +38,9 @@ public class SphericalFoliagePlacer extends BlobFoliagePlacer {
     }
 
     @Override
-    protected void createFoliage(@NotNull LevelSimulatedRW reader, @NotNull Random rand, @NotNull TreeConfiguration baseTreeFeatureConfig_, int int_, FoliageAttachment foliage_, int int1_, int int2_, Set<BlockPos> set_, int int3_, BoundingBox mutableBoundingBox_) {
-        int size = int2_ + foliage_.radiusOffset();
-        BlockPos pos = foliage_.foliagePos().above(int3_);
+    protected void createFoliage(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> blockSetter_, Random rand, TreeConfiguration baseTreeFeatureConfig_, int maxFreeTreeHeight_, FoliageAttachment foliage_, int foliageHeight_, int foliageRadius_, int offset_) {
+        int size = foliageRadius_ + foliage_.radiusOffset();
+        BlockPos pos = foliage_.pos().above(offset_);
         pos = pos.offset(Direction.UP.getNormal());
         for (byte x = 0; x <= size; x++) {
             for (byte y = 0; y <= size; y++) {
@@ -52,14 +57,14 @@ public class SphericalFoliagePlacer extends BlobFoliagePlacer {
                     }
 
                     if (distance <= size) {
-                        placeLeavesRow(reader, rand, baseTreeFeatureConfig_, pos.offset(+x, +y, +z), 0, set_, -1 - int1_, false, mutableBoundingBox_);
-                        placeLeavesRow(reader, rand, baseTreeFeatureConfig_, pos.offset(+x, +y, -z), 0, set_, -1 - int1_, false, mutableBoundingBox_);
-                        placeLeavesRow(reader, rand, baseTreeFeatureConfig_, pos.offset(-x, +y, +z), 0, set_, -1 - int1_, false, mutableBoundingBox_);
-                        placeLeavesRow(reader, rand, baseTreeFeatureConfig_, pos.offset(-x, +y, -z), 0, set_, -1 - int1_, false, mutableBoundingBox_);
-                        placeLeavesRow(reader, rand, baseTreeFeatureConfig_, pos.offset(+x, -y, +z), 0, set_, -1 - int1_, false, mutableBoundingBox_);
-                        placeLeavesRow(reader, rand, baseTreeFeatureConfig_, pos.offset(+x, -y, -z), 0, set_, -1 - int1_, false, mutableBoundingBox_);
-                        placeLeavesRow(reader, rand, baseTreeFeatureConfig_, pos.offset(-x, -y, +z), 0, set_, -1 - int1_, false, mutableBoundingBox_);
-                        placeLeavesRow(reader, rand, baseTreeFeatureConfig_, pos.offset(-x, -y, -z), 0, set_, -1 - int1_, false, mutableBoundingBox_);
+                        placeLeavesRow(reader, blockSetter_, rand, baseTreeFeatureConfig_, pos.offset(+x, +y, +z), foliageHeight_, offset_, false);
+                        placeLeavesRow(reader, blockSetter_, rand, baseTreeFeatureConfig_, pos.offset(+x, +y, -z), foliageHeight_, offset_, false);
+                        placeLeavesRow(reader, blockSetter_, rand, baseTreeFeatureConfig_, pos.offset(-x, +y, +z), foliageHeight_, offset_, false);
+                        placeLeavesRow(reader, blockSetter_, rand, baseTreeFeatureConfig_, pos.offset(-x, +y, -z), foliageHeight_, offset_, false);
+                        placeLeavesRow(reader, blockSetter_, rand, baseTreeFeatureConfig_, pos.offset(+x, -y, +z), foliageHeight_, offset_, false);
+                        placeLeavesRow(reader, blockSetter_, rand, baseTreeFeatureConfig_, pos.offset(+x, -y, -z), foliageHeight_, offset_, false);
+                        placeLeavesRow(reader, blockSetter_, rand, baseTreeFeatureConfig_, pos.offset(-x, -y, +z), foliageHeight_, offset_, false);
+                        placeLeavesRow(reader, blockSetter_, rand, baseTreeFeatureConfig_, pos.offset(-x, -y, -z), foliageHeight_, offset_, false);
                     }
                 }
             }

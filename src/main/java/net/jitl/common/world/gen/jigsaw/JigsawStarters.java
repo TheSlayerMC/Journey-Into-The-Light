@@ -9,8 +9,6 @@ import net.minecraft.world.level.levelgen.feature.structures.StructureTemplatePo
 import net.minecraft.data.worldgen.Pools;
 import net.minecraft.world.level.levelgen.feature.structures.StructurePoolElement;
 
-import StructureTemplatePool;
-
 public class JigsawStarters {
     //TODO: fix processor
     public static final StructureTemplatePool ESKIMO_CAMP_START = Pools.register(

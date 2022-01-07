@@ -12,6 +12,8 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -23,7 +25,11 @@ public class RuinsFeature extends Feature<RuinsFeatureConfig> {
 	}
 
 	@Override
-	public boolean place(WorldGenLevel reader, @NotNull ChunkGenerator generator, @NotNull Random rand, BlockPos pos, @NotNull RuinsFeatureConfig config) {
+	public boolean place(FeaturePlaceContext<RuinsFeatureConfig> context) {
+		BlockPos pos = context.origin();
+		WorldGenLevel reader = context.level();
+		Random rand = context.random();
+		RuinsFeatureConfig config = context.config();
 		if (!config.spawnBlock.test(reader.getBlockState(pos.below()), rand)) {
 			return false;
 		} else {
@@ -41,10 +47,10 @@ public class RuinsFeature extends Feature<RuinsFeatureConfig> {
 				}
 				if (rand.nextInt(4) == 0) {
 					BlockPos chestPos = new BlockPos(pos.getX(), yPos, pos.getZ());
-					if (config.spawnBlock.test(reader.getBlockState(chestPos.below()), rand) && reader.getBlockState(chestPos).getBlock().is(Blocks.AIR)) {
+					if (config.spawnBlock.test(reader.getBlockState(chestPos.below()), rand) && reader.getBlockState(chestPos).getBlock() == Blocks.AIR) {
 						BlockState chestState = Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(rand));
 						reader.setBlock(chestPos, chestState, 2);
-						RandomizableContainerBlockEntity.setLootTable(reader, rand, chestPos, config.lootWeightedList.getOne(rand));
+						RandomizableContainerBlockEntity.setLootTable(reader, rand, chestPos, config.lootWeightedList.getData());
 					}
 				}
 			}

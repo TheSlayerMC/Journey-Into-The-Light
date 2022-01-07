@@ -3,7 +3,14 @@ package net.jitl.common.world.gen.carver;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
 import net.jitl.init.JBlocks;
+import net.minecraft.core.SectionPos;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.CarvingMask;
+import net.minecraft.world.level.levelgen.Aquifer;
+import net.minecraft.world.level.levelgen.carver.CarvingContext;
+import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
+import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.biome.Biome;
@@ -18,8 +25,8 @@ import java.util.function.Function;
 
 public class FrozenCaveCarver extends CaveWorldCarver {
 
-    public FrozenCaveCarver(Codec<ProbabilityFeatureConfiguration> c) {
-        super(c, 64);
+    public FrozenCaveCarver(Codec<CaveCarverConfiguration> c) {
+        super(c);
         this.replaceableBlocks = ImmutableSet.of(JBlocks.GRASSY_PERMAFROST, JBlocks.PERMAFROST, JBlocks.CRUMBLED_PERMAFROST);
         this.liquids = ImmutableSet.of(Fluids.LAVA, Fluids.WATER);
     }
@@ -40,34 +47,50 @@ public class FrozenCaveCarver extends CaveWorldCarver {
 
     @Override
     protected double getYScale() {
-        return 1.0D;
+        return 1D;
     }
 
     @Override
-    protected int getCaveY(Random r) {
-        return r.nextInt(this.genHeight);
-    }
+    public boolean carve(CarvingContext context_, CaveCarverConfiguration config_, ChunkAccess chunk_, Function<BlockPos, Biome> biomeAccessor_, Random random_, Aquifer aquifer_, ChunkPos chunkPos_, CarvingMask carvingMask_) {
+        int i = SectionPos.sectionToBlockCoord(this.getRange() * 2 - 1);
+        int j = random_.nextInt(random_.nextInt(random_.nextInt(this.getCaveBound()) + 1) + 1);
 
-    @Override
-    protected boolean carveBlock(ChunkAccess chunkIn, Function<BlockPos, Biome> function_, BitSet carvingMask, Random rand, BlockPos.MutableBlockPos mutable_, BlockPos.MutableBlockPos mutable1_, BlockPos.MutableBlockPos mutable2_, int int3_, int int4_, int int_, int posX, int posZ, int j, int posY, int k, MutableBoolean isSurface) {
-        int i = j | k << 4 | posY << 8;
-        if (carvingMask.get(i)) {
-            return false;
-        } else {
-            carvingMask.set(i);
-            mutable_.set(posX, posY, posZ);
-            if (this.canReplaceBlock(chunkIn.getBlockState(mutable_))) {
-                BlockState blockstate;
-                if (posY <= 10) {
-                    blockstate = LAVA.createLegacyBlock(); //TODO: replace with some kind of molten ice or something?
-                } else {
-                    blockstate = CAVE_AIR;
-                }
-                chunkIn.setBlockState(mutable_, blockstate, false);
-                return true;
-            } else {
-                return false;
+        for(int k = 0; k < j; ++k) {
+            double d0 = (double)chunkPos_.getBlockX(random_.nextInt(16));
+            double d1 = (double)config_.y.sample(random_, context_);
+            double d2 = (double)chunkPos_.getBlockZ(random_.nextInt(16));
+            double d3 = (double)config_.horizontalRadiusMultiplier.sample(random_);
+            double d4 = (double)config_.verticalRadiusMultiplier.sample(random_);
+            double d5 = 5D;//(double)config_.floorLevel.sample(random_);
+            WorldCarver.CarveSkipChecker worldcarver$carveskipchecker = (skipContext_, relativeX_, relativeY1_, relativeZ1_, y1_) -> {
+                return shouldSkip(relativeX_, relativeY1_, relativeZ1_, d5);//floor level?
+            };
+            int l = 1;
+            if (random_.nextInt(4) == 0) {
+                double d6 = (double)config_.yScale.sample(random_);
+                float f1 = 1.0F + random_.nextFloat() * 6.0F;
+                this.createRoom(context_, config_, chunk_, biomeAccessor_, aquifer_, d0, d1, d2, f1, d6, carvingMask_, worldcarver$carveskipchecker);
+                l += random_.nextInt(4);
             }
+
+            for(int k1 = 0; k1 < l; ++k1) {
+                float f = random_.nextFloat() * ((float)Math.PI * 2F);
+                float f3 = (random_.nextFloat() - 0.5F) / 4.0F;
+                float f2 = this.getThickness(random_);
+                int i1 = i - random_.nextInt(i / 4);
+                int j1 = 0;
+                this.createTunnel(context_, config_, chunk_, biomeAccessor_, random_.nextLong(), aquifer_, d0, d1, d2, d3, d4, f2, f, f3, 0, i1, this.getYScale(), carvingMask_, worldcarver$carveskipchecker);
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean shouldSkip(double relative_, double relativeY_, double relativeZ_, double minrelativeY_) {
+        if (relativeY_ <= minrelativeY_) {
+            return true;
+        } else {
+            return relative_ * relative_ + relativeY_ * relativeY_ + relativeZ_ * relativeZ_ >= 1.0D;
         }
     }
 }
