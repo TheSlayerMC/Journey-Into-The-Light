@@ -45,6 +45,6 @@ public class LaserEmitterBlock extends BaseEntityBlock {
 
     @javax.annotation.Nullable
     protected <T extends BlockEntity> BlockEntityTicker<T> createTicker(Level level_, BlockEntityType<T> givenType_, BlockEntityType<? extends LaserEmitterTile> expectedType_) {
-        return level_.isClientSide ? null : createTickerHelper(givenType_, expectedType_, expectedType_);
+        return level_.isClientSide ? null : createTickerHelper(givenType_, expectedType_, LaserEmitterTile::serverTick);
     }
 }
