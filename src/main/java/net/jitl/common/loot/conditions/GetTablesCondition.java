@@ -32,7 +32,7 @@ public class GetTablesCondition implements LootItemCondition {
         return false;
     }
 
-    public static class Serializer implements Serializer<GetTablesCondition> {
+    public static class LootSerializer implements Serializer<GetTablesCondition> {
 
         @Override
         public void serialize(@NotNull JsonObject jsonObject, GetTablesCondition getTableCondition, @NotNull JsonSerializationContext jsonSerializationContext) {

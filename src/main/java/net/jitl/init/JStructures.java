@@ -50,7 +50,7 @@ public class JStructures {
             REGISTER.register("mage_house", MageHouseStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
-                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getName(), new ResourceLocation("dark_forest")))
+                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), new ResourceLocation("dark_forest")))
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
@@ -70,7 +70,7 @@ public class JStructures {
     public static final StructureHolder<NoneFeatureConfiguration, IllagerBunkerStructure> ILlAGER_BUNKER =
             REGISTER.register("illager_bunker", IllagerBunkerStructure::new, TimeStructureSeparationSettings.create(40, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
-                    .allowedInBiomes((biomeResourceKey, biome) -> biome.getCategory() == Biome.BiomeCategory.MESA)
+                    .allowedInBiomes((biomeResourceKey, biome) -> biome.getBiomeCategory() == Biome.BiomeCategory.MESA)
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
@@ -92,7 +92,7 @@ public class JStructures {
             REGISTER.register("goldite_windmill", GolditeWindmillStructure::new, TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.EUCA_WORLD)
-                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biomePredicate.getName(), JITL.rl("euca/euca_goldite_grains")))
+                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), JITL.rl("euca/euca_goldite_grains")))
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
@@ -105,7 +105,7 @@ public class JStructures {
     public static final StructureHolder<NoneFeatureConfiguration, DirerockStrongholdStructure> DIREROCK_STRONGHOLD =
             REGISTER.register("direrock_stronghold", DirerockStrongholdStructure::new, TimeStructureSeparationSettings.create(15, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.BOIL_WORLD)
-                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biomePredicate.getName(), JITL.rl("boil/scorched_wastelands")))
+                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), JITL.rl("boil/scorched_wastelands")))
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 }

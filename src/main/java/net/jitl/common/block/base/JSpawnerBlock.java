@@ -26,14 +26,9 @@ public class JSpawnerBlock extends SpawnerBlock {
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockGetter worldIn) {
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         JMobSpawnerTile spawner = new JMobSpawnerTile();
         spawner.getSpawner().setEntityId(entity);
         return spawner;
-    }
-
-    @Override
-    public ItemStack getPickBlock(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
-        return new ItemStack(Item.byBlock(this));
     }
 }

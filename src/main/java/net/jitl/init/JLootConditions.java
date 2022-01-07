@@ -11,7 +11,7 @@ public class JLootConditions {
     public static void init() {
     }
 
-    public static final LootItemConditionType GET_TABLE = register("get_tables", new GetTablesCondition.Serializer());
+    public static final LootItemConditionType GET_TABLE = register("get_tables", new GetTablesCondition.LootSerializer());
 
     private static LootItemConditionType register(String id, Serializer<? extends LootItemCondition> serializer) {
         JITL.LOGGER.info("registered loot conditions");

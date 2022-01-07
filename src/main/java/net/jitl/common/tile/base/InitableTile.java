@@ -1,5 +1,6 @@
 package net.jitl.common.tile.base;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -11,8 +12,8 @@ import javax.annotation.OverridingMethodsMustInvokeSuper;
 public class InitableTile extends SyncableTile {
     private boolean firstAdded = true;
 
-    public InitableTile(BlockEntityType<?> tileEntityTypeIn) {
-        super(tileEntityTypeIn);
+    public InitableTile(BlockEntityType<?> tileEntityTypeIn, BlockPos pos, BlockState state) {
+        super(tileEntityTypeIn, pos, state);
     }
 
     @Override
@@ -39,9 +40,8 @@ public class InitableTile extends SyncableTile {
 
     @Override
     @OverridingMethodsMustInvokeSuper
-    protected void readNBT(BlockState state, CompoundTag nbt, SerializationType type) {
-        super.readNBT(state, nbt, type);
-
+    protected void readNBT(CompoundTag nbt, SerializationType type) {
+        super.readNBT(nbt, type);
         firstAdded = false;
     }
 }
