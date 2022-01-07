@@ -3,6 +3,7 @@ package net.jitl.common.block;
 import net.jitl.common.block.base.JFallingTileContainerBlock;
 import net.jitl.common.tile.PotTile;
 import net.jitl.init.JSounds;
+import net.jitl.init.JTiles;
 import net.jitl.util.JBlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -19,6 +20,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -27,10 +30,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
+
 public class AncientPotteryBlock extends JFallingTileContainerBlock {
 
     public AncientPotteryBlock() {
-        super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), (blockState, iBlockReader) -> new PotTile());
+        super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), PotTile::new);
     }
 
     @Override
@@ -109,6 +114,17 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
             return InteractionResult.sidedSuccess(worldIn.isClientSide);
         }
         return InteractionResult.sidedSuccess(worldIn.isClientSide);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level_, BlockState state_, BlockEntityType<T> blockEntityType_) {
+        return createTicker(level_, blockEntityType_, JTiles.ANCIENT_POTTERY);
+    }
+
+    @Nullable
+    protected static <T extends BlockEntity> BlockEntityTicker<T> createTicker(Level level_, BlockEntityType<T> givenType_, BlockEntityType<? extends PotTile> expectedType_) {
+        return level_.isClientSide ? null : createTickerHelper(givenType_, expectedType_, PotTile::serverTick);
     }
 }
 
