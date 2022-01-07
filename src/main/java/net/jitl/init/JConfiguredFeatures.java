@@ -31,6 +31,7 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlac
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import ru.timeconqueror.timecore.api.registry.PlacedFeatureRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 import ru.timeconqueror.timecore.api.registry.util.Promised;
 
@@ -41,7 +42,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("Convert2MethodRef")
 public class JConfiguredFeatures {
     @AutoRegistrable
-    private static final ConfiguredFeatureRegister REGISTER = new ConfiguredFeatureRegister(JITL.MODID);
+    private static final PlacedFeatureRegister REGISTER = new PlacedFeatureRegister(JITL.MODID);
 
     public static final Predicate<BiomeLoadingEvent> IN_NETHER = event -> event.getCategory() == Biome.BiomeCategory.NETHER;
     public static final Predicate<BiomeLoadingEvent> IN_END = event -> event.getCategory() == Biome.BiomeCategory.THEEND;
