@@ -1,17 +1,13 @@
 package net.jitl.common.item.curios.ring;
 
 import net.jitl.common.item.curios.JCurioItem;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.effect.MobEffect;
 
 import java.util.function.Supplier;
-
-import net.minecraft.world.item.Item.Properties;
-
-import MobEffect;
 
 public class JRingItem extends JCurioItem {
     private MobEffect potion;

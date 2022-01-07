@@ -1,31 +1,25 @@
 package net.jitl.common.item.gear.abilities;
 
-import javafx.util.Pair;
+import com.mojang.datafixers.util.Pair;
 import net.jitl.common.helper.TooltipFiller;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.stats.Stats;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
-
-import Pair;
 
 public interface ShadiumAbility {
     default float scaleWithDarkness(Entity entity, float original) {
@@ -128,26 +122,26 @@ public interface ShadiumAbility {
         };
 
         @Override
-        public void tick(LivingEntity entity, World world, ItemStack stack) {
+        public void tick(LivingEntity entity, Level world, ItemStack stack) {
             float bonus = scaleWithDarkness(entity, 3.75F);
-            ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+            AttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
             Pair<String, UUID> pair = getPair(stack);
-            defense.removeModifier(pair.getValue());
-            defense.addTransientModifier(new AttributeModifier(pair.getValue(),
-                    pair.getKey(),
+            defense.removeModifier(pair.getSecond());
+            defense.addTransientModifier(new AttributeModifier(pair.getSecond(),
+                    pair.getFirst(),
                     bonus,
                     AttributeModifier.Operation.ADDITION));
         }
 
         @Override
-        public void equip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
-            if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
+        public void equip(LivingEntity entity, EquipmentSlot slot, ItemStack stack) {
+            if (slot.getType() == EquipmentSlot.Type.ARMOR) {
                 float bonus = scaleWithDarkness(entity, 3.75F);
-                ModifiableAttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+                AttributeInstance defense = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
                 Pair<String, UUID> pair = getPair(stack);
-                if (defense.getModifier(pair.getValue()) == null) {
-                    defense.addTransientModifier(new AttributeModifier(pair.getValue(),
-                            pair.getKey(),
+                if (defense.getModifier(pair.getSecond()) == null) {
+                    defense.addTransientModifier(new AttributeModifier(pair.getSecond(),
+                            pair.getFirst(),
                             bonus,
                             AttributeModifier.Operation.ADDITION));
                 }
@@ -156,9 +150,9 @@ public interface ShadiumAbility {
         }
 
         @Override
-        public void unEquip(LivingEntity entity, EquipmentSlotType slot, ItemStack stack) {
-            if (slot.getType() == EquipmentSlotType.Group.ARMOR) {
-                entity.getAttribute(Attributes.ARMOR_TOUGHNESS).removeModifier(entity.getAttribute(Attributes.ARMOR_TOUGHNESS).getModifier(getPair(stack).getValue()));
+        public void unEquip(LivingEntity entity, EquipmentSlot slot, ItemStack stack) {
+            if (slot.getType() == EquipmentSlot.Type.ARMOR) {
+                Objects.requireNonNull(entity.getAttribute(Attributes.ARMOR_TOUGHNESS)).removeModifier(Objects.requireNonNull(entity.getAttribute(Attributes.ARMOR_TOUGHNESS).getModifier(getPair(stack).getSecond())));
             }
         }
 
@@ -167,16 +161,16 @@ public interface ShadiumAbility {
             TooltipFiller filler = new TooltipFiller(tooltip, "shadium_armor");
             filler.addOverview();
             filler.addDetail();
-            PlayerEntity player = Minecraft.getInstance().player;
-            EquipmentSlotType slot = ((ArmorItem) stack.getItem()).getSlot();
+            Player player = Minecraft.getInstance().player;
+            EquipmentSlot slot = ((ArmorItem) stack.getItem()).getSlot();
             if (player != null && player.getItemBySlot(slot).equals(stack)) {
-                ModifiableAttributeInstance attribute = player.getAttribute(Attributes.ARMOR_TOUGHNESS);
+                AttributeInstance attribute = player.getAttribute(Attributes.ARMOR_TOUGHNESS);
                 if (attribute != null) {
                     filler.addBreak();
                     filler.addValue(Math.floor(
                             attribute.getModifier(IDS[slot.getIndex()]
-                            .getValue())
-                            .getAmount() * 100) / 100);
+                                            .getSecond())
+                                    .getAmount() * 100) / 100);
                 }
             }
         }

@@ -2,18 +2,14 @@ package net.jitl.common.item.curios.amulet;
 
 import net.jitl.common.item.curios.JCurioItem;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.UUID;
-
-import net.minecraft.world.item.Item.Properties;
-
-import AttributeModifier;
 
 public class IceAmuletItem extends JCurioItem {
     protected static final UUID SPEED_MODIFIER = UUID.fromString("758787ea-2eda-4941-8f41-4e3efd1a95a7");

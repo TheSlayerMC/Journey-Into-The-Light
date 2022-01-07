@@ -102,6 +102,10 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
+            // Curios mixin
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+
             setArgs(extraArgs)
             setJvmArgs(extraVmArgs)
 
@@ -119,6 +123,10 @@ minecraft {
             // Recommended logging data for a userdev environment
 //            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.markers', 'RESOURCE_SYSTEM'
+
+            // Curios mixin
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
 
             // Recommended logging level for the console
             //property 'forge.logging.console.level', 'debug'
@@ -180,7 +188,9 @@ dependencies {
 
 //    compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.137:api")
 //    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.137")
-//    implementation fg.deobf('top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.0')
+
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.1-5.0.4.2")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.1-5.0.4.2:api")
 
     if (System.getProperty("idea.sync.active") != "true") {
         annotationProcessor("org.spongepowered:mixin:0.8.5:processor")

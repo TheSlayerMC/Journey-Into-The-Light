@@ -12,7 +12,7 @@ public class JFuelItem extends Item {
 		this.burnTime = burnTime;
 	}
 
-	@Override //TODO: how does fuel work now?
+	@Override //TODO: how does fuel work now? ~ Dizzle
 	public int getBurnTime(ItemStack itemStack) {
 		return burnTime;
 	}
