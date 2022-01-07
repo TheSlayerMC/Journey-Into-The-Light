@@ -1,20 +1,20 @@
 package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 import net.jitl.common.entity.projectile.KnifeEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.ItemEntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
-import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import com.mojang.math.Vector3f;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -22,11 +22,11 @@ import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
 public class KnifeRenderer extends EntityRenderer<KnifeEntity> {
-    private final ItemEntityRenderer itemRenderer;
+    private final ItemRenderer itemRenderer;
     private final Random random = new Random();
 
-    public KnifeRenderer(EntityRenderDispatcher renderManagerIn, net.minecraft.client.renderer.entity.ItemRenderer itemRendererIn) {
-        super(renderManagerIn);
+    public KnifeRenderer(EntityRendererProvider.Context context, ItemRenderer itemRendererIn) {
+        super(context);
         this.itemRenderer = itemRendererIn;
         this.shadowRadius = 0.15F;
         this.shadowStrength = 0.75F;
@@ -38,12 +38,12 @@ public class KnifeRenderer extends EntityRenderer<KnifeEntity> {
         ItemStack itemstack = entityIn.getItem();
         int i = itemstack.isEmpty() ? 187 : Item.getId(itemstack.getItem()) + itemstack.getDamageValue();
         this.random.setSeed(i);
-        BakedModel ibakedmodel = this.itemRenderer.getModel(itemstack, entityIn.level, null);
+        BakedModel ibakedmodel = this.itemRenderer.getModel(itemstack, entityIn.level, null, entityIn.getId());
 
         float f1 = ((float) entityIn.tickCount + partialTicks) / 10 * (float) (Math.PI * 2.0D);
 
-        matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(Mth.lerp(partialTicks, entityIn.yRotO, entityIn.yRot) - 90.0F));
-        matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerp(partialTicks, entityIn.xRotO, entityIn.xRot) + 90.0F));
+        matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(Mth.lerp(partialTicks, entityIn.yRotO, entityIn.getYRot()) - 90.0F));
+        matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerp(partialTicks, entityIn.xRotO, entityIn.getXRot()) + 90.0F));
 
         if (!entityIn.isInGround()) {
             matrixStackIn.mulPose(Vector3f.ZP.rotation(f1));

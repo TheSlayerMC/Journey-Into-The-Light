@@ -2,32 +2,30 @@ package net.jitl.client.render.entity.base;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.resources.ResourceLocation;
 import com.mojang.math.Matrix3f;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
-
-import Entity;
 
 public class Entity2DRenderer<T extends Entity> extends EntityRenderer<T> {
     private final RenderType renderType;
     private final float scale;
     private final boolean fullBright;
 
-    public Entity2DRenderer(EntityRenderDispatcher renderManager, ResourceLocation texture, boolean fullBright) {
-        this(renderManager, texture, 1F, fullBright);
+    public Entity2DRenderer(EntityRendererProvider.Context context, ResourceLocation texture, boolean fullBright) {
+        this(context, texture, 1F, fullBright);
     }
 
-    public Entity2DRenderer(EntityRenderDispatcher renderManager, ResourceLocation texture, float scaleFactor, boolean fullBright) {
-        super(renderManager);
+    public Entity2DRenderer(EntityRendererProvider.Context context, ResourceLocation texture, float scaleFactor, boolean fullBright) {
+        super(context);
         this.renderType = RenderType.entityCutoutNoCull(texture);
         this.scale = scaleFactor;
         this.fullBright = fullBright;

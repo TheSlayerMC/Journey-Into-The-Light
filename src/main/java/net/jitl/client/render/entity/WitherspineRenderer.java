@@ -3,15 +3,15 @@ package net.jitl.client.render.entity;
 import net.jitl.JITL;
 import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.common.entity.nether.WitherspineEntity;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.renderer.AnimatedLivingEntityRenderer;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
 public class WitherspineRenderer extends AnimatedLivingEntityRenderer<WitherspineEntity, TimeEntityModel<WitherspineEntity>> {
-    public WitherspineRenderer(EntityRenderDispatcher rendererManager) {
-        super(rendererManager, JEntityRenderRegistry.witherspineModel, 0.5F);
+    public WitherspineRenderer(EntityRendererProvider.Context context) {
+        super(context, JEntityRenderRegistry.witherspineModel, 0.5F);
     }
 
     @Override

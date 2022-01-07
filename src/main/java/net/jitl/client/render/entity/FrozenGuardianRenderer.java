@@ -6,7 +6,7 @@ import net.jitl.JITL;
 import net.jitl.client.render.model.frozen.FrozenGuardianModel;
 import net.jitl.common.entity.frozen.FrozenGuardianEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
@@ -15,8 +15,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class FrozenGuardianRenderer extends MobRenderer<FrozenGuardianEntity, FrozenGuardianModel<FrozenGuardianEntity>> {
 
-    public FrozenGuardianRenderer(EntityRenderDispatcher renderManagerIn) {
-        super(renderManagerIn, new FrozenGuardianModel(), 0.5F);
+    public FrozenGuardianRenderer(EntityRendererProvider.Context context) {
+        super(context, new FrozenGuardianModel(), 0.5F);
         this.addLayer(new ItemInHandLayer<>(this));
     }
 

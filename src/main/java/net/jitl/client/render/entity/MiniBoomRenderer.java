@@ -3,15 +3,10 @@ package net.jitl.client.render.entity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
 import net.jitl.client.render.entity.layer.MiniBoomChargeLayer;
-import net.jitl.client.render.model.HongoModel;
 import net.jitl.client.render.model.MiniBoomModel;
-import net.jitl.common.entity.overworld.HongoEntity;
 import net.jitl.common.entity.pet.MiniBoomEntity;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.layers.CreeperChargeLayer;
-import net.minecraft.client.renderer.entity.model.CreeperModel;
-import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,8 +16,8 @@ import org.jetbrains.annotations.NotNull;
 @OnlyIn(Dist.CLIENT)
 public class MiniBoomRenderer extends MobRenderer<MiniBoomEntity, MiniBoomModel<MiniBoomEntity>> {
 
-    public MiniBoomRenderer(EntityRenderDispatcher e) {
-        super(e, new MiniBoomModel(), 0.2F);
+    public MiniBoomRenderer(EntityRendererProvider.Context context) {
+        super(context, new MiniBoomModel(), 0.2F);
         this.addLayer(new MiniBoomChargeLayer(this));
 
     }

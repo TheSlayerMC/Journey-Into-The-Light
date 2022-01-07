@@ -2,14 +2,14 @@ package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Matrix4f;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
-import com.mojang.math.Matrix4f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +20,8 @@ import java.util.Random;
 //Copy of default LightningBoltRenderer, but with with red color shift and shrunk size
 @OnlyIn(Dist.CLIENT)
 public class EssenciaBoltRenderer extends EntityRenderer<EssenciaBoltEntity> {
-    public EssenciaBoltRenderer(EntityRenderDispatcher renderManagerIn) {
-        super(renderManagerIn);
+    public EssenciaBoltRenderer(EntityRendererProvider.Context context) {
+        super(context);
     }
 
     @Override
