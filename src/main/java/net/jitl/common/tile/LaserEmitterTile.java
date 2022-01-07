@@ -31,7 +31,8 @@ public class LaserEmitterTile extends InitableTile {
         activationTime = level.getGameTime();
     }
 
-    public void serverTick(Level level, BlockPos pos, BlockState state_, LaserEmitterTile blockEntity_) {
+    public static void serverTick(Level level, BlockPos pos, BlockState state_, LaserEmitterTile blockEntity_) {
+        //Fixme
         BeamCalculation.TillBlockResult beamTillBlock = BeamCalculation.tillBlock(level, pos, BEAM_OFFSET, getLaserRotation(0), MAX_DISTANCE);
 
         BeamCalculation.forAllEntitiesOnWay(level, beamTillBlock, entity -> true, entity -> {

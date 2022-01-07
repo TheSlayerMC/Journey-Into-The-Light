@@ -1,30 +1,23 @@
 package net.jitl.common.block.base;
 
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.BiFunction;
 
-public class JFallingTileContainerBlock extends FallingBlock {
-    private final BiFunction<BlockState, BlockGetter, BlockEntity> tileFactory;
+public class JFallingTileContainerBlock extends FallingEntityBlock {
+    private final BiFunction<BlockPos, BlockState, BlockEntity> tileFactory;
 
-    public JFallingTileContainerBlock(Properties properties, BiFunction<BlockState, BlockGetter, BlockEntity> tileFactory) {
+    public JFallingTileContainerBlock(Properties properties, BiFunction<BlockPos, BlockState, BlockEntity> tileFactory) {
         super(properties);
         this.tileFactory = tileFactory;
     }
 
-    @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
-
     @Nullable
     @Override
-    public BlockEntity createTileEntity(BlockState state, BlockGetter world) {
-        return tileFactory.apply(state, world);
+    public BlockEntity newBlockEntity(BlockPos pos_, BlockState state_) {
+        return tileFactory.apply(pos_, state_);
     }
 }
