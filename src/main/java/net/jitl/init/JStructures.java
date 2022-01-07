@@ -22,10 +22,9 @@ import ru.timeconqueror.timecore.api.registry.StructureFeatureRegister;
 import ru.timeconqueror.timecore.api.registry.StructureFeatureRegister.StructureHolder;
 import ru.timeconqueror.timecore.api.registry.StructureFeatureRegister.TimeStructureSeparationSettings;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
+import ru.timeconqueror.timecore.api.storage.StructureTags.Tag;
 
 import java.util.Objects;
-
-import ru.timeconqueror.timecore.api.storage.StructureTags.Tag;
 
 public class JStructures {
     public static final Marker STRUCTURE_MARKER = MarkerManager.getMarker("JSTRUCTURES");
@@ -71,7 +70,7 @@ public class JStructures {
     public static final StructureHolder<NoneFeatureConfiguration, IllagerBunkerStructure> ILlAGER_BUNKER =
             REGISTER.register("illager_bunker", IllagerBunkerStructure::new, TimeStructureSeparationSettings.create(40, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
-                    .allowedInBiomes((biomeResourceKey, biome) -> biomePredicate.getCategory() == Biome.BiomeCategory.MESA)
+                    .allowedInBiomes((biomeResourceKey, biome) -> biome.getCategory() == Biome.BiomeCategory.MESA)
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 

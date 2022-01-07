@@ -3,56 +3,46 @@ package net.jitl.client.render.model.frozen;
 import com.google.common.collect.ImmutableList;
 import net.jitl.common.entity.frozen.CapybaraEntity;
 import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class CapybaraModel<T extends CapybaraEntity> extends AgeableListModel<T> {
+    // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
+    // TODO: port
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "geometry.pig:geometry.quadruped"), "main");
     private final ModelPart body;
     private final ModelPart head;
-    private final ModelPart ear2_r1;
-    private final ModelPart ear1_r1;
     private final ModelPart leg0;
     private final ModelPart leg1;
     private final ModelPart leg2;
     private final ModelPart leg3;
 
-    public CapybaraModel() {
-        texWidth = 64;
-        texHeight = 64;
+    public CapybaraModel(ModelPart root) {
+        this.body = root.getChild("body");
+        this.head = root.getChild("head");
+        this.leg0 = root.getChild("leg0");
+        this.leg1 = root.getChild("leg1");
+        this.leg2 = root.getChild("leg2");
+        this.leg3 = root.getChild("leg3");
+    }
 
-        body = new ModelPart(this);
-        body.setPos(0.0F, 11.0F, 2.0F);
-        body.texOffs(0, 0).addBox(-6.0F, -4.0F, -10.0F, 12.0F, 12.0F, 19.0F, 0.0F, false);
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-6.0F, -4.0F, -10.0F, 12.0F, 12.0F, 19.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 11.0F, 2.0F));
+        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 31).addBox(-4.0F, -7.0F, -12.0F, 8.0F, 9.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 12.0F, -6.0F, 0.3054F, 0.0F, 0.0F));
+        PartDefinition ear2_r1 = head.addOrReplaceChild("ear2_r1", CubeListBuilder.create().texOffs(0, 14).addBox(-0.5F, -2.5F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.0F, -6.1491F, -2.0358F, -0.6981F, 0.0F, 0.0F));
+        PartDefinition ear1_r1 = head.addOrReplaceChild("ear1_r1", CubeListBuilder.create().texOffs(6, 14).addBox(-0.5F, -3.0F, -1.0F, 1.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.0F, -6.0F, -3.0F, -0.6981F, 0.0F, 0.0F));
+        PartDefinition leg0 = partdefinition.addOrReplaceChild("leg0", CubeListBuilder.create().texOffs(40, 45).addBox(-2.0F, 0.0F, -16.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(3.0F, 18.0F, 9.0F));
+        PartDefinition leg1 = partdefinition.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(43, 0).addBox(-2.0F, 0.0F, -3.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.0F, 18.0F, 9.0F));
+        PartDefinition leg2 = partdefinition.addOrReplaceChild("leg2", CubeListBuilder.create().texOffs(40, 45).addBox(-2.0F, 0.0F, 11.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(3.0F, 18.0F, -5.0F));
+        PartDefinition leg3 = partdefinition.addOrReplaceChild("leg3", CubeListBuilder.create().texOffs(43, 0).addBox(-2.0F, 0.0F, -1.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.0F, 18.0F, -6.0F));
 
-        head = new ModelPart(this);
-        head.setPos(0.0F, 12.0F, -6.0F);
-        head.texOffs(0, 31).addBox(-4.0F, -7.0F, -12.0F, 8.0F, 9.0F, 12.0F, 0.0F, false);
-
-        ear2_r1 = new ModelPart(this);
-        ear2_r1.setPos(-4.0F, -6.1491F, -2.0358F);
-        head.addChild(ear2_r1);
-        ear2_r1.texOffs(0, 14).addBox(-0.5F, -2.5F, -1.0F, 1.0F, 3.0F, 2.0F, 0.0F, false);
-
-        ear1_r1 = new ModelPart(this);
-        ear1_r1.setPos(4.0F, -6.0F, -3.0F);
-        head.addChild(ear1_r1);
-        ear1_r1.texOffs(6, 14).addBox(-0.5F, -3.0F, -1.0F, 1.0F, 3.0F, 2.0F, 0.0F, false);
-
-        leg0 = new ModelPart(this);
-        leg0.setPos(3.0F, 14.0F, 9.0F);
-        leg0.texOffs(40, 31).addBox(-2.0F, 0.0F, -3.0F, 4.0F, 10.0F, 4.0F, 0.0F, false);
-
-        leg1 = new ModelPart(this);
-        leg1.setPos(-3.0F, 14.0F, 9.0F);
-        leg1.texOffs(0, 0).addBox(-2.0F, 0.0F, -3.0F, 4.0F, 10.0F, 4.0F, 0.0F, false);
-
-        leg2 = new ModelPart(this);
-        leg2.setPos(3.0F, 18.0F, -5.0F);
-        leg2.texOffs(40, 45).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, 0.0F, false);
-
-        leg3 = new ModelPart(this);
-        leg3.setPos(-3.0F, 18.0F, -6.0F);
-        leg3.texOffs(43, 0).addBox(-2.0F, 0.0F, -1.0F, 4.0F, 6.0F, 4.0F, 0.0F, false);
+        return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
     @Override

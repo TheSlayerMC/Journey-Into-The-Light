@@ -186,9 +186,11 @@ dependencies {
         }
     }
 
-//    compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.137:api")
-//    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.137")
+    //JEI
+    compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.2.61:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.2.61")
 
+    //CURIOS
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.1-5.0.4.2")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.1-5.0.4.2:api")
 
