@@ -1,25 +1,20 @@
 package net.jitl.client.render;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Vector3f;
 import net.jitl.JITL;
 import net.minecraft.client.Minecraft;
-import com.mojang.blaze3d.vertex.BufferBuilder;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.FogRenderer;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.BufferUploader;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.texture.TextureManager;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.VertexBuffer;
-import com.mojang.blaze3d.vertex.VertexFormat;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import com.mojang.math.Matrix4f;
 import net.minecraft.world.phys.Vec3;
-import com.mojang.math.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ISkyRenderHandler;
@@ -45,6 +40,7 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
 
     @Override
     public void render(int ticks, float partialTicks, PoseStack matrixStack, ClientLevel world, Minecraft mc) {
+        Matrix4f projectionMatrix = RenderSystem.getProjectionMatrix();
         RenderSystem.disableTexture();
         Vec3 worldSkyColor = world.getSkyColor(Minecraft.getInstance().gameRenderer.getMainCamera().getPosition(), partialTicks);
         float x = (float) worldSkyColor.x;
@@ -56,7 +52,7 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         FogRenderer.levelFogColor();
         RenderSystem.setShaderColor(x, y, z, 1.0F);
         ShaderInstance shaderinstance = RenderSystem.getShader();
-        this.skyBuffer.drawWithShader(matrixStack.last().pose(), projectionMatrix_, shaderinstance);
+        this.skyBuffer.drawWithShader(matrixStack.last().pose(), projectionMatrix, shaderinstance);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
 
@@ -73,7 +69,7 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
             float sunGreen = sunRiseRGBA[1];
             float sunBlue = sunRiseRGBA[2];
             Matrix4f matrix4f = matrixStack.last().pose();
-            bufferbuilder.begin(6, DefaultVertexFormat.POSITION_COLOR);
+            bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
             bufferbuilder.vertex(matrix4f, 0.0F, 100.0F, 0.0F).color(sunRed, sunGreen, sunBlue, sunRiseRGBA[3]).endVertex();
             int i = 16;
 
@@ -188,16 +184,17 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
             this.skyBuffer.close();
         }
         this.skyBuffer = new VertexBuffer();
-        drawSkyHemisphere(bufferbuilder, 16.0F, false);
+        drawSkyHemisphere(bufferbuilder);
         this.skyBuffer.upload(bufferbuilder);
     }
 
     private void renderSky(PoseStack matrixStackIn) {
-        RenderSystem.disableAlphaTest();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.depthMask(false);
-        this.textureManager.bind(SKY_LOCATION);
+        RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
+        RenderSystem.setShaderTexture(0, SKY_LOCATION);
+
         Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuilder();
 
@@ -224,7 +221,7 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
             }
 
             Matrix4f matrix4f = matrixStackIn.last().pose();
-            bufferbuilder.begin(7, DefaultVertexFormat.POSITION_TEX_COLOR);
+            bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
             bufferbuilder.vertex(matrix4f, -100.0F, -100.0F, -100.0F).uv(0.0F, 0.0F).color(40, 40, 40, 255).endVertex();
             bufferbuilder.vertex(matrix4f, -100.0F, -100.0F, 100.0F).uv(0.0F, 16.0F).color(40, 40, 40, 255).endVertex();
             bufferbuilder.vertex(matrix4f, 100.0F, -100.0F, 100.0F).uv(16.0F, 16.0F).color(40, 40, 40, 255).endVertex();
@@ -236,27 +233,18 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         RenderSystem.depthMask(true);
         RenderSystem.enableTexture();
         RenderSystem.disableBlend();
-        RenderSystem.enableAlphaTest();
     }
 
-    private void drawSkyHemisphere(BufferBuilder p_174968_1_, float p_174968_2_, boolean p_174968_3_) {
-        int i = 64;
-        int j = 6;
-        p_174968_1_.begin(7, DefaultVertexFormat.POSITION);
-
+    private void drawSkyHemisphere(BufferBuilder bufferBuilder) {
+        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
         for (int k = -384; k <= 384; k += 64) {
             for (int l = -384; l <= 384; l += 64) {
                 float f = (float) k;
                 float f1 = (float) (k + 64);
-                if (p_174968_3_) {
-                    f1 = (float) k;
-                    f = (float) (k + 64);
-                }
-
-                p_174968_1_.vertex(f, p_174968_2_, l).endVertex();
-                p_174968_1_.vertex(f1, p_174968_2_, l).endVertex();
-                p_174968_1_.vertex(f1, p_174968_2_, l + 64).endVertex();
-                p_174968_1_.vertex(f, p_174968_2_, l + 64).endVertex();
+                bufferBuilder.vertex(f, (float) 16.0, l).endVertex();
+                bufferBuilder.vertex(f1, (float) 16.0, l).endVertex();
+                bufferBuilder.vertex(f1, (float) 16.0, l + 64).endVertex();
+                bufferBuilder.vertex(f, (float) 16.0, l + 64).endVertex();
             }
         }
 
