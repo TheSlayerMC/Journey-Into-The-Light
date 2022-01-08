@@ -16,13 +16,12 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.27-patched'
         classpath 'org.parchmentmc:librarian:1.+'
         classpath 'org.spongepowered:mixingradle:0.7.+'
-        classpath "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:7.0.0"
+        classpath 'gradle.plugin.com.github.jengelman.gradle.plugins:shadow:7.0.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
     }
 }
 
-plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.6.10"
-}
+apply plugin: 'kotlin'
 apply plugin: 'com.github.johnrengelman.shadow'
 apply from: 'https://raw.githubusercontent.com/TimeConqueror/Time-Core/1.18/gradle/scripts/timecore.gradle'
 
