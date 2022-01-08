@@ -25,6 +25,7 @@ public class JBlockTags extends BlockTagsProvider {
         addVanillaBlockTags();
         addForgeBlockTags();
         addToolTags();
+        addRequiredToolTags();
     }
 
     //TODO: add block tags
@@ -42,6 +43,14 @@ public class JBlockTags extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 JBlocks.GOLDITE_STONE,
                 JBlocks.EMPTY_BLOOD_RUNE
+        );
+    }
+
+    //TODO: finish required tool tags
+    public void addRequiredToolTags() {
+        tag(BlockTags.NEEDS_IRON_TOOL).add(
+                JBlocks.SAPPHIRE_ORE,
+                JBlocks.DREADIRON_BLOCK
         );
     }
 }
