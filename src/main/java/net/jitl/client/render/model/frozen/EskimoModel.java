@@ -11,8 +11,6 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import Entity;
-
 @OnlyIn(Dist.CLIENT)
 public class EskimoModel<T extends Entity> extends ListModel<T> implements HeadedModel, VillagerHeadModel {
     private final ModelPart head2;

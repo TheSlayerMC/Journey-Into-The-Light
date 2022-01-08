@@ -23,8 +23,6 @@ import net.minecraftforge.client.ISkyRenderHandler;
 
 import java.util.Random;
 
-import VertexFormat;
-
 @OnlyIn(Dist.CLIENT)
 public class FrozenSkyRenderer implements ISkyRenderHandler {
 

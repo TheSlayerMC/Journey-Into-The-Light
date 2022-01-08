@@ -23,9 +23,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ISkyRenderHandler;
 
-import ResourceLocation;
-import VertexFormat;
-
 @OnlyIn(Dist.CLIENT)
 public class BoilSkyRenderer implements ISkyRenderHandler {
 

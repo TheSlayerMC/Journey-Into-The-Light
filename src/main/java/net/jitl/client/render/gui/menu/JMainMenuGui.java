@@ -4,13 +4,18 @@ import com.google.common.util.concurrent.Runnables;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
+import com.mojang.realmsclient.RealmsMainScreen;
+import com.mojang.realmsclient.gui.screens.RealmsNotificationsScreen;
 import net.jitl.JITL;
 import net.jitl.client.render.gui.button.JButton;
 import net.jitl.client.render.gui.button.JImageButton;
 import net.minecraft.SharedConstants;
 import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.components.toasts.SystemToast;
 import net.minecraft.client.gui.screen.*;
 import net.minecraft.client.gui.screens.*;
@@ -18,6 +23,7 @@ import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
 import net.minecraft.client.gui.screens.multiplayer.SafetyScreen;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
 import net.minecraft.client.renderer.CubeMap;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.PanoramaRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.RegistryAccess;
@@ -53,6 +59,8 @@ public class JMainMenuGui extends TitleScreen {
 	private String splash;
 	private Button resetDemoButton;
 	private static final ResourceLocation MINECRAFT_LOGO = JITL.rl("textures/gui/title/logo.png");
+	private static final ResourceLocation MINECRAFT_EDITION = new ResourceLocation("textures/gui/title/edition.png");
+
 	/**
 	 * Has the check for a realms notification screen been performed?
 	 */
@@ -132,8 +140,7 @@ public class JMainMenuGui extends TitleScreen {
 		}, new TranslatableComponent("narrator.button.accessibility")));
 		this.minecraft.setConnectedToRealms(false);
 		if (this.minecraft.options.realmsNotifications && !this.realmsNotificationsInitialized) {
-			RealmsBridge realmsbridgescreen = new RealmsBridge();
-			this.realmsNotificationsScreen = realmsbridgescreen.getNotificationScreen(this);
+			this.realmsNotificationsScreen = new RealmsNotificationsScreen();
 			this.realmsNotificationsInitialized = true;
 		}
 
@@ -210,8 +217,7 @@ public class JMainMenuGui extends TitleScreen {
 	}
 
 	private void realmsButtonClicked() {
-		RealmsBridge realmsbridgescreen = new RealmsBridge();
-		realmsbridgescreen.switchToRealms(this);
+		this.minecraft.setScreen(new RealmsMainScreen(this));
 	}
 
 	@Override
@@ -228,25 +234,28 @@ public class JMainMenuGui extends TitleScreen {
 		this.minecraft.getTextureManager().bindForSetup(PANORAMA_OVERLAY);
 		RenderSystem.enableBlend();
 		RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-		RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.fading ? (float) Mth.ceil(Mth.clamp(f, 0.0F, 1.0F)) : 1.0F);
+		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.fading ? (float) Mth.ceil(Mth.clamp(f, 0.0F, 1.0F)) : 1.0F);
 		blit(matrixStack, 0, 0, this.width, this.height, 0.0F, 0.0F, 16, 128, 16, 128);
 		float f1 = this.fading ? Mth.clamp(f - 1.0F, 0.0F, 1.0F) : 1.0F;
 		int l = Mth.ceil(f1 * 255.0F) << 24;
 		if ((l & -67108864) != 0) {
-			this.minecraft.getTextureManager().bindForSetup(MINECRAFT_LOGO);
-			RenderSystem.color4f(1.0F, 1.0F, 1.0F, f1);
+
+			RenderSystem.setShader(GameRenderer::getPositionTexShader);
+			RenderSystem.setShaderTexture(0, MINECRAFT_LOGO);
+			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f1);
+			RenderSystem.setShaderTexture(0, MINECRAFT_EDITION);
 			blit(matrixStack, j + 23, 36, 0.0F, 0.0F, 227, 55, 227, 55);
 
-			net.minecraftforge.client.ForgeHooksClient.renderMainMenu(this, matrixStack, this.font, this.width, this.height);
+			net.minecraftforge.client.ForgeHooksClient.renderMainMenu(this, matrixStack, this.font, this.width, this.height, l);
 			if (this.splash != null) {
-				RenderSystem.pushMatrix();
-				RenderSystem.translatef((float) (this.width / 2 + 80), 45.0F, 0.0F);
-				RenderSystem.rotatef(10.0F, 0.0F, 0.0F, 1.0F);
+				matrixStack.pushPose();
+				matrixStack.translate((float) (this.width / 2 + 80), 45.0F, 0.0F);
+				matrixStack.mulPose(Vector3f.ZP.rotationDegrees(-20.0F));
 				float f2 = 1.8F - Mth.abs(Mth.sin((float) (Util.getMillis() % 1000L) / 1000.0F * ((float) Math.PI * 2F)) * 0.1F);
 				f2 = f2 * 100.0F / (float) (this.font.width(this.splash) + 32);
-				RenderSystem.scalef(f2, f2, f2);
+				matrixStack.scale(f2, f2, f2);
 				drawCenteredString(matrixStack, this.font, this.splash, 0, -8, 16776960 | l);
-				RenderSystem.popMatrix();
+				matrixStack.popPose();
 			}
 
 			String s = "Minecraft " + SharedConstants.getCurrentVersion().getName();
@@ -256,15 +265,15 @@ public class JMainMenuGui extends TitleScreen {
 				s = s + ("release".equalsIgnoreCase(this.minecraft.getVersionType()) ? "" : "/" + this.minecraft.getVersionType());
 			}
 
-			if (this.minecraft.isProbablyModded()) {
+			if (Minecraft.checkModStatus().shouldReportAsModified()) {
 				s = s + I18n.get("menu.modded");
 			}
 
-			net.minecraftforge.fml.BrandingControl.forEachLine(true, true, (brdline, brd) ->
+			net.minecraftforge.internal.BrandingControl.forEachLine(true, true, (brdline, brd) ->
 					drawString(matrixStack, this.font, brd, 2, this.height - (10 + brdline * (this.font.lineHeight + 1)), 16777215 | l)
 			);
 
-			net.minecraftforge.fml.BrandingControl.forEachAboveCopyrightLine((brdline, brd) ->
+			net.minecraftforge.internal.BrandingControl.forEachAboveCopyrightLine((brdline, brd) ->
 					drawString(matrixStack, this.font, brd, this.width - font.width(brd), this.height - (10 + (brdline + 1) * (this.font.lineHeight + 1)), 16777215 | l)
 			);
 
@@ -273,10 +282,13 @@ public class JMainMenuGui extends TitleScreen {
 				fill(matrixStack, this.copyrightX, this.height - 1, this.copyrightX + this.copyrightWidth, this.height, 16777215 | l);
 			}
 
-			for (AbstractWidget widget : this.buttons) {
-				widget.setAlpha(f1);
+			for(GuiEventListener guieventlistener : this.children()) {
+				if (guieventlistener instanceof AbstractWidget) {
+					((AbstractWidget)guieventlistener).setAlpha(f1);
+				}
 			}
 
+			//FIXME
 			int buttonSize;
 			for (buttonSize = 0; buttonSize < this.buttons.size(); ++buttonSize) {
 				(this.buttons.get(buttonSize)).renderButton(matrixStack, mouseX, mouseY, partialTicks);

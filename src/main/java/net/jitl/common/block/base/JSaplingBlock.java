@@ -17,7 +17,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Random;
 
-public class JSaplingBlock extends BushBlock implements BonemealableBlock {
+public class
+JSaplingBlock extends BushBlock implements BonemealableBlock {
     public static final IntegerProperty STAGE = BlockStateProperties.STAGE;
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
     private final JTree treeGrower;
