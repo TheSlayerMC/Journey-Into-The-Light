@@ -5,7 +5,6 @@ import com.google.common.collect.ImmutableSet;
 import net.jitl.JITL;
 import net.jitl.common.block.base.JBerryBushBlock;
 import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
-import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
 import net.jitl.common.world.gen.treedecorator.*;

@@ -1,6 +1,5 @@
 package net.jitl.common.block.trees;
 
-import net.jitl.common.world.gen.features.featureconfig.JBaseTreeFeatureConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
