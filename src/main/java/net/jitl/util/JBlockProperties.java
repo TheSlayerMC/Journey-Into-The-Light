@@ -1,16 +1,15 @@
 package net.jitl.util;
 
 import net.jitl.init.JSoundTypes;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.core.Direction;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraftforge.common.ToolType;
 import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
 
 public class JBlockProperties {
@@ -18,48 +17,41 @@ public class JBlockProperties {
     public static final BlockPropsFactory GRASS_PROPS = new BlockPropsFactory(() -> Properties.of
             (Material.GRASS)
             .sound(SoundType.GRASS)
-            .harvestTool(ToolType.SHOVEL)
             .randomTicks()
             .strength(0.6F));
 
     public static final BlockPropsFactory GRASSY_PERMAFROST_PROPS = new BlockPropsFactory(() -> Properties.of
             (Material.GRASS)
             .sound(JSoundTypes.GRASSY_PERMAFROST)
-            .harvestTool(ToolType.SHOVEL)
             .randomTicks()
             .strength(1.2F));
 
     public static final BlockPropsFactory CRUMBLED_PERMAFROST_PROPS = new BlockPropsFactory(() -> Properties.of
             (Material.DIRT)
             .sound(JSoundTypes.CRUMBLED_PERMAFROST)
-            .harvestTool(ToolType.SHOVEL)
 			.strength(1.1F));
 
 
 	public static final BlockPropsFactory PERMAFROST_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.STONE)
 			.sound(JSoundTypes.PERMAFROST)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.75F, 7.0F));
 
 	public static final BlockPropsFactory STONE_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.STONE)
 			.sound(SoundType.STONE)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 
 	public static final BlockPropsFactory CACTUS_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.CACTUS)
 			.sound(SoundType.WOOL)
-			.harvestTool(ToolType.AXE)
 			.strength(0.4F));
 
 	public static final BlockPropsFactory STONE_MODEL_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.STONE)
 			.sound(SoundType.STONE)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.noOcclusion()
 			.strength(1.5F, 6.0F));
@@ -86,82 +78,69 @@ public class JBlockProperties {
 		return state5.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.COLOR_BROWN : MaterialColor.TERRACOTTA_BROWN;
 	})
 			.sound(SoundType.WOOD)
-			.harvestTool(ToolType.AXE)
 			.strength(2F, 6.0F));
 
 	public static final BlockPropsFactory BASALT_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.STONE)
 			.sound(SoundType.BASALT)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 
 	public static final BlockPropsFactory METAL_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.METAL)
 			.sound(SoundType.METAL)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 
 	public static final BlockPropsFactory WOOD_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.WOOD)
 			.sound(SoundType.WOOD)
-			.harvestTool(ToolType.AXE)
 			.strength(2.0F, 3.0F));
 
 	public static final BlockPropsFactory SHROOM_SHELF = new BlockPropsFactory(() -> Properties.of
 			(Material.WOOD)
 			.sound(SoundType.FUNGUS)
-			.harvestTool(ToolType.AXE)
 			.strength(0.2F, 0.1F));
 
 	public static final BlockPropsFactory SAND_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.SAND)
 			.sound(SoundType.SAND)
-			.harvestTool(ToolType.SHOVEL)
 			.strength(0.5F));
 
 	public static final BlockPropsFactory DIRT_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.DIRT)
 			.sound(SoundType.GRAVEL)
-			.harvestTool(ToolType.SHOVEL)
 			.strength(0.5F));
 
 	public static final BlockPropsFactory HOLD_FIRE = new BlockPropsFactory(() -> Properties.of(Material.DIRT)
 			.sound(SoundType.STONE)
-			.harvestTool(ToolType.SHOVEL)
 			.strength(0.5F));
 
 	public static final BlockPropsFactory HOLD_FIRE_SAND = new BlockPropsFactory(() -> Properties.of(Material.DIRT)
 			.sound(SoundType.SAND)
-			.harvestTool(ToolType.SHOVEL)
 			.strength(0.5F));
 
 	public static final BlockPropsFactory ORE_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.STONE)
 			.sound(SoundType.STONE)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
 
 	public static final BlockPropsFactory LUNIUM_ORE_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.STONE)
 			.sound(JSoundTypes.LUNIUM_ORE)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
 
 	public static final BlockPropsFactory SHADIUM_ORE_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.STONE)
 			.sound(JSoundTypes.SHADIUM_ORE)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
 
 	public static final BlockPropsFactory BRICK_PROPS = new BlockPropsFactory(() -> Properties.of
 					(Material.STONE)
 			.sound(JSoundTypes.BRICK)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 
@@ -174,47 +153,40 @@ public class JBlockProperties {
 	public static final BlockPropsFactory POTTERY_PROPS = new BlockPropsFactory(() -> Properties.of
 					(Material.STONE)
 			.sound(JSoundTypes.POTTERY)
-			.harvestTool(ToolType.PICKAXE)
 			.strength(0.5F, 0.5F));
 
 	public static final BlockPropsFactory NETHER_BASALT_ORE_PROPS = new BlockPropsFactory(() -> Properties.of
 					(Material.STONE)
 			.sound(SoundType.BASALT)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
 
 	public static final BlockPropsFactory NETHER_NETHERRACK_ORE_PROPS = new BlockPropsFactory(() -> Properties.of
 					(Material.STONE)
 			.sound(SoundType.NETHER_ORE)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(3.0F, 3.0F));
 
 	public static final BlockPropsFactory MUD_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.DIRT)
 			.sound(JSoundTypes.MUD)
-			.harvestTool(ToolType.SHOVEL)
 			.strength(0.5F));
 
 	public static final BlockPropsFactory LUNIUM_BLOCK_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.METAL)
 			.sound(JSoundTypes.LUNIUM_BLOCK)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 
 	public static final BlockPropsFactory DREADIRON_BLOCK_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.METAL)
 			.sound(SoundType.NETHERITE_BLOCK)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(50.0F, 1200.0F));
 
 	public static final BlockPropsFactory SHADIUM_BLOCK_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.METAL)
 			.sound(JSoundTypes.SHADIUM_BLOCK)
-			.harvestTool(ToolType.PICKAXE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 
@@ -300,7 +272,6 @@ public class JBlockProperties {
 	public static final BlockPropsFactory FUMICE_PROPS = new BlockPropsFactory(() -> Properties.of
 			(Material.NETHER_WOOD)
 			.sound(JSoundTypes.FUMICE)
-			.harvestTool(ToolType.AXE)
 			.strength(2.0F, 3.0F));
 
 
