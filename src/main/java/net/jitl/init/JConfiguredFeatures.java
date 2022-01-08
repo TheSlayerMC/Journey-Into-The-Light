@@ -10,7 +10,9 @@ import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
 import net.jitl.common.world.gen.treedecorator.*;
 import net.jitl.util.JRuleTests;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.ai.behavior.ShufflingList;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
@@ -32,7 +34,7 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlac
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import ru.timeconqueror.timecore.api.registry.PlacedFeatureRegister;
+import ru.timeconqueror.timecore.api.registry.SimpleVanillaRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 import ru.timeconqueror.timecore.api.registry.util.Promised;
 import ru.timeconqueror.timecore.storage.Features;
@@ -44,7 +46,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("Convert2MethodRef")
 public class JConfiguredFeatures {
     @AutoRegistrable
-    private static final PlacedFeatureRegister REGISTER = new PlacedFeatureRegister(JITL.MODID);
+    private static final SimpleVanillaRegister<ConfiguredFeature<?, ?>> REGISTER = new SimpleVanillaRegister<ConfiguredFeature<?, ?>>(JITL.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
 
     public static final Predicate<BiomeLoadingEvent> IN_NETHER = event -> event.getCategory() == Biome.BiomeCategory.NETHER;
     public static final Predicate<BiomeLoadingEvent> IN_END = event -> event.getCategory() == Biome.BiomeCategory.THEEND;
@@ -75,7 +77,6 @@ public class JConfiguredFeatures {
                     () -> JBlocks.BRADBERRY_BUSH.defaultBlockState(),
                     () -> Blocks.GRASS_BLOCK.defaultBlockState(),
                     8))
-                    .setBiomePredicate(event -> event.getCategory() == Biome.BiomeCategory.FOREST)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> DEFAULT_OVERWORLD_RUINS =
