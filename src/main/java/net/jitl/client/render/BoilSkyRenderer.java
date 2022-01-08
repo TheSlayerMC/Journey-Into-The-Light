@@ -9,6 +9,7 @@ import com.mojang.blaze3d.vertex.BufferBuilder;
 import net.minecraft.client.renderer.FogRenderer;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.BufferUploader;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.texture.TextureManager;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexBuffer;
@@ -45,29 +46,24 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
     @Override
     public void render(int ticks, float partialTicks, PoseStack matrixStack, ClientLevel world, Minecraft mc) {
         RenderSystem.disableTexture();
-        Vec3 worldSkyColor = world.getSkyColor(Minecraft.getInstance().gameRenderer.getMainCamera().getBlockPosition(), partialTicks);
+        Vec3 worldSkyColor = world.getSkyColor(Minecraft.getInstance().gameRenderer.getMainCamera().getPosition(), partialTicks);
         float x = (float) worldSkyColor.x;
         float y = (float) worldSkyColor.y;
         float z = (float) worldSkyColor.z;
         FogRenderer.levelFogColor();
         BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
         RenderSystem.depthMask(false);
-        RenderSystem.enableFog();
-        RenderSystem.color3f(x, y, z);
-        this.skyBuffer.bind();
-        this.skyFormat.setupBufferState(0L);
-        this.skyBuffer.draw(matrixStack.last().pose(), 7);
-        VertexBuffer.unbind();
-        this.skyFormat.clearBufferState();
-        RenderSystem.disableFog();
-        RenderSystem.disableAlphaTest();
+        FogRenderer.levelFogColor();
+        RenderSystem.setShaderColor(x, y, z, 1.0F);
+        ShaderInstance shaderinstance = RenderSystem.getShader();
+        this.skyBuffer.drawWithShader(matrixStack.last().pose(), projectionMatrix_, shaderinstance);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
 
         float[] sunRiseRGBA = world.effects().getSunriseColor(world.getTimeOfDay(partialTicks), partialTicks);
         if (sunRiseRGBA != null) {
             RenderSystem.disableTexture();
-            RenderSystem.shadeModel(7425);
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             matrixStack.pushPose();
             matrixStack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
             float celestialAngle = Mth.sin(world.getSunAngle(partialTicks)) < 0.0F ? 180.0F : 0.0F;
@@ -91,7 +87,6 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
             bufferbuilder.end();
             BufferUploader.end(bufferbuilder);
             matrixStack.popPose();
-            RenderSystem.shadeModel(7424);
         }
         RenderSystem.enableTexture();
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
@@ -118,13 +113,13 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         float f12;
         f12 = 60.0F;
 
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, sunOpacity);
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(-90.0F));
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
 
 
-        textureManager.bind(SUN_LOCATION);
-        bufferbuilder.begin(7, DefaultVertexFormat.POSITION_TEX);
+        RenderSystem.setShaderTexture(0, SUN_LOCATION);
+        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
         bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
         bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
@@ -137,12 +132,12 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         //EUCA MOON BEGIN
         f12 = 2F;
 
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, sunOpacity);
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(45.0F));
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 120.0F));
 
-        textureManager.bind(EUCA_MOON_LOCATION);
-        bufferbuilder.begin(7, DefaultVertexFormat.POSITION_TEX);
+        RenderSystem.setShaderTexture(0, EUCA_MOON_LOCATION);
+        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
         bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
         bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
@@ -154,12 +149,12 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
         //CORBA MOON BEGIN
         f12 = 0.5F;
 
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, sunOpacity);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, sunOpacity);
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(45.0F));
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360.0F));
 
-        textureManager.bind(CORBA_MOON_LOCATION);
-        bufferbuilder.begin(7, DefaultVertexFormat.POSITION_TEX);
+        RenderSystem.setShaderTexture(0, CORBA_MOON_LOCATION);
+        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferbuilder.vertex(matrix4f1, -f12, 100.0F, -f12).uv(0.0F, 0.0F).endVertex();
         bufferbuilder.vertex(matrix4f1, f12, 100.0F, -f12).uv(1.0F, 0.0F).endVertex();
         bufferbuilder.vertex(matrix4f1, f12, 100.0F, f12).uv(1.0F, 1.0F).endVertex();
@@ -170,35 +165,30 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
 
         RenderSystem.disableTexture();
 
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.disableBlend();
-        RenderSystem.enableAlphaTest();
-        RenderSystem.enableFog();
         matrixStack.popPose();
         RenderSystem.disableTexture();
-        RenderSystem.color3f(0.0F, 0.0F, 0.0F);
+        RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
 
         if (world.effects().hasGround()) {
-            RenderSystem.color3f(x * 0.2F + 0.04F, y * 0.2F + 0.04F, z * 0.6F + 0.1F);
+            RenderSystem.setShaderColor(x * 0.2F + 0.04F, y * 0.2F + 0.04F, z * 0.6F + 0.1F, 1.0F);
         } else {
-            RenderSystem.color3f(x, y, z);
+            RenderSystem.setShaderColor(x, y, z, 1.0F);
         }
 
         RenderSystem.enableTexture();
         RenderSystem.depthMask(true);
-        RenderSystem.disableFog();
     }
 
     private void createLightSky() {
-        Tesselator tessellator = Tesselator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuilder();
+        Tesselator tesselator = Tesselator.getInstance();
+        BufferBuilder bufferbuilder = tesselator.getBuilder();
         if (this.skyBuffer != null) {
             this.skyBuffer.close();
         }
-
-        this.skyBuffer = new VertexBuffer(this.skyFormat);
-        this.drawSkyHemisphere(bufferbuilder, 16.0F, false);
-        bufferbuilder.end();
+        this.skyBuffer = new VertexBuffer();
+        drawSkyHemisphere(bufferbuilder, 16.0F, false);
         this.skyBuffer.upload(bufferbuilder);
     }
 
