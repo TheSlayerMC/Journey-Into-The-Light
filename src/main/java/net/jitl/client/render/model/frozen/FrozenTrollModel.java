@@ -7,59 +7,54 @@ import net.jitl.common.entity.frozen.FrozenTrollEntity;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
-import Entity;
-
 public class FrozenTrollModel<T extends Entity> extends ListModel<T> implements ArmedModel {
+
     private final ModelPart head;
     private final ModelPart leg1;
     private final ModelPart leg2;
     private final ModelPart arm1;
     private final ModelPart arm2;
     private final ModelPart body;
-    private final ModelPart body_r1;
 
-    public FrozenTrollModel() {
-        texWidth = 64;
-        texHeight = 64;
+    public FrozenTrollModel(ModelPart root) {
+        this.head = root.getChild("head");
+        this.leg1 = root.getChild("leg1");
+        this.leg2 = root.getChild("leg2");
+        this.arm1 = root.getChild("arm1");
+        this.arm2 = root.getChild("arm2");
+        this.body = root.getChild("body");
+    }
 
-        head = new ModelPart(this);
-        head.setPos(0.0F, 10.625F, 1.75F);
-        head.texOffs(0, 0).addBox(-5.0F, -8.625F, -2.75F, 2.0F, 2.0F, 1.0F, 0.0F, true);
-        head.texOffs(32, 30).addBox(-3.0F, 0.375F, -6.25F, 6.0F, 5.0F, 2.0F, 0.0F, false);
-        head.texOffs(32, 11).addBox(-2.0F, 5.375F, -5.75F, 4.0F, 4.0F, 1.0F, 0.0F, false);
-        head.texOffs(0, 0).addBox(-4.0F, -7.625F, -6.75F, 8.0F, 8.0F, 8.0F, 0.0F, false);
-        head.texOffs(0, 0).addBox(3.0F, -8.625F, -2.75F, 2.0F, 2.0F, 1.0F, 0.0F, false);
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
 
-        leg1 = new ModelPart(this);
-        leg1.setPos(2.25F, 17.5F, 2.0F);
-        leg1.texOffs(16, 30).addBox(-2.0F, -0.5F, -2.0F, 4.0F, 7.0F, 4.0F, 0.0F, true);
+        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-5.0F, -8.625F, -2.75F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(32, 30).addBox(-3.0F, 0.375F, -6.25F, 6.0F, 5.0F, 2.0F, new CubeDeformation(0.0F))
+                .texOffs(32, 11).addBox(-2.0F, 5.375F, -5.75F, 4.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(-4.0F, -7.625F, -6.75F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(3.0F, -8.625F, -2.75F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 10.625F, 3.75F));
 
-        leg2 = new ModelPart(this);
-        leg2.setPos(-2.25F, 17.5F, 2.0F);
-        leg2.texOffs(32, 0).addBox(-2.0F, -0.5F, -2.0F, 4.0F, 7.0F, 4.0F, 0.0F, false);
+        PartDefinition leg1 = partdefinition.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(16, 30).mirror().addBox(-2.0F, -0.5F, -2.0F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(2.25F, 17.5F, 2.0F));
 
-        arm1 = new ModelPart(this);
-        arm1.setPos(6.0F, 9.0F, 1.0F);
-        arm1.texOffs(24, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 4.0F, 0.0F, true);
+        PartDefinition leg2 = partdefinition.addOrReplaceChild("leg2", CubeListBuilder.create().texOffs(32, 0).addBox(-2.0F, -0.5F, -2.0F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.25F, 17.5F, 2.0F));
 
-        arm2 = new ModelPart(this);
-        arm2.setPos(-6.0F, 9.0F, 1.0F);
-        arm2.texOffs(0, 29).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 4.0F, 0.0F, false);
+        PartDefinition arm1 = partdefinition.addOrReplaceChild("arm1", CubeListBuilder.create().texOffs(24, 16).mirror().addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(6.0F, 9.0F, 1.0F));
 
-        body = new ModelPart(this);
-        body.setPos(0.0F, 24.0F, 0.0F);
+        PartDefinition arm2 = partdefinition.addOrReplaceChild("arm2", CubeListBuilder.create().texOffs(0, 29).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-6.0F, 9.0F, 1.0F));
 
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-        body_r1 = new ModelPart(this);
-        body_r1.setPos(0.0F, -11.5F, 2.0F);
-        body.addChild(body_r1);
-        setRotationAngle(body_r1, 0.1745F, 0.0F, 0.0F);
-        body_r1.texOffs(0, 16).addBox(-4.0F, -4.0F, -2.0F, 8.0F, 9.0F, 4.0F, 0.0F, false);
+        PartDefinition body_r1 = body.addOrReplaceChild("body_r1", CubeListBuilder.create().texOffs(0, 16).addBox(-4.0F, -4.0F, -2.0F, 8.0F, 9.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -11.5F, 2.0F, 0.1745F, 0.0F, 0.0F));
+
+        return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
     @Override
@@ -98,11 +93,5 @@ public class FrozenTrollModel<T extends Entity> extends ListModel<T> implements 
 
     private ModelPart getArm(HumanoidArm handSide_) {
         return handSide_ == HumanoidArm.LEFT ? this.arm1 : this.arm2;
-    }
-
-    public void setRotationAngle(ModelPart modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
     }
 }

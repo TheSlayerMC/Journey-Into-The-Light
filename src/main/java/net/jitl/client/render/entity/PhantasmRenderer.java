@@ -6,6 +6,7 @@ import net.jitl.JITL;
 import net.jitl.client.render.JRenderTypes;
 import net.jitl.client.render.model.frozen.PhantasmModel;
 import net.jitl.common.entity.frozen.PhantasmEntity;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -16,8 +17,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class PhantasmRenderer extends MobRenderer<PhantasmEntity, PhantasmModel<PhantasmEntity>> {
+
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(JITL.rl("phantasm"), "main");
+
     public PhantasmRenderer(EntityRendererProvider.Context context) {
-        super(context, new PhantasmModel(), 0.5F);
+        super(context, new PhantasmModel(context.bakeLayer(LAYER_LOCATION)), 0.5F);
     }
 
     @Override

@@ -3,6 +3,11 @@ package net.jitl.client.render;
 import net.jitl.JITL;
 import net.jitl.client.render.entity.*;
 import net.jitl.client.render.entity.base.Entity2DRenderer;
+import net.jitl.client.render.model.HongoModel;
+import net.jitl.client.render.model.frozen.FrozenGuardianModel;
+import net.jitl.client.render.model.frozen.FrozenTrollModel;
+import net.jitl.client.render.model.frozen.PhantasmModel;
+import net.jitl.client.render.model.frozen.ShattererModel;
 import net.jitl.common.entity.base.BossCrystalEntity;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
@@ -72,5 +77,33 @@ public class JEntityRenderRegistry {
         //PETS
         event.registerEntityRenderer(JEntities.MINI_BOOM_TYPE, MiniBoomRenderer::new);
         event.registerEntityRenderer(JEntities.CAPYBARA_TYPE, CapybaraRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerEntityRenders(EntityRenderersEvent.RegisterLayerDefinitions event) {
+
+        //Mobs
+        //event.registerLayerDefinition(JEntities.FLORO_TYPE, FloroRenderer::new);
+        event.registerLayerDefinition(HongoRenderer.LAYER_LOCATION, HongoModel::createBodyLayer);
+        event.registerLayerDefinition(WithershroomRenderer.LAYER_LOCATION, HongoModel::createBodyLayer);
+        event.registerLayerDefinition(HonglowRenderer.LAYER_LOCATION, HongoModel::createBodyLayer);
+        event.registerLayerDefinition(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
+        event.registerLayerDefinition(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);
+        event.registerLayerDefinition(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
+        event.registerLayerDefinition(JEntities.GLUMP_TYPE, GlumpRenderer::new);
+        event.registerLayerDefinition(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
+        event.registerLayerDefinition(FrozenTrollRenderer.LAYER_LOCATION, FrozenTrollModel::createBodyLayer);
+        event.registerLayerDefinition(ShattererRenderer.LAYER_LOCATION, ShattererModel::createBodyLayer);
+        event.registerLayerDefinition(JEntities.SHIVERING_RAM_TYPE, ShiveringRamRenderer::new);
+        event.registerLayerDefinition(PhantasmRenderer.LAYER_LOCATION, PhantasmModel::createBodyLayer);
+
+        //NPC
+        event.registerLayerDefinition(JEntities.MAGE_TYPE, MageRenderer::new);
+        event.registerLayerDefinition(JEntities.ESKIMO_TYPE, EskimoRenderer::new);
+        event.registerLayerDefinition(FrozenGuardianRenderer.LAYER_LOCATION, FrozenGuardianModel::createBodyLayer);
+
+        //PETS
+        event.registerLayerDefinition(JEntities.MINI_BOOM_TYPE, MiniBoomRenderer::new);
+        event.registerLayerDefinition(JEntities.CAPYBARA_TYPE, CapybaraRenderer::new);
     }
 }

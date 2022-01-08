@@ -3,6 +3,8 @@ package net.jitl.client.render.model;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.util.Mth;
 
@@ -11,44 +13,36 @@ import Entity;
 public class HongoModel<T extends Entity> extends ListModel<T> {
 
     private final ModelPart body;
-    private final ModelPart leftFrontLeg;
-    private final ModelPart rightFrontLeg;
-    private final ModelPart backLeftLeg;
-    private final ModelPart backRightLeg;
-    private final ModelPart bottomHat;
-    private final ModelPart topHat;
+    private final ModelPart blLeg;
+    private final ModelPart fLLeg;
+    private final ModelPart bRLeg;
+    private final ModelPart fRLeg;
 
-    public HongoModel() {
-        texHeight = 64;
-        texWidth = 256;
-        body = new ModelPart(this, 0, 38);
-        body.addBox(0F, 0F, 0F, 12, 14, 11);
-        body.setPos(-6F, 2F, -4F);
-        body.mirror = true;
-        leftFrontLeg = new ModelPart(this, 49, 38);
-        leftFrontLeg.addBox(-3F, 0F, -6F, 6, 9, 6);
-        leftFrontLeg.setPos(-6F, 15F, -1F);
-        leftFrontLeg.mirror = true;
-        rightFrontLeg = new ModelPart(this, 49, 38);
-        rightFrontLeg.addBox(-3F, 0F, -6F, 6, 9, 6);
-        rightFrontLeg.setPos(6F, 15F, -1F);
-        rightFrontLeg.mirror = true;
-        backLeftLeg = new ModelPart(this, 76, 38);
-        backLeftLeg.addBox(-3F, 0F, 0F, 6, 8, 6);
-        backLeftLeg.setPos(-6F, 16F, 4F);
-        backLeftLeg.mirror = true;
-        backRightLeg = new ModelPart(this, 76, 38);
-        backRightLeg.addBox(-3F, 0F, 0F, 6, 8, 6);
-        backRightLeg.setPos(6F, 16F, 4F);
-        backRightLeg.mirror = true;
-        bottomHat = new ModelPart(this, 1, 1);
-        bottomHat.addBox(0F, 0F, 0F, 21, 7, 21);
-        bottomHat.setPos(-10.5F, -4F, -8.5F);
-        bottomHat.mirror = true;
-        topHat = new ModelPart(this, 92, 1);
-        topHat.addBox(0F, 0F, 0F, 18, 5, 16);
-        topHat.setPos(-9F, -7F, -5.8F);
-        topHat.mirror = true;
+    public HongoModel(ModelPart root) {
+        this.body = root.getChild("body");
+        this.blLeg = root.getChild("blLeg");
+        this.fLLeg = root.getChild("fLLeg");
+        this.bRLeg = root.getChild("bRLeg");
+        this.fRLeg = root.getChild("fRLeg");
+    }
+
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(92, 1).addBox(-9.0F, -8.6667F, -7.6667F, 18.0F, 5.0F, 16.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 38).addBox(-6.0F, 1.3333F, -5.6667F, 12.0F, 14.0F, 11.0F, new CubeDeformation(0.0F))
+                .texOffs(1, 1).addBox(-10.5F, -5.6667F, -10.6667F, 21.0F, 7.0F, 21.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.3333F, 0.6667F));
+
+        PartDefinition blLeg = partdefinition.addOrReplaceChild("blLeg", CubeListBuilder.create().texOffs(49, 38).addBox(-8.0F, -9.0F, 2.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+        PartDefinition fLLeg = partdefinition.addOrReplaceChild("fLLeg", CubeListBuilder.create().texOffs(49, 38).addBox(-8.0F, -9.0F, -7.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+        PartDefinition bRLeg = partdefinition.addOrReplaceChild("bRLeg", CubeListBuilder.create().texOffs(49, 38).addBox(2.0F, -9.0F, 2.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+        PartDefinition fRLeg = partdefinition.addOrReplaceChild("fRLeg", CubeListBuilder.create().texOffs(49, 38).addBox(2.0F, -9.0F, -7.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+        return LayerDefinition.create(meshdefinition, 256, 64);
     }
 
     @Override

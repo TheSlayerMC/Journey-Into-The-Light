@@ -3,75 +3,54 @@ package net.jitl.client.render.model.frozen;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.jitl.JITL;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.ListModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.util.Mth;
 
-import java.util.ArrayList;
-
-import Entity;
-
 public class FrozenGuardianModel<T extends Entity> extends ListModel<T> implements ArmedModel {
+
     private final ModelPart arms;
-    private final ModelPart sleeve2_r1;
-    private final ModelPart armmiddle_r1;
-    private final ModelPart arm2_r1;
     private final ModelPart body;
-    private final ModelPart body3_r1;
-    private final ModelPart body2_r1;
     private final ModelPart head;
 
-    public FrozenGuardianModel() {
-        texWidth = 128;
-        texHeight = 128;
+    public FrozenGuardianModel(ModelPart root) {
+        this.arms = root.getChild("arms");
+        this.body = root.getChild("body");
+        this.head = root.getChild("head");
+    }
 
-        arms = new ModelPart(this);
-        arms.setPos(0.0F, -5.432F, -1.4626F);
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
 
-        sleeve2_r1 = new ModelPart(this);
-        sleeve2_r1.setPos(7.0F, 2.7887F, -3.5468F);
-        arms.addChild(sleeve2_r1);
-        setRotationAngle(sleeve2_r1, -1.1345F, 0.0F, 0.0F);
-        sleeve2_r1.texOffs(16, 41).addBox(-2.0F, -4.5F, -2.0F, 4.0F, 9.0F, 4.0F, 0.0F, false);
-        sleeve2_r1.texOffs(0, 41).addBox(-16.0F, -4.5F, -2.0F, 4.0F, 9.0F, 4.0F, 0.0F, false);
-        sleeve2_r1.texOffs(0, 0).addBox(-2.0F, -3.5F, -1.0F, 2.0F, 7.0F, 2.0F, 0.0F, false);
+        PartDefinition arms = partdefinition.addOrReplaceChild("arms", CubeListBuilder.create(), PartPose.offset(0.0F, -5.432F, -1.4626F));
 
-        armmiddle_r1 = new ModelPart(this);
-        armmiddle_r1.setPos(14.0F, 6.5031F, -6.78F);
-        arms.addChild(armmiddle_r1);
-        setRotationAngle(armmiddle_r1, -1.1345F, 0.0F, 0.0F);
-        armmiddle_r1.texOffs(44, 43).addBox(-19.0F, -3.0F, -3.0F, 10.0F, 2.0F, 2.0F, 0.0F, false);
+        PartDefinition sleeve2_r1 = arms.addOrReplaceChild("sleeve2_r1", CubeListBuilder.create().texOffs(16, 41).addBox(-2.0F, -4.5F, -2.0F, 4.0F, 9.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 41).addBox(-16.0F, -4.5F, -2.0F, 4.0F, 9.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(-2.0F, -3.5F, -1.0F, 2.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(7.0F, 2.7887F, -3.5468F, -1.1345F, 0.0F, 0.0F));
 
-        arm2_r1 = new ModelPart(this);
-        arm2_r1.setPos(-7.0F, 2.7887F, -3.5468F);
-        arms.addChild(arm2_r1);
-        setRotationAngle(arm2_r1, -1.1345F, 0.0F, 0.0F);
-        arm2_r1.texOffs(48, 47).addBox(0.0F, -3.5F, -1.0F, 2.0F, 7.0F, 2.0F, 0.0F, false);
+        PartDefinition armmiddle_r1 = arms.addOrReplaceChild("armmiddle_r1", CubeListBuilder.create().texOffs(44, 43).addBox(-19.0F, -3.0F, -3.0F, 10.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(14.0F, 6.5031F, -6.78F, -1.1345F, 0.0F, 0.0F));
 
-        body = new ModelPart(this);
-        body.setPos(0.0F, -6.5218F, -1.5233F);
-        body.texOffs(32, 23).addBox(-5.0F, -1.4782F, -2.4767F, 10.0F, 16.0F, 4.0F, 0.0F, false);
+        PartDefinition arm2_r1 = arms.addOrReplaceChild("arm2_r1", CubeListBuilder.create().texOffs(48, 47).addBox(0.0F, -3.5F, -1.0F, 2.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-7.0F, 2.7887F, -3.5468F, -1.1345F, 0.0F, 0.0F));
 
-        body3_r1 = new ModelPart(this);
-        body3_r1.setPos(0.0F, 23.896F, 5.2955F);
-        body.addChild(body3_r1);
-        setRotationAngle(body3_r1, 0.6981F, 0.0F, 0.0F);
-        body3_r1.texOffs(32, 43).addBox(-2.0F, -4.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(32, 23).addBox(-5.0F, -1.4782F, -2.4767F, 10.0F, 16.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -6.5218F, -1.5233F));
 
-        body2_r1 = new ModelPart(this);
-        body2_r1.setPos(0.0F, 18.5218F, 1.5233F);
-        body.addChild(body2_r1);
-        setRotationAngle(body2_r1, 0.3491F, 0.0F, 0.0F);
-        body2_r1.texOffs(40, 8).addBox(-4.0F, -5.0F, -2.0F, 8.0F, 8.0F, 4.0F, 0.0F, false);
+        PartDefinition body3_r1 = body.addOrReplaceChild("body3_r1", CubeListBuilder.create().texOffs(32, 43).addBox(-2.0F, -4.0F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 23.896F, 5.2955F, 0.6981F, 0.0F, 0.0F));
 
-        head = new ModelPart(this);
-        head.setPos(0.0F, -9.6667F, -4.4167F);
-        head.texOffs(0, 0).addBox(-5.0F, -7.3333F, -3.5833F, 10.0F, 13.0F, 10.0F, 0.0F, false);
-        head.texOffs(0, 23).addBox(-4.0F, -6.3333F, -2.5833F, 8.0F, 10.0F, 8.0F, 0.0F, false);
-        head.texOffs(0, 23).addBox(-1.0F, -0.3333F, -2.8333F, 2.0F, 5.0F, 0.0F, 0.0F, false);
+        PartDefinition body2_r1 = body.addOrReplaceChild("body2_r1", CubeListBuilder.create().texOffs(40, 8).addBox(-4.0F, -5.0F, -2.0F, 8.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 18.5218F, 1.5233F, 0.3491F, 0.0F, 0.0F));
+
+        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -7.3333F, -3.5833F, 10.0F, 13.0F, 10.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 23).addBox(-4.0F, -6.3333F, -2.5833F, 8.0F, 10.0F, 8.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 23).addBox(-1.0F, -0.3333F, -2.8333F, 2.0F, 5.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -9.6667F, -4.4167F));
+
+        return LayerDefinition.create(meshdefinition, 128, 128);
     }
 
     @Override
@@ -81,18 +60,6 @@ public class FrozenGuardianModel<T extends Entity> extends ListModel<T> implemen
         this.head.xRot = idle / 6;
         this.body.xRot = idle;
         this.arms.xRot = idle / 2;
-
-        ModelPart[] parts = {head, body, arms};
-        for(ModelPart i : parts) {
-            //move all parts here
-        }
-    }
-
-    @Override
-    public void renderToBuffer(PoseStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        arms.render(matrixStack, buffer, packedLight, packedOverlay);
-        body.render(matrixStack, buffer, packedLight, packedOverlay);
-        head.render(matrixStack, buffer, packedLight, packedOverlay);
     }
 
     @Override
@@ -100,10 +67,11 @@ public class FrozenGuardianModel<T extends Entity> extends ListModel<T> implemen
         return ImmutableList.of(this.head, this.body, this.arms);
     }
 
-    public void setRotationAngle(ModelPart modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
+    @Override
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        arms.render(poseStack, buffer, packedLight, packedOverlay);
+        body.render(poseStack, buffer, packedLight, packedOverlay);
+        head.render(poseStack, buffer, packedLight, packedOverlay);
     }
 
     @Override
@@ -112,6 +80,7 @@ public class FrozenGuardianModel<T extends Entity> extends ListModel<T> implemen
     }
 
     private ModelPart getArm() {
-        return this.armmiddle_r1;
+        return this.arms;//FIXME Arm should be armmiddle_r1;
     }
+
 }

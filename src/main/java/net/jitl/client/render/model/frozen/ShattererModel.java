@@ -1,77 +1,73 @@
 package net.jitl.client.render.model.frozen;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.util.math.MathHelper;
-import org.lwjgl.opengl.GL11;
-
-import Entity;
 
 public class ShattererModel <T extends Entity> extends ListModel<T> {
 
-    private final ModelPart eyes;
-    private final ModelPart spike1;
-    private final ModelPart spike2;
-    private final ModelPart arm1;
-    private final ModelPart arm2;
+    private final ModelPart body;
+    private final ModelPart bRStalk;
+    private final ModelPart bLStalk;
+    private final ModelPart lTPin;
+    private final ModelPart rTPin;
 
-    public ShattererModel() {
-        this.texWidth = 64;
-        this.texHeight = 64;
+    public ShattererModel(ModelPart root) {
+        this.body = root.getChild("body");
+        this.bRStalk = root.getChild("bRStalk");
+        this.bLStalk = root.getChild("bLStalk");
+        this.lTPin = root.getChild("lTPin");
+        this.rTPin = root.getChild("rTPin");
+    }
 
-        eyes = new ModelPart(this);
-        eyes.setPos(0.0F, 4.0F, 1.5F);
-        eyes.texOffs(0, 0).addBox(-5.0F, -5.0F, -1.5F, 10.0F, 10.0F, 3.0F, 0.0F, false);
-        eyes.texOffs(16, 13).addBox(-19.0F, -3.0F, -0.5F, 6.0F, 6.0F, 1.0F, 0.0F, false);
-        eyes.texOffs(16, 13).addBox(-3.0F, 13.0F, -0.5F, 6.0F, 6.0F, 1.0F, 0.0F, false);
-        eyes.texOffs(16, 13).addBox(-3.0F, -19.0F, -0.5F, 6.0F, 6.0F, 1.0F, 0.0F, false);
-        eyes.texOffs(16, 13).addBox(13.0F, -3.0F, -0.5F, 6.0F, 6.0F, 1.0F, 0.0F, false);
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
 
-        spike1 = new ModelPart(this);
-        spike1.setPos(0.1612F, 4.0F, 1.5F);
-        setRotationAngle(spike1, 0.0F, 0.0F, -0.7854F);
-        spike1.texOffs(16, 32).addBox(-12.5459F, -1.0F, -0.5F, 8.0F, 2.0F, 1.0F, 0.0F, false);
-        spike1.texOffs(16, 32).addBox(4.5459F, -1.0F, -0.5F, 8.0F, 2.0F, 1.0F, 0.0F, false);
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -24.0F, 0.0F, 10.0F, 10.0F, 3.0F, new CubeDeformation(0.0F))
+                .texOffs(16, 13).addBox(-3.0F, -6.0F, 1.0F, 6.0F, 6.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(16, 13).addBox(13.0F, -22.0F, 1.0F, 6.0F, 6.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(16, 13).addBox(-19.0F, -22.0F, 1.0F, 6.0F, 6.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(16, 13).addBox(-3.0F, -38.0F, 1.0F, 6.0F, 6.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(16, 32).addBox(5.0F, -20.0F, 1.0F, 8.0F, 2.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(3, 35).addBox(-1.0F, -32.0F, 1.0F, 2.0F, 8.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(16, 32).addBox(-13.0F, -20.0F, 1.0F, 8.0F, 2.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(3, 35).addBox(-1.0F, -14.0F, 1.0F, 2.0F, 8.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-        spike2 = new ModelPart(this);
-        spike2.setPos(0.0F, 4.0F, 1.5F);
-        setRotationAngle(spike2, 0.0F, 0.0F, 0.7854F);
-        spike2.texOffs(16, 32).addBox(4.7071F, -1.0F, -0.5F, 8.0F, 2.0F, 1.0F, 0.0F, false);
-        spike2.texOffs(16, 32).addBox(-12.3848F, -1.0F, -0.5F, 8.0F, 2.0F, 1.0F, 0.0F, false);
+        PartDefinition bRStalk = partdefinition.addOrReplaceChild("bRStalk", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-        arm1 = new ModelPart(this);
-        arm1.setPos(0.0F, 4.0F, 1.5F);
-        arm1.texOffs(28, 35).addBox(-13.0F, -1.0F, -0.5F, 8.0F, 2.0F, 1.0F, 0.0F, false);
-        arm1.texOffs(28, 35).addBox(5.0F, -1.0F, -0.5F, 8.0F, 2.0F, 1.0F, 0.0F, false);
+        PartDefinition bRStalk_r1 = bRStalk.addOrReplaceChild("bRStalk_r1", CubeListBuilder.create().texOffs(3, 35).addBox(-1.6275F, 3.6275F, -0.5F, 2.0F, 8.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -19.6864F, 1.5F, 0.0F, 0.0F, -0.7854F));
 
-        arm2 = new ModelPart(this);
-        arm2.setPos(0.0F, 4.0F, 1.5F);
-        setRotationAngle(arm2, 0.0F, 0.0F, 1.5708F);
-        arm2.texOffs(28, 35).addBox(-13.0F, -1.0F, -0.5F, 8.0F, 2.0F, 1.0F, 0.0F, false);
-        arm2.texOffs(28, 35).addBox(5.0F, -1.0F, -0.5F, 8.0F, 2.0F, 1.0F, 0.0F, false);
+        PartDefinition bLStalk = partdefinition.addOrReplaceChild("bLStalk", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+        PartDefinition bLStalk_r1 = bLStalk.addOrReplaceChild("bLStalk_r1", CubeListBuilder.create().texOffs(3, 35).addBox(-0.3725F, 3.6275F, -0.5F, 2.0F, 8.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -19.6864F, 1.5F, 0.0F, 0.0F, 0.7854F));
+
+        PartDefinition lTPin = partdefinition.addOrReplaceChild("lTPin", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+        PartDefinition lTPin_r1 = lTPin.addOrReplaceChild("lTPin_r1", CubeListBuilder.create().texOffs(3, 35).addBox(-0.3725F, -11.3725F, -0.5F, 2.0F, 8.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -19.6864F, 1.5F, 0.0F, 0.0F, 0.7854F));
+
+        PartDefinition rTPin = partdefinition.addOrReplaceChild("rTPin", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+        PartDefinition rTPin_r1 = rTPin.addOrReplaceChild("rTPin_r1", CubeListBuilder.create().texOffs(3, 35).addBox(-1.6275F, -11.3725F, -0.5F, 2.0F, 8.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -19.6864F, 1.5F, 0.0F, 0.0F, -0.7854F));
+
+        return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
     @Override
     public Iterable<ModelPart> parts() {
-        return ImmutableList.of(eyes, spike1, spike2, arm1, arm2);
+        return ImmutableList.of(body, bRStalk, bLStalk, rTPin, lTPin);
     }
 
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         float f = 8;
-        this.eyes.zRot = ageInTicks / f;
-        this.spike1.zRot = -2.4F + ageInTicks / f;
-        this.spike2.zRot = 2.4F + ageInTicks / f;
-        this.arm1.zRot = ageInTicks / f;
-        this.arm2.zRot = 4.7F + ageInTicks / f;
-    }
-
-    public void setRotationAngle(ModelPart modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
+        this.body.zRot = ageInTicks / f;
+        //this.spike1.zRot = -2.4F + ageInTicks / f; //FIXME Test rotation when game runs
+        //this.spike2.zRot = 2.4F + ageInTicks / f;
+        //this.arm1.zRot = ageInTicks / f;
+        //this.arm2.zRot = 4.7F + ageInTicks / f;
     }
 }
