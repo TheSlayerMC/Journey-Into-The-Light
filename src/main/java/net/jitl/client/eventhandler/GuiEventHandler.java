@@ -76,7 +76,7 @@ public class GuiEventHandler {
 
 	@SubscribeEvent()
 	public static void renderFrostburnOverlay(RenderGameOverlayEvent.Pre event) {
-		if (event.getType() == RenderGameOverlayEvent.ElementType.LAYER) { //TODO: test. used to be "VIGNETTE" overlay type. ~ Dizzle
+		if (event.getType() == RenderGameOverlayEvent.ElementType.LAYER) { //FIXME: test. used to be "VIGNETTE" overlay type. ~ Dizzle
 			Minecraft minecraft = Minecraft.getInstance();
 			Player player = minecraft.player;
 			if (player != null && player.hasEffect(JEffects.FROSTBURN.get())) {

@@ -2,6 +2,7 @@ package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
+import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.model.frozen.CapybaraModel;
 import net.jitl.common.entity.frozen.CapybaraEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -13,8 +14,8 @@ import org.jetbrains.annotations.NotNull;
 public class CapybaraRenderer extends MobRenderer<CapybaraEntity, CapybaraModel<CapybaraEntity>> {
 
     public CapybaraRenderer(EntityRendererProvider.Context context) {
-        super(context, new CapybaraModel(), 0.5F);
-        this.addLayer(new SaddleLayer<>(this, new CapybaraModel<>(), JITL.rl("textures/entity/frozen/capybara_saddle.png")));
+        super(context, new CapybaraModel(context.bakeLayer(JModelLayers.CAPYBARA_MODEL_LAYER)), 0.5F);
+        this.addLayer(new SaddleLayer<>(this, new CapybaraModel<>(context.bakeLayer(JModelLayers.CAPYBARA_MODEL_LAYER)), JITL.rl("textures/entity/frozen/capybara_saddle.png")));
     }
 
     @Override

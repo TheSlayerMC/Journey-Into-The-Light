@@ -4,20 +4,20 @@ import com.google.common.collect.Sets;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.npc.Npc;
 import net.minecraft.world.entity.ExperienceOrb;
-import net.minecraft.world.item.trading.Merchant;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.npc.Npc;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
@@ -55,7 +55,7 @@ public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merc
     protected abstract Int2ObjectMap<VillagerTrades.ItemListing[]> getVillagerTrades();
 
     @Nullable
-    protected abstract Screen getDialogue();
+    protected abstract Screen getDialogue(); //TODO: replace with node when dialogue is ported
 
     protected void provideTrades() {
         VillagerTrades.ItemListing[] trades = getVillagerTrades().get(1);
@@ -151,4 +151,8 @@ public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merc
         return false;
     }
 
+    @Override
+    public boolean isClientSide() {
+        return this.getLevel().isClientSide;
+    }
 }

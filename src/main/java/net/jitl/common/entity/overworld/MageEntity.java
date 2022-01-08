@@ -64,9 +64,4 @@ public class MageEntity extends JVillagerEntity {
                 .add(Attributes.MAX_HEALTH, 60.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
-
-    @Override
-    public boolean isClientSide() {
-        return false;
-    }
 }

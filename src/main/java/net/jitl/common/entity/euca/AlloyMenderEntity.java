@@ -36,9 +36,4 @@ public class AlloyMenderEntity extends JVillagerEntity {
     protected Screen getDialogue() {
         return null;
     }
-
-    @Override
-    public boolean isClientSide() {
-        return false;
-    }
 }

@@ -22,7 +22,7 @@ public class JRenderTypes extends RenderType {
                 CompositeState.builder()
                         .setTextureState(new TextureStateShard(texture, false/*blur*/, false/*mipmap*/))
                         .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
-                        .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER) //TODO: subject to change ~ Dizzle
+                        .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER) //FIXME: subject to change ~ Dizzle
                         .setShadeModelState(SMOOTH_SHADE) //FIXME ~ Dizzle
                         .createCompositeState(false));
     }
@@ -34,7 +34,7 @@ public class JRenderTypes extends RenderType {
                 texture,
                 builder -> builder
                         .setShadeModelState(SMOOTH_SHADE)
-                        .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER)); //TODO: subject to change ~ Dizzle
+                        .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER)); //FIXME: subject to change ~ Dizzle
     }
 
     public static RenderType transparentCutout(ResourceLocation texture) {
@@ -45,7 +45,7 @@ public class JRenderTypes extends RenderType {
                 builder -> builder
                         .setTransparencyState(TransparencyStateShard.ADDITIVE_TRANSPARENCY)
                         .setDiffuseLightingState(DIFFUSE_LIGHTING)
-                        .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER) //TODO: subject to change ~ Dizzle
+                        .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER) //FIXME: subject to change ~ Dizzle
                         .setLightmapState(LIGHTMAP)
                         .createCompositeState(true));
     }
