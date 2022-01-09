@@ -1,7 +1,6 @@
 package net.jitl.common.capability;
 
 import net.jitl.JITL;
-import net.jitl.common.capability.armorability.ArmorSetCapability;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.capability.currentstructure.CurrentStructureCapability;
 import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
@@ -13,10 +12,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.capabilities.*;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -28,17 +24,14 @@ import ru.timeconqueror.timecore.api.util.Hacks;
 //TODO duplicate of JCapabilities
 @Mod.EventBusSubscriber(modid = JITL.MODID)
 public class JCapabilityProvider implements ICapabilitySerializable<Tag> {
-    @CapabilityInject(IArmorSetCapability.class)
     public static final Capability<IArmorSetCapability> ARMOR = Hacks.promise();
 
-    private final IArmorSetCapability armorInstance = ARMOR.getDefaultInstance();
+    private final IArmorSetCapability armorInstance = CapabilityManager.get(ARMOR);
 
-    @CapabilityInject(ICurrentStructureCapability.class)
     public static final Capability<ICurrentStructureCapability> STRUCTURE = Hacks.promise();
 
     private final ICurrentStructureCapability structureInstance = STRUCTURE.getDefaultInstance();
 
-    @CapabilityInject(IPressedKeysCapability.class)
     public static final Capability<IPressedKeysCapability> KEYS = Hacks.promise();
 
     private final IPressedKeysCapability keysInstance = KEYS.getDefaultInstance();
@@ -66,10 +59,15 @@ public class JCapabilityProvider implements ICapabilitySerializable<Tag> {
         armorInstance.setNBT((CompoundTag) nbt);
     }
 
-    public static void registerCapabilities() {
-        CapabilityManager.INSTANCE.register(IArmorSetCapability.class, new ArmorSetStorage(), ArmorSetCapability::new);
-        CapabilityManager.INSTANCE.register(ICurrentStructureCapability.class, new CurrentStructureStorage(), CurrentStructureCapability::new);
-        CapabilityManager.INSTANCE.register(IPressedKeysCapability.class, new PressedKeysStorage(), PressedKeysCapability::new);
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(IArmorSetCapability.class);
+        event.register(ICurrentStructureCapability.class);
+        event.register(IPressedKeysCapability.class);
+
+        //CapabilityManager.INSTANCE.register(IArmorSetCapability.class, new ArmorSetStorage(), ArmorSetCapability::new);
+       // CapabilityManager.INSTANCE.register(ICurrentStructureCapability.class, new CurrentStructureStorage(), CurrentStructureCapability::new);
+        //CapabilityManager.INSTANCE.register(IPressedKeysCapability.class, new PressedKeysStorage(), PressedKeysCapability::new);
     }
 
     @SubscribeEvent()

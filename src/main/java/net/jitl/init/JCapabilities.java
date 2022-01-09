@@ -18,7 +18,6 @@ public class JCapabilities {
     @AutoRegistrable
     private static final CapabilityRegister REGISTER = new CapabilityRegister(JITL.MODID);
 
-    @CapabilityInject(JPlayer.class)
     public static final Capability<JPlayer> PLAYER = Hacks.promise();
 
     @AutoRegistrable.Init
