@@ -22,7 +22,7 @@ public class JChestLootTableSet extends LootTableSet {
 
     @Override
     public void register() {
-        registerLootTable(JITL.rl("chests/test"),
+        /*registerLootTable(JITL.rl("chests/test"),
                 LootTable.lootTable().withPool(LootPool.lootPool()
                         .setRolls(UniformGenerator.between(2.0F, 8.0F))
                         .add(LootItem.lootTableItem(Items.MAP).setWeight(10).apply(ExplorationMapFunction.makeExplorationMap().setDestination(JStructures.ILlAGER_BUNKER.getStructure())
@@ -32,6 +32,6 @@ public class JChestLootTableSet extends LootTableSet {
                 LootTable.lootTable().withPool(LootPool.lootPool()
                         .setRolls(UniformGenerator.between(2.0F, 8.0F))
                         .add(LootItem.lootTableItem(Items.MAP).setWeight(10).apply(ExplorationMapFunction.makeExplorationMap().setDestination(JStructures.ANCIENT_RUINS.getStructure())
-                                .setMapDecoration(MapDecoration.Type.BANNER_LIGHT_GRAY).setZoom((byte) 1).setSkipKnownStructures(false)))));
+                                .setMapDecoration(MapDecoration.Type.BANNER_LIGHT_GRAY).setZoom((byte) 1).setSkipKnownStructures(false)))));*/
     }
 }

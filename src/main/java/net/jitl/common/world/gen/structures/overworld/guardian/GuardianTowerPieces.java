@@ -12,13 +12,13 @@ import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import ru.timeconqueror.timecore.api.common.world.structure.INoNoiseStructurePiece;
-import ru.timeconqueror.timecore.api.common.world.structure.TunedTemplateStructurePiece;
 import ru.timeconqueror.timecore.api.common.world.structure.processor.RandomizeBlockProcessor;
 
 import java.util.List;
 import java.util.Map;
 
 public class GuardianTowerPieces {
+    /*
     public static final int BB_WIDTH = 25;
     public static final ResourceLocation FLOOR_PIECE = JITL.rl("overworld/guardian_tower/floor");
     public static final ResourceLocation FIRST_FLOOR_DECORATION_PIECE = JITL.rl("overworld/guardian_tower/first_floor_decoration");
@@ -82,5 +82,5 @@ public class GuardianTowerPieces {
                     .addProcessor(new RandomizeBlockProcessor(JBlocks.SHIELDED_DUNGEON_BRICKS, JBlocks.SHIELDED_CHISELED_DUNGEON_BRICKS))
                     .addProcessor(new RandomizeBlockProcessor(JBlocks.SHIELDED_DUNGEON_BRICKS, JBlocks.SHIELDED_CRACKED_DUNGEON_BRICKS));
         }
-    }
+    }*/
 }

@@ -63,7 +63,6 @@ public class JBiomeRegistry {
     }
 
     public static void registerProviders() {
-        Registry.register(Registry.BIOME_SOURCE, JITL.rl("base_biome_provider"), JBiomeProvider.CODEC);
         //Registry.register(Registry.BIOME_SOURCE, JITL.rl("frozen_provider"), FrozenBiomeProvider.CODEC);
     }
 }

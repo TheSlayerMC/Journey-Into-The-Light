@@ -23,7 +23,7 @@ public class JRenderUtils {
 		}
 
 		public static void renderWrappedToolTip(PoseStack matrixStack, List<? extends FormattedText> tooltips, int mouseX, int mouseY, int textWidth, int textHeight, Font font) {
-			GuiUtils.drawHoveringText(matrixStack, tooltips, mouseX, mouseY, textWidth, textHeight, -1, font);
+			//GuiUtils.drawHoveringText(matrixStack, tooltips, mouseX, mouseY, textWidth, textHeight, -1, font);
 			//FIXME drawHoveringText method is gone
 		}
 	}

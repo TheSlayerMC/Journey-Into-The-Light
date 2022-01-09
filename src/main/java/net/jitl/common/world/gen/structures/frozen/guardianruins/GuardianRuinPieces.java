@@ -12,14 +12,13 @@ import net.minecraft.world.level.levelgen.feature.StructurePieceType;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
-import ru.timeconqueror.timecore.api.common.world.structure.TunedTemplateStructurePiece;
 import ru.timeconqueror.timecore.api.common.world.structure.processor.RandomizeBlockProcessor;
 
 import java.util.List;
 import java.util.Map;
 
 public class GuardianRuinPieces {
-    public static final int BB_WIDTH = 20;
+    /*public static final int BB_WIDTH = 20;
     public static final ResourceLocation RUINS = JITL.rl("frozen/guardian_ruin");
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
             RUINS, new BlockPos(0, -1, 0)
@@ -59,5 +58,5 @@ public class GuardianRuinPieces {
                     .addProcessor(new RandomizeBlockProcessor(Blocks.BLUE_ICE, Blocks.PACKED_ICE, 50))
                     .addProcessor(new RandomizeBlockProcessor(Blocks.BLUE_ICE, Blocks.ICE, 50));
         }
-    }
+    }*/
 }

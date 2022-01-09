@@ -9,15 +9,18 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
+import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import ru.timeconqueror.timecore.api.util.GenHelper;
 
 public class GuardianTowerStructure extends StructureFeature<NoneFeatureConfiguration> {
-    public GuardianTowerStructure(Codec<NoneFeatureConfiguration> codec) {
+    public GuardianTowerStructure(Codec<NoneFeatureConfiguration> configCodec_, PieceGeneratorSupplier<NoneFeatureConfiguration> piecesGenerator_) {
+        super(configCodec_, piecesGenerator_);
+    }
+    /*public GuardianTowerStructure(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
@@ -50,5 +53,5 @@ public class GuardianTowerStructure extends StructureFeature<NoneFeatureConfigur
 
             this.calculateBoundingBox();
         }
-    }
+    }*/
 }

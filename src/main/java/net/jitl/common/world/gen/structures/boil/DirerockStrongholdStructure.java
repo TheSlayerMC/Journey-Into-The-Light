@@ -20,8 +20,10 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.levelgen.feature.structures.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.structure.PostPlacementProcessor;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
+import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import ru.timeconqueror.timecore.api.util.GenHelper;
 
@@ -32,11 +34,12 @@ public class DirerockStrongholdStructure extends StructureFeature<NoneFeatureCon
             new MobSpawnSettings.SpawnerData(EntityType.PIG, 20, 1, 10)
     );
 
-    public DirerockStrongholdStructure(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
+    public DirerockStrongholdStructure(Codec<NoneFeatureConfiguration> configCodec_, PieceGeneratorSupplier<NoneFeatureConfiguration> piecesGenerator_, PostPlacementProcessor postPlacementProcessor_) {
+        super(configCodec_, piecesGenerator_, postPlacementProcessor_);
     }
 
-    @Override
+
+    /*@Override
     public StructureStartFactory<NoneFeatureConfiguration> getStartFactory() {
         return Start::new;
     }
@@ -92,5 +95,5 @@ public class DirerockStrongholdStructure extends StructureFeature<NoneFeatureCon
             calculateBoundingBox();
             moveInsideHeights(random, 64, 67);
         }
-    }
+    }*/
 }

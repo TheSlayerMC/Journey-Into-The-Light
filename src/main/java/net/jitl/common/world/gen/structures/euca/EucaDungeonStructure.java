@@ -9,7 +9,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Mirror;
@@ -17,13 +16,10 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
 import net.minecraft.world.level.levelgen.feature.StructurePieceType;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import net.minecraft.world.level.levelgen.structure.StructurePiece;
-import net.minecraft.world.level.levelgen.structure.StructureStart;
-import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
+import net.minecraft.world.level.levelgen.structure.*;
+import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
@@ -34,8 +30,11 @@ import java.util.Map;
 import java.util.Random;
 
 public class EucaDungeonStructure extends StructureFeature<NoneFeatureConfiguration> {
+    public EucaDungeonStructure(Codec<NoneFeatureConfiguration> configCodec_, PieceGeneratorSupplier<NoneFeatureConfiguration> piecesGenerator_, PostPlacementProcessor postPlacementProcessor_) {
+        super(configCodec_, piecesGenerator_, postPlacementProcessor_);
+    }
 
-    public static final ResourceLocation SPHERE = JITL.rl("euca/euca_sphere_dungeon");
+    /*public static final ResourceLocation SPHERE = JITL.rl("euca/euca_sphere_dungeon");
 
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
             SPHERE, BlockPos.ZERO
@@ -82,7 +81,7 @@ public class EucaDungeonStructure extends StructureFeature<NoneFeatureConfigurat
             generate(pieces, templateManager, start);
 
             this.calculateBoundingBox();
-        }
+        }*//*
     }
 
     public static class Piece extends TemplateStructurePiece {
@@ -97,7 +96,7 @@ public class EucaDungeonStructure extends StructureFeature<NoneFeatureConfigurat
         }
 
         protected Piece(StructurePieceType type, StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            super(type, 0/*genDepth*/);
+            super(type, 0);
             this.templateLocation = templateLocation;
             this.templatePosition = pos.offset(OFFSETS.get(templateLocation));
             loadTemplate(templateManager);
@@ -130,5 +129,5 @@ public class EucaDungeonStructure extends StructureFeature<NoneFeatureConfigurat
         protected void handleDataMarker(String function, BlockPos pos, ServerLevelAccessor worldIn, Random rand, BoundingBox sbb) {
 
         }
-    }
+    }*/
 }

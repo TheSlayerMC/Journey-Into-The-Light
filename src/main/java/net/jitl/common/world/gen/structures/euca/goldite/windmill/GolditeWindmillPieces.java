@@ -10,13 +10,12 @@ import net.minecraft.world.level.levelgen.feature.StructurePieceType;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
-import ru.timeconqueror.timecore.api.common.world.structure.TunedTemplateStructurePiece;
 
 import java.util.List;
 import java.util.Map;
 
 public class GolditeWindmillPieces {
-
+/*
     public static final int BB_WIDTH = 20;
     public static final ResourceLocation WINDMILL = JITL.rl("euca/goldite_windmill");
 
@@ -55,5 +54,5 @@ public class GolditeWindmillPieces {
         protected StructurePlaceSettings makePlacementSettings() {
             return new StructurePlaceSettings();
         }
-    }
+    }*/
 }

@@ -20,7 +20,7 @@ public class JStructurePieces {
     private static final SimpleVanillaRegister<StructurePieceType> REGISTER = new SimpleVanillaRegister<>(JITL.MODID, Registry.STRUCTURE_PIECE);
 
 
-    public static final Promised<StructurePieceType> GUARDIAN_TOWER_PIECE = REGISTER.register("gt/p", () -> GuardianTowerPieces.Piece::new);
+    /*public static final Promised<StructurePieceType> GUARDIAN_TOWER_PIECE = REGISTER.register("gt/p", () -> GuardianTowerPieces.Piece::new);
     public static final Promised<StructurePieceType> GUARDIAN_TOWER_NO_GRASS_TOUCHED_PIECE = REGISTER.register("gt/ngtp", () -> GuardianTowerPieces.NoGrassTouchedPiece::new);
 
     public static final Promised<StructurePieceType> BLACKSMITH = REGISTER.register("bs", () -> BlacksmithStructure.Piece::new);
@@ -32,7 +32,7 @@ public class JStructurePieces {
 
 
     public static final Promised<StructurePieceType> GUARDIAN_RUIN = REGISTER.register("guardian_ruin", () -> GuardianRuinPieces.Piece::new);
-    public static final Promised<StructurePieceType> ANCIENT_RUINS = REGISTER.register("ancient_ruins", () -> AncientRuinsStructure.Piece::new);
+    public static final Promised<StructurePieceType> ANCIENT_RUINS = REGISTER.register("ancient_ruins", () -> AncientRuinsStructure.Piece::new);*/
 
 
 

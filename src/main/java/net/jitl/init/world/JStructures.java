@@ -32,7 +32,7 @@ public class JStructures {
     @AutoRegistrable
     private static final StructureFeatureRegister REGISTER = new StructureFeatureRegister(JITL.MODID);
 
-    public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
+    /*public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
@@ -107,5 +107,5 @@ public class JStructures {
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.BOIL_WORLD)
                     .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), JITL.rl("boil/scorched_wastelands")))
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
-                    .asHolder();
+                    .asHolder();*/
 }

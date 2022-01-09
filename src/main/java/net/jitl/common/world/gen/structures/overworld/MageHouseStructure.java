@@ -21,6 +21,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
+import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
@@ -31,8 +32,11 @@ import java.util.Map;
 import java.util.Random;
 
 public class MageHouseStructure extends StructureFeature<NoneFeatureConfiguration> {
+    public MageHouseStructure(Codec<NoneFeatureConfiguration> configCodec_, PieceGeneratorSupplier<NoneFeatureConfiguration> piecesGenerator_) {
+        super(configCodec_, piecesGenerator_);
+    }
 
-    public static final ResourceLocation MAGE = JITL.rl("overworld/mage_house");
+    /*public static final ResourceLocation MAGE = JITL.rl("overworld/mage_house");
 
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
             MAGE, BlockPos.ZERO
@@ -96,7 +100,7 @@ public class MageHouseStructure extends StructureFeature<NoneFeatureConfiguratio
         }
 
         protected Piece(StructurePieceType type, StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            super(type, 0/*genDepth*/);
+            super(type, 0);
             this.templateLocation = templateLocation;
             this.templatePosition = pos.offset(OFFSETS.get(templateLocation));
             loadTemplate(templateManager);
@@ -129,5 +133,5 @@ public class MageHouseStructure extends StructureFeature<NoneFeatureConfiguratio
         protected void handleDataMarker(String function, BlockPos pos, ServerLevelAccessor worldIn, Random rand, BoundingBox sbb) {
 
         }
-    }
+    }*/
 }

@@ -6,7 +6,9 @@ import net.jitl.init.world.JTreeDecorators;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelSimulatedRW;
+import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
@@ -15,6 +17,7 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.BiConsumer;
 
 public class CrystalFruitTreeDecorator extends TreeDecorator {
     public static final Codec<CrystalFruitTreeDecorator> CODEC = Codec.intRange(0, 10).fieldOf("height").xmap(CrystalFruitTreeDecorator::new,
@@ -32,6 +35,10 @@ public class CrystalFruitTreeDecorator extends TreeDecorator {
     }
 
     @Override
+    public void place(LevelSimulatedReader level_, BiConsumer<BlockPos, BlockState> blockSetter_, Random random_, List<BlockPos> logPositions_, List<BlockPos> leafPositions_) {
+
+    }
+
     public void place(WorldGenLevel seedReader_, Random random_, List<BlockPos> list_, List<BlockPos> list1_, Set<BlockPos> set_, BoundingBox mutableBoundingBox_) {
         list1_.forEach((blockPos1_) -> {
             if (random_.nextInt(8) == 0) {
@@ -48,7 +55,7 @@ public class CrystalFruitTreeDecorator extends TreeDecorator {
         int length = random.nextInt(4) + 2;
         for (int i = 0; i <= length; ++i) {
             if (i == length) {
-                this.setBlock(world, mutable, JBlocks.CRYSTAL_FRUIT.defaultBlockState(), set_, mutableBoundingBox_);
+                //FIXME this.setBlock(world, mutable, JBlocks.CRYSTAL_FRUIT.defaultBlockState(), set_, mutableBoundingBox_);
                 break;
             }
             world.setBlock(mutable, JBlocks.ICY_IVY_PLANT.defaultBlockState(), 2);

@@ -21,16 +21,20 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.levelgen.feature.structures.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.structure.PostPlacementProcessor;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
+import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 
 import java.util.List;
 
-import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
 
 public class IllagerBunkerStructure extends StructureFeature<NoneFeatureConfiguration> {
-    private static final List<MobSpawnSettings.SpawnerData> SPAWNERS_LIST = ImmutableList.of(
+    public IllagerBunkerStructure(Codec<NoneFeatureConfiguration> configCodec_, PieceGeneratorSupplier<NoneFeatureConfiguration> piecesGenerator_, PostPlacementProcessor postPlacementProcessor_) {
+        super(configCodec_, piecesGenerator_, postPlacementProcessor_);
+    }
+   /* private static final List<MobSpawnSettings.SpawnerData> SPAWNERS_LIST = ImmutableList.of(
             new MobSpawnSettings.SpawnerData(EntityType.PILLAGER, 20, 1, 10),
             new MobSpawnSettings.SpawnerData(EntityType.VINDICATOR, 50, 1, 10),
             new MobSpawnSettings.SpawnerData(EntityType.ILLUSIONER, 2, 1, 1),
@@ -94,5 +98,5 @@ public class IllagerBunkerStructure extends StructureFeature<NoneFeatureConfigur
             calculateBoundingBox();
             moveInsideHeights(random, 16, 32);
         }
-    }
+    }*/
 }

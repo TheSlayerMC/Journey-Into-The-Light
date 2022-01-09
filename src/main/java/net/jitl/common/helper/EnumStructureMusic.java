@@ -6,8 +6,8 @@ import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import ru.timeconqueror.timecore.api.util.lookups.EnumLookup;
 
 public enum EnumStructureMusic {
-    GUARDIAN_TOWER(JStructures.GUARDIAN_TOWER_HOLDER.getStructure(), new JMusic(JSounds.TOWER_THEME.get(), 1, 200, 1000), 1);
-
+    //GUARDIAN_TOWER(JStructures.GUARDIAN_TOWER_HOLDER.getStructure(), new JMusic(JSounds.TOWER_THEME.get(), 1, 200, 1000), 1);
+;
     private final StructureFeature<?> structure;
     private final JMusic music;
     private final int id;

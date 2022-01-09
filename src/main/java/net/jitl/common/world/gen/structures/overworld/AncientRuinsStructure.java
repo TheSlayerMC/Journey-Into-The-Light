@@ -18,10 +18,8 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.StructurePieceType;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import net.minecraft.world.level.levelgen.structure.StructurePiece;
-import net.minecraft.world.level.levelgen.structure.StructureStart;
-import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
+import net.minecraft.world.level.levelgen.structure.*;
+import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
@@ -32,8 +30,11 @@ import java.util.Map;
 import java.util.Random;
 
 public class AncientRuinsStructure extends StructureFeature<NoneFeatureConfiguration> {
+    public AncientRuinsStructure(Codec<NoneFeatureConfiguration> configCodec_, PieceGeneratorSupplier<NoneFeatureConfiguration> piecesGenerator_, PostPlacementProcessor postPlacementProcessor_) {
+        super(configCodec_, piecesGenerator_, postPlacementProcessor_);
+    }
 
-    public static final ResourceLocation STRUCTURE = JITL.rl("overworld/ancient_ruins");
+    /*public static final ResourceLocation STRUCTURE = JITL.rl("overworld/ancient_ruins");
 
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
             STRUCTURE, BlockPos.ZERO
@@ -81,8 +82,8 @@ public class AncientRuinsStructure extends StructureFeature<NoneFeatureConfigura
 
             this.calculateBoundingBox();
         }
-    }
-
+    }*/
+/*
     public static class Piece extends TemplateStructurePiece {
         private final ResourceLocation templateLocation;
 
@@ -95,7 +96,7 @@ public class AncientRuinsStructure extends StructureFeature<NoneFeatureConfigura
         }
 
         protected Piece(StructurePieceType type, StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            super(type, 0/*genDepth*/);
+            super(type, 0);
             this.templateLocation = templateLocation;
             this.templatePosition = pos.offset(OFFSETS.get(templateLocation));
             loadTemplate(templateManager);
@@ -128,5 +129,5 @@ public class AncientRuinsStructure extends StructureFeature<NoneFeatureConfigura
         protected void handleDataMarker(String function, BlockPos pos, ServerLevelAccessor worldIn, Random rand, BoundingBox sbb) {
 
         }
-    }
+    }*/
 }
