@@ -2,6 +2,8 @@ package net.jitl.common.item;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
+import org.jetbrains.annotations.Nullable;
 
 public class JFuelItem extends Item {
 
@@ -12,8 +14,8 @@ public class JFuelItem extends Item {
 		this.burnTime = burnTime;
 	}
 
-	@Override //TODO: how does fuel work now? ~ Dizzle
-	public int getBurnTime(ItemStack itemStack) {
-		return burnTime;
+	@Override
+	public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+		return this.burnTime;
 	}
 }
