@@ -5,11 +5,9 @@ import net.jitl.common.capability.armorability.ArmorSetCapability;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.capability.currentstructure.CurrentStructureCapability;
 import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
+import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.pressedkeys.IPressedKeysCapability;
 import net.jitl.common.capability.pressedkeys.PressedKeysCapability;
-import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -18,6 +16,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
+import ru.timeconqueror.timecore.common.capability.owner.attach.CoffeeCapabilityProvider;
 
 //TODO duplicate of JCapabilities
 @Mod.EventBusSubscriber(modid = JITL.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -36,10 +35,6 @@ public class JCapabilityProvider {
         event.register(IArmorSetCapability.class);
         event.register(ICurrentStructureCapability.class);
         event.register(IPressedKeysCapability.class);
-
-        //CapabilityManager.INSTANCE.register(IArmorSetCapability.class, new ArmorSetStorage(), ArmorSetCapability::new);
-       // CapabilityManager.INSTANCE.register(ICurrentStructureCapability.class, new CurrentStructureStorage(), CurrentStructureCapability::new);
-        //CapabilityManager.INSTANCE.register(IPressedKeysCapability.class, new PressedKeysStorage(), PressedKeysCapability::new);
     }
 
     @SubscribeEvent()
@@ -48,9 +43,11 @@ public class JCapabilityProvider {
         if (!entity.level.isClientSide()) {
             if (entity instanceof LivingEntity) {
                 if (entity instanceof Player) {
-                   // event.addCapability(JITL.rl("journey_player_data"), new JCapabilityProvider());
+                    event.addCapability(JITL.rl("jitl_player_data"), new CoffeeCapabilityProvider<>(new JPlayer((Player) entity)));
                 }
-                event.addCapability(JITL.rl("current_armor"), new ArmorSetProvider(new ArmorSetCapability()));
+                event.addCapability(JITL.rl("current_armor"), new ArmorSetProvider(new ArmorSetCapability())); //FIXME maybe this should be changed to CoffeeCapabilityProvider instead?
+                event.addCapability(JITL.rl("current_structure"), new CoffeeCapabilityProvider<>(new CurrentStructureCapability()));
+                event.addCapability(JITL.rl("pressed_keys"), new CoffeeCapabilityProvider<>(new PressedKeysCapability()));
             }
         }
     }
