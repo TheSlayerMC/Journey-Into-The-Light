@@ -14,7 +14,7 @@ public class ShiveringRamRenderer extends MobRenderer<ShiveringRamEntity, Shiver
 
     public ShiveringRamRenderer(EntityRendererProvider.Context context) {
         super(context, new ShiveringRamModel<>(context.bakeLayer(JModelLayers.SHIVERING_RAM_LAYER)), 0.5F);
-        this.addLayer(new ShiveringRamWoolLayer(this));
+        this.addLayer(new ShiveringRamWoolLayer(this, context.getModelSet()));
     }
 
     @Override

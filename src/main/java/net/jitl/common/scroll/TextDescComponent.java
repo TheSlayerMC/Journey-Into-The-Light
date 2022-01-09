@@ -8,8 +8,6 @@ import net.minecraft.network.chat.TranslatableComponent;
 
 import java.util.List;
 
-import Component;
-
 /*
  * Code by TimeConqueror
  */

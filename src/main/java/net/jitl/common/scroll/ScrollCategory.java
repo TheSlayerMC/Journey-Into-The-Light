@@ -4,8 +4,6 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.LinkedHashMap;
 
-import ResourceLocation;
-
 /*
  * Code by TimeConqueror
  */

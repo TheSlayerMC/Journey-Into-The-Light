@@ -1,7 +1,6 @@
 package net.jitl.init.world;
 
 import net.jitl.JITL;
-import net.jitl.common.dimension.JBiomeProvider;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;

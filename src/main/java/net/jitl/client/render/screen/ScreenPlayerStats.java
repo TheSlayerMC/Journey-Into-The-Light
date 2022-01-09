@@ -9,6 +9,7 @@ import net.jitl.common.helper.EnumKnowledgeType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -16,8 +17,16 @@ import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
 public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
+    public ScreenPlayerStats(ContainerEmpty menu_, Inventory playerInventory_, Component title_) {
+        super(menu_, playerInventory_, title_);
+    }
 
-    private final ResourceLocation knowledge_sprite = JITL.rl("textures/gui/knowledge/knowledge_sprites.png");
+    @Override
+    protected void renderBg(PoseStack poseStack_, float partialTick_, int mouseX_, int mouseY_) {
+
+    }
+
+   /* private final ResourceLocation knowledge_sprite = JITL.rl("textures/gui/knowledge/knowledge_sprites.png");
     private final ResourceLocation background = JITL.rl("textures/gui/stats.png");
 
     private PageButton nextButton;
@@ -115,6 +124,7 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
 		h+= height - 2;
 		drawKnowledgeSprite(x, h, 192, 10, 0.10F, "Euca");
 		drawKnowledgeSprite(126, h, 224, 10, 0.60F, "The Depths");*/
+    /*
     }
 
     public void drawSprite(PoseStack matrixStack, int x, int y, int spriteX, int spriteY, String s) {
@@ -129,7 +139,7 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         blit(matrixStack, k + x, l + y, spriteX, spriteY, 32, 32);
         font.draw(matrixStack, s, k + x + 35, l + y + 5, 4210752);
         if(s.equals("Sentacoins:"))
-            font.draw(matrixStack, "x" + 156/*stats.getSentacoinValue()*/, k + x + 35, l + y + 15, 4210752);
+            font.draw(matrixStack, "x" + 156/*stats.getSentacoinValue()*, k + x + 35, l + y + 15, 4210752);
         RenderSystem.popMatrix();
         RenderSystem.enableDepthTest();
     }
@@ -222,5 +232,5 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
             RenderSystem.disableDepthTest();
             RenderSystem.popMatrix();
         }
-    }
+    }*/
 }

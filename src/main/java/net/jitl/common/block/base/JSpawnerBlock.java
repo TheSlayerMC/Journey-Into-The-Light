@@ -27,7 +27,7 @@ public class JSpawnerBlock extends SpawnerBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        JMobSpawnerTile spawner = new JMobSpawnerTile();
+        JMobSpawnerTile spawner = new JMobSpawnerTile(pos, state);
         spawner.getSpawner().setEntityId(entity);
         return spawner;
     }

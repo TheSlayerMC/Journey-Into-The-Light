@@ -4,6 +4,8 @@ import com.google.common.collect.ImmutableList;
 import net.jitl.common.entity.frozen.ShiveringRamEntity;
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 
 public class ShiveringRamWoolModel<T extends ShiveringRamEntity> extends AgeableListModel<T> {
@@ -16,33 +18,32 @@ public class ShiveringRamWoolModel<T extends ShiveringRamEntity> extends Ageable
     private final ModelPart leg2_wool;
     private final ModelPart leg3_wool;
 
-    public ShiveringRamWoolModel() {
-        texWidth = 128;
-        texHeight = 128;
+    public ShiveringRamWoolModel(ModelPart root) {
+        this.body_wool = root.getChild("body_wool");
+        this.head_wool = root.getChild("head_wool");
+        this.leg0_wool = root.getChild("leg0_wool");
+        this.leg1_wool = root.getChild("leg1_wool");
+        this.leg2_wool = root.getChild("leg2_wool");
+        this.leg3_wool = root.getChild("leg3_wool");
+    }
 
-        body_wool = new ModelPart(this);
-        body_wool.setPos(0.0F, 5.0F, 2.0F);
-        body_wool.texOffs(0, 24).addBox(-4.0F, 2.0859F, -9.1072F, 8.0F, 6.0F, 16.0F, 1.75F, false);
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
 
-        head_wool = new ModelPart(this);
-        head_wool.setPos(0.0F, 6.0F, -8.0F);
-        head_wool.texOffs(32, 24).addBox(-3.0F, -4.0F, -4.0F, 6.0F, 6.0F, 6.0F, 0.6F, false);
+        PartDefinition body_wool = partdefinition.addOrReplaceChild("body_wool", CubeListBuilder.create().texOffs(0, 24).addBox(-4.0F, 2.0859F, -9.1072F, 8.0F, 6.0F, 16.0F, new CubeDeformation(1.75F)), PartPose.offset(0.0F, 5.0F, 2.0F));
 
-        leg0_wool = new ModelPart(this);
-        leg0_wool.setPos(3.0F, 12.0F, 7.0F);
-        leg0_wool.texOffs(0, 58).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, 0.5F, false);
+        PartDefinition head_wool = partdefinition.addOrReplaceChild("head_wool", CubeListBuilder.create().texOffs(32, 24).addBox(-3.0F, -4.0F, -4.0F, 6.0F, 6.0F, 6.0F, new CubeDeformation(0.6F)), PartPose.offset(0.0F, 6.0F, -8.0F));
 
-        leg1_wool = new ModelPart(this);
-        leg1_wool.setPos(-3.0F, 12.0F, 7.0F);
-        leg1_wool.texOffs(56, 30).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, 0.5F, false);
+        PartDefinition leg0_wool = partdefinition.addOrReplaceChild("leg0_wool", CubeListBuilder.create().texOffs(0, 58).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.5F)), PartPose.offset(3.0F, 12.0F, 7.0F));
 
-        leg2_wool = new ModelPart(this);
-        leg2_wool.setPos(3.0F, 12.0F, -5.0F);
-        leg2_wool.texOffs(52, 52).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, 0.5F, false);
+        PartDefinition leg1_wool = partdefinition.addOrReplaceChild("leg1_wool", CubeListBuilder.create().texOffs(56, 30).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.5F)), PartPose.offset(-3.0F, 12.0F, 7.0F));
 
-        leg3_wool = new ModelPart(this);
-        leg3_wool.setPos(-3.0F, 12.0F, -5.0F);
-        leg3_wool.texOffs(36, 52).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, 0.5F, false);
+        PartDefinition leg2_wool = partdefinition.addOrReplaceChild("leg2_wool", CubeListBuilder.create().texOffs(52, 52).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.5F)), PartPose.offset(3.0F, 12.0F, -5.0F));
+
+        PartDefinition leg3_wool = partdefinition.addOrReplaceChild("leg3_wool", CubeListBuilder.create().texOffs(36, 52).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.5F)), PartPose.offset(-3.0F, 12.0F, -5.0F));
+
+        return LayerDefinition.create(meshdefinition, 128, 128);
     }
 
     @Override
@@ -72,10 +73,11 @@ public class ShiveringRamWoolModel<T extends ShiveringRamEntity> extends Ageable
     @Override
     protected Iterable<ModelPart> bodyParts() {
         return ImmutableList.of(
+                head_wool,
                 body_wool,
-                leg3_wool,
-                leg2_wool,
+                leg0_wool,
                 leg1_wool,
-                leg0_wool);
+                leg2_wool,
+                leg3_wool);
     }
 }

@@ -1,6 +1,5 @@
 package net.jitl.common.block.base;
 
-import net.jitl.common.block.trees.JTree;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;

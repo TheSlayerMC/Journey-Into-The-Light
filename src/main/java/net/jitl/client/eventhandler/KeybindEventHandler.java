@@ -36,7 +36,7 @@ public class KeybindEventHandler {
             if (action == GLFW.GLFW_PRESS) {
                 if (key == keyStats.getKey()) {
                     System.out.println("Stats");
-                    MINECRAFT.setScreen(new ScreenPlayerStats(MINECRAFT.player.getInventory()));
+                    //MINECRAFT.setScreen(new ScreenPlayerStats(MINECRAFT.player.getInventory()));//FIXME
                 } else {
                     handleAbilityKeys(key, action);
                 }

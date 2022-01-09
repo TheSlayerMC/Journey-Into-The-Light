@@ -8,7 +8,6 @@ import net.jitl.common.entity.tasks.FrozenTrollTasks;
 import net.jitl.init.JSounds;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.Brain;
@@ -25,7 +24,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.util.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
@@ -63,10 +61,10 @@ public class FrozenTrollEntity extends Monster {
             SensorType.HURT_BY);
     protected static final ImmutableList<MemoryModuleType<?>> MEMORY_TYPES = ImmutableList.of(
             MemoryModuleType.LOOK_TARGET,
-            MemoryModuleType.LIVING_ENTITIES,
-            MemoryModuleType.VISIBLE_LIVING_ENTITIES,
+            MemoryModuleType.NEAREST_LIVING_ENTITIES,
+            MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES,
             MemoryModuleType.NEAREST_VISIBLE_PLAYER,
-            MemoryModuleType.NEAREST_VISIBLE_TARGETABLE_PLAYER,
+            MemoryModuleType.NEAREST_VISIBLE_ATTACKABLE_PLAYER,
             MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM,
             MemoryModuleType.HURT_BY,
             MemoryModuleType.HURT_BY_ENTITY,
@@ -77,15 +75,13 @@ public class FrozenTrollEntity extends Monster {
             MemoryModuleType.INTERACTION_TARGET,
             MemoryModuleType.PATH,
             MemoryModuleType.ANGRY_AT,
-            MemoryModuleType.UNIVERSAL_ANGER,
             MemoryModuleType.AVOID_TARGET,
             MemoryModuleType.ADMIRING_ITEM,
             MemoryModuleType.TIME_TRYING_TO_REACH_ADMIRE_ITEM,
             MemoryModuleType.ADMIRING_DISABLED,
             MemoryModuleType.DISABLE_WALK_TO_ADMIRE_ITEM,
             MemoryModuleType.NEAREST_VISIBLE_NEMESIS,
-            MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM,
-            MemoryModuleType.ATE_RECENTLY);
+            MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM);
 
     public FrozenTrollEntity(EntityType<? extends FrozenTrollEntity> entityType, Level world) {
         super(entityType, world);

@@ -6,6 +6,7 @@ import net.jitl.client.render.entity.base.Entity2DRenderer;
 import net.jitl.client.render.model.BoomModel;
 import net.jitl.client.render.model.HongoModel;
 import net.jitl.client.render.model.MageModel;
+import net.jitl.client.render.model.block.ObeliskModel;
 import net.jitl.client.render.model.frozen.*;
 import net.jitl.common.entity.base.BossCrystalEntity;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
@@ -80,6 +81,8 @@ public class JEntityRenderRegistry {
 
     @SubscribeEvent
     public static void registerEntityLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        //Blocks
+        event.registerLayerDefinition(JModelLayers.OBELISK_MODEL_LAYER, ObeliskModel::createBodyLayer);
 
         //Mobs
         //event.registerLayerDefinition(JEntities.FLORO_TYPE, FloroRenderer::new);

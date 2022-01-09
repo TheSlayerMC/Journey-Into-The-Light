@@ -11,12 +11,6 @@ import net.minecraft.util.Mth;
 public class ShiveringRamModel<T extends ShiveringRamEntity> extends AgeableListModel<T> {
     private float headXRot;
 
-    private final ModelPart body_wool;
-    private final ModelPart head_wool;
-    private final ModelPart leg0_wool;
-    private final ModelPart leg1_wool;
-    private final ModelPart leg2_wool;
-    private final ModelPart leg3_wool;
     private final ModelPart body;
     private final ModelPart head;
     private final ModelPart leg0;
@@ -25,12 +19,6 @@ public class ShiveringRamModel<T extends ShiveringRamEntity> extends AgeableList
     private final ModelPart leg3;
 
     public ShiveringRamModel(ModelPart root) {
-        this.body_wool = root.getChild("body_wool");
-        this.head_wool = root.getChild("head_wool");
-        this.leg0_wool = root.getChild("leg0_wool");
-        this.leg1_wool = root.getChild("leg1_wool");
-        this.leg2_wool = root.getChild("leg2_wool");
-        this.leg3_wool = root.getChild("leg3_wool");
         this.body = root.getChild("body");
         this.head = root.getChild("head");
         this.leg0 = root.getChild("leg0");
@@ -42,18 +30,6 @@ public class ShiveringRamModel<T extends ShiveringRamEntity> extends AgeableList
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
-
-        PartDefinition body_wool = partdefinition.addOrReplaceChild("body_wool", CubeListBuilder.create().texOffs(0, 24).addBox(-4.0F, 2.0859F, -9.1072F, 8.0F, 6.0F, 16.0F, new CubeDeformation(1.75F)), PartPose.offset(0.0F, 5.0F, 2.0F));
-
-        PartDefinition head_wool = partdefinition.addOrReplaceChild("head_wool", CubeListBuilder.create().texOffs(32, 24).addBox(-3.0F, -4.0F, -4.0F, 6.0F, 6.0F, 6.0F, new CubeDeformation(0.6F)), PartPose.offset(0.0F, 6.0F, -8.0F));
-
-        PartDefinition leg0_wool = partdefinition.addOrReplaceChild("leg0_wool", CubeListBuilder.create().texOffs(0, 58).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.5F)), PartPose.offset(3.0F, 12.0F, 7.0F));
-
-        PartDefinition leg1_wool = partdefinition.addOrReplaceChild("leg1_wool", CubeListBuilder.create().texOffs(56, 30).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.5F)), PartPose.offset(-3.0F, 12.0F, 7.0F));
-
-        PartDefinition leg2_wool = partdefinition.addOrReplaceChild("leg2_wool", CubeListBuilder.create().texOffs(52, 52).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.5F)), PartPose.offset(3.0F, 12.0F, -5.0F));
-
-        PartDefinition leg3_wool = partdefinition.addOrReplaceChild("leg3_wool", CubeListBuilder.create().texOffs(36, 52).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.5F)), PartPose.offset(-3.0F, 12.0F, -5.0F));
 
         PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, 1.0F, -9.0F, 8.0F, 8.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.0F, 2.0F));
 

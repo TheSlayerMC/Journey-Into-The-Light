@@ -23,7 +23,7 @@ public class JRenderTypes extends RenderType {
                         .setTextureState(new TextureStateShard(texture, false/*blur*/, false/*mipmap*/))
                         .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
                         .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER) //FIXME: subject to change ~ Dizzle
-                        .setShadeModelState(SMOOTH_SHADE) //FIXME ~ Dizzle
+                        //.setShadeModelState(SMOOTH_SHADE) //FIXME ~ Dizzle
                         .createCompositeState(false));
     }
 
@@ -33,7 +33,7 @@ public class JRenderTypes extends RenderType {
                 DefaultVertexFormat.POSITION_TEX,
                 texture,
                 builder -> builder
-                        .setShadeModelState(SMOOTH_SHADE)
+                        //.setShadeModelState(SMOOTH_SHADE)
                         .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER)); //FIXME: subject to change ~ Dizzle
     }
 
@@ -44,7 +44,7 @@ public class JRenderTypes extends RenderType {
                 texture,
                 builder -> builder
                         .setTransparencyState(TransparencyStateShard.ADDITIVE_TRANSPARENCY)
-                        .setDiffuseLightingState(DIFFUSE_LIGHTING)
+                        //.setDiffuseLightingState(DIFFUSE_LIGHTING)
                         .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER) //FIXME: subject to change ~ Dizzle
                         .setLightmapState(LIGHTMAP)
                         .createCompositeState(true));

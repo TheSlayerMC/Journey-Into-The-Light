@@ -1,15 +1,11 @@
 package net.jitl.common.scroll;
 
-import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.*;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
-
-import ResourceLocation;
 
 /*
  * Code by TimeConqueror
@@ -33,24 +29,25 @@ public class ImageDescComponent implements IDescComponent {
 
     @Override
     public void drawContentPart(PoseStack matrixStack, int x0, int y0, int width) {
-        drawImage(x0, y0, 0, 0, width, contentHeight);
+        drawImage(x0, y0, 0, 0, width, contentHeight, matrixStack);
     }
 
     //TODO: remove GLStateManager methods. change to new render system
-    private void drawImage(int x, int y, int textureX, int textureY, int width, int height) {
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        Minecraft.getInstance().textureManager.bind(this.content);
+    private void drawImage(int x, int y, int textureX, int textureY, int width, int height, PoseStack matrix) {
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
+        RenderSystem.setShaderTexture(0, this.content);
         float zLevel = 200.0F;
 
-        GlStateManager._scaled((double) width / imageWidth, (double) height / imageHeight, 0);
+        matrix.scale((float) width / imageWidth, (float) height / imageHeight, 0F);
         drawTexturedModalRect(0, -2, textureX, textureY, imageWidth, imageHeight, zLevel);
-        GlStateManager._popMatrix();
+        matrix.popPose();
     }
 
     private void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height, float zLevel) {
         Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuilder();
-        bufferbuilder.begin(7, DefaultVertexFormat.POSITION_TEX);
+        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferbuilder.vertex(x + 0, y + height, zLevel).uv((float) (textureX + 0) * 0.00390625F, (float) (textureY + height) * 0.00390625F).endVertex();
         bufferbuilder.vertex(x + width, y + height, zLevel).uv((float) (textureX + width) * 0.00390625F, (float) (textureY + height) * 0.00390625F).endVertex();
         bufferbuilder.vertex(x + width, y + 0, zLevel).uv((float) (textureX + width) * 0.00390625F, (float) (textureY + 0) * 0.00390625F).endVertex();
