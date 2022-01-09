@@ -54,10 +54,13 @@ public interface IAbility {
 
     default boolean isCorrectTool(ItemStack stack, BlockState state) {
         Item item = stack.getItem();
-        if (((TieredItem) item).getTier().getLevel() >= state.getHarvestLevel()) {
+       /* if (((TieredItem) item).getTier().getLevel() >= state.getHarvestLevel()) {
             for (ToolType type : stack.getToolTypes()) {
                 if (state.isToolEffective(type)) return true;
             }
+        }*/
+        if(item.isCorrectToolForDrops(state)) {
+            return true;
         }
         return false;
     }

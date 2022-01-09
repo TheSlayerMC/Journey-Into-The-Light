@@ -27,7 +27,7 @@ public class JFeatures {
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> CAVE_VINES = REGISTER.register("cave_vines", () -> new CaveVinesFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<EucaTreeFeatureConfig>> EUCA_TREE = REGISTER.register("euca_tree", () -> new EucaTreeFeature(EucaTreeFeatureConfig.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> FROZEN_ICE_SPIKE = REGISTER.register("frozen_ice_spike", () -> new FrozenIceSpikeFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<JBaseTreeFeatureConfig>> BASE_TREE = REGISTER.register("base_tree", () -> new JTreeFeature(JBaseTreeFeatureConfig.CODEC));
+    //public static final RegistryObject<Feature<JBaseTreeFeatureConfig>> BASE_TREE = REGISTER.register("base_tree", () -> new JTreeFeature(JBaseTreeFeatureConfig.CODEC));
 
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> GLIMMER_ROOTS = REGISTER.register("glimmer_roots", () -> new GlimmerRootFeature(NoneFeatureConfiguration.CODEC));
 

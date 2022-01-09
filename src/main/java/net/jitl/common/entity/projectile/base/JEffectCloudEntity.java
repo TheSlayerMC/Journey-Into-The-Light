@@ -218,26 +218,26 @@ public class JEffectCloudEntity extends Entity {
             ownerUUID = nbt.getUUID("owner");
         }
 
-        ListTag primaryEffectsTag = nbt.getList("primary_effects", Constants.NBT.TAG_COMPOUND);
+        ListTag primaryEffectsTag = nbt.getList("primary_effects", 9);
         primaryEffects.clear();
         for (int i = 0; i < primaryEffectsTag.size(); i++) {
             addPrimaryEffect(MobEffectInstance.load(primaryEffectsTag.getCompound(i)));
         }
 
-        ListTag secondaryEffectsTag = nbt.getList("secondary_effects", Constants.NBT.TAG_COMPOUND);
+        ListTag secondaryEffectsTag = nbt.getList("secondary_effects", 9);
         secondaryEffects.clear();
         for (int i = 0; i < secondaryEffectsTag.size(); i++) {
             addSecondaryEffect(MobEffectInstance.load(secondaryEffectsTag.getCompound(i)));
         }
 
-        ListTag sizesNBT = nbt.getList("sizes", Constants.NBT.TAG_COMPOUND);
+        ListTag sizesNBT = nbt.getList("sizes", 9);
         sizes.clear();
         for (int current = 0; current < sizesNBT.size(); current++) {
             CompoundTag pairCompound = sizesNBT.getCompound(current);
             addSizeKey(pairCompound.getInt("time"), pairCompound.getFloat("size"));
         }
 
-        ListTag exceptionList = nbt.getList("exceptions", Constants.NBT.TAG_INT_ARRAY);
+        ListTag exceptionList = nbt.getList("exceptions", 10);
         for (Tag uuidNbt : exceptionList) {
             excludedEntities.add(NbtUtils.loadUUID(uuidNbt));
         }

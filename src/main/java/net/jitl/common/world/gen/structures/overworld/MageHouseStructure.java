@@ -9,7 +9,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Mirror;
@@ -17,12 +16,10 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
 import net.minecraft.world.level.levelgen.feature.StructurePieceType;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
-import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
@@ -46,7 +43,7 @@ public class MageHouseStructure extends StructureFeature<NoneFeatureConfiguratio
     }
 
     @Override
-    public StructureStartFactory<NoneFeatureConfiguration> getStartFactory() {
+    public StructureFeature<NoneFeatureConfiguration> createTopPiece() {
         return Start::new;
     }
 
@@ -64,7 +61,9 @@ public class MageHouseStructure extends StructureFeature<NoneFeatureConfiguratio
         pieces.add(createPiece(templateManager, MageHouseStructure.MAGE, surfacePos, true));
     }
 
-    public static class Start extends StructureStart<NoneFeatureConfiguration> {
+    public static class Start extends StructureFeature<NoneFeatureConfiguration> {
+
+
         public Start(StructureFeature<NoneFeatureConfiguration> structure, int chunkX, int chunkZ, BoundingBox mutableBoundingBox_, int references, long seed) {
             super(structure, chunkX, chunkZ, mutableBoundingBox_, references, seed);
         }

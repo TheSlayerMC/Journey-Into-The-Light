@@ -27,8 +27,6 @@ import ru.timeconqueror.timecore.api.util.GenHelper;
 
 import java.util.List;
 
-import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
-
 public class DirerockStrongholdStructure extends StructureFeature<NoneFeatureConfiguration> {
     private static final List<MobSpawnSettings.SpawnerData> SPAWNERS_LIST = ImmutableList.of(
             new MobSpawnSettings.SpawnerData(EntityType.PIG, 20, 1, 10)
