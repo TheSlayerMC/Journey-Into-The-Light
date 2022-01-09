@@ -4,8 +4,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
-import CompoundTag;
-
 public abstract class FullArmorAbility {
     protected CompoundTag tag;
 

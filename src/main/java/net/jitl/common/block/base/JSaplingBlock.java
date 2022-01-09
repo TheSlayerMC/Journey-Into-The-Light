@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -21,9 +22,9 @@ public class
 JSaplingBlock extends BushBlock implements BonemealableBlock {
     public static final IntegerProperty STAGE = BlockStateProperties.STAGE;
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
-    private final JTree treeGrower;
+    private final AbstractTreeGrower treeGrower;
 
-    public JSaplingBlock(JTree treeIn, Properties properties) {
+    public JSaplingBlock(AbstractTreeGrower treeIn, Properties properties) {
         super(properties);
         this.treeGrower = treeIn;
         this.registerDefaultState(this.stateDefinition.any().setValue(STAGE, 0));

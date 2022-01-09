@@ -1,18 +1,18 @@
 package net.jitl.common.block.trees;
 
-import ConfiguredFeature;
 import net.jitl.init.world.JConfiguredFeatures;
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class DyingFrozenTree extends JTree {
-    /**
-     * Get a {@link net.minecraft.world.gen.feature.ConfiguredFeature} of tree
-     */
+public class DyingFrozenTree extends AbstractTreeGrower {
+
+
     @Nullable
-    protected ConfiguredFeature<JBaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean largeHive) {
-        return (ConfiguredFeature<JBaseTreeFeatureConfig, ?>) JConfiguredFeatures.LARGE_FROZEN_TREE.get(); //TODO fix this...??
+    protected ConfiguredFeature<TreeConfiguration, ?> getConfiguredFeature(Random randomIn, boolean largeHive) {
+        return (ConfiguredFeature<TreeConfiguration, ?>) JConfiguredFeatures.LARGE_FROZEN_TREE.get(); //TODO fix this...??
     }
 }

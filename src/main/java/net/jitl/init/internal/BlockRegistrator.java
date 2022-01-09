@@ -5,6 +5,7 @@ import net.jitl.api.block.GroundPredicate;
 import net.jitl.client.render.JBlockModels;
 import net.jitl.client.render.JBlockStateResources;
 import net.jitl.common.block.*;
+import net.jitl.common.block.CaveVinesBlock;
 import net.jitl.common.block.base.*;
 import net.jitl.common.block.crop.FloroCropBlock;
 import net.jitl.common.block.crop.GolditeFarmlandBlock;
@@ -21,15 +22,10 @@ import net.jitl.init.JEntities;
 import net.jitl.init.JItems;
 import net.jitl.init.JTabs;
 import net.jitl.util.JBlockProperties;
-import net.minecraft.block.*;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.MagmaBlock;
-import net.minecraft.world.level.block.VineBlock;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.block.*;
 import net.minecraftforge.registries.RegistryObject;
 import ru.timeconqueror.timecore.api.client.resource.BlockModel;
 import ru.timeconqueror.timecore.api.client.resource.BlockModels;
@@ -42,9 +38,6 @@ import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 import java.util.function.Supplier;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-
 public class BlockRegistrator {
 
     @AutoRegistrable
@@ -55,18 +48,14 @@ public class BlockRegistrator {
         registerOreBlock("sapphire_ore", "Sapphire Ore", EnumHarvestLevel.DIAMOND, 3);
         registerOreBlock("deepslate_sapphire_ore", "Deepslate Sapphire Ore", EnumHarvestLevel.DIAMOND, 3);
         registerSpeciallyRenderedBlock("lunium_ore", "Lunium Ore", () -> new JOreBlock(JBlockProperties.LUNIUM_ORE_PROPS.create()
-                .lightLevel((state) -> 3)
-                .harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
+                .lightLevel((state) -> 3))
                 .setExpDrop(0));
         registerSpeciallyRenderedBlock("deepslate_lunium_ore", "Deepslate Lunium Ore", () -> new JOreBlock(JBlockProperties.LUNIUM_ORE_PROPS.create()
-                .lightLevel((state) -> 3)
-                .harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
+                .lightLevel((state) -> 3))
                 .setExpDrop(0));
-        registerDefaultBlock("shadium_ore", "Shadium Ore", () -> new JOreBlock(JBlockProperties.SHADIUM_ORE_PROPS.create()
-                .harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
+        registerDefaultBlock("shadium_ore", "Shadium Ore", () -> new JOreBlock(JBlockProperties.SHADIUM_ORE_PROPS.create())
                 .setExpDrop(0));
-        registerDefaultBlock("deepslate_shadium_ore", "Deepslate Shadium Ore", () -> new JOreBlock(JBlockProperties.SHADIUM_ORE_PROPS.create()
-                .harvestLevel(EnumHarvestLevel.DIAMOND.getInt()))
+        registerDefaultBlock("deepslate_shadium_ore", "Deepslate Shadium Ore", () -> new JOreBlock(JBlockProperties.SHADIUM_ORE_PROPS.create())
                 .setExpDrop(0));
         registerOreBlock("iridium_ore", "Iridium Ore", EnumHarvestLevel.IRON, 3);
         registerOreBlock("deepslate_iridium_ore", "Deepslate Iridium Ore", EnumHarvestLevel.IRON, 3);
@@ -83,14 +72,11 @@ public class BlockRegistrator {
         registerOreBlock("gorbite_ore", "Gorbite Ore", EnumHarvestLevel.NETHERITE, 4);
         registerOreBlock("orbadite_ore", "Orbadite Ore", EnumHarvestLevel.NETHERITE, 0);
         registerOreBlock("lunite_ore", "Lunite Ore", EnumHarvestLevel.NETHERITE, 6);
-        registerSpeciallyRenderedBlock("firestone_ore", "Firestone Ore", () -> new JOreBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()
-                .harvestLevel(EnumHarvestLevel.IRON.getInt()))
+        registerSpeciallyRenderedBlock("firestone_ore", "Firestone Ore", () -> new JOreBlock(JBlockProperties.NETHER_BASALT_ORE_PROPS.create())
                 .setExpDrop(1));
-        registerDefaultBlock("warped_quartz_ore", "Warped Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create()
-                .harvestLevel(EnumHarvestLevel.IRON.getInt()))
+        registerDefaultBlock("warped_quartz_ore", "Warped Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create())
                 .setExpDrop(2));
-        registerDefaultBlock("crimson_quartz_ore", "Crimson Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create()
-                .harvestLevel(EnumHarvestLevel.IRON.getInt()))
+        registerDefaultBlock("crimson_quartz_ore", "Crimson Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create())
                 .setExpDrop(2));
 
         registerBerryBushBlock("bradberry_bush", "Bradberry Bush", () -> JItems.BRADBERRY);
@@ -370,10 +356,10 @@ public class BlockRegistrator {
         RegistryObject<Block> packedIceBricks = registerBlock("packed_ice_bricks", "Packed Ice Bricks", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
         KBlockRegistrator.INSTANCE.registerStairs("packed_ice_brick_stairs", "Packed Ice Brick Stairs", packedIceBricks, JBlockProperties.PERMAFROST_PROPS.create());
 
-        registerDefaultBlock("peridot_ore", "Peridot Ore", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())));
+        registerDefaultBlock("peridot_ore", "Peridot Ore", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
         registerDefaultBlock("peridot_block", "Peridot Block", () -> new Block(JBlockProperties.METAL_PROPS.create()));
 
-        registerDefaultBlock("rimestone_ore", "Rimestone Ore", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create().harvestLevel(EnumHarvestLevel.IRON.getInt())));
+        registerDefaultBlock("rimestone_ore", "Rimestone Ore", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
         registerDefaultBlock("rimestone_block", "Rimestone Block", () -> new Block(JBlockProperties.METAL_PROPS.create()));
 
         registerCustomRenderLayerBlock("silver_bot_spawner", "Silverbot Spawner", () -> new JSpawnerBlock(JEntities.TOWER_GUARDIAN_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
@@ -568,8 +554,7 @@ public class BlockRegistrator {
      */
     private static void registerOreBlock(String name, String enName, EnumHarvestLevel harvestLevel, int minExp) {
         REGISTER.register(name, () -> new JOreBlock
-                (JBlockProperties.ORE_PROPS.create()
-                        .harvestLevel(harvestLevel.getInt()))
+                (JBlockProperties.ORE_PROPS.create())
                 .setExpDrop(minExp))
                 .name(enName)
                 .defaultBlockItem(JTabs.BLOCKS)

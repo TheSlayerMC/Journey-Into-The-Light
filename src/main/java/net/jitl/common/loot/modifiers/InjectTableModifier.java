@@ -14,8 +14,6 @@ import net.minecraftforge.common.loot.LootModifier;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-import ResourceLocation;
-
 public class InjectTableModifier extends LootModifier {
 
     private final ResourceLocation newTable;
