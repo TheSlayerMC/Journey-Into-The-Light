@@ -80,7 +80,7 @@ public class JEntityRenderRegistry {
     }
 
     @SubscribeEvent
-    public static void registerEntityRenders(EntityRenderersEvent.RegisterLayerDefinitions event) {
+    public static void registerEntityLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
 
         //Mobs
         //event.registerLayerDefinition(JEntities.FLORO_TYPE, FloroRenderer::new);
