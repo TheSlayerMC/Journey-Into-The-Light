@@ -3,15 +3,15 @@ package net.jitl.common.world.gen.features.boil;
 import com.mojang.serialization.Codec;
 import net.jitl.common.block.base.AttachedBlock;
 import net.jitl.init.JBlocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 
 import java.util.Random;
 
@@ -21,7 +21,12 @@ public class SulphurDepositFeature extends Feature<BlockStateConfiguration> {
     }
 
     @Override
-    public boolean place(WorldGenLevel reader, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateConfiguration config) {
+    public boolean place(FeaturePlaceContext<BlockStateConfiguration> context_) {
+        WorldGenLevel reader = context_.level();
+        BlockPos pos = context_.origin();
+        Random rand = context_.random();
+        BlockStateConfiguration config = context_.config();
+
         if (reader.getBlockState(pos.below()) != JBlocks.VOLCANIC_SAND.defaultBlockState()) {
             return false;
         } else {

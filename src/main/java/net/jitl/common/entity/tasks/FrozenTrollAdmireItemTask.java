@@ -2,11 +2,11 @@ package net.jitl.common.entity.tasks;
 
 import com.google.common.collect.ImmutableMap;
 import net.jitl.common.entity.frozen.FrozenTrollEntity;
-import net.minecraft.world.entity.ai.memory.MemoryStatus;
-import net.minecraft.world.entity.ai.memory.MemoryModuleType;
-import net.minecraft.world.entity.ai.behavior.Behavior;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.ai.behavior.Behavior;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.ai.memory.MemoryStatus;
+import net.minecraft.world.entity.item.ItemEntity;
 import org.jetbrains.annotations.NotNull;
 
 public class FrozenTrollAdmireItemTask<E extends FrozenTrollEntity> extends Behavior<E> {
@@ -19,7 +19,7 @@ public class FrozenTrollAdmireItemTask<E extends FrozenTrollEntity> extends Beha
 
     protected boolean checkExtraStartConditions(ServerLevel worldIn, E owner) {
         ItemEntity itementity = owner.getBrain().getMemory(MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM).get();
-        return FrozenTrollTasks.isLovedItem(itementity.getItem().getItem());
+        return FrozenTrollTasks.isLovedItem(itementity.getItem());
     }
 
     protected void start(@NotNull ServerLevel worldIn, E entityIn, long gameTimeIn) {
