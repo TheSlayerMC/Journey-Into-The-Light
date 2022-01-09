@@ -3,17 +3,17 @@ package net.jitl.common.tile;
 import net.jitl.common.block.base.XZFacedBlock;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.init.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
 import ru.timeconqueror.timecore.api.common.tile.SerializationType;
 import ru.timeconqueror.timecore.api.common.tile.SyncableTile;
 import ru.timeconqueror.timecore.api.util.HorizontalDirection;
@@ -23,7 +23,7 @@ import java.util.Random;
 
 import static ru.timeconqueror.timecore.api.util.HorizontalDirection.*;
 
-public class EssenciaAltarTile extends SyncableTile implements TickableBlockEntity {
+public class EssenciaAltarTile extends SyncableTile {
     private static final int PATH_PROGRESS_DELAY = 1;
     private static final float PATH_PROGRESS = 0.1F;
     private final Path northPath = new Path(NORTH, JBlocks.BLOOD_RUNE_DEATH);
@@ -40,27 +40,26 @@ public class EssenciaAltarTile extends SyncableTile implements TickableBlockEnti
 
     private final Random random = new Random();
 
-    public EssenciaAltarTile() {
-        super(JTiles.ESSENCIA_ALTAR);
+    public EssenciaAltarTile(BlockPos pos, BlockState state) {
+        super(JTiles.ESSENCIA_ALTAR, pos, state);
     }
 
-    @Override
-    public void tick() {
-        if (activated) {
-            checkNeighbours();
+    public static void serverTick(Level level, BlockPos pos, BlockState state_, EssenciaAltarTile blockEntity_) {
+        if (blockEntity_.activated) {
+            blockEntity_.checkNeighbours();
 
-            if (ticks % PATH_PROGRESS_DELAY == 0) {
-                for (Path path : getPaths()) {
+            if (blockEntity_.ticks % PATH_PROGRESS_DELAY == 0) {
+                for (Path path : blockEntity_.getPaths()) {
                     path.updateCurrentLength();
                 }
             }
         }
 
-        if (ticks % 4 == 0) {
-            randomSeed = RandHelper.RAND.nextLong();
+        if (blockEntity_.ticks % 4 == 0) {
+            blockEntity_.randomSeed = RandHelper.RAND.nextLong();
         }
 
-        ticks++;
+        blockEntity_.ticks++;
     }
 
     public void onRightClick(ServerPlayer entity, ItemStack itemStack) {
@@ -166,8 +165,8 @@ public class EssenciaAltarTile extends SyncableTile implements TickableBlockEnti
     }
 
     @Override
-    protected void readNBT(BlockState state, CompoundTag nbt, SerializationType type) {
-        super.readNBT(state, nbt, type);
+    protected void readNBT(CompoundTag nbt, SerializationType type) {
+        super.readNBT(nbt, type);
 
         activated = nbt.getBoolean("activated");
     }

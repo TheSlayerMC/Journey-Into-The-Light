@@ -232,6 +232,7 @@ public class BoilSkyRenderer implements ISkyRenderHandler {
 
         RenderSystem.depthMask(true);
         RenderSystem.enableTexture();
+
         RenderSystem.disableBlend();
     }
 
