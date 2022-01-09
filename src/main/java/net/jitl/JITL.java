@@ -55,7 +55,7 @@ public class JITL {
 
 	private void preInit(final FMLCommonSetupEvent event) {
 		event.enqueueWork(JBiomeRegistry::registerProviders);
-		JCapabilityProvider.registerCapabilities();
+		//JCapabilityProvider.registerCapabilities();
 		Raid.RaiderType.create("illager_mech", JEntities.ILLAGER_MECH_TYPE, new int[]{0, 0, 0, 1, 0, 1, 0, 2}); //TODO: move me
 	}
 
