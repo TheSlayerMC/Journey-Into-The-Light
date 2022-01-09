@@ -24,7 +24,6 @@ import ru.timeconqueror.timecore.api.registry.StructureFeatureRegister.TimeStruc
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 import ru.timeconqueror.timecore.api.storage.StructureTags.Tag;
 
-import java.util.Objects;
 
 public class JStructures {
     public static final Marker STRUCTURE_MARKER = MarkerManager.getMarker("JSTRUCTURES");
