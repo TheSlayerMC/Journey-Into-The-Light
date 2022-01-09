@@ -3,22 +3,20 @@ package net.jitl.common.world.gen.structures.frozen.guardianruins;
 import com.google.common.collect.ImmutableMap;
 import net.jitl.JITL;
 import net.jitl.init.JBlocks;
-import net.jitl.init.JStructurePieces;
-import net.minecraft.world.level.block.Blocks;
+import net.jitl.init.world.JStructurePieces;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.StructurePieceType;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import ru.timeconqueror.timecore.api.common.world.structure.TunedTemplateStructurePiece;
 import ru.timeconqueror.timecore.api.common.world.structure.processor.RandomizeBlockProcessor;
 
 import java.util.List;
 import java.util.Map;
-
-import ResourceLocation;
 
 public class GuardianRuinPieces {
     public static final int BB_WIDTH = 20;

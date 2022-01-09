@@ -3,9 +3,8 @@ package net.jitl.common.world.gen.features.featureconfig;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.ai.behavior.ShufflingList;
-import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 
 public class RuinsFeatureConfig implements FeatureConfiguration {
@@ -16,7 +15,7 @@ public class RuinsFeatureConfig implements FeatureConfiguration {
                     Codec.INT.fieldOf("max_spreading").forGetter((ruinsFeatureConfig) -> ruinsFeatureConfig.maxSpreading),
                     Codec.INT.fieldOf("max_height").forGetter((ruinsFeatureConfig) -> ruinsFeatureConfig.maxHeight),
                     Codec.INT.fieldOf("max_columns").forGetter((ruinsFeatureConfig) -> ruinsFeatureConfig.maxColumns),
-                    ShufflingList.WeightedEntry.codec(ResourceLocation.CODEC).fieldOf("loot_list").forGetter((ruinsFeatureConfig -> ruinsFeatureConfig.lootWeightedList))
+                    ResourceLocation.CODEC.fieldOf("loot_list").forGetter((ruinsFeatureConfig -> ruinsFeatureConfig.resourceLocation))
             ).apply(instance, RuinsFeatureConfig::new));
 
     public final RuleTest spawnBlock;
@@ -24,14 +23,14 @@ public class RuinsFeatureConfig implements FeatureConfiguration {
     public int maxSpreading;
     public int maxHeight;
     public int maxColumns;
-    public final ShufflingList.WeightedEntry<ResourceLocation> lootWeightedList;
+    public final ResourceLocation resourceLocation;
 
-    public RuinsFeatureConfig(RuleTest spawnBlock, WeightedStateProvider ruinedBlocksProvider, int maxSpreading, int maxHeight, int maxColumns, ShufflingList.WeightedEntry<ResourceLocation> lootWeightedList) {
+    public RuinsFeatureConfig(RuleTest spawnBlock, WeightedStateProvider ruinedBlocksProvider, int maxSpreading, int maxHeight, int maxColumns, ResourceLocation resourceLocation) {
         this.spawnBlock = spawnBlock;
         this.ruinedBlocksProvider = ruinedBlocksProvider;
         this.maxSpreading = maxSpreading;
         this.maxHeight = maxHeight;
         this.maxColumns = maxHeight;
-        this.lootWeightedList = lootWeightedList;
+        this.resourceLocation = resourceLocation;
     }
 }

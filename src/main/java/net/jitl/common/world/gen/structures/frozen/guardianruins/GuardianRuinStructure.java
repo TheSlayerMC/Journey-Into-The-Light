@@ -2,22 +2,20 @@ package net.jitl.common.world.gen.structures.frozen.guardianruins;
 
 import com.mojang.serialization.Codec;
 import net.jitl.JITL;
-import net.jitl.init.JStructures;
+import net.jitl.init.world.JStructures;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.util.GenHelper;
-
-import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
-import net.minecraft.world.level.levelgen.feature.StructureFeature.StructureStartFactory;
 
 public class GuardianRuinStructure extends StructureFeature<NoneFeatureConfiguration> {
     public GuardianRuinStructure(Codec<NoneFeatureConfiguration> codec) {

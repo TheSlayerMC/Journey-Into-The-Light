@@ -2,8 +2,8 @@ package net.jitl.client.eventhandler;
 
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.init.JBlocks;
-import net.jitl.init.JDimensions;
 import net.jitl.init.JItems;
+import net.jitl.init.world.JDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;

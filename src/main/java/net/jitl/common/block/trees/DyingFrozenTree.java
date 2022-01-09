@@ -1,7 +1,7 @@
 package net.jitl.common.block.trees;
 
 import ConfiguredFeature;
-import net.jitl.init.JConfiguredFeatures;
+import net.jitl.init.world.JConfiguredFeatures;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import javax.annotation.Nullable;

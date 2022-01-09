@@ -1,4 +1,4 @@
-package net.jitl.init;
+package net.jitl.init.world;
 
 import com.google.common.collect.ImmutableList;
 import net.jitl.JITL;

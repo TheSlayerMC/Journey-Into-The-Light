@@ -3,11 +3,11 @@ package net.jitl.common.world.gen.jigsaw;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.jitl.JITL;
-import net.jitl.init.JProcessorLists;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.levelgen.feature.structures.StructureTemplatePool;
+import net.jitl.init.world.JProcessorLists;
 import net.minecraft.data.worldgen.Pools;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.structures.StructurePoolElement;
+import net.minecraft.world.level.levelgen.feature.structures.StructureTemplatePool;
 
 public class JigsawStarters {
     //TODO: fix processor

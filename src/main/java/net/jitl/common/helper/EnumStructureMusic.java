@@ -1,7 +1,7 @@
 package net.jitl.common.helper;
 
 import net.jitl.init.JSounds;
-import net.jitl.init.JStructures;
+import net.jitl.init.world.JStructures;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import ru.timeconqueror.timecore.api.util.lookups.EnumLookup;
 

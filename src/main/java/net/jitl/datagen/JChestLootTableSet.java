@@ -1,7 +1,7 @@
 package net.jitl.datagen;
 
 import net.jitl.JITL;
-import net.jitl.init.JStructures;
+import net.jitl.init.world.JStructures;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.saveddata.maps.MapDecoration;
 import net.minecraft.world.level.storage.loot.LootPool;

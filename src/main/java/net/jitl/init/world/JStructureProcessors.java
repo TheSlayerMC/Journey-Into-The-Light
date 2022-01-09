@@ -1,4 +1,4 @@
-package net.jitl.init;
+package net.jitl.init.world;
 
 import net.jitl.JITL;
 import net.jitl.common.world.gen.structures.processors.RandomizeBlockWithChanceProcessor;

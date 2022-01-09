@@ -1,4 +1,4 @@
-package net.jitl.init;
+package net.jitl.init.world;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -8,11 +8,13 @@ import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
 import net.jitl.common.world.gen.treedecorator.*;
+import net.jitl.init.JBlocks;
 import net.jitl.util.JRuleTests;
 import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.entity.ai.behavior.ShufflingList;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,6 +26,7 @@ import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSi
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.PineFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
@@ -72,19 +75,15 @@ public class JConfiguredFeatures {
     public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BRADBERRY_BUSH =
-            REGISTER.register("patch_bradberry_bush", Decoration.VEGETAL_DECORATION, surfacePatchFeature(
-                    () -> JBlocks.BRADBERRY_BUSH.defaultBlockState(),
-                    () -> Blocks.GRASS_BLOCK.defaultBlockState(),
-                    8))
-                    .asPromise();
+            REGISTER.register("patch_bradberry_bush", surfacePatchFeature(() -> JBlocks.BRADBERRY_BUSH.defaultBlockState()));
+
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> DEFAULT_OVERWORLD_RUINS =
             REGISTER.register("default_overworld_ruins",
-                    Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.RUINS.get()
                             .configured(new RuinsFeatureConfig(
                                     JRuleTests.GRASS,
-                                    new WeightedStateProvider()
+                                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                                             .add(Blocks.STONE_BRICKS.defaultBlockState(), 6)
                                             .add(Blocks.CRACKED_STONE_BRICKS.defaultBlockState(), 5)
                                             .add(Blocks.MOSSY_STONE_BRICKS.defaultBlockState(), 4)
@@ -94,61 +93,32 @@ public class JConfiguredFeatures {
                                             .add(Blocks.INFESTED_COBBLESTONE.defaultBlockState(), 1)
                                             .add(Blocks.INFESTED_STONE_BRICKS.defaultBlockState(), 1)
                                             .add(Blocks.INFESTED_MOSSY_STONE_BRICKS.defaultBlockState(), 1)
-                                            .add(Blocks.INFESTED_CRACKED_STONE_BRICKS.defaultBlockState(), 1),
+                                            .add(Blocks.INFESTED_CRACKED_STONE_BRICKS.defaultBlockState(), 1)),
                                     5,
                                     5,
                                     8,
-                                    new ShufflingList.WeightedEntry<ResourceLocation>()
-                                            .add(BuiltInLootTables.ABANDONED_MINESHAFT, 5)
-                                            .add(BuiltInLootTables.SIMPLE_DUNGEON, 6)
-                                            .add(BuiltInLootTables.STRONGHOLD_CORRIDOR, 2)))
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(128))
-                    .setBiomePredicate(COMMON_BIOMES)
-                    .asPromise();
+                                    BuiltInLootTables.ABANDONED_MINESHAFT)));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> DESERT_OVERWORLD_RUINS =
             REGISTER.register("desert_overworld_ruins",
-                    Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.RUINS.get()
                             .configured(new RuinsFeatureConfig(
                                     JRuleTests.SAND,
-                                    new WeightedStateProvider()
+                                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                                             .add(Blocks.SANDSTONE.defaultBlockState(), 3)
                                             .add(Blocks.CHISELED_SANDSTONE.defaultBlockState(), 1)
-                                            .add(Blocks.CUT_SANDSTONE.defaultBlockState(), 2),
+                                            .add(Blocks.CUT_SANDSTONE.defaultBlockState(), 2)),
                                     5,
                                     5,
                                     8,
-                                    new WeightedList<ResourceLocation>()
-                                            .add(BuiltInLootTables.DESERT_PYRAMID, 4)
-                                            .add(BuiltInLootTables.VILLAGE_DESERT_HOUSE, 6)
-                                            .add(BuiltInLootTables.STRONGHOLD_CORRIDOR, 2)))
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(128))
-                    .setBiomePredicate(COMMON_BIOMES)
-                    .asPromise();
-
+                                    BuiltInLootTables.DESERT_PYRAMID)));
 
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
             REGISTER.register("goldite_tall_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                            new WeightedStateProvider()
-                                    .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1),
-                            new DoublePlantPlacer()))
-                            .tries(24)
-                            .xspread(8)
-                            .zspread(8)
-                            .whitelist(ImmutableSet.of(
-                                    JBlocks.GOLDITE_GRASS_BLOCK))
-                            .noProjection()
-                            .build())
-                    .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared()
-                    .range(250)
-                    .count(64))
-                    .setBiomePredicate(GOLDITE_GRAINS)
-                    .asPromise();
+                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                    .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1))))));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_FOLIAGE =
             REGISTER.register("goldite_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
@@ -1117,11 +1087,7 @@ public class JConfiguredFeatures {
                 .decorated(Features.Decorators.TOP_SOLID_HEIGHTMAP_SQUARE);
     }
 
-    private static Supplier<ConfiguredFeature<?, ?>> surfacePatchFeature(Supplier<BlockState> blockStateSupplier, Supplier<BlockState> surfaceStateSupplier, int tries) {
-        return () -> Feature.RANDOM_PATCH.configured((
-                new RandomPatchConfiguration.GrassConfigurationBuilder(new SimpleStateProvider(blockStateSupplier.get()), SimpleBlockPlacer.INSTANCE))
-                .tries(tries)
-                .whitelist(ImmutableSet.of(surfaceStateSupplier.get().getBlock()))
-                .build());
+    private static Supplier<ConfiguredFeature<?, ?>> surfacePatchFeature(Supplier<BlockState> blockStateSupplier) {
+        return () -> Feature.RANDOM_PATCH.configured(FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(BlockStateProvider.simple(blockStateSupplier.get())))));
     }
 }
