@@ -2,21 +2,25 @@ package net.jitl.common.block;
 
 import net.jitl.common.block.base.JTileContainerBlock;
 import net.jitl.common.tile.EssenciaAltarTile;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
+import net.jitl.init.JTiles;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import ru.timeconqueror.timecore.api.util.WorldUtils;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import javax.annotation.Nullable;
 
 public class EssenciaAltarBlock extends JTileContainerBlock {
     public EssenciaAltarBlock(Properties properties) {
-        super(properties, (blockState, iBlockReader) -> new EssenciaAltarTile());
+        super(properties, EssenciaAltarTile::new);
     }
 
     @Override
@@ -28,6 +32,16 @@ public class EssenciaAltarBlock extends JTileContainerBlock {
         }
 
         return InteractionResult.sidedSuccess(worldIn.isClientSide());
+    }
+
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level_, BlockState state_, BlockEntityType<T> blockEntityType_) {
+        return createTicker(level_, blockEntityType_, JTiles.ESSENCIA_ALTAR);
+    }
+
+    @Nullable
+    protected static <T extends BlockEntity> BlockEntityTicker<T> createTicker(Level level_, BlockEntityType<T> givenType_, BlockEntityType<? extends EssenciaAltarTile> expectedType_) {
+        return level_.isClientSide ? null : createTickerHelper(givenType_, expectedType_, EssenciaAltarTile::serverTick);
     }
 
     /*@Override

@@ -1,16 +1,16 @@
 package net.jitl.common.tile;
 
 import net.jitl.init.JTiles;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.level.block.entity.TickableBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.SpawnData;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BaseSpawner;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.SpawnData;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 
@@ -19,7 +19,7 @@ public class JMobSpawnerTile extends BlockEntity{
     private final BaseSpawner spawner = new BaseSpawner() {
         @Override
         public void broadcastEvent(Level level_, BlockPos pos_, int int_) {
-            JMobSpawnerTile.this.level.blockEvent(JMobSpawnerTile.this.worldPosition, Blocks.SPAWNER, id, 0);
+            JMobSpawnerTile.this.level.blockEvent(JMobSpawnerTile.this.worldPosition, Blocks.SPAWNER, int_, 0);
         }
 
         public Level getLevel() {
@@ -45,27 +45,30 @@ public class JMobSpawnerTile extends BlockEntity{
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
-        this.spawner.load(nbt);
+    public void load(CompoundTag tag_) {
+        super.load(tag_);
+        this.spawner.load(this.level, this.worldPosition, tag_);
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound) {
-        super.save(compound);
-        this.spawner.save(compound);
-        return compound;
+    protected void saveAdditional(CompoundTag tag_) {
+        super.saveAdditional(tag_);
+        this.spawner.save(tag_);
     }
 
-    @Override
-    public void tick() {
-        this.spawner.tick();
+
+    public static void clientTick(Level level_, BlockPos pos_, BlockState state_, JMobSpawnerTile blockEntity_) {
+        blockEntity_.spawner.clientTick(level_, pos_);
+    }
+
+    public static void serverTick(Level level_, BlockPos pos_, BlockState state_, JMobSpawnerTile blockEntity_) {
+        blockEntity_.spawner.serverTick((ServerLevel) level_, pos_);
     }
 
     @Override
     @Nullable
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return new ClientboundBlockEntityDataPacket(this.worldPosition, 1, this.getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
@@ -76,8 +79,8 @@ public class JMobSpawnerTile extends BlockEntity{
     }
 
     @Override
-    public boolean triggerEvent(int id, int type) {
-        return this.spawner.onEventTriggered(id) || super.triggerEvent(id, type);
+    public boolean triggerEvent(int id_, int type_) {
+        return this.spawner.onEventTriggered(this.level, id_) || super.triggerEvent(id_, type_);
     }
 
     @Override

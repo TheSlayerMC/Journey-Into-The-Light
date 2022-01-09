@@ -1,13 +1,8 @@
 package net.jitl.init.world;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import net.jitl.JITL;
-import net.jitl.common.block.base.JBerryBushBlock;
-import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
-import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
-import net.jitl.common.world.gen.treedecorator.*;
 import net.jitl.init.JBlocks;
 import net.jitl.util.JRuleTests;
 import net.minecraft.data.BuiltinRegistries;
@@ -18,28 +13,20 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.*;
-import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.PineFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import ru.timeconqueror.timecore.api.registry.SimpleVanillaRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 import ru.timeconqueror.timecore.api.registry.util.Promised;
-import ru.timeconqueror.timecore.storage.Features;
 
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -113,8 +100,8 @@ public class JConfiguredFeatures {
                                     8,
                                     BuiltInLootTables.DESERT_PYRAMID)));
 
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
+    //FIXME port
+    /*public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
             REGISTER.register("goldite_tall_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
@@ -595,7 +582,7 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(BOILING_SANDS)
                     .asPromise();*/
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_BURNED_TREE =
+    /*public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_BURNED_TREE =
             REGISTER.register("large_burned_tree",
                     Decoration.SURFACE_STRUCTURES,
                     () -> JFeatures.BASE_TREE.get()
@@ -1009,55 +996,19 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_PLAINS_FLOWERS =
             REGISTER.register("boiling_plains_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
                     .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                            new WeightedStateProvider()
+                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                                     .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 1)
-                                    .add(JBlocks.FLAME_POD.defaultBlockState(), 1),
-                            new SimpleBlockPlacer()))
-                            .tries(6)
-                            .xspread(6)
-                            .zspread(6)
-                            .whitelist(ImmutableSet.of(
-                                    JBlocks.HOT_GROUND))
-                            .noProjection()
-                            .build())
-                    .range(250)
-                    .count(100)
-                    .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(BOILING_PLAINS)
-                    .asPromise();
+                                    .add(JBlocks.FLAME_POD.defaultBlockState(), 1))))));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_FIRE =
-            REGISTER.register("boiling_fire", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
+            REGISTER.register("boiling_fire", () -> Feature.RANDOM_PATCH
                             .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                                    new WeightedStateProvider()
-                                            .add(Blocks.FIRE.defaultBlockState(), 1),
-                                    new SimpleBlockPlacer()))
-                                    .tries(20)
-                                    .xspread(10)
-                                    .zspread(10)
-                                    .whitelist(ImmutableSet.of(
-                                            JBlocks.HOT_GROUND,
-                                            JBlocks.CHARRED_GRASS,
-                                            JBlocks.SCORCHED_RUBBLE,
-                                            JBlocks.VOLCANIC_SAND))
-                                    .noProjection()
-                                    .build())
-                    .range(250)
-                    .count(10))
-                    .setBiomePredicate(BOIL_FIRE_BIOMES)
-                    .asPromise();
+                                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                            .add(Blocks.FIRE.defaultBlockState(), 1)))))); */
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> FLAME_BULB =
             REGISTER.register("flame_bulb",
-                    Decoration.VEGETAL_DECORATION,
-                    () -> JFeatures.FLAME_BULB.get()
-                            .configured(FeatureConfiguration.NONE)
-                            .range(256)
-                            .squared()
-                            .countRandom(64)
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(CHARRED_FIELDS)
-                    .asPromise();
+                    () -> JFeatures.FLAME_BULB.get().configured(FeatureConfiguration.NONE));
 
     /**
      * Creates an ore feature with basic parameters.
@@ -1070,21 +1021,20 @@ public class JConfiguredFeatures {
      * @return Returns a new Configured Ore Feature based on the params filled in the method
      */
     private static Supplier<ConfiguredFeature<?, ?>> defaultOreFeature(Supplier<BlockState> oreSup, RuleTest spawnBlock, int size, int range, int count) {
-        return () -> Feature.ORE.configured(new OreConfiguration(spawnBlock, oreSup.get(), size)).range(range).squared().count(count);
+        return () -> Feature.ORE.configured(new OreConfiguration(spawnBlock, oreSup.get(), size));
     }
 
     private static Supplier<ConfiguredFeature<?, ?>> defaultOreFeature(Supplier<BlockState> oreSup, Supplier<RuleTest> spawnBlock, int size, int range, int count) {
-        return () -> Feature.ORE.configured(new OreConfiguration(spawnBlock.get(), oreSup.get(), size)).range(range).squared().count(count);
+        return () -> Feature.ORE.configured(new OreConfiguration(spawnBlock.get(), oreSup.get(), size));
     }
 
     private static Supplier<ConfiguredFeature<?, ?>> netherOreFeature(Supplier<BlockState> oreSup, RuleTest spawnBlock, int size, int count) {
-        return () -> Feature.ORE.configured(new OreConfiguration(spawnBlock, oreSup.get(), size)).decorated(Features.Decorators.RANGE_10_20_ROOFED).squared().count(count);
+        return () -> Feature.ORE.configured(new OreConfiguration(spawnBlock, oreSup.get(), size));
     }
 
     private static Supplier<ConfiguredFeature<?, ?>> defaultDiskFeature(Supplier<BlockState> oreSup, BlockState spawnBlock, int baseValue, int spread, int halfHeight) {
         return () -> Feature.DISK.configured(
-                new DiskConfiguration(oreSup.get(), UniformInt.of(baseValue, spread), halfHeight, ImmutableList.of(spawnBlock)))
-                .decorated(Features.Decorators.TOP_SOLID_HEIGHTMAP_SQUARE);
+                new DiskConfiguration(oreSup.get(), UniformInt.of(baseValue, spread), halfHeight, ImmutableList.of(spawnBlock)));
     }
 
     private static Supplier<ConfiguredFeature<?, ?>> surfacePatchFeature(Supplier<BlockState> blockStateSupplier) {

@@ -1,18 +1,17 @@
 package net.jitl.common.block.base;
 
 import net.jitl.common.tile.JMobSpawnerTile;
+import net.jitl.init.JTiles;
 import net.jitl.util.JBlockProperties;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.SpawnerBlock;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.SpawnerBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class JSpawnerBlock extends SpawnerBlock {
@@ -30,5 +29,10 @@ public class JSpawnerBlock extends SpawnerBlock {
         JMobSpawnerTile spawner = new JMobSpawnerTile(pos, state);
         spawner.getSpawner().setEntityId(entity);
         return spawner;
+    }
+
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level_, BlockState state_, BlockEntityType<T> blockEntityType_) {
+        return createTickerHelper(blockEntityType_, JTiles.MOB_SPAWNER, level_.isClientSide ? JMobSpawnerTile::clientTick : JMobSpawnerTile::serverTick);
     }
 }
