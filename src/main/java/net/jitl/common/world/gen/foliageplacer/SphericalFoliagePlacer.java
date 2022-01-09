@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.jitl.init.world.JFoliagePlacers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -22,7 +22,7 @@ public class SphericalFoliagePlacer extends BlobFoliagePlacer {
         return blobParts(instance_).apply(instance_, SphericalFoliagePlacer::new);
     });
 
-    public SphericalFoliagePlacer(UniformInt featureSpread_, UniformInt featureSpread1_, int int_) {
+    public SphericalFoliagePlacer(IntProvider featureSpread_, IntProvider featureSpread1_, int int_) {
         super(featureSpread_, featureSpread1_, int_);
     }
 
