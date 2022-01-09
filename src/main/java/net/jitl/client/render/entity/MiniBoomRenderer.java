@@ -2,8 +2,9 @@ package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
+import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.entity.layer.MiniBoomChargeLayer;
-import net.jitl.client.render.model.MiniBoomModel;
+import net.jitl.client.render.model.BoomModel;
 import net.jitl.common.entity.pet.MiniBoomEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -14,11 +15,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
-public class MiniBoomRenderer extends MobRenderer<MiniBoomEntity, MiniBoomModel<MiniBoomEntity>> {
+public class MiniBoomRenderer extends MobRenderer<MiniBoomEntity, BoomModel<MiniBoomEntity>> {
 
     public MiniBoomRenderer(EntityRendererProvider.Context context) {
-        super(context, new MiniBoomModel(), 0.2F);
-        this.addLayer(new MiniBoomChargeLayer(this));
+        super(context, new BoomModel<>(context.bakeLayer(JModelLayers.MINI_BOOM_LAYER)), 0.2F);
+        this.addLayer(new MiniBoomChargeLayer(this, context.getModelSet()));
 
     }
 

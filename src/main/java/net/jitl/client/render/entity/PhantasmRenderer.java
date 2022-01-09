@@ -3,6 +3,7 @@ package net.jitl.client.render.entity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.jitl.JITL;
+import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.JRenderTypes;
 import net.jitl.client.render.model.frozen.PhantasmModel;
 import net.jitl.common.entity.frozen.PhantasmEntity;
@@ -18,10 +19,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class PhantasmRenderer extends MobRenderer<PhantasmEntity, PhantasmModel<PhantasmEntity>> {
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(JITL.rl("phantasm"), "main");
-
     public PhantasmRenderer(EntityRendererProvider.Context context) {
-        super(context, new PhantasmModel(context.bakeLayer(LAYER_LOCATION)), 0.5F);
+        super(context, new PhantasmModel(context.bakeLayer(JModelLayers.PHANTASM_MODEL_LAYER)), 0.5F);
     }
 
     @Override

@@ -8,8 +8,6 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.util.Mth;
 
-import Entity;
-
 public class HongoModel<T extends Entity> extends ListModel<T> {
 
     private final ModelPart body;
@@ -49,20 +47,18 @@ public class HongoModel<T extends Entity> extends ListModel<T> {
     public Iterable<ModelPart> parts() {
         return ImmutableList.of(
                 body,
-                leftFrontLeg,
-                rightFrontLeg,
-                backLeftLeg,
-                backRightLeg,
-                bottomHat,
-                topHat
+                blLeg,
+                fLLeg,
+                bRLeg,
+                fRLeg
         );
     }
 
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.leftFrontLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.rightFrontLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.backLeftLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.backRightLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.fLLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.fRLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.blLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.bRLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 }

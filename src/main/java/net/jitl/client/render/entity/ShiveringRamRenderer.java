@@ -1,6 +1,7 @@
 package net.jitl.client.render.entity;
 
 import net.jitl.JITL;
+import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.entity.layer.ShiveringRamWoolLayer;
 import net.jitl.client.render.model.frozen.ShiveringRamModel;
 import net.jitl.common.entity.frozen.ShiveringRamEntity;
@@ -12,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class ShiveringRamRenderer extends MobRenderer<ShiveringRamEntity, ShiveringRamModel<ShiveringRamEntity>> {
 
     public ShiveringRamRenderer(EntityRendererProvider.Context context) {
-        super(context, new ShiveringRamModel(), 0.5F);
+        super(context, new ShiveringRamModel<>(context.bakeLayer(JModelLayers.SHIVERING_RAM_LAYER)), 0.5F);
         this.addLayer(new ShiveringRamWoolLayer(this));
     }
 

@@ -5,60 +5,62 @@ import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.VillagerHeadModel;
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import Entity;
-
 @OnlyIn(Dist.CLIENT)
 public class MageModel<T extends Entity> extends ListModel<T> implements HeadedModel, VillagerHeadModel {
 
     private final ModelPart head;
+    private final ModelPart nose;
     private final ModelPart body;
     private final ModelPart arms;
     private final ModelPart leg0;
     private final ModelPart leg1;
 
-    public MageModel(float s) {
-        texWidth = 64;
-        texHeight = 128;
+    public MageModel(ModelPart root) {
+        this.head = root.getChild("head");
+        this.nose = root.getChild("nose");
+        this.body = root.getChild("body");
+        this.arms = root.getChild("arms");
+        this.leg0 = root.getChild("leg0");
+        this.leg1 = root.getChild("leg1");
+    }
 
-        head = new ModelPart(this);
-        head.setPos(0.0F, 0.0F, 0.0F);
-        head.texOffs(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F, 0.0F, true);
-        head.texOffs(0, 64).addBox(-5.0F, -10.05F, -5.0F, 10.0F, 2.0F, 10.0F, 0.0F, true);
-        head.texOffs(0, 76).addBox(-3.75F, -13.5F, -3.0F, 7.0F, 4.0F, 7.0F, 0.0F, true);
-        head.texOffs(0, 87).addBox(-2.5F, -16.5F, -1.0F, 4.0F, 4.0F, 4.0F, 0.0F, true);
-        head.texOffs(0, 95).addBox(-1.25F, -18.0F, 1.0F, 1.0F, 2.0F, 1.0F, 0.25F, true);
-        head.texOffs(24, 0).addBox(-1.0F, -3.0F, -6.0F, 2.0F, 4.0F, 2.0F, 0.0F, true);
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
 
-        body = new ModelPart(this);
-        body.setPos(0.0F, 0.0F, 0.0F);
-        body.texOffs(16, 20).addBox(-4.0F, 0.0F, -3.0F, 8.0F, 12.0F, 6.0F, 0.0F, true);
-        body.texOffs(0, 38).addBox(-4.0F, 0.0F, -3.0F, 8.0F, 18.0F, 6.0F, 0.5F, true);
+        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(0, 64).mirror().addBox(-5.0F, -10.05F, -5.0F, 10.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(0, 76).mirror().addBox(-3.75F, -13.5F, -3.0F, 7.0F, 4.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(0, 87).mirror().addBox(-2.5F, -16.5F, -1.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(0, 95).mirror().addBox(-1.25F, -18.0F, 1.0F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.25F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        arms = new ModelPart(this);
-        arms.setPos(0.0F, 2.0F, 0.0F);
-        arms.texOffs(40, 38).addBox(-4.0F, 2.0F, -2.0F, 8.0F, 4.0F, 4.0F, 0.0F, true);
-        arms.texOffs(44, 22).addBox(4.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, true);
-        arms.texOffs(44, 22).addBox(-8.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, true);
+        PartDefinition nose = partdefinition.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(24, 0).mirror().addBox(-1.0F, -1.0F, -6.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, -2.0F, 0.0F));
 
-        leg0 = new ModelPart(this);
-        leg0.setPos(2.0F, 12.0F, 0.0F);
-        leg0.texOffs(0, 22).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, true);
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 20).mirror().addBox(-4.0F, 0.0F, -3.0F, 8.0F, 12.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(0, 38).mirror().addBox(-4.0F, 0.0F, -3.0F, 8.0F, 18.0F, 6.0F, new CubeDeformation(0.5F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        leg1 = new ModelPart(this);
-        leg1.setPos(-2.0F, 12.0F, 0.0F);
-        leg1.texOffs(0, 22).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
+        PartDefinition arms = partdefinition.addOrReplaceChild("arms", CubeListBuilder.create().texOffs(40, 38).mirror().addBox(-4.0F, 2.0F, -2.0F, 8.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(44, 22).mirror().addBox(4.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(44, 22).mirror().addBox(-8.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 2.0F, 0.0F));
 
+        PartDefinition leg0 = partdefinition.addOrReplaceChild("leg0", CubeListBuilder.create().texOffs(0, 22).mirror().addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(2.0F, 12.0F, 0.0F));
+
+        PartDefinition leg1 = partdefinition.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(0, 22).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, 12.0F, 0.0F));
+
+        return LayerDefinition.create(meshdefinition, 64, 128);
     }
 
     @Override
     public Iterable<ModelPart> parts() {
-        return ImmutableList.of(this.head, this.body, this.arms, this.leg0, this.leg1);
+        return ImmutableList.of(this.head, this.body, this.arms, this.leg0, this.leg1, this.nose);
     }
 
     @Override

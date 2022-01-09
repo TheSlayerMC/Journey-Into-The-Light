@@ -1,6 +1,7 @@
 package net.jitl.client.render.entity;
 
 import net.jitl.JITL;
+import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.model.frozen.ShattererModel;
 import net.jitl.common.entity.frozen.ShattererEntity;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -11,10 +12,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class ShattererRenderer extends MobRenderer<ShattererEntity, ShattererModel<ShattererEntity>> {
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(JITL.rl("shatterer"), "main");
-
     public ShattererRenderer(EntityRendererProvider.Context context) {
-        super(context, new ShattererModel(context.bakeLayer(LAYER_LOCATION)), 0.5F);
+        super(context, new ShattererModel(context.bakeLayer(JModelLayers.SHATTERER_MODEL_LAYER)), 0.5F);
     }
 
     @Override

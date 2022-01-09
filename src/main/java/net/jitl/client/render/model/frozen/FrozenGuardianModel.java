@@ -53,6 +53,7 @@ public class FrozenGuardianModel<T extends Entity> extends ListModel<T> implemen
         return LayerDefinition.create(meshdefinition, 128, 128);
     }
 
+
     @Override
     public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         float f = Mth.cos(ageInTicks * 0.085F);
@@ -65,13 +66,6 @@ public class FrozenGuardianModel<T extends Entity> extends ListModel<T> implemen
     @Override
     public Iterable<ModelPart> parts() {
         return ImmutableList.of(this.head, this.body, this.arms);
-    }
-
-    @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        arms.render(poseStack, buffer, packedLight, packedOverlay);
-        body.render(poseStack, buffer, packedLight, packedOverlay);
-        head.render(poseStack, buffer, packedLight, packedOverlay);
     }
 
     @Override

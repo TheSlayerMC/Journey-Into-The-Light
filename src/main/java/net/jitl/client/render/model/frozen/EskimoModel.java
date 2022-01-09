@@ -1,10 +1,14 @@
 package net.jitl.client.render.model.frozen;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.VillagerHeadModel;
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.util.Mth;
@@ -26,78 +30,65 @@ public class EskimoModel<T extends Entity> extends ListModel<T> implements Heade
     private final ModelPart leg1;
     private final ModelPart arms;
 
-    public EskimoModel(float scale) {
-        this(scale, 64, 64);
+    public EskimoModel(ModelPart root) {
+        this.head2 = root.getChild("head2");
+        this.nose2 = root.getChild("nose2");
+        this.body2 = root.getChild("body2");
+        this.leg2 = root.getChild("leg2");
+        this.leg3 = root.getChild("leg3");
+        this.arms2 = root.getChild("arms2");
+        this.head = root.getChild("head");
+        this.nose = root.getChild("nose");
+        this.body = root.getChild("body");
+        this.leg0 = root.getChild("leg0");
+        this.leg1 = root.getChild("leg1");
+        this.arms = root.getChild("arms");
     }
 
-    public EskimoModel(float float_, int int_, int int1_) {
-        texWidth = 128;
-        texHeight = 128;
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
 
-        head2 = new ModelPart(this);
-        head2.setPos(0.0F, 0.0F, 0.0F);
+        PartDefinition head2 = partdefinition.addOrReplaceChild("head2", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
+        PartDefinition nose2 = partdefinition.addOrReplaceChild("nose2", CubeListBuilder.create(), PartPose.offset(0.0F, -2.0F, 0.0F));
 
-        nose2 = new ModelPart(this);
-        nose2.setPos(0.0F, -2.0F, 0.0F);
+        PartDefinition body2 = partdefinition.addOrReplaceChild("body2", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
+        PartDefinition leg2 = partdefinition.addOrReplaceChild("leg2", CubeListBuilder.create(), PartPose.offset(2.0F, 12.0F, 0.0F));
 
-        body2 = new ModelPart(this);
-        body2.setPos(0.0F, 0.0F, 0.0F);
+        PartDefinition leg3 = partdefinition.addOrReplaceChild("leg3", CubeListBuilder.create(), PartPose.offset(-2.0F, 12.0F, 0.0F));
 
+        PartDefinition arms2 = partdefinition.addOrReplaceChild("arms2", CubeListBuilder.create(), PartPose.offset(0.0F, 2.0F, 0.0F));
 
-        leg2 = new ModelPart(this);
-        leg2.setPos(2.0F, 12.0F, 0.0F);
+        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(28, 20).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(-5.0F, -11.0F, -4.75F, 10.0F, 11.0F, 9.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(-1.0F, -3.0F, -6.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
+        PartDefinition nose = partdefinition.addOrReplaceChild("nose", CubeListBuilder.create(), PartPose.offset(0.0F, -2.0F, 0.0F));
 
-        leg3 = new ModelPart(this);
-        leg3.setPos(-2.0F, 12.0F, 0.0F);
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(38, 0).addBox(-4.0F, 0.0F, -3.0F, 8.0F, 12.0F, 6.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 20).addBox(-4.0F, 0.0F, -3.0F, 8.0F, 18.0F, 6.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
+        PartDefinition leg0 = partdefinition.addOrReplaceChild("leg0", CubeListBuilder.create().texOffs(16, 44).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, 12.0F, 0.0F));
 
-        arms2 = new ModelPart(this);
-        arms2.setPos(0.0F, 2.0F, 0.0F);
+        PartDefinition leg1 = partdefinition.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(0, 44).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, 12.0F, 0.0F));
 
+        PartDefinition arms = partdefinition.addOrReplaceChild("arms", CubeListBuilder.create().texOffs(28, 38).addBox(-4.0F, 2.0F, -2.0F, 8.0F, 4.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(48, 42).addBox(4.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(32, 46).addBox(-8.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(31, 58).addBox(-8.75F, -2.5F, -2.5F, 5.0F, 9.0F, 5.0F, new CubeDeformation(0.0F))
+                .texOffs(51, 58).addBox(4.25F, -2.5F, -2.5F, 5.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, -1.0036F, 0.0F, 0.0F));
 
-        head = new ModelPart(this);
-        head.setPos(0.0F, 0.0F, 0.0F);
-        head.texOffs(28, 20).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F, 0.0F, false);
-        head.texOffs(0, 0).addBox(-5.0F, -11.0F, -4.75F, 10.0F, 11.0F, 9.0F, 0.0F, false);
-        head.texOffs(0, 0).addBox(-1.0F, -3.0F, -6.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
-
-        nose = new ModelPart(this);
-        nose.setPos(0.0F, -2.0F, 0.0F);
-
-
-        body = new ModelPart(this);
-        body.setPos(0.0F, 0.0F, 0.0F);
-        body.texOffs(38, 0).addBox(-4.0F, 0.0F, -3.0F, 8.0F, 12.0F, 6.0F, 0.0F, false);
-        body.texOffs(0, 20).addBox(-4.0F, 0.0F, -3.0F, 8.0F, 18.0F, 6.0F, 0.5F, false);
-
-        leg0 = new ModelPart(this);
-        leg0.setPos(2.0F, 12.0F, 0.0F);
-        leg0.texOffs(16, 44).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
-
-        leg1 = new ModelPart(this);
-        leg1.setPos(-2.0F, 12.0F, 0.0F);
-        leg1.texOffs(0, 44).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
-
-        arms = new ModelPart(this);
-        arms.setPos(0.0F, 2.0F, 0.0F);
-        arms.texOffs(28, 38).addBox(-4.0F, 2.0F, -2.0F, 8.0F, 4.0F, 4.0F, 0.0F, false);
-        arms.texOffs(48, 42).addBox(4.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-        arms.texOffs(32, 46).addBox(-8.0F, -2.0F, -2.0F, 4.0F, 8.0F, 4.0F, 0.0F, false);
-        arms.texOffs(31, 58).addBox(-8.75F, -2.5F, -2.5F, 5.0F, 9.0F, 5.0F, 0.0F, false);
-        arms.texOffs(51, 58).addBox(4.25F, -2.5F, -2.5F, 5.0F, 9.0F, 5.0F, 0.0F, false);
+        return LayerDefinition.create(meshdefinition, 128, 128);
     }
 
-
+    @Override
     public Iterable<ModelPart> parts() {
-        return ImmutableList.of(this.head, this.body, this.leg0, this.leg1, this.arms);
+        return ImmutableList.of(this.head, this.head2, this.nose, this.nose2, this.body, this.body2, this.leg0, this.leg1, this.leg2, this.leg3, this.arms, this.arms2);
     }
 
-    /**
-     * Sets this entity's model rotation angles
-     */
+    @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         boolean flag = false;
         if (entityIn instanceof AbstractVillager) {
@@ -122,6 +113,7 @@ public class EskimoModel<T extends Entity> extends ListModel<T> implements Heade
         this.leg1.yRot = 0.0F;
     }
 
+    @Override
     public ModelPart getHead() {
         return this.head;
     }

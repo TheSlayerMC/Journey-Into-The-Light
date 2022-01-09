@@ -1,8 +1,10 @@
 package net.jitl.client.render.entity.layer;
 
 import net.jitl.JITL;
-import net.jitl.client.render.model.MiniBoomModel;
+import net.jitl.client.render.JModelLayers;
+import net.jitl.client.render.model.BoomModel;
 import net.jitl.common.entity.pet.MiniBoomEntity;
+import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EnergySwirlLayer;
 import net.minecraft.client.model.EntityModel;
@@ -11,14 +13,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class MiniBoomChargeLayer extends EnergySwirlLayer<MiniBoomEntity, MiniBoomModel<MiniBoomEntity>> {
+public class MiniBoomChargeLayer extends EnergySwirlLayer<MiniBoomEntity, BoomModel<MiniBoomEntity>> {
 
     private static final ResourceLocation POWER_LOCATION = JITL.rl("textures/entity/overworld/boomboom_swell.png");
 
-    private final MiniBoomModel<MiniBoomEntity> model = new MiniBoomModel(2.0F);
+    private final BoomModel<MiniBoomEntity> model;
 
-    public MiniBoomChargeLayer(RenderLayerParent<MiniBoomEntity, MiniBoomModel<MiniBoomEntity>> e) {
+    public MiniBoomChargeLayer(RenderLayerParent<MiniBoomEntity, BoomModel<MiniBoomEntity>> e, EntityModelSet loader) {
         super(e);
+        model = new BoomModel(loader.bakeLayer(JModelLayers.MINI_BOOM_CHARGED_LAYER));
     }
 
     protected float xOffset(float o) {

@@ -2,7 +2,6 @@ package net.jitl;
 
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
-import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.dimension.Dimensions;
 import net.jitl.init.JBiomeRegistry;
@@ -12,7 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.raid.Raid;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;

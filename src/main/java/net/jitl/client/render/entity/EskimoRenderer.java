@@ -2,6 +2,7 @@ package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
+import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.model.frozen.EskimoModel;
 import net.jitl.common.entity.frozen.EskimoEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -18,16 +19,18 @@ public class EskimoRenderer extends MobRenderer<EskimoEntity, EskimoModel<Eskimo
     private static final ResourceLocation ESKIMO_BASE_SKIN = JITL.rl("textures/entity/frozen/eskimo_base.png");
 
     public EskimoRenderer(EntityRendererProvider.Context context) {
-        super(context, new EskimoModel(0.0F), 0.5F);
-        this.addLayer(new CustomHeadLayer(this, context.getModelSet()));
+        super(context, new EskimoModel<>(context.bakeLayer(JModelLayers.ESKIMO_MODEL_LAYER)), 0.5F);
+        this.addLayer(new CustomHeadLayer<>(this, context.getModelSet()));
         //this.addLayer(new EskimoLevelPendantLayer(this, p_i50954_2_, "eskimo"));
-        this.addLayer(new CrossedArmsItemLayer(this));
+        this.addLayer(new CrossedArmsItemLayer<>(this));
     }
 
+    @Override
     public ResourceLocation getTextureLocation(EskimoEntity p_110775_1_) {
         return ESKIMO_BASE_SKIN;
     }
 
+    @Override
     protected void scale(EskimoEntity entity, PoseStack poseStack, float ticks) {
         float scale = 0.9375F;
         if (entity.isBaby()) {

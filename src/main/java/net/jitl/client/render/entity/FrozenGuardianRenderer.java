@@ -3,6 +3,7 @@ package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.JITL;
+import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.model.frozen.FrozenGuardianModel;
 import net.jitl.common.entity.frozen.FrozenGuardianEntity;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -16,11 +17,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class FrozenGuardianRenderer extends MobRenderer<FrozenGuardianEntity, FrozenGuardianModel<FrozenGuardianEntity>> {
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(JITL.rl("frozen_guardian"), "main");
-
-
     public FrozenGuardianRenderer(EntityRendererProvider.Context context) {
-        super(context, new FrozenGuardianModel(context.bakeLayer(LAYER_LOCATION)), 0.5F);
+        super(context, new FrozenGuardianModel(context.bakeLayer(JModelLayers.FROZEN_GUARDIAN_MODEL_LAYER)), 0.5F);
         this.addLayer(new ItemInHandLayer<>(this));
     }
 
