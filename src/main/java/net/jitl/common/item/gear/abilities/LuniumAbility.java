@@ -2,7 +2,6 @@ package net.jitl.common.item.gear.abilities;
 
 import net.jitl.common.helper.TooltipFiller;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;

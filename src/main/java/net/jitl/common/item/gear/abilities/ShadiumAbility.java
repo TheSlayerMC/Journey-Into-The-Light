@@ -157,7 +157,7 @@ public interface ShadiumAbility {
         }
 
         @Override
-        public void fillTooltips(ItemStack stack, List<ITextComponent> tooltip) {
+        public void fillTooltips(ItemStack stack, List<Component> tooltip) {
             TooltipFiller filler = new TooltipFiller(tooltip, "shadium_armor");
             filler.addOverview();
             filler.addDetail();
