@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.gear.abilities.IAbility;
 import net.jitl.init.JTabs;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Material;
@@ -27,15 +28,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 
 public class MultitoolItem extends DiggerItem implements JGear {
-    IAbility ability;
+    private IAbility ability;
 
     public MultitoolItem(JToolTiers tier, IAbility multiAbility) {
-        super((int) tier.getShovelDam(), tier.getAttackSpeed(), tier, Sets.newHashSet(Registry.BLOCK), new Properties().tab(JTabs.TOOLS)
+        super((int) tier.getShovelDam(), tier.getAttackSpeed(), tier, BlockTags.MINEABLE_WITH_PICKAXE, new Properties().tab(JTabs.TOOLS)
                 .addToolType(ToolType.HOE, tier.getLevel())
                 .addToolType(ToolType.AXE, tier.getLevel())
                 .addToolType(ToolType.PICKAXE, tier.getLevel())
                 .addToolType(ToolType.SHOVEL, tier.getLevel()));
-        ability = multiAbility;
+
+        this.ability = multiAbility;
     }
 
     @Override

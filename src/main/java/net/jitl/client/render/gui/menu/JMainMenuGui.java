@@ -287,13 +287,19 @@ public class JMainMenuGui extends TitleScreen {
 			}
 
 			//FIXME
-			int buttonSize;
+			/*int buttonSize;
 			for (buttonSize = 0; buttonSize < this.buttons.size(); ++buttonSize) {
 				(this.buttons.get(buttonSize)).renderButton(matrixStack, mouseX, mouseY, partialTicks);
 			}
 
 			for (buttonSize = 0; buttonSize < this.buttons.size(); ++buttonSize) {
 				(this.buttons.get(buttonSize)).renderToolTip(matrixStack, mouseX, mouseY);
+			}*/
+
+			for(GuiEventListener guieventlistener : this.children()) {
+				if (guieventlistener instanceof AbstractWidget) {//FIXME fix?
+					((AbstractWidget)guieventlistener).setAlpha(f1);
+				}
 			}
 
 			if (this.realmsNotificationsEnabled() && f1 >= 1.0F) {
