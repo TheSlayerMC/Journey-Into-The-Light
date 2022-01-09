@@ -36,7 +36,7 @@ public class LaserEmitterTER implements BlockEntityRenderer<LaserEmitterTile> {
         Level world = tile.getLevel();
         if (world == null) return;
 
-        float gameTime = Animation.getWorldTime(world, partialTicks) * 20;
+        float gameTime = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) / 16;//Animation.getWorldTime(world, partialTicks) * 20; FIXME 
         Quaternion rotation = tile.getLaserRotation(partialTicks);
 
         renderModel(Models.fullCube, JITL.rl("textures/block/laser_emitter.png"), rotation, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
