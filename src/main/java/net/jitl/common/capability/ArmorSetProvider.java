@@ -9,6 +9,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+//TODO: does this need to exist? maybe use CoffeeCapabilityProvider instead to save space
 public class ArmorSetProvider implements ICapabilitySerializable<CompoundTag> {
 
     private final IArmorSetCapability cap;
