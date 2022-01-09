@@ -1,6 +1,7 @@
 package net.jitl.client.render.gui.dialogue;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.dialogue.ClientDialogueNode;
 import net.jitl.client.render.gui.base.JScreen;
@@ -124,7 +125,7 @@ public class DialogueScreen extends JScreen {
         int playerEyeHeight = (int) entity.getEyeHeight() * (int) (adaptiveScale * 2.0F); // eye height of player in pixels of inventory gui
         float eyeOffset = playerEyeHeight * entity.getEyeHeight() / (1.65F * scaleFactor) /* eye height of player in blocks */;
 
-        GlStateManager._color4f(1, 1, 1, 1);
+        RenderSystem.setShaderColor(1, 1, 1, 1);
         InventoryScreen.renderEntityInInventory(posX, posY, adaptiveScale, posX - mouseX, posY - mouseY - eyeOffset, entity);
     }
 }
