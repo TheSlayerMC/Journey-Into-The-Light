@@ -2,6 +2,7 @@ package net.jitl.common.helper;
 
 import net.jitl.common.container.ContainerEmpty;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -12,7 +13,7 @@ public class JourneyContainers {
 
     @SubscribeEvent
     public static void registerContainers(RegistryEvent.Register<MenuType<?>> event) {
-        EMPTY_CONTAINER = IForgeContainerType.create(ContainerEmpty::createContainerClientSide);
+        EMPTY_CONTAINER = IForgeMenuType.create(ContainerEmpty::createContainerClientSide);
         EMPTY_CONTAINER.setRegistryName("empty_container");
         event.getRegistry().register(EMPTY_CONTAINER);
     }
