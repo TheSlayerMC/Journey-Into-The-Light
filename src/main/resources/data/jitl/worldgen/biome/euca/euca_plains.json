@@ -1,9 +1,6 @@
 {
-  "surface_builder": "jitl:euca_plains",
-  "depth": 0.835,
-  "scale": 0.75,
   "temperature": 0.8,
-  "downfall": 0.0,
+  "downfall": 0,
   "precipitation": "rain",
   "category": "plains",
   "effects": {
@@ -21,7 +18,6 @@
       "replace_current_music": true
     }
   },
-  "starts": [],
   "spawners": {},
   "spawn_costs": {},
   "carvers": {},

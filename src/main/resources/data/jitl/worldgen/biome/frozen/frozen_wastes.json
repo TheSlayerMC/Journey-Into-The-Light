@@ -1,10 +1,7 @@
 {
-  "surface_builder": "jitl:frozen",
-  "depth": 0.3,
-  "scale": 0.45,
-  "precipitation": "snow",
   "temperature": -0.8,
   "downfall": 0.85,
+  "precipitation": "snow",
   "category": "icy",
   "effects": {
     "sky_color": 8297684,
@@ -27,7 +24,6 @@
       "probability": 0.06428
     }
   },
-  "starts": [],
   "spawners": {
     "monster": [
       {
@@ -67,12 +63,7 @@
   "spawn_costs": {},
   "carvers": {
     "air": [
-      {
-        "config": {
-          "probability": 0.5
-        },
-        "type": "jitl:frozen_carver"
-      }
+      "jitl:frozen_carver"
     ]
   },
   "features": [

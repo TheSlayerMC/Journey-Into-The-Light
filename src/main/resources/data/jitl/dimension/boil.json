@@ -80,24 +80,24 @@
         {
           "biome": "jitl:boil/boil",
           "parameters": {
-            "temperature": 0,
-            "humidity": 0,
+            "temperature": 0.8,
+            "humidity": 0.0,
             "continentalness": 0,
             "erosion": 0,
-            "weirdness": 0,
-            "depth": 0,
+            "weirdness": 0.45,
+            "depth": 0.0,
             "offset": 0
           }
         },
         {
           "biome": "jitl:boil/boiling_sands",
           "parameters": {
-            "temperature": 1,
+            "temperature": 0.8,
             "humidity": 0,
             "continentalness": 0,
             "erosion": 0,
-            "weirdness": 0,
-            "depth": 0,
+            "weirdness": 0.25,
+            "depth": 0.0,
             "offset": 0
           }
         },
@@ -108,8 +108,8 @@
             "humidity": 0,
             "continentalness": 0,
             "erosion": 0,
-            "weirdness": 1,
-            "depth": 0,
+            "weirdness": 0.45,
+            "depth": 0.0,
             "offset": 0
           }
         },
@@ -117,10 +117,10 @@
           "biome": "jitl:boil/scorched_wastelands",
           "parameters": {
             "temperature": 0,
-            "humidity": 1,
+            "humidity": 0,
             "continentalness": 0,
             "erosion": 0,
-            "weirdness": 0,
+            "weirdness": 0.65,
             "depth": 0,
             "offset": 0
           }
