@@ -18,12 +18,14 @@ import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.common.capability.owner.attach.CoffeeCapabilityProvider;
 
+import static ru.timeconqueror.timecore.api.util.Hacks.promise;
+
 //TODO merge with JCapabilities
 @Mod.EventBusSubscriber(modid = JITL.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JCapabilityProvider {
-    public static final Capability<IArmorSetCapability> ARMOR = CapabilityManager.get(new CapabilityToken<>() { });
-    public static final Capability<ICurrentStructureCapability> STRUCTURE = CapabilityManager.get(new CapabilityToken<>() { });
-    public static final Capability<IPressedKeysCapability> KEYS = CapabilityManager.get(new CapabilityToken<>() { });
+    public static final Capability<IArmorSetCapability> ARMOR = promise();//CapabilityManager.get(new CapabilityToken<>() { });
+    public static final Capability<ICurrentStructureCapability> STRUCTURE = promise();//CapabilityManager.get(new CapabilityToken<>() { });
+    public static final Capability<IPressedKeysCapability> KEYS = promise();//CapabilityManager.get(new CapabilityToken<>() { });
 
     public static <T> T getCapability(ICapabilityProvider holder, @NotNull Capability<T> cap) {
         return holder.getCapability(cap).resolve().orElse(null);
@@ -46,9 +48,9 @@ public class JCapabilityProvider {
                     if (entity instanceof Player) {
                         event.addCapability(JITL.rl("jitl_player_data"), new CoffeeCapabilityProvider<>(new JPlayer((Player) entity)));
                     }
-                    event.addCapability(JITL.rl("current_armor"), new CoffeeCapabilityProvider<>(new ArmorSetCapability()));
-                    event.addCapability(JITL.rl("current_structure"), new CoffeeCapabilityProvider<>(new CurrentStructureCapability()));
-                    event.addCapability(JITL.rl("pressed_keys"), new CoffeeCapabilityProvider<>(new PressedKeysCapability()));
+                    event.addCapability(JITL.rl("armor"), new CoffeeCapabilityProvider<>(new ArmorSetCapability()));
+                    event.addCapability(JITL.rl("structure"), new CoffeeCapabilityProvider<>(new CurrentStructureCapability()));
+                    event.addCapability(JITL.rl("keys"), new CoffeeCapabilityProvider<>(new PressedKeysCapability()));
                 }
             }
         }
