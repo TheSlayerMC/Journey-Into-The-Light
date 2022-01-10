@@ -17,7 +17,10 @@ import java.util.function.BiConsumer;
  */
 public class RenderUtils {
 
-    private int blitOffset;
+    public static void rectangle(PoseStack poseStack, Rectangle rectangle, int argbColor) {
+        fill(poseStack, rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom(), argbColor);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+    }
 
     public static void fill(PoseStack matrixStack, int minX, int minY, int maxX, int maxY, int colorIn) {
         innerFill(matrixStack.last().pose(), minX, minY, maxX, maxY, colorIn);
@@ -55,7 +58,7 @@ public class RenderUtils {
         RenderSystem.disableBlend();
     }
 
-    public void fillGradient(PoseStack matrixStack, int x1, int y1, int x2, int y2, int colorFrom, int colorTo) {
+    public void fillGradient(PoseStack matrixStack, int x1, int y1, int x2, int y2, int colorFrom, int colorTo, int blitOffset) {
         RenderSystem.disableTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -63,7 +66,7 @@ public class RenderUtils {
         Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuilder();
         bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-        fillGradient(matrixStack.last().pose(), bufferbuilder, x1, y1, x2, y2, this.blitOffset, colorFrom, colorTo);
+        fillGradient(matrixStack.last().pose(), bufferbuilder, x1, y1, x2, y2, blitOffset, colorFrom, colorTo);
         tessellator.end();
         RenderSystem.disableBlend();
         RenderSystem.enableTexture();

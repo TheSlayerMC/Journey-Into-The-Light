@@ -2,17 +2,14 @@ package net.jitl.client.render.model.frozen;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.jitl.JITL;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.ListModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
-import net.minecraft.util.Mth;
 
 public class FrozenGuardianModel<T extends Entity> extends ListModel<T> implements ArmedModel {
 
@@ -74,7 +71,7 @@ public class FrozenGuardianModel<T extends Entity> extends ListModel<T> implemen
     }
 
     private ModelPart getArm() {
-        return this.arms;//FIXME Arm should be armmiddle_r1;
+        return this.arms.getChild("armmiddle_r1");
     }
 
 }

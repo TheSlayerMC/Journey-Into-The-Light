@@ -1,12 +1,12 @@
 package net.jitl.client.render.gui.dialogue;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.dialogue.ClientDialogueNode;
 import net.jitl.client.render.gui.base.JScreen;
 import net.jitl.client.render.gui.button.NoTextureButton;
 import net.jitl.client.util.Rectangle;
+import net.jitl.client.util.RenderUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
@@ -91,7 +91,7 @@ public class DialogueScreen extends JScreen {
     @Override
     public void render(@NotNull PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         renderBackground(matrixStack);
-        renderDebugLayout(mouseX, mouseY, partialTicks);
+        renderDebugLayout(matrixStack, mouseX, mouseY, partialTicks);
 
         renderMobText();
         renderEntity(width / (INDENT_OFFSET) * 6, (int) (mobIconRect.bottom() - mobIconRect.height() * -3.75F), mouseX, mouseY, node.getNpc());
@@ -105,15 +105,11 @@ public class DialogueScreen extends JScreen {
         font.drawWordWrap(text, mobTextRect.left() + INDENT * -(INDENT_OFFSET), mobTextRect.top() + INDENT + 48, Math.max(mobTextRect.width(), 2), 0xFFFFFF);
     }
 
-    private void renderDebugLayout(int mouseX, int mouseY, float partialTicks) {
-        //TODO: add back RenderUtils
-        //RenderUtils.drawRect(guiRect, 0xFF8851FF); // whole gui
-
-        //RenderUtils.drawRect(mobIconRect, 0xFF194378); // mob icon background
-
-        //RenderUtils.drawRect(mobTextRect, 0xFF963232); // mob text background
-
-        //RenderUtils.drawRect(optionsRect, 0x75000000); // options background
+    private void renderDebugLayout(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
+        RenderUtils.rectangle(poseStack, guiRect, 0xFF8851FF); // whole gui
+        RenderUtils.rectangle(poseStack, mobIconRect, 0xFF194378); // mob icon background
+        RenderUtils.rectangle(poseStack, mobTextRect, 0xFF963232); // mob text background
+        RenderUtils.rectangle(poseStack, optionsRect, 0x75000000); // options background
     }
 
     public static void renderEntity(int posX, int posY, float mouseX, float mouseY, LivingEntity entity) {
