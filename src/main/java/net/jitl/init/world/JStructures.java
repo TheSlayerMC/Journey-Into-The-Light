@@ -1,35 +1,10 @@
 package net.jitl.init.world;
 
-import net.jitl.JITL;
-import net.jitl.common.world.gen.structures.boil.DirerockStrongholdStructure;
-import net.jitl.common.world.gen.structures.euca.AlloyMenderStructure;
-import net.jitl.common.world.gen.structures.euca.EucaDungeonStructure;
-import net.jitl.common.world.gen.structures.euca.goldite.windmill.GolditeWindmillStructure;
-import net.jitl.common.world.gen.structures.frozen.EskimoCampStructure;
-import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinStructure;
-import net.jitl.common.world.gen.structures.overworld.AncientRuinsStructure;
-import net.jitl.common.world.gen.structures.overworld.BlacksmithStructure;
-import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
-import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
-import net.jitl.common.world.gen.structures.overworld.guardian.GuardianTowerStructure;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import org.apache.logging.log4j.Marker;
-import org.apache.logging.log4j.MarkerManager;
-import ru.timeconqueror.timecore.api.registry.StructureFeatureRegister;
-import ru.timeconqueror.timecore.api.registry.StructureFeatureRegister.StructureHolder;
-import ru.timeconqueror.timecore.api.registry.StructureFeatureRegister.TimeStructureSeparationSettings;
-import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
-import ru.timeconqueror.timecore.api.storage.StructureTags.Tag;
-
-
 public class JStructures {
-    public static final Marker STRUCTURE_MARKER = MarkerManager.getMarker("JSTRUCTURES");
+    //public static final Marker STRUCTURE_MARKER = MarkerManager.getMarker("JSTRUCTURES");
 
-    @AutoRegistrable
-    private static final StructureFeatureRegister REGISTER = new StructureFeatureRegister(JITL.MODID);
+    //@AutoRegistrable
+    //private static final StructureFeatureRegister REGISTER = new StructureFeatureRegister(JITL.MODID);
 
     /*public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
