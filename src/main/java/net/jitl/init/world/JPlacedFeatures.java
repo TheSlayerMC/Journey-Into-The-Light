@@ -14,7 +14,7 @@ public class JPlacedFeatures {
     @AutoRegistrable
     public static final PlacedFeatureRegister REGISTER = new PlacedFeatureRegister(JITL.MODID);
 
-    public static final PlacedFeature GENERIC_OVERWORLD_RUINS = REGISTER.register(
+    public static final PlacedFeature DEFAULT_OVERWORLD_RUINS = REGISTER.register(
                     "generic_overworld_ruins",
                     GenerationStep.Decoration.SURFACE_STRUCTURES,
                     () -> JConfiguredFeatures.DEFAULT_OVERWORLD_RUINS.get()
