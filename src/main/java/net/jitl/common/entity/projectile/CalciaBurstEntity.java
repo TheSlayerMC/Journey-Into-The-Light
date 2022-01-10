@@ -3,14 +3,12 @@ package net.jitl.common.entity.projectile;
 import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
 import net.jitl.init.JEntities;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.network.NetworkHooks;
 
 public class CalciaBurstEntity extends DamagingProjectileEntity {
     public CalciaBurstEntity(EntityType<? extends CalciaBurstEntity> type, Level world) {
@@ -44,10 +42,5 @@ public class CalciaBurstEntity extends DamagingProjectileEntity {
     @Override
     protected boolean shouldDespawn() {
         return tickCount >= 20 * 50;
-    }
-
-    @Override
-    public Packet<?> getAddEntityPacket() {//TODO move tosuperclass
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

@@ -9,8 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.structures.StructurePoolElement;
 import net.minecraft.world.level.levelgen.feature.structures.StructureTemplatePool;
 
+//TODO: remove?
 public class JigsawStarters {
-    //TODO: fix processor
     public static final StructureTemplatePool ESKIMO_CAMP_START = Pools.register(
             new StructureTemplatePool(JITL.rl("frozen/eskimo_camp/starting_well"),
                     new ResourceLocation("empty"),

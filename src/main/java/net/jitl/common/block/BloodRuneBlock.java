@@ -22,6 +22,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
+//TODO: I don't think we're going to use this (remove?)
 public class BloodRuneBlock extends Block {
 
 	public BloodRuneBlock(Properties properties) {
@@ -37,30 +38,30 @@ public class BloodRuneBlock extends Block {
 				if (itementity.getItem().getItem() == Items.ROTTEN_FLESH) {
 //					rune = JBlocks.BLOOD_RUNE_FLESH;
 				}
-				if (itementity.getItem().getItem() == Items.TORCH) { //TODO: replace this with new item
+				if (itementity.getItem().getItem() == Items.TORCH) {
 //					rune = JBlocks.BLOOD_RUNE_SOUL;
 				}
-				if (itementity.getItem().getItem() == Items.BONE) { //TODO: replace this with new item
+				if (itementity.getItem().getItem() == Items.BONE) {
 //					rune = JBlocks.BLOOD_RUNE_DEATH;
 				}
-				if (itementity.getItem().getItem() == Items.APPLE) { //TODO: replace this with new item
+				if (itementity.getItem().getItem() == Items.APPLE) {
 //					rune = JBlocks.BLOOD_RUNE_LIFE;
 				}
 
 				if (rune != null) {
-                    EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, worldIn);
-                    essenciaBoltEntity.setPos(pos.getX(), pos.above().getY(), pos.getZ());
-                    essenciaBoltEntity.setARGB(0xff4800);
-                    essenciaBoltEntity.setVisualOnly(true);
+					EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, worldIn);
+					essenciaBoltEntity.setPos(pos.getX(), pos.above().getY(), pos.getZ());
+					essenciaBoltEntity.setARGB(0xff4800);
+					essenciaBoltEntity.setVisualOnly(true);
 
-                    worldIn.addFreshEntity(essenciaBoltEntity);
-                    worldIn.setBlock(pos, rune.defaultBlockState(), 1);
-                    itementity.remove(Entity.RemovalReason.DISCARDED);
-                    worldIn.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundSource.BLOCKS, 1.0F, player.getRandom().nextFloat() + 0.5F);
-                    if (!player.isCreative()) {
-                        inHandItem.shrink(1);
-                    }
-                    if (worldIn.isClientSide) {
+					worldIn.addFreshEntity(essenciaBoltEntity);
+					worldIn.setBlock(pos, rune.defaultBlockState(), 1);
+					itementity.remove(Entity.RemovalReason.DISCARDED);
+					worldIn.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundSource.BLOCKS, 1.0F, player.getRandom().nextFloat() + 0.5F);
+					if (!player.isCreative()) {
+						inHandItem.shrink(1);
+					}
+					if (worldIn.isClientSide) {
 						spawnParticles(worldIn, player, pos);
 					}
 				} else {

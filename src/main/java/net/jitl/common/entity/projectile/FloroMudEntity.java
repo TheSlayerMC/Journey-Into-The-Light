@@ -6,7 +6,6 @@ import net.jitl.init.JItems;
 import net.jitl.init.JParticleManager;
 import net.jitl.init.JSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -21,7 +20,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
@@ -82,11 +80,6 @@ public class FloroMudEntity extends DamagingProjectileEntity implements ItemSupp
     @Override
     protected float getGravity() {
         return 0.03F;
-    }
-
-    @Override
-    public Packet<?> getAddEntityPacket() {//TODO move tosuperclass
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override

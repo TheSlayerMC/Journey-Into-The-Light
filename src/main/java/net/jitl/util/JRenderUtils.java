@@ -5,11 +5,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
-import net.minecraftforge.client.gui.GuiUtils;
 
 import java.util.Collections;
 import java.util.List;
 
+//TODO: merge with RenderUtils
 public class JRenderUtils {
 
 	public static class Text {

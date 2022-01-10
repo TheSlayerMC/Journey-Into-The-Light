@@ -26,7 +26,6 @@ public class StaffItem extends Item implements IEssenceItem {
         this.projectileFactory = projectileFactory;
     }
 
-    //TODO add essence cap
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);

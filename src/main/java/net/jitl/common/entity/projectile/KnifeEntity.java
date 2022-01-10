@@ -5,7 +5,6 @@ import net.jitl.init.JItems;
 import net.jitl.init.JSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -21,7 +20,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 public class KnifeEntity extends AbstractKnifeEntity implements ItemSupplier {
@@ -100,11 +98,6 @@ public class KnifeEntity extends AbstractKnifeEntity implements ItemSupplier {
     @Override
     public Item pickupItem() {
         return getStack().copy().getItem();
-    }
-
-    @Override
-    public @NotNull Packet<?> getAddEntityPacket() {//TODO move tosuperclass
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override

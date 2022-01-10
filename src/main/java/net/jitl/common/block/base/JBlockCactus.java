@@ -42,7 +42,6 @@ public class JBlockCactus extends Block implements IPlantable {
         }
     }
 
-    //TODO: update these with un-deprecated methods
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if(!stateIn.canSurvive(worldIn, currentPos)) {

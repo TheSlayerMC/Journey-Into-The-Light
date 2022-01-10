@@ -29,7 +29,9 @@ public class FrozenCloudsRenderer implements ICloudRenderHandler {
 
     @Override
     public void render(int ticks, float partialTicks, PoseStack matrixStackIn, ClientLevel level, Minecraft minecraft, double viewEntityX, double viewEntityY, double viewEntityZ) {
+        //FIXME: remove this if/when forge adds Matrix4f parameter
         Matrix4f projectionMatrix = RenderSystem.getProjectionMatrix();
+
         float f = level.effects().getCloudHeight();
         if (!Float.isNaN(f)) {
             RenderSystem.disableCull();
@@ -89,9 +91,6 @@ public class FrozenCloudsRenderer implements ICloudRenderHandler {
                     }
 
                     ShaderInstance shaderinstance = RenderSystem.getShader();
-                    //FIXME: Forge ICloudRenderHandler isn't up to snuff, so Matrix4f isn't supplied by the method.
-                    // So... I guess we'll just leave this disabled for now?
-                    // ~ Dizzle
                     this.cloudBuffer.drawWithShader(matrixStackIn.last().pose(), projectionMatrix, shaderinstance);
                 }
 

@@ -17,7 +17,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 
-//TODO maybe merge with FloroMud?
 public class ConjuringProjectileEntity extends DamagingProjectileEntity {
 
     public ConjuringProjectileEntity(EntityType<ConjuringProjectileEntity> type, Level world) {
@@ -32,7 +31,6 @@ public class ConjuringProjectileEntity extends DamagingProjectileEntity {
         super(JEntities.CONJURING_PROJECTILE_TYPE, world, thrower, damage);
     }
 
-    //TODO do something with duplicated stuff
     @Override
     @OnlyIn(Dist.CLIENT)
     public void onClientTick() {

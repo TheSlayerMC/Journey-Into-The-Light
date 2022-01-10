@@ -100,7 +100,7 @@ public class DialogueScreen extends JScreen {
     }
 
     private void renderMobText() {
-        //TODO: find out how spit string is done
+        //FIXME: replace with split string?
         Component text = new TranslatableComponent(ChatFormatting.YELLOW + "" + ChatFormatting.ITALIC + node.getTextKey());
         font.drawWordWrap(text, mobTextRect.left() + INDENT * -(INDENT_OFFSET), mobTextRect.top() + INDENT + 48, Math.max(mobTextRect.width(), 2), 0xFFFFFF);
     }

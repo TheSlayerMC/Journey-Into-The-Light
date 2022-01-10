@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.common.capability.owner.attach.CoffeeCapabilityProvider;
 
-//TODO duplicate of JCapabilities
+//TODO merge with JCapabilities
 @Mod.EventBusSubscriber(modid = JITL.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JCapabilityProvider {
     public static final Capability<IArmorSetCapability> ARMOR = CapabilityManager.get(new CapabilityToken<>() { });

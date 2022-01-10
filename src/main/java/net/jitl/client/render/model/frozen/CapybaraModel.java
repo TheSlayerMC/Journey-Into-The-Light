@@ -3,17 +3,12 @@ package net.jitl.client.render.model.frozen;
 import com.google.common.collect.ImmutableList;
 import net.jitl.common.entity.frozen.CapybaraEntity;
 import net.minecraft.client.model.AgeableListModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class CapybaraModel<T extends CapybaraEntity> extends AgeableListModel<T> {
-    // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-    // TODO: port
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "geometry.pig:geometry.quadruped"), "main");
     private final ModelPart body;
     private final ModelPart head;
     private final ModelPart leg0;

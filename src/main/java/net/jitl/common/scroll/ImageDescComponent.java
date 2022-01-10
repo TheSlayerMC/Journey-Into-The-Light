@@ -1,9 +1,7 @@
 package net.jitl.common.scroll;
 
-import com.mojang.blaze3d.vertex.*;
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.Minecraft;
+import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 
@@ -32,7 +30,6 @@ public class ImageDescComponent implements IDescComponent {
         drawImage(x0, y0, 0, 0, width, contentHeight, matrixStack);
     }
 
-    //TODO: remove GLStateManager methods. change to new render system
     private void drawImage(int x, int y, int textureX, int textureY, int width, int height, PoseStack matrix) {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShader(GameRenderer::getPositionTexColorShader);

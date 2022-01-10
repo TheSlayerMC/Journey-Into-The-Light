@@ -15,6 +15,8 @@ import java.util.function.BiConsumer;
 /**
  * Copy of {@link net.minecraft.client.gui.GuiComponent} with static context
  */
+
+//TODO: merge with JRenderUtils (or vice-versa)
 public class RenderUtils {
 
     public static void rectangle(PoseStack poseStack, Rectangle rectangle, int argbColor) {
@@ -107,8 +109,6 @@ public class RenderUtils {
         RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         boxXYConsumer.accept(width, height);
     }
-
-    //TODO: Refactor all this -Diamond
 
     public static void blit(PoseStack matrixStack, int x, int y, int blitOffset, int width, int height, TextureAtlasSprite sprite) {
         innerBlit(matrixStack.last().pose(), x, x + width, y, y + height, blitOffset, sprite.getU0(), sprite.getU1(), sprite.getV0(), sprite.getV1());
