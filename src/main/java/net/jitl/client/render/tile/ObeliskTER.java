@@ -6,11 +6,11 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Vector3f;
 import net.jitl.JITL;
-import net.jitl.client.render.JModelLayers;
-import net.jitl.client.render.model.block.ObeliskModel;
 import net.jitl.common.tile.ObeliskTile;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderStateShard;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.model.Material;
@@ -23,6 +23,7 @@ import java.util.Objects;
 
 public class ObeliskTER implements BlockEntityRenderer<ObeliskTile> {
 
+    //FIXME
     public static final ResourceLocation OBELISK_LOCATION = JITL.rl("textures/models/block/obelisk.png");
 
    // private final ModelPart top;

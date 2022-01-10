@@ -81,7 +81,7 @@ public class JEntityRenderRegistry {
     public static void registerEntityLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         //Blocks
         event.registerLayerDefinition(JModelLayers.OBELISK_BOTTOM_MODEL_LAYER, ObeliskModel::createBottomBodyLayer);
-        event.registerLayerDefinition(JModelLayers.OBELISK_TOP_MODEL_LAYER, ObeliskModel::createtTopBodyLayer);
+        event.registerLayerDefinition(JModelLayers.OBELISK_TOP_MODEL_LAYER, ObeliskModel::createTopBodyLayer);
 
         //Mobs
         //event.registerLayerDefinition(JEntities.FLORO_TYPE, FloroRenderer::new);
