@@ -2,12 +2,11 @@ package net.jitl.client.render.model.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.jitl.client.render.tile.ObeliskTER;
+import net.minecraft.client.model.Model;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.model.Model;
-import net.minecraft.client.model.geom.ModelPart;
 
 public class ObeliskModel extends Model {
 
@@ -29,7 +28,7 @@ public class ObeliskModel extends Model {
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
-    public static LayerDefinition createtTopBodyLayer() {
+    public static LayerDefinition createTopBodyLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
@@ -38,6 +37,7 @@ public class ObeliskModel extends Model {
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
+    //FIXME
     /*public void render(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, boolean rotate) {
         if (!rotate) {
             this.bottom.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn);
