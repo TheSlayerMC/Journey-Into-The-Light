@@ -11,16 +11,6 @@
   },
   "spawners": {},
   "spawn_costs": {},
-  "carvers": {
-    "air": [
-      {
-        "config": {
-          "probability": 0.5
-        },
-        "type": "jitl:boiling_carver"
-      }
-    ]
-  },
   "features": [
     []
   ]
