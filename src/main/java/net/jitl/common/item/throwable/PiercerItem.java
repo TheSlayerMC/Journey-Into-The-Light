@@ -1,8 +1,8 @@
 package net.jitl.common.item.throwable;
 
+import com.mojang.datafixers.util.Function3;
 import net.jitl.common.entity.projectile.PiercerEntity;
 import net.jitl.init.JEnchantments;
-import net.jitl.util.TriFunction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -24,9 +24,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class PiercerItem extends Item {
-    protected TriFunction<Level, LivingEntity, ItemStack, PiercerEntity> projectileFactory;
+    protected Function3<Level, LivingEntity, ItemStack, PiercerEntity> projectileFactory;
 
-    public PiercerItem(Properties properties, TriFunction<Level, LivingEntity, ItemStack, PiercerEntity> projectileFactory) {
+    public PiercerItem(Properties properties, Function3<Level, LivingEntity, ItemStack, PiercerEntity> projectileFactory) {
         super(properties);
         this.projectileFactory = projectileFactory;
     }

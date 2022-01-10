@@ -1,7 +1,7 @@
 package net.jitl.common.item.throwable;
 
+import com.mojang.datafixers.util.Function3;
 import net.jitl.common.entity.projectile.KnifeEntity;
-import net.jitl.util.TriFunction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -15,9 +15,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class KnifeItem extends Item {
-    protected TriFunction<LivingEntity, Level, ItemStack, KnifeEntity> projectileFactory;
+    protected Function3<LivingEntity, Level, ItemStack, KnifeEntity> projectileFactory;
 
-    public KnifeItem(Properties properties, TriFunction<LivingEntity, Level, ItemStack, KnifeEntity> projectileFactory) {
+    public KnifeItem(Properties properties, Function3<LivingEntity, Level, ItemStack, KnifeEntity> projectileFactory) {
         super(properties);
         this.projectileFactory = projectileFactory;
     }
