@@ -37,31 +37,31 @@ public class PiercerItem extends Item {
         worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.ENDER_PEARL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (worldIn.getRandom().nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isClientSide()) {
             PiercerEntity entity = projectileFactory.apply(worldIn, playerIn, stack);
-            int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, stack);
-            if (j > 0) {
-                entity.setBaseDamage(entity.getBaseDamage() + (double) j * 0.5D + 0.5D);
+
+            int sharpnessLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, stack);
+            if (sharpnessLevel > 0) {
+                entity.setBaseDamage(entity.getBaseDamage() + (double) sharpnessLevel * 0.5D + 0.5D);
             }
 
-            int i = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.LIGHTWEIGHT.get(), stack);
-            if (i > 0) {
-                entity.setVelocityMultiplier(i);
+            int lightweightLevel = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.LIGHTWEIGHT.get(), stack);
+            if (lightweightLevel > 0) {
+                entity.setVelocityMultiplier(lightweightLevel);
             }
 
-            double k = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.AMBIT.get(), stack);
-            if (k > 0) {
-                entity.setRangeAddend(k * 4);
+            double ambitLevel = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.AMBIT.get(), stack);
+            if (ambitLevel > 0) {
+                entity.setRangeAddend(ambitLevel * 4);
             }
 
-            int f = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.SCORCHING.get(), stack);
-            if (f > 0) {
-                entity.setFlameAddend(f);
+            int scorchingLevel = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.SCORCHING.get(), stack);
+            if (scorchingLevel > 0) {
+                entity.setFlameAddend(scorchingLevel);
             }
 
-            int a = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.FAITHFUL.get(), stack);
-            if (a > 0) {
-                entity.setFaithfulLevel(a);
+            int faithfulLevel = EnchantmentHelper.getItemEnchantmentLevel(JEnchantments.FAITHFUL.get(), stack);
+            if (faithfulLevel > 0) {
+                entity.setFaithfulLevel(faithfulLevel);
             }
-            //JITL.LOGGER.info(stack.getDamageValue());
 
             entity.setPos(playerIn.getX(), playerIn.getEyeY(), playerIn.getZ());
             entity.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 1.5F, 1.0F);

@@ -46,7 +46,7 @@ public class JCapabilityProvider {
                     if (entity instanceof Player) {
                         event.addCapability(JITL.rl("jitl_player_data"), new CoffeeCapabilityProvider<>(new JPlayer((Player) entity)));
                     }
-                    event.addCapability(JITL.rl("current_armor"), new ArmorSetProvider(new ArmorSetCapability())); //FIXME maybe this should be changed to CoffeeCapabilityProvider instead?
+                    event.addCapability(JITL.rl("current_armor"), new CoffeeCapabilityProvider<>(new ArmorSetCapability())); //FIXME maybe this should be changed to CoffeeCapabilityProvider instead?
                     event.addCapability(JITL.rl("current_structure"), new CoffeeCapabilityProvider<>(new CurrentStructureCapability()));
                     event.addCapability(JITL.rl("pressed_keys"), new CoffeeCapabilityProvider<>(new PressedKeysCapability()));
                 }
