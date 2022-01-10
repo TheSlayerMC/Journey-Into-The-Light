@@ -21,7 +21,7 @@ public class JCapabilities {
     public static final Capability<JPlayer> PLAYER = Hacks.promise();
 
     @AutoRegistrable.Init
-    private static void register() {
+    public static void register() {
         REGISTER.register(JPlayer.class);
     }
 
