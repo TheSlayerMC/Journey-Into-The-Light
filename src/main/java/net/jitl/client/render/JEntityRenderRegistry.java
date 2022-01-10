@@ -18,25 +18,23 @@ import net.jitl.common.entity.overworld.TowerGuardianEntity;
 import net.jitl.init.JEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import ru.timeconqueror.timecore.api.client.render.model.TimeModelLoader;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class JEntityRenderRegistry {
 
-    public static TimeEntityModel<FloroEntity> floroModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/floro.json"));
-    public static TimeEntityModel<WitherspineEntity> witherspineModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/witherspine.json"));
-    public static TimeEntityModel<TowerGuardianEntity> towerGuardianModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/tower_guardian.json"));
-    public static TimeEntityModel<GlumpEntity> glumpModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/glump.json"));
-    public static TimeEntityModel<IllagerMechEntity> illagerMechModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/illager_mech.json"));
-    public static TimeEntityModel<SoulWatcherEntity> soulWatcherModel = TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/soul_watcher.json"));
-    public static TimeEntityModel<BossCrystalEntity> bossCrystalModel = TimeModelLoader.loadJsonEntityModel(
-            new ResourceLocation(JITL.MODID, "models/entity/boss_crystal.json"), JRenderTypes::transparentCutout);
+    //FIXME fix when JsonModelParser is ported for TimeCore
+    public static TimeEntityModel<FloroEntity> floroModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/floro.json"));
+    public static TimeEntityModel<WitherspineEntity> witherspineModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/witherspine.json"));
+    public static TimeEntityModel<TowerGuardianEntity> towerGuardianModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/tower_guardian.json"));
+    public static TimeEntityModel<GlumpEntity> glumpModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/glump.json"));
+    public static TimeEntityModel<IllagerMechEntity> illagerMechModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/illager_mech.json"));
+    public static TimeEntityModel<SoulWatcherEntity> soulWatcherModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/soul_watcher.json"));
+    public static TimeEntityModel<BossCrystalEntity> bossCrystalModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/boss_crystal.json"), JRenderTypes::transparentCutout);
 
     @SubscribeEvent
     public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {

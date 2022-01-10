@@ -21,7 +21,6 @@ import ru.timeconqueror.timecore.common.capability.owner.attach.CoffeeCapability
 //TODO duplicate of JCapabilities
 @Mod.EventBusSubscriber(modid = JITL.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JCapabilityProvider {
-
     public static final Capability<IArmorSetCapability> ARMOR = CapabilityManager.get(new CapabilityToken<>() { });
     public static final Capability<ICurrentStructureCapability> STRUCTURE = CapabilityManager.get(new CapabilityToken<>() { });
     public static final Capability<IPressedKeysCapability> KEYS = CapabilityManager.get(new CapabilityToken<>() { });
@@ -37,17 +36,20 @@ public class JCapabilityProvider {
         event.register(IPressedKeysCapability.class);
     }
 
-    @SubscribeEvent()
-    public static void attachEntityCapabilities(AttachCapabilitiesEvent<Entity> event) {
-        Entity entity = event.getObject();
-        if (!entity.level.isClientSide()) {
-            if (entity instanceof LivingEntity) {
-                if (entity instanceof Player) {
-                    event.addCapability(JITL.rl("jitl_player_data"), new CoffeeCapabilityProvider<>(new JPlayer((Player) entity)));
+    @Mod.EventBusSubscriber(modid = JITL.MODID)
+    public static class Init {
+        @SubscribeEvent
+        public static void attachEntityCapabilities(AttachCapabilitiesEvent<Entity> event) {
+            Entity entity = event.getObject();
+            if (!entity.level.isClientSide()) {
+                if (entity instanceof LivingEntity) {
+                    if (entity instanceof Player) {
+                        event.addCapability(JITL.rl("jitl_player_data"), new CoffeeCapabilityProvider<>(new JPlayer((Player) entity)));
+                    }
+                    event.addCapability(JITL.rl("current_armor"), new ArmorSetProvider(new ArmorSetCapability())); //FIXME maybe this should be changed to CoffeeCapabilityProvider instead?
+                    event.addCapability(JITL.rl("current_structure"), new CoffeeCapabilityProvider<>(new CurrentStructureCapability()));
+                    event.addCapability(JITL.rl("pressed_keys"), new CoffeeCapabilityProvider<>(new PressedKeysCapability()));
                 }
-                event.addCapability(JITL.rl("current_armor"), new ArmorSetProvider(new ArmorSetCapability())); //FIXME maybe this should be changed to CoffeeCapabilityProvider instead?
-                event.addCapability(JITL.rl("current_structure"), new CoffeeCapabilityProvider<>(new CurrentStructureCapability()));
-                event.addCapability(JITL.rl("pressed_keys"), new CoffeeCapabilityProvider<>(new PressedKeysCapability()));
             }
         }
     }
