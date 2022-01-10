@@ -23,8 +23,8 @@ public class JModelLayers {
     public static final ModelLayerLocation MINI_BOOM_CHARGED_LAYER = register("mini_boom", "armor");
     public static final ModelLayerLocation SHIVERING_RAM_LAYER = register("shivering_ram");
     public static final ModelLayerLocation SHIVERING_RAM_WOOL_LAYER = register("mini_boom", "wool");
-
-    public static final ModelLayerLocation OBELISK_MODEL_LAYER = register("obelisk");
+    public static final ModelLayerLocation OBELISK_TOP_MODEL_LAYER = register("obelisk_top");
+    public static final ModelLayerLocation OBELISK_BOTTOM_MODEL_LAYER = register("obelisk_bottom");
 
     private static ModelLayerLocation register(String path) {
         return register(path, "main");

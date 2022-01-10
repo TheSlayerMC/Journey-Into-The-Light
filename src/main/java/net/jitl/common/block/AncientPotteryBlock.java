@@ -38,7 +38,7 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
         super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), PotTile::new);
     }
 
-    @Override
+   /* @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         VoxelShape middle = Block.box(1.0D, 14.0D, 1.0D, 15.0D, 2.0D, 15.0D);
         VoxelShape bottom = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 0.0D, 14.0D);
@@ -47,7 +47,7 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
         VoxelShape lip = Block.box(4.0D, 18.0D, 4.0D, 12.0D, 20.0D, 12.0D);
 
         return Shapes.or(middle, bottom, top, lip, topMid);
-    }
+    }*/
 
     //TODO: "destroy" method only gets called when a player destroys the block.
     // need to find a solution so other causes of destruction, like explosions, also drop inventory contents
