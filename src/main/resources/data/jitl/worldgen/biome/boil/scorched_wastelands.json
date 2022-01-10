@@ -10,6 +10,7 @@
     "water_fog_color": 4262144
   },
   "spawners": {},
+  "carvers": {},
   "spawn_costs": {},
   "features": [
     []
