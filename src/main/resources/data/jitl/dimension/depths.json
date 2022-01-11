@@ -22,7 +22,7 @@
       },
       "noise": {
         "min_y": 0,
-        "height": 100,
+        "height": 128,
         "size_horizontal": 1,
         "size_vertical": 2,
         "island_noise_override": false,

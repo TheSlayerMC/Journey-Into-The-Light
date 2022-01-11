@@ -1,8 +1,8 @@
 {
-	"name": "Boil",
-    "ultrawarm": false,
-    "natural": true,
-    "piglin_safe": false,
+  "name": "Boil",
+  "ultrawarm": false,
+  "natural": true,
+  "piglin_safe": false,
   "respawn_anchor_works": false,
   "bed_works": true,
   "has_raids": false,

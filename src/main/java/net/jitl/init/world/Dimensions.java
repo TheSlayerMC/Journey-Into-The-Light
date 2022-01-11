@@ -8,13 +8,13 @@ import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import ru.timeconqueror.timecore.api.registry.SimpleForgeRegister;
 
 public class Dimensions {
 
-    public static final DeferredRegister<PoiType> POI = DeferredRegister.create(ForgeRegistries.POI_TYPES, JITL.MODID);
+    public static final SimpleForgeRegister<PoiType> POI = new SimpleForgeRegister<>(ForgeRegistries.POI_TYPES, JITL.MODID);
 
     public static final ResourceKey<Level> EUCA = ResourceKey.create(Registry.DIMENSION_REGISTRY, JITL.rl("euca"));
     public static final ResourceKey<DimensionType> EUCA_TYPE = ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, JITL.rl("euca"));
@@ -24,6 +24,7 @@ public class Dimensions {
 
     public static final ResourceKey<Level> DEPTHS = ResourceKey.create(Registry.DIMENSION_REGISTRY, JITL.rl("depths"));
     public static final ResourceKey<DimensionType> DEPTHS_TYPE = ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, JITL.rl("depths"));
+
     public static final ResourceKey<Level> BOIL = ResourceKey.create(Registry.DIMENSION_REGISTRY, JITL.rl("boil"));
     public static final ResourceKey<DimensionType> BOIL_TYPE = ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, JITL.rl("boil"));
 
@@ -33,6 +34,6 @@ public class Dimensions {
     public static RegistryObject<PoiType> DEPTHS_PORTAL = POI.register("depths_portal", () -> new PoiType("depths_portal", PoiType.getBlockStates(JBlocks.DEPTHS_PORTAL), 0, 1));
 
     public static void register(IEventBus bus) {
-        POI.register(bus);
+        POI.regToBus(bus);
     }
 }
