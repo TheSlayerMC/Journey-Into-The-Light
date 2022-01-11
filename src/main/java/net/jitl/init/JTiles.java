@@ -22,7 +22,7 @@ public class JTiles {
     public static final BlockEntityType<GuardianTowerBrainTile> GUARDIAN_TOWER_BRAIN = promise();
     public static final BlockEntityType<PedestalTile> PEDESTAL = promise();
     public static final BlockEntityType<PotTile> ANCIENT_POTTERY = promise();
-    public static final BlockEntityType<PedestalTile> OBELISK = promise();
+    public static final BlockEntityType<ObeliskTile> OBELISK = promise();
 
 
     private static class Registrator {

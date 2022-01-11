@@ -15,6 +15,7 @@ public class RenderFrostburnOverlay extends GuiComponent {
     protected static final ResourceLocation FROSTBURN_LOCATION = JITL.rl("textures/gui/overlay/frostburn.png");
 
     public static void render(Minecraft minecraft) {
+        RenderSystem.enableBlend();
         int screenWidth = minecraft.getWindow().getGuiScaledWidth();
         int screenHeight = minecraft.getWindow().getGuiScaledHeight();
         RenderSystem.disableDepthTest();
@@ -22,7 +23,7 @@ public class RenderFrostburnOverlay extends GuiComponent {
         RenderSystem.defaultBlendFunc();
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.05F);
         RenderSystem.setShaderTexture(0, FROSTBURN_LOCATION);
 
         Tesselator tessellator = Tesselator.getInstance();
@@ -35,6 +36,6 @@ public class RenderFrostburnOverlay extends GuiComponent {
         tessellator.end();
         RenderSystem.depthMask(true);
         RenderSystem.enableDepthTest();
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.25F);
     }
 }
