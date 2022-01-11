@@ -49,6 +49,7 @@ public class FrozenSkyRenderer implements ISkyRenderHandler {
 
         float[] sunRiseRGBA = world.effects().getSunriseColor(world.getTimeOfDay(partialTicks), partialTicks);
         if (sunRiseRGBA != null) {
+            RenderSystem.setShader(GameRenderer::getPositionColorShader);
             RenderSystem.disableTexture();
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             matrixStack.pushPose();
@@ -104,6 +105,7 @@ public class FrozenSkyRenderer implements ISkyRenderHandler {
             this.skyBuffer.close();
         }
         this.skyBuffer = new VertexBuffer();
+
         drawSkyHemisphere(bufferbuilder, 16.0F);
         bufferbuilder.end();
         this.skyBuffer.upload(bufferbuilder);
