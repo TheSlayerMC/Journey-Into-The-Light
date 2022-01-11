@@ -64,33 +64,35 @@
     }
   },
   "noise": {
-    "terrain_shaper": {
-      "offset": 0.0,
-      "factor": 0.0,
-      "jaggedness": 0.0
-    },
-    "size_horizontal": 2,
+    "min_y": 64,
+    "height": 128,
+    "size_horizontal": 1,
     "size_vertical": 1,
+    "island_noise_override": false,
+    "amplified": false,
     "sampling": {
-      "xz_scale": 2.0,
-      "y_scale": 1.0,
-      "xz_factor": 80.0,
-      "y_factor": 160.0
-    },
-    "top_slide": {
-      "target": -23.4375,
-      "size": 64,
-      "offset": -46
+      "xz_scale": 1,
+      "y_scale": 2,
+      "xz_factor": 70,
+      "y_factor": 180
     },
     "bottom_slide": {
-      "target": -0.234375,
-      "size": 7,
-      "offset": 1
+      "target": -40,
+      "size": 8,
+      "offset": 2
     },
-    "min_y": 0,
-    "height": 128
+    "top_slide": {
+      "target": -40,
+      "size": 8,
+      "offset": 2
+    },
+    "terrain_shaper": {
+      "offset": 0,
+      "factor": 0,
+      "jaggedness": 0
+    }
   },
-  "sea_level": -1,
+  "sea_level": 63,
   "structures": {
     "structures": { }
   }
