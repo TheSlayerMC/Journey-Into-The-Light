@@ -1,4 +1,5 @@
 {
+  "forge:registry_name": "jitl:euca_plains",
   "temperature": 0.8,
   "downfall": 0,
   "precipitation": "rain",
@@ -22,7 +23,6 @@
   "spawn_costs": {},
   "carvers": {},
   "features": [
-    [
-    ]
+    [ ]
   ]
 }

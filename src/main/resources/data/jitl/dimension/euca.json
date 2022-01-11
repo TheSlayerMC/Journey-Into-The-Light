@@ -1,64 +1,8 @@
 {
   "type": "jitl:euca",
   "generator": {
-    "type": "minecraft:noise",
     "seed": -22426074,
-    "settings": {
-      "sea_level": 0,
-      "disable_mob_generation": false,
-      "noise_caves_enabled": false,
-      "noodle_caves_enabled": false,
-      "aquifers_enabled": false,
-      "ore_veins_enabled": false,
-      "legacy_random_source": false,
-      "default_block": {
-        "Name": "jitl:goldite_stone"
-      },
-      "default_fluid": {
-        "Name": "minecraft:water",
-        "Properties": {
-          "level": "0"
-        }
-      },
-      "noise": {
-        "min_y": 64,
-        "height": 128,
-        "size_horizontal": 1,
-        "size_vertical": 1,
-        "island_noise_override": false,
-        "amplified": false,
-        "sampling": {
-          "xz_scale": 1,
-          "y_scale": 2,
-          "xz_factor": 70,
-          "y_factor": 180
-        },
-        "bottom_slide": {
-          "target": -40,
-          "size": 8,
-          "offset": 2
-        },
-        "top_slide": {
-          "target": -40,
-          "size": 8,
-          "offset": 2
-        },
-        "terrain_shaper": {
-          "offset": 0,
-          "factor": 0,
-          "jaggedness": 0
-        }
-      },
-      "surface_rule": {
-        "type": "minecraft:block",
-        "result_state": {
-          "Name": "jitl:goldite_stone"
-        }
-      },
-      "structures": {
-        "structures": {}
-      }
-    },
+    "settings": "jitl:euca_generation",
     "biome_source": {
       "type": "minecraft:multi_noise",
       "biomes": [
