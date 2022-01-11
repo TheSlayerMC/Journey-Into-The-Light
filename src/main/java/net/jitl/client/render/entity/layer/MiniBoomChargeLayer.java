@@ -4,10 +4,10 @@ import net.jitl.JITL;
 import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.model.BoomModel;
 import net.jitl.common.entity.pet.MiniBoomEntity;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EnergySwirlLayer;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -21,7 +21,7 @@ public class MiniBoomChargeLayer extends EnergySwirlLayer<MiniBoomEntity, BoomMo
 
     public MiniBoomChargeLayer(RenderLayerParent<MiniBoomEntity, BoomModel<MiniBoomEntity>> e, EntityModelSet loader) {
         super(e);
-        model = new BoomModel(loader.bakeLayer(JModelLayers.MINI_BOOM_CHARGED_LAYER));
+        model = new BoomModel<>(loader.bakeLayer(JModelLayers.MINI_BOOM_CHARGED_LAYER));
     }
 
     protected float xOffset(float o) {

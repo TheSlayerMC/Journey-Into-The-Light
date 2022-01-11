@@ -10,11 +10,13 @@ public class JModelLayers {
     private static final Set<ModelLayerLocation> ALL_MODELS = Sets.newHashSet();
 
     public static final ModelLayerLocation CAPYBARA_MODEL_LAYER = register("capbara");
+    public static final ModelLayerLocation CAPYBARA_SADDLE_LAYER = register("capbara", "saddle");
     public static final ModelLayerLocation FROZEN_GUARDIAN_MODEL_LAYER = register("frozen_guardian");
     public static final ModelLayerLocation HONGO_MODEL_LAYER = register("hongo");
     public static final ModelLayerLocation WITHERSHROOM_MODEL_LAYER = register("withershroom");
     public static final ModelLayerLocation HONGLOW_MODEL_LAYER = register("honglow");
     public static final ModelLayerLocation FROZEN_TROLL_MODEL_LAYER = register("frozen_troll");
+    public static final ModelLayerLocation FROZEN_TROLL_HELD_ITEM_LAYER = register("frozen_troll", "held_item");
     public static final ModelLayerLocation SHATTERER_MODEL_LAYER = register("shatterer");
     public static final ModelLayerLocation PHANTASM_MODEL_LAYER = register("phantasm");
     public static final ModelLayerLocation MAGE_MODEL_LAYER = register("mage");
@@ -22,7 +24,7 @@ public class JModelLayers {
     public static final ModelLayerLocation MINI_BOOM_LAYER = register("mini_boom");
     public static final ModelLayerLocation MINI_BOOM_CHARGED_LAYER = register("mini_boom", "armor");
     public static final ModelLayerLocation SHIVERING_RAM_LAYER = register("shivering_ram");
-    public static final ModelLayerLocation SHIVERING_RAM_WOOL_LAYER = register("mini_boom", "wool");
+    public static final ModelLayerLocation SHIVERING_RAM_WOOL_LAYER = register("shivering_ram", "wool");
     public static final ModelLayerLocation OBELISK_TOP_MODEL_LAYER = register("obelisk_top");
     public static final ModelLayerLocation OBELISK_BOTTOM_MODEL_LAYER = register("obelisk_bottom");
 

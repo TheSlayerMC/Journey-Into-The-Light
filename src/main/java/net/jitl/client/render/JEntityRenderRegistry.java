@@ -24,7 +24,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
-@Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JEntityRenderRegistry {
 
     //FIXME fix when JsonModelParser is ported for TimeCore
@@ -41,22 +41,26 @@ public class JEntityRenderRegistry {
         //Misc
         event.registerEntityRenderer(JEntities.ESSENCIA_BOLT_TYPE, EssenciaBoltRenderer::new);
         event.registerEntityRenderer(JEntities.EFFECT_CLOUD_TYPE, ParticleProjectileRenderer::new);
-        event.registerEntityRenderer(JEntities.BOSS_CRYSTAL_TYPE, BossCrystalRenderer::new);
-
         //Mobs
-        event.registerEntityRenderer(JEntities.FLORO_TYPE, FloroRenderer::new);
+
         event.registerEntityRenderer(JEntities.HONGO_TYPE, HongoRenderer::new);
         event.registerEntityRenderer(JEntities.WITHERSHROOM_TYPE, WithershroomRenderer::new);
         event.registerEntityRenderer(JEntities.HONGLOW_TYPE, HonglowRenderer::new);
-        event.registerEntityRenderer(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
-        event.registerEntityRenderer(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);
-        event.registerEntityRenderer(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
-        event.registerEntityRenderer(JEntities.GLUMP_TYPE, GlumpRenderer::new);
-        event.registerEntityRenderer(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
+
+
         event.registerEntityRenderer(JEntities.FROZEN_TROLL_TYPE, FrozenTrollRenderer::new);
         event.registerEntityRenderer(JEntities.SHATTERER_TYPE, ShattererRenderer::new);
         event.registerEntityRenderer(JEntities.SHIVERING_RAM_TYPE, ShiveringRamRenderer::new);
         event.registerEntityRenderer(JEntities.PHANTASM_TYPE, PhantasmRenderer::new);
+
+        //FIXME time model
+        //event.registerEntityRenderer(JEntities.GLUMP_TYPE, GlumpRenderer::new);
+        //event.registerEntityRenderer(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
+        //event.registerEntityRenderer(JEntities.BOSS_CRYSTAL_TYPE, BossCrystalRenderer::new);
+        //event.registerEntityRenderer(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
+        //event.registerEntityRenderer(JEntities.FLORO_TYPE, FloroRenderer::new);
+        //event.registerEntityRenderer(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);
+        //event.registerEntityRenderer(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
 
         //NPC
         event.registerEntityRenderer(JEntities.MAGE_TYPE, MageRenderer::new);
@@ -93,9 +97,15 @@ public class JEntityRenderRegistry {
         //event.registerLayerDefinition(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
         //event.registerLayerDefinition(JEntities.GLUMP_TYPE, GlumpRenderer::new);
         //event.registerLayerDefinition(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
+
         event.registerLayerDefinition(JModelLayers.FROZEN_TROLL_MODEL_LAYER, FrozenTrollModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.FROZEN_TROLL_HELD_ITEM_LAYER, FrozenTrollModel::createBodyLayer);
+
         event.registerLayerDefinition(JModelLayers.SHATTERER_MODEL_LAYER, ShattererModel::createBodyLayer);
+
         event.registerLayerDefinition(JModelLayers.SHIVERING_RAM_LAYER, ShiveringRamModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.SHIVERING_RAM_WOOL_LAYER, ShiveringRamWoolModel::createBodyLayer);
+
         event.registerLayerDefinition(JModelLayers.PHANTASM_MODEL_LAYER, PhantasmModel::createBodyLayer);
 
         //NPC
@@ -105,6 +115,8 @@ public class JEntityRenderRegistry {
 
         //PETS
         event.registerLayerDefinition(JModelLayers.MINI_BOOM_LAYER, BoomModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.MINI_BOOM_CHARGED_LAYER, BoomModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.CAPYBARA_MODEL_LAYER, CapybaraModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.CAPYBARA_SADDLE_LAYER, CapybaraModel::createBodyLayer);
     }
 }

@@ -22,7 +22,7 @@ public class ShiveringRamWoolLayer extends RenderLayer<ShiveringRamEntity, Shive
 
     public ShiveringRamWoolLayer(RenderLayerParent<ShiveringRamEntity, ShiveringRamModel<ShiveringRamEntity>> rendererIn, EntityModelSet loader) {
         super(rendererIn);
-        model = new ShiveringRamWoolModel(loader.bakeLayer(JModelLayers.SHIVERING_RAM_WOOL_LAYER));
+        model = new ShiveringRamWoolModel<>(loader.bakeLayer(JModelLayers.SHIVERING_RAM_WOOL_LAYER));
     }
 
     public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, ShiveringRamEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
