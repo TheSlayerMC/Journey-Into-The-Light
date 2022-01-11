@@ -2,6 +2,7 @@ package net.jitl.common.dimension;
 
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.DepthsPortalFrameBlock;
+import net.jitl.init.world.Dimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;

@@ -3,7 +3,7 @@ package net.jitl.client.eventhandler;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JItems;
-import net.jitl.init.world.JDimensions;
+import net.jitl.init.world.Dimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
@@ -41,7 +41,7 @@ public class ClientEventHandler {
         Player player = ClientProxy.player();
         if (player != null) {
             JPlayer cap = JPlayer.from(player);
-            if (player.level.dimension() == JDimensions.FROZEN_WORLD) {
+            if (player.level.dimension() == Dimensions.FROZEN_LANDS) {
                 if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
                     if (cap != null) {
                         if (!cap.fogDensity.isDensityEnabled()) {

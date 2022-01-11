@@ -2,10 +2,9 @@ package net.jitl;
 
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
-import net.jitl.common.capability.JCapabilityProvider;
-import net.jitl.common.dimension.Dimensions;
 import net.jitl.init.JEntities;
 import net.jitl.init.JLootConditions;
+import net.jitl.init.world.Dimensions;
 import net.jitl.init.world.JBiomeRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.raid.Raid;
