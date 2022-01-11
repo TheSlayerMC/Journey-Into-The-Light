@@ -8,6 +8,7 @@ import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.FogRenderer;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.Mth;
@@ -103,22 +104,22 @@ public class FrozenSkyRenderer implements ISkyRenderHandler {
             this.skyBuffer.close();
         }
         this.skyBuffer = new VertexBuffer();
-        drawSkyHemisphere(bufferbuilder);
+        drawSkyHemisphere(bufferbuilder, 16.0F);
+        bufferbuilder.end();
         this.skyBuffer.upload(bufferbuilder);
     }
 
-    private void drawSkyHemisphere(BufferBuilder bufferBuilder) {
-        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
-        for (int k = -384; k <= 384; k += 64) {
-            for (int l = -384; l <= 384; l += 64) {
-                float f = (float) k;
-                float f1 = (float) (k + 64);
-                bufferBuilder.vertex(f, (float) 16.0, l).endVertex();
-                bufferBuilder.vertex(f1, (float) 16.0, l).endVertex();
-                bufferBuilder.vertex(f1, (float) 16.0, l + 64).endVertex();
-                bufferBuilder.vertex(f, (float) 16.0, l + 64).endVertex();
-            }
-        }
+    private void drawSkyHemisphere(BufferBuilder bufferBuilder, float pY) {
+        float f = Math.signum(pY) * 512.0F;
+        RenderSystem.setShader(GameRenderer::getPositionShader);
+        bufferBuilder.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION);
+        bufferBuilder.vertex(0.0D, pY, 0.0D).endVertex();
 
+        for (int i = -180; i <= 180; i += 45) {
+            bufferBuilder.vertex(
+                    f * Mth.cos((float) i * ((float) Math.PI / 180F)),
+                    pY,
+                    512.0F * Mth.sin((float) i * ((float) Math.PI / 180F))).endVertex();
+        }
     }
 }
