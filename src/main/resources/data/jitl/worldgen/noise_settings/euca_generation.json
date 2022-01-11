@@ -90,6 +90,7 @@
     "min_y": 0,
     "height": 128
   },
+  "sea_level": -1,
   "structures": {
     "structures": { }
   }
