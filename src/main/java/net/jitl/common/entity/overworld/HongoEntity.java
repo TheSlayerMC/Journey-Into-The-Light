@@ -4,9 +4,11 @@ import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
 import net.jitl.init.JEntities;
 import net.jitl.init.JSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -27,6 +29,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class HongoEntity extends Monster {
@@ -43,10 +46,13 @@ public class HongoEntity extends Monster {
     }
 
     public static boolean canSpawn(EntityType<? extends PathfinderMob> entityType, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
-        return !worldIn.getBlockState(pos).is(Blocks.WATER)
+        return worldIn.getDifficulty() != Difficulty.PEACEFUL
+                && !worldIn.getBlockState(pos).is(Blocks.WATER)
+                && checkMobSpawnRules(entityType, worldIn, reason, pos, random)
                 && worldIn.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK)
                 && worldIn.getBiome(pos).getBiomeCategory() == Biome.BiomeCategory.MUSHROOM
-                || worldIn.getBiome(pos).getBiomeCategory() == Biome.BiomeCategory.SWAMP;
+                || worldIn.getBiome(pos).getBiomeCategory() == Biome.BiomeCategory.SWAMP
+                || Objects.equals(worldIn.getBiome(pos).getRegistryName(), new ResourceLocation("dark_forest"));
     }
 
     @Override
