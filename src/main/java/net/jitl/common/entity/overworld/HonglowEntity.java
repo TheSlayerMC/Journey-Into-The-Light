@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -28,7 +29,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -81,10 +81,10 @@ public class HonglowEntity extends Monster {
 	}
 
 	public static boolean canSpawn(EntityType<? extends PathfinderMob> entityType, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
-		return !worldIn.getBlockState(pos).is(Blocks.WATER)
-				&& worldIn.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK)
-				&& worldIn.getBiome(pos).getBiomeCategory() == Biome.BiomeCategory.MUSHROOM
-				|| worldIn.getBiome(pos).getBiomeCategory() == Biome.BiomeCategory.SWAMP;
+		return worldIn.getDifficulty() != Difficulty.PEACEFUL
+				&& !worldIn.getBlockState(pos).is(Blocks.WATER)
+				&& checkMobSpawnRules(entityType, worldIn, reason, pos, random)
+				&& worldIn.getBlockState(pos.below()).is(Blocks.DEEPSLATE);
 	}
 
 	@Override
