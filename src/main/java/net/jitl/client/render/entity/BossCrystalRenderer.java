@@ -2,19 +2,22 @@ package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.render.JEntityRenderRegistry;
+import net.jitl.client.render.JRenderTypes;
 import net.jitl.common.entity.base.BossCrystalEntity;
+import net.jitl.init.client.JsonModels;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import ru.timeconqueror.timecore.animation.renderer.AnimatedEntityRenderer;
+import ru.timeconqueror.timecore.animation.renderer.ModelConfiguration;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
-import ru.timeconqueror.timecore.client.render.model.TimeModelPiece;
+import ru.timeconqueror.timecore.client.render.model.TimeModelPart;
 
 import java.util.Objects;
 
 public class BossCrystalRenderer extends AnimatedEntityRenderer<BossCrystalEntity, TimeEntityModel<BossCrystalEntity>> {
     public BossCrystalRenderer(EntityRendererProvider.Context context) {
-        super(context, JEntityRenderRegistry.bossCrystalModel);
+        super(context, new TimeEntityModel<>(ModelConfiguration.builder(JsonModels.BOSS_CRYSTAL).withRenderType(JRenderTypes::transparentCutout).build()));
     }
 
     @Override
@@ -27,9 +30,9 @@ public class BossCrystalRenderer extends AnimatedEntityRenderer<BossCrystalEntit
         float angle = worldTime % 360;
         float yScale = 4.5F;
 
-        TimeModelPiece crystalPiece = Objects.requireNonNull(model.getPiece("crystal"));
-        crystalPiece.yRot = (angle + partialTicks) * ((float) Math.PI / 180F);
-        crystalPiece.setScaleFactor(1, yScale, 1);
+        TimeModelPart crystal = Objects.requireNonNull(model.getPart("crystal"));
+        crystal.yRot = (angle + partialTicks) * ((float) Math.PI / 180F);
+        crystal.setScaleFactor(1, yScale, 1);
     }
 
     @Override

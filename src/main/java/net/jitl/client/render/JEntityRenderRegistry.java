@@ -27,15 +27,6 @@ import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JEntityRenderRegistry {
 
-    //FIXME fix when JsonModelParser is ported for TimeCore
-    public static TimeEntityModel<FloroEntity> floroModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/floro.json"));
-    public static TimeEntityModel<WitherspineEntity> witherspineModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/witherspine.json"));
-    public static TimeEntityModel<TowerGuardianEntity> towerGuardianModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/tower_guardian.json"));
-    public static TimeEntityModel<GlumpEntity> glumpModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/glump.json"));
-    public static TimeEntityModel<IllagerMechEntity> illagerMechModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/illager_mech.json"));
-    public static TimeEntityModel<SoulWatcherEntity> soulWatcherModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/soul_watcher.json"));
-    public static TimeEntityModel<BossCrystalEntity> bossCrystalModel = null; //TimeModelLoader.loadJsonEntityModel(new ResourceLocation(JITL.MODID, "models/entity/boss_crystal.json"), JRenderTypes::transparentCutout);
-
     @SubscribeEvent
     public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
         //Misc
@@ -53,14 +44,13 @@ public class JEntityRenderRegistry {
         event.registerEntityRenderer(JEntities.SHIVERING_RAM_TYPE, ShiveringRamRenderer::new);
         event.registerEntityRenderer(JEntities.PHANTASM_TYPE, PhantasmRenderer::new);
 
-        //FIXME time model
-        //event.registerEntityRenderer(JEntities.GLUMP_TYPE, GlumpRenderer::new);
-        //event.registerEntityRenderer(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
-        //event.registerEntityRenderer(JEntities.BOSS_CRYSTAL_TYPE, BossCrystalRenderer::new);
-        //event.registerEntityRenderer(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
-        //event.registerEntityRenderer(JEntities.FLORO_TYPE, FloroRenderer::new);
-        //event.registerEntityRenderer(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);
-        //event.registerEntityRenderer(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
+        event.registerEntityRenderer(JEntities.GLUMP_TYPE, GlumpRenderer::new);
+        event.registerEntityRenderer(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
+        event.registerEntityRenderer(JEntities.BOSS_CRYSTAL_TYPE, BossCrystalRenderer::new);
+        event.registerEntityRenderer(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
+        event.registerEntityRenderer(JEntities.FLORO_TYPE, FloroRenderer::new);
+        event.registerEntityRenderer(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);
+        event.registerEntityRenderer(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
 
         //NPC
         event.registerEntityRenderer(JEntities.MAGE_TYPE, MageRenderer::new);
@@ -88,15 +78,9 @@ public class JEntityRenderRegistry {
         event.registerLayerDefinition(JModelLayers.OBELISK_TOP_MODEL_LAYER, ObeliskModel::createTopBodyLayer);
 
         //Mobs
-        //event.registerLayerDefinition(JEntities.FLORO_TYPE, FloroRenderer::new);
         event.registerLayerDefinition(JModelLayers.HONGO_MODEL_LAYER, HongoModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.WITHERSHROOM_MODEL_LAYER, HongoModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.HONGLOW_MODEL_LAYER, HongoModel::createBodyLayer);
-        //event.registerLayerDefinition(JEntities.WITHERSPINE_TYPE, WitherspineRenderer::new);
-        //event.registerLayerDefinition(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);
-        //event.registerLayerDefinition(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
-        //event.registerLayerDefinition(JEntities.GLUMP_TYPE, GlumpRenderer::new);
-        //event.registerLayerDefinition(JEntities.ILLAGER_MECH_TYPE, IllagerMechRenderer::new);
 
         event.registerLayerDefinition(JModelLayers.FROZEN_TROLL_MODEL_LAYER, FrozenTrollModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.FROZEN_TROLL_HELD_ITEM_LAYER, FrozenTrollModel::createBodyLayer);

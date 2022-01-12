@@ -6,6 +6,7 @@ import com.mojang.math.Vector3f;
 import net.jitl.JITL;
 import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.common.entity.overworld.IllagerMechEntity;
+import net.jitl.init.client.JsonModels;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -13,8 +14,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.animation.renderer.AnimatedLivingEntityRenderer;
+import ru.timeconqueror.timecore.animation.renderer.ModelConfiguration;
 import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
-import ru.timeconqueror.timecore.client.render.model.TimeModelPiece;
+import ru.timeconqueror.timecore.client.render.model.TimeModelPart;
 
 import java.util.Map;
 import java.util.Objects;
@@ -27,7 +29,7 @@ public class IllagerMechRenderer extends AnimatedLivingEntityRenderer<IllagerMec
             IllagerMechEntity.Cracks.HIGH, JITL.rl("textures/entity/overworld/illager_mech_cracked_high.png"));
 
     public IllagerMechRenderer(EntityRendererProvider.Context context) {
-        super(context, JEntityRenderRegistry.illagerMechModel, 0.5F);
+        super(context, new TimeEntityModel<>(ModelConfiguration.builder(JsonModels.ILLAGER_MECH).build()), 0.5F);
     }
 
     @Override
@@ -47,7 +49,7 @@ public class IllagerMechRenderer extends AnimatedLivingEntityRenderer<IllagerMec
         float f1 = Mth.rotLerp(partialTicks, entityLiving.yHeadRotO, entityLiving.yHeadRot);
         float f2 = f1 - f;
 
-        TimeModelPiece headPiece = Objects.requireNonNull(model.getPiece("head"));
+        TimeModelPart headPiece = Objects.requireNonNull(model.getPart("head"));
 
         Objects.requireNonNull(headPiece).yRot = f2 * ((float) Math.PI / 270F);
         Objects.requireNonNull(headPiece).xRot = Mth.lerp(partialTicks, entityLiving.xRotO, entityLiving.getXRot()) * ((float) Math.PI / 270F);

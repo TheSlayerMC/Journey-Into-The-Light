@@ -84,6 +84,7 @@ public class DamagingProjectileEntity extends ThrowableProjectile {
      * @param target target of projectile. Never equals to the thrower.
      */
     protected void onEntityImpact(HitResult result, Entity target) {
+        //FIXME PORT
 //        target.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
     }
 
