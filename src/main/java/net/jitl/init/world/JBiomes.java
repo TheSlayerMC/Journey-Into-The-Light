@@ -1,6 +1,7 @@
-package net.jitl.init;
+package net.jitl.init.world;
 
 import net.jitl.JITL;
+import net.jitl.init.JSounds;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.Musics;

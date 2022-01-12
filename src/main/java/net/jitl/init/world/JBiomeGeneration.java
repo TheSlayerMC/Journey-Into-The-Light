@@ -1,4 +1,4 @@
-package net.jitl.init;
+package net.jitl.init.world;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;

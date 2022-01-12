@@ -47,7 +47,7 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1F, 2F))
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FloroEntity::canSpawn)
-           // .attributes(() -> FloroEntity.createAttributes().build())
+            .attributes(() -> FloroEntity.createAttributes().build())
             //.spawnEgg(OVERWORLD_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -56,7 +56,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.5F, 2F))
-           // .attributes(() -> EskimoEntity.createAttributes().build())
+            .attributes(() -> EskimoEntity.createAttributes().build())
           //  .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -65,7 +65,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(0.9F, 2.2F))
-          //  .attributes(() -> MageEntity.createAttributes().build())
+            .attributes(() -> MageEntity.createAttributes().build())
            // .spawnEgg(TRADER_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -75,7 +75,7 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(0.9F, 2.2F))
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FrozenTrollEntity::canSpawn)
-            //.attributes(() -> FrozenTrollEntity.createAttributes().build())
+            .attributes(() -> FrozenTrollEntity.createAttributes().build())
            // .spawnEgg(FROZEN_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -85,7 +85,7 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(0.5F, 0.5F))
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PhantasmEntity::canSpawn)
-            //.attributes(() -> PhantasmEntity.createAttributes().build())
+            .attributes(() -> PhantasmEntity.createAttributes().build())
             //.spawnEgg(FROZEN_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -95,7 +95,7 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.2F, 1.25F))
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ShiveringRamEntity::canSpawn)
-           // .attributes(() -> ShiveringRamEntity.createAttributes().build())
+            .attributes(() -> ShiveringRamEntity.createAttributes().build())
             //.spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -105,7 +105,7 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.85F, 1.65F))
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CapybaraEntity::canSpawn)
-           // .attributes(() -> CapybaraEntity.createAttributes().build())
+            .attributes(() -> CapybaraEntity.createAttributes().build())
            // .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -115,7 +115,7 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(0.9F, 2.2F))
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FrozenGuardianEntity::canSpawn)
-           // .attributes(() -> FrozenGuardianEntity.createAttributes().build())
+            .attributes(() -> FrozenGuardianEntity.createAttributes().build())
           //  .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -124,7 +124,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(0.9F, 2.2F))
-           // .attributes(() -> ShattererEntity.createAttributes().build())
+            .attributes(() -> ShattererEntity.createAttributes().build())
           //  .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -134,7 +134,7 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.5F, 2F))
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
-            //.attributes(() -> HongoEntity.createAttributes().build())
+            .attributes(() -> HongoEntity.createAttributes().build())
            // .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -143,7 +143,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.5F, 2F))
-            //.attributes(() -> MiniBoomEntity.createAttributes().build())
+            .attributes(() -> MiniBoomEntity.createAttributes().build())
             //.spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -153,7 +153,7 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.5F, 2F))
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WithershroomEntity::canSpawn)
-            //.attributes(() -> WithershroomEntity.createAttributes().build())
+            .attributes(() -> WithershroomEntity.createAttributes().build())
             //.spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -163,7 +163,7 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.5F, 2F))
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HonglowEntity::canSpawn)
-            //.attributes(() -> HonglowEntity.createAttributes().build())
+            .attributes(() -> HonglowEntity.createAttributes().build())
            // .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -172,7 +172,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.5F, 3.65F))//TODO add spawn settings
-            //.attributes(() -> WitherspineEntity.createAttributes().build())
+            .attributes(() -> WitherspineEntity.createAttributes().build())
             //.spawnEgg(NETHER_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -181,7 +181,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(2F, 4.2F))//TODO add spawn settings
-            //.attributes(() -> TowerGuardianEntity.createAttributes().build())
+            .attributes(() -> TowerGuardianEntity.createAttributes().build())
             //.spawnEgg(OVERWORLD_COLOR, BOSS_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -190,7 +190,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(2F, 0.8F))//TODO add spawn settings
-            //.attributes(() -> GlumpEntity.createAttributes().build())
+            .attributes(() -> GlumpEntity.createAttributes().build())
             //.spawnEgg(OVERWORLD_COLOR, PASSIVE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -199,7 +199,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.25F, 1.95F))
-           // .attributes(() -> IllagerMechEntity.createAttributes().build())
+            .attributes(() -> IllagerMechEntity.createAttributes().build())
            // .spawnEgg(OVERWORLD_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
@@ -208,7 +208,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(2.5F, 2.5F))
-            //.attributes(() -> SoulWatcherEntity.createAttributes().build())
+            .attributes(() -> SoulWatcherEntity.createAttributes().build())
             //.spawnEgg(NETHER_COLOR, BOSS_COLOR, JTabs.SPAWNERS)
             .retrieve();
 
