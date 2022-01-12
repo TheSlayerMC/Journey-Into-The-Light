@@ -41,6 +41,14 @@ public class JBlockTags extends BlockTagsProvider {
     //TODO: finish tool tags
     public void addToolTags() {
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                JBlocks.LUNIUM_ORE,
+                JBlocks.DEEPSLATE_LUNIUM_ORE,
+                JBlocks.SHADIUM_ORE,
+                JBlocks.DEEPSLATE_SHADIUM_ORE,
+                JBlocks.SAPPHIRE_ORE,
+                JBlocks.DEEPSLATE_SAPPHIRE_ORE,
+                JBlocks.IRIDIUM_ORE,
+                JBlocks.DEEPSLATE_IRIDIUM_ORE,
                 JBlocks.GOLDITE_STONE,
                 JBlocks.EMPTY_BLOOD_RUNE
         );
@@ -50,6 +58,13 @@ public class JBlockTags extends BlockTagsProvider {
     public void addRequiredToolTags() {
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 JBlocks.SAPPHIRE_ORE,
+                JBlocks.DEEPSLATE_SAPPHIRE_ORE,
+                JBlocks.SHADIUM_ORE,
+                JBlocks.DEEPSLATE_SHADIUM_ORE,
+                JBlocks.LUNIUM_ORE,
+                JBlocks.DEEPSLATE_LUNIUM_ORE,
+                JBlocks.IRIDIUM_ORE,
+                JBlocks.DEEPSLATE_IRIDIUM_ORE,
                 JBlocks.DREADIRON_BLOCK
         );
     }

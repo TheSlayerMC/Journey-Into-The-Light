@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:enderillium_block"
+    ]
+  },
+  "criteria": {
+    "has_enderillium_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:enderillium_shard"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:enderillium_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_enderillium_shard",
+      "has_the_recipe"
+    ]
+  ]
+}

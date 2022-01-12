@@ -11,9 +11,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.providers.number.BinomialDistributionGenerator;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.NumberProviders;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import ru.timeconqueror.timecore.api.devtools.gen.loottable.BlockLootTableSet;
 
@@ -29,12 +27,20 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 
 	private void initOres() {
 		registerSpecialOre(JBlocks.SAPPHIRE_ORE, JItems.SAPPHIRE);
+		registerSpecialOre(JBlocks.DEEPSLATE_SAPPHIRE_ORE, JItems.SAPPHIRE);
+
 		registerSpecialOre(JBlocks.PERIDOT_ORE, JItems.PERIDOT_GEMSTONE);
 		registerSpecialOre(JBlocks.RIMESTONE_ORE, JItems.RIMESTONE);
+
 		registerSpecialOre(JBlocks.IRIDIUM_ORE, JItems.IRIDIUM_NUGGET);
+		registerSpecialOre(JBlocks.DEEPSLATE_IRIDIUM_ORE, JItems.IRIDIUM_NUGGET);
+
 		registerSpecialOreWithExtraCount(JBlocks.LUNIUM_ORE, JItems.LUNIUM_POWDER, 1, 2);
+		registerSpecialOreWithExtraCount(JBlocks.DEEPSLATE_LUNIUM_ORE, JItems.LUNIUM_POWDER, 1, 2);
+
 		registerSpecialOre(JBlocks.SHADIUM_ORE, JItems.RAW_SHADIUM);
 		registerSpecialOre(JBlocks.DEEPSLATE_SHADIUM_ORE, JItems.RAW_SHADIUM);
+
 		registerSpecialOre(JBlocks.BLOODCRUST_ORE, JItems.RAW_BLOODCRUST);
 		registerSpecialOreWithExtraCount(JBlocks.FIRESTONE_ORE, JItems.FIRESTONE_SHARD, 1, 4);
 		registerSpecialOre(JBlocks.WARPED_QUARTZ_ORE, JItems.WARPED_QUARTZ);

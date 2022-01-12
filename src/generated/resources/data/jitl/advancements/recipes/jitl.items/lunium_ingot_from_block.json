@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:lunium_ingot_from_block"
+    ]
+  },
+  "criteria": {
+    "has_lunium_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:lunium_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:lunium_ingot_from_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lunium_block",
+      "has_the_recipe"
+    ]
+  ]
+}

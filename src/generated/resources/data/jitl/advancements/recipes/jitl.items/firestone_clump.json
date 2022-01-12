@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:firestone_clump"
+    ]
+  },
+  "criteria": {
+    "has_firestone_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:firestone_shard"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:firestone_clump"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_firestone_shard",
+      "has_the_recipe"
+    ]
+  ]
+}

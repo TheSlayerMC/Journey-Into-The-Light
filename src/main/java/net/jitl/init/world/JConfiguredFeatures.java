@@ -186,8 +186,8 @@ public class JConfiguredFeatures {
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
             REGISTER.register("sapphire_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
-                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.LUNIUM_ORE.defaultBlockState()),
-                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_LUNIUM_ORE.defaultBlockState())),
+                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.SAPPHIRE_ORE.defaultBlockState()),
+                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_SAPPHIRE_ORE.defaultBlockState())),
                     9)));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE_BURIED =
@@ -199,14 +199,27 @@ public class JConfiguredFeatures {
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SHADIUM_ORE =
             REGISTER.register("shadium_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
-                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.LUNIUM_ORE.defaultBlockState()),
-                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_LUNIUM_ORE.defaultBlockState())),
+                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.SHADIUM_ORE.defaultBlockState()),
+                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_SHADIUM_ORE.defaultBlockState())),
                     9)));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SHADIUM_ORE_BURIED =
             REGISTER.register("shadium_ore_buried", () -> Feature.ORE.configured(new OreConfiguration(List.of(
                     OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.SHADIUM_ORE.defaultBlockState()),
                     OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_SHADIUM_ORE.defaultBlockState())),
+                    9,
+                    0.5F)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> IRIDIUM_ORE =
+            REGISTER.register("iridium_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.IRIDIUM_ORE.defaultBlockState()),
+                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_IRIDIUM_ORE.defaultBlockState())),
+                    9)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> IRIDIUM_ORE_BURIED =
+            REGISTER.register("iridium_ore_buried", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.IRIDIUM_ORE.defaultBlockState()),
+                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_IRIDIUM_ORE.defaultBlockState())),
                     9,
                     0.5F)));
 

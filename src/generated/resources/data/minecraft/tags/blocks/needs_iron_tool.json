@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "jitl:sapphire_ore",
+    "jitl:deepslate_sapphire_ore",
+    "jitl:shadium_ore",
+    "jitl:deepslate_shadium_ore",
+    "jitl:lunium_ore",
+    "jitl:deepslate_lunium_ore",
+    "jitl:iridium_ore",
+    "jitl:deepslate_iridium_ore",
+    "jitl:dreadiron_block"
+  ]
+}

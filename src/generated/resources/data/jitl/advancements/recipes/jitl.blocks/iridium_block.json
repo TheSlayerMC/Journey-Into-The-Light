@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:iridium_block"
+    ]
+  },
+  "criteria": {
+    "has_iridium_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:iridium_nugget"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:iridium_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_iridium_nugget",
+      "has_the_recipe"
+    ]
+  ]
+}

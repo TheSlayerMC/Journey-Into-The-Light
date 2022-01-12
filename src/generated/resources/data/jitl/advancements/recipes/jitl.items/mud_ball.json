@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:mud_ball"
+    ]
+  },
+  "criteria": {
+    "has_block_of_mud": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:block_of_mud"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:mud_ball"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_block_of_mud",
+      "has_the_recipe"
+    ]
+  ]
+}

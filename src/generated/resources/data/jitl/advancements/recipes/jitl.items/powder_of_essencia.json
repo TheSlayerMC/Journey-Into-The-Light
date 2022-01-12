@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:powder_of_essencia"
+    ]
+  },
+  "criteria": {
+    "has_blood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:blood"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:powder_of_essencia"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blood",
+      "has_the_recipe"
+    ]
+  ]
+}

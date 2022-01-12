@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:dreadiron_boots_smithing"
+    ]
+  },
+  "criteria": {
+    "has_dreadiron_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:dreadiron_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:dreadiron_boots_smithing"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dreadiron_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

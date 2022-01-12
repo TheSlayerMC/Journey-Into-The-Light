@@ -127,6 +127,24 @@ public class JPlacedFeatures {
                                     HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)))))
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> ORE_IRIDIUM = REGISTER.register(
+                    "ore_iridium",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.IRIDIUM_ORE.get()
+                            .placed(commonOrePlacement(
+                                    4,
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15)))))
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_IRIDIUM_LOWER = REGISTER.register(
+                    "ore_iridium_lower",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.IRIDIUM_ORE_BURIED.get()
+                            .placed(commonOrePlacement(
+                                    8,
+                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)))))
+            .asPromise();
+
     private static List<PlacementModifier> patch(int count) {
         return List.of(
                 CountPlacement.of(count),

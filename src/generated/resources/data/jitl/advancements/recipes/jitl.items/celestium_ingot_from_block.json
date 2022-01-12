@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:celestium_ingot_from_block"
+    ]
+  },
+  "criteria": {
+    "has_celestium_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:celestium_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:celestium_ingot_from_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_celestium_block",
+      "has_the_recipe"
+    ]
+  ]
+}

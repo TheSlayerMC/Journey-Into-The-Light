@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:rimestone_from_block"
+    ]
+  },
+  "criteria": {
+    "has_rimestone_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:rimestone_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:rimestone_from_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rimestone_block",
+      "has_the_recipe"
+    ]
+  ]
+}
