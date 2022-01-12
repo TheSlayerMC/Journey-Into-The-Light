@@ -108,6 +108,7 @@ public class JBlocks {
 
     public static final Block BLOCK_OF_MUD = promise();
 
+    //TODO: rename to "tartberry"
     public static final Block BRADBERRY_BUSH = promise();
 
     public static final Block EUCA_BRICK = promise();
@@ -125,6 +126,7 @@ public class JBlocks {
     public static final JPlantBlock BLUE_GLOWSHROOM = promise();
     public static final JPlantBlock RED_GLOWSHROOM = promise();
 
+    //TODO rename to "deepvine"
     public static final CaveVinesTopBlock CAVE_VINES = promise();
     public static final CaveVinesBlock CAVE_VINES_PLANT = promise();
 

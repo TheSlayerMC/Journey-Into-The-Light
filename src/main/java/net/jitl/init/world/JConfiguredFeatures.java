@@ -5,61 +5,38 @@ import net.jitl.JITL;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.init.JBlocks;
 import net.jitl.util.JRuleTests;
+import net.minecraft.core.Direction;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.util.valueproviders.WeightedListInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import ru.timeconqueror.timecore.api.registry.SimpleVanillaRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 import ru.timeconqueror.timecore.api.registry.util.Promised;
 
-import java.util.Objects;
-import java.util.function.Predicate;
+import java.util.List;
 import java.util.function.Supplier;
 
 @SuppressWarnings("Convert2MethodRef")
 public class JConfiguredFeatures {
+
     @AutoRegistrable
     private static final SimpleVanillaRegister<ConfiguredFeature<?, ?>> REGISTER = new SimpleVanillaRegister<ConfiguredFeature<?, ?>>(JITL.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
-
-    public static final Predicate<BiomeLoadingEvent> IN_NETHER = event -> event.getCategory() == Biome.BiomeCategory.NETHER;
-    public static final Predicate<BiomeLoadingEvent> IN_END = event -> event.getCategory() == Biome.BiomeCategory.THEEND;
-    public static final Predicate<BiomeLoadingEvent> IN_WARPED_FOREST = event -> Objects.equals(event.getName(), new ResourceLocation("warped_forest"));
-    public static final Predicate<BiomeLoadingEvent> IN_CRIMSON_FOREST = event -> Objects.equals(event.getName(), new ResourceLocation("crimson_forest"));
-
-    public static final Predicate<BiomeLoadingEvent> GOLDITE_GRAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_goldite_grains"));
-    public static final Predicate<BiomeLoadingEvent> EUCA_GOLD_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_plains"));
-    public static final Predicate<BiomeLoadingEvent> EUCA_SILVER_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_silver_plains"));
-
-    public static final Predicate<BiomeLoadingEvent> FROZEN_WASTES = event -> Objects.equals(event.getName(), JITL.rl("frozen/frozen_wastes"));
-    public static final Predicate<BiomeLoadingEvent> FROZEN_DYING_FORST = event -> Objects.equals(event.getName(), JITL.rl("frozen/dying_forest"));
-    public static final Predicate<BiomeLoadingEvent> FROZEN_BITTERWOOD_FORST = event -> Objects.equals(event.getName(), JITL.rl("frozen/bitterwood_forest"));
-
-    public static final Predicate<BiomeLoadingEvent> SCORCHED_WASTELAND = event -> Objects.equals(event.getName(), JITL.rl("boil/scorched_wastelands"));
-    public static final Predicate<BiomeLoadingEvent> BOILING_SANDS = event -> Objects.equals(event.getName(), JITL.rl("boil/boiling_sands"));
-    public static final Predicate<BiomeLoadingEvent> CHARRED_FIELDS = event -> Objects.equals(event.getName(), JITL.rl("boil/charred_fields"));
-    public static final Predicate<BiomeLoadingEvent> BOILING_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("boil/boil"));
-
-    public static final Predicate<BiomeLoadingEvent> EUCA_BIOMES = GOLDITE_GRAINS.or(EUCA_GOLD_PLAINS).or(EUCA_SILVER_PLAINS);
-    public static final Predicate<BiomeLoadingEvent> BOIL_FIRE_BIOMES = SCORCHED_WASTELAND.or(CHARRED_FIELDS).or(BOILING_PLAINS).or(BOILING_SANDS);
-    public static final Predicate<BiomeLoadingEvent> FROZEN_BIOMES = FROZEN_WASTES.or(FROZEN_DYING_FORST).or(FROZEN_BITTERWOOD_FORST);
-
-    public static final Predicate<BiomeLoadingEvent> COMMON_BIOMES = IN_NETHER.and(IN_END).negate();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BRADBERRY_BUSH =
             REGISTER.register("patch_bradberry_bush", surfacePatchFeature(() -> JBlocks.BRADBERRY_BUSH.defaultBlockState()));
@@ -99,6 +76,39 @@ public class JConfiguredFeatures {
                                     5,
                                     8,
                                     BuiltInLootTables.DESERT_PYRAMID)));
+
+    public static final Promised<? extends ConfiguredFeature<BlockColumnConfiguration, ?>> CAVE_VINES_VEG =
+            REGISTER.register("cave_vines_reg",
+                    () -> Feature.BLOCK_COLUMN.configured(
+                            new BlockColumnConfiguration(List.of(
+                                    BlockColumnConfiguration.layer(
+                                            new WeightedListInt(
+                                                    SimpleWeightedRandomList.<IntProvider>builder()
+                                                            .add(UniformInt.of(0, 3), 5)
+                                                            .add(UniformInt.of(1, 7), 1)
+                                                            .build()),
+                                            BlockStateProvider.simple(JBlocks.CAVE_VINES_PLANT.defaultBlockState())),
+                                    BlockColumnConfiguration.layer(
+                                            ConstantInt.of(1),
+                                            BlockStateProvider.simple(JBlocks.CAVE_VINES.defaultBlockState()))),
+                                    Direction.DOWN,
+                                    BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                                    true)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> CAVE_VINES =
+            REGISTER.register("cave_vines",
+                    () -> Feature.VEGETATION_PATCH.configured(
+                            new VegetationPatchConfiguration(
+                                    BlockTags.MOSS_REPLACEABLE.getName(),
+                                    BlockStateProvider.simple(Blocks.DEEPSLATE),
+                                    () -> CAVE_VINES_VEG.get().placed(),
+                                    CaveSurface.CEILING,
+                                    UniformInt.of(1, 2),
+                                    0.0F,
+                                    5,
+                                    0.08F,
+                                    UniformInt.of(4, 7),
+                                    0.3F)));
 
     //FIXME port
     /*public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
@@ -305,23 +315,10 @@ public class JConfiguredFeatures {
                                     .range(55)
                                     .count(100))
                     .setBiomePredicate(COMMON_BIOMES)
-                    .asPromise();
+                    .asPromise(); */
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> CAVE_VINES =
-            REGISTER.register("cave_vines",
-                    Decoration.UNDERGROUND_STRUCTURES,
-                    () -> JFeatures.CAVE_VINES.get()
-                            .configured(FeatureConfiguration.NONE)
-                            .range(60)
-                            .squared()
-                            .chance(1)
-                            .countRandom(32))
-                    .setBiomePredicate(COMMON_BIOMES)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> GLIMMER_ROOTS =
+   /* public static final Promised<? extends ConfiguredFeature<?, ?>> GLIMMER_ROOTS =
             REGISTER.register("glimmer_roots",
-                    Decoration.UNDERGROUND_STRUCTURES,
                     () -> JFeatures.GLIMMER_ROOTS.get()
                             .configured(FeatureConfiguration.NONE)
                             .range(256)

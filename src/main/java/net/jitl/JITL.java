@@ -2,10 +2,10 @@ package net.jitl;
 
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
+import net.jitl.init.JBiomeGeneration;
 import net.jitl.init.JEntities;
 import net.jitl.init.JLootConditions;
 import net.jitl.init.world.Dimensions;
-import net.jitl.init.world.JBiomeRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.raid.Raid;
 import net.minecraftforge.common.MinecraftForge;
@@ -53,7 +53,9 @@ public class JITL {
 	}
 
 	private void preInit(final FMLCommonSetupEvent event) {
-		event.enqueueWork(JBiomeRegistry::registerProviders);
+		event.enqueueWork(() -> {
+			JBiomeGeneration.generateBiomes();
+		});
 		//JCapabilityProvider.registerCapabilities();
 		Raid.RaiderType.create("illager_mech", JEntities.ILLAGER_MECH_TYPE, new int[]{0, 0, 0, 1, 0, 1, 0, 2}); //TODO: move me
 	}

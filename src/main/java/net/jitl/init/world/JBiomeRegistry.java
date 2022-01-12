@@ -1,7 +1,6 @@
 package net.jitl.init.world;
 
 import net.jitl.JITL;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -60,9 +59,5 @@ public class JBiomeRegistry {
 
         SCORCHED_WASTELANDS.setRegistryName(JITL.rl("boil/scorched_wastelands"));
         event.getRegistry().register(SCORCHED_WASTELANDS);
-    }
-
-    public static void registerProviders() {
-        //Registry.register(Registry.BIOME_SOURCE, JITL.rl("frozen_provider"), FrozenBiomeProvider.CODEC);
     }
 }
