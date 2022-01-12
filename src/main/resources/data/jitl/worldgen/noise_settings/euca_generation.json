@@ -47,7 +47,6 @@
                   "Name": "jitl:euca_gold_grass_block"
                 }
               }
-            }
             },
             {
               "type": "minecraft:condition",
@@ -66,7 +65,8 @@
               }
             }
           ]
-        },
+        }
+      },
       {
         "type": "minecraft:condition",
         "if_true": {
@@ -111,7 +111,9 @@
               }
             }
           ]
-        },
+        }
+      },
+      {
         "type": "minecraft:condition",
         "if_true": {
           "type": "minecraft:biome",
