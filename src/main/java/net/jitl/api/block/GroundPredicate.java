@@ -1,16 +1,17 @@
 package net.jitl.api.block;
 
 import net.jitl.init.JBlocks;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Objects;
 import java.util.function.Predicate;
 
+//TODO: remove. use block tags instead.
 public interface GroundPredicate {
 
     GroundPredicate ANY = (world, groundPos, blockState, plantDirection) -> true;
@@ -41,6 +42,7 @@ public interface GroundPredicate {
 
     GroundPredicate UNDERGROUND = SOLID_SIDE.and(blockPredicate(block ->
             block == Blocks.STONE ||
+                    block == Blocks.DEEPSLATE ||
                     block == Blocks.COBBLESTONE ||
                     block == Blocks.ANDESITE ||
                     block == Blocks.GRANITE ||

@@ -10,6 +10,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -40,7 +41,20 @@ public class JPlacedFeatures {
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.CAVE_VINES.get()
                             .placed(undergroundCeilingPatch(75, Blocks.DEEPSLATE)))
-            .allowedInBiomes(BiomePredicate.IN_FORESTS)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> TALL_GLOWSHROOMS = REGISTER.register(
+                    "tall_glowshrooms",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.TALL_GLOWSHROOMS.get()
+                            .placed(rareUndergroundFloorPatch(1, 3, Blocks.DEEPSLATE)))
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> SMALL_GLOWSHROOMS = REGISTER.register(
+                    "small_glowshrooms",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.SMALL_GLOWSHROOMS.get()
+                            .placed(undergroundFloorPatch(1, Blocks.DEEPSLATE)))
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> DEFAULT_OVERWORLD_RUINS = REGISTER.register(
@@ -58,6 +72,61 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.IN_DESERT)
             .asPromise();
 
+
+    public static final Promised<? extends PlacedFeature> ORE_LUNIUM = REGISTER.register(
+                    "ore_lunium",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.LUNIUM_ORE.get()
+                            .placed(commonOrePlacement(
+                                    4,
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15)))))
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_LUNIUM_LOWER = REGISTER.register(
+                    "ore_lunium_lower",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.LUNIUM_ORE_BURIED.get()
+                            .placed(commonOrePlacement(
+                                    8,
+                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)))))
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_SAPPHIRE = REGISTER.register(
+                    "ore_sapphire",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.SAPPHIRE_ORE.get()
+                            .placed(commonOrePlacement(
+                                    4,
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15)))))
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_SAPPHIRE_LOWER = REGISTER.register(
+                    "ore_sapphire_lower",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.SAPPHIRE_ORE_BURIED.get()
+                            .placed(commonOrePlacement(
+                                    8,
+                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)))))
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_SHADIUM = REGISTER.register(
+                    "ore_shadium",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.SHADIUM_ORE.get()
+                            .placed(commonOrePlacement(
+                                    4,
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15)))))
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_SHADIUM_LOWER = REGISTER.register(
+                    "ore_shadium_lower",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.SHADIUM_ORE_BURIED.get()
+                            .placed(commonOrePlacement(
+                                    8,
+                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)))))
+            .asPromise();
+
     private static List<PlacementModifier> patch(int count) {
         return List.of(
                 CountPlacement.of(count),
@@ -72,7 +141,29 @@ public class JPlacedFeatures {
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.matchesBlock(blockPredicatte, Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
-                RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
+                RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
+                BiomeFilter.biome());
+    }
+
+    private static List<PlacementModifier> undergroundFloorPatch(int count, Block blockPredicatte) {
+        return List.of(
+                CountPlacement.of(count),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlock(blockPredicatte, Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BiomeFilter.biome());
+    }
+
+    private static List<PlacementModifier> rareUndergroundFloorPatch(int count, int chance, Block blockPredicatte) {
+        return List.of(
+                CountPlacement.of(count),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlock(blockPredicatte, Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                RarityFilter.onAverageOnceEvery(chance),
+                BiomeFilter.biome());
     }
 
     private static List<PlacementModifier> rarePatch(int count, int chance) {
@@ -82,6 +173,18 @@ public class JPlacedFeatures {
                 PlacementUtils.FULL_RANGE,
                 BiomeFilter.biome(),
                 RarityFilter.onAverageOnceEvery(chance));
+    }
+
+    private static List<PlacementModifier> orePlacement(PlacementModifier countModifier_, PlacementModifier heightModifier_) {
+        return List.of(countModifier_, InSquarePlacement.spread(), heightModifier_, BiomeFilter.biome());
+    }
+
+    private static List<PlacementModifier> commonOrePlacement(int count_, PlacementModifier heightModifier_) {
+        return orePlacement(CountPlacement.of(count_), heightModifier_);
+    }
+
+    private static List<PlacementModifier> rareOrePlacement(int chance_, PlacementModifier heightModifier_) {
+        return orePlacement(RarityFilter.onAverageOnceEvery(chance_), heightModifier_);
     }
 
     public static class BiomePredicate {

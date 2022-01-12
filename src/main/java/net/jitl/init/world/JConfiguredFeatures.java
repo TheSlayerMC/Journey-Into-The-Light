@@ -24,6 +24,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import ru.timeconqueror.timecore.api.registry.SimpleVanillaRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
@@ -34,6 +35,13 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("Convert2MethodRef")
 public class JConfiguredFeatures {
+    public static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
+    public static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+
+    //FIXME lunium ore is null
+    /*public static final List<OreConfiguration.TargetBlockState> ORE_LUNIUM_TARGET_LIST = List.of(
+            OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.LUNIUM_ORE.defaultBlockState()),
+            OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_LUNIUM_ORE.defaultBlockState()));*/
 
     @AutoRegistrable
     private static final SimpleVanillaRegister<ConfiguredFeature<?, ?>> REGISTER = new SimpleVanillaRegister<ConfiguredFeature<?, ?>>(JITL.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
@@ -78,7 +86,7 @@ public class JConfiguredFeatures {
                                     BuiltInLootTables.DESERT_PYRAMID)));
 
     public static final Promised<? extends ConfiguredFeature<BlockColumnConfiguration, ?>> CAVE_VINES_VEG =
-            REGISTER.register("cave_vines_reg",
+            REGISTER.register("cave_vines_veg",
                     () -> Feature.BLOCK_COLUMN.configured(
                             new BlockColumnConfiguration(List.of(
                                     BlockColumnConfiguration.layer(
@@ -109,6 +117,99 @@ public class JConfiguredFeatures {
                                     0.08F,
                                     UniformInt.of(4, 7),
                                     0.3F)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_GLOWSHROOMS_VEG =
+            REGISTER.register("tall_glowshrooms_veg",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.BLUE_GLOWSHROOM.defaultBlockState(), 3)
+                                                    .add(JBlocks.GREEN_GLOWSHROOM.defaultBlockState(), 4)
+                                                    .add(JBlocks.RED_GLOWSHROOM.defaultBlockState(), 2)
+                                                    .add(JBlocks.TALL_BLUE_GLOWSHROOM.defaultBlockState(), 3)
+                                                    .add(JBlocks.TALL_GREEN_GLOWSHROOM.defaultBlockState(), 4)
+                                                    .add(JBlocks.TALL_RED_GLOWSHROOM.defaultBlockState(), 2)))))));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_GLOWSHROOMS =
+            REGISTER.register("tall_glowshrooms",
+                    () -> Feature.VEGETATION_PATCH.configured(
+                            new VegetationPatchConfiguration(
+                                    BlockTags.MOSS_REPLACEABLE.getName(),
+                                    BlockStateProvider.simple(Blocks.DEEPSLATE),
+                                    () -> TALL_GLOWSHROOMS_VEG.get().placed(),
+                                    CaveSurface.FLOOR,
+                                    ConstantInt.of(1),
+                                    0.0F,
+                                    1,
+                                    0.1F,
+                                    UniformInt.of(1, 2),
+                                    0.1F)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_GLOWSHROOMS_VEG =
+            REGISTER.register("small_glowshrooms_veg",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.BLUE_GLOWSHROOM.defaultBlockState(), 3)
+                                                    .add(JBlocks.GREEN_GLOWSHROOM.defaultBlockState(), 4)
+                                                    .add(JBlocks.RED_GLOWSHROOM.defaultBlockState(), 2)))))));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_GLOWSHROOMS =
+            REGISTER.register("small_glowshrooms",
+                    () -> Feature.VEGETATION_PATCH.configured(
+                            new VegetationPatchConfiguration(
+                                    BlockTags.MOSS_REPLACEABLE.getName(),
+                                    BlockStateProvider.simple(Blocks.DEEPSLATE),
+                                    () -> SMALL_GLOWSHROOMS_VEG.get().placed(),
+                                    CaveSurface.FLOOR,
+                                    ConstantInt.of(1),
+                                    0.0F,
+                                    1,
+                                    0.1F,
+                                    UniformInt.of(1, 2),
+                                    0.1F)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> LUNIUM_ORE =
+            REGISTER.register("lunium_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.LUNIUM_ORE.defaultBlockState()),
+                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_LUNIUM_ORE.defaultBlockState())),
+                    9)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> LUNIUM_ORE_BURIED =
+            REGISTER.register("lunium_ore_buried", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.LUNIUM_ORE.defaultBlockState()),
+                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_LUNIUM_ORE.defaultBlockState())),
+                    9,
+                    0.5F)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
+            REGISTER.register("sapphire_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.LUNIUM_ORE.defaultBlockState()),
+                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_LUNIUM_ORE.defaultBlockState())),
+                    9)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE_BURIED =
+            REGISTER.register("sapphire_ore_buried", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.SAPPHIRE_ORE.defaultBlockState()),
+                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_SAPPHIRE_ORE.defaultBlockState())),
+                    9,
+                    0.5F)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SHADIUM_ORE =
+            REGISTER.register("shadium_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.LUNIUM_ORE.defaultBlockState()),
+                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_LUNIUM_ORE.defaultBlockState())),
+                    9)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SHADIUM_ORE_BURIED =
+            REGISTER.register("shadium_ore_buried", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(STONE_ORE_REPLACEABLES, JBlocks.SHADIUM_ORE.defaultBlockState()),
+                    OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, JBlocks.DEEPSLATE_SHADIUM_ORE.defaultBlockState())),
+                    9,
+                    0.5F)));
+
 
     //FIXME port
     /*public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
@@ -235,60 +336,6 @@ public class JConfiguredFeatures {
                     .range(250)
                     .count(64))
                     .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_GLOWSHROOMS =
-            REGISTER.register("tall_glowshrooms",
-                            Decoration.UNDERGROUND_DECORATION,
-                            () -> Feature.RANDOM_PATCH
-                                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                                            new WeightedStateProvider()
-                                                    .add(JBlocks.TALL_GREEN_GLOWSHROOM.defaultBlockState(), 1)
-                                                    .add(JBlocks.TALL_BLUE_GLOWSHROOM.defaultBlockState(), 1)
-                                                    .add(JBlocks.TALL_RED_GLOWSHROOM.defaultBlockState(), 1),
-                                            new DoublePlantPlacer()))
-                                            .tries(64)
-                                            .xspread(6)
-                                            .zspread(6)
-                                            .whitelist(ImmutableSet.of(
-                                                    Blocks.STONE,
-                                                    Blocks.COBBLESTONE,
-                                                    Blocks.MOSSY_COBBLESTONE,
-                                                    Blocks.ANDESITE,
-                                                    Blocks.GRANITE,
-                                                    Blocks.DIORITE))
-                                            .noProjection()
-                                            .build())
-                                    .range(55)
-                                    .count(1))
-                    .setBiomePredicate(COMMON_BIOMES)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_GLOWSHROOMS =
-            REGISTER.register("small_glowshrooms",
-                    Decoration.UNDERGROUND_DECORATION,
-                    () -> Feature.RANDOM_PATCH
-                            .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                                    new WeightedStateProvider()
-                                            .add(JBlocks.GREEN_GLOWSHROOM.defaultBlockState(), 1)
-                                            .add(JBlocks.BLUE_GLOWSHROOM.defaultBlockState(), 1)
-                                            .add(JBlocks.RED_GLOWSHROOM.defaultBlockState(), 1),
-                                    new SimpleBlockPlacer()))
-                                    .tries(128)
-                                    .xspread(6)
-                                    .zspread(6)
-                                    .whitelist(ImmutableSet.of(
-                                            Blocks.STONE,
-                                            Blocks.COBBLESTONE,
-                                            Blocks.MOSSY_COBBLESTONE,
-                                            Blocks.ANDESITE,
-                                            Blocks.GRANITE,
-                                            Blocks.DIORITE))
-                                    .noProjection()
-                                    .build())
-                            .range(55)
-                            .count(1))
-                    .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWING_FUNGI =
