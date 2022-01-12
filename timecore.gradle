@@ -1,0 +1,88 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url = 'https://maven.minecraftforge.net/' }
+        maven {
+            name = "TimeConqueror's Maven"
+            url = "https://repo.repsy.io/mvn/timeconqueror/mc/"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.27-patched'
+        classpath "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:7.0.0"
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+if (file("timecore.properties").exists()) {
+    ext.tcProps = parseConfig(file("timecore.properties"))
+} else {
+    throw new IllegalStateException("timecore.properties weren't found in the root of the project.\nPlease create the file and add the following property:\ntimecore.version=<VERSION_PLACEHOLDER>")
+}
+
+if (!tcProps.timecore.containsKey("version") || tcProps.timecore.version.toString().isEmpty()) {
+    throw new IllegalStateException("timecore.properties exists, but the property timecore.version=<VERSION_PLACEHOLDER> was not found or is empty.")
+}
+
+configurations {
+    //library - 3rd-party library (not a mod)
+    implementation.extendsFrom(library)
+}
+
+// Allows to 3rd libraries be added to dev workspace
+minecraft.runs.all {
+    lazyToken('minecraft_classpath') {
+        configurations.library.copyRecursive().resolve().collect { it.absolutePath }.join(File.pathSeparator)
+    }
+}
+
+dependencies {
+    groovy.lang.Closure withoutAnnotations = { exclude group: 'org.jetbrains', module: 'annotations' }
+    library "org.jetbrains.kotlin:kotlin-stdlib-jdk8", withoutAnnotations
+    library "org.jetbrains.kotlin:kotlin-reflect", withoutAnnotations
+
+    implementation fg.deobf("ru.timeconqueror:TimeCore:${tcProps.timecore.version}:dev")
+}
+
+shadowJar {
+    archiveClassifier.set('')
+    configurations = []
+
+    def shadowPackages = [
+            'kotlin',
+            'org.intellij',
+            'org.jetbrains'
+    ]
+
+    shadowPackages.forEach {
+        relocate(it, "tcrepack.$it")
+    }
+}
+
+reobf {
+    shadowJar {}
+}
+
+tasks.build.dependsOn reobfShadowJar
+jar.finalizedBy('reobfShadowJar')
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = '17'
+        languageVersion = '1.6'
+        freeCompilerArgs = Arrays.asList("-Xjvm-default=all", "-Xopt-in=kotlin.RequiresOptIn")
+    }
+}
+
+static def parseConfig(File config) {
+    config.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return new ConfigSlurper().parse(prop)
+    }
+}

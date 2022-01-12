@@ -23,7 +23,7 @@ buildscript {
 
 apply plugin: 'kotlin'
 apply plugin: 'com.github.johnrengelman.shadow'
-apply from: 'https://raw.githubusercontent.com/TimeConqueror/Time-Core/1.18/gradle/scripts/timecore.gradle'
+apply from: 'timecore.gradle'
 
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
