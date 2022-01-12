@@ -1,12 +1,19 @@
 package net.jitl.init.world;
 
-public class JStructures {
-    //public static final Marker STRUCTURE_MARKER = MarkerManager.getMarker("JSTRUCTURES");
+public class
+JStructures {
+    /*
+    public static final Marker STRUCTURE_MARKER = MarkerManager.getMarker("JSTRUCTURES");
 
-    //@AutoRegistrable
-    //private static final StructureFeatureRegister REGISTER = new StructureFeatureRegister(JITL.MODID);
+    @AutoRegistrable
+    private static final StructureFeatureRegister REGISTER = new StructureFeatureRegister(JITL.MODID);
 
-    /*public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
+    public static final StructureFeatureRegister.StructureHolder<JigsawConfiguration, IllagerBunkerStructure> ILlAGER_BUNKER =
+            REGISTER.register("illager_bunker", IllagerBunkerStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(40, 10), JigsawConfiguration.CODEC, new JigsawConfiguration(, 1))
+                    .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
+    public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
@@ -38,13 +45,6 @@ public class JStructures {
     public static final StructureHolder<NoneFeatureConfiguration, EucaDungeonStructure> EUCA_SHPHERE_DUNGEON =
             REGISTER.register("euca_sphere_dungeon", EucaDungeonStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.EUCA_WORLD)
-                    .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
-                    .asHolder();
-
-    public static final StructureHolder<NoneFeatureConfiguration, IllagerBunkerStructure> ILlAGER_BUNKER =
-            REGISTER.register("illager_bunker", IllagerBunkerStructure::new, TimeStructureSeparationSettings.create(40, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
-                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
-                    .allowedInBiomes((biomeResourceKey, biome) -> biome.getBiomeCategory() == Biome.BiomeCategory.MESA)
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 

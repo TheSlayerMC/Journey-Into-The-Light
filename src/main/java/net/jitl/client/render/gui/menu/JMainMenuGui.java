@@ -27,6 +27,7 @@ import net.minecraft.client.renderer.PanoramaRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -44,10 +45,11 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
+import java.util.function.Consumer;
 
+//FIXME fix buttons
 @OnlyIn(Dist.CLIENT)
 public class JMainMenuGui extends TitleScreen {
-
 	private static final Logger LOGGER = LogManager.getLogger();
 	public static final CubeMap CUBE_MAP = new CubeMap(JITL.rl("textures/gui/title/background/panorama"));
 	private static final ResourceLocation PANORAMA_OVERLAY = new ResourceLocation("textures/gui/title/background/panorama_overlay.png");
@@ -57,7 +59,6 @@ public class JMainMenuGui extends TitleScreen {
 	private String splash;
 	private Button resetDemoButton;
 	private static final ResourceLocation MINECRAFT_LOGO = JITL.rl("textures/gui/title/logo.png");
-	private static final ResourceLocation MINECRAFT_EDITION = new ResourceLocation("textures/gui/title/edition.png");
 
 	/**
 	 * Has the check for a realms notification screen been performed?
@@ -124,16 +125,16 @@ public class JMainMenuGui extends TitleScreen {
 		}
 		NotificationModUpdateScreen modUpdateNotification = NotificationModUpdateScreen.init(this, modButton);
 
-		this.addWidget(new JImageButton(this.width / 2 - 206, j + 75, 20, 20, 0, 0, 20, LANGUAGE_TEXTURE, 20, 40, (button9_) -> {
+		this.addRenderableWidget(new JImageButton(this.width / 2 - 206, j + 75, 20, 20, 0, 0, 20, LANGUAGE_TEXTURE, 20, 40, (button9_) -> {
 			this.minecraft.setScreen(new LanguageSelectScreen(this, this.minecraft.options, this.minecraft.getLanguageManager()));
 		}, new TranslatableComponent("narrator.button.language")));
-		this.addWidget(new JButton(this.width / 2 - 206, j + 72 + 12 - 39, 200, 20, new TranslatableComponent("menu.options"), (button8_) -> {
+		this.addRenderableWidget(new JButton(this.width / 2 - 206, j + 72 + 12 - 39, 200, 20, new TranslatableComponent("menu.options"), (button8_) -> {
 			this.minecraft.setScreen(new OptionsScreen(this, this.minecraft.options));
 		}, false));
-		this.addWidget(new JButton(this.width / 2 + 5, j + 72 + 12 - 39, 200, 20, new TranslatableComponent("menu.quit"), (button7_) -> {
+		this.addRenderableWidget(new JButton(this.width / 2 + 5, j + 72 + 12 - 39, 200, 20, new TranslatableComponent("menu.quit"), (button7_) -> {
 			this.minecraft.stop();
 		}, true));
-		this.addWidget(new JImageButton(this.width / 2 + 185, j + 75, 20, 20, 0, 0, 20, ACCESSIBILITY_TEXTURE, 32, 64, (button6_) -> {
+		this.addRenderableWidget(new JImageButton(this.width / 2 + 185, j + 75, 20, 20, 0, 0, 20, ACCESSIBILITY_TEXTURE, 32, 64, (button6_) -> {
 			this.minecraft.setScreen(new AccessibilityOptionsScreen(this, this.minecraft.options));
 		}, new TranslatableComponent("narrator.button.accessibility")));
 		this.minecraft.setConnectedToRealms(false);
@@ -152,23 +153,31 @@ public class JMainMenuGui extends TitleScreen {
 	 * Adds Singleplayer and Multiplayer buttons on Main Menu for players who have bought the game.
 	 */
 	private void createNormalMenuOptions(int yIn) {
-		this.addWidget(new JButton(this.width / 2 - 206, yIn - 15, 200, 20, new TranslatableComponent("menu.singleplayer"), (button5_) -> {
+		this.addRenderableWidget(new JButton(this.width / 2 - 206, yIn - 15, 200, 20, new TranslatableComponent("menu.singleplayer"), (button5_) -> {
 			assert this.minecraft != null;
 			this.minecraft.setScreen(new SelectWorldScreen(this));
 		}, false));
 		assert this.minecraft != null;
 		boolean flag = this.minecraft.allowsMultiplayer();
-		Button.OnTooltip button$itooltip = flag ? Button.NO_TOOLTIP : (button1_, matrixStack1_, int_, int1_) -> {
-			if (!button1_.active) {
-				this.renderTooltip(matrixStack1_, this.minecraft.font.split(new TranslatableComponent("title.multiplayer.disabled"), Math.max(this.width / 2 - 43, 170)), int_, int1_);
+		Button.OnTooltip button$itooltip = flag ? Button.NO_TOOLTIP : new Button.OnTooltip() {
+			private final Component text = new TranslatableComponent("title.multiplayer.disabled");
+
+			public void onTooltip(Button button10_, PoseStack poseStack3_, int int_, int int1_) {
+				if (!button10_.active) {
+					JMainMenuGui.this.renderTooltip(poseStack3_, JMainMenuGui.this.minecraft.font.split(this.text, Math.max(JMainMenuGui.this.width / 2 - 43, 170)), int_, int1_);
+				}
+
 			}
 
+			public void narrateTooltip(Consumer<Component> consumer_) {
+				consumer_.accept(this.text);
+			}
 		};
-		(this.addWidget(new JButton(this.width / 2 + 5, yIn - 15, 200, 20, new TranslatableComponent("menu.multiplayer"), (button4_) -> {
+		(this.addRenderableWidget(new JButton(this.width / 2 + 5, yIn - 15, 200, 20, new TranslatableComponent("menu.multiplayer"), (button4_) -> {
 			Screen screen = this.minecraft.options.skipMultiplayerWarning ? new JoinMultiplayerScreen(this) : new SafetyScreen(this);
 			this.minecraft.setScreen(screen);
 		}, button$itooltip, true))).active = flag;
-		(this.addWidget(new JButton(this.width / 2 + 5, yIn + 15, 200, 20, new TranslatableComponent("menu.online"), (button3_) -> {
+		(this.addRenderableWidget(new JButton(this.width / 2 + 5, yIn + 15, 200, 20, new TranslatableComponent("menu.online"), (button3_) -> {
 			this.realmsButtonClicked();
 		}, button$itooltip, true))).active = flag;
 	}
@@ -178,7 +187,7 @@ public class JMainMenuGui extends TitleScreen {
 	 */
 	private void createDemoMenuOptions(int yIn, int rowHeightIn) {
 		boolean flag = this.checkDemoWorldPresence();
-		this.addWidget(new Button(this.width / 2 - 100, yIn, 200, 20, new TranslatableComponent("menu.playdemo"), (button2_) -> {
+		this.addRenderableWidget(new Button(this.width / 2 - 100, yIn, 200, 20, new TranslatableComponent("menu.playdemo"), (button2_) -> {
 			if (flag) {
 				this.minecraft.loadLevel("Demo_World");
 			} else {
@@ -187,13 +196,31 @@ public class JMainMenuGui extends TitleScreen {
 			}
 
 		}));
-		this.resetDemoButton = this.addWidget(new Button(this.width / 2 - 100, yIn + rowHeightIn * 1, 200, 20, new TranslatableComponent("menu.resetdemo"), (button_) -> {
-			LevelStorageSource saveformat = this.minecraft.getLevelSource();
+		this.resetDemoButton = this.addRenderableWidget(new Button(this.width / 2 - 100, yIn + rowHeightIn * 1, 200, 20, new TranslatableComponent("menu.resetdemo"), (button_) -> {
+			LevelStorageSource levelstoragesource = this.minecraft.getLevelSource();
 
-			try (LevelStorageSource.LevelStorageAccess saveformat$levelsave = saveformat.createAccess("Demo_World")) {
-				LevelSummary worldsummary = saveformat$levelsave.getSummary();
-				if (worldsummary != null) {
-					this.minecraft.setScreen(new ConfirmScreen(this::confirmDemo, new TranslatableComponent("selectWorld.deleteQuestion"), new TranslatableComponent("selectWorld.deleteWarning", worldsummary.getLevelName()), new TranslatableComponent("selectWorld.deleteButton"), CommonComponents.GUI_CANCEL));
+			try {
+				LevelStorageSource.LevelStorageAccess levelstoragesource$levelstorageaccess = levelstoragesource.createAccess("Demo_World");
+
+				try {
+					LevelSummary levelsummary = levelstoragesource$levelstorageaccess.getSummary();
+					if (levelsummary != null) {
+						this.minecraft.setScreen(new ConfirmScreen(this::confirmDemo, new TranslatableComponent("selectWorld.deleteQuestion"), new TranslatableComponent("selectWorld.deleteWarning", levelsummary.getLevelName()), new TranslatableComponent("selectWorld.deleteButton"), CommonComponents.GUI_CANCEL));
+					}
+				} catch (Throwable throwable1) {
+					if (levelstoragesource$levelstorageaccess != null) {
+						try {
+							levelstoragesource$levelstorageaccess.close();
+						} catch (Throwable throwable) {
+							throwable1.addSuppressed(throwable);
+						}
+					}
+
+					throw throwable1;
+				}
+
+				if (levelstoragesource$levelstorageaccess != null) {
+					levelstoragesource$levelstorageaccess.close();
 				}
 			} catch (IOException ioexception) {
 				SystemToast.onWorldAccessFailure(this.minecraft, "Demo_World");
@@ -205,8 +232,29 @@ public class JMainMenuGui extends TitleScreen {
 	}
 
 	private boolean checkDemoWorldPresence() {
-		try (LevelStorageSource.LevelStorageAccess saveformat$levelsave = this.minecraft.getLevelSource().createAccess("Demo_World")) {
-			return saveformat$levelsave.getSummary() != null;
+		try {
+			LevelStorageSource.LevelStorageAccess levelstoragesource$levelstorageaccess = this.minecraft.getLevelSource().createAccess("Demo_World");
+
+			boolean flag;
+			try {
+				flag = levelstoragesource$levelstorageaccess.getSummary() != null;
+			} catch (Throwable throwable1) {
+				if (levelstoragesource$levelstorageaccess != null) {
+					try {
+						levelstoragesource$levelstorageaccess.close();
+					} catch (Throwable throwable) {
+						throwable1.addSuppressed(throwable);
+					}
+				}
+
+				throw throwable1;
+			}
+
+			if (levelstoragesource$levelstorageaccess != null) {
+				levelstoragesource$levelstorageaccess.close();
+			}
+
+			return flag;
 		} catch (IOException ioexception) {
 			SystemToast.onWorldAccessFailure(this.minecraft, "Demo_World");
 			LOGGER.warn("Failed to read demo world data", ioexception);
@@ -225,11 +273,12 @@ public class JMainMenuGui extends TitleScreen {
 		}
 
 		float f = this.fading ? (float) (Util.getMillis() - this.fadeInStart) / 1000.0F : 1.0F;
-		fill(matrixStack, 0, 0, this.width, this.height, -1);
+		//fill(matrixStack, 0, 0, this.width, this.height, -1);
 		this.panorama.render(partialTicks, Mth.clamp(f, 0.0F, 1.0F));
 		int j = this.width / 2 - 137;
 		assert this.minecraft != null;
-		this.minecraft.getTextureManager().bindForSetup(PANORAMA_OVERLAY);
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShaderTexture(0, PANORAMA_OVERLAY);
 		RenderSystem.enableBlend();
 		RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.fading ? (float) Mth.ceil(Mth.clamp(f, 0.0F, 1.0F)) : 1.0F);
@@ -241,7 +290,6 @@ public class JMainMenuGui extends TitleScreen {
 			RenderSystem.setShader(GameRenderer::getPositionTexShader);
 			RenderSystem.setShaderTexture(0, MINECRAFT_LOGO);
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f1);
-			RenderSystem.setShaderTexture(0, MINECRAFT_EDITION);
 			blit(matrixStack, j + 23, 36, 0.0F, 0.0F, 227, 55, 227, 55);
 
 			net.minecraftforge.client.ForgeHooksClient.renderMainMenu(this, matrixStack, this.font, this.width, this.height, l);
@@ -297,11 +345,12 @@ public class JMainMenuGui extends TitleScreen {
 			}*/
 
 			for(GuiEventListener guieventlistener : this.children()) {
-				if (guieventlistener instanceof AbstractWidget) {//FIXME fix?
-					((AbstractWidget)guieventlistener).setAlpha(f1);
+				if (guieventlistener instanceof AbstractWidget) {
+					((AbstractWidget) guieventlistener).setAlpha(f1);
 				}
 			}
 
+			//super.render(matrixStack, mouseX, mouseY, partialTicks);
 			if (this.realmsNotificationsEnabled() && f1 >= 1.0F) {
 				this.realmsNotificationsScreen.render(matrixStack, mouseX, mouseY, partialTicks);
 			}
@@ -330,18 +379,34 @@ public class JMainMenuGui extends TitleScreen {
 		}
 	}
 
-	private void confirmDemo(boolean boolean_) {
-		if (boolean_) {
-			assert this.minecraft != null;
-			try (LevelStorageSource.LevelStorageAccess saveformat$levelsave = this.minecraft.getLevelSource().createAccess("Demo_World")) {
-				saveformat$levelsave.deleteLevel();
+	private void confirmDemo(boolean delete_) {
+		if (delete_) {
+			try {
+				LevelStorageSource.LevelStorageAccess levelstoragesource$levelstorageaccess = this.minecraft.getLevelSource().createAccess("Demo_World");
+
+				try {
+					levelstoragesource$levelstorageaccess.deleteLevel();
+				} catch (Throwable throwable1) {
+					if (levelstoragesource$levelstorageaccess != null) {
+						try {
+							levelstoragesource$levelstorageaccess.close();
+						} catch (Throwable throwable) {
+							throwable1.addSuppressed(throwable);
+						}
+					}
+
+					throw throwable1;
+				}
+
+				if (levelstoragesource$levelstorageaccess != null) {
+					levelstoragesource$levelstorageaccess.close();
+				}
 			} catch (IOException ioexception) {
 				SystemToast.onWorldDeleteFailure(this.minecraft, "Demo_World");
 				LOGGER.warn("Failed to delete demo world", ioexception);
 			}
 		}
 
-		assert this.minecraft != null;
 		this.minecraft.setScreen(this);
 	}
 }
