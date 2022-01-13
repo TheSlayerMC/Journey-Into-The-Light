@@ -136,14 +136,14 @@ public class JConfiguredFeatures {
                     () -> Feature.VEGETATION_PATCH.configured(
                             new VegetationPatchConfiguration(
                                     BlockTags.MOSS_REPLACEABLE.getName(),
-                                    BlockStateProvider.simple(Blocks.DEEPSLATE),
+                                    BlockStateProvider.simple(JBlocks.DEEP_MYCELIUM),
                                     () -> TALL_GLOWSHROOMS_VEG.get().placed(),
                                     CaveSurface.FLOOR,
                                     ConstantInt.of(1),
                                     0.0F,
                                     1,
-                                    0.1F,
-                                    UniformInt.of(1, 2),
+                                    0.05F,
+                                    UniformInt.of(4, 7),
                                     0.1F)));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_GLOWSHROOMS_VEG =
@@ -161,14 +161,14 @@ public class JConfiguredFeatures {
                     () -> Feature.VEGETATION_PATCH.configured(
                             new VegetationPatchConfiguration(
                                     BlockTags.MOSS_REPLACEABLE.getName(),
-                                    BlockStateProvider.simple(Blocks.DEEPSLATE),
+                                    BlockStateProvider.simple(JBlocks.DEEP_MYCELIUM),
                                     () -> SMALL_GLOWSHROOMS_VEG.get().placed(),
                                     CaveSurface.FLOOR,
                                     ConstantInt.of(1),
                                     0.0F,
                                     1,
-                                    0.1F,
-                                    UniformInt.of(1, 2),
+                                    0.05F,
+                                    UniformInt.of(4, 7),
                                     0.1F)));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> LUNIUM_ORE =

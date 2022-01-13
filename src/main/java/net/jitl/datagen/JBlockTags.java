@@ -5,6 +5,7 @@ import net.jitl.init.JBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -50,7 +51,8 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.IRIDIUM_ORE,
                 JBlocks.DEEPSLATE_IRIDIUM_ORE,
                 JBlocks.GOLDITE_STONE,
-                JBlocks.EMPTY_BLOOD_RUNE
+                JBlocks.EMPTY_BLOOD_RUNE,
+                JBlocks.DEEP_MYCELIUM
         );
     }
 
@@ -66,6 +68,9 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.IRIDIUM_ORE,
                 JBlocks.DEEPSLATE_IRIDIUM_ORE,
                 JBlocks.DREADIRON_BLOCK
+        );
+        tag(Tags.Blocks.NEEDS_WOOD_TOOL).add(
+                JBlocks.DEEP_MYCELIUM
         );
     }
 }

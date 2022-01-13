@@ -12,6 +12,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 //TODO: remove. use block tags instead.
+@Deprecated
 public interface GroundPredicate {
 
     GroundPredicate ANY = (world, groundPos, blockState, plantDirection) -> true;
@@ -42,6 +43,7 @@ public interface GroundPredicate {
 
     GroundPredicate UNDERGROUND = SOLID_SIDE.and(blockPredicate(block ->
             block == Blocks.STONE ||
+                    block == JBlocks.DEEP_MYCELIUM ||
                     block == Blocks.DEEPSLATE ||
                     block == Blocks.COBBLESTONE ||
                     block == Blocks.ANDESITE ||

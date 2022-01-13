@@ -1,3 +1,4 @@
+73c326fe2f06f934fb51f8f56cbd7b82dca6b853 data/forge/tags/blocks/needs_wood_tool.json
 82a3bde2bef44e9fbaff953953e1ca8ee8373121 data/jitl/advancements/recipes/jitl.armor/dreadiron_boots_smithing.json
 b9223f6cc50627a07245d8b1d2057b19a8b85d79 data/jitl/advancements/recipes/jitl.armor/dreadiron_chestplate_smithing.json
 af2392c85c2188e751c876ddfdcdf9df02797d28 data/jitl/advancements/recipes/jitl.armor/dreadiron_helmet_smithing.json
@@ -75,6 +76,7 @@ cb8cbd9f221b3ed9b7780efd4b2651f99d4bfac9 data/jitl/loot_tables/blocks/cracked_du
 cc6373eb1c141de484c287c9b0310deab7006c51 data/jitl/loot_tables/blocks/crimson_quartz_ore.json
 562683e3f311582174d0667d90083655e9351b89 data/jitl/loot_tables/blocks/crumbled_permafrost.json
 79c7e5f0d8d36c1e0055eaaedd6a9d6f911d7f02 data/jitl/loot_tables/blocks/crystal_fruit.json
+c39ecff8a5c2d7de48a700459269957b21aa571e data/jitl/loot_tables/blocks/deep_mycelium.json
 ea178671db073f7b446088ba761ad10bbda0f9c2 data/jitl/loot_tables/blocks/deepslate_iridium_ore.json
 3791e5fe6a45ff69f1f79710b807878faa841633 data/jitl/loot_tables/blocks/deepslate_lunium_ore.json
 75ed09e18e2f9572a3a54ad14ff89260c57bf26c data/jitl/loot_tables/blocks/deepslate_sapphire_ore.json
@@ -174,5 +176,5 @@ fc0982b663ea6df5f33922813ae7adcf2af9a333 data/jitl/recipes/shadium_block.json
 2420b488e4ce6412f023cc4581c68272094e8462 data/jitl/recipes/shadium_ingot_from_block.json
 fd23c508a48085b803289ef74d4066d74a4aaab9 data/jitl/recipes/storon_block.json
 d7dd4bcea6587ce5a4f41ef4718558c134f1e4b1 data/jitl/recipes/storon_ingot_from_block.json
-c975361263899e6d317dfa383cafbc4a05b9cbd4 data/minecraft/tags/blocks/mineable/pickaxe.json
+e0d2312e7eed5cfec6c69dcf61b795dd9607d098 data/minecraft/tags/blocks/mineable/pickaxe.json
 a9ae064d50597855f2a656bee0e95d336e874033 data/minecraft/tags/blocks/needs_iron_tool.json

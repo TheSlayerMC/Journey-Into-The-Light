@@ -45,14 +45,14 @@ public class JPlacedFeatures {
                     "tall_glowshrooms",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.TALL_GLOWSHROOMS.get()
-                            .placed(rareUndergroundFloorPatch(1, 3, Blocks.DEEPSLATE)))
+                            .placed(undergroundFloorPatch(4, Blocks.DEEPSLATE)))
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> SMALL_GLOWSHROOMS = REGISTER.register(
                     "small_glowshrooms",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.SMALL_GLOWSHROOMS.get()
-                            .placed(undergroundFloorPatch(1, Blocks.DEEPSLATE)))
+                            .placed(undergroundFloorPatch(4, Blocks.DEEPSLATE)))
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> DEFAULT_OVERWORLD_RUINS = REGISTER.register(

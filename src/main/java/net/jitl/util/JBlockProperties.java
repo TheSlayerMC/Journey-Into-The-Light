@@ -39,18 +39,24 @@ public class JBlockProperties {
 			.strength(1.75F, 7.0F));
 
 	public static final BlockPropsFactory STONE_PROPS = new BlockPropsFactory(() -> Properties.of
-			(Material.STONE)
+					(Material.STONE)
 			.sound(SoundType.STONE)
 			.requiresCorrectToolForDrops()
 			.strength(1.5F, 6.0F));
 
+	public static final BlockPropsFactory DEEPSLATE_PROPS = new BlockPropsFactory(() -> Properties.of
+					(Material.STONE)
+			.sound(SoundType.DEEPSLATE)
+			.requiresCorrectToolForDrops()
+			.strength(2.0F, 6.0F));
+
 	public static final BlockPropsFactory CACTUS_PROPS = new BlockPropsFactory(() -> Properties.of
-			(Material.CACTUS)
+					(Material.CACTUS)
 			.sound(SoundType.WOOL)
 			.strength(0.4F));
 
 	public static final BlockPropsFactory STONE_MODEL_PROPS = new BlockPropsFactory(() -> Properties.of
-			(Material.STONE)
+					(Material.STONE)
 			.sound(SoundType.STONE)
 			.requiresCorrectToolForDrops()
 			.noOcclusion()

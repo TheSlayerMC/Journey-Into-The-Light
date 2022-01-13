@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -65,25 +66,27 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 
 		registerDropsSelf(JBlocks.BLOOD_ROCK);
 		registerDropsSelf(JBlocks.BLOOD_ROCK_BRICKS);
-		registerDropsSelf(JBlocks.EMPTY_BLOOD_RUNE);
-		registerDropsSelf(JBlocks.CARVED_BLOOD_ROCK);
-		registerDropsSelf(JBlocks.SMOOTH_BLOOD_ROCK);
-		registerDropsSelf(JBlocks.BLOOD_ROCK_PILLAR);
-		registerDropsOther(JBlocks.BLOOD_RUNE_DEATH, JBlocks.EMPTY_BLOOD_RUNE);
-		registerDropsOther(JBlocks.BLOOD_RUNE_FLESH, JBlocks.EMPTY_BLOOD_RUNE);
-		registerDropsOther(JBlocks.BLOOD_RUNE_LIFE, JBlocks.EMPTY_BLOOD_RUNE);
-		registerDropsOther(JBlocks.BLOOD_RUNE_SOUL, JBlocks.EMPTY_BLOOD_RUNE);
-		registerDropsOther(JBlocks.CHARGED_RUNIC_CONNECTOR, JBlocks.RUNIC_CONNECTOR);
+        registerDropsSelf(JBlocks.EMPTY_BLOOD_RUNE);
+        registerDropsSelf(JBlocks.CARVED_BLOOD_ROCK);
+        registerDropsSelf(JBlocks.SMOOTH_BLOOD_ROCK);
+        registerDropsSelf(JBlocks.BLOOD_ROCK_PILLAR);
+        registerDropsOther(JBlocks.BLOOD_RUNE_DEATH, JBlocks.EMPTY_BLOOD_RUNE);
+        registerDropsOther(JBlocks.BLOOD_RUNE_FLESH, JBlocks.EMPTY_BLOOD_RUNE);
+        registerDropsOther(JBlocks.BLOOD_RUNE_LIFE, JBlocks.EMPTY_BLOOD_RUNE);
+        registerDropsOther(JBlocks.BLOOD_RUNE_SOUL, JBlocks.EMPTY_BLOOD_RUNE);
+        registerDropsOther(JBlocks.CHARGED_RUNIC_CONNECTOR, JBlocks.RUNIC_CONNECTOR);
 
-		registerDropsOtherWithoutSilkTouch(JBlocks.GRASSY_PERMAFROST, JBlocks.CRUMBLED_PERMAFROST);
-		registerDropsSelf(JBlocks.PERMAFROST);
-		registerDropsSelf(JBlocks.CRUMBLED_PERMAFROST);
+        registerDropsOtherWithoutSilkTouch(JBlocks.DEEP_MYCELIUM, Blocks.DEEPSLATE);
 
-		registerDropsSelf(JBlocks.PACKED_SNOW_BRICKS);
-		registerDropsSelf(JBlocks.PACKED_ICE_BRICKS);
-		registerDropsSelf(JBlocks.BITTERWOOD_CAMPFIRE);
+        registerDropsOtherWithoutSilkTouch(JBlocks.GRASSY_PERMAFROST, JBlocks.CRUMBLED_PERMAFROST);
+        registerDropsSelf(JBlocks.PERMAFROST);
+        registerDropsSelf(JBlocks.CRUMBLED_PERMAFROST);
 
-		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_LARGE);
+        registerDropsSelf(JBlocks.PACKED_SNOW_BRICKS);
+        registerDropsSelf(JBlocks.PACKED_ICE_BRICKS);
+        registerDropsSelf(JBlocks.BITTERWOOD_CAMPFIRE);
+
+        registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_LARGE);
 		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_MED);
 		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_SMALL);
 		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_TINY);
