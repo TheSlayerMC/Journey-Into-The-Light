@@ -25,7 +25,7 @@ public class IllagerBunkerStructure extends StructureFeature<JigsawConfiguration
 
     @Override
     public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.SURFACE_STRUCTURES;
+        return GenerationStep.Decoration.UNDERGROUND_STRUCTURES;
     }
 
     @Override

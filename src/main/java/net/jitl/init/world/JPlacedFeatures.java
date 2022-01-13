@@ -26,20 +26,18 @@ public class JPlacedFeatures {
     @AutoRegistrable
     public static final PlacedFeatureRegister REGISTER = new PlacedFeatureRegister(JITL.MODID);
 
-    //TODO: rename to "tartberry_bush"
-    public static final Promised<? extends PlacedFeature> BRADBERRY_BUSH = REGISTER.register(
-                    "bradberry_bush",
+    public static final Promised<? extends PlacedFeature> TARTBERRY_BUSH = REGISTER.register(
+                    "tartberry_bush",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
-                    () -> JConfiguredFeatures.BRADBERRY_BUSH.get()
+                    () -> JConfiguredFeatures.TARTBERRY_BUSH.get()
                             .placed(patch(5)))
             .allowedInBiomes(BiomePredicate.IN_FORESTS)
             .asPromise();
 
-    //TODO: rename to "deepvines"
-    public static final Promised<? extends PlacedFeature> CAVE_VINES = REGISTER.register(
-                    "cave_vines",
+    public static final Promised<? extends PlacedFeature> DEEPVINE = REGISTER.register(
+                    "deepvine",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
-                    () -> JConfiguredFeatures.CAVE_VINES.get()
+                    () -> JConfiguredFeatures.DEEPVINE.get()
                             .placed(undergroundCeilingPatch(75, Blocks.DEEPSLATE)))
             .asPromise();
 
@@ -77,8 +75,8 @@ public class JPlacedFeatures {
                     "ore_lunium",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.LUNIUM_ORE.get()
-                            .placed(commonOrePlacement(
-                                    4,
+                            .placed(rareOrePlacement(
+                                    8,
                                     HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15)))))
             .asPromise();
 
@@ -86,17 +84,17 @@ public class JPlacedFeatures {
                     "ore_lunium_lower",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.LUNIUM_ORE_BURIED.get()
-                            .placed(commonOrePlacement(
-                                    8,
-                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)))))
+                            .placed(rareOrePlacement(
+                                    4,
+                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))))
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> ORE_SAPPHIRE = REGISTER.register(
                     "ore_sapphire",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.SAPPHIRE_ORE.get()
-                            .placed(commonOrePlacement(
-                                    4,
+                            .placed(rareOrePlacement(
+                                    7,
                                     HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15)))))
             .asPromise();
 
@@ -104,17 +102,17 @@ public class JPlacedFeatures {
                     "ore_sapphire_lower",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.SAPPHIRE_ORE_BURIED.get()
-                            .placed(commonOrePlacement(
-                                    8,
-                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)))))
+                            .placed(rareOrePlacement(
+                                    4,
+                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))))
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> ORE_SHADIUM = REGISTER.register(
                     "ore_shadium",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.SHADIUM_ORE.get()
-                            .placed(commonOrePlacement(
-                                    4,
+                            .placed(rareOrePlacement(
+                                    7,
                                     HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15)))))
             .asPromise();
 
@@ -122,27 +120,28 @@ public class JPlacedFeatures {
                     "ore_shadium_lower",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.SHADIUM_ORE_BURIED.get()
-                            .placed(commonOrePlacement(
-                                    8,
-                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)))))
+                            .placed(rareOrePlacement(
+                                    4,
+                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))))
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> ORE_IRIDIUM = REGISTER.register(
                     "ore_iridium",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.IRIDIUM_ORE.get()
-                            .placed(commonOrePlacement(
-                                    4,
+                            .placed(rareOrePlacement(
+                                    7,
                                     HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15)))))
             .asPromise();
 
+    //TODO: adjust ore chances
     public static final Promised<? extends PlacedFeature> ORE_IRIDIUM_LOWER = REGISTER.register(
                     "ore_iridium_lower",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.IRIDIUM_ORE_BURIED.get()
-                            .placed(commonOrePlacement(
-                                    8,
-                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32)))))
+                            .placed(rareOrePlacement(
+                                    4,
+                                    HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))))
             .asPromise();
 
     private static List<PlacementModifier> patch(int count) {

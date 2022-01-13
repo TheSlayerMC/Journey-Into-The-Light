@@ -13,6 +13,6 @@ public class DyingFrozenTree extends AbstractTreeGrower {
 
     @Nullable
     protected ConfiguredFeature<TreeConfiguration, ?> getConfiguredFeature(Random randomIn, boolean largeHive) {
-        return (ConfiguredFeature<TreeConfiguration, ?>) JConfiguredFeatures.BRADBERRY_BUSH.get(); //FIX Add back feature
+        return (ConfiguredFeature<TreeConfiguration, ?>) JConfiguredFeatures.TARTBERRY_BUSH.get(); //FIX Add back feature
     }
 }

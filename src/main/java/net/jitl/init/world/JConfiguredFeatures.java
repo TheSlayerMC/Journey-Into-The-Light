@@ -46,8 +46,8 @@ public class JConfiguredFeatures {
     @AutoRegistrable
     private static final SimpleVanillaRegister<ConfiguredFeature<?, ?>> REGISTER = new SimpleVanillaRegister<ConfiguredFeature<?, ?>>(JITL.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> BRADBERRY_BUSH =
-            REGISTER.register("patch_bradberry_bush", surfacePatchFeature(() -> JBlocks.TARTBERRY_BUSH.defaultBlockState()));
+    public static final Promised<? extends ConfiguredFeature<?, ?>> TARTBERRY_BUSH =
+            REGISTER.register("tartberry_bush", surfacePatchFeature(() -> JBlocks.TARTBERRY_BUSH.defaultBlockState()));
 
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> DEFAULT_OVERWORLD_RUINS =
@@ -85,8 +85,8 @@ public class JConfiguredFeatures {
                                     8,
                                     BuiltInLootTables.DESERT_PYRAMID)));
 
-    public static final Promised<? extends ConfiguredFeature<BlockColumnConfiguration, ?>> CAVE_VINES_VEG =
-            REGISTER.register("cave_vines_veg",
+    public static final Promised<? extends ConfiguredFeature<BlockColumnConfiguration, ?>> DEEPVINE_VEG =
+            REGISTER.register("deepvine_veg",
                     () -> Feature.BLOCK_COLUMN.configured(
                             new BlockColumnConfiguration(List.of(
                                     BlockColumnConfiguration.layer(
@@ -103,13 +103,13 @@ public class JConfiguredFeatures {
                                     BlockPredicate.ONLY_IN_AIR_PREDICATE,
                                     true)));
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> CAVE_VINES =
-            REGISTER.register("cave_vines",
+    public static final Promised<? extends ConfiguredFeature<?, ?>> DEEPVINE =
+            REGISTER.register("deepvine",
                     () -> Feature.VEGETATION_PATCH.configured(
                             new VegetationPatchConfiguration(
                                     BlockTags.MOSS_REPLACEABLE.getName(),
                                     BlockStateProvider.simple(Blocks.DEEPSLATE),
-                                    () -> CAVE_VINES_VEG.get().placed(),
+                                    () -> DEEPVINE_VEG.get().placed(),
                                     CaveSurface.CEILING,
                                     UniformInt.of(1, 2),
                                     0.0F,
