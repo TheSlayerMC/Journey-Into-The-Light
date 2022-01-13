@@ -208,14 +208,14 @@
     ]
   },
   "noise": {
-    "min_y": 0,
-    "height": 256,
+    "min_y": -64,
+    "height": 128,
     "size_horizontal": 1,
     "size_vertical": 2,
     "amplified": false,
     "sampling": {
       "xz_scale": 1,
-      "y_scale": 1,
+      "y_scale": 2,
       "xz_factor": 80,
       "y_factor": 120
     },
@@ -235,7 +235,7 @@
       "jaggedness": 0
     }
   },
-  "sea_level": 63,
+  "sea_level": 20,
   "structures": {
     "structures": { }
   }

@@ -14,7 +14,7 @@
             "humidity": 0.0,
             "continentalness": 0,
             "erosion": 0,
-            "weirdness": 0.45,
+            "weirdness": 0.0,
             "depth": 0.0,
             "offset": 0
           }
@@ -26,7 +26,7 @@
             "humidity": 0,
             "continentalness": 0,
             "erosion": 0,
-            "weirdness": 0.25,
+            "weirdness": 0.0,
             "depth": 0.0,
             "offset": 0
           }
@@ -38,7 +38,7 @@
             "humidity": 0,
             "continentalness": 0,
             "erosion": 0,
-            "weirdness": 0.45,
+            "weirdness": 0.0,
             "depth": 0.0,
             "offset": 0
           }
@@ -50,7 +50,7 @@
             "humidity": 0,
             "continentalness": 0,
             "erosion": 0,
-            "weirdness": 0.65,
+            "weirdness": 0.0,
             "depth": 0,
             "offset": 0
           }

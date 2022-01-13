@@ -14,6 +14,6 @@
   "logical_height": 256,
   "infiniburn": "minecraft:infiniburn_overworld",
   "effects": "jitl:boil",
-  "min_y": 0,
+  "min_y": -64,
   "height": 256
 }
