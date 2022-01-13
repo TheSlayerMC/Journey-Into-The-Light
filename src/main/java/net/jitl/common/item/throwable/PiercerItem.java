@@ -100,8 +100,5 @@ public class PiercerItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-
-        //how to fuck do we add a damage tooltip to this?
-        // tooltip.add(new TranslationTextComponent("damage").append(damage + ""));
     }
 }

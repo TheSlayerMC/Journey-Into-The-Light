@@ -2,8 +2,8 @@ package net.jitl.client;
 
 import net.jitl.JITL;
 import net.jitl.init.JBlocks;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -24,8 +24,8 @@ public class ModelLoadingHandler {
         ItemBlockRenderTypes.setRenderLayer(JBlocks.DEEPSLATE_LUNIUM_ORE, RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(JBlocks.FIRESTONE_ORE, RenderType.cutout());
 
-        ItemBlockRenderTypes.setRenderLayer(JBlocks.CAVE_VINES, RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(JBlocks.CAVE_VINES_PLANT, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.DEEPVINE, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(JBlocks.DEEPVINE_PLANT, RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(JBlocks.GREEN_GLOWSHROOM, RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(JBlocks.RED_GLOWSHROOM, RenderType.cutout());

@@ -60,7 +60,7 @@ public class JItems {
     public static final Item LOOT_POUCH_GOLD = promise();
     public static final Item LOOT_POUCH_DIAMOND = promise();
 
-    public static final Item BRADBERRY = promise();
+    public static final Item TARTBERRY = promise();
     public static final Item HONGOSHROOM = promise();
     public static final Item HONGLOWSHROOM = promise();
 

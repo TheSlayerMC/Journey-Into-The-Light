@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "jitl:cave_vines_plant"
+          "name": "jitl:deepvine_plant"
         }
       ],
       "conditions": [

@@ -47,7 +47,7 @@ public class JConfiguredFeatures {
     private static final SimpleVanillaRegister<ConfiguredFeature<?, ?>> REGISTER = new SimpleVanillaRegister<ConfiguredFeature<?, ?>>(JITL.MODID, BuiltinRegistries.CONFIGURED_FEATURE);
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BRADBERRY_BUSH =
-            REGISTER.register("patch_bradberry_bush", surfacePatchFeature(() -> JBlocks.BRADBERRY_BUSH.defaultBlockState()));
+            REGISTER.register("patch_bradberry_bush", surfacePatchFeature(() -> JBlocks.TARTBERRY_BUSH.defaultBlockState()));
 
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> DEFAULT_OVERWORLD_RUINS =
@@ -95,10 +95,10 @@ public class JConfiguredFeatures {
                                                             .add(UniformInt.of(0, 3), 5)
                                                             .add(UniformInt.of(1, 7), 1)
                                                             .build()),
-                                            BlockStateProvider.simple(JBlocks.CAVE_VINES_PLANT.defaultBlockState())),
+                                            BlockStateProvider.simple(JBlocks.DEEPVINE_PLANT.defaultBlockState())),
                                     BlockColumnConfiguration.layer(
                                             ConstantInt.of(1),
-                                            BlockStateProvider.simple(JBlocks.CAVE_VINES.defaultBlockState()))),
+                                            BlockStateProvider.simple(JBlocks.DEEPVINE.defaultBlockState()))),
                                     Direction.DOWN,
                                     BlockPredicate.ONLY_IN_AIR_PREDICATE,
                                     true)));

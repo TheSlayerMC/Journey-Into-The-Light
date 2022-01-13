@@ -92,24 +92,24 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 	}
 
 	private void initFoliageBlocks() {
-		registerDropsSelf(JBlocks.SCORCHED_CACTUS);
+        registerDropsSelf(JBlocks.SCORCHED_CACTUS);
 
-		registerShearsOnlyDropsSelf(JBlocks.ICY_IVY_PLANT);
-		registerShearsOnlyDropsOther(JBlocks.ICY_IVY, JBlocks.ICY_IVY_PLANT);
-		registerShearsOnlyDropsSelf(JBlocks.GLIMMER_ROOT_PLANT);
-		registerShearsOnlyDropsOther(JBlocks.GLIMMER_ROOT, JBlocks.GLIMMER_ROOT_PLANT);
-		registerShearsOnlyDropsSelf(JBlocks.CAVE_VINES_PLANT);
-		registerShearsOnlyDropsOther(JBlocks.CAVE_VINES, JBlocks.CAVE_VINES_PLANT);
+        registerShearsOnlyDropsSelf(JBlocks.ICY_IVY_PLANT);
+        registerShearsOnlyDropsOther(JBlocks.ICY_IVY, JBlocks.ICY_IVY_PLANT);
+        registerShearsOnlyDropsSelf(JBlocks.GLIMMER_ROOT_PLANT);
+        registerShearsOnlyDropsOther(JBlocks.GLIMMER_ROOT, JBlocks.GLIMMER_ROOT_PLANT);
+        registerShearsOnlyDropsSelf(JBlocks.DEEPVINE_PLANT);
+        registerShearsOnlyDropsOther(JBlocks.DEEPVINE, JBlocks.DEEPVINE_PLANT);
 
-		registerShearsOnlyDropsSelf(JBlocks.ICE_BUSH);
-		registerShearsOnlyDropsSelf(JBlocks.FROSTBERRY_THORN);
-		registerShearsOnlyDropsSelf(JBlocks.ICY_BRUSH);
-		registerDropsSelf(JBlocks.ICE_BUD);
-		registerDropsSelf(JBlocks.FROZEN_BLOOM);
-		registerDropsSelf(JBlocks.CICLEBLOOM);
-		registerDropsSelf(JBlocks.ICE_SHROOM_SHELF);
+        registerShearsOnlyDropsSelf(JBlocks.ICE_BUSH);
+        registerShearsOnlyDropsSelf(JBlocks.FROSTBERRY_THORN);
+        registerShearsOnlyDropsSelf(JBlocks.ICY_BRUSH);
+        registerDropsSelf(JBlocks.ICE_BUD);
+        registerDropsSelf(JBlocks.FROZEN_BLOOM);
+        registerDropsSelf(JBlocks.CICLEBLOOM);
+        registerDropsSelf(JBlocks.ICE_SHROOM_SHELF);
 
-		registerDropsSelf(JBlocks.CRYSTAL_FRUIT);
+        registerDropsSelf(JBlocks.CRYSTAL_FRUIT);
 	}
 
 	private void initUtilityBlocks() {

@@ -18,7 +18,7 @@ public class JFoods {
             .alwaysEat().build();
 
     public static final FoodProperties REDCURRANT = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.25F).fast().alwaysEat().build();
-    public static final FoodProperties BRADBERRY = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.25F).fast().alwaysEat().build();
+    public static final FoodProperties TARTBERRY = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.25F).fast().alwaysEat().build();
     public static final FoodProperties HONGOSROOM = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).build();
     public static final FoodProperties HONGLOWSROOM = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 1000, 1), 0.5F).build();
 

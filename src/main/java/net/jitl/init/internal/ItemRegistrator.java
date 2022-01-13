@@ -105,7 +105,7 @@ public class ItemRegistrator {
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(itemGrouped(),
                 (world, thrower) -> new FloroMudEntity(JEntities.FLORO_MUD_TYPE, world, thrower, 0.0F)).setSound(() -> SoundEvents.SNOWBALL_THROW));
 
-        registerItem("bradberry", "Bradberry", () -> new Item(itemGrouped().food(JFoods.BRADBERRY)));
+        registerItem("tartberry", "Tartberry", () -> new Item(itemGrouped().food(JFoods.TARTBERRY)));
 
         registerItem("fried_ghast_tentacle", "Fried Ghast Tentacle", () -> new Item(itemGrouped().food(JFoods.FRIED_GHAST_TENTACLE)));
         registerItem("flaming_ghast_tentacle", "Flaming Ghast Tentacle", () -> new Item(itemGrouped().food(JFoods.FLAMING_GHAST_TENTACLE)));

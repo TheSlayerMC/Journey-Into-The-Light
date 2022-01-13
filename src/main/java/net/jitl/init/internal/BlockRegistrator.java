@@ -79,7 +79,7 @@ public class BlockRegistrator {
         registerDefaultBlock("crimson_quartz_ore", "Crimson Quartz Ore", () -> new JOreBlock(JBlockProperties.NETHER_NETHERRACK_ORE_PROPS.create())
                 .setExpDrop(2));
 
-        registerBerryBushBlock("bradberry_bush", "Bradberry Bush", () -> JItems.BRADBERRY);
+        registerBerryBushBlock("tartberry_bush", "Tartberry Bush", () -> JItems.TARTBERRY);
         registerBerryBushBlock("redcurrant_bush", "Redcurrant Bush", () -> JItems.REDCURRANT_BERRY);
 
         registerDefaultBlock("mossy_essence_stone", "Mossy Essence Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
@@ -216,11 +216,11 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.UNDERGROUND),
                 () -> BlockModels.crossModel(JITL.tl("block/tall_red_glowshroom_top")));
 
-        registerSpeciallyRenderedBlock("cave_vines", "Cave Vines", () -> new CaveVinesTopBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
-                () -> JBlockModels.emissive(BlockModels.crossModel(JITL.tl("block/cave_vines_back")), BlockModels.crossModel(JITL.tl("block/cave_vines_front"))));
+        registerSpeciallyRenderedBlock("deepvine", "Deepvine", () -> new CaveVinesTopBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
+                () -> JBlockModels.emissive(BlockModels.crossModel(JITL.tl("block/deepvine_back")), BlockModels.crossModel(JITL.tl("block/deepvine_front"))));
 
-        registerSpeciallyRenderedBlock("cave_vines_plant", "Cave Vines", () -> new CaveVinesBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
-                () -> JBlockModels.emissive(BlockModels.crossModel(JITL.tl("block/cave_vines_plant_back")), BlockModels.crossModel(JITL.tl("block/cave_vines_plant_front"))));
+        registerSpeciallyRenderedBlock("deepvine_plant", "Deepvine", () -> new CaveVinesBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
+                () -> JBlockModels.emissive(BlockModels.crossModel(JITL.tl("block/deepvine_plant_back")), BlockModels.crossModel(JITL.tl("block/deepvine_plant_front"))));
 
         registerSpeciallyRenderedBlock("glimmer_root", "Glimmer Root", () -> new CaveVinesTopBlock(JBlockProperties.CAVE_VINE_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/glimmer_root")));

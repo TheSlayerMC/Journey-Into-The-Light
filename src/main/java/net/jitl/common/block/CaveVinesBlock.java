@@ -55,6 +55,6 @@ public class CaveVinesBlock extends GrowingPlantBodyBlock {
 
     @Override
     protected @NotNull GrowingPlantHeadBlock getHeadBlock() {
-        return JBlocks.CAVE_VINES;
+        return JBlocks.DEEPVINE;
     }
 }
