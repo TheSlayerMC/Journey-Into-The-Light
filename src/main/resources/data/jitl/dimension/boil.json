@@ -25,8 +25,14 @@
             "temperature": 1,
             "humidity": 0,
             "continentalness": 0,
-            "erosion": 0,
-            "weirdness": 0,
+            "erosion": [
+              -0.375,
+              -0.2225
+            ],
+            "weirdness": [
+              -1.0,
+              -0.9333
+            ],
             "depth": 0,
             "offset": 0
           }
