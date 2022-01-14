@@ -176,5 +176,6 @@ fc0982b663ea6df5f33922813ae7adcf2af9a333 data/jitl/recipes/shadium_block.json
 2420b488e4ce6412f023cc4581c68272094e8462 data/jitl/recipes/shadium_ingot_from_block.json
 fd23c508a48085b803289ef74d4066d74a4aaab9 data/jitl/recipes/storon_block.json
 d7dd4bcea6587ce5a4f41ef4718558c134f1e4b1 data/jitl/recipes/storon_ingot_from_block.json
-3b69990a0c0f419849f4bcf50ba4da7849d1f1fd data/minecraft/tags/blocks/mineable/pickaxe.json
+2c2742eb0364c9f0f8e01243e83246986bd7d2bf data/minecraft/tags/blocks/mineable/pickaxe.json
+2f6e7c28c325cf613ccbc077d76bf996d40a373a data/minecraft/tags/blocks/needs_diamond_tool.json
 a9ae064d50597855f2a656bee0e95d336e874033 data/minecraft/tags/blocks/needs_iron_tool.json
