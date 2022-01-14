@@ -234,27 +234,27 @@
     "amplified": false,
     "sampling": {
       "xz_scale": 1,
-      "y_scale": 1,
+      "y_scale": 2,
       "xz_factor": 80,
-      "y_factor": 160
-    },
-    "top_slide": {
-      "target": -0.078125,
-      "size": 2,
-      "offset": 8
+      "y_factor": 180
     },
     "bottom_slide": {
-      "target": 0.1171875,
-      "size": 3,
+      "target": 30,
+      "size": 1,
       "offset": 0
+    },
+    "top_slide": {
+      "target": -5,
+      "size": 1,
+      "offset": 1
     },
     "terrain_shaper": {
       "offset": -0.46875,
       "factor": 1,
-      "jaggedness": 0.0
+      "jaggedness": -0.01
     }
   },
-  "sea_level": 0,
+  "sea_level": 9,
   "structures": {
     "structures": { }
   }
