@@ -137,7 +137,7 @@
         "if_true": {
           "type": "minecraft:biome",
           "biome_is": [
-            "jitl:boil/boiling_sands"
+            "jitl:boil/charred_fields"
           ]
         },
         "then_run": {
@@ -155,7 +155,7 @@
               "then_run": {
                 "type": "minecraft:block",
                 "result_state": {
-                  "Name": "jitl:volcanic_sand"
+                  "Name": "jitl:charred_grass"
                 }
               }
             },
