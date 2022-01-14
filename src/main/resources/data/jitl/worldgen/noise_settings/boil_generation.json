@@ -228,7 +228,7 @@
   },
   "noise": {
     "min_y": -64,
-    "height": 256,
+    "height": 384,
     "size_horizontal": 1,
     "size_vertical": 2,
     "amplified": false,
@@ -236,25 +236,25 @@
       "xz_scale": 1,
       "y_scale": 2,
       "xz_factor": 80,
-      "y_factor": 160
+      "y_factor": 120
     },
     "bottom_slide": {
-      "target": 0.1171875,
-      "size": 3,
+      "target": 30,
+      "size": 1,
       "offset": 0
     },
     "top_slide": {
-      "target": -0.0788125,
-      "size": 2,
-      "offset": 8
+      "target": -10,
+      "size": 0,
+      "offset": 0
     },
     "terrain_shaper": {
       "offset": -0.46875,
       "factor": 1,
-      "jaggedness": 0
+      "jaggedness": 0.02
     }
   },
-  "sea_level": 20,
+  "sea_level": 0,
   "structures": {
     "structures": { }
   }
