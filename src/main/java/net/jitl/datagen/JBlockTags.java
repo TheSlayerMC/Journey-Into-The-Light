@@ -52,7 +52,8 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.DEEPSLATE_IRIDIUM_ORE,
                 JBlocks.GOLDITE_STONE,
                 JBlocks.EMPTY_BLOOD_RUNE,
-                JBlocks.DEEP_MYCELIUM
+                JBlocks.DEEP_MYCELIUM,
+                JBlocks.BLOODCRUST_ORE
         );
     }
 
