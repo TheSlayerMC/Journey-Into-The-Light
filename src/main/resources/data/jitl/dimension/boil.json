@@ -10,12 +10,12 @@
         {
           "biome": "jitl:boil/boil",
           "parameters": {
-            "temperature": 0,
-            "humidity": 0.0,
-            "continentalness": 0,
+            "temperature": 0.05,
+            "humidity": 0,
+            "continentalness": 0.9,
             "erosion": 0,
-            "weirdness": 0.0,
-            "depth": 0.0,
+            "weirdness": 0,
+            "depth": 0,
             "offset": 0
           }
         },
@@ -26,8 +26,8 @@
             "humidity": 0,
             "continentalness": 0,
             "erosion": 0,
-            "weirdness": 0.0,
-            "depth": 0.0,
+            "weirdness": 0,
+            "depth": 0,
             "offset": 0
           }
         },
@@ -36,10 +36,10 @@
           "parameters": {
             "temperature": 0,
             "humidity": 1,
-            "continentalness": 0,
+            "continentalness": 0.2,
             "erosion": 0,
-            "weirdness": 0.0,
-            "depth": 0.0,
+            "weirdness": 0,
+            "depth": 0,
             "offset": 0
           }
         },
@@ -48,9 +48,9 @@
           "parameters": {
             "temperature": 0,
             "humidity": 0,
-            "continentalness": 1,
+            "continentalness": 0.9,
             "erosion": 0,
-            "weirdness": 0.0,
+            "weirdness": 0,
             "depth": 0,
             "offset": 0
           }
