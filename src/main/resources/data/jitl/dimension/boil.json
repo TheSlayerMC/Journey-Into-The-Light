@@ -10,7 +10,7 @@
         {
           "biome": "jitl:boil/boil",
           "parameters": {
-            "temperature": 0.8,
+            "temperature": 0,
             "humidity": 0.0,
             "continentalness": 0,
             "erosion": 0,
@@ -22,7 +22,7 @@
         {
           "biome": "jitl:boil/boiling_sands",
           "parameters": {
-            "temperature": 0.8,
+            "temperature": 1,
             "humidity": 0,
             "continentalness": 0,
             "erosion": 0,
@@ -35,7 +35,7 @@
           "biome": "jitl:boil/charred_fields",
           "parameters": {
             "temperature": 0,
-            "humidity": 0,
+            "humidity": 1,
             "continentalness": 0,
             "erosion": 0,
             "weirdness": 0.0,
@@ -48,7 +48,7 @@
           "parameters": {
             "temperature": 0,
             "humidity": 0,
-            "continentalness": 0,
+            "continentalness": 1,
             "erosion": 0,
             "weirdness": 0.0,
             "depth": 0,
