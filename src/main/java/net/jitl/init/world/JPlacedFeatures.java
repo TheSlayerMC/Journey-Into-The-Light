@@ -30,7 +30,7 @@ public class JPlacedFeatures {
                     "tartberry_bush",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.TARTBERRY_BUSH.get()
-                            .placed(patch(5)))
+                            .placed(patch(5, 14, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.IN_FORESTS)
             .asPromise();
 
@@ -144,11 +144,28 @@ public class JPlacedFeatures {
                                     HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))))
             .asPromise();
 
-    private static List<PlacementModifier> patch(int count) {
+    public static final Promised<? extends PlacedFeature> BOIL_STALAGMITE = REGISTER.register(
+                    "boil_stalagmite",
+                    GenerationStep.Decoration.SURFACE_STRUCTURES,
+                    () -> JConfiguredFeatures.SCORCHED_STALAGMITE.get()
+                            .placed(patch(75, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.SCORCHED_WASTELAND)
+            .asPromise();
+
+    private static List<PlacementModifier> patch(int count, PlacementModifier placementModifier) {
         return List.of(
                 CountPlacement.of(count),
                 InSquarePlacement.spread(),
-                PlacementUtils.FULL_RANGE,
+                placementModifier,
+                BiomeFilter.biome());
+    }
+
+    private static List<PlacementModifier> patch(int count, int chance, PlacementModifier placementModifier) {
+        return List.of(
+                CountPlacement.of(count),
+                InSquarePlacement.spread(),
+                placementModifier,
+                RarityFilter.onAverageOnceEvery(chance),
                 BiomeFilter.biome());
     }
 

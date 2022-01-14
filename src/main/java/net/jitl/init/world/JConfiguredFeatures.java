@@ -49,7 +49,6 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> TARTBERRY_BUSH =
             REGISTER.register("tartberry_bush", surfacePatchFeature(() -> JBlocks.TARTBERRY_BUSH.defaultBlockState()));
 
-
     public static final Promised<? extends ConfiguredFeature<?, ?>> DEFAULT_OVERWORLD_RUINS =
             REGISTER.register("default_overworld_ruins",
                     () -> JFeatures.RUINS.get()
@@ -223,6 +222,8 @@ public class JConfiguredFeatures {
                     9,
                     0.5F)));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SCORCHED_STALAGMITE =
+            REGISTER.register("scorched_stalagmite", () -> JFeatures.SCORCHED_STALAGMITE.get().configured(FeatureConfiguration.NONE));
 
     //FIXME port
     /*public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
@@ -584,18 +585,6 @@ public class JConfiguredFeatures {
                                             new FrozenTreeDecorator(0.01F))).build())
                             .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(FROZEN_BITTERWOOD_FORST)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> SCORCHED_STALAGMITE =
-            REGISTER.register("scorched_stalagmite",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.SCORCHED_STALAGMITE.get()
-                            .configured(FeatureConfiguration.NONE)
-                            .range(256)
-                            .squared()
-                            .count(220)
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(SCORCHED_WASTELAND)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SCORCHED_CACTUS =
