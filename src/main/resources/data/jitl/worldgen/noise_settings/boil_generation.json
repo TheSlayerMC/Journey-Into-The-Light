@@ -236,7 +236,7 @@
       "xz_scale": 1,
       "y_scale": 2,
       "xz_factor": 80,
-      "y_factor": 120
+      "y_factor": 180
     },
     "bottom_slide": {
       "target": 30,
@@ -244,17 +244,17 @@
       "offset": 0
     },
     "top_slide": {
-      "target": -10,
-      "size": 0,
-      "offset": 0
+      "target": -5,
+      "size": 1,
+      "offset": 1
     },
     "terrain_shaper": {
       "offset": -0.46875,
       "factor": 1,
-      "jaggedness": 0.01
+      "jaggedness": -0.01
     }
   },
-  "sea_level": 0,
+  "sea_level": 9,
   "structures": {
     "structures": { }
   }
