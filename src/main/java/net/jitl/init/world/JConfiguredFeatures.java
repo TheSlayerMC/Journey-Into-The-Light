@@ -447,7 +447,7 @@ public class JConfiguredFeatures {
                             FeatureUtils.simplePatchConfiguration(
                                     Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
                                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                                    .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 10)
+                                                    .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 4)
                                                     .add(JBlocks.GOLDITE_FLOWER.defaultBlockState(), 4)
                                                     .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 4)))))));
 
