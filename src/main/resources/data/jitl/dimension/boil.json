@@ -1,8 +1,8 @@
 {
   "type": "jitl:boil",
   "generator": {
+    "seed": 0,
     "type": "minecraft:noise",
-    "seed": -22426074,
     "settings": "jitl:boil_generation",
     "biome_source": {
       "type": "minecraft:multi_noise",
