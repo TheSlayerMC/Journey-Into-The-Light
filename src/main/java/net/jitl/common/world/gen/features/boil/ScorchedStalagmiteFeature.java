@@ -43,7 +43,7 @@ public class ScorchedStalagmiteFeature extends Feature<NoneFeatureConfiguration>
             int medHeight = 1 + rand.nextInt(6);
             int smallHeight = 1 + rand.nextInt(7);
             int tinyHeight = 1 + rand.nextInt(8);
-            placePos.setWithOffset(blockPos, rand.nextInt(6) + 5, 0, rand.nextInt(6) + 5);
+            placePos.setWithOffset(blockPos, rand.nextInt(10) + 5, 0, rand.nextInt(10) + 5);
 
             if (reader.getBlockState(placePos.above()) == Blocks.AIR.defaultBlockState() && reader.getBlockState(placePos) == JBlocks.SCORCHED_RUBBLE.defaultBlockState()) {
                 for (int i = 0; i < bottomHeight; i++) {
