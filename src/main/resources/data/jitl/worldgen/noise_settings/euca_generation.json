@@ -106,7 +106,7 @@
               "then_run": {
                 "type": "minecraft:block",
                 "result_state": {
-                  "Name": "jitl:goldite_dirt"
+                  "Name": "jitl:euca_silver_dirt"
                 }
               }
             }

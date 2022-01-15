@@ -300,6 +300,66 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.FROZEN_BITTERWOOD_FORST)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> GOLDITE_VEG = REGISTER.register(
+                    "goldite_veg",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.GOLDITE_VEG.get()
+                            .placed(patch(2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> SILVER_VEG = REGISTER.register(
+                    "silver_veg",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.SILVER_VEG.get()
+                            .placed(patch(2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.EUCA_SILVER_PLAINS)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> GOLD_VEG = REGISTER.register(
+                    "gold_veg",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.GOLD_VEG.get()
+                            .placed(patch(2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.EUCA_GOLD_PLAINS)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_MEKYUM = REGISTER.register(
+                    "ore_mekyum",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.MEKYUM_ORE.get()
+                            .placed(orePlacement(CountPlacement.of(20),
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(128)))))
+            .allowedInBiomes(BiomePredicate.EUCA_SILVER_PLAINS)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_STORON = REGISTER.register(
+                    "ore_storon",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.STORON_ORE.get()
+                            .placed(orePlacement(CountPlacement.of(20),
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(128)))))
+            .allowedInBiomes(BiomePredicate.EUCA_GOLD_PLAINS)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_CELESTIUM = REGISTER.register(
+                    "ore_celestium",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.CELESTIUM_ORE.get()
+                            .placed(orePlacement(CountPlacement.of(20),
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(128)))))
+            .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_KORITE = REGISTER.register(
+                    "ore_korite",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.KORITE_ORE.get()
+                            .placed(orePlacement(CountPlacement.of(20),
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(128)))))
+            .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
+            .asPromise();
+
     private static List<PlacementModifier> patch(int count, PlacementModifier placementModifier) {
         return List.of(
                 CountPlacement.of(count),
