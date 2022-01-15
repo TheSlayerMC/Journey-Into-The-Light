@@ -10,8 +10,8 @@
         {
           "biome": "jitl:euca/euca_silver_plains",
           "parameters": {
-            "temperature": 0,
-            "humidity": 0,
+            "temperature": 1,
+            "humidity": 0.2,
             "continentalness": 0,
             "erosion": 0,
             "weirdness": 0,
@@ -22,8 +22,8 @@
         {
           "biome": "jitl:euca/euca_plains",
           "parameters": {
-            "temperature": 1,
-            "humidity": 0,
+            "temperature": 0.8,
+            "humidity": 0.5,
             "continentalness": 0,
             "erosion": 0,
             "weirdness": 0,
@@ -34,7 +34,7 @@
         {
           "biome": "jitl:euca/euca_goldite_grains",
           "parameters": {
-            "temperature": 0,
+            "temperature": -0.8,
             "humidity": 1,
             "continentalness": 0,
             "erosion": 0,

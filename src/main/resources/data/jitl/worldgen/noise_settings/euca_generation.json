@@ -162,32 +162,30 @@
     ]
   },
   "noise": {
-    "min_y": 64,
+    "min_y": 0,
     "height": 128,
-    "size_horizontal": 1,
-    "size_vertical": 1,
-    "island_noise_override": false,
-    "amplified": false,
-    "sampling": {
-      "xz_scale": 1,
-      "y_scale": 2,
-      "xz_factor": 70,
-      "y_factor": 180
+    "terrain_shaper": {
+      "offset": 0.0,
+      "factor": 0.0,
+      "jaggedness": 0.0
     },
-    "bottom_slide": {
-      "target": -40,
-      "size": 8,
-      "offset": 2
+    "size_horizontal": 2,
+    "size_vertical": 1,
+    "sampling": {
+      "xz_scale": 2.0,
+      "y_scale": 1.0,
+      "xz_factor": 80.0,
+      "y_factor": 160.0
     },
     "top_slide": {
-      "target": -40,
-      "size": 8,
-      "offset": 2
+      "target": -23.4375,
+      "size": 64,
+      "offset": -46
     },
-    "terrain_shaper": {
-      "offset": 0,
-      "factor": 0,
-      "jaggedness": 0
+    "bottom_slide": {
+      "target": -0.234375,
+      "size": 7,
+      "offset": 1
     }
   },
   "sea_level": -1212,
