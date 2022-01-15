@@ -1,6 +1,8 @@
 package net.jitl.init.world;
 
 import net.jitl.JITL;
+import net.jitl.common.block.base.JBlock;
+import net.jitl.init.JBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -165,7 +167,7 @@ public class JPlacedFeatures {
                     "sulphur_crystal",
                     GenerationStep.Decoration.SURFACE_STRUCTURES,
                     () -> JConfiguredFeatures.SULPHUR_CRYSTAL.get()
-                            .placed(patch(1, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(3, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
             .asPromise();
 
@@ -175,6 +177,14 @@ public class JPlacedFeatures {
                     () -> JConfiguredFeatures.SULPHUR_DEPOSIT.get()
                             .placed(patch(0, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> BOILING_FIRE = REGISTER.register(
+                    "boiling_fire",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.BOILING_FIRE.get()
+                            .placed(surfaceFloorPatch(1, JBlocks.HOT_GROUND, JBlocks.SCORCHED_RUBBLE, JBlocks.CHARRED_GRASS, JBlocks.VOLCANIC_SAND)))
+            .allowedInBiomes(BiomePredicate.BOIL_FIRE_BIOMES)
             .asPromise();
 
     private static List<PlacementModifier> patch(int count, PlacementModifier placementModifier) {
@@ -210,6 +220,26 @@ public class JPlacedFeatures {
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlock(blockPredicatte, Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BiomeFilter.biome());
+    }
+
+    private static List<PlacementModifier> surfaceFloorPatch(int count, Block blockPredicatte) {
+        return List.of(
+                CountPlacement.of(count),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlock(blockPredicatte, Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BiomeFilter.biome());
+    }
+
+    private static List<PlacementModifier> surfaceFloorPatch(int count, Block...blockPredicatte) {
+        return List.of(
+                CountPlacement.of(count),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(List.of(blockPredicatte), Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(1)),
                 BiomeFilter.biome());
     }

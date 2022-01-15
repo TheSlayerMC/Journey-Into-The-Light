@@ -242,6 +242,15 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_CRYSTAL =
            REGISTER.register("sulphar_crystal", () -> JFeatures.SULPHUR_CRYSTAL.get().configured(FeatureConfiguration.NONE));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_FIRE =
+            REGISTER.register("boiling_fire",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simpleRandomPatchConfiguration(1, Feature.RANDOM_PATCH.configured(
+                                        FeatureUtils.simplePatchConfiguration(
+                                                Feature.SIMPLE_BLOCK.configured(
+                                                        new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.FIRE))))).placed()
+                            )));
+
     //FIXME port
     /*public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
             REGISTER.register("goldite_tall_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
