@@ -162,6 +162,16 @@ public class JConfiguredFeatures {
                                                     .add(JBlocks.CHARRED_SHORT_GRASS.defaultBlockState(), 3)
                                                     .add(JBlocks.CHARRED_TALL_GRASS.defaultBlockState(), 2)))))));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> CHARRED_FIELDS_VEG =
+            REGISTER.register("charred_fields_veg",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.CHARRED_WEEDS.defaultBlockState(), 3)
+                                                    .add(JBlocks.CHARRED_SHORT_GRASS.defaultBlockState(), 3)
+                                                    .add(JBlocks.CHARRED_TALL_GRASS.defaultBlockState(), 2)))))));
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_GLOWSHROOMS =
             REGISTER.register("tall_glowshrooms",
                     () -> Feature.VEGETATION_PATCH.configured(

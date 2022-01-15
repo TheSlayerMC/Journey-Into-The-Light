@@ -202,6 +202,14 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.BOILING_PLAINS)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> CHARRED_FIELDS_VEG = REGISTER.register(
+                    "charred_fields_veg",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.CHARRED_FIELDS_VEG.get()
+                            .placed(patch(2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
+            .asPromise();
+
     private static List<PlacementModifier> patch(int count, PlacementModifier placementModifier) {
         return List.of(
                 CountPlacement.of(count),
