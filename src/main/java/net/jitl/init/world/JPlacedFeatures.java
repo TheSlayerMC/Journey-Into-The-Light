@@ -1,7 +1,6 @@
 package net.jitl.init.world;
 
 import net.jitl.JITL;
-import net.jitl.common.block.base.JBlock;
 import net.jitl.init.JBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
@@ -167,7 +166,7 @@ public class JPlacedFeatures {
                     "sulphur_crystal",
                     GenerationStep.Decoration.SURFACE_STRUCTURES,
                     () -> JConfiguredFeatures.SULPHUR_CRYSTAL.get()
-                            .placed(patch(3, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(1, 7, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
             .asPromise();
 
@@ -175,7 +174,7 @@ public class JPlacedFeatures {
                     "sulphur_deposit",
                     GenerationStep.Decoration.SURFACE_STRUCTURES,
                     () -> JConfiguredFeatures.SULPHUR_DEPOSIT.get()
-                            .placed(patch(0, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(3, 3, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
             .asPromise();
 
@@ -234,7 +233,7 @@ public class JPlacedFeatures {
                 BiomeFilter.biome());
     }
 
-    private static List<PlacementModifier> surfaceFloorPatch(int count, Block...blockPredicatte) {
+    private static List<PlacementModifier> surfaceFloorPatch(int count, Block... blockPredicatte) {
         return List.of(
                 CountPlacement.of(count),
                 InSquarePlacement.spread(),

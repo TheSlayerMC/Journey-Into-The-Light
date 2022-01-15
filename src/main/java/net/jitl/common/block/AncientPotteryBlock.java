@@ -17,6 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -53,6 +54,11 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
         if (tileentity instanceof Container) {
             Containers.dropContents((Level) worldIn, pos, (Container) tileentity);
         }
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState state_) {
+        return RenderShape.MODEL;
     }
 
     /*@Override
