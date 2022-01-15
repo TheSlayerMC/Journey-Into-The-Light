@@ -447,7 +447,8 @@ public class JConfiguredFeatures {
                             FeatureUtils.simplePatchConfiguration(
                                     Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
                                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                                    .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 4)
+                                                    .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 2)
+                                                    .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 10)
                                                     .add(JBlocks.GOLDITE_FLOWER.defaultBlockState(), 4)
                                                     .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 4)))))));
 
@@ -469,7 +470,6 @@ public class JConfiguredFeatures {
                             FeatureUtils.simplePatchConfiguration(
                                     Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
                                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                                    .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 2)
                                                     .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 2)
                                                     .add(JBlocks.EUCA_TALL_FLOWERS.defaultBlockState(), 1)
                                                     .add(JBlocks.EUCA_TALL_GRASS.defaultBlockState(), 1)))))));
@@ -493,15 +493,6 @@ public class JConfiguredFeatures {
             REGISTER.register("korite_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
                     OreConfiguration.target(EUCA_ORE_REPLACEABLES, JBlocks.KORITE_ORE.defaultBlockState())),
                     12)));
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWING_FUNGI =
-            REGISTER.register("glowing_fungi",
-                    () -> Feature.RANDOM_PATCH.configured(
-                            FeatureUtils.simplePatchConfiguration(
-                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
-                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                                    .add(JBlocks.TALL_FUNGI.defaultBlockState(), 4)))))));
-
 
     //FIXME port
     /*

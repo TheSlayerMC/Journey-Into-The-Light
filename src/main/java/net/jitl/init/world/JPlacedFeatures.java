@@ -304,7 +304,7 @@ public class JPlacedFeatures {
                     "goldite_veg",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.GOLDITE_VEG.get()
-                            .placed(patch(2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(6, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
             .asPromise();
 
@@ -312,7 +312,7 @@ public class JPlacedFeatures {
                     "silver_veg",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.SILVER_VEG.get()
-                            .placed(patch(2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(6, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.EUCA_SILVER_PLAINS)
             .asPromise();
 
@@ -320,7 +320,7 @@ public class JPlacedFeatures {
                     "gold_veg",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.GOLD_VEG.get()
-                            .placed(patch(2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(6, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.EUCA_GOLD_PLAINS)
             .asPromise();
 
