@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Random;
@@ -20,7 +21,8 @@ public class CharredBrushTreeDecorator extends TreeDecorator {
     public static final Codec<CharredBrushTreeDecorator> CODEC;
     public static final CharredBrushTreeDecorator INSTANCE = new CharredBrushTreeDecorator();
 
-    protected TreeDecoratorType<?> type() {
+    @Override
+    protected @NotNull TreeDecoratorType<?> type() {
         return JTreeDecorators.CHARRED_BRUSH_TREE_DECORATOR.get();
     }
 

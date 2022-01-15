@@ -15,7 +15,7 @@
     "Properties": {
       "level": "0"
     },
-    "Name": "jitl:frosty_ice"
+    "Name": "minecraft:ice"
   },
   "surface_rule": {
     "type": "minecraft:sequence",
