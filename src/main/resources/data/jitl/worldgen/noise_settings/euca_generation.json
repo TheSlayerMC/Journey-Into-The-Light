@@ -163,7 +163,7 @@
   },
   "noise": {
     "min_y": 0,
-    "height": 192,
+    "height": 128,
     "terrain_shaper": {
       "offset": 0.0,
       "factor": 0.0,
@@ -172,15 +172,15 @@
     "size_horizontal": 2,
     "size_vertical": 1,
     "sampling": {
-      "xz_scale": 2.0,
-      "y_scale": 1.0,
-      "xz_factor": 180.0,
-      "y_factor": 250.0
+      "xz_scale": 1.0,
+      "y_scale": 2.0,
+      "xz_factor": 80.0,
+      "y_factor": 800.0
     },
     "top_slide": {
-      "target": -23.4375,
-      "size": 64,
-      "offset": -46
+      "target": -0.234375,
+      "size": 7,
+      "offset": 1
     },
     "bottom_slide": {
       "target": -0.234375,
