@@ -36,7 +36,7 @@ public class ClientEventHandler {
             event.setCanceled(true);
         }
     }
-
+//FIXME 
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
        /* Player player = ClientProxy.player();
         if (player != null) {
