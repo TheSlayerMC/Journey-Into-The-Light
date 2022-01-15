@@ -460,7 +460,7 @@ public class JConfiguredFeatures {
                                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                                                     .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 3)
                                                     .add(JBlocks.EUCA_SILVER_SHORT_GRASS.defaultBlockState(), 4)
-                                                    .add(JBlocks.EUCA_SILVER_TALL_GRASS.defaultBlockState(), 3)
+                                                    .add(JBlocks.EUCA_SILVER_TALL_GRASS.defaultBlockState(), 10)
                                                     .add(JBlocks.EUCA_SILVER_SPROUTS.defaultBlockState(), 3)))))));
 
 
@@ -472,7 +472,7 @@ public class JConfiguredFeatures {
                                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                                                     .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 2)
                                                     .add(JBlocks.EUCA_TALL_FLOWERS.defaultBlockState(), 1)
-                                                    .add(JBlocks.EUCA_TALL_GRASS.defaultBlockState(), 1)))))));
+                                                    .add(JBlocks.EUCA_TALL_GRASS.defaultBlockState(), 5)))))));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> MEKYUM_ORE =
             REGISTER.register("mekyum_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
@@ -494,6 +494,13 @@ public class JConfiguredFeatures {
                     OreConfiguration.target(EUCA_ORE_REPLACEABLES, JBlocks.KORITE_ORE.defaultBlockState())),
                     12)));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWING_FUNGI =
+            REGISTER.register("glowing_fungi",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.TALL_FUNGI.defaultBlockState(), 4)))))));
     //FIXME port
     /*
 

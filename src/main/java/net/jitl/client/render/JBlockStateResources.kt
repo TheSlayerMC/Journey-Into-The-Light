@@ -184,7 +184,7 @@ object JBlockStateResources {
     }
 
     @JvmStatic
-    fun randomizedRotated(model: BlockModelLocation): BlockStateResource {
+    fun randomizedRotatedTop(model: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(json {
             "variants" {
                 ""[
@@ -202,6 +202,88 @@ object JBlockStateResources {
                         {
                             "model" set model
                             y = 270
+                        }
+                ]
+            }
+        })
+    }
+
+    @JvmStatic
+    fun randomizedRotatedAll(model: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                ""[
+                        {
+                            "model" set model
+                        },
+                        {
+                            "model" set model
+                            x = 90
+                        },
+                        {
+                            "model" set model
+                            x = 180
+                        },
+                        {
+                            "model" set model
+                            x = 270
+                        },
+                        {
+                            "model" set model
+                            y = 90
+                        },
+                        {
+                            "model" set model
+                            y = 90
+                            x = 90
+                        },
+                        {
+                            "model" set model
+                            y = 90
+                            x = 180
+                        },
+                        {
+                            "model" set model
+                            y = 90
+                            x = 270
+                        },
+                        {
+                            "model" set model
+                            y = 180
+                        },
+                        {
+                            "model" set model
+                            y = 180
+                            x = 90
+                        },
+                        {
+                            "model" set model
+                            y = 180
+                            x = 180
+                        },
+                        {
+                            "model" set model
+                            y = 180
+                            x = 270
+                        },
+                        {
+                            "model" set model
+                            y = 270
+                        },
+                        {
+                            "model" set model
+                            y = 270
+                            x = 90
+                        },
+                        {
+                            "model" set model
+                            y = 270
+                            x = 180
+                        },
+                        {
+                            "model" set model
+                            y = 270
+                            x = 270
                         }
                 ]
             }

@@ -268,7 +268,7 @@ public class BlockRegistrator {
         registerGrassBlock("goldite_grass_block", "Goldite Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()), JITL.tl("block/goldite_dirt"));
 
         registerDefaultBlock("goldite_dirt", "Goldite Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
-        registerDefaultBlock("goldite_stone", "Goldite Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        registerRandomizedRotatedBlock("goldite_stone", "Goldite Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
 
         registerSpeciallyRenderedBlock("goldite_farmland", "Goldite Farmland", GolditeFarmlandBlock::new);
 
@@ -563,7 +563,7 @@ public class BlockRegistrator {
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
                 .defaultBlockItem(JTabs.BLOCKS)
-                .state(JBlockStateResources.randomizedRotated(JITL.bml("block/" + name)))
+                .state(JBlockStateResources.randomizedRotatedTop(JITL.bml("block/" + name)))
                 .model(JITL.bml("block/" + name),
                         () -> BlockModels.cubeBottomTopModel(
                                 JITL.tl("block/" + name + "_top"),
@@ -603,7 +603,7 @@ public class BlockRegistrator {
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
                 .defaultBlockItem(JTabs.BLOCKS)
-                .state(JBlockStateResources.randomizedRotated(JITL.bml("block/" + name)))
+                .state(JBlockStateResources.randomizedRotatedTop(JITL.bml("block/" + name)))
                 .model(JITL.bml("block/" + name), blockModelSupplier);
     }
 
@@ -686,7 +686,7 @@ public class BlockRegistrator {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .defaultBlockItem(JTabs.BLOCKS)
-                .state(JBlockStateResources.randomizedRotated(JITL.bml("block/" + name)))
+                .state(JBlockStateResources.randomizedRotatedAll(JITL.bml("block/" + name)))
                 .model(JITL.bml("block/" + name),
                         () -> BlockModels.cubeAllModel(JITL.tl("block/" + name)));
     }
