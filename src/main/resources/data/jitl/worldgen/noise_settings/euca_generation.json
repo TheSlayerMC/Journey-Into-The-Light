@@ -162,7 +162,7 @@
     ]
   },
   "noise": {
-    "min_y": 64,
+    "min_y": 0,
     "height": 192,
     "terrain_shaper": {
       "offset": 0.0,
@@ -170,12 +170,12 @@
       "jaggedness": 0.3
     },
     "size_horizontal": 2,
-    "size_vertical": 2,
+    "size_vertical": 1,
     "sampling": {
       "xz_scale": 2.0,
       "y_scale": 1.0,
-      "xz_factor": 80.0,
-      "y_factor": 160.0
+      "xz_factor": 180.0,
+      "y_factor": 250.0
     },
     "top_slide": {
       "target": -23.4375,
