@@ -1,8 +1,7 @@
 {
   "type": "jitl:frozen",
   "generator": {
-    "type": "minecraft:noise",
-    "seed": 526731623,
+    "type": "jitl:chunk_generator",
     "settings": "jitl:frozen_generation",
     "biome_source": {
       "type": "minecraft:multi_noise",

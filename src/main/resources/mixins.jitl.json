@@ -4,7 +4,7 @@
   "package": "net.jitl.mixins",
   "refmap": "mixins.jitl.refmap.json",
   "target": "@env(DEFAULT)",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
     "common.DimensionGeneratorSettingsMixin"
   ],

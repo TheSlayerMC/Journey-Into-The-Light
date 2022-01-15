@@ -1,8 +1,7 @@
 {
   "type": "jitl:depths",
   "generator": {
-    "type": "minecraft:noise",
-    "seed": 1262982783,
+    "type": "jitl:chunk_generator",
     "settings": {
       "sea_level": 0,
       "disable_mob_generation": false,
