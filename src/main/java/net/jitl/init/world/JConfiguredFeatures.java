@@ -285,10 +285,7 @@ public class JConfiguredFeatures {
                                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                                                     .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 3)
                                                     .add(JBlocks.FLAME_POD.defaultBlockState(), 4)
-                                                    .add(JBlocks.CRISP_GRASS.defaultBlockState(), 2)
-                                                    .add(JBlocks.CHARRED_WEEDS.defaultBlockState(), 3)
-                                                    .add(JBlocks.CHARRED_SHORT_GRASS.defaultBlockState(), 3)
-                                                    .add(JBlocks.CHARRED_TALL_GRASS.defaultBlockState(), 2)))))));
+                                                    .add(JBlocks.CRISP_GRASS.defaultBlockState(), 2)))))));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> CHARRED_FIELDS_VEG =
             REGISTER.register("charred_fields_veg",
