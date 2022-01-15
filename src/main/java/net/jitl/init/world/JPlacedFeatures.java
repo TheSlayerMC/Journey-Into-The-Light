@@ -182,7 +182,7 @@ public class JPlacedFeatures {
                     "boiling_fire",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.BOILING_FIRE.get()
-                            .placed(surfaceFloorPatch(1, JBlocks.HOT_GROUND, JBlocks.SCORCHED_RUBBLE, JBlocks.CHARRED_GRASS, JBlocks.VOLCANIC_SAND)))
+                            .placed(surfaceFloorPatch(1, 5, JBlocks.HOT_GROUND, JBlocks.SCORCHED_RUBBLE, JBlocks.CHARRED_GRASS, JBlocks.VOLCANIC_SAND)))
             .allowedInBiomes(BiomePredicate.BOIL_FIRE_BIOMES)
             .asPromise();
 
@@ -230,6 +230,17 @@ public class JPlacedFeatures {
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlock(blockPredicatte, Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BiomeFilter.biome());
+    }
+
+    private static List<PlacementModifier> surfaceFloorPatch(int count, int chance, Block... blockPredicatte) {
+        return List.of(
+                CountPlacement.of(count),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(List.of(blockPredicatte), Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                RarityFilter.onAverageOnceEvery(chance),
                 BiomeFilter.biome());
     }
 
