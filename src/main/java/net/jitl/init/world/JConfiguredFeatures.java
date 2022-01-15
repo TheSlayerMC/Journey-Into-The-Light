@@ -9,26 +9,20 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.data.worldgen.placement.TreePlacements;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.PineFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
@@ -137,40 +131,6 @@ public class JConfiguredFeatures {
                                                     .add(JBlocks.TALL_BLUE_GLOWSHROOM.defaultBlockState(), 3)
                                                     .add(JBlocks.TALL_GREEN_GLOWSHROOM.defaultBlockState(), 4)
                                                     .add(JBlocks.TALL_RED_GLOWSHROOM.defaultBlockState(), 2)))))));
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> BOIL_SANDS_VEG =
-            REGISTER.register("boil_sands_veg",
-                    () -> Feature.RANDOM_PATCH.configured(
-                            FeatureUtils.simplePatchConfiguration(
-                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
-                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 3)
-                                                    .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 4)
-                                                    .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 2)
-                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 3)))))));
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> BOIL_VEG =
-            REGISTER.register("boil_veg",
-                    () -> Feature.RANDOM_PATCH.configured(
-                            FeatureUtils.simplePatchConfiguration(
-                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
-                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                                    .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 3)
-                                                    .add(JBlocks.FLAME_POD.defaultBlockState(), 4)
-                                                    .add(JBlocks.CRISP_GRASS.defaultBlockState(), 2)
-                                                    .add(JBlocks.CHARRED_WEEDS.defaultBlockState(), 3)
-                                                    .add(JBlocks.CHARRED_SHORT_GRASS.defaultBlockState(), 3)
-                                                    .add(JBlocks.CHARRED_TALL_GRASS.defaultBlockState(), 2)))))));
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> CHARRED_FIELDS_VEG =
-            REGISTER.register("charred_fields_veg",
-                    () -> Feature.RANDOM_PATCH.configured(
-                            FeatureUtils.simplePatchConfiguration(
-                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
-                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                                    .add(JBlocks.CHARRED_WEEDS.defaultBlockState(), 3)
-                                                    .add(JBlocks.CHARRED_SHORT_GRASS.defaultBlockState(), 3)
-                                                    .add(JBlocks.CHARRED_TALL_GRASS.defaultBlockState(), 2)))))));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_GLOWSHROOMS =
             REGISTER.register("tall_glowshrooms",
@@ -288,11 +248,57 @@ public class JConfiguredFeatures {
             REGISTER.register("boiling_fire",
                     () -> Feature.RANDOM_PATCH.configured(
                             FeatureUtils.simpleRandomPatchConfiguration(1, Feature.RANDOM_PATCH.configured(
-                                        FeatureUtils.simplePatchConfiguration(
-                                                Feature.SIMPLE_BLOCK.configured(
-                                                        new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.FIRE))))).placed()
+                                    FeatureUtils.simplePatchConfiguration(
+                                            Feature.SIMPLE_BLOCK.configured(
+                                                    new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.FIRE))))).placed()
                             )));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> DYING_BURNED_TREE =
+            REGISTER.register("dying_burned_tree",
+                    () -> Feature.TREE.configured(
+                            new TreeConfiguration.TreeConfigurationBuilder(
+                                    BlockStateProvider.simple(JBlocks.BURNED_BARK),
+                                    new ForkingTrunkPlacer(2, 1, 1),
+                                    BlockStateProvider.simple(JBlocks.CHARRED_LEAVES),
+                                    new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
+                                    new TwoLayersFeatureSize(1, 1, 2))
+                                    .forceDirt()
+                                    .dirt(BlockStateProvider.simple(JBlocks.VOLCANIC_SAND))
+                                    .build()));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BOIL_SANDS_VEG =
+            REGISTER.register("boil_sands_veg",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 3)
+                                                    .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 4)
+                                                    .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 2)
+                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 3)))))));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BOIL_VEG =
+            REGISTER.register("boil_veg",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 3)
+                                                    .add(JBlocks.FLAME_POD.defaultBlockState(), 4)
+                                                    .add(JBlocks.CRISP_GRASS.defaultBlockState(), 2)
+                                                    .add(JBlocks.CHARRED_WEEDS.defaultBlockState(), 3)
+                                                    .add(JBlocks.CHARRED_SHORT_GRASS.defaultBlockState(), 3)
+                                                    .add(JBlocks.CHARRED_TALL_GRASS.defaultBlockState(), 2)))))));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> CHARRED_FIELDS_VEG =
+            REGISTER.register("charred_fields_veg",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.CHARRED_WEEDS.defaultBlockState(), 3)
+                                                    .add(JBlocks.CHARRED_SHORT_GRASS.defaultBlockState(), 3)
+                                                    .add(JBlocks.CHARRED_TALL_GRASS.defaultBlockState(), 2)))))));
 
     /*public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOILING_SANDS_PLANTS =
             REGISTER.register("tall_boiling_sands_plants",
@@ -315,16 +321,6 @@ public class JConfiguredFeatures {
                                     .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> DYING_BURNED_TREE =
-            REGISTER.register("dying_burned_tree",
-                    Feature.TREE.configured(
-                            new TreeConfiguration.TreeConfigurationBuilder(
-                                    BlockStateProvider.simple(JBlocks.BURNED_BARK),
-                                    new ForkingTrunkPlacer(2, 1, 1),
-                                    BlockStateProvider.simple(JBlocks.CHARRED_LEAVES),
-                                            new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
-                                            new TwoLayersFeatureSize(1, 1, 2)));*/
 
     //FIXME port
     /*public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
