@@ -166,7 +166,7 @@ public class JPlacedFeatures {
                     "sulphur_crystal",
                     GenerationStep.Decoration.SURFACE_STRUCTURES,
                     () -> JConfiguredFeatures.SULPHUR_CRYSTAL.get()
-                            .placed(patch(1, 7, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(1, 8, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
             .asPromise();
 
@@ -174,7 +174,7 @@ public class JPlacedFeatures {
                     "sulphur_deposit",
                     GenerationStep.Decoration.SURFACE_STRUCTURES,
                     () -> JConfiguredFeatures.SULPHUR_DEPOSIT.get()
-                            .placed(patch(3, 3, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(2, 5, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
             .asPromise();
 
