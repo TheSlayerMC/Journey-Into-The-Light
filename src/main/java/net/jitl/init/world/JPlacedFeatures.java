@@ -194,6 +194,14 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> BOIL_VEG = REGISTER.register(
+                    "boil_veg",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.BOIL_VEG.get()
+                            .placed(patch(2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.BOILING_SANDS)
+            .asPromise();
+
     private static List<PlacementModifier> patch(int count, PlacementModifier placementModifier) {
         return List.of(
                 CountPlacement.of(count),
