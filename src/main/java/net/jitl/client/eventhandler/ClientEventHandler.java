@@ -36,9 +36,9 @@ public class ClientEventHandler {
             event.setCanceled(true);
         }
     }
-
+//FIXME 
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
-        Player player = ClientProxy.player();
+       /* Player player = ClientProxy.player();
         if (player != null) {
             JPlayer cap = JPlayer.from(player);
             if (player.level.dimension() == Dimensions.FROZEN_LANDS) {
@@ -62,6 +62,6 @@ public class ClientEventHandler {
                 }
                 event.setCanceled(true);
             }
-        }
+        }*/
     }
 }
