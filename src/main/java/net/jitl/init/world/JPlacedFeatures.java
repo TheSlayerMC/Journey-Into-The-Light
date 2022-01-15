@@ -212,13 +212,47 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> FLAME_BULB = REGISTER.register(
+                    "flame_bulb",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.FLAME_BULB.get()
+                            .placed(patch(5, 14, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
+            .asPromise();
+
     public static final Promised<? extends PlacedFeature> DYING_BURNED_TREE = REGISTER.register(
                     "dying_burned_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.DYING_BURNED_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(10, 0.1F, 1))))
+                            .placed(treePlacement(PlacementUtils.countExtra(3, 0.1F, 1), JBlocks.LAVA_BLOOM))) //FIXME: replace block with sapling when they're added
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
             .asPromise();
+
+    //FIXME crashes at "create new world" for literally no reason at all whatsoever
+    /*public static final Promised<? extends PlacedFeature> LARGE_BURNED_TREE = REGISTER.register(
+                    "large_burned_tree",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.LARGE_CHARRED_TREE.get()
+                            .placed(treePlacement(PlacementUtils.countExtra(5, 0.1F, 1), JBlocks.CHARRED_SHORT_GRASS))) //FIXME: replace block with sapling when they're added
+            .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
+            .asPromise();
+
+    /*public static final Promised<? extends PlacedFeature> MEDIUM_BURNED_TREE = REGISTER.register(
+                    "medium_burned_tree",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.MEDIUM_BURNED_TREE.get()
+                            .placed(treePlacement(PlacementUtils.countExtra(5, 0.1F, 1), JBlocks.CHARRED_SHORT_GRASS))) //FIXME: replace block with sapling when they're added
+            .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
+            .asPromise();*/
+
+    /*public static final Promised<? extends PlacedFeature> SMALL_BURNED_TREE = REGISTER.register(
+                    "small_burned_tree",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.SMALL_BURNED_TREE.get()
+                            .placed(treePlacement(PlacementUtils.countExtra(5, 0.1F, 1), JBlocks.CHARRED_SHORT_GRASS))) //FIXME: replace block with sapling when they're added
+            .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
+            .asPromise();*/
+
 
     private static List<PlacementModifier> patch(int count, PlacementModifier placementModifier) {
         return List.of(
