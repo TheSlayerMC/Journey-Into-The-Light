@@ -152,6 +152,31 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.SCORCHED_WASTELAND)
             .asPromise();
 
+
+    public static final Promised<? extends PlacedFeature> SCORCHED_CACTUS = REGISTER.register(
+                    "scorched_cactus",
+                    GenerationStep.Decoration.SURFACE_STRUCTURES,
+                    () -> JConfiguredFeatures.SCORCHED_CACTUS.get()
+                            .placed(patch(5, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.BOILING_SANDS)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> SULPHUR_CRYSTAL = REGISTER.register(
+                    "sulphur_crystal",
+                    GenerationStep.Decoration.SURFACE_STRUCTURES,
+                    () -> JConfiguredFeatures.SULPHUR_CRYSTAL.get()
+                            .placed(patch(1, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.BOILING_SANDS)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> SULPHUR_DEPOSIT = REGISTER.register(
+                    "sulphur_deposit",
+                    GenerationStep.Decoration.SURFACE_STRUCTURES,
+                    () -> JConfiguredFeatures.SULPHUR_DEPOSIT.get()
+                            .placed(patch(0, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.BOILING_SANDS)
+            .asPromise();
+
     private static List<PlacementModifier> patch(int count, PlacementModifier placementModifier) {
         return List.of(
                 CountPlacement.of(count),

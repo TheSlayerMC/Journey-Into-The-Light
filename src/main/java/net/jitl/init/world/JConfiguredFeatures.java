@@ -5,23 +5,23 @@ import net.jitl.JITL;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.init.JBlocks;
 import net.jitl.util.JRuleTests;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
-import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.util.valueproviders.IntProvider;
-import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.util.valueproviders.WeightedListInt;
+import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -224,6 +224,23 @@ public class JConfiguredFeatures {
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SCORCHED_STALAGMITE =
             REGISTER.register("scorched_stalagmite", () -> JFeatures.SCORCHED_STALAGMITE.get().configured(FeatureConfiguration.NONE));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SCORCHED_CACTUS =
+            REGISTER.register("scorched_cactus",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simpleRandomPatchConfiguration(7,
+                                    Feature.BLOCK_COLUMN.configured(
+                                            BlockColumnConfiguration.simple(BiasedToBottomInt.of(1, 5),
+                                                    BlockStateProvider.simple(JBlocks.SCORCHED_CACTUS))).placed(
+                                            BlockPredicateFilter.forPredicate(BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                                                    BlockPredicate.wouldSurvive(JBlocks.SCORCHED_CACTUS.defaultBlockState(), BlockPos.ZERO)))))));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_DEPOSIT =
+                       REGISTER.register("sulpur_deposit", () -> JFeatures.SULPHUR_DEPOSIT.get().configured(new BlockStateConfiguration(JBlocks.SULPHUR_ROCK.defaultBlockState())));
+
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_CRYSTAL =
+           REGISTER.register("sulphar_crystal", () -> JFeatures.SULPHUR_CRYSTAL.get().configured(FeatureConfiguration.NONE));
 
     //FIXME port
     /*public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
@@ -604,29 +621,6 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_DEPOSIT =
-            REGISTER.register("sulphur_deposit",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.SULPHUR_DEPOSIT.get()
-                            .configured(new BlockStateConfiguration(JBlocks.SULPHUR_ROCK.defaultBlockState()))
-                            .range(256)
-                            .decorated(Features.Decorators.HEIGHTMAP_SQUARE)
-                            .squared()
-                            .count(100))
-                    .setBiomePredicate(BOILING_SANDS)
-                    .asPromise();
-
-    /*public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_CRYSTAL =
-            REGISTER.register("sulphur_crystal",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.SULPHUR_CRYSTAL.get()
-                            .configured(IFeatureConfig.NONE)
-                            .range(256)
-                            .decorated(Features.Placements.HEIGHTMAP_SQUARE)
-                            .squared()
-                            .count(50))
-                    .setBiomePredicate(BOILING_SANDS)
-                    .asPromise();*/
 
     /*public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_BURNED_TREE =
             REGISTER.register("large_burned_tree",
