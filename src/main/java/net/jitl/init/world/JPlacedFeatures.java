@@ -199,7 +199,7 @@ public class JPlacedFeatures {
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.BOIL_VEG.get()
                             .placed(patch(2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
-            .allowedInBiomes(BiomePredicate.BOILING_SANDS)
+            .allowedInBiomes(BiomePredicate.BOILING_PLAINS)
             .asPromise();
 
     private static List<PlacementModifier> patch(int count, PlacementModifier placementModifier) {
