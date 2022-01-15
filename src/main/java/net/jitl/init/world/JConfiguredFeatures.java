@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.init.JBlocks;
+import net.jitl.init.JTags;
 import net.jitl.util.JRuleTests;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -44,6 +45,7 @@ import java.util.function.Supplier;
 public class JConfiguredFeatures {
     public static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
     public static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+    public static final RuleTest EUCA_ORE_REPLACEABLES = new TagMatchTest(JTags.EUCA_STONE_ORE_REPLACEABLES);
 
     //FIXME lunium ore is null
     /*public static final List<OreConfiguration.TargetBlockState> ORE_LUNIUM_TARGET_LIST = List.of(
@@ -439,154 +441,61 @@ public class JConfiguredFeatures {
                                     .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
                                     .build()));
 
-    /*public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOILING_SANDS_PLANTS =
-            REGISTER.register("tall_boiling_sands_plants",
-                            Decoration.VEGETAL_DECORATION,
-                            () -> Feature.RANDOM_PATCH
-                                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                                            new WeightedStateProvider()
-                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 1)
-                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 1),
-                                            new DoublePlantPlacer()))
-                                            .tries(64)
-                                            .xspread(6)
-                                            .zspread(6)
-                                            .whitelist(ImmutableSet.of(
-                                                    JBlocks.VOLCANIC_SAND))
-                                            .noProjection()
-                                            .build())
-                                    .range(255)
-                                    .count(100)
-                                    .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(BOILING_SANDS)
-                    .asPromise();
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_VEG =
+            REGISTER.register("goldite_veg",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 10)
+                                                    .add(JBlocks.GOLDITE_FLOWER.defaultBlockState(), 4)
+                                                    .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 4)))))));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> SILVER_VEG =
+            REGISTER.register("silver_veg",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 3)
+                                                    .add(JBlocks.EUCA_SILVER_SHORT_GRASS.defaultBlockState(), 4)
+                                                    .add(JBlocks.EUCA_SILVER_TALL_GRASS.defaultBlockState(), 3)
+                                                    .add(JBlocks.EUCA_SILVER_SPROUTS.defaultBlockState(), 3)))))));
+
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLD_VEG =
+            REGISTER.register("gold_veg",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 2)
+                                                    .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 2)
+                                                    .add(JBlocks.EUCA_TALL_FLOWERS.defaultBlockState(), 1)
+                                                    .add(JBlocks.EUCA_TALL_GRASS.defaultBlockState(), 1)))))));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> MEKYUM_ORE =
+            REGISTER.register("mekyum_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(EUCA_ORE_REPLACEABLES, JBlocks.MEKYUM_ORE.defaultBlockState())),
+                    12)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> STORON_ORE =
+            REGISTER.register("storon_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(EUCA_ORE_REPLACEABLES, JBlocks.STORON_ORE.defaultBlockState())),
+                    12)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> CELESTIUM_ORE =
+            REGISTER.register("celestium_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(EUCA_ORE_REPLACEABLES, JBlocks.CELESTIUM_ORE.defaultBlockState())),
+                    12)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> KORITE_ORE =
+            REGISTER.register("korite_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(EUCA_ORE_REPLACEABLES, JBlocks.KORITE_ORE.defaultBlockState())),
+                    12)));
 
     //FIXME port
-    /*public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_TALL_FOLIAGE =
-            REGISTER.register("goldite_tall_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
-                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                    .add(JBlocks.GOLDITE_TALL_GRASS.defaultBlockState(), 1))))));
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_FOLIAGE =
-            REGISTER.register("goldite_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
-                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                            new WeightedStateProvider()
-                                    .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 1),
-                            new SimpleBlockPlacer()))
-                            .tries(24)
-                            .xspread(7)
-                            .zspread(7)
-                            .whitelist(ImmutableSet.of(
-                                    JBlocks.GOLDITE_GRASS_BLOCK))
-                            .noProjection()
-                            .build())
-                    .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared()
-                    .range(250)
-                    .count(16))
-                    .setBiomePredicate(GOLDITE_GRAINS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_STALKS =
-            REGISTER.register("goldite_stalks", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
-                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                            new WeightedStateProvider()
-                                    .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 1),
-                            new SimpleBlockPlacer()))
-                            .tries(24)
-                            .xspread(10)
-                            .zspread(10)
-                            .whitelist(ImmutableSet.of(
-                                    JBlocks.GOLDITE_GRASS_BLOCK))
-                            .noProjection()
-                            .build())
-                    .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared()
-                    .range(250)
-                    .count(64))
-                    .setBiomePredicate(GOLDITE_GRAINS)
-                    .asPromise();
-
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> SILVER_GOLD_FOLIAGE =
-            REGISTER.register("euca_silver_gold_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
-                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                            new WeightedStateProvider()
-                                    .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 1),
-                            new SimpleBlockPlacer()))
-                            .tries(24)
-                            .xspread(10)
-                            .zspread(10)
-                            .whitelist(ImmutableSet.of(
-                                    JBlocks.EUCA_SILVER_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
-                            .noProjection()
-                            .build())
-                    .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared()
-                    .range(250)
-                    .count(64))
-                    .setBiomePredicate(EUCA_SILVER_PLAINS.and(EUCA_GOLD_PLAINS))
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVER_FOLIAGE =
-            REGISTER.register("euca_silver_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
-                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                            new WeightedStateProvider()
-                                    .add(JBlocks.EUCA_SILVER_TALL_GRASS.defaultBlockState(), 1)
-                                    .add(JBlocks.EUCA_SILVER_SPROUTS.defaultBlockState(), 1)
-                                    .add(JBlocks.EUCA_SILVER_SHORT_GRASS.defaultBlockState(), 1),
-                            new SimpleBlockPlacer()))
-                            .tries(24)
-                            .xspread(6)
-                            .zspread(6)
-                            .whitelist(ImmutableSet.of(
-                                    JBlocks.EUCA_SILVER_GRASS_BLOCK))
-                            .noProjection()
-                            .build())
-                    .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared()
-                    .range(250)
-                    .count(64))
-                    .setBiomePredicate(EUCA_SILVER_PLAINS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_FOLIAGE =
-            REGISTER.register("euca_gold_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
-                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                            new WeightedStateProvider()
-                                    .add(JBlocks.EUCA_TALL_FLOWERS.defaultBlockState(), 1)
-                                    .add(JBlocks.EUCA_TALL_GRASS.defaultBlockState(), 1),
-                            new SimpleBlockPlacer()))
-                            .tries(24)
-                            .xspread(7)
-                            .zspread(7)
-                            .whitelist(ImmutableSet.of(
-                                    JBlocks.EUCA_GOLD_GRASS_BLOCK))
-                            .noProjection()
-                            .build())
-                    .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared()
-                    .range(250)
-                    .count(64))
-                    .setBiomePredicate(EUCA_GOLD_PLAINS)
-                    .asPromise();
-
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_GOLD_FOLIAGE =
-            REGISTER.register("euca_goldite_gold_foliage", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
-                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                            new WeightedStateProvider()
-                                    .add(JBlocks.GOLDITE_STALKS.defaultBlockState(), 1)
-                                    .add(JBlocks.GOLDITE_FLOWER.defaultBlockState(), 1),
-                            new SimpleBlockPlacer()))
-                            .tries(24)
-                            .xspread(7)
-                            .zspread(7)
-                            .whitelist(ImmutableSet.of(
-                                    JBlocks.GOLDITE_GRASS_BLOCK, JBlocks.EUCA_GOLD_GRASS_BLOCK))
-                            .noProjection()
-                            .build())
-                    .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared()
-                    .range(250)
-                    .count(64))
-                    .setBiomePredicate(GOLDITE_GRAINS.and(EUCA_GOLD_PLAINS))
-                    .asPromise();
+    /*
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWING_FUNGI =
             REGISTER.register("glowing_fungi",
@@ -817,33 +726,6 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(IN_END)
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> MEKYUM_ORE =
-            REGISTER.register("mekyum_ore",
-                    Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.MEKYUM_ORE.defaultBlockState(), JRuleTests.STONE_EUCA, 12, 128, 20))
-                    .setBiomePredicate(EUCA_SILVER_PLAINS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> STORON_ORE =
-            REGISTER.register("storon_ore",
-                    Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.STORON_ORE.defaultBlockState(), JRuleTests.STONE_EUCA, 12, 128, 20))
-                    .setBiomePredicate(EUCA_GOLD_PLAINS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> CELESTIUM_ORE =
-            REGISTER.register("celestium_ore",
-                    Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.CELESTIUM_ORE.defaultBlockState(), JRuleTests.STONE_EUCA, 12, 128, 20))
-                    .setBiomePredicate(GOLDITE_GRAINS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> KORITE_ORE =
-            REGISTER.register("korite_ore",
-                            Decoration.UNDERGROUND_ORES,
-                            defaultOreFeature(() -> JBlocks.KORITE_ORE.defaultBlockState(), JRuleTests.STONE_EUCA, 12, 128, 20))
-                    .setBiomePredicate(GOLDITE_GRAINS)
-                    .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> PERIDOT_ORE = //TODO: Tweak rarity and quantity
             REGISTER.register("peridot_ore",
