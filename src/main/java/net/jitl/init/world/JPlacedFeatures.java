@@ -360,6 +360,13 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> GLOWING_FUNGI = REGISTER.register(
+                    "glowing_fungi",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.GLOWING_FUNGI.get()
+                            .placed(undergroundFloorPatch(4, Blocks.STONE, Blocks.DEEPSLATE)))
+            .asPromise();
+
     private static List<PlacementModifier> patch(int count, PlacementModifier placementModifier) {
         return List.of(
                 CountPlacement.of(count),
@@ -393,6 +400,16 @@ public class JPlacedFeatures {
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlock(blockPredicatte, Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BiomeFilter.biome());
+    }
+
+    private static List<PlacementModifier> undergroundFloorPatch(int count, Block ... blockPredicatte) {
+        return List.of(
+                CountPlacement.of(count),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(List.of(blockPredicatte), Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(1)),
                 BiomeFilter.biome());
     }

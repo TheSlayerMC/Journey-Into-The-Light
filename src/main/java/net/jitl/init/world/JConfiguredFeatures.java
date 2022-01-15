@@ -494,6 +494,15 @@ public class JConfiguredFeatures {
                     OreConfiguration.target(EUCA_ORE_REPLACEABLES, JBlocks.KORITE_ORE.defaultBlockState())),
                     12)));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWING_FUNGI =
+            REGISTER.register("glowing_fungi",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.TALL_FUNGI.defaultBlockState(), 4)))))));
+
+
     //FIXME port
     /*
 
