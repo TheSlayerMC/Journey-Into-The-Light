@@ -1,8 +1,7 @@
 {
   "type": "jitl:euca",
   "generator": {
-    "type": "minecraft:noise",
-    "seed": -22426074,
+    "type": "jitl:chunk_generator",
     "settings": "jitl:euca_generation",
     "biome_source": {
       "type": "minecraft:multi_noise",
