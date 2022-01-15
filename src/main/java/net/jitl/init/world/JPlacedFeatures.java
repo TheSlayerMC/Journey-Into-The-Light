@@ -1,7 +1,9 @@
 package net.jitl.init.world;
 
+import com.google.common.collect.ImmutableList;
 import net.jitl.JITL;
 import net.jitl.init.JBlocks;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -210,6 +212,14 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> DYING_BURNED_TREE = REGISTER.register(
+                    "dying_burned_tree",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.DYING_BURNED_TREE.get()
+                            .placed(treePlacement(PlacementUtils.countExtra(10, 0.1F, 1))))
+            .allowedInBiomes(BiomePredicate.BOILING_SANDS)
+            .asPromise();
+
     private static List<PlacementModifier> patch(int count, PlacementModifier placementModifier) {
         return List.of(
                 CountPlacement.of(count),
@@ -308,6 +318,20 @@ public class JPlacedFeatures {
 
     private static List<PlacementModifier> rareOrePlacement(int chance_, PlacementModifier heightModifier_) {
         return orePlacement(RarityFilter.onAverageOnceEvery(chance_), heightModifier_);
+    }
+
+    public static final PlacementModifier TREE_THRESHOLD = SurfaceWaterDepthFilter.forMaxDepth(0);
+
+    private static ImmutableList.Builder<PlacementModifier> treePlacementBase(PlacementModifier countModifier_) {
+        return ImmutableList.<PlacementModifier>builder().add(countModifier_).add(InSquarePlacement.spread()).add(TREE_THRESHOLD).add(PlacementUtils.HEIGHTMAP_OCEAN_FLOOR).add(BiomeFilter.biome()).add();
+    }
+
+    public static List<PlacementModifier> treePlacement(PlacementModifier modifier_) {
+        return treePlacementBase(modifier_).build();
+    }
+
+    public static List<PlacementModifier> treePlacement(PlacementModifier modifier_, Block block_) {
+        return treePlacementBase(modifier_).add(BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(block_.defaultBlockState(), BlockPos.ZERO))).build();
     }
 
     public static class BiomePredicate {
