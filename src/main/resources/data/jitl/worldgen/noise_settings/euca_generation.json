@@ -162,15 +162,15 @@
     ]
   },
   "noise": {
-    "min_y": 0,
-    "height": 128,
+    "min_y": 64,
+    "height": 192,
     "terrain_shaper": {
       "offset": 0.0,
       "factor": 0.0,
-      "jaggedness": 0.0
+      "jaggedness": 0.3
     },
     "size_horizontal": 2,
-    "size_vertical": 1,
+    "size_vertical": 2,
     "sampling": {
       "xz_scale": 2.0,
       "y_scale": 1.0,
