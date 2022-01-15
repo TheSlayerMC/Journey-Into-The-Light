@@ -3,66 +3,16 @@
   "generator": {
     "type": "minecraft:noise",
     "seed": 526731623,
-    "settings": {
-      "sea_level": 63,
-      "disable_mob_generation": false,
-      "noise_caves_enabled": true,
-      "noodle_caves_enabled": false,
-      "aquifers_enabled": true,
-      "ore_veins_enabled": false,
-      "legacy_random_source": false,
-      "default_block": {
-        "Name": "jitl:permafrost"
-      },
-      "default_fluid": {
-        "Name": "minecraft:ice"
-      },
-      "noise": {
-        "min_y": 0,
-        "height": 256,
-        "size_horizontal": 1,
-        "size_vertical": 2,
-        "sampling": {
-          "xz_scale": 1,
-          "y_scale": 1,
-          "xz_factor": 80,
-          "y_factor": 160
-        },
-        "bottom_slide": {
-          "target": -30,
-          "size": 0,
-          "offset": 0
-        },
-        "top_slide": {
-          "target": -10,
-          "size": 3,
-          "offset": 0
-        },
-        "terrain_shaper": {
-          "offset": 0,
-          "factor": 0,
-          "jaggedness": 0
-        }
-      },
-      "surface_rule": {
-        "type": "minecraft:block",
-        "result_state": {
-          "Name": "minecraft:stone"
-        }
-      },
-      "structures": {
-        "structures": {}
-      }
-    },
+    "settings": "jitl:frozen_generation",
     "biome_source": {
       "type": "minecraft:multi_noise",
       "biomes": [
         {
           "biome": "jitl:frozen/frozen_wastes",
           "parameters": {
-            "temperature": 0,
+            "temperature": 1,
             "humidity": 0,
-            "continentalness": 0,
+            "continentalness": -0.2,
             "erosion": 0,
             "weirdness": 0,
             "depth": 0,
@@ -73,8 +23,8 @@
           "biome": "jitl:frozen/dying_forest",
           "parameters": {
             "temperature": 1,
-            "humidity": 0,
-            "continentalness": 0,
+            "humidity": -0.5,
+            "continentalness": -0.2,
             "erosion": 0,
             "weirdness": 0,
             "depth": 0,
@@ -84,7 +34,7 @@
         {
           "biome": "jitl:frozen/bitterwood_forest",
           "parameters": {
-            "temperature": 0,
+            "temperature": 0.51,
             "humidity": 1,
             "continentalness": 0,
             "erosion": 0,
