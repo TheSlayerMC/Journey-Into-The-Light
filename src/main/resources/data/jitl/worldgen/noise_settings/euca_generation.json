@@ -1,26 +1,53 @@
 {
-  "ore_veins_enabled": false,
-  "noodle_caves_enabled": false,
-  "legacy_random_source": false,
+  "sea_level": -1212,
   "disable_mob_generation": false,
-  "aquifers_enabled": false,
   "noise_caves_enabled": false,
+  "noodle_caves_enabled": false,
+  "aquifers_enabled": false,
+  "ore_veins_enabled": false,
+  "legacy_random_source": false,
   "default_block": {
+    "Name": "jitl:goldite_stone",
     "Properties": {
       "double_drops": "true"
-    },
-    "Name": "jitl:goldite_stone"
+    }
   },
   "default_fluid": {
+    "Name": "minecraft:water",
     "Properties": {
       "level": "0"
+    }
+  },
+  "noise": {
+    "min_y": 0,
+    "height": 128,
+    "size_horizontal": 1,
+    "size_vertical": 1,
+    "sampling": {
+      "xz_scale": 0.5,
+      "y_scale": 1.5,
+      "xz_factor": 80,
+      "y_factor": 800
     },
-    "Name": "minecraft:water"
+    "bottom_slide": {
+      "target": -0.234375,
+      "size": 7,
+      "offset": 1
+    },
+    "top_slide": {
+      "target": -0.234375,
+      "size": 7,
+      "offset": 1
+    },
+    "terrain_shaper": {
+      "offset": 0,
+      "factor": 0,
+      "jaggedness": 0.3
+    }
   },
   "surface_rule": {
     "type": "minecraft:sequence",
-    "sequence":
-    [
+    "sequence": [
       {
         "type": "minecraft:condition",
         "if_true": {
@@ -36,10 +63,10 @@
               "type": "minecraft:condition",
               "if_true": {
                 "type": "minecraft:stone_depth",
+                "offset": 0,
                 "surface_type": "floor",
                 "add_surface_depth": false,
-                "add_surface_secondary_depth": false,
-                "offset": 0
+                "add_surface_secondary_depth": false
               },
               "then_run": {
                 "type": "minecraft:block",
@@ -52,10 +79,10 @@
               "type": "minecraft:condition",
               "if_true": {
                 "type": "minecraft:stone_depth",
+                "offset": 0,
                 "surface_type": "floor",
                 "add_surface_depth": true,
-                "add_surface_secondary_depth": true,
-                "offset": 0
+                "add_surface_secondary_depth": true
               },
               "then_run": {
                 "type": "minecraft:block",
@@ -82,10 +109,10 @@
               "type": "minecraft:condition",
               "if_true": {
                 "type": "minecraft:stone_depth",
+                "offset": 0,
                 "surface_type": "floor",
                 "add_surface_depth": false,
-                "add_surface_secondary_depth": false,
-                "offset": 0
+                "add_surface_secondary_depth": false
               },
               "then_run": {
                 "type": "minecraft:block",
@@ -98,10 +125,10 @@
               "type": "minecraft:condition",
               "if_true": {
                 "type": "minecraft:stone_depth",
+                "offset": 0,
                 "surface_type": "floor",
                 "add_surface_depth": true,
-                "add_surface_secondary_depth": true,
-                "offset": 0
+                "add_surface_secondary_depth": true
               },
               "then_run": {
                 "type": "minecraft:block",
@@ -115,35 +142,7 @@
       }
     ]
   },
-  "noise": {
-    "min_y": 0,
-    "height": 128,
-    "terrain_shaper": {
-      "offset": 0.0,
-      "factor": 0.0,
-      "jaggedness": 0.3
-    },
-    "size_horizontal": 2,
-    "size_vertical": 1,
-    "sampling": {
-      "xz_scale": 1.0,
-      "y_scale": 2.0,
-      "xz_factor": 80.0,
-      "y_factor": 800.0
-    },
-    "top_slide": {
-      "target": -0.234375,
-      "size": 7,
-      "offset": 1
-    },
-    "bottom_slide": {
-      "target": -0.234375,
-      "size": 7,
-      "offset": 1
-    }
-  },
-  "sea_level": -1212,
   "structures": {
-    "structures": { }
+    "structures": {}
   }
 }
