@@ -2,14 +2,16 @@ package net.jitl.common.world.gen.carver;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
-import java.util.BitSet;
+
 import java.util.Random;
 import java.util.function.Function;
 
-import net.jitl.common.block.base.JBlock;
 import net.jitl.init.JBlocks;
+import net.jitl.init.world.JCaveCarverConfiguration;
 import net.minecraft.core.SectionPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.CarvingMask;
 import net.minecraft.world.level.levelgen.Aquifer;
@@ -21,27 +23,19 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.carver.CaveWorldCarver;
-import net.minecraft.world.level.levelgen.feature.configurations.ProbabilityFeatureConfiguration;
-import org.apache.commons.lang3.mutable.MutableBoolean;
 
-import java.util.BitSet;
-import java.util.Random;
-import java.util.function.Function;
+public class BoilingCaveCarver extends WorldCarver<JCaveCarverConfiguration> {
 
-public class BoilingCaveCarver extends CaveWorldCarver {
-
-    public BoilingCaveCarver(Codec<CaveCarverConfiguration> c) {
+    public BoilingCaveCarver(Codec<JCaveCarverConfiguration> c) {
         super(c);
-        this.replaceableBlocks = ImmutableSet.of(JBlocks.VOLCANIC_SAND, JBlocks.CHARRED_GRASS, JBlocks.HOT_GROUND, JBlocks.SCORCHED_RUBBLE, JBlocks.ASH_BLOCK);
+        this.replaceableBlocks = ImmutableSet.of(Blocks.LAVA, JBlocks.VOLCANIC_SAND, JBlocks.CHARRED_GRASS, JBlocks.HOT_GROUND, JBlocks.SCORCHED_RUBBLE, JBlocks.ASH_BLOCK);
         this.liquids = ImmutableSet.of(Fluids.LAVA, Fluids.WATER);
     }
 
-    @Override
     protected int getCaveBound() {
         return 15;
     }
 
-    @Override
     protected float getThickness(Random rand) {
         float f = rand.nextFloat() * 6.0F + rand.nextFloat();
         if (rand.nextInt(10) == 0) {
@@ -51,51 +45,101 @@ public class BoilingCaveCarver extends CaveWorldCarver {
     }
 
     @Override
+    protected boolean canReplaceBlock(BlockState state) {
+        return true;
+    }
+
     protected double getYScale() {
         return 1.0D;
     }
 
     @Override
-    public boolean carve(CarvingContext context_, CaveCarverConfiguration config_, ChunkAccess chunk_, Function<BlockPos, Biome> biomeAccessor_, Random random_, Aquifer aquifer_, ChunkPos chunkPos_, CarvingMask carvingMask_) {
+    public boolean carve(CarvingContext context, JCaveCarverConfiguration config, ChunkAccess chunk, Function<BlockPos, Biome> biomeAccessor, Random random, Aquifer aquifer, ChunkPos chunkPos, CarvingMask carvingMask) {
         int i = SectionPos.sectionToBlockCoord(this.getRange() * 2 - 1);
-        int j = random_.nextInt(random_.nextInt(random_.nextInt(this.getCaveBound()) + 1) + 1);
-
+        int j = random.nextInt(random.nextInt(random.nextInt(this.getCaveBound()) + 1) + 1);
         for(int k = 0; k < j; ++k) {
-            double d0 = (double)chunkPos_.getBlockX(random_.nextInt(16));
-            double d1 = (double)config_.y.sample(random_, context_);
-            double d2 = (double)chunkPos_.getBlockZ(random_.nextInt(16));
-            double d3 = (double)config_.horizontalRadiusMultiplier.sample(random_);
-            double d4 = (double)config_.verticalRadiusMultiplier.sample(random_);
-            double d5 = 5D;//(double)config_.floorLevel.sample(random_);
-            WorldCarver.CarveSkipChecker worldcarver$carveskipchecker = (skipContext_, relativeX_, relativeY1_, relativeZ1_, y1_) -> {
-                return shouldSkip(relativeX_, relativeY1_, relativeZ1_, d5);//floor level?
+            double d0 = (double)chunkPos.getBlockX(random.nextInt(16));
+            double d1 = (double)config.y.sample(random, context);
+            double d2 = (double)chunkPos.getBlockZ(random.nextInt(16));
+            double d3 = (double)config.horizontalRadiusMultiplier.sample(random);
+            double d4 = (double)config.verticalRadiusMultiplier.sample(random);
+            double d5 = (double)config.floorLevel.sample(random);
+            WorldCarver.CarveSkipChecker skip = (skipContext, relativeX, relativeY1, relativeZ1, y1) -> {
+                return shouldSkip(relativeX, relativeY1, relativeZ1, d5);//floor level?
             };
             int l = 1;
-            if (random_.nextInt(4) == 0) {
-                double d6 = (double)config_.yScale.sample(random_);
-                float f1 = 1.0F + random_.nextFloat() * 6.0F;
-                this.createRoom(context_, config_, chunk_, biomeAccessor_, aquifer_, d0, d1, d2, f1, d6, carvingMask_, worldcarver$carveskipchecker);
-                l += random_.nextInt(4);
+            if(random.nextInt(4) == 0) {
+                double d6 = (double)config.yScale.sample(random);
+                float f1 = 1.0F + random.nextFloat() * 6.0F;
+                this.createRoom(context, config, chunk, biomeAccessor, aquifer, d0, d1, d2, f1, d6, carvingMask, skip);
+                l += random.nextInt(4);
             }
 
             for(int k1 = 0; k1 < l; ++k1) {
-                float f = random_.nextFloat() * ((float)Math.PI * 2F);
-                float f3 = (random_.nextFloat() - 0.5F) / 4.0F;
-                float f2 = this.getThickness(random_);
-                int i1 = i - random_.nextInt(i / 4);
+                float f = random.nextFloat() * ((float)Math.PI * 2F);
+                float f3 = (random.nextFloat() - 0.5F) / 4.0F;
+                float f2 = this.getThickness(random);
+                int i1 = i - random.nextInt(i / 4);
                 int j1 = 0;
-                this.createTunnel(context_, config_, chunk_, biomeAccessor_, random_.nextLong(), aquifer_, d0, d1, d2, d3, d4, f2, f, f3, 0, i1, this.getYScale(), carvingMask_, worldcarver$carveskipchecker);
+                this.createTunnel(context, config, chunk, biomeAccessor, random.nextLong(), aquifer, d0, d1, d2, d3, d4, f2, f, f3, 0, i1, this.getYScale(), carvingMask, skip);
             }
         }
 
         return true;
     }
 
-    private static boolean shouldSkip(double relative_, double relativeY_, double relativeZ_, double minrelativeY_) {
-        if (relativeY_ <= minrelativeY_) {
+    @Override
+    public boolean isStartChunk(JCaveCarverConfiguration config, Random random) {
+        return false;
+    }
+
+    protected void createRoom(CarvingContext context, JCaveCarverConfiguration config, ChunkAccess chunk, Function<BlockPos, Biome> biomeAccessor, Aquifer aquifer, double x, double y, double z, float radius, double horizontalVerticalRatio, CarvingMask carvingMask, WorldCarver.CarveSkipChecker skipChecker) {
+        double d0 = 1.5D + (double)(Mth.sin(((float)Math.PI / 2F)) * radius);
+        double d1 = d0 * horizontalVerticalRatio;
+        this.carveEllipsoid(context, config, chunk, biomeAccessor, aquifer, x + 1.0D, y, z, d0, d1, carvingMask, skipChecker);
+    }
+
+    protected void createTunnel(CarvingContext context, JCaveCarverConfiguration config, ChunkAccess chunk, Function<BlockPos, Biome> biomeAccessor, long seed, Aquifer aquifer, double x, double y, double z, double horizontalRadiusMultiplier, double verticalRadiusMultiplier, float thickness, float yaw, float pitch, int branchIndex, int branchCount, double horizontalVerticalRatio, CarvingMask carvingMask, WorldCarver.CarveSkipChecker skipChecker) {
+        Random random = new Random(seed);
+        int i = random.nextInt(branchCount / 2) + branchCount / 4;
+        boolean flag = random.nextInt(6) == 0;
+        float f = 0.0F;
+        float f1 = 0.0F;
+
+        for(int j = branchIndex; j < branchCount; ++j) {
+            double d0 = 1.5D + (double)(Mth.sin((float)Math.PI * (float)j / (float)branchCount) * thickness);
+            double d1 = d0 * horizontalVerticalRatio;
+            float f2 = Mth.cos(pitch);
+            x += (double)(Mth.cos(yaw) * f2);
+            y += (double)Mth.sin(pitch);
+            z += (double)(Mth.sin(yaw) * f2);
+            pitch *= flag ? 0.92F : 0.7F;
+            pitch += f1 * 0.1F;
+            yaw += f * 0.1F;
+            f1 *= 0.9F;
+            f *= 0.75F;
+            f1 += (random.nextFloat() - random.nextFloat()) * random.nextFloat() * 2.0F;
+            f += (random.nextFloat() - random.nextFloat()) * random.nextFloat() * 4.0F;
+            if(j == i && thickness > 1.0F) {
+                this.createTunnel(context, config, chunk, biomeAccessor, random.nextLong(), aquifer, x, y, z, horizontalRadiusMultiplier, verticalRadiusMultiplier, random.nextFloat() * 0.5F + 0.5F, yaw - ((float)Math.PI / 2F), pitch / 3.0F, j, branchCount, 1.0D, carvingMask, skipChecker);
+                this.createTunnel(context, config, chunk, biomeAccessor, random.nextLong(), aquifer, x, y, z, horizontalRadiusMultiplier, verticalRadiusMultiplier, random.nextFloat() * 0.5F + 0.5F, yaw + ((float)Math.PI / 2F), pitch / 3.0F, j, branchCount, 1.0D, carvingMask, skipChecker);
+                return;
+            }
+
+            if(random.nextInt(4) != 0) {
+                if(!canReach(chunk.getPos(), x, z, j, branchCount, thickness)) {
+                    return;
+                }
+                this.carveEllipsoid(context, config, chunk, biomeAccessor, aquifer, x, y, z, d0 * horizontalRadiusMultiplier, d1 * verticalRadiusMultiplier, carvingMask, skipChecker);
+            }
+        }
+    }
+
+    private static boolean shouldSkip(double relative, double relativeY, double relativeZ, double minrelativeY) {
+        if(relativeY <= minrelativeY) {
             return true;
         } else {
-            return relative_ * relative_ + relativeY_ * relativeY_ + relativeZ_ * relativeZ_ >= 1.0D;
+            return relative * relative + relativeY * relativeY + relativeZ * relativeZ >= 1.0D;
         }
     }
 }

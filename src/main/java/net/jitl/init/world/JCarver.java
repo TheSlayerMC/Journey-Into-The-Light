@@ -15,7 +15,7 @@ public class JCarver {
     @AutoRegistrable
     private static final SimpleForgeRegister<WorldCarver<?>> REGISTER = new SimpleForgeRegister<>(ForgeRegistries.WORLD_CARVERS, JITL.MODID);
 
-    public static final RegistryObject<WorldCarver<CaveCarverConfiguration>> BOILING_CARVER = REGISTER.register("boiling_carver", () -> new BoilingCaveCarver(CaveCarverConfiguration.CODEC));
+    public static final RegistryObject<WorldCarver<JCaveCarverConfiguration>> BOILING_CARVER = REGISTER.register("boiling_carver", () -> new BoilingCaveCarver(JCaveCarverConfiguration.CODEC));
 
     public static final RegistryObject<WorldCarver<CaveCarverConfiguration>> FROZEN_CARVER = REGISTER.register("frozen_carver", () -> new FrozenCaveCarver(CaveCarverConfiguration.CODEC));
 

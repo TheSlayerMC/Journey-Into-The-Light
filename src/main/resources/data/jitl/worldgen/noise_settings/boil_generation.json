@@ -4,7 +4,7 @@
   "legacy_random_source": false,
   "disable_mob_generation": false,
   "aquifers_enabled": false,
-  "noise_caves_enabled": false,
+  "noise_caves_enabled": true,
   "default_block": {
     "Properties": {
       "double_drops": "true"
