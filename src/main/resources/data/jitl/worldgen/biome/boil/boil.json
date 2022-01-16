@@ -10,7 +10,11 @@
     "water_fog_color": 4262144
   },
   "spawners": {},
-  "carvers": {},
+  "carvers": {
+    "air": [
+      "jitl:boiling_carver"
+    ]
+  },
   "spawn_costs": {},
   "features": [
     []
