@@ -65,7 +65,7 @@ public class BoilingCaveCarver extends WorldCarver<JCaveCarverConfiguration> {
             double d4 = (double)config.verticalRadiusMultiplier.sample(random);
             double d5 = (double)config.floorLevel.sample(random);
             WorldCarver.CarveSkipChecker skip = (skipContext, relativeX, relativeY1, relativeZ1, y1) -> {
-                return shouldSkip(relativeX, relativeY1, relativeZ1, d5);//floor level?
+                return shouldSkip(relativeX, relativeY1, relativeZ1, d5);
             };
             int l = 1;
             if(random.nextInt(4) == 0) {
@@ -80,7 +80,6 @@ public class BoilingCaveCarver extends WorldCarver<JCaveCarverConfiguration> {
                 float f3 = (random.nextFloat() - 0.5F) / 4.0F;
                 float f2 = this.getThickness(random);
                 int i1 = i - random.nextInt(i / 4);
-                int j1 = 0;
                 this.createTunnel(context, config, chunk, biomeAccessor, random.nextLong(), aquifer, d0, d1, d2, d3, d4, f2, f, f3, 0, i1, this.getYScale(), carvingMask, skip);
             }
         }
@@ -90,7 +89,7 @@ public class BoilingCaveCarver extends WorldCarver<JCaveCarverConfiguration> {
 
     @Override
     public boolean isStartChunk(JCaveCarverConfiguration config, Random random) {
-        return false;
+        return random.nextFloat() <= config.probability;
     }
 
     protected void createRoom(CarvingContext context, JCaveCarverConfiguration config, ChunkAccess chunk, Function<BlockPos, Biome> biomeAccessor, Aquifer aquifer, double x, double y, double z, float radius, double horizontalVerticalRatio, CarvingMask carvingMask, WorldCarver.CarveSkipChecker skipChecker) {
