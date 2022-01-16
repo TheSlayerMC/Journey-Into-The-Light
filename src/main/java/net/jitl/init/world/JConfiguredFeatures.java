@@ -453,18 +453,6 @@ public class JConfiguredFeatures {
                                                     .add(JBlocks.GOLDITE_FLOWER.defaultBlockState(), 4)
                                                     .add(JBlocks.GOLDITE_BULB.defaultBlockState(), 4)))))));
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> SILVER_VEG =
-            REGISTER.register("silver_veg",
-                    () -> Feature.RANDOM_PATCH.configured(
-                            FeatureUtils.simplePatchConfiguration(
-                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
-                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                                    .add(JBlocks.EUCA_SILVER_GOLD_FLOWER.defaultBlockState(), 3)
-                                                    .add(JBlocks.EUCA_SILVER_SHORT_GRASS.defaultBlockState(), 4)
-                                                    .add(JBlocks.EUCA_SILVER_TALL_GRASS.defaultBlockState(), 10)
-                                                    .add(JBlocks.EUCA_SILVER_SPROUTS.defaultBlockState(), 3)))))));
-
-
     public static final Promised<? extends ConfiguredFeature<?, ?>> GOLD_VEG =
             REGISTER.register("gold_veg",
                     () -> Feature.RANDOM_PATCH.configured(

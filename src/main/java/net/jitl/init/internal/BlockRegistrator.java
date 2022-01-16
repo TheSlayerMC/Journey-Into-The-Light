@@ -305,30 +305,13 @@ public class BlockRegistrator {
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
                 () -> BlockModels.crossModel(JITL.tl("block/euca_silver_gold_flower")));
 
-        registerSpeciallyRenderedBlock("euca_silver_short_grass", "Euca Silver Short Grass", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
-                () -> BlockModels.crossModel(JITL.tl("block/euca_silver_short_grass")));
-
-        registerSpeciallyRenderedBlock("euca_silver_tall_grass", "Euca Silver Tall Grass", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
-                () -> BlockModels.crossModel(JITL.tl("block/euca_silver_tall_grass")));
-
-        registerSpeciallyRenderedBlock("euca_silver_sprouts", "Euca Silver Sprouts", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
-                        .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
-                () -> BlockModels.crossModel(JITL.tl("block/euca_silver_sprouts")));
-
-        registerGrassBlock("euca_silver_grass_block", "Euca Silver Grass", () -> new Block(JBlockProperties.GRASS_PROPS.create()), JITL.tl("block/euca_silver_dirt"));
-        registerDefaultBlock("euca_silver_dirt", "Euca Silver Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
-
         registerLogBlock("euca_gold_log", "Gold Euca Log");
-        registerLogBlock("euca_silver_log", "Silver Euca Log");
         registerLogBlock("euca_brown_log", "Brown Euca Log");
         registerLogBlock("frozen_log", "Frosty Log");
 
         registerCampfireBlock("bitterwood_campfire", "Bitterwood Campfire", () -> new CampfireBlock(true, 1, JBlockProperties.WOOD_PROPS.create().noOcclusion()));
 
         registerCustomRenderLayerBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
-        registerCustomRenderLayerBlock("euca_silver_leaves", "Euca Silver Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("euca_green_leaves", "Euca Green Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
 
         registerCustomRenderLayerBlock("frozen_leaves", "Frozen Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);

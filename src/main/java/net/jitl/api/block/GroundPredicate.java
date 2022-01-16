@@ -29,7 +29,7 @@ public interface GroundPredicate {
                     block == Blocks.FARMLAND));
 
     GroundPredicate EUCA_GRASS_BLOCKS = SOLID_SIDE.and(blockPredicate(block ->
-            block == JBlocks.GOLDITE_GRASS_BLOCK || block == JBlocks.EUCA_SILVER_GRASS_BLOCK || block == JBlocks.EUCA_GOLD_GRASS_BLOCK));
+            block == JBlocks.GOLDITE_GRASS_BLOCK || block == JBlocks.EUCA_GOLD_GRASS_BLOCK));
 
     GroundPredicate FROZEN_GRASS_BLOCK = SOLID_SIDE.and(blockPredicate(block ->
             block == JBlocks.GRASSY_PERMAFROST));

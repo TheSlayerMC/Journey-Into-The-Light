@@ -308,14 +308,6 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
             .asPromise();
 
-    public static final Promised<? extends PlacedFeature> SILVER_VEG = REGISTER.register(
-                    "silver_veg",
-                    GenerationStep.Decoration.VEGETAL_DECORATION,
-                    () -> JConfiguredFeatures.SILVER_VEG.get()
-                            .placed(patch(6, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
-            .allowedInBiomes(BiomePredicate.EUCA_SILVER_PLAINS)
-            .asPromise();
-
     public static final Promised<? extends PlacedFeature> GOLD_VEG = REGISTER.register(
                     "gold_veg",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
@@ -330,7 +322,7 @@ public class JPlacedFeatures {
                     () -> JConfiguredFeatures.MEKYUM_ORE.get()
                             .placed(orePlacement(CountPlacement.of(20),
                                     HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(128)))))
-            .allowedInBiomes(BiomePredicate.EUCA_SILVER_PLAINS)
+            .allowedInBiomes(BiomePredicate.EUCA_GOLD_PLAINS)
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> ORE_STORON = REGISTER.register(
@@ -520,7 +512,6 @@ public class JPlacedFeatures {
 
         public static final Predicate<BiomeLoadingEvent> GOLDITE_GRAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_goldite_grains"));
         public static final Predicate<BiomeLoadingEvent> EUCA_GOLD_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_plains"));
-        public static final Predicate<BiomeLoadingEvent> EUCA_SILVER_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("euca/euca_silver_plains"));
 
         public static final Predicate<BiomeLoadingEvent> FROZEN_WASTES = event -> Objects.equals(event.getName(), JITL.rl("frozen/frozen_wastes"));
         public static final Predicate<BiomeLoadingEvent> FROZEN_DYING_FORST = event -> Objects.equals(event.getName(), JITL.rl("frozen/dying_forest"));
@@ -531,7 +522,7 @@ public class JPlacedFeatures {
         public static final Predicate<BiomeLoadingEvent> CHARRED_FIELDS = event -> Objects.equals(event.getName(), JITL.rl("boil/charred_fields"));
         public static final Predicate<BiomeLoadingEvent> BOILING_PLAINS = event -> Objects.equals(event.getName(), JITL.rl("boil/boil"));
 
-        public static final Predicate<BiomeLoadingEvent> EUCA_BIOMES = GOLDITE_GRAINS.or(EUCA_GOLD_PLAINS).or(EUCA_SILVER_PLAINS);
+        public static final Predicate<BiomeLoadingEvent> EUCA_BIOMES = GOLDITE_GRAINS.or(EUCA_GOLD_PLAINS);
         public static final Predicate<BiomeLoadingEvent> BOIL_FIRE_BIOMES = SCORCHED_WASTELAND.or(CHARRED_FIELDS).or(BOILING_PLAINS).or(BOILING_SANDS);
         public static final Predicate<BiomeLoadingEvent> FROZEN_BIOMES = FROZEN_WASTES.or(FROZEN_DYING_FORST).or(FROZEN_BITTERWOOD_FORST);
 

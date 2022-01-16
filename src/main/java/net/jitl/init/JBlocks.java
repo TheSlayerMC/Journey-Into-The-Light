@@ -189,7 +189,6 @@ public class JBlocks {
 
     public static final Block GOLDITE_GRASS_BLOCK = promise();
     public static final Block EUCA_GOLD_GRASS_BLOCK = promise();
-    public static final Block EUCA_SILVER_GRASS_BLOCK = promise();
 
     public static final Block GOLDITE_DIRT = promise();
     public static final Block GOLDITE_FARMLAND = promise();
@@ -202,18 +201,13 @@ public class JBlocks {
     public static final JPlantBlock GOLDITE_FLOWER = promise();
 
     public static final JPlantBlock EUCA_SILVER_GOLD_FLOWER = promise();
-    public static final JPlantBlock EUCA_SILVER_SHORT_GRASS = promise();
-    public static final JPlantBlock EUCA_SILVER_SPROUTS = promise();
-    public static final JPlantBlock EUCA_SILVER_TALL_GRASS = promise();
     public static final JPlantBlock EUCA_TALL_FLOWERS = promise();
     public static final JPlantBlock EUCA_TALL_GRASS = promise();
 
     public static final RotatedPillarBlock EUCA_GOLD_LOG = promise();
-    public static final RotatedPillarBlock EUCA_SILVER_LOG = promise();
     public static final RotatedPillarBlock EUCA_BROWN_LOG = promise();
 
     public static final JLeavesBlock EUCA_GOLD_LEAVES = promise();
-    public static final JLeavesBlock EUCA_SILVER_LEAVES = promise();
     public static final JLeavesBlock EUCA_GREEN_LEAVES = promise();
 
     public static final Block DEPTHS_PORTAL_FRAME = promise();
