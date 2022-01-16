@@ -6,49 +6,51 @@ import net.jitl.JITL;
 import net.jitl.init.world.JStructurePieces;
 import net.jitl.init.world.JStructures;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.StructurePieceType;
+import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import net.minecraft.world.level.levelgen.structure.StructurePiece;
-import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
+import net.minecraft.world.level.levelgen.feature.structures.JigsawPlacement;
+import net.minecraft.world.level.levelgen.structure.*;
+import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import org.apache.logging.log4j.Level;
+import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.util.GenHelper;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
-public class MageHouseStructure extends StructureFeature<NoneFeatureConfiguration> {
-    public MageHouseStructure(Codec<NoneFeatureConfiguration> configCodec_, PieceGeneratorSupplier<NoneFeatureConfiguration> piecesGenerator_) {
-        super(configCodec_, piecesGenerator_);
-    }
+public class MageHouseStructure extends StructureFeature<JigsawConfiguration> {
 
-    /*public static final ResourceLocation MAGE = JITL.rl("overworld/mage_house");
+    public static final ResourceLocation POOL = JITL.rl("overworld/mage_house");
 
-    private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
-            MAGE, BlockPos.ZERO
-    );
-
-    public MageHouseStructure(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
-    }
-
-    @Override
-    public StructureFeature<NoneFeatureConfiguration> createTopPiece() {
-        return Start::new;
+    public MageHouseStructure() {
+        super(JigsawConfiguration.CODEC, context_ -> {
+            if (!isFeatureChunk(context_)) {
+                return Optional.empty();
+            } else {
+                return createPieceGenerator(context_);
+            }
+        }, PostPlacementProcessor.NONE);
     }
 
     @Override
@@ -56,82 +58,42 @@ public class MageHouseStructure extends StructureFeature<NoneFeatureConfiguratio
         return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
-    public static StructurePiece createPiece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos, boolean applyGenerationNoise) {
-        return new Piece(templateManager, templateLocation, pos);
+    public static boolean isFeatureChunk(PieceGeneratorSupplier.Context<JigsawConfiguration> context) {
+        BlockPos pos = context.chunkPos().getWorldPosition();
+        int surfaceHeight = context.chunkGenerator().getFirstOccupiedHeight(pos.getX(), pos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
+        NoiseColumn noise = context.chunkGenerator().getBaseColumn(pos.getX(), pos.getZ(), context.heightAccessor());
+        BlockState topBlock = noise.getBlock(surfaceHeight);
+        return topBlock.getFluidState().isEmpty();
     }
 
-    public static void generate(List<StructurePiece> pieces, StructureManager templateManager, BlockPos surfacePos) {
-        BlockPos changeable = surfacePos;
-        pieces.add(createPiece(templateManager, MageHouseStructure.MAGE, surfacePos, true));
+    public static @NotNull Optional<PieceGenerator<JigsawConfiguration>> createPieceGenerator(PieceGeneratorSupplier.Context<JigsawConfiguration> context){
+        BlockPos pos = context.chunkPos().getMiddleBlockPosition(0);
+        var newConfig = new JigsawConfiguration(
+                () -> context.registryAccess().ownedRegistryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(POOL), 5
+        );
+
+        var newContext = createContextWithConfig(context, newConfig);
+
+        var generator = JigsawPlacement.addPieces(newContext, PoolElementStructurePiece::new, pos, false, true);
+
+        if(generator.isPresent()) {
+            JITL.LOGGER.log(Level.INFO, MageHouseStructure.class.getName() + " Generated at " + pos);
+        }
+
+        return generator;
     }
 
-    public static class Start extends StructureFeature<NoneFeatureConfiguration> {
-
-
-        public Start(StructureFeature<NoneFeatureConfiguration> structure, int chunkX, int chunkZ, BoundingBox mutableBoundingBox_, int references, long seed) {
-            super(structure, chunkX, chunkZ, mutableBoundingBox_, references, seed);
-        }
-
-        public void generatePieces(RegistryAccess dynamicRegistries, ChunkGenerator chunkGenerator, StructureManager templateManager, int chunkX, int chunkZ, Biome biome_, NoneFeatureConfiguration featureConfig_) {
-            int x = chunkX << 4;
-            int z = chunkZ << 4;
-
-            int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator, x, z, x + 10, z + 10);
-            surface -= 1;
-
-            BlockPos start = new BlockPos(x, surface, z);
-            JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", MageHouseStructure.class.getSimpleName(), start);
-
-            generate(pieces, templateManager, start);
-
-            this.calculateBoundingBox();
-        }
+    public static PieceGeneratorSupplier.Context<JigsawConfiguration> createContextWithConfig(PieceGeneratorSupplier.Context<JigsawConfiguration> context, JigsawConfiguration newConfig) {
+        return new PieceGeneratorSupplier.Context<>(
+                context.chunkGenerator(),
+                context.biomeSource(),
+                context.seed(),
+                context.chunkPos(),
+                newConfig,
+                context.heightAccessor(),
+                context.validBiome(),
+                context.structureManager(),
+                context.registryAccess()
+        );
     }
-
-    public static class Piece extends TemplateStructurePiece {
-        private final ResourceLocation templateLocation;
-
-        public Piece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            this(JStructurePieces.MAGE.get(), templateManager, templateLocation, pos);
-        }
-
-        public Piece(StructureManager templateManager, CompoundTag nbt) {
-            this(JStructurePieces.MAGE.get(), templateManager, nbt);
-        }
-
-        protected Piece(StructurePieceType type, StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            super(type, 0);
-            this.templateLocation = templateLocation;
-            this.templatePosition = pos.offset(OFFSETS.get(templateLocation));
-            loadTemplate(templateManager);
-        }
-
-        protected Piece(StructurePieceType type, StructureManager templateManager, CompoundTag nbt) {
-            super(type, nbt);
-            this.templateLocation = new ResourceLocation(nbt.getString("template"));
-            loadTemplate(templateManager);
-        }
-
-        @Override
-        protected void addAdditionalSaveData(CompoundTag tagCompound) {
-            super.addAdditionalSaveData(tagCompound);
-            tagCompound.putString("template", this.templateLocation.toString());
-        }
-
-        private void loadTemplate(StructureManager templateManager) {
-            Random random = new Random();
-            StructureTemplate template = templateManager.getOrCreate(this.templateLocation);
-            StructurePlaceSettings placementsettings = new StructurePlaceSettings()
-                    .setRotation(Rotation.getRandom(random))
-                    .setMirror(Mirror.NONE);
-//                    .setRotationPivot()
-//                    .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
-            this.setup(template, this.templatePosition, placementsettings);
-        }
-
-        @Override
-        protected void handleDataMarker(String function, BlockPos pos, ServerLevelAccessor worldIn, Random rand, BoundingBox sbb) {
-
-        }
-    }*/
 }

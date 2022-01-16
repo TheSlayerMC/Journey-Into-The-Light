@@ -19,12 +19,12 @@ public class JStructurePieces {
     @AutoRegistrable
     private static final SimpleVanillaRegister<StructurePieceType> REGISTER = new SimpleVanillaRegister<>(JITL.MODID, Registry.STRUCTURE_PIECE);
 
+   // public static final Promised<StructurePieceType> MAGE = REGISTER.register("mage", new MageHouseStructure());
 
     /*public static final Promised<StructurePieceType> GUARDIAN_TOWER_PIECE = REGISTER.register("gt/p", () -> GuardianTowerPieces.Piece::new);
     public static final Promised<StructurePieceType> GUARDIAN_TOWER_NO_GRASS_TOUCHED_PIECE = REGISTER.register("gt/ngtp", () -> GuardianTowerPieces.NoGrassTouchedPiece::new);
 
     public static final Promised<StructurePieceType> BLACKSMITH = REGISTER.register("bs", () -> BlacksmithStructure.Piece::new);
-    public static final Promised<StructurePieceType> MAGE = REGISTER.register("mage", () -> MageHouseStructure.Piece::new);
 
     public static final Promised<StructurePieceType> ALLOY_MENDER = REGISTER.register("alloy_mender", () -> AlloyMenderStructure.Piece::new);
     public static final Promised<StructurePieceType> EUCA_DUNGEON = REGISTER.register("euca_dungeon", () -> EucaDungeonStructure.Piece::new);
