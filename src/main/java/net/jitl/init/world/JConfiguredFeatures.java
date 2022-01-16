@@ -46,6 +46,7 @@ public class JConfiguredFeatures {
     public static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
     public static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
     public static final RuleTest EUCA_ORE_REPLACEABLES = new TagMatchTest(JTags.EUCA_STONE_ORE_REPLACEABLES);
+    public static final RuleTest BOIL_ORE_REPLACEABLES = new TagMatchTest(JTags.BOIL_STONE_ORE_REPLACEABLES);
 
     //FIXME lunium ore is null
     /*public static final List<OreConfiguration.TargetBlockState> ORE_LUNIUM_TARGET_LIST = List.of(
@@ -494,6 +495,16 @@ public class JConfiguredFeatures {
                     OreConfiguration.target(EUCA_ORE_REPLACEABLES, JBlocks.KORITE_ORE.defaultBlockState())),
                     12)));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> ASHUAL_ORE =
+            REGISTER.register("ashual_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(BOIL_ORE_REPLACEABLES, JBlocks.ASHUAL_ORE.defaultBlockState())),
+                    7)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> BLAZIUM_ORE =
+            REGISTER.register("blazium_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(BOIL_ORE_REPLACEABLES, JBlocks.BLAZIUM_ORE.defaultBlockState())),
+                    7)));
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWING_FUNGI =
             REGISTER.register("glowing_fungi",
                     () -> Feature.RANDOM_PATCH.configured(
@@ -647,48 +658,6 @@ public class JConfiguredFeatures {
                                     .build())
                             .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared())
                     .setBiomePredicate(BOILING_SANDS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> ASHUAL_ORE =
-            REGISTER.register("ashual_ore",
-                    Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.ASHUAL_ORE.defaultBlockState(), JRuleTests.ASH, 7, 140, 10))
-                    .setBiomePredicate(BOIL_FIRE_BIOMES)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> BLAZIUM_ORE =
-            REGISTER.register("blazium_ore",
-                            Decoration.UNDERGROUND_ORES,
-                            defaultOreFeature(() -> JBlocks.BLAZIUM_ORE.defaultBlockState(), JRuleTests.ASH, 7, 40, 10))
-                    .setBiomePredicate(BOIL_FIRE_BIOMES)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> SAPPHIRE_ORE =
-            REGISTER.register("sapphire_ore",
-                    Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.SAPPHIRE_ORE.defaultBlockState(), JRuleTests.STONE, 7, 24, 2))
-                    .setBiomePredicate(COMMON_BIOMES)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> LUNIUM_ORE =
-            REGISTER.register("lunium_ore",
-                    Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.LUNIUM_ORE.defaultBlockState(), JRuleTests.STONE, 5, 16, 1))
-                    .setBiomePredicate(COMMON_BIOMES)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> SHADIUM_ORE =
-            REGISTER.register("shadium_ore",
-                    Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.SHADIUM_ORE.defaultBlockState(), JRuleTests.STONE, 3, 10, 1))
-                    .setBiomePredicate(COMMON_BIOMES)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> IRIDIUM_ORE =
-            REGISTER.register("iridium_ore",
-                    Decoration.UNDERGROUND_ORES,
-                    defaultOreFeature(() -> JBlocks.IRIDIUM_ORE.defaultBlockState(), JRuleTests.STONE, 7, 10, 16))
-                    .setBiomePredicate(COMMON_BIOMES)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BLOODCRUST_ORE =

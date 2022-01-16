@@ -360,6 +360,24 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> ORE_ASHUAL = REGISTER.register(
+                    "ore_ashual",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.ASHUAL_ORE.get()
+                            .placed(orePlacement(CountPlacement.of(12),
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256)))))
+            .allowedInBiomes(BiomePredicate.BOIL_FIRE_BIOMES)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_BLAZIUM = REGISTER.register(
+                    "ore_blazium",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.BLAZIUM_ORE.get()
+                            .placed(orePlacement(CountPlacement.of(12),
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256)))))
+            .allowedInBiomes(BiomePredicate.BOIL_FIRE_BIOMES)
+            .asPromise();
+
     public static final Promised<? extends PlacedFeature> GLOWING_FUNGI = REGISTER.register(
                     "glowing_fungi",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
