@@ -1,6 +1,6 @@
 {
   "ore_veins_enabled": false,
-  "noodle_caves_enabled": false,
+  "noodle_caves_enabled": true,
   "legacy_random_source": false,
   "disable_mob_generation": false,
   "aquifers_enabled": false,
