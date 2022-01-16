@@ -12,7 +12,7 @@
   "spawners": {},
   "carvers": {
     "air": [
-      "jitl:boiling_carver"
+      "jitl:boiling_cave"
     ]
   },
   "spawn_costs": {},
