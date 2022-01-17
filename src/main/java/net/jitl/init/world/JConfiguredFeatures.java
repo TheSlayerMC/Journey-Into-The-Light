@@ -268,10 +268,10 @@ public class JConfiguredFeatures {
                             FeatureUtils.simplePatchConfiguration(
                                     Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
                                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 2)
-                                                    .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 4)
-                                                    .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 1)
-                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 1)))))));
+                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 3)
+                                                    .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 1)
+                                                    .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 6)
+                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 6)))))));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOIL_VEG =
             REGISTER.register("boil_veg",
