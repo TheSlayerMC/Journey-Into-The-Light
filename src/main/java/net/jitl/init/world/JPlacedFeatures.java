@@ -192,7 +192,7 @@ public class JPlacedFeatures {
                     "boil_sands_veg",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.BOIL_SANDS_VEG.get()
-                            .placed(patch(1, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(6, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
             .asPromise();
 

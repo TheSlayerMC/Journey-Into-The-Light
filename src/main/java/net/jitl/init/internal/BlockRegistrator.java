@@ -402,6 +402,7 @@ public class BlockRegistrator {
 
         registerRandomizedRotatedBlock("rubble", "Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
         registerRandomizedRotatedBlock("volcanic_sand", "Volcanic Sand", () -> new JBlock(JBlockProperties.HOLD_FIRE_SAND));
+        registerDefaultBlock("volcanic_soil", "Volcanic Soil", () -> new JBlock(JBlockProperties.HOLD_FIRE_SAND));
         registerRandomizedRotatedBlock("hot_ground", "Hot Ground", () -> new JBlock(JBlockProperties.HOLD_FIRE));
         registerRandomizedRotatedBlock("scorched_rubble", "Scorched Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
         registerRandomizedRotatedBlock("ash_block", "Ash", () -> new Block(JBlockProperties.STONE_PROPS.create()));

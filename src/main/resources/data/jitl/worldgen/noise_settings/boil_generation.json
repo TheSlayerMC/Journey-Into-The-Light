@@ -107,10 +107,30 @@
                 "offset": 0
               },
               "then_run": {
-                "type": "minecraft:block",
-                "result_state": {
-                  "Name": "jitl:volcanic_sand"
-                }
+                "type": "minecraft:sequence",
+                "sequence": [
+                  {
+                    "if_true": {
+                      "noise": "minecraft:nether_state_selector",
+                      "min_threshold": 0.0,
+                      "max_threshold": 1.7976931348623157E308,
+                      "type": "minecraft:noise_threshold"
+                    },
+                    "then_run": {
+                      "result_state": {
+                        "Name": "jitl:volcanic_soil"
+                      },
+                      "type": "minecraft:block"
+                    },
+                    "type": "minecraft:condition"
+                  },
+                  {
+                    "result_state": {
+                      "Name": "jitl:volcanic_sand"
+                    },
+                    "type": "minecraft:block"
+                  }
+                ]
               }
             },
             {

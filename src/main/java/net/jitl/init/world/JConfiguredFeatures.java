@@ -3,6 +3,7 @@ package net.jitl.init.world;
 import com.google.common.collect.ImmutableList;
 import net.jitl.JITL;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
+import net.jitl.common.world.gen.treedecorator.*;
 import net.jitl.init.JBlocks;
 import net.jitl.init.JTags;
 import net.jitl.util.JRuleTests;
@@ -267,10 +268,10 @@ public class JConfiguredFeatures {
                             FeatureUtils.simplePatchConfiguration(
                                     Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
                                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 3)
+                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 2)
                                                     .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 4)
-                                                    .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 2)
-                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 3)))))));
+                                                    .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 1)
+                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 1)))))));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOIL_VEG =
             REGISTER.register("boil_veg",
@@ -321,7 +322,7 @@ public class JConfiguredFeatures {
                                     .forceDirt()
                                     .dirt(BlockStateProvider.simple(JBlocks.CHARRED_GRASS))
                                     //FIXME decorators crash
-                                    //.decorators(List.of(CharredBrushTreeDecorator.INSTANCE))
+                                    .decorators(List.of(CharredBrushTreeDecorator.INSTANCE))
                                     .build()));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> MEDIUM_BURNED_TREE =
@@ -333,7 +334,7 @@ public class JConfiguredFeatures {
                                     BlockStateProvider.simple(JBlocks.CHARRED_LEAVES),
                                     new FancyFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), 2),
                                     new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
-                                    //.decorators(ImmutableList.of(CharredBrushTreeDecorator.INSTANCE))
+                                    .decorators(ImmutableList.of(CharredBrushTreeDecorator.INSTANCE))
                                     .forceDirt()
                                     .dirt(BlockStateProvider.simple(JBlocks.CHARRED_GRASS))
                                     .build()));
@@ -347,7 +348,7 @@ public class JConfiguredFeatures {
                                     BlockStateProvider.simple(JBlocks.CHARRED_LEAVES),
                                     new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
                                     new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
-                                    //.decorators(ImmutableList.of(CharredBrushTreeDecorator.INSTANCE))
+                                    .decorators(ImmutableList.of(CharredBrushTreeDecorator.INSTANCE))
                                     .forceDirt()
                                     .dirt(BlockStateProvider.simple(JBlocks.CHARRED_GRASS))
                                     .build()));
@@ -361,7 +362,7 @@ public class JConfiguredFeatures {
                                     BlockStateProvider.simple(JBlocks.FROZEN_LEAVES.defaultBlockState()),
                                     new PineFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), ConstantInt.of(2)),
                                     new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
-                                    //.decorators(ImmutableList.of(IcyBrushTreeDecorator.INSTANCE, new IceShroomTreeDecorator(0.2F)))
+                                    .decorators(ImmutableList.of(IcyBrushTreeDecorator.INSTANCE, new IceShroomTreeDecorator(0.2F)))
                                     .forceDirt()
                                     .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
                                     .build()));
@@ -375,10 +376,10 @@ public class JConfiguredFeatures {
                                     BlockStateProvider.simple(JBlocks.FROZEN_LEAVES.defaultBlockState()),
                                     new PineFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), ConstantInt.of(2)),
                                     new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
-                                    /*.decorators(ImmutableList.of(
+                                    .decorators(ImmutableList.of(
                                             IcyBrushTreeDecorator.INSTANCE,
                                             new IceShroomTreeDecorator(0.2F),
-                                            new CrystalFruitTreeDecorator(4)))*/
+                                            new CrystalFruitTreeDecorator(4)))
                                     .forceDirt()
                                     .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
                                     .build()));
@@ -392,10 +393,10 @@ public class JConfiguredFeatures {
                                     BlockStateProvider.simple(JBlocks.FROZEN_LEAVES.defaultBlockState()),
                                     new PineFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), ConstantInt.of(2)),
                                     new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
-                                    /*.decorators(ImmutableList.of(
+                                    .decorators(ImmutableList.of(
                                             IcyBrushTreeDecorator.INSTANCE,
                                             new IceShroomTreeDecorator(0.2F),
-                                            new CrystalFruitTreeDecorator(4)))*/
+                                            new CrystalFruitTreeDecorator(4)))
                                     .forceDirt()
                                     .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
                                     .build()));
@@ -409,7 +410,7 @@ public class JConfiguredFeatures {
                                     BlockStateProvider.simple(JBlocks.FROZEN_LEAVES.defaultBlockState()),
                                     new SpruceFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), ConstantInt.of(2)),
                                     new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
-                                    //.decorators(ImmutableList.of(new FrozenTreeDecorator(0.01F)))
+                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.01F)))
                                     .forceDirt()
                                     .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
                                     .build()));
@@ -423,7 +424,7 @@ public class JConfiguredFeatures {
                                     BlockStateProvider.simple(JBlocks.FROZEN_LEAVES.defaultBlockState()),
                                     new SpruceFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), ConstantInt.of(2)),
                                     new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
-                                    //.decorators(ImmutableList.of(new FrozenTreeDecorator(0.01F)))
+                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.01F)))
                                     .forceDirt()
                                     .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
                                     .build()));
@@ -437,7 +438,7 @@ public class JConfiguredFeatures {
                                     BlockStateProvider.simple(JBlocks.FROZEN_LEAVES.defaultBlockState()),
                                     new SpruceFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), ConstantInt.of(2)),
                                     new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
-                                    //.decorators(ImmutableList.of(new FrozenTreeDecorator(0.01F)))
+                                    .decorators(ImmutableList.of(new FrozenTreeDecorator(0.01F)))
                                     .forceDirt()
                                     .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
                                     .build()));

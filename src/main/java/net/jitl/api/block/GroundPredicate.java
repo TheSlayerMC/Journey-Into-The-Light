@@ -36,6 +36,7 @@ public interface GroundPredicate {
 
     GroundPredicate BOILING_LAND = SOLID_SIDE.and(blockPredicate(block ->
             block == JBlocks.VOLCANIC_SAND ||
+                    block == JBlocks.VOLCANIC_SOIL ||
                     block == JBlocks.CHARRED_GRASS ||
                     block == JBlocks.HOT_GROUND ||
                     block == JBlocks.SCORCHED_RUBBLE
