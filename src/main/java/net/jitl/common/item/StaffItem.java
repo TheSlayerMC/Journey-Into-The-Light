@@ -1,5 +1,6 @@
 package net.jitl.common.item;
 
+import net.jitl.common.capability.player.IJPlayer;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.init.JSounds;
 import net.jitl.util.IEssenceItem;
@@ -30,15 +31,16 @@ public class StaffItem extends Item implements IEssenceItem {
     public @NotNull InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         if (!worldIn.isClientSide) {
-            JPlayer capability = JPlayer.from(playerIn);
-            if (capability != null && capability.essence.consumeEssence(playerIn, 1.0F)) {
-                ThrowableProjectile throwableEntity = projectileFactory.apply(worldIn, playerIn);
-                throwableEntity.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 1.5F, 1.0F);
-                worldIn.addFreshEntity(throwableEntity);
-                worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), JSounds.STAFF_0.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (worldIn.getRandom().nextFloat() * 0.4F + 0.8F));
-            }
+            IJPlayer.get(playerIn).ifPresent(capability -> {
+                Player player1 = capability.getPlayer();
+                if (capability.getEssence().consumeEssence(player1, 1.0F)) {
+                    ThrowableProjectile throwableEntity = projectileFactory.apply(worldIn, player1);
+                    throwableEntity.shootFromRotation(player1, player1.getXRot(), player1.getYRot(), 0.0F, 1.5F, 1.0F);
+                    worldIn.addFreshEntity(throwableEntity);
+                    worldIn.playSound(null, player1.getX(), player1.getY(), player1.getZ(), JSounds.STAFF_0.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (worldIn.getRandom().nextFloat() * 0.4F + 0.8F));
+                }
+            });
         }
-
         playerIn.awardStat(Stats.ITEM_USED.get(this));
 
         return InteractionResultHolder.sidedSuccess(itemstack, worldIn.isClientSide());

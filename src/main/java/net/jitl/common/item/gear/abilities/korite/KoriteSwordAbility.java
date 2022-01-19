@@ -1,5 +1,6 @@
 package net.jitl.common.item.gear.abilities.korite;
 
+import net.jitl.common.capability.player.IJPlayer;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.player.data.Essence;
 import net.jitl.common.helper.TooltipFiller;
@@ -34,15 +35,17 @@ public class KoriteSwordAbility implements IAbility {
     @Override
     public void rightClick(Player player, InteractionHand hand, Level world) {
         if (!world.isClientSide() && hand == InteractionHand.MAIN_HAND) {
-            ItemStack stack = player.getMainHandItem();
+            IJPlayer.get(player).ifPresent(capability -> {
+                Player player1 = capability.getPlayer();
+                ItemStack stack = player1.getMainHandItem();
             if (!stack.hasTag()) stack.setTag(new CompoundTag());
             CompoundTag nbt = stack.getTag();
-            Essence essence = JPlayer.from(player).essence;
+            Essence essence = capability.getEssence();
             float bonus = Math.min(essence.getCurrentEssence(), 5.0F);
-            if (nbt.getFloat("bonus") < bonus && essence.consumeEssence(player, bonus)) {
+            if (nbt.getFloat("bonus") < bonus && essence.consumeEssence(player1, bonus)) {
                 nbt.putFloat("bonus", bonus);
-                addModifier(player, bonus);
-            }
+                addModifier(player1, bonus);
+            }});
         }
     }
 
