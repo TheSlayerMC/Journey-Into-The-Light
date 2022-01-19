@@ -5,6 +5,8 @@ import net.jitl.common.capability.armorability.ArmorSetCapability;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.capability.currentstructure.CurrentStructureCapability;
 import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
+import net.jitl.common.capability.player.IJPlayer;
+import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.pressedkeys.IPressedKeysCapability;
 import net.jitl.common.capability.pressedkeys.PressedKeysCapability;
 import net.minecraft.world.entity.Entity;
@@ -23,6 +25,8 @@ public class JCapabilityProvider {
     public static final Capability<IArmorSetCapability> ARMOR = CapabilityManager.get(new CapabilityToken<>() { });
     public static final Capability<ICurrentStructureCapability> STRUCTURE = CapabilityManager.get(new CapabilityToken<>() { });
     public static final Capability<IPressedKeysCapability> KEYS = CapabilityManager.get(new CapabilityToken<>() { });
+    public static final Capability<IJPlayer> PLAYER = CapabilityManager.get(new CapabilityToken<>() { });
+
 
     public static <T> T getCapability(ICapabilityProvider holder, @NotNull Capability<T> cap) {
         return holder.getCapability(cap).resolve().orElse(null);
@@ -33,6 +37,7 @@ public class JCapabilityProvider {
         event.register(IArmorSetCapability.class);
         event.register(ICurrentStructureCapability.class);
         event.register(IPressedKeysCapability.class);
+        event.register(IJPlayer.class);
     }
 
     @Mod.EventBusSubscriber(modid = JITL.MODID)
@@ -44,7 +49,7 @@ public class JCapabilityProvider {
                 if (entity instanceof LivingEntity) {
                     if (entity instanceof Player) {
                         //FIXME player cap data
-                        //event.addCapability(JITL.rl("jitl_player_data"), new CoffeeCapabilityProvider<>(new JPlayer((Player) entity)));
+                        event.addCapability(JITL.rl("jitl_player_data"), new JPlayerCapabilityProvider(new JPlayer((Player) entity)));
                     }
                     event.addCapability(JITL.rl("current_armor"), new CoffeeCapabilityProvider<>(new ArmorSetCapability()));
                     event.addCapability(JITL.rl("current_structure"), new CoffeeCapabilityProvider<>(new CurrentStructureCapability()));

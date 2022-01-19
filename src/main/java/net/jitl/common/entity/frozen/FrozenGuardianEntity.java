@@ -1,5 +1,7 @@
 package net.jitl.common.entity.frozen;
 
+import net.jitl.common.capability.JCapabilityProvider;
+import net.jitl.common.capability.player.IJPlayer;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.tile.PedestalTile;
@@ -30,6 +32,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
@@ -213,11 +216,13 @@ public class FrozenGuardianEntity extends PathfinderMob {
         int playerArea = 10;
         AABB axisalignedbb = AABB.unitCubeFromLowerCorner(this.position()).inflate(playerArea, 10.0D, playerArea);
         for(Player player : this.level.getEntitiesOfClass(Player.class, axisalignedbb)) {
-            JPlayer capability = JPlayer.from(player);
-            if(capability != null) {
-                capability.fogDensity.setDensityEnabled(true);
-                capability.detectAndSendChanges();
-            }
+           //IJPlayer capability = player.getCapability(JCapabilityProvider.PLAYER);
+            IJPlayer.get(player).ifPresent(jplayer -> {
+                if(jplayer != null) {
+                    jplayer.fogDensity().setDensityEnabled(true);
+                }
+            });
+
         }
     }
 }
