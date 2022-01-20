@@ -45,8 +45,8 @@ public class JCapabilityProvider {
             Entity entity = event.getObject();
             if (!entity.level.isClientSide()) {
                 if (entity instanceof LivingEntity) {
-                    if (entity instanceof Player) {
-                        event.addCapability(JITL.rl("jitl_player_data"), new CoffeeCapabilityProvider<>(new JPlayer((Player) entity)));
+                    if (entity instanceof Player player) {
+                        event.addCapability(JITL.rl("jitl_player_data"), new CoffeeCapabilityProvider<>(new JPlayer(player)));
                     }
                     event.addCapability(JITL.rl("current_armor"), new CoffeeCapabilityProvider<>(new ArmorSetCapability()));
                     event.addCapability(JITL.rl("current_structure"), new CoffeeCapabilityProvider<>(new CurrentStructureCapability()));
