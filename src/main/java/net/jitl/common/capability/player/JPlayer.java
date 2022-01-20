@@ -59,7 +59,6 @@ public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
     public static JPlayer from(@Nullable Player player) {
         if (player != null) {
             LazyOptional<JPlayer> cap = player.getCapability(JCapabilities.PLAYER);
-
             if (cap.isPresent()) {
                 return cap.orElseThrow(IllegalStateException::new);
             }
