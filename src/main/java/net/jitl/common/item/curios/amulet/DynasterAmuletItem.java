@@ -1,6 +1,5 @@
 package net.jitl.common.item.curios.amulet;
 
-import net.jitl.common.capability.player.IJPlayer;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.pressedkeys.PressedKeysCapability;
 import net.jitl.common.item.curios.JCurioItem;
@@ -22,10 +21,10 @@ public class DynasterAmuletItem extends JCurioItem {
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-        IJPlayer.get((Player) livingEntity).ifPresent(capability -> {
-        Player player = capability.getPlayer();
+        Player player = (Player) livingEntity;
         if (!player.isOnGround() && !player.isInLava() && !player.isInWaterOrBubble() && PressedKeysCapability.isAmuletPressedEitherSide(player)) {
-            if(capability.getEssence().checkEssenceEitherSide(player.level.isClientSide(), player, 0.5F)) {
+            JPlayer capability = JPlayer.from(player);
+            if (capability != null && capability.essence.checkEssenceEitherSide(player.level.isClientSide(), player, 0.5F)) {
                 boolean bool = isFloatReady(player);
                 if (bool) {
                     player.fallDistance = 0;
@@ -38,7 +37,7 @@ public class DynasterAmuletItem extends JCurioItem {
                     ((ServerLevel) player.level).sendParticles(bool ? ParticleTypes.CLOUD : ParticleTypes.SMOKE, player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 0.2);
                 }
             }
-        }});
+        }
     }
 
     private boolean isFloatReady(Player player) {
