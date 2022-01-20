@@ -30,17 +30,17 @@ public class JCapabilities {
     public static void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             //FIXME player cap data
-            TimeCore.INSTANCE.getCapabilityManager().attachStaticCoffeeCapability(CapabilityOwner.ENTITY, PLAYER, entity -> entity instanceof Player, entity -> new JPlayer((Player) entity));
+            //TimeCore.INSTANCE.getCapabilityManager().attachStaticCoffeeCapability(CapabilityOwner.ENTITY, PLAYER, entity -> entity instanceof Player, entity -> new JPlayer((Player) entity));
             //TimeCore.INSTANCE.getCapabilityManager().enableKeepingPlayerCapability(player -> {
                 //JPlayer cap = JPlayer.from(player);
                 //return cap.serialize(coffeeProperty -> {
                     
                 //});
             //});//TODO make better
-            TimeCore.INSTANCE.getCapabilityManager().enableSyncingPlayerCapabilityOnJoin(entity -> {
-                JPlayer cap = JPlayer.from(entity);
-                if (cap != null) cap.sendAllData();
-            });
+            //TimeCore.INSTANCE.getCapabilityManager().enableSyncingPlayerCapabilityOnJoin(entity -> {
+            //    JPlayer cap = JPlayer.from(entity);
+            //    if (cap != null) cap.sendAllData();
+            //});
         });
     }
 }
