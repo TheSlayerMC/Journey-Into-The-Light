@@ -73,7 +73,7 @@ public class JMobSpawnerTile extends BlockEntity{
 
     @Override
     public CompoundTag getUpdateTag() {
-        CompoundTag compoundnbt = this.save(new CompoundTag());
+        CompoundTag compoundnbt = this.saveWithoutMetadata();
         compoundnbt.remove("SpawnPotentials");
         return compoundnbt;
     }
