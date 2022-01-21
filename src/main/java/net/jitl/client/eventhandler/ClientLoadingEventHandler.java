@@ -2,6 +2,7 @@ package net.jitl.client.eventhandler;
 
 import net.jitl.client.Models;
 import net.jitl.client.world.BoilRenderInfo;
+import net.jitl.client.world.EucaRenderInfo;
 import net.jitl.client.world.FrozenRenderInfo;
 import net.jitl.core.init.world.Dimensions;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
@@ -22,6 +23,7 @@ public class ClientLoadingEventHandler {
         event.enqueueWork(() -> {
             DimensionSpecialEffects.EFFECTS.put(Dimensions.FROZEN_LANDS_TYPE.location(), new FrozenRenderInfo());
             DimensionSpecialEffects.EFFECTS.put(Dimensions.BOIL_TYPE.location(), new BoilRenderInfo());
+            DimensionSpecialEffects.EFFECTS.put(Dimensions.EUCA_TYPE.location(), new EucaRenderInfo());
         });
     }
 }

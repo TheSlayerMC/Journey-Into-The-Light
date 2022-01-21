@@ -320,7 +320,7 @@ public class JPlacedFeatures {
                     "goldite_veg",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.GOLDITE_VEG.get()
-                            .placed(patch(6, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(12, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
             .asPromise();
 

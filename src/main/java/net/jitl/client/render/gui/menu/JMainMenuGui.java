@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.mojang.realmsclient.RealmsMainScreen;
 import com.mojang.realmsclient.gui.screens.RealmsNotificationsScreen;
+import net.jitl.client.render.BlurredCubeMap;
 import net.jitl.client.render.gui.button.JButton;
 import net.jitl.client.render.gui.button.JImageButton;
 import net.jitl.core.JITL;
@@ -22,7 +23,6 @@ import net.minecraft.client.gui.screens.*;
 import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
 import net.minecraft.client.gui.screens.multiplayer.SafetyScreen;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
-import net.minecraft.client.renderer.CubeMap;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.PanoramaRenderer;
 import net.minecraft.client.resources.language.I18n;
@@ -52,7 +52,7 @@ import java.util.function.Consumer;
 @OnlyIn(Dist.CLIENT)
 public class JMainMenuGui extends TitleScreen {
 	private static final Logger LOGGER = LogManager.getLogger();
-	public static final CubeMap CUBE_MAP = new CubeMap(JITL.rl("textures/gui/title/background/panorama"));
+	public static final BlurredCubeMap CUBE_MAP = new BlurredCubeMap(JITL.rl("textures/gui/title/background/panorama"));
 	private static final ResourceLocation PANORAMA_OVERLAY = new ResourceLocation("textures/gui/title/background/panorama_overlay.png");
 	private static final ResourceLocation ACCESSIBILITY_TEXTURE = new ResourceLocation("textures/gui/accessibility.png");
 	private static final ResourceLocation LANGUAGE_TEXTURE = JITL.rl("textures/gui/title/language_button.png");
