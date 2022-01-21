@@ -23,16 +23,16 @@ public class PedestalTile extends RandomizableContainerBlockEntity {
 
     @Override
     protected @NotNull NonNullList<ItemStack> getItems() {
-        return inventory;
+        return this.inventory;
     }
 
     @Override
     protected void setItems(@NotNull NonNullList<ItemStack> itemsIn) {
-        inventory = itemsIn;
+        this.inventory = itemsIn;
     }
 
     @Override
-    protected @NotNull AbstractContainerMenu createMenu(int id, @NotNull Inventory player) {
+    protected AbstractContainerMenu createMenu(int id, @NotNull Inventory player) {
         return null;
     }
 
@@ -43,7 +43,7 @@ public class PedestalTile extends RandomizableContainerBlockEntity {
 
     @Override
     public @NotNull CompoundTag getUpdateTag() {
-        return saveWithoutMetadata();
+        return this.saveWithoutMetadata();
     }
 
     @Override
