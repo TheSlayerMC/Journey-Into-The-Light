@@ -41,10 +41,10 @@ public class PedestalTile extends RandomizableContainerBlockEntity {
         return 1;
     }
 
-    /*@Override
+    @Override
     public @NotNull CompoundTag getUpdateTag() {
-        return this.saveAdditional(new CompoundTag());
-    }*/
+        return saveWithoutMetadata();
+    }
 
     @Override
     public void load(@NotNull CompoundTag nbt) {

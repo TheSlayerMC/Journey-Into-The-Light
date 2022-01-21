@@ -83,7 +83,7 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
     protected void falling(FallingBlockEntity fallingEntity) {
         BlockEntity tileEntity = fallingEntity.level.getBlockEntity(fallingEntity.blockPosition());
         if (tileEntity instanceof PotTile) {
-            fallingEntity.blockData = tileEntity.getUpdateTag(); //FIXME test me
+            fallingEntity.blockData = tileEntity.saveWithoutMetadata(); //FIXME test me
         }
     }
 

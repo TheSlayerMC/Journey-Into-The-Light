@@ -44,10 +44,10 @@ public class PotTile extends RandomizableContainerBlockEntity {
         return 27;
     }
 
-    /*@Override
+    @Override
     public @NotNull CompoundTag getUpdateTag() {
-        return this.saveAdditional(new CompoundTag());
-    }*/
+        return saveWithoutMetadata();
+    }
 
     @Override
     public @NotNull void saveAdditional(@NotNull CompoundTag compound) {
