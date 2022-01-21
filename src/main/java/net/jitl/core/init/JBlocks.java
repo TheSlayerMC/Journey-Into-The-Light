@@ -205,6 +205,7 @@ public class JBlocks {
     public static final JPlantBlock EUCA_TALL_GRASS = promise();
 
     public static final JSaplingBlock EUCA_GOLD_SAPLING = promise();
+    public static final JSaplingBlock EUCA_GREEN_SAPLING = promise();
 
     public static final RotatedPillarBlock EUCA_GOLD_LOG = promise();
     public static final RotatedPillarBlock EUCA_BROWN_LOG = promise();
