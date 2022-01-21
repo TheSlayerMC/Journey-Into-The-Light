@@ -260,14 +260,14 @@ public class BlockRegistrator {
 
         registerDefaultBlock("crumbled_permafrost", "Crumbled Permafrost", () -> new Block(JBlockProperties.CRUMBLED_PERMAFROST_PROPS.create()));
 
-        registerGrassBlock("grassy_permafrost", "Grassy Permafrost", () -> new Block(JBlockProperties.GRASSY_PERMAFROST_PROPS.create()), JITL.tl("block/crumbled_permafrost"));
+        registerGrassBlock("grassy_permafrost", "Grassy Permafrost", () -> new JGrassBlock(JBlockProperties.GRASSY_PERMAFROST_PROPS.create(), JBlocks.CRUMBLED_PERMAFROST), JITL.tl("block/crumbled_permafrost"));
 
         registerDefaultBlock("permafrost", "Permafrost", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
 
         registerPortalBlock("euca_portal", "Euca Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.EUCA, () -> JBlocks.EUCA_PORTAL_FRAME));
-        registerGrassBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new JGrassBlock(JBlockProperties.GRASS_PROPS.create()), JITL.tl("block/goldite_dirt"));
+        registerGrassBlock("euca_gold_grass_block", "Euca Gold Grass", () -> new JGrassBlock(JBlockProperties.GRASS_PROPS.create(), JBlocks.GOLDITE_DIRT), JITL.tl("block/goldite_dirt"));
 
-        registerGrassBlock("goldite_grass_block", "Goldite Grass", () -> new JGrassBlock(JBlockProperties.GRASS_PROPS.create()), JITL.tl("block/goldite_dirt"));
+        registerGrassBlock("goldite_grass_block", "Goldite Grass", () -> new JGrassBlock(JBlockProperties.GRASS_PROPS.create(), JBlocks.GOLDITE_DIRT), JITL.tl("block/goldite_dirt"));
 
         registerDefaultBlock("goldite_dirt", "Goldite Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
         registerRandomizedRotatedBlock("goldite_stone", "Goldite Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
@@ -415,7 +415,7 @@ public class BlockRegistrator {
         registerRandomizedRotatedBlock("scorched_rubble", "Scorched Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
         registerRandomizedRotatedBlock("ash_block", "Ash", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerPortalBlock("boil_portal", "Boiling Portal", () -> new JBasePortalBlock(JBlockProperties.PORTAL.create(), Dimensions.BOIL, () -> JBlocks.BOIL_PORTAL_FRAME));
-        registerGrassBlock("charred_grass", "Charred Grass", () -> new JGrassBlock(JBlockProperties.GRASS_PROPS.create()), JITL.tl("block/rubble"));
+        registerGrassBlock("charred_grass", "Charred Grass", () -> new JGrassBlock(JBlockProperties.GRASS_PROPS.create(), JBlocks.RUBBLE), JITL.tl("block/rubble"));
 
         registerDefaultBlock("sulphur_rock", "Sulphur Rock", () -> new Block(JBlockProperties.BASALT_PROPS.create()));
         registerAttachedRenderedBlock("sulphur_crystal", "Sulphur Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create().lightLevel((intf) -> 4)),
