@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class JBiomeGeneration {
     public static void generateBiomes() {
-        addBiome(JBiomes.DEEP_FOREST.get(), BiomeManager.BiomeType.WARM, 80, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.FOREST);
+        addBiome(JBiomes.DEEP_FOREST.get(), BiomeManager.BiomeType.WARM, 80, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.UNDERGROUND);
     }
 
     private static void addBiome(Biome biome, BiomeManager.BiomeType type, int weight, BiomeDictionary.Type... types) {

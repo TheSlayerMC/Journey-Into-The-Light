@@ -44,18 +44,17 @@ public class PotTile extends RandomizableContainerBlockEntity {
         return 27;
     }
 
-    @Override
+    /*@Override
     public @NotNull CompoundTag getUpdateTag() {
-        return this.save(new CompoundTag());
-    }
+        return this.saveAdditional(new CompoundTag());
+    }*/
 
     @Override
-    public @NotNull CompoundTag save(@NotNull CompoundTag compound) {
-        super.save(compound);
+    public @NotNull void saveAdditional(@NotNull CompoundTag compound) {
+        super.saveAdditional(compound);
         if (!this.trySaveLootTable(compound)) {
             ContainerHelper.saveAllItems(compound, this.inventory);
         }
-        return compound;
     }
 
     @Override

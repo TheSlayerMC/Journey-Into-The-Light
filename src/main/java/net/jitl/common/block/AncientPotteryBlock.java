@@ -6,7 +6,6 @@ import net.jitl.core.init.JSounds;
 import net.jitl.core.init.JTiles;
 import net.jitl.core.util.JBlockProperties;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
@@ -84,7 +83,7 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
     protected void falling(FallingBlockEntity fallingEntity) {
         BlockEntity tileEntity = fallingEntity.level.getBlockEntity(fallingEntity.blockPosition());
         if (tileEntity instanceof PotTile) {
-            fallingEntity.blockData = tileEntity.save(new CompoundTag());
+            fallingEntity.blockData = tileEntity.getUpdateTag(); //FIXME test me
         }
     }
 

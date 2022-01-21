@@ -41,10 +41,10 @@ public class PedestalTile extends RandomizableContainerBlockEntity {
         return 1;
     }
 
-    @Override
+    /*@Override
     public @NotNull CompoundTag getUpdateTag() {
-        return this.save(new CompoundTag());
-    }
+        return this.saveAdditional(new CompoundTag());
+    }*/
 
     @Override
     public void load(@NotNull CompoundTag nbt) {
@@ -54,10 +54,9 @@ public class PedestalTile extends RandomizableContainerBlockEntity {
     }
 
     @Override
-    public @NotNull CompoundTag save(@NotNull CompoundTag compound) {
-        super.save(compound);
+    public void saveAdditional(@NotNull CompoundTag compound) {
+        super.saveAdditional(compound);
         ContainerHelper.saveAllItems(compound, this.inventory);
-        return compound;
     }
 
     @Override
