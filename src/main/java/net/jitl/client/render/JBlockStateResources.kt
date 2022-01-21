@@ -209,6 +209,22 @@ object JBlockStateResources {
     }
 
     @JvmStatic
+    fun randomizedTexture(model: BlockModelLocation, model1: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                ""[
+                        {
+                            "model" set model
+                        },
+                        {
+                            "model" set model1
+                        }
+                ]
+            }
+        })
+    }
+
+    @JvmStatic
     fun randomizedRotatedAll(model: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(json {
             "variants" {

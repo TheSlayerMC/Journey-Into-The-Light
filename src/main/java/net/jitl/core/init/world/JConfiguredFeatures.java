@@ -481,7 +481,7 @@ public class JConfiguredFeatures {
             REGISTER.register("euca_green_tree",
                     () -> Feature.TREE.configured(
                             new TreeConfiguration.TreeConfigurationBuilder(
-                                    BlockStateProvider.simple(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
+                                    BlockStateProvider.simple(JBlocks.EUCA_BROWN_LOG.defaultBlockState()),
                                     new ForkingTrunkPlacer(4, 1, 6),
                                     BlockStateProvider.simple(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
                                     new SphericalFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), 1),
