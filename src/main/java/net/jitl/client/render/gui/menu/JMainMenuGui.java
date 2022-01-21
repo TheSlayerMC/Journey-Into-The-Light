@@ -39,6 +39,7 @@ import net.minecraft.world.level.storage.LevelSummary;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.ModListScreen;
+import net.minecraftforge.client.gui.NotificationModUpdateScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -81,7 +82,6 @@ public class JMainMenuGui extends TitleScreen {
 	}
 
 	public JMainMenuGui(boolean fadeIn) {
-		super(true);
 		this.fading = fadeIn;
 	}
 
@@ -124,7 +124,7 @@ public class JMainMenuGui extends TitleScreen {
 				this.minecraft.setScreen(new ModListScreen(this));
 			}, false));
 		}
-		modUpdateNotification = net.minecraftforge.client.gui.NotificationModUpdateScreen.init(this, modButton);
+		modUpdateNotification = NotificationModUpdateScreen.init(this, modButton);
 
 		this.addRenderableWidget(new JImageButton(this.width / 2 - 206, j + 75, 20, 20, 0, 0, 20, LANGUAGE_TEXTURE, 20, 40, (button9_) -> {
 			this.minecraft.setScreen(new LanguageSelectScreen(this, this.minecraft.options, this.minecraft.getLanguageManager()));

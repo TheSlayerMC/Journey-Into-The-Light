@@ -37,7 +37,7 @@ public class GuiEventHandler {
 	public static void overrideMainMenu(ScreenOpenEvent event) {
 		if (JConfigs.CLIENT.GUI_CATEGORY.isJITLMenuEnabled()) {
 			if (event.getScreen() instanceof TitleScreen) {
-				event.setScreen(new JMainMenuGui());
+				event.setScreen(new JMainMenuGui(false));
 			}
 		}
 	}
@@ -51,9 +51,9 @@ public class GuiEventHandler {
 		ToggleMenuButton buttonToggleMenu = new ToggleMenuButton(x, 0, (action) -> {
 			guiConfig.setJITLMenu(!guiConfig.isJITLMenuEnabled());
 			if (!guiConfig.isJITLMenuEnabled()) {
-				minecraft.setScreen(new TitleScreen());
+				minecraft.setScreen(new TitleScreen(false));
 			} else {
-				minecraft.setScreen(new JMainMenuGui());
+				minecraft.setScreen(new JMainMenuGui(false));
 			}
 		});
 		if (event.getScreen() instanceof TitleScreen) {
