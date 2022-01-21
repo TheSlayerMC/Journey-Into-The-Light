@@ -83,12 +83,12 @@ public class JPlantBlock extends BushBlock implements BonemealableBlock, IForgeS
      */
     @Override
     public boolean isValidBonemealTarget(@NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull BlockState state, boolean isClient) {
-        return grownPlant.get() != null ? true : false;
+        return grownPlant.get() != null;
     }
 
     @Override
     public boolean isBonemealSuccess(@NotNull Level worldIn, @NotNull Random rand, @NotNull BlockPos pos, @NotNull BlockState state) {
-        return grownPlant.get() != null ? true : false;
+        return grownPlant.get() != null;
     }
 
     @Override

@@ -91,13 +91,11 @@ public class JGrassBlock extends Block implements BonemealableBlock {
     private static boolean canBeGrass(BlockState state, LevelReader levelReader, BlockPos pos) {
         BlockPos blockpos = pos.above();
         BlockState blockstate = levelReader.getBlockState(blockpos);
-        int i = LayerLightEngine.getLightBlockInto(levelReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(levelReader, blockpos));
-        return i < levelReader.getMaxLightLevel();
+        return true;
     }
 
     private static boolean canPropagate(BlockState state, LevelReader level, BlockPos pos) {
-        BlockPos blockpos = pos.above();
-        return canBeGrass(state, level, pos) && !level.getFluidState(blockpos).is(FluidTags.WATER);
+        return canBeGrass(state, level, pos);
     }
 
     @Override
