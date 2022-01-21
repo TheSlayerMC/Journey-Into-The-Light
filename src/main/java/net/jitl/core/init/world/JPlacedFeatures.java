@@ -304,7 +304,7 @@ public class JPlacedFeatures {
                     "euca_gold_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.EUCA_GOLD_TREES.get()
-                                    .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.EUCA_GOLD_SAPLING))) //FIXME: replace block with sapling when they're added
+                                    .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.EUCA_GOLD_SAPLING)))
             .allowedInBiomes(BiomePredicate.EUCA_BIOMES)
             .asPromise();
 
@@ -312,7 +312,7 @@ public class JPlacedFeatures {
                     "euca_green_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.EUCA_GREEN_TREES.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.EUCA_TALL_GRASS))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.EUCA_GREEN_SAPLING)))
             .allowedInBiomes(BiomePredicate.EUCA_BIOMES)
             .asPromise();
 
