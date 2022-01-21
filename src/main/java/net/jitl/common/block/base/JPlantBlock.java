@@ -78,9 +78,9 @@ public class JPlantBlock extends BushBlock implements BonemealableBlock, IForgeS
         return this == JBlocks.TALL_FUNGI ? TALL_SHAPE : SHAPE;
     }
 
-    /**
+    /*
      * Whether this IGrowable can grow
-     */
+
     @Override
     public boolean isValidBonemealTarget(@NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull BlockState state, boolean isClient) {
         return grownPlant.get() != null;
@@ -99,7 +99,7 @@ public class JPlantBlock extends BushBlock implements BonemealableBlock, IForgeS
                 DoublePlantBlock.placeAt(worldIn, state, pos, 2);
             }
         }
-    }
+    }*/
 
     @Override
     public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader worldIn, @NotNull BlockPos pos) {
