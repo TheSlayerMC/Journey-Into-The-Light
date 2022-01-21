@@ -15,6 +15,7 @@ import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Widget;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.components.toasts.SystemToast;
 import net.minecraft.client.gui.screens.*;
@@ -38,7 +39,6 @@ import net.minecraft.world.level.storage.LevelSummary;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.ModListScreen;
-import net.minecraftforge.client.gui.NotificationModUpdateScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -59,6 +59,7 @@ public class JMainMenuGui extends TitleScreen {
 	private String splash;
 	private Button resetDemoButton;
 	private static final ResourceLocation MINECRAFT_LOGO = JITL.rl("textures/gui/title/logo.png");
+	private net.minecraftforge.client.gui.NotificationModUpdateScreen modUpdateNotification;
 
 	/**
 	 * Has the check for a realms notification screen been performed?
@@ -119,11 +120,11 @@ public class JMainMenuGui extends TitleScreen {
 			this.createDemoMenuOptions(j, 24);
 		} else {
 			this.createNormalMenuOptions(j);
-			modButton = this.addWidget(new JButton(this.width / 2 - 206, 30 + j - 15, 200, 20, new TranslatableComponent("fml.menu.mods"), button -> {
+			modButton = this.addRenderableWidget(new JButton(this.width / 2 - 206, 30 + j - 15, 200, 20, new TranslatableComponent("fml.menu.mods"), button -> {
 				this.minecraft.setScreen(new ModListScreen(this));
 			}, false));
 		}
-		NotificationModUpdateScreen modUpdateNotification = NotificationModUpdateScreen.init(this, modButton);
+		modUpdateNotification = net.minecraftforge.client.gui.NotificationModUpdateScreen.init(this, modButton);
 
 		this.addRenderableWidget(new JImageButton(this.width / 2 - 206, j + 75, 20, 20, 0, 0, 20, LANGUAGE_TEXTURE, 20, 40, (button9_) -> {
 			this.minecraft.setScreen(new LanguageSelectScreen(this, this.minecraft.options, this.minecraft.getLanguageManager()));
@@ -146,7 +147,6 @@ public class JMainMenuGui extends TitleScreen {
 		if (this.realmsNotificationsEnabled()) {
 			this.realmsNotificationsScreen.init(this.minecraft, this.width, this.height);
 		}
-
 	}
 
 	/**
@@ -344,16 +344,16 @@ public class JMainMenuGui extends TitleScreen {
 				(this.buttons.get(buttonSize)).renderToolTip(matrixStack, mouseX, mouseY);
 			}*/
 
-			for(GuiEventListener guieventlistener : this.children()) {
-				if (guieventlistener instanceof AbstractWidget) {
-					((AbstractWidget) guieventlistener).setAlpha(f1);
-				}
+			//super.render(matrixStack, mouseX, mouseY, partialTicks);
+
+			for (Widget widget : this.renderables) {
+				widget.render(matrixStack, mouseX, mouseY, partialTicks);
 			}
 
-			//super.render(matrixStack, mouseX, mouseY, partialTicks);
 			if (this.realmsNotificationsEnabled() && f1 >= 1.0F) {
 				this.realmsNotificationsScreen.render(matrixStack, mouseX, mouseY, partialTicks);
 			}
+			modUpdateNotification.render(matrixStack, mouseX, mouseY, partialTicks);
 		}
 	}
 
