@@ -2,6 +2,7 @@ package net.jitl.core.init;
 
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.base.BossCrystalEntity;
+import net.jitl.common.entity.euca.EucaHopperEntity;
 import net.jitl.common.entity.frozen.*;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
@@ -165,6 +166,16 @@ public class JEntities {
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HonglowEntity::canSpawn)
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .attributes(() -> HonglowEntity.createAttributes().build())
+            .retrieve();
+
+    public static final EntityType<EucaHopperEntity> EUCA_HOPPER_TYPE = REGISTER.registerMob("euca_hopper",
+                    Builder.of(EucaHopperEntity::new, MobCategory.CREATURE)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(1F, 1F))
+            .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EucaHopperEntity::canSpawn)
+            .attributes(() -> EucaHopperEntity.createAttributes().build())
             .retrieve();
 
     public static final EntityType<WitherspineEntity> WITHERSPINE_TYPE = REGISTER.registerMob("witherspine",

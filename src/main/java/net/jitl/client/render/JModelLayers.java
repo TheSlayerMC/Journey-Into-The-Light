@@ -22,6 +22,7 @@ public class JModelLayers {
     public static final ModelLayerLocation MAGE_MODEL_LAYER = register("mage");
     public static final ModelLayerLocation ESKIMO_MODEL_LAYER = register("eskimo");
     public static final ModelLayerLocation MINI_BOOM_LAYER = register("mini_boom");
+    public static final ModelLayerLocation EUCA_HOPPER_MODEL_LAYER = register("euca_hopper");
     public static final ModelLayerLocation MINI_BOOM_CHARGED_LAYER = register("mini_boom", "armor");
     public static final ModelLayerLocation SHIVERING_RAM_LAYER = register("shivering_ram");
     public static final ModelLayerLocation SHIVERING_RAM_WOOL_LAYER = register("shivering_ram", "wool");

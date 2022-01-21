@@ -6,6 +6,7 @@ import net.jitl.client.render.model.BoomModel;
 import net.jitl.client.render.model.HongoModel;
 import net.jitl.client.render.model.MageModel;
 import net.jitl.client.render.model.block.ObeliskModel;
+import net.jitl.client.render.model.euca.EucaHopperModel;
 import net.jitl.client.render.model.frozen.*;
 import net.jitl.core.JITL;
 import net.jitl.core.init.JEntities;
@@ -61,6 +62,8 @@ public class JEntityRenderRegistry {
         //PETS
         event.registerEntityRenderer(JEntities.MINI_BOOM_TYPE, MiniBoomRenderer::new);
         event.registerEntityRenderer(JEntities.CAPYBARA_TYPE, CapybaraRenderer::new);
+        event.registerEntityRenderer(JEntities.EUCA_HOPPER_TYPE, EucaHopperRenderer::new);
+
     }
 
     @SubscribeEvent
@@ -94,5 +97,6 @@ public class JEntityRenderRegistry {
         event.registerLayerDefinition(JModelLayers.MINI_BOOM_CHARGED_LAYER, BoomModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.CAPYBARA_MODEL_LAYER, CapybaraModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.CAPYBARA_SADDLE_LAYER, CapybaraModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.EUCA_HOPPER_MODEL_LAYER, EucaHopperModel::createBodyLayer);
     }
 }
