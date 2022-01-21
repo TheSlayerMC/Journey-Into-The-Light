@@ -61,7 +61,7 @@ public class JGrassBlock extends Block implements BonemealableBlock {
             }
 
             if (blockstate1.isAir()) {
-                PlacedFeature placedfeature = VegetationPlacements.GRASS_BONEMEAL;
+                PlacedFeature placedfeature = null;
                 if (rand.nextInt(8) == 0) {
                     List<ConfiguredFeature<?, ?>> list = level.getBiome(blockpos1).getGenerationSettings().getFlowerFeatures();
                     if(list.isEmpty()) {
@@ -76,7 +76,8 @@ public class JGrassBlock extends Block implements BonemealableBlock {
                         placedfeature = VegetationPlacements.GRASS_BONEMEAL;
                     }
                 }
-                placedfeature.place(level, level.getChunkSource().getGenerator(), rand, blockpos1);
+                if(placedfeature != null)
+                    placedfeature.place(level, level.getChunkSource().getGenerator(), rand, blockpos1);
             }
         }
 
