@@ -10,6 +10,7 @@ import net.minecraftforge.common.IPlantable;
 
 public class JGrassBlock extends Block {
 
+    //Make this work like normal grass (can spread to specific dirt and can bonemeal)
     public JGrassBlock(Properties properties) {
         super(properties);
     }
