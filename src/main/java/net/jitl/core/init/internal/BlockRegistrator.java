@@ -12,6 +12,7 @@ import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.DepthsPortalFrameBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.common.block.trees.DyingFrozenTree;
+import net.jitl.common.block.trees.EucaGoldTreeGrower;
 import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.common.tile.ObeliskTile;
 import net.jitl.core.JITL;
@@ -308,6 +309,9 @@ public class BlockRegistrator {
         registerLogBlock("euca_gold_log", "Gold Euca Log");
         registerLogBlock("euca_brown_log", "Brown Euca Log");
         registerLogBlock("frozen_log", "Frosty Log");
+
+        registerSpeciallyRenderedBlock("euca_gold_sapling", "Euca Gold Sapling", () -> new JSaplingBlock(new EucaGoldTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/euca_gold_sapling")));
 
         registerCampfireBlock("bitterwood_campfire", "Bitterwood Campfire", () -> new CampfireBlock(true, 1, JBlockProperties.WOOD_PROPS.create().noOcclusion()));
 
