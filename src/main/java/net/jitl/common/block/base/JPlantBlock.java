@@ -132,4 +132,19 @@ public class JPlantBlock extends BushBlock implements BonemealableBlock, IForgeS
     public @NotNull OffsetType getOffsetType() {
         return offset ? OffsetType.XYZ : super.getOffsetType();
     }
+
+    @Override
+    public boolean isValidBonemealTarget(BlockGetter level_, BlockPos pos_, BlockState state_, boolean isClient_) {
+        return false;
+    }
+
+    @Override
+    public boolean isBonemealSuccess(Level level_, Random random_, BlockPos pos_, BlockState state_) {
+        return false;
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel level_, Random random_, BlockPos pos_, BlockState state_) {
+
+    }
 }
