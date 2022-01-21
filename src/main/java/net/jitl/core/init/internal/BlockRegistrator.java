@@ -320,7 +320,7 @@ public class BlockRegistrator {
         registerCampfireBlock("bitterwood_campfire", "Bitterwood Campfire", () -> new CampfireBlock(true, 1, JBlockProperties.WOOD_PROPS.create().noOcclusion()));
 
         registerCustomRenderLayerBlock("euca_gold_leaves", "Euca Gold Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
-        registerCustomRenderLayerBlock("euca_green_leaves", "Euca Green Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
+        registerRandomizedTextureBlock("euca_green_leaves", "Euca Green Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
 
         registerCustomRenderLayerBlock("frozen_leaves", "Frozen Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("frosty_ice", "Frosty Ice", () -> new Block(JBlockProperties.ICE_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
@@ -672,6 +672,18 @@ public class BlockRegistrator {
                 .state(JBlockStateResources.slabState(JITL.bml("block/" + name), JITL.bml("block/" + textureName), JITL.bml("block/" + name + "_top")))
                 .model(JITL.bml("block/" + name), () -> JBlockModels.slab(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_top"), () -> JBlockModels.slab(JITL.tl("block/" + textureName)));
+    }
+
+    private static void registerRandomizedTextureBlock(String name, String enName, Supplier<Block> blockSupplier, CreativeModeTab creativeModeTab, Supplier<RenderTypeWrapper> renderType) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .renderLayer(renderType)
+                .defaultBlockItem(creativeModeTab)
+                .state(JBlockStateResources.randomizedTexture(JITL.bml("block/" + name), JITL.bml("block/" + name + "_0")))
+                .model(JITL.bml("block/" + name),
+                        () -> BlockModels.cubeAllModel(JITL.tl("block/" + name)))
+                .model(JITL.bml("block/" + name + "_0"),
+                        () -> BlockModels.cubeAllModel(JITL.tl("block/" + name + "_0")));
     }
 
     private static void registerRandomizedRotatedBlock(String name, String enName, Supplier<Block> blockSupplier) {
