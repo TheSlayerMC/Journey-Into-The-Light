@@ -1,7 +1,7 @@
 package net.jitl.client.eventhandler.music;
 
-import net.jitl.JITL;
 import net.jitl.common.helper.JMusic;
+import net.jitl.core.JITL;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;

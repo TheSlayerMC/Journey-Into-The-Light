@@ -1,7 +1,7 @@
 package net.jitl.common.world.gen.structures.overworld;
 
 import com.mojang.serialization.Codec;
-import net.jitl.JITL;
+import net.jitl.core.JITL;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.levelgen.GenerationStep;

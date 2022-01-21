@@ -1,6 +1,6 @@
 package net.jitl.common.eventhandler;
 
-import net.jitl.JITL;
+import net.jitl.core.JITL;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;

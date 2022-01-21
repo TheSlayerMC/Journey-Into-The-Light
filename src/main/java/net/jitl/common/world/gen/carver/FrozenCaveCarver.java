@@ -2,24 +2,20 @@ package net.jitl.common.world.gen.carver;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
-import net.jitl.init.JBlocks;
+import net.jitl.core.init.JBlocks;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.chunk.CarvingMask;
+import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Aquifer;
 import net.minecraft.world.level.levelgen.carver.CarvingContext;
 import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
+import net.minecraft.world.level.levelgen.carver.CaveWorldCarver;
 import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.levelgen.carver.CaveWorldCarver;
-import net.minecraft.world.level.levelgen.feature.configurations.ProbabilityFeatureConfiguration;
-import org.apache.commons.lang3.mutable.MutableBoolean;
 
-import java.util.BitSet;
 import java.util.Random;
 import java.util.function.Function;
 
@@ -56,18 +52,18 @@ public class FrozenCaveCarver extends CaveWorldCarver {
         int j = random_.nextInt(random_.nextInt(random_.nextInt(this.getCaveBound()) + 1) + 1);
 
         for(int k = 0; k < j; ++k) {
-            double d0 = (double)chunkPos_.getBlockX(random_.nextInt(16));
-            double d1 = (double)config_.y.sample(random_, context_);
-            double d2 = (double)chunkPos_.getBlockZ(random_.nextInt(16));
-            double d3 = (double)config_.horizontalRadiusMultiplier.sample(random_);
-            double d4 = (double)config_.verticalRadiusMultiplier.sample(random_);
+            double d0 = chunkPos_.getBlockX(random_.nextInt(16));
+            double d1 = config_.y.sample(random_, context_);
+            double d2 = chunkPos_.getBlockZ(random_.nextInt(16));
+            double d3 = config_.horizontalRadiusMultiplier.sample(random_);
+            double d4 = config_.verticalRadiusMultiplier.sample(random_);
             double d5 = 5D;//(double)config_.floorLevel.sample(random_);
             WorldCarver.CarveSkipChecker worldcarver$carveskipchecker = (skipContext_, relativeX_, relativeY1_, relativeZ1_, y1_) -> {
                 return shouldSkip(relativeX_, relativeY1_, relativeZ1_, d5);//floor level?
             };
             int l = 1;
             if (random_.nextInt(4) == 0) {
-                double d6 = (double)config_.yScale.sample(random_);
+                double d6 = config_.yScale.sample(random_);
                 float f1 = 1.0F + random_.nextFloat() * 6.0F;
                 this.createRoom(context_, config_, chunk_, biomeAccessor_, aquifer_, d0, d1, d2, f1, d6, carvingMask_, worldcarver$carveskipchecker);
                 l += random_.nextInt(4);

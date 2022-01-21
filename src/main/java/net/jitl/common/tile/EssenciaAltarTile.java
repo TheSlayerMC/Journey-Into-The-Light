@@ -2,7 +2,7 @@ package net.jitl.common.tile;
 
 import net.jitl.common.block.base.XZFacedBlock;
 import net.jitl.common.entity.EssenciaBoltEntity;
-import net.jitl.init.*;
+import net.jitl.core.init.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;

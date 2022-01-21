@@ -1,11 +1,11 @@
 package net.jitl.common.eventhandler;
 
-import net.jitl.JITL;
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
 import net.jitl.common.helper.EnumStructureMusic;
-import net.jitl.network.JPacketHandler;
-import net.jitl.network.SCurrentStructurePacket;
+import net.jitl.core.JITL;
+import net.jitl.core.network.JPacketHandler;
+import net.jitl.core.network.SCurrentStructurePacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

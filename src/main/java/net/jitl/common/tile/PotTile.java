@@ -1,6 +1,6 @@
 package net.jitl.common.tile;
 
-import net.jitl.init.JTiles;
+import net.jitl.core.init.JTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;

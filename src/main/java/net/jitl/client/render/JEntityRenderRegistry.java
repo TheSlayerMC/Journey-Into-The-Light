@@ -1,6 +1,5 @@
 package net.jitl.client.render;
 
-import net.jitl.JITL;
 import net.jitl.client.render.entity.*;
 import net.jitl.client.render.entity.base.Entity2DRenderer;
 import net.jitl.client.render.model.BoomModel;
@@ -8,21 +7,14 @@ import net.jitl.client.render.model.HongoModel;
 import net.jitl.client.render.model.MageModel;
 import net.jitl.client.render.model.block.ObeliskModel;
 import net.jitl.client.render.model.frozen.*;
-import net.jitl.common.entity.base.BossCrystalEntity;
-import net.jitl.common.entity.nether.SoulWatcherEntity;
-import net.jitl.common.entity.nether.WitherspineEntity;
-import net.jitl.common.entity.overworld.FloroEntity;
-import net.jitl.common.entity.overworld.GlumpEntity;
-import net.jitl.common.entity.overworld.IllagerMechEntity;
-import net.jitl.common.entity.overworld.TowerGuardianEntity;
-import net.jitl.init.JEntities;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import ru.timeconqueror.timecore.client.render.model.TimeEntityModel;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class JEntityRenderRegistry {

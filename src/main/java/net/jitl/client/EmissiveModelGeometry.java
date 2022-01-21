@@ -7,7 +7,7 @@ import com.google.gson.JsonParseException;
 import com.mojang.datafixers.util.Either;
 import com.mojang.datafixers.util.Pair;
 import kotlin.collections.ArraysKt;
-import net.jitl.mixins.client.UnlockedBlockModelDeserializer;
+import net.jitl.core.mixins.client.UnlockedBlockModelDeserializer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockModel;

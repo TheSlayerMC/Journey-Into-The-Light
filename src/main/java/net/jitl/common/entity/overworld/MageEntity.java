@@ -5,7 +5,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.jitl.common.entity.base.JVillagerEntity;
 import net.jitl.common.entity.base.trades.CurrencyForItemsTrade;
-import net.jitl.init.JItems;
+import net.jitl.core.init.JItems;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;

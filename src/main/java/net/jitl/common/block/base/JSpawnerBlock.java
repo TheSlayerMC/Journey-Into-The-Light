@@ -1,8 +1,8 @@
 package net.jitl.common.block.base;
 
 import net.jitl.common.tile.JMobSpawnerTile;
-import net.jitl.init.JTiles;
-import net.jitl.util.JBlockProperties;
+import net.jitl.core.init.JTiles;
+import net.jitl.core.util.JBlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;

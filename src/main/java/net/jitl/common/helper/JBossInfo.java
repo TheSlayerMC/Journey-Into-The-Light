@@ -1,8 +1,8 @@
 package net.jitl.common.helper;
 
 import net.jitl.common.entity.base.IJourneyBoss;
-import net.jitl.network.JBossPacket;
-import net.jitl.network.JPacketHandler;
+import net.jitl.core.network.JBossPacket;
+import net.jitl.core.network.JPacketHandler;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;

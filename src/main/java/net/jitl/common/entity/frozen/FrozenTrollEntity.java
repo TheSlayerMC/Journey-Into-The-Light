@@ -2,10 +2,10 @@ package net.jitl.common.entity.frozen;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Dynamic;
-import net.jitl.JITL;
 import net.jitl.common.entity.base.JEntityAction;
 import net.jitl.common.entity.tasks.FrozenTrollTasks;
-import net.jitl.init.JSounds;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

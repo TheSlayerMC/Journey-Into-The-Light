@@ -1,7 +1,7 @@
 package net.jitl.common.block;
 
-import net.jitl.api.block.GroundPredicate;
 import net.jitl.common.block.base.JDoublePlantBlock;
+import net.jitl.core.api.block.GroundPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;

@@ -1,6 +1,6 @@
 package net.jitl.common.item;
 
-import net.jitl.util.JItemProperties;
+import net.jitl.core.util.JItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;

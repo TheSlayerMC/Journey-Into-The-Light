@@ -1,11 +1,8 @@
 package net.jitl.client.eventhandler;
 
-import net.jitl.common.capability.player.JPlayer;
-import net.jitl.init.JBlocks;
-import net.jitl.init.JItems;
-import net.jitl.init.world.Dimensions;
+import net.jitl.core.init.JBlocks;
+import net.jitl.core.init.JItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.DrawSelectionEvent;
@@ -14,7 +11,6 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import ru.timeconqueror.timecore.api.util.client.ClientProxy;
-import top.theillusivec4.curios.api.CuriosApi;
 
 @Mod.EventBusSubscriber(Dist.CLIENT)
 public class ClientEventHandler {

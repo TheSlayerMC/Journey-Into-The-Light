@@ -1,7 +1,7 @@
 package net.jitl.common.helper;
 
-import net.jitl.JITL;
-import net.jitl.init.JItems;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;

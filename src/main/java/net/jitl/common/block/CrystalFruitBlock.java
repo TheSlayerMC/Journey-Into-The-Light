@@ -1,7 +1,7 @@
 package net.jitl.common.block;
 
-import net.jitl.init.JBlocks;
-import net.jitl.init.JParticleManager;
+import net.jitl.core.init.JBlocks;
+import net.jitl.core.init.JParticleManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

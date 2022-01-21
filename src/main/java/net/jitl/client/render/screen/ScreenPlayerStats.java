@@ -1,20 +1,10 @@
 package net.jitl.client.render.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.jitl.JITL;
 import net.jitl.common.container.ContainerEmpty;
-import net.jitl.common.helper.ArgbColor;
-import net.jitl.common.helper.EnumKnowledgeType;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import org.jetbrains.annotations.NotNull;
-import org.lwjgl.opengl.GL11;
 
 public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
     public ScreenPlayerStats(ContainerEmpty menu_, Inventory playerInventory_, Component title_) {

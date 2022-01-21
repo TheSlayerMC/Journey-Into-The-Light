@@ -2,7 +2,7 @@ package net.jitl.client.render;
 
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import net.jitl.JITL;
+import net.jitl.core.JITL;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import ru.timeconqueror.timecore.api.util.client.RenderHelper;

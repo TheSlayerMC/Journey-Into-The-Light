@@ -2,9 +2,9 @@ package net.jitl.common.block;
 
 import net.jitl.common.block.base.JFallingTileContainerBlock;
 import net.jitl.common.tile.PotTile;
-import net.jitl.init.JSounds;
-import net.jitl.init.JTiles;
-import net.jitl.util.JBlockProperties;
+import net.jitl.core.init.JSounds;
+import net.jitl.core.init.JTiles;
+import net.jitl.core.util.JBlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundSource;

@@ -2,11 +2,10 @@ package net.jitl.client.render.entity;
 
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.jitl.JITL;
 import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.model.frozen.FrozenGuardianModel;
 import net.jitl.common.entity.frozen.FrozenGuardianEntity;
-import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.jitl.core.JITL;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;

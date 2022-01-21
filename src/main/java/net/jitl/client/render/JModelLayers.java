@@ -1,7 +1,7 @@
 package net.jitl.client.render;
 
 import com.google.common.collect.Sets;
-import net.jitl.JITL;
+import net.jitl.core.JITL;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 
 import java.util.Set;

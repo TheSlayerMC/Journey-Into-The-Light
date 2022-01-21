@@ -1,7 +1,7 @@
 package net.jitl.common.entity.frozen;
 
-import net.jitl.JITL;
-import net.jitl.init.JParticleManager;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JParticleManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;

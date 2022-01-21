@@ -1,6 +1,6 @@
 package net.jitl.common.capability.player.data;
 
-import net.jitl.init.JAttributes;
+import net.jitl.core.init.JAttributes;
 import net.minecraft.world.entity.player.Player;
 import ru.timeconqueror.timecore.common.capability.property.CoffeeProperty;
 import ru.timeconqueror.timecore.common.capability.property.container.PropertyContainer;

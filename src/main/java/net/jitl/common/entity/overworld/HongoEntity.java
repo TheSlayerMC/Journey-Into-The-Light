@@ -1,8 +1,8 @@
 package net.jitl.common.entity.overworld;
 
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
-import net.jitl.init.JEntities;
-import net.jitl.init.JSounds;
+import net.jitl.core.init.JEntities;
+import net.jitl.core.init.JSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;

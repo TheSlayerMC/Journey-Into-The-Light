@@ -1,8 +1,8 @@
 package net.jitl.common.world.gen.treedecorator;
 
 import com.mojang.serialization.Codec;
-import net.jitl.init.JBlocks;
-import net.jitl.init.world.JTreeDecorators;
+import net.jitl.core.init.JBlocks;
+import net.jitl.core.init.world.JTreeDecorators;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.VineBlock;

@@ -1,6 +1,6 @@
 package net.jitl.common.block;
 
-import net.jitl.init.JBlocks;
+import net.jitl.core.init.JBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;

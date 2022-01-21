@@ -1,9 +1,8 @@
 package net.jitl.client.render.entity;
 
-import net.jitl.JITL;
-import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.common.entity.overworld.FloroEntity;
-import net.jitl.init.client.JsonModels;
+import net.jitl.core.JITL;
+import net.jitl.core.init.client.JsonModels;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;

@@ -1,8 +1,8 @@
 package net.jitl.common.entity.frozen;
 
-import net.jitl.JITL;
-import net.jitl.init.JEntities;
-import net.jitl.init.JItems;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JEntities;
+import net.jitl.core.init.JItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

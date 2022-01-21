@@ -1,9 +1,9 @@
 package net.jitl.common.item.interactive;
 
-import net.jitl.JITL;
-import net.jitl.init.JParticleManager;
-import net.jitl.init.JSounds;
-import net.jitl.util.IEssenceItem;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JParticleManager;
+import net.jitl.core.init.JSounds;
+import net.jitl.core.util.IEssenceItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

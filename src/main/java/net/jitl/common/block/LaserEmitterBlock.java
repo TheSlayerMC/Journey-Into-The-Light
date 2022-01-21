@@ -1,7 +1,7 @@
 package net.jitl.common.block;
 
 import net.jitl.common.tile.LaserEmitterTile;
-import net.jitl.init.JTiles;
+import net.jitl.core.init.JTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;

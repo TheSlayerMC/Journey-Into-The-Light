@@ -1,7 +1,7 @@
 package net.jitl.common.entity.frozen;
 
-import net.jitl.JITL;
-import net.jitl.init.JEntities;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

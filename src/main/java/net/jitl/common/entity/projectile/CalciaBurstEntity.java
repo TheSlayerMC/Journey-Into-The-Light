@@ -1,7 +1,7 @@
 package net.jitl.common.entity.projectile;
 
 import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
-import net.jitl.init.JEntities;
+import net.jitl.core.init.JEntities;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;

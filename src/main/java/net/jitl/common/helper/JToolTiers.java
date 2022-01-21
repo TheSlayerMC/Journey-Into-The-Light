@@ -1,6 +1,6 @@
 package net.jitl.common.helper;
 
-import net.jitl.init.JItems;
+import net.jitl.core.init.JItems;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;

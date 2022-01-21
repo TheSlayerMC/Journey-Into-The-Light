@@ -2,12 +2,12 @@ package net.jitl.common.loot.modifiers;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import net.jitl.util.LootHelper;
+import net.jitl.core.util.LootHelper;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 

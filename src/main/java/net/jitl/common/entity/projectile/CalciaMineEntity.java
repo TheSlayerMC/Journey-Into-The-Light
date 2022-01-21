@@ -1,6 +1,6 @@
 package net.jitl.common.entity.projectile;
 
-import net.jitl.init.JEntities;
+import net.jitl.core.init.JEntities;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;

@@ -1,19 +1,17 @@
 package net.jitl.common.item;
 
 import net.jitl.common.entity.base.BossCrystalEntity;
-import net.jitl.init.JItems;
+import net.jitl.core.init.JItems;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class TestBugItem extends Item {
     public TestBugItem(Properties properties) {

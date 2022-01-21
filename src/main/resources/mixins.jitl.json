@@ -6,10 +6,10 @@
   "target": "@env(DEFAULT)",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "common.DimensionGeneratorSettingsMixin"
+    "net.jitl.core.mixins.common.DimensionGeneratorSettingsMixin"
   ],
   "client": [
-    "client.EucaSkyFixer",
-    "client.UnlockedBlockModelDeserializer"
+    "net.jitl.core.mixins.client.EucaSkyFixer",
+    "net.jitl.core.mixins.client.UnlockedBlockModelDeserializer"
   ]
 }

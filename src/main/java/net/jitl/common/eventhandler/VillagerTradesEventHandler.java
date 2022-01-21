@@ -1,12 +1,8 @@
 package net.jitl.common.eventhandler;
 
-import net.jitl.JITL;
-import net.jitl.common.entity.base.trades.MapTrade;
-import net.jitl.init.world.JStructures;
+import net.jitl.core.JITL;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.saveddata.maps.MapDecoration;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

@@ -2,8 +2,8 @@ package net.jitl.common.entity.projectile;
 
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.projectile.base.DamagingProjectileEntity;
-import net.jitl.init.JEntities;
-import net.jitl.init.JParticleManager;
+import net.jitl.core.init.JEntities;
+import net.jitl.core.init.JParticleManager;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;

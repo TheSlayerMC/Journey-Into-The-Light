@@ -1,10 +1,10 @@
 package net.jitl.client.render.gui.button;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.jitl.JITL;
-import net.jitl.config.JClientConfig;
-import net.jitl.config.JConfigs;
-import net.jitl.util.JRenderUtils;
+import net.jitl.core.JITL;
+import net.jitl.core.config.JClientConfig;
+import net.jitl.core.config.JConfigs;
+import net.jitl.core.util.JRenderUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 

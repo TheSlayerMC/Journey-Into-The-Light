@@ -1,6 +1,6 @@
 package net.jitl.client.render
 
-import net.jitl.JITL
+import net.jitl.core.JITL
 import ru.timeconqueror.timecore.api.client.resource.BlockModel
 import ru.timeconqueror.timecore.api.client.resource.BlockModels
 import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation

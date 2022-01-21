@@ -1,8 +1,8 @@
 package net.jitl.common.entity.overworld;
 
 import net.jitl.common.entity.projectile.FloroMudEntity;
-import net.jitl.init.JAnimations;
-import net.jitl.init.JSounds;
+import net.jitl.core.init.JAnimations;
+import net.jitl.core.init.JSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

@@ -1,11 +1,11 @@
 package net.jitl.client.render.entity.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.jitl.JITL;
 import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.model.frozen.ShiveringRamModel;
 import net.jitl.client.render.model.frozen.ShiveringRamWoolModel;
 import net.jitl.common.entity.frozen.ShiveringRamEntity;
+import net.jitl.core.JITL;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.RenderLayerParent;

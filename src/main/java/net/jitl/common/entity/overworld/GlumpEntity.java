@@ -1,6 +1,6 @@
 package net.jitl.common.entity.overworld;
 
-import net.jitl.init.JSounds;
+import net.jitl.core.init.JSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;

@@ -1,6 +1,6 @@
 package net.jitl.common.block;
 
-import net.jitl.util.JBlockProperties;
+import net.jitl.core.util.JBlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;

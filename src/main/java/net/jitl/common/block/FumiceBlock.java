@@ -1,7 +1,7 @@
 package net.jitl.common.block;
 
 import com.google.common.collect.Lists;
-import net.jitl.init.JBlocks;
+import net.jitl.core.init.JBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;

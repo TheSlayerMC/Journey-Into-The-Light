@@ -1,7 +1,7 @@
 package net.jitl.client;
 
-import net.jitl.JITL;
-import net.jitl.init.JBlocks;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JBlocks;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.client.event.ModelRegistryEvent;

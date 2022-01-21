@@ -1,6 +1,6 @@
 package net.jitl.common.tile;
 
-import net.jitl.init.JTiles;
+import net.jitl.core.init.JTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import ru.timeconqueror.timecore.api.common.tile.SyncableTile;

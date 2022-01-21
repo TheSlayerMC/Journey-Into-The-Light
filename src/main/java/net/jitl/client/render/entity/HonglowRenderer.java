@@ -1,11 +1,9 @@
 package net.jitl.client.render.entity;
 
-import net.jitl.JITL;
 import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.JRenderTypes;
 import net.jitl.client.render.model.HongoModel;
 import net.jitl.common.entity.overworld.HonglowEntity;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;

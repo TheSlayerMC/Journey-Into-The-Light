@@ -1,12 +1,12 @@
 package net.jitl.common.eventhandler;
 
-import net.jitl.JITL;
-import net.jitl.init.JBlocks;
-import net.minecraft.world.level.block.Block;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JBlocks;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

@@ -1,11 +1,11 @@
 package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.jitl.JITL;
 import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.model.MageModel;
 import net.jitl.common.entity.frozen.EskimoEntity;
 import net.jitl.common.entity.overworld.MageEntity;
+import net.jitl.core.JITL;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.CrossedArmsItemLayer;

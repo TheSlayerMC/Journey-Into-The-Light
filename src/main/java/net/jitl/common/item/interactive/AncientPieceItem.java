@@ -1,8 +1,8 @@
 package net.jitl.common.item.interactive;
 
 import net.jitl.common.block.AncientSocketBlock;
-import net.jitl.init.JBlocks;
-import net.jitl.util.JItemProperties;
+import net.jitl.core.init.JBlocks;
+import net.jitl.core.util.JItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;

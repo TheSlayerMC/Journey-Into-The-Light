@@ -1,9 +1,9 @@
 package net.jitl.common.entity.base;
 
-import net.jitl.JITL;
-import net.jitl.init.JEntities;
-import net.jitl.init.JSounds;
-import net.jitl.util.LootHelper;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JEntities;
+import net.jitl.core.init.JSounds;
+import net.jitl.core.util.LootHelper;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;

@@ -3,7 +3,7 @@ package net.jitl.client.eventhandler;
 import net.jitl.client.Models;
 import net.jitl.client.world.BoilRenderInfo;
 import net.jitl.client.world.FrozenRenderInfo;
-import net.jitl.init.world.Dimensions;
+import net.jitl.core.init.world.Dimensions;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;

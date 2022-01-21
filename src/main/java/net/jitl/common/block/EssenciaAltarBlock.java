@@ -2,7 +2,7 @@ package net.jitl.common.block;
 
 import net.jitl.common.block.base.JTileContainerBlock;
 import net.jitl.common.tile.EssenciaAltarTile;
-import net.jitl.init.JTiles;
+import net.jitl.core.init.JTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;

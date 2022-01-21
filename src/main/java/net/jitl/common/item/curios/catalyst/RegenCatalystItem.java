@@ -2,17 +2,15 @@ package net.jitl.common.item.curios.catalyst;
 
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
-import net.jitl.JITL;
 import net.jitl.common.item.curios.JCurioItem;
-import net.jitl.init.JAttributes;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JAttributes;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.UUID;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class RegenCatalystItem extends JCurioItem {
     public float regenSpeed;

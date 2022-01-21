@@ -1,6 +1,6 @@
 package net.jitl.common.block.trees;
 
-import net.jitl.init.world.JConfiguredFeatures;
+import net.jitl.core.init.world.JConfiguredFeatures;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;

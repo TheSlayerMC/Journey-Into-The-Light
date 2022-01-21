@@ -1,8 +1,8 @@
 package net.jitl.common.block.portal;
 
 import net.jitl.common.dimension.BaseTeleporter;
-import net.jitl.init.JBlocks;
-import net.jitl.init.world.Dimensions;
+import net.jitl.core.init.JBlocks;
+import net.jitl.core.init.world.Dimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;

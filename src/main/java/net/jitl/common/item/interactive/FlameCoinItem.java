@@ -1,17 +1,17 @@
 package net.jitl.common.item.interactive;
 
-import net.jitl.init.JBlocks;
-import net.jitl.init.JSounds;
-import net.jitl.util.JItemProperties;
-import net.minecraft.world.level.block.state.BlockState;
+import net.jitl.core.init.JBlocks;
+import net.jitl.core.init.JSounds;
+import net.jitl.core.util.JItemProperties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class FlameCoinItem extends Item {
     public FlameCoinItem() {

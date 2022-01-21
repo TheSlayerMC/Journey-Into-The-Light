@@ -1,8 +1,8 @@
 package net.jitl.common.eventhandler;
 
-import net.jitl.JITL;
-import net.jitl.init.JEffects;
-import net.jitl.init.JSounds;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JEffects;
+import net.jitl.core.init.JSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.world.entity.LivingEntity;

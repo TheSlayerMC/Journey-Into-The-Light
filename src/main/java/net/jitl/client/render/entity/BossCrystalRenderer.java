@@ -1,10 +1,9 @@
 package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.jitl.client.render.JEntityRenderRegistry;
 import net.jitl.client.render.JRenderTypes;
 import net.jitl.common.entity.base.BossCrystalEntity;
-import net.jitl.init.client.JsonModels;
+import net.jitl.core.init.client.JsonModels;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;

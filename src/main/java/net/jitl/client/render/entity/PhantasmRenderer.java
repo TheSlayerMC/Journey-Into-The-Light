@@ -2,12 +2,11 @@ package net.jitl.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.jitl.JITL;
 import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.JRenderTypes;
 import net.jitl.client.render.model.frozen.PhantasmModel;
 import net.jitl.common.entity.frozen.PhantasmEntity;
-import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.jitl.core.JITL;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

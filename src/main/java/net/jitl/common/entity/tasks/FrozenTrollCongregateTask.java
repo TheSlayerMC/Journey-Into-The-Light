@@ -1,7 +1,7 @@
 package net.jitl.common.entity.tasks;
 
 import com.google.common.collect.ImmutableMap;
-import net.jitl.init.JEntities;
+import net.jitl.core.init.JEntities;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;

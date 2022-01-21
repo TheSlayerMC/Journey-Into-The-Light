@@ -1,6 +1,5 @@
 package net.jitl.common.entity.nether;
 
-import net.jitl.JITL;
 import net.jitl.client.render.gui.BossBarRenderer;
 import net.jitl.client.render.gui.EyeBarRenderer;
 import net.jitl.common.entity.base.BossCrystalEntity;
@@ -8,8 +7,9 @@ import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.common.entity.goal.IdleHealGoal;
 import net.jitl.common.helper.JBossInfo;
 import net.jitl.common.helper.JMusic;
-import net.jitl.init.JAnimations;
-import net.jitl.init.JSounds;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JAnimations;
+import net.jitl.core.init.JSounds;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;

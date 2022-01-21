@@ -1,16 +1,15 @@
 package net.jitl.common.block;
 
-import net.jitl.init.JItems;
-import net.jitl.init.JTiles;
-import net.jitl.util.JBlockProperties;
+import net.jitl.core.init.JItems;
+import net.jitl.core.init.JTiles;
+import net.jitl.core.util.JBlockProperties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.api.util.client.ClientProxy;
 

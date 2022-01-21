@@ -1,9 +1,9 @@
 package net.jitl.common.entity.overworld;
 
-import net.jitl.JITL;
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
-import net.jitl.init.JDataSerializers;
-import net.jitl.init.JSounds;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JDataSerializers;
+import net.jitl.core.init.JSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

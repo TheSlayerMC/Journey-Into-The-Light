@@ -1,9 +1,9 @@
 package net.jitl.client.render.entity.layer;
 
-import net.jitl.JITL;
 import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.model.BoomModel;
 import net.jitl.common.entity.pet.MiniBoomEntity;
+import net.jitl.core.JITL;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.entity.RenderLayerParent;

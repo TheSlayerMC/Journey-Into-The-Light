@@ -1,9 +1,9 @@
 package net.jitl.common.entity.overworld;
 
 import com.google.common.collect.ImmutableList;
-import net.jitl.JITL;
-import net.jitl.init.JAnimations;
-import net.jitl.init.JSounds;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JAnimations;
+import net.jitl.core.init.JSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;

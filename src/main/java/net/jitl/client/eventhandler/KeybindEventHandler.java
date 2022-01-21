@@ -1,9 +1,8 @@
 package net.jitl.client.eventhandler;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import net.jitl.client.render.screen.ScreenPlayerStats;
-import net.jitl.network.JPacketHandler;
-import net.jitl.network.KeyPressedPacket;
+import net.jitl.core.network.JPacketHandler;
+import net.jitl.core.network.KeyPressedPacket;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientRegistry;

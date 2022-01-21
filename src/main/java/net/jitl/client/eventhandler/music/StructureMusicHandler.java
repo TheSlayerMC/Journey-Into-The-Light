@@ -1,7 +1,7 @@
 package net.jitl.client.eventhandler.music;
 
-import net.jitl.JITL;
 import net.jitl.common.helper.EnumStructureMusic;
+import net.jitl.core.JITL;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

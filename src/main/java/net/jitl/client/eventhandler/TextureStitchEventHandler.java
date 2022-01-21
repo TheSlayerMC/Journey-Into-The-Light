@@ -1,6 +1,6 @@
 package net.jitl.client.eventhandler;
 
-import net.jitl.JITL;
+import net.jitl.core.JITL;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.TextureStitchEvent;

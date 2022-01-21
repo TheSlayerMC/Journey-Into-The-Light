@@ -1,12 +1,12 @@
 package net.jitl.common.eventhandler;
 
-import net.jitl.JITL;
 import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.helper.TooltipFiller;
 import net.jitl.common.item.gear.JArmorItem;
 import net.jitl.common.item.gear.JGear;
 import net.jitl.common.item.gear.abilities.FullArmorAbility;
+import net.jitl.core.JITL;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;

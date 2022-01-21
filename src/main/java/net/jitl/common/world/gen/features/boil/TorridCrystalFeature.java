@@ -1,15 +1,14 @@
 package net.jitl.common.world.gen.features.boil;
 
 import com.mojang.serialization.Codec;
-import net.jitl.init.JBlocks;
-import net.minecraft.core.Direction;
+import net.jitl.core.init.JBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import ru.timeconqueror.timecore.api.util.GenHelper;
 
 import java.util.Random;

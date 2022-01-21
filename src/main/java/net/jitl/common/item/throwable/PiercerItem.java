@@ -2,7 +2,7 @@ package net.jitl.common.item.throwable;
 
 import com.mojang.datafixers.util.Function3;
 import net.jitl.common.entity.projectile.PiercerEntity;
-import net.jitl.init.JEnchantments;
+import net.jitl.core.init.JEnchantments;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

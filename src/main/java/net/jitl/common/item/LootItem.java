@@ -1,9 +1,9 @@
 package net.jitl.common.item;
 
-import net.jitl.JITL;
-import net.jitl.init.JSounds;
-import net.jitl.init.JTabs;
-import net.jitl.util.LootHelper;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JSounds;
+import net.jitl.core.init.JTabs;
+import net.jitl.core.util.LootHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;

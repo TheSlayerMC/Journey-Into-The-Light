@@ -1,9 +1,9 @@
 package net.jitl.common.block.base;
 
-import net.jitl.JITL;
-import net.jitl.api.block.GroundPredicate;
-import net.jitl.init.JBlocks;
-import net.jitl.util.Logs;
+import net.jitl.core.JITL;
+import net.jitl.core.api.block.GroundPredicate;
+import net.jitl.core.init.JBlocks;
+import net.jitl.core.util.Logs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

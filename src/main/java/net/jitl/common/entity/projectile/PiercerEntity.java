@@ -1,8 +1,8 @@
 package net.jitl.common.entity.projectile;
 
-import net.jitl.init.JEntities;
-import net.jitl.init.JItems;
-import net.jitl.init.JSounds;
+import net.jitl.core.init.JEntities;
+import net.jitl.core.init.JItems;
+import net.jitl.core.init.JSounds;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;

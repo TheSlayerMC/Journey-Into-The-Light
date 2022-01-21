@@ -1,8 +1,8 @@
 package net.jitl.common.block.base;
 
-import net.jitl.init.JBlocks;
-import net.jitl.init.JItems;
-import net.jitl.util.JBlockProperties;
+import net.jitl.core.init.JBlocks;
+import net.jitl.core.init.JItems;
+import net.jitl.core.util.JBlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;

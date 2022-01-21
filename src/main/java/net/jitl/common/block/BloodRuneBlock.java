@@ -1,10 +1,10 @@
 package net.jitl.common.block;
 
 import net.jitl.common.entity.EssenciaBoltEntity;
-import net.jitl.init.JEntities;
-import net.jitl.init.JItems;
-import net.jitl.init.JParticleManager;
-import net.jitl.init.JSounds;
+import net.jitl.core.init.JEntities;
+import net.jitl.core.init.JItems;
+import net.jitl.core.init.JParticleManager;
+import net.jitl.core.init.JSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.sounds.SoundSource;

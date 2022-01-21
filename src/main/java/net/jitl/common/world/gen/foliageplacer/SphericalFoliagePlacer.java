@@ -2,7 +2,7 @@ package net.jitl.common.world.gen.foliageplacer;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.jitl.init.world.JFoliagePlacers;
+import net.jitl.core.init.world.JFoliagePlacers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.IntProvider;

@@ -1,8 +1,8 @@
 package net.jitl.common.item;
 
 import net.jitl.common.capability.player.JPlayer;
-import net.jitl.init.JSounds;
-import net.jitl.util.IEssenceItem;
+import net.jitl.core.init.JSounds;
+import net.jitl.core.util.IEssenceItem;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;

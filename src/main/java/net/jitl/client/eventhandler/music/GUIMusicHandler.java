@@ -1,9 +1,9 @@
 package net.jitl.client.eventhandler.music;
 
-import net.jitl.JITL;
 import net.jitl.common.helper.JMusic;
-import net.jitl.config.JConfigs;
-import net.jitl.init.JSounds;
+import net.jitl.core.JITL;
+import net.jitl.core.config.JConfigs;
+import net.jitl.core.init.JSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
