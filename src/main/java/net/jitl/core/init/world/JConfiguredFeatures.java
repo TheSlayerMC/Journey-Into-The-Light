@@ -496,6 +496,12 @@ public class JConfiguredFeatures {
                                     .dirt(BlockStateProvider.simple(JBlocks.GOLDITE_DIRT))
                                     .build()));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_BOULDER =
+            REGISTER.register("euca_boulder",
+                    () -> JFeatures.BOULDER.get().configured(
+                            new BlockStateConfiguration(
+                                    JBlocks.GOLDITE_STONE.defaultBlockState())));
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> MEKYUM_ORE =
             REGISTER.register("mekyum_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
                     OreConfiguration.target(EUCA_ORE_REPLACEABLES, JBlocks.MEKYUM_ORE.defaultBlockState())),

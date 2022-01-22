@@ -410,6 +410,14 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.BOIL_FIRE_BIOMES)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> EUCA_BOULDER = REGISTER.register(
+                    "euca_boulder",
+                    GenerationStep.Decoration.RAW_GENERATION,
+                    () -> JConfiguredFeatures.EUCA_BOULDER.get()
+                            .placed(patch(2, 5, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.EUCA_BIOMES)
+            .asPromise();
+
     public static final Promised<? extends PlacedFeature> GLOWING_FUNGI = REGISTER.register(
                     "glowing_fungi",
                     GenerationStep.Decoration.VEGETAL_DECORATION,

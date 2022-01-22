@@ -3,6 +3,7 @@ package net.jitl.core.init.world;
 import net.jitl.common.world.gen.features.CaveVinesFeature;
 import net.jitl.common.world.gen.features.RuinsFeature;
 import net.jitl.common.world.gen.features.boil.*;
+import net.jitl.common.world.gen.features.euca.BoulderFeature;
 import net.jitl.common.world.gen.features.euca.EucaBotSpawner;
 import net.jitl.common.world.gen.features.euca.EucaTreeFeature;
 import net.jitl.common.world.gen.features.euca.GlimmerRootFeature;
@@ -39,6 +40,8 @@ public class JFeatures {
     public static final RegistryObject<Feature<BlockStateConfiguration>> SULPHUR_DEPOSIT = REGISTER.register("sulphur_deposit", () -> new SulphurDepositFeature(BlockStateConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> SULPHUR_CRYSTAL = REGISTER.register("sulphur_crystal", () -> new SulphurCrystalFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<BlockStateConfiguration>> TORRID_CRYSTAL = REGISTER.register("torrid_crystal", () -> new TorridCrystalFeature(BlockStateConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<BlockStateConfiguration>> BOULDER = REGISTER.register("boulder", () -> new BoulderFeature(BlockStateConfiguration.CODEC));
 
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> FLAME_BULB = REGISTER.register("flame_bulb", () -> new FlameBulbFeature(NoneFeatureConfiguration.CODEC));
 }
