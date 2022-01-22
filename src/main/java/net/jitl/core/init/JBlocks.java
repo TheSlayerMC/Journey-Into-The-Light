@@ -1,7 +1,8 @@
 package net.jitl.core.init;
 
-import net.jitl.common.block.*;
+import net.jitl.common.block.AncientSocketBlock;
 import net.jitl.common.block.base.*;
+import net.jitl.common.block.foliage.*;
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.core.JITL;

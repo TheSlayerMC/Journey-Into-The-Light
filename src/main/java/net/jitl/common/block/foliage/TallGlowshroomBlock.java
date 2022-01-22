@@ -1,4 +1,4 @@
-package net.jitl.common.block;
+package net.jitl.common.block.foliage;
 
 import net.jitl.common.block.base.JDoublePlantBlock;
 import net.jitl.core.api.block.GroundPredicate;

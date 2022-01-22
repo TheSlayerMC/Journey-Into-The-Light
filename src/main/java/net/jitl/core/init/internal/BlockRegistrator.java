@@ -2,12 +2,13 @@ package net.jitl.core.init.internal;
 
 import net.jitl.client.render.JBlockModels;
 import net.jitl.client.render.JBlockStateResources;
-import net.jitl.common.block.CaveVinesBlock;
 import net.jitl.common.block.*;
 import net.jitl.common.block.base.*;
 import net.jitl.common.block.crop.FloroCropBlock;
 import net.jitl.common.block.crop.GolditeFarmlandBlock;
 import net.jitl.common.block.crop.TomatoCropBlock;
+import net.jitl.common.block.foliage.CaveVinesBlock;
+import net.jitl.common.block.foliage.*;
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.DepthsPortalFrameBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;

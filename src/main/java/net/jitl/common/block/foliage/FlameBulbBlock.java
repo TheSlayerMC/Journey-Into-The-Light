@@ -1,4 +1,4 @@
-package net.jitl.common.block;
+package net.jitl.common.block.foliage;
 
 import net.jitl.core.init.JBlocks;
 import net.minecraft.core.BlockPos;
@@ -12,11 +12,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class IcyIvyBlock extends GrowingPlantBodyBlock {
+public class FlameBulbBlock extends GrowingPlantBodyBlock {
     public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 
-    public IcyIvyBlock(Properties properties) {
-        super(properties, Direction.DOWN, SHAPE, false);
+    public FlameBulbBlock(Properties properties) {
+        super(properties, Direction.UP, SHAPE, false);
     }
 
     @Override
@@ -32,12 +32,12 @@ public class IcyIvyBlock extends GrowingPlantBodyBlock {
         if (!this.canAttachTo(state)) {
             return false;
         } else {
-            return block == this.getHeadBlock() || block == this.getBodyBlock() || blockstate.getMaterial().isSolid() || block == JBlocks.FROZEN_LEAVES;
+            return block == this.getHeadBlock() || block == this.getBodyBlock() || blockstate.getMaterial().isSolid();
         }
     }
 
     @Override
     protected @NotNull GrowingPlantHeadBlock getHeadBlock() {
-        return JBlocks.ICY_IVY;
+        return JBlocks.FLAME_BULB;
     }
 }

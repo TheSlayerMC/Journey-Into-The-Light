@@ -1,4 +1,4 @@
-package net.jitl.common.block;
+package net.jitl.common.block.foliage;
 
 import net.jitl.core.init.JBlocks;
 import net.minecraft.core.BlockPos;
