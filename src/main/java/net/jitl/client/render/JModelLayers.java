@@ -24,6 +24,7 @@ public class JModelLayers {
     public static final ModelLayerLocation MINI_BOOM_LAYER = register("mini_boom");
     public static final ModelLayerLocation EUCA_HOPPER_MODEL_LAYER = register("euca_hopper");
     public static final ModelLayerLocation EUCA_CHARGER_MODEL_LAYER = register("euca_charger");
+    public static final ModelLayerLocation GOLD_BOT_MODEL_LAYER = register("gold_bot");
     public static final ModelLayerLocation SHIMMERER_MODEL_LAYER = register("shimmerer");
     public static final ModelLayerLocation MINI_BOOM_CHARGED_LAYER = register("mini_boom", "armor");
     public static final ModelLayerLocation SHIVERING_RAM_LAYER = register("shivering_ram");
