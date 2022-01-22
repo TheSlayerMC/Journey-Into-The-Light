@@ -13,6 +13,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
 
@@ -156,12 +157,12 @@ public class LoreScrollEntryScreen extends Screen {
             }
         }
 
-        drawScrollingContent(mouseX, mouseY, partialTicks);
+        drawScrollingContent(poseStack, mouseX, mouseY, partialTicks);
 
         super.render(poseStack, mouseX, mouseY, partialTicks);
     }
 
-    private void drawScrollingContent(int mouseX, int mouseY, float partialTicks) {
+    private void drawScrollingContent(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
 
         int indent = 17;
         this.left = guix0 + indent + 4;
@@ -224,24 +225,23 @@ public class LoreScrollEntryScreen extends Screen {
         Tesselator tess = Tesselator.getInstance();
         BufferBuilder worldr = tess.getBuilder();
 
-        //FIXME port
-        /*ScaledResolution res = new ScaledResolution(mc);
-        double scaleW = mc.displayWidth / res.getScaledWidth_double();
-        double scaleH = mc.displayHeight / res.getScaledHeight_double();
+        double scaleW = minecraft.getWindow().getScreenWidth() / (double) minecraft.getWindow().getGuiScaledWidth();
+        double scaleH = minecraft.getWindow().getScreenHeight() / (double) minecraft.getWindow().getGuiScaledHeight();
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
-        GL11.glScissor((int) (left * scaleW), (int) (mc.displayHeight - (bottom * scaleH)), (int) (entryWidth * scaleW), (int) (viewHeight * scaleH));
+        GL11.glScissor((int) (left * scaleW), (int) (minecraft.getWindow().getScreenHeight() - (bottom * scaleH)), (int) (entryWidth * scaleW), (int) (viewHeight * scaleH));
 
         int baseY = this.top + border - (int) this.scrollDistance;
         int indentY = 0;
 
-        GlStateManager.color(1F, 1F, 1F, 1F);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
         for (int partIdx = 0; partIdx < entryLength; ++partIdx) {
             int partTop = baseY + this.headerHeight + indentY;
             int partBuffer = getContentPartHeight(partIdx) - border;
 
             if (baseY + headerHeight >= top) {
-                drawHeader(contentRightTop, baseY, tess);
+                drawHeader(poseStack, contentRightTop, baseY, tess);
             }
 
             if (partTop <= this.bottom && partTop + partBuffer >= this.top) {
@@ -266,12 +266,12 @@ public class LoreScrollEntryScreen extends Screen {
 //                    tess.draw();
 //                    GlStateManager.enableTexture2D();
 
-                /*this.drawContentPart(partIdx, max - min - 4, partTop, partBuffer, tess);
+                this.drawContentPart(poseStack, partIdx, max - min - 4, partTop, partBuffer, tess);
             }
             indentY += scrollEntry.getDesc().get(partIdx).getContentPartHeight();
         }
 
-        GlStateManager.disableDepth();
+        //RenderSystem.disableDepthTest();
 
         int extraHeight = (this.getContentHeight() + border) - viewHeight;
         if (extraHeight > 0) {
@@ -290,10 +290,11 @@ public class LoreScrollEntryScreen extends Screen {
             int alpha, red, green, blue;
 
 
-            GlStateManager.disableTexture2D();
-            GlStateManager.enableBlend();
-            GlStateManager.enableAlpha();
+            RenderSystem.disableTexture();
+            RenderSystem.enableBlend();
 
+            //FIXME port
+            /*
             // Slider path background
             alpha = RenderUtils.getAlpha(SLIDER_PATH_COLOR);
             red = RenderUtils.getRed(SLIDER_PATH_COLOR);
@@ -359,8 +360,7 @@ public class LoreScrollEntryScreen extends Screen {
             } else {
                 mc.displayGuiScreen(null);
             }
+        }*/
         }
-    }
-     */
     }
 }
