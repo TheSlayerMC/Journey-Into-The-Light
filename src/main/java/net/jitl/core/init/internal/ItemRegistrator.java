@@ -68,6 +68,7 @@ public class ItemRegistrator {
     private static void register() {
 
         //OVERWORLD ITEMS
+        registerItem("lore_scroll", "Lore Scroll", () -> new Item(itemGrouped()));
         registerItem("dreadiron_ingot", "Dreadiron Ingot");
         registerItem("sapphire", "Sapphire");
         registerItem("iridium_nugget", "Iridium Nugget");
