@@ -1,9 +1,8 @@
 package net.jitl.client.render.entity.euca;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.render.JModelLayers;
-import net.jitl.client.render.model.euca.GoldBotModel;
 import net.jitl.client.render.model.euca.GolderModel;
-import net.jitl.common.entity.euca.GoldBotEntity;
 import net.jitl.common.entity.euca.GolderEntity;
 import net.jitl.core.JITL;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -23,6 +22,12 @@ public class GolderRenderer extends MobRenderer<GolderEntity, GolderModel<Golder
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull GolderEntity entity) {
         return new ResourceLocation(JITL.MODID, "textures/entity/euca/golder.png");
+    }
+
+    @Override
+    protected void scale(GolderEntity entitylivingbaseIn, PoseStack matrixStackIn, float partialTickTime) {
+        float f = 1.5F;
+        matrixStackIn.scale(f, f, f);
     }
 
 }
