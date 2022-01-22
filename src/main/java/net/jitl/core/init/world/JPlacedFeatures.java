@@ -320,7 +320,7 @@ public class JPlacedFeatures {
                     "euca_green_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.EUCA_GREEN_TREES.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(1, 0.0F, 0), JBlocks.EUCA_GREEN_SAPLING)))
+                            .placed(treePlacement(PlacementUtils.countExtra(1, 0.01F, 1), JBlocks.EUCA_GREEN_SAPLING)))
             .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
             .asPromise();
 
