@@ -163,6 +163,7 @@ public class JBlocks {
     public static final Block FROZEN_LOG = promise();
 
     public static final Block FROSTWOOD_SAPLING = promise();
+    public static final Block BITTERWOOD_SAPLING = promise();
 
     public static final Block BITTERWOOD_CAMPFIRE = promise();
 
