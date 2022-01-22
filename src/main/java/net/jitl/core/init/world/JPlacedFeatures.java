@@ -324,6 +324,14 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> EUCA_WATER = REGISTER.register(
+                    "euca_water",
+                    GenerationStep.Decoration.FLUID_SPRINGS,
+                    () -> JConfiguredFeatures.EUCA_WATER.get()
+                            .placed(patch(100, 8, PlacementUtils.FULL_RANGE)))
+            .allowedInBiomes(BiomePredicate.EUCA_BIOMES)
+            .asPromise();
+
     public static final Promised<? extends PlacedFeature> GOLD_VEG = REGISTER.register(
                     "gold_veg",
                     GenerationStep.Decoration.VEGETAL_DECORATION,

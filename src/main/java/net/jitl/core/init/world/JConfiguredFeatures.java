@@ -1,6 +1,7 @@
 package net.jitl.core.init.world;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
 import net.jitl.common.world.gen.treedecorator.*;
@@ -35,6 +36,7 @@ import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import ru.timeconqueror.timecore.api.registry.SimpleVanillaRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
@@ -249,6 +251,9 @@ public class JConfiguredFeatures {
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_DEPOSIT =
                        REGISTER.register("sulpur_deposit", () -> JFeatures.SULPHUR_DEPOSIT.get().configured(new BlockStateConfiguration(JBlocks.SULPHUR_ROCK.defaultBlockState())));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_WATER =
+            REGISTER.register("euca_water", () -> JFeatures.EUCA_WATER_GEN.get().configured((new SpringConfiguration(Fluids.WATER.defaultFluidState(), false, 4, 1, ImmutableSet.of(JBlocks.GOLDITE_STONE, JBlocks.GOLDITE_DIRT)))));
 
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_CRYSTAL =
