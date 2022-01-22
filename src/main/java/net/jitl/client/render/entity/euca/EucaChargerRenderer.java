@@ -26,7 +26,7 @@ public class EucaChargerRenderer extends MobRenderer<EucaChargerEntity, EucaChar
 
     @Override
     protected void scale(EucaChargerEntity entitylivingbaseIn, PoseStack matrixStackIn, float partialTickTime) {
-        float f = 1.75F;
+        float f = 1.5F;
         matrixStackIn.scale(f, f, f);
     }
 }
