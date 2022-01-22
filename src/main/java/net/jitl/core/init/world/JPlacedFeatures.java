@@ -328,7 +328,7 @@ public class JPlacedFeatures {
                     "gold_bot_spawner",
                     GenerationStep.Decoration.SURFACE_STRUCTURES,
                     () -> JConfiguredFeatures.EUCA_GOLDBOT_SAPAWNER.get()
-                            .placed(rarePatch(1, 7)))
+                            .placed(rarePatch(1, 20)))
             .allowedInBiomes(BiomePredicate.EUCA_GOLD_PLAINS)
             .asPromise();
 
