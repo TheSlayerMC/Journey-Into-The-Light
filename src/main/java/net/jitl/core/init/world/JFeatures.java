@@ -6,7 +6,6 @@ import net.jitl.common.world.gen.features.boil.*;
 import net.jitl.common.world.gen.features.euca.EucaBotSpawner;
 import net.jitl.common.world.gen.features.euca.EucaTreeFeature;
 import net.jitl.common.world.gen.features.euca.GlimmerRootFeature;
-import net.jitl.common.world.gen.features.featureconfig.EucaSpawnerFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.features.frozen.FrozenIceSpikeFeature;
@@ -32,7 +31,7 @@ public class JFeatures {
 
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> GLIMMER_ROOTS = REGISTER.register("glimmer_roots", () -> new GlimmerRootFeature(NoneFeatureConfiguration.CODEC));
 
-    public static final RegistryObject<Feature<EucaSpawnerFeatureConfig>> EUCA_BOT_SPAWNER = REGISTER.register("euca_bot_spawner", () -> new EucaBotSpawner(EucaSpawnerFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> EUCA_BOT_SPAWNER = REGISTER.register("euca_bot_spawner", () -> new EucaBotSpawner(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<SpringConfiguration>> EUCA_WATER_GEN = REGISTER.register("euca_water_gen", () -> new SpringFeature(SpringConfiguration.CODEC));
 
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> SCORCHED_STALAGMITE = REGISTER.register("scorched_stalagmite", () -> new ScorchedStalagmiteFeature(NoneFeatureConfiguration.CODEC));

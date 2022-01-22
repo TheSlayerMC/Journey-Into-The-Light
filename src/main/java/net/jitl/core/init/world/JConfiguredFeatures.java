@@ -533,35 +533,12 @@ public class JConfiguredFeatures {
                                     Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
                                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                                                     .add(JBlocks.TALL_FUNGI.defaultBlockState(), 4)))))));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLDBOT_SAPAWNER =
+            REGISTER.register("euca_goldbot_spawner",
+                            () -> JFeatures.EUCA_BOT_SPAWNER.get().configured(NoneFeatureConfiguration.NONE));
+
     //FIXME port
-    /*
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWING_FUNGI =
-            REGISTER.register("glowing_fungi",
-                            Decoration.UNDERGROUND_DECORATION,
-                            () -> Feature.RANDOM_PATCH
-                                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                                            new WeightedStateProvider()
-                                                    .add(JBlocks.TALL_FUNGI.defaultBlockState(), 1),
-                                            new SimpleBlockPlacer()))
-                                            .tries(256)
-                                            .xspread(0)
-                                            .yspread(0)
-                                            .zspread(0)
-                                            .whitelist(ImmutableSet.of(
-                                                    Blocks.STONE,
-                                                    Blocks.COBBLESTONE,
-                                                    Blocks.MOSSY_COBBLESTONE,
-                                                    Blocks.ANDESITE,
-                                                    Blocks.GRANITE,
-                                                    Blocks.DIORITE))
-                                            .noProjection()
-                                            .build())
-                                    .range(55)
-                                    .count(100))
-                    .setBiomePredicate(COMMON_BIOMES)
-                    .asPromise(); */
-
    /* public static final Promised<? extends ConfiguredFeature<?, ?>> GLIMMER_ROOTS =
             REGISTER.register("glimmer_roots",
                     () -> JFeatures.GLIMMER_ROOTS.get()
@@ -570,115 +547,6 @@ public class JConfiguredFeatures {
                             .squared()
                             .countRandom(64))
                     .setBiomePredicate(EUCA_BIOMES)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_TREES =
-            REGISTER.register("euca_gold_tree",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.BASE_TREE.get()
-                            .configured(new JBaseTreeFeatureConfig.Builder(
-                                    new SimpleStateProvider(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
-                                    new SimpleStateProvider(JBlocks.EUCA_SILVER_LEAVES.defaultBlockState()),
-                                    new SimpleStateProvider(JBlocks.EUCA_GOLD_GRASS_BLOCK.defaultBlockState()),
-                                    new SphericalFoliagePlacer(UniformInt.fixed(3), UniformInt.fixed(3), 1),
-                                    new ForkingTrunkPlacer(4, 1, 6),
-                                    new TwoLayersFeatureSize(1, 1, 2)).ignoreVines().build())
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(1).countRandom(5))
-                    .setBiomePredicate(EUCA_GOLD_PLAINS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVER_TREES =
-            REGISTER.register("euca_silver_tree",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.BASE_TREE.get()
-                            .configured(new JBaseTreeFeatureConfig.Builder(
-                                    new SimpleStateProvider(JBlocks.EUCA_SILVER_LOG.defaultBlockState()),
-                                    new SimpleStateProvider(JBlocks.EUCA_GOLD_LEAVES.defaultBlockState()),
-                                    new SimpleStateProvider(JBlocks.EUCA_SILVER_GRASS_BLOCK.defaultBlockState()),
-                                    new SphericalFoliagePlacer(UniformInt.fixed(3), UniformInt.fixed(3), 1),
-                                    new ForkingTrunkPlacer(4, 1, 6),
-                                    new TwoLayersFeatureSize(1, 1, 2)).ignoreVines().build())
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(1).countRandom(5))
-                    .setBiomePredicate(EUCA_SILVER_PLAINS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLD_GOLD_TREES =
-            REGISTER.register("euca_gold_gold_tree",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.BASE_TREE.get()
-                            .configured(new JBaseTreeFeatureConfig.Builder(
-                                    new SimpleStateProvider(JBlocks.EUCA_GOLD_LOG.defaultBlockState()),
-                                    new SimpleStateProvider(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
-                                    new SimpleStateProvider(JBlocks.GOLDITE_GRASS_BLOCK.defaultBlockState()),
-                                    new SphericalFoliagePlacer(UniformInt.fixed(3), UniformInt.fixed(3), 1),
-                                    new ForkingTrunkPlacer(4, 1, 6),
-                                    new TwoLayersFeatureSize(1, 1, 2)).ignoreVines().build())
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(1).countRandom(5))
-                    .setBiomePredicate(GOLDITE_GRAINS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GREEN_TREES =
-            REGISTER.register("euca_green_tree",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.BASE_TREE.get()
-                            .configured(new JBaseTreeFeatureConfig.Builder(
-                                    new SimpleStateProvider(JBlocks.EUCA_BROWN_LOG.defaultBlockState()),
-                                    new SimpleStateProvider(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
-                                    new SimpleStateProvider(JBlocks.GOLDITE_GRASS_BLOCK.defaultBlockState()),
-                                    new SphericalFoliagePlacer(UniformInt.fixed(3), UniformInt.fixed(3), 1),
-                                    new ForkingTrunkPlacer(4, 1, 6),
-                                    new TwoLayersFeatureSize(1, 1, 2)).ignoreVines().build())
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(1).countRandom(5))
-                    .setBiomePredicate(GOLDITE_GRAINS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_SILVERBOT_SAPWNER =
-            REGISTER.register("euca_silverbot_spawner",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.EUCA_BOT_SPAWNER.get()
-                            .configured(new EucaSpawnerFeatureConfig(
-                                    JRuleTests.SILVER_GRASS_EUCA.get(),
-                                    new SimpleStateProvider(JBlocks.SILVER_BOT_SPAWNER.defaultBlockState()),
-                                    13,
-                                    7))
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(50))
-                    .setBiomePredicate(EUCA_SILVER_PLAINS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GOLDBOT_SAPWNER =
-            REGISTER.register("euca_goldbot_spawner",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.EUCA_BOT_SPAWNER.get()
-                            .configured(new EucaSpawnerFeatureConfig(
-                                    JRuleTests.GOLD_GRASS_EUCA.get(),
-                                    new SimpleStateProvider(JBlocks.GOLD_BOT_SPAWNER.defaultBlockState()),
-                                    13,
-                                    7))
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE)
-                            .chance(50))
-                    .setBiomePredicate(EUCA_GOLD_PLAINS)
-                    .asPromise();
-    /*
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> DYING_BURNED_TREE =
-            REGISTER.register("dying_burned_tree",
-                    Decoration.SURFACE_STRUCTURES,
-                    () -> JFeatures.BASE_TREE.get()
-                            .configured(new JBaseTreeFeatureConfig.Builder(
-                                    new SimpleStateProvider(JBlocks.BURNED_BARK.defaultBlockState()),
-                                    new SimpleStateProvider(JBlocks.CHARRED_LEAVES.defaultBlockState()),
-                                    new SimpleStateProvider(JBlocks.VOLCANIC_SAND.defaultBlockState()),
-                                    new FancyFoliagePlacer(UniformInt.fixed(2), UniformInt.fixed(1), 2),
-                                    new ForkingTrunkPlacer(2, 1, 1),
-                                    new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
-                                    .build())
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(BOILING_SANDS)
                     .asPromise();
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BLOODCRUST_ORE =
@@ -835,28 +703,6 @@ public class JConfiguredFeatures {
                     .setBiomePredicate(FROZEN_DYING_FORST.or(FROZEN_BITTERWOOD_FORST))
                     .asPromise();
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOILING_SANDS_PLANTS =
-            REGISTER.register("tall_boiling_sands_plants",
-                            Decoration.VEGETAL_DECORATION,
-                            () -> Feature.RANDOM_PATCH
-                                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                                            new WeightedStateProvider()
-                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 1)
-                                            .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 1),
-                                    new DoublePlantPlacer()))
-                                    .tries(64)
-                                    .xspread(6)
-                                    .zspread(6)
-                                    .whitelist(ImmutableSet.of(
-                                            JBlocks.VOLCANIC_SAND))
-                                    .noProjection()
-                                    .build())
-                            .range(255)
-                            .count(100)
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(BOILING_SANDS)
-                    .asPromise();
-
     public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_BOIL_UNDERGROWTH =
             REGISTER.register("tall_boil_undergrowth",
                             Decoration.UNDERGROUND_DECORATION,
@@ -889,82 +735,7 @@ public class JConfiguredFeatures {
                             .range(60)
                             .count(10))
                     .setBiomePredicate(BOIL_FIRE_BIOMES)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_SANDS_FLOWERS =
-            REGISTER.register("boiling_sands_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
-                            .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                                    new WeightedStateProvider()
-                                            .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 1)
-                                            .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 5)
-                                            .add(JBlocks.CRISP_GRASS.defaultBlockState(), 8),
-                                    new SimpleBlockPlacer()))
-                                    .tries(8)
-                                    .xspread(6)
-                                    .zspread(6)
-                                    .whitelist(ImmutableSet.of(
-                                            JBlocks.VOLCANIC_SAND))
-                                    .noProjection()
-                                    .build())
-                    .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared()
-                    .range(250)
-                    .count(100))
-                    .setBiomePredicate(BOILING_SANDS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> CHARRED_FIELDS_FLOWERS =
-            REGISTER.register("charred_fields_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
-                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                            new WeightedStateProvider()
-                                    .add(JBlocks.CHARRED_WEEDS.defaultBlockState(), 1)
-                                    .add(JBlocks.CHARRED_SHORT_GRASS.defaultBlockState(), 1),
-                            new SimpleBlockPlacer()))
-                            .tries(24)
-                            .xspread(6)
-                            .zspread(6)
-                            .whitelist(ImmutableSet.of(
-                                    JBlocks.CHARRED_GRASS))
-                            .noProjection()
-                            .build())
-                    .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared()
-                    .range(250)
-                    .count(100))
-                    .setBiomePredicate(CHARRED_FIELDS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> TALL_CHARRED_FIELDS_PLANTS =
-            REGISTER.register("tall_charred_fields_plants",
-                    Decoration.UNDERGROUND_DECORATION,
-                    () -> Feature.RANDOM_PATCH
-                            .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                                    new WeightedStateProvider()
-                                            .add(JBlocks.CHARRED_TALL_GRASS.defaultBlockState(), 1),
-                                    new DoublePlantPlacer()))
-                                    .tries(10)
-                                    .xspread(6)
-                                    .zspread(6)
-                                    .whitelist(ImmutableSet.of(
-                                            JBlocks.CHARRED_GRASS))
-                                    .noProjection()
-                                    .build())
-                            .range(255)
-                            .count(100)
-                            .decorated(Features.Decorators.HEIGHTMAP_WORLD_SURFACE).squared())
-                    .setBiomePredicate(CHARRED_FIELDS)
-                    .asPromise();
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_PLAINS_FLOWERS =
-            REGISTER.register("boiling_plains_flowers", Decoration.VEGETAL_DECORATION, () -> Feature.RANDOM_PATCH
-                    .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                    .add(JBlocks.INFERNO_BUSH.defaultBlockState(), 1)
-                                    .add(JBlocks.FLAME_POD.defaultBlockState(), 1))))));
-
-    public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_FIRE =
-            REGISTER.register("boiling_fire", () -> Feature.RANDOM_PATCH
-                            .configured((new RandomPatchConfiguration.GrassConfigurationBuilder(
-                                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                            .add(Blocks.FIRE.defaultBlockState(), 1)))))); */
+                    .asPromise();*/
 
     /**
      * Creates an ore feature with basic parameters.

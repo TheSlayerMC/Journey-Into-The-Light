@@ -4,6 +4,7 @@ import net.jitl.common.tile.JMobSpawnerTile;
 import net.jitl.core.init.JTiles;
 import net.jitl.core.util.JBlockProperties;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.level.Level;
@@ -16,9 +17,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class JSpawnerBlock extends SpawnerBlock {
 
-    protected final EntityType<? extends PathfinderMob> entity;
+    protected final EntityType<? extends Entity> entity;
 
-    public JSpawnerBlock(EntityType<? extends PathfinderMob> mob) {
+    public JSpawnerBlock(EntityType<? extends Entity> mob) {
         super(JBlockProperties.SPAWNER_PROPS.create());
         entity = mob;
     }

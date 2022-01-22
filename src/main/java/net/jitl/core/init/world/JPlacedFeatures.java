@@ -324,6 +324,14 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> GOLD_BOT_SPAWNER = REGISTER.register(
+                    "gold_bot_spawner",
+                    GenerationStep.Decoration.SURFACE_STRUCTURES,
+                    () -> JConfiguredFeatures.EUCA_GOLDBOT_SAPAWNER.get()
+                            .placed(rarePatch(1, 7)))
+            .allowedInBiomes(BiomePredicate.EUCA_GOLD_PLAINS)
+            .asPromise();
+
     public static final Promised<? extends PlacedFeature> GOLDITE_VEG = REGISTER.register(
                     "goldite_veg",
                     GenerationStep.Decoration.VEGETAL_DECORATION,

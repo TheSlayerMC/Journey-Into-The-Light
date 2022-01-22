@@ -360,8 +360,7 @@ public class BlockRegistrator {
         registerDefaultBlock("rimestone_ore", "Rimestone Ore", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
         registerDefaultBlock("rimestone_block", "Rimestone Block", () -> new Block(JBlockProperties.METAL_PROPS.create()));
 
-        registerCustomRenderLayerBlock("silver_bot_spawner", "Silverbot Spawner", () -> new JSpawnerBlock(JEntities.TOWER_GUARDIAN_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
-        registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.FLORO_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
+        registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.GOLD_BOT_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
 
         registerCropBlock("tomato_crop", "Tomato Crop", new TomatoCropBlock());
         registerCropBlock("floro_crop", "Floro Crop", new FloroCropBlock());
