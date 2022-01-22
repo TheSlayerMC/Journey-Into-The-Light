@@ -224,7 +224,7 @@ public class JPlacedFeatures {
                     "dying_burned_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.DYING_BURNED_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(3, 0.1F, 1), JBlocks.LAVA_BLOOM))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(3, 0.1F, 1), JBlocks.CHARRED_SAPLING))) //FIXME: replace block with sapling when they're added
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
             .asPromise();
 
@@ -232,7 +232,7 @@ public class JPlacedFeatures {
                     "large_burned_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.LARGE_CHARRED_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.CHARRED_SHORT_GRASS))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.BURNED_SAPLING)))
             .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
             .asPromise();
 
@@ -240,7 +240,7 @@ public class JPlacedFeatures {
                     "medium_burned_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.MEDIUM_BURNED_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.CHARRED_SHORT_GRASS))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.BURNED_SAPLING)))
             .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
             .asPromise();
 
@@ -248,7 +248,7 @@ public class JPlacedFeatures {
                     "small_burned_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.SMALL_BURNED_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.CHARRED_SHORT_GRASS))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.BURNED_SAPLING)))
             .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
             .asPromise();
 
@@ -256,7 +256,7 @@ public class JPlacedFeatures {
                     "large_frozen_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.LARGE_FROZEN_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.FROZEN_BLOOM))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.FROSTWOOD_SAPLING)))
             .allowedInBiomes(BiomePredicate.FROZEN_DYING_FORST)
             .asPromise();
 
@@ -264,7 +264,7 @@ public class JPlacedFeatures {
                     "medium_frozen_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.MEDIUM_FROZEN_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.FROZEN_BLOOM))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.FROSTWOOD_SAPLING)))
             .allowedInBiomes(BiomePredicate.FROZEN_DYING_FORST)
             .asPromise();
 
@@ -272,7 +272,7 @@ public class JPlacedFeatures {
                     "small_frozen_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.SMALL_FROZEN_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.FROZEN_BLOOM))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.FROSTWOOD_SAPLING)))
             .allowedInBiomes(BiomePredicate.FROZEN_DYING_FORST)
             .asPromise();
 
@@ -280,7 +280,7 @@ public class JPlacedFeatures {
                     "large_bitterwood_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.LARGE_FROZEN_BITTERWOOOD_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.FROZEN_BLOOM))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.BITTERWOOD_SAPLING)))
             .allowedInBiomes(BiomePredicate.FROZEN_BITTERWOOD_FORST)
             .asPromise();
 
@@ -288,7 +288,7 @@ public class JPlacedFeatures {
                     "medium_bitterwood_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.MEDIUM_FROZEN_BITTERWOOOD_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.FROZEN_BLOOM))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.BITTERWOOD_SAPLING)))
             .allowedInBiomes(BiomePredicate.FROZEN_BITTERWOOD_FORST)
             .asPromise();
 
@@ -296,7 +296,7 @@ public class JPlacedFeatures {
                     "small_bitterwood_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.SMALL_FROZEN_BITTERWOOOD_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.FROZEN_BLOOM))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.BITTERWOOD_SAPLING)))
             .allowedInBiomes(BiomePredicate.FROZEN_BITTERWOOD_FORST)
             .asPromise();
 

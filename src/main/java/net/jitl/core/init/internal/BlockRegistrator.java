@@ -12,10 +12,7 @@ import net.jitl.common.block.foliage.*;
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.DepthsPortalFrameBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
-import net.jitl.common.block.trees.BitterwoodTreeGrower;
-import net.jitl.common.block.trees.DyingFrozenTree;
-import net.jitl.common.block.trees.EucaGoldTreeGrower;
-import net.jitl.common.block.trees.EucaGreenTreeGrower;
+import net.jitl.common.block.trees.*;
 import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.common.tile.ObeliskTile;
 import net.jitl.core.JITL;
@@ -284,6 +281,12 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("bitterwood_sapling", "Bitterwood Sapling", () -> new JSaplingBlock(new BitterwoodTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/bitterwood_sapling")));
 
+        registerSpeciallyRenderedBlock("charred_sapling", "Charred Sapling", () -> new JSaplingBlock(new CharredTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/charred_sapling")));
+
+        registerSpeciallyRenderedBlock("burned_sapling", "Burned Sapling", () -> new JSaplingBlock(new BurnedTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/burned_sapling")));
+
         registerSpeciallyRenderedBlock("goldite_bulb", "Goldite Bulb", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
                 () -> BlockModels.crossModel(JITL.tl("block/goldite_bulb")));
@@ -414,7 +417,7 @@ public class BlockRegistrator {
         registerGrassBlock("depths_grass_block", "Depths Grass", () -> new JSpreadableSnowyDirtBlock(JBlockProperties.GRASS_PROPS.create(), depthsDirt.get()), JITL.tl("block/depths_dirt"));
 
         registerRandomizedRotatedBlock("rubble", "Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
-        registerRandomizedRotatedBlock("volcanic_sand", "Volcanic Sand", () -> new JBlock(JBlockProperties.HOLD_FIRE_SAND));
+        registerRandomizedRotatedBlock("volcanic_sand", "Volcanic Sand", () -> new JGrassBlock(JBlockProperties.HOLD_FIRE_SAND.create(), null));
         registerDefaultBlock("volcanic_soil", "Volcanic Soil", () -> new JBlock(JBlockProperties.HOLD_FIRE_SAND));
         registerRandomizedRotatedBlock("hot_ground", "Hot Ground", () -> new JBlock(JBlockProperties.HOLD_FIRE));
         registerRandomizedRotatedBlock("scorched_rubble", "Scorched Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));

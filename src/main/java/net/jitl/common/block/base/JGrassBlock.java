@@ -88,29 +88,25 @@ public class JGrassBlock extends Block implements BonemealableBlock {
         }
     }
 
-    private static boolean canBeGrass(BlockState state, LevelReader levelReader, BlockPos pos) {
-        BlockPos blockpos = pos.above();
-        BlockState blockstate = levelReader.getBlockState(blockpos);
-        return true;
-    }
-
-    private static boolean canPropagate(BlockState state, LevelReader level, BlockPos pos) {
-        return canBeGrass(state, level, pos);
+    private boolean canBeGrass(BlockState state, LevelReader levelReader, BlockPos pos) {
+        return this.dirt != null;
     }
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random_) {
-        if(!canBeGrass(state, level, pos)) {
-            if(!level.isAreaLoaded(pos, 1)) return;
-            level.setBlockAndUpdate(pos, this.dirt.defaultBlockState());
-        } else {
-            if (!level.isAreaLoaded(pos, 3)) return;
-            if (level.getMaxLocalRawBrightness(pos.above()) >= 9) {
-                BlockState blockstate = this.defaultBlockState();
-                for(int i = 0; i < 4; ++i) {
-                    BlockPos blockpos = pos.offset(random_.nextInt(3) - 1, random_.nextInt(5) - 3, random_.nextInt(3) - 1);
-                    if (level.getBlockState(blockpos).is(this.dirt) && canPropagate(blockstate, level, blockpos)) {
-                        level.setBlockAndUpdate(blockpos, blockstate);
+        if(dirt != null) {
+            if (!canBeGrass(state, level, pos)) {
+                if (!level.isAreaLoaded(pos, 1)) return;
+                level.setBlockAndUpdate(pos, this.dirt.defaultBlockState());
+            } else {
+                if (!level.isAreaLoaded(pos, 3)) return;
+                if (level.getMaxLocalRawBrightness(pos.above()) >= 9) {
+                    BlockState blockstate = this.defaultBlockState();
+                    for (int i = 0; i < 4; ++i) {
+                        BlockPos blockpos = pos.offset(random_.nextInt(3) - 1, random_.nextInt(5) - 3, random_.nextInt(3) - 1);
+                        if (level.getBlockState(blockpos).is(this.dirt) && canBeGrass(blockstate, level, blockpos)) {
+                            level.setBlockAndUpdate(blockpos, blockstate);
+                        }
                     }
                 }
             }

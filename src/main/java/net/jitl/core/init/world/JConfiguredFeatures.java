@@ -303,19 +303,6 @@ public class JConfiguredFeatures {
             REGISTER.register("flame_bulb",
                     () -> JFeatures.FLAME_BULB.get().configured(FeatureConfiguration.NONE));
 
-    public static final Promised<? extends ConfiguredFeature<?, ?>> DYING_BURNED_TREE =
-            REGISTER.register("dying_burned_tree",
-                    () -> Feature.TREE.configured(
-                            new TreeConfiguration.TreeConfigurationBuilder(
-                                    BlockStateProvider.simple(JBlocks.BURNED_BARK),
-                                    new ForkingTrunkPlacer(2, 1, 1),
-                                    BlockStateProvider.simple(JBlocks.CHARRED_LEAVES),
-                                    new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
-                                    new TwoLayersFeatureSize(1, 1, 2))
-                                    .forceDirt()
-                                    .dirt(BlockStateProvider.simple(JBlocks.VOLCANIC_SAND))
-                                    .build()));
-
     public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_CHARRED_TREE =
             REGISTER.register("large_charred_tree",
                     () -> Feature.TREE.configured(
@@ -327,8 +314,20 @@ public class JConfiguredFeatures {
                                     new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
                                     .forceDirt()
                                     .dirt(BlockStateProvider.simple(JBlocks.CHARRED_GRASS))
-                                    //FIXME decorators crash
                                     .decorators(List.of(CharredBrushTreeDecorator.INSTANCE))
+                                    .build()));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> DYING_BURNED_TREE =
+            REGISTER.register("dying_burned_tree",
+                    () -> Feature.TREE.configured(
+                            new TreeConfiguration.TreeConfigurationBuilder(
+                                    BlockStateProvider.simple(JBlocks.BURNED_BARK),
+                                    new ForkingTrunkPlacer(2, 1, 1),
+                                    BlockStateProvider.simple(JBlocks.CHARRED_LEAVES),
+                                    new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
+                                    new TwoLayersFeatureSize(1, 1, 2))
+                                    .forceDirt()
+                                    .dirt(BlockStateProvider.simple(JBlocks.VOLCANIC_SAND))
                                     .build()));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> MEDIUM_BURNED_TREE =

@@ -166,6 +166,9 @@ public class JBlocks {
     public static final Block FROSTWOOD_SAPLING = promise();
     public static final Block BITTERWOOD_SAPLING = promise();
 
+    public static final Block CHARRED_SAPLING = promise();
+    public static final Block BURNED_SAPLING = promise();
+
     public static final Block BITTERWOOD_CAMPFIRE = promise();
 
     public static final Block FROST_CRYSTAL_LARGE = promise();
