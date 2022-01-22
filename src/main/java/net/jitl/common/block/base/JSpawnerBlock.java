@@ -1,6 +1,7 @@
 package net.jitl.common.block.base;
 
 import net.jitl.common.tile.JMobSpawnerTile;
+import net.jitl.core.init.JEntities;
 import net.jitl.core.init.JTiles;
 import net.jitl.core.util.JBlockProperties;
 import net.minecraft.core.BlockPos;
@@ -18,9 +19,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class JSpawnerBlock extends SpawnerBlock {
 
-    protected final EntityType<? extends Entity> entity;
+    protected final EntityType<?> entity;
 
-    public JSpawnerBlock(EntityType<? extends Entity> mob) {
+    public JSpawnerBlock(EntityType<?> mob) {
         super(JBlockProperties.SPAWNER_PROPS.create());
         entity = mob;
     }
@@ -28,8 +29,13 @@ public class JSpawnerBlock extends SpawnerBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        SpawnerBlockEntity spawner = new SpawnerBlockEntity(pos, state);
+        JMobSpawnerTile spawner = new JMobSpawnerTile(pos, state);
         spawner.getSpawner().setEntityId(entity);
         return spawner;
+    }
+
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level_, BlockState state_, BlockEntityType<T> blockEntityType_) {
+        return createTickerHelper(blockEntityType_, JTiles.MOB_SPAWNER, level_.isClientSide ? JMobSpawnerTile::clientTick : JMobSpawnerTile::serverTick);
     }
 }

@@ -1,5 +1,6 @@
 package net.jitl.common.tile;
 
+import net.jitl.core.init.JBlocks;
 import net.jitl.core.init.JTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -11,15 +12,17 @@ import net.minecraft.world.level.SpawnData;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class JMobSpawnerTile extends BlockEntity{
+public class JMobSpawnerTile extends BlockEntity {
 
     private final BaseSpawner spawner = new BaseSpawner() {
+
         @Override
-        public void broadcastEvent(Level level_, BlockPos pos_, int int_) {
-            JMobSpawnerTile.this.level.blockEvent(JMobSpawnerTile.this.worldPosition, Blocks.SPAWNER, int_, 0);
+        public void broadcastEvent(@NotNull Level level_, @NotNull BlockPos pos_, int int_) {
+            JMobSpawnerTile.this.level.blockEvent(JMobSpawnerTile.this.worldPosition, JBlocks.GOLD_BOT_SPAWNER, int_, 0);
         }
 
         public Level getLevel() {
@@ -31,7 +34,7 @@ public class JMobSpawnerTile extends BlockEntity{
         }
 
         @Override
-        public void setNextSpawnData(Level level, BlockPos pos, SpawnData nextSpawnData) {
+        public void setNextSpawnData(Level level, BlockPos pos, @NotNull SpawnData nextSpawnData) {
             super.setNextSpawnData(level, pos, nextSpawnData);
             if (this.getLevel() != null) {
                 BlockState blockstate = this.getLevel().getBlockState(this.getPos());
@@ -45,13 +48,13 @@ public class JMobSpawnerTile extends BlockEntity{
     }
 
     @Override
-    public void load(CompoundTag tag_) {
+    public void load(@NotNull CompoundTag tag_) {
         super.load(tag_);
         this.spawner.load(this.level, this.worldPosition, tag_);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag_) {
+    protected void saveAdditional(@NotNull CompoundTag tag_) {
         super.saveAdditional(tag_);
         this.spawner.save(tag_);
     }
@@ -72,7 +75,7 @@ public class JMobSpawnerTile extends BlockEntity{
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
+    public @NotNull CompoundTag getUpdateTag() {
         CompoundTag compoundnbt = this.saveWithoutMetadata();
         compoundnbt.remove("SpawnPotentials");
         return compoundnbt;
