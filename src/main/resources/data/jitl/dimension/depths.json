@@ -1,7 +1,9 @@
 {
   "type": "jitl:depths",
+  "forge:use_server_seed": true,
   "generator": {
-    "type": "jitl:chunk_generator",
+    "type": "minecraft:noise",
+    "seed": 0,
     "settings": {
       "sea_level": 0,
       "disable_mob_generation": false,

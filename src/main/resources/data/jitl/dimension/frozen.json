@@ -1,7 +1,9 @@
 {
   "type": "jitl:frozen",
+  "forge:use_server_seed": true,
   "generator": {
-    "type": "jitl:chunk_generator",
+    "type": "minecraft:noise",
+    "seed": 0,
     "settings": "jitl:frozen_generation",
     "biome_source": {
       "type": "minecraft:multi_noise",
