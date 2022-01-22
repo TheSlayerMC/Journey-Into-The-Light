@@ -18,7 +18,40 @@
       "replace_current_music": true
     }
   },
-  "spawners": {},
+  "spawners": {
+    "monster": [
+      {
+        "type": "jitl:euca_hopper",
+        "weight": 5,
+        "minCount": 1,
+        "maxCount": 2
+      },
+      {
+        "type": "jitl:euca_charger",
+        "weight": 5,
+        "minCount": 1,
+        "maxCount": 3
+      },
+      {
+        "type": "jitl:golder",
+        "weight": 5,
+        "minCount": 1,
+        "maxCount": 3
+      },
+      {
+        "type": "jitl:dynaster",
+        "weight": 5,
+        "minCount": 1,
+        "maxCount": 1
+      },
+      {
+        "type": "jitl:shimmerer",
+        "weight": 5,
+        "minCount": 1,
+        "maxCount": 3
+      }
+    ]
+  },
   "spawn_costs": {},
   "carvers": {},
   "features": [

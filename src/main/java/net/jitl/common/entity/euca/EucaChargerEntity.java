@@ -39,8 +39,8 @@ public class EucaChargerEntity extends Monster {
     }
 
     public static boolean canSpawn(EntityType<EucaChargerEntity> entity, ServerLevelAccessor s, MobSpawnType m, BlockPos p, Random r) {
-        return !s.getBlockState(p).is(Blocks.WATER)
-                && Objects.equals(s.getBiome(p), JBiomeRegistry.EUCA_PLAINS)
-                || Objects.equals(s.getBiome(p), JBiomeRegistry.EUCA_GOLDITE_GRAINS);
+        return !s.getBlockState(p).is(Blocks.WATER) ||
+        Objects.equals(s.getBiome(p).getRegistryName(), JITL.rl("euca_plains")) ||
+        Objects.equals(s.getBiome(p).getRegistryName(), JITL.rl("euca_goldite_grains"));
     }
 }

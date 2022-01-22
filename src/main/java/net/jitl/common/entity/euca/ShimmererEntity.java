@@ -1,5 +1,6 @@
 package net.jitl.common.entity.euca;
 
+import net.jitl.core.JITL;
 import net.jitl.core.init.world.JBiomeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -43,9 +44,9 @@ public class ShimmererEntity extends FlyingMob implements Enemy {
     }
 
     public static boolean canSpawn(EntityType<ShimmererEntity> entity, ServerLevelAccessor s, MobSpawnType m, BlockPos p, Random r) {
-        return !s.getBlockState(p).is(Blocks.WATER)
-                && Objects.equals(s.getBiome(p), JBiomeRegistry.EUCA_PLAINS)
-                || Objects.equals(s.getBiome(p), JBiomeRegistry.EUCA_GOLDITE_GRAINS);
+        return !s.getBlockState(p).is(Blocks.WATER) ||
+                Objects.equals(s.getBiome(p).getRegistryName(), JITL.rl("euca_plains")) ||
+                Objects.equals(s.getBiome(p).getRegistryName(), JITL.rl("euca_goldite_grains"));
     }
 
     @Override
