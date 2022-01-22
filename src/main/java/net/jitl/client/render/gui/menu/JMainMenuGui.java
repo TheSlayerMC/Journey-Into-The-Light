@@ -53,7 +53,7 @@ import java.util.function.Consumer;
 public class JMainMenuGui extends TitleScreen {
 	private static final Logger LOGGER = LogManager.getLogger();
 	public static final BlurredCubeMap CUBE_MAP = new BlurredCubeMap(JITL.rl("textures/gui/title/background/panorama"));
-	private static final ResourceLocation PANORAMA_OVERLAY = new ResourceLocation("textures/gui/title/background/panorama_overlay.png");
+	private static final ResourceLocation PANORAMA_OVERLAY = JITL.rl("textures/gui/title/background/panorama_overlay.png");
 	private static final ResourceLocation ACCESSIBILITY_TEXTURE = new ResourceLocation("textures/gui/accessibility.png");
 	private static final ResourceLocation LANGUAGE_TEXTURE = JITL.rl("textures/gui/title/language_button.png");
 	@Nullable
