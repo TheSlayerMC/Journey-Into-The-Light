@@ -487,6 +487,7 @@ public class JConfiguredFeatures {
                                     BlockStateProvider.simple(JBlocks.EUCA_GREEN_LEAVES.defaultBlockState()),
                                     new SphericalFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), 1),
                                     new TwoLayersFeatureSize(1, 1, 2))
+                                    .decorators(ImmutableList.of(new GlimmerRootTreeDecorator(4)))
                                     .ignoreVines()
                                     .dirt(BlockStateProvider.simple(JBlocks.GOLDITE_DIRT))
                                     .build()));

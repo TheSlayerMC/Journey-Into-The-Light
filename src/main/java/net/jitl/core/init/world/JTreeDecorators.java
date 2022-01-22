@@ -19,6 +19,8 @@ public class JTreeDecorators {
 
     public static final Promised<TreeDecoratorType<CrystalFruitTreeDecorator>> CRYSTAL_FRUIT_DECORATOR = REGISTER.register("crystal_fruit_tree_decorator", () -> new TreeDecoratorType<>(CrystalFruitTreeDecorator.CODEC));
 
+    public static final Promised<TreeDecoratorType<GlimmerRootTreeDecorator>> GLIMMER_ROOT_DECORATOR = REGISTER.register("glimmer_root_tree_decorator", () -> new TreeDecoratorType<>(GlimmerRootTreeDecorator.CODEC));
+
     public static final Promised<TreeDecoratorType<IceShroomTreeDecorator>> ICE_SHROOM_TREE_DECORATOR = REGISTER.register("ice_shroom_tree_decorator", () -> new TreeDecoratorType<>(IceShroomTreeDecorator.CODEC));
 
     public static final Promised<TreeDecoratorType<IcyBrushTreeDecorator>> ICY_BRUSH_TREE_DECORATOR = REGISTER.register("icy_brush_tree_decorator", () -> new TreeDecoratorType<>(IcyBrushTreeDecorator.CODEC));

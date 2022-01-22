@@ -134,8 +134,8 @@ public class JBlocks {
     public static final IcyIvyTopBlock ICY_IVY = promise();
     public static final IcyIvyBlock ICY_IVY_PLANT = promise();
 
-    public static final CaveVinesTopBlock GLIMMER_ROOT = promise();
-    public static final CaveVinesBlock GLIMMER_ROOT_PLANT = promise();
+    public static final GlimmerRootTopBlock GLIMMER_ROOT = promise();
+    public static final GlimmerRootBlock GLIMMER_ROOT_PLANT = promise();
 
     public static final FlameBulbTopBlock FLAME_BULB = promise();
     public static final FlameBulbBlock FLAME_BULB_PLANT = promise();
