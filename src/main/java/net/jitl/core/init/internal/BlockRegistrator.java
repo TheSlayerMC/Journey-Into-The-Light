@@ -276,8 +276,8 @@ public class BlockRegistrator {
 
         registerTallCrossRenderedBlock("goldite_tall_grass", "Tall Goldite Grass", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.EUCA_GRASS_BLOCKS));
 
-        registerSpeciallyRenderedBlock("frostwood_sapling", "FROSTWOOD_SAPLING", () -> new JSaplingBlock(new DyingFrozenTree(), JBlockProperties.PLANT_PROPS.create()),
-                () -> BlockModels.crossModel(JITL.tl("block/goldite_bulb")));
+        registerSpeciallyRenderedBlock("frostwood_sapling", "Frostwood Sapling", () -> new JSaplingBlock(new DyingFrozenTree(), JBlockProperties.PLANT_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/frostwood_sapling")));
 
         registerSpeciallyRenderedBlock("goldite_bulb", "Goldite Bulb", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),

@@ -399,7 +399,7 @@ public class JConfiguredFeatures {
                                             new IceShroomTreeDecorator(0.2F),
                                             new CrystalFruitTreeDecorator(4)))
                                     .forceDirt()
-                                    .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
+                                    .dirt(BlockStateProvider.simple(JBlocks.CRUMBLED_PERMAFROST))
                                     .build()));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_FROZEN_BITTERWOOOD_TREE =
@@ -413,7 +413,7 @@ public class JConfiguredFeatures {
                                     new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
                                     .decorators(ImmutableList.of(new FrozenTreeDecorator(0.01F)))
                                     .forceDirt()
-                                    .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
+                                    .dirt(BlockStateProvider.simple(JBlocks.CRUMBLED_PERMAFROST))
                                     .build()));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> MEDIUM_FROZEN_BITTERWOOOD_TREE =
@@ -427,7 +427,7 @@ public class JConfiguredFeatures {
                                     new TwoLayersFeatureSize(1, 1, 2)).ignoreVines()
                                     .decorators(ImmutableList.of(new FrozenTreeDecorator(0.01F)))
                                     .forceDirt()
-                                    .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
+                                    .dirt(BlockStateProvider.simple(JBlocks.CRUMBLED_PERMAFROST))
                                     .build()));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SMALL_FROZEN_BITTERWOOOD_TREE =
@@ -475,6 +475,7 @@ public class JConfiguredFeatures {
                                     new SphericalFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), 1),
                                     new TwoLayersFeatureSize(1, 1, 2))
                                     .ignoreVines()
+                                    .dirt(BlockStateProvider.simple(JBlocks.GOLDITE_DIRT))
                                     .build()));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_GREEN_TREES =
@@ -487,6 +488,7 @@ public class JConfiguredFeatures {
                                     new SphericalFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), 1),
                                     new TwoLayersFeatureSize(1, 1, 2))
                                     .ignoreVines()
+                                    .dirt(BlockStateProvider.simple(JBlocks.GOLDITE_DIRT))
                                     .build()));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> MEKYUM_ORE =
