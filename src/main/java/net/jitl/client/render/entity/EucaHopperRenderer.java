@@ -23,7 +23,7 @@ public class EucaHopperRenderer extends MobRenderer<EucaHopperEntity, EucaHopper
 
     @Override
     protected void scale(EucaHopperEntity entitylivingbaseIn, PoseStack matrixStackIn, float partialTickTime) {
-        float f = 1.5F;
+        float f = 1.25F;
         matrixStackIn.scale(f, f, f);
     }
 }
