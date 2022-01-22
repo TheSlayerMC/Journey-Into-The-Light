@@ -184,6 +184,7 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(0.7F, 1.0F))
             .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EucaChargerEntity::canSpawn)
             .attributes(() -> EucaChargerEntity.createAttributes().build())
             .retrieve();
 
@@ -202,7 +203,18 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(0.7F, 1.0F))
             .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GolderEntity::canSpawn)
             .attributes(() -> GolderEntity.createAttributes().build())
+            .retrieve();
+
+    public static final EntityType<DynasterEntity> DYNASTER_TYPE = REGISTER.registerMob("dynaster",
+                    Builder.of(DynasterEntity::new, MobCategory.MONSTER)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(0.7F, 1.0F))
+            .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, DynasterEntity::canSpawn)
+            .attributes(() -> DynasterEntity.createAttributes().build())
             .retrieve();
 
     public static final EntityType<ShimmererEntity> SHIMMERER_TYPE = REGISTER.registerMob("shimmerer",
@@ -211,6 +223,7 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.0F, 1.0F))
             .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ShimmererEntity::canSpawn)
             .attributes(() -> ShimmererEntity.createAttributes().build())
             .retrieve();
 

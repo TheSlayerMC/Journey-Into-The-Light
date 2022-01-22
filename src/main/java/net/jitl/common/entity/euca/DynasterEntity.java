@@ -1,9 +1,6 @@
 package net.jitl.common.entity.euca;
 
-import net.jitl.core.JITL;
-import net.jitl.core.init.world.Dimensions;
 import net.jitl.core.init.world.JBiomeRegistry;
-import net.jitl.core.init.world.JBiomes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -23,9 +20,9 @@ import net.minecraft.world.level.block.Blocks;
 import java.util.Objects;
 import java.util.Random;
 
-public class GolderEntity extends Monster {
+public class DynasterEntity extends Monster {
 
-    public GolderEntity(EntityType<? extends GolderEntity> entityType, Level world) {
+    public DynasterEntity(EntityType<? extends DynasterEntity> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -42,7 +39,7 @@ public class GolderEntity extends Monster {
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
-    public static boolean canSpawn(EntityType<GolderEntity> entity, ServerLevelAccessor s, MobSpawnType m, BlockPos p, Random r) {
+    public static boolean canSpawn(EntityType<DynasterEntity> entity, ServerLevelAccessor s, MobSpawnType m, BlockPos p, Random r) {
         return !s.getBlockState(p).is(Blocks.WATER)
                 && Objects.equals(s.getBiome(p), JBiomeRegistry.EUCA_PLAINS)
                 || Objects.equals(s.getBiome(p), JBiomeRegistry.EUCA_GOLDITE_GRAINS);
