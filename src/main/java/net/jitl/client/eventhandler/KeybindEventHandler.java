@@ -1,10 +1,13 @@
 package net.jitl.client.eventhandler;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import net.jitl.client.render.screen.ScreenPlayerStats;
 import net.jitl.core.network.JPacketHandler;
 import net.jitl.core.network.KeyPressedPacket;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -18,9 +21,9 @@ public class KeybindEventHandler {
     private static final Minecraft MINECRAFT = Minecraft.getInstance();
 
     public static void registerKeys(FMLClientSetupEvent event) {
-        keyStats = new KeyMapping("Open Journey Stats", GLFW.GLFW_KEY_J, "JITL Keys");//TODO I18n
-        keyArmor = new KeyMapping("Use Armor Ability", GLFW.GLFW_KEY_C, "JITL Keys");
-        keyAmulet = new KeyMapping("Use Amulet Ability", GLFW.GLFW_KEY_V, "JITL Keys");
+        keyStats = new KeyMapping("Open Journey Stats", GLFW.GLFW_KEY_J, I18n.get("jitl.keys"));
+        keyArmor = new KeyMapping("Use Armor Ability", GLFW.GLFW_KEY_C, I18n.get("jitl.keys"));
+        keyAmulet = new KeyMapping("Use Amulet Ability", GLFW.GLFW_KEY_V, I18n.get("jitl.keys"));
 
         ClientRegistry.registerKeyBinding(keyStats);
         ClientRegistry.registerKeyBinding(keyArmor);
@@ -34,8 +37,7 @@ public class KeybindEventHandler {
             int action = event.getAction();
             if (action == GLFW.GLFW_PRESS) {
                 if (key == keyStats.getKey()) {
-                    System.out.println("Stats");
-                    //MINECRAFT.setScreen(new ScreenPlayerStats(MINECRAFT.player.getInventory()));//FIXME
+                    MINECRAFT.setScreen(new ScreenPlayerStats(MINECRAFT.player.getInventory()));
                 } else {
                     handleAbilityKeys(key, action);
                 }
