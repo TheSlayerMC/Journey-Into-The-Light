@@ -174,7 +174,7 @@ public class JEntities {
                     Builder.of(EucaHopperEntity::new, MobCategory.CREATURE)
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
-                            .sized(1F, 1F))
+                            .sized(0.7F, 0.7F))
             .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EucaHopperEntity::canSpawn)
             .attributes(() -> EucaHopperEntity.createAttributes().build())
@@ -184,7 +184,7 @@ public class JEntities {
                     Builder.of(EucaChargerEntity::new, MobCategory.MONSTER)
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
-                            .sized(1F, 1F))
+                            .sized(0.7F, 0.7F))
             .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .attributes(() -> EucaChargerEntity.createAttributes().build())
             .retrieve();
