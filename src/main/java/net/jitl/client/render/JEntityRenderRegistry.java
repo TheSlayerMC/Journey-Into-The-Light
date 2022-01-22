@@ -50,7 +50,7 @@ public class JEntityRenderRegistry {
         event.registerEntityRenderer(JEntities.SHIMMERER_TYPE, ShimmererRenderer::new);
         event.registerEntityRenderer(JEntities.EUCA_CHARGER_TYPE, EucaChargerRenderer::new);
         event.registerEntityRenderer(JEntities.GOLD_BOT_TYPE, GoldBotRenderer::new);
-
+        event.registerEntityRenderer(JEntities.GOLDER_TYPE, GolderRenderer::new);
 
         //NPC
         event.registerEntityRenderer(JEntities.MAGE_TYPE, MageRenderer::new);
@@ -97,6 +97,7 @@ public class JEntityRenderRegistry {
         event.registerLayerDefinition(JModelLayers.SHIMMERER_MODEL_LAYER, ShimmererModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.EUCA_CHARGER_MODEL_LAYER, EucaChargerModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.GOLD_BOT_MODEL_LAYER, GoldBotModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.GOLDER_MODEL_LAYER, GolderModel::createBodyLayer);
 
         //NPC
         event.registerLayerDefinition(JModelLayers.MAGE_MODEL_LAYER, MageModel::createBodyLayer);

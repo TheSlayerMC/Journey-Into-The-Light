@@ -2,10 +2,7 @@ package net.jitl.core.init;
 
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.base.BossCrystalEntity;
-import net.jitl.common.entity.euca.EucaChargerEntity;
-import net.jitl.common.entity.euca.EucaHopperEntity;
-import net.jitl.common.entity.euca.GoldBotEntity;
-import net.jitl.common.entity.euca.ShimmererEntity;
+import net.jitl.common.entity.euca.*;
 import net.jitl.common.entity.frozen.*;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
@@ -197,6 +194,15 @@ public class JEntities {
                             .sized(0.7F, 1.0F))
             .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .attributes(() -> GoldBotEntity.createAttributes().build())
+            .retrieve();
+
+    public static final EntityType<GolderEntity> GOLDER_TYPE = REGISTER.registerMob("golder",
+                    Builder.of(GolderEntity::new, MobCategory.MONSTER)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(0.7F, 1.0F))
+            .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .attributes(() -> GolderEntity.createAttributes().build())
             .retrieve();
 
     public static final EntityType<ShimmererEntity> SHIMMERER_TYPE = REGISTER.registerMob("shimmerer",
