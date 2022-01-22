@@ -7,6 +7,7 @@ import net.jitl.client.render.model.HongoModel;
 import net.jitl.client.render.model.MageModel;
 import net.jitl.client.render.model.block.ObeliskModel;
 import net.jitl.client.render.model.euca.EucaHopperModel;
+import net.jitl.client.render.model.euca.ShimmererModel;
 import net.jitl.client.render.model.frozen.*;
 import net.jitl.core.JITL;
 import net.jitl.core.init.JEntities;
@@ -44,6 +45,9 @@ public class JEntityRenderRegistry {
         event.registerEntityRenderer(JEntities.FLORO_TYPE, FloroRenderer::new);
         event.registerEntityRenderer(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);
         event.registerEntityRenderer(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
+
+        event.registerEntityRenderer(JEntities.SHIMMERER_TYPE, ShimmererRenderer::new);
+
 
         //NPC
         event.registerEntityRenderer(JEntities.MAGE_TYPE, MageRenderer::new);
@@ -86,6 +90,9 @@ public class JEntityRenderRegistry {
         event.registerLayerDefinition(JModelLayers.SHIVERING_RAM_WOOL_LAYER, ShiveringRamWoolModel::createBodyLayer);
 
         event.registerLayerDefinition(JModelLayers.PHANTASM_MODEL_LAYER, PhantasmModel::createBodyLayer);
+
+        event.registerLayerDefinition(JModelLayers.SHIMMERER_MODEL_LAYER, ShimmererModel::createBodyLayer);
+
 
         //NPC
         event.registerLayerDefinition(JModelLayers.MAGE_MODEL_LAYER, MageModel::createBodyLayer);
