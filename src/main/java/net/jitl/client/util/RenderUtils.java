@@ -19,6 +19,18 @@ import java.util.function.BiConsumer;
 //TODO: merge with JRenderUtils (or vice-versa)
 public class RenderUtils {
 
+    public static void drawCenteredStringWithCustomScale(PoseStack poseStack, Font fontRendererIn, String text, int x, int y, int zLevel, int color, float scaleFactor, int availableHeight, boolean hasShadow) {
+        poseStack.pushPose();
+        poseStack.translate(x - fontRendererIn.width(text) / 2 * scaleFactor, y + (availableHeight / 2) + (fontRendererIn.lineHeight * scaleFactor > 1 ? -1 * fontRendererIn.lineHeight * scaleFactor : fontRendererIn.lineHeight * scaleFactor) * 0.5, zLevel);
+        poseStack.scale(scaleFactor, scaleFactor, 1);
+        if (hasShadow) {
+            fontRendererIn.drawShadow(poseStack, text, 0, 0, color);
+        } else {
+            fontRendererIn.draw(poseStack, text, 0, 0, color);
+        }
+        poseStack.popPose();
+    }
+
     public static void rectangle(PoseStack poseStack, Rectangle rectangle, int argbColor) {
         fill(poseStack, rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom(), argbColor);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
