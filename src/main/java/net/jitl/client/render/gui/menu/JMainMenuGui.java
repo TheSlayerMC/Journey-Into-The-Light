@@ -3,7 +3,7 @@ package net.jitl.client.render.gui.menu;
 import com.google.common.util.concurrent.Runnables;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Vector3f;
 import com.mojang.realmsclient.RealmsMainScreen;
 import com.mojang.realmsclient.gui.screens.RealmsNotificationsScreen;
@@ -275,6 +275,10 @@ public class JMainMenuGui extends TitleScreen {
 		float f = this.fading ? (float) (Util.getMillis() - this.fadeInStart) / 1000.0F : 1.0F;
 		//fill(matrixStack, 0, 0, this.width, this.height, -1);
 		this.panorama.render(partialTicks, Mth.clamp(f, 0.0F, 1.0F));
+
+		this.fillGradient(matrixStack, 0, 0, this.width, this.height, -2130706433, 16777215);
+		this.fillGradient(matrixStack, 0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
+
 		int j = this.width / 2 - 137;
 		assert this.minecraft != null;
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -408,5 +412,26 @@ public class JMainMenuGui extends TitleScreen {
 		}
 
 		this.minecraft.setScreen(this);
+	}
+
+	private void blurPanorama(Minecraft mc) {
+		RenderSystem.viewport(0, 0, mc.getWindow().getWidth(), mc.getWindow().getHeight());
+		float f = 120.0F / (float) (Math.max(this.width, this.height));
+		float f1 = (float) this.height * f / 256.0F;
+		float f2 = (float) this.width * f / 256.0F;
+		int i = this.width;
+		int j = this.height;
+		Tesselator tessellator = Tesselator.getInstance();
+		BufferBuilder bufferbuilder = tessellator.getBuilder();
+		bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+		assert mc.screen != null;
+		bufferbuilder.vertex(0.0D, j, mc.screen.getBlitOffset()).uv(0.5F - f1, 0.5F + f2)
+				.color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+		bufferbuilder.vertex(i, j, mc.screen.getBlitOffset()).uv(0.5F - f1, 0.5F - f2)
+				.color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+		bufferbuilder.vertex(i, 0.0D, mc.screen.getBlitOffset()).uv(0.5F + f1, 0.5F - f2)
+				.color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+		bufferbuilder.vertex(0.0D, 0.0D, mc.screen.getBlitOffset()).uv(0.5F + f1, 0.5F + f2)
+				.color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
 	}
 }

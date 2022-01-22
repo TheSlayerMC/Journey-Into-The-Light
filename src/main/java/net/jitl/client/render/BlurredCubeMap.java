@@ -1,15 +1,7 @@
 package net.jitl.client.render;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.VertexFormat;
-import net.jitl.core.JITL;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.CubeMap;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -27,7 +19,7 @@ public class BlurredCubeMap extends CubeMap {
     public void render(Minecraft mc, float pitch_, float yaw_, float alpha_) {
         super.render(mc, pitch_, yaw_, alpha_);
         //TODO: FIXME blur
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        /*RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, JITL.rl("textures/gui/title/background/panorama_0.png"));
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.texParameter(3553, 10241, 9729);
@@ -57,6 +49,8 @@ public class BlurredCubeMap extends CubeMap {
                     .color(1.0F, 1.0F, 1.0F, f).endVertex();
         }
         tessellator.end();
-        RenderSystem.colorMask(true, true, true, true);
+        RenderSystem.colorMask(true, true, true, true);*/
+
+        //tessellator.draw();
     }
 }
