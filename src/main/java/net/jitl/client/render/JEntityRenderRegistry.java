@@ -1,11 +1,22 @@
 package net.jitl.client.render;
 
 import net.jitl.client.render.entity.*;
+import net.jitl.client.render.entity.base.BossCrystalRenderer;
 import net.jitl.client.render.entity.base.Entity2DRenderer;
+import net.jitl.client.render.entity.euca.EucaChargerRenderer;
+import net.jitl.client.render.entity.euca.EucaHopperRenderer;
+import net.jitl.client.render.entity.euca.ShimmererRenderer;
+import net.jitl.client.render.entity.frozen.CapybaraRenderer;
+import net.jitl.client.render.entity.frozen.EskimoRenderer;
+import net.jitl.client.render.entity.frozen.FrozenGuardianRenderer;
+import net.jitl.client.render.entity.frozen.FrozenTrollRenderer;
+import net.jitl.client.render.entity.nether.WitherspineRenderer;
+import net.jitl.client.render.entity.overworld.*;
 import net.jitl.client.render.model.BoomModel;
 import net.jitl.client.render.model.HongoModel;
 import net.jitl.client.render.model.MageModel;
 import net.jitl.client.render.model.block.ObeliskModel;
+import net.jitl.client.render.model.euca.EucaChargerModel;
 import net.jitl.client.render.model.euca.EucaHopperModel;
 import net.jitl.client.render.model.euca.ShimmererModel;
 import net.jitl.client.render.model.frozen.*;
@@ -47,6 +58,7 @@ public class JEntityRenderRegistry {
         event.registerEntityRenderer(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
 
         event.registerEntityRenderer(JEntities.SHIMMERER_TYPE, ShimmererRenderer::new);
+        event.registerEntityRenderer(JEntities.EUCA_CHARGER_TYPE, EucaChargerRenderer::new);
 
 
         //NPC
@@ -92,6 +104,7 @@ public class JEntityRenderRegistry {
         event.registerLayerDefinition(JModelLayers.PHANTASM_MODEL_LAYER, PhantasmModel::createBodyLayer);
 
         event.registerLayerDefinition(JModelLayers.SHIMMERER_MODEL_LAYER, ShimmererModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.EUCA_CHARGER_MODEL_LAYER, EucaChargerModel::createBodyLayer);
 
 
         //NPC

@@ -1,4 +1,4 @@
-package net.jitl.client.render.entity;
+package net.jitl.client.render.entity.nether;
 
 import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.core.JITL;

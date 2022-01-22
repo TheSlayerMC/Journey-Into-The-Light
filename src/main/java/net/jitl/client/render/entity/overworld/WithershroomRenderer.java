@@ -1,4 +1,4 @@
-package net.jitl.client.render.entity;
+package net.jitl.client.render.entity.overworld;
 
 import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.model.HongoModel;
@@ -13,7 +13,6 @@ import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class WithershroomRenderer extends MobRenderer<WithershroomEntity, HongoModel<WithershroomEntity>> {
-
 
     public WithershroomRenderer(EntityRendererProvider.Context context) {
         super(context, new HongoModel<>(context.bakeLayer(JModelLayers.WITHERSHROOM_MODEL_LAYER)), 0.7F);

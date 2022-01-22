@@ -1,4 +1,4 @@
-package net.jitl.client.render.entity;
+package net.jitl.client.render.entity.frozen;
 
 
 import com.mojang.blaze3d.vertex.PoseStack;
