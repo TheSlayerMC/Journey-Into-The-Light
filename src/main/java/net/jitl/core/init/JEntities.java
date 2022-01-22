@@ -205,6 +205,15 @@ public class JEntities {
             .attributes(() -> GolderEntity.createAttributes().build())
             .retrieve();
 
+    public static final EntityType<DynasterEntity> DYNASTER_TYPE = REGISTER.registerMob("dynaster",
+                    Builder.of(DynasterEntity::new, MobCategory.MONSTER)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(0.7F, 1.0F))
+            .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .attributes(() -> DynasterEntity.createAttributes().build())
+            .retrieve();
+
     public static final EntityType<ShimmererEntity> SHIMMERER_TYPE = REGISTER.registerMob("shimmerer",
                     Builder.of(ShimmererEntity::new, MobCategory.MONSTER)
                             .setTrackingRange(80)

@@ -51,6 +51,7 @@ public class JEntityRenderRegistry {
         event.registerEntityRenderer(JEntities.EUCA_CHARGER_TYPE, EucaChargerRenderer::new);
         event.registerEntityRenderer(JEntities.GOLD_BOT_TYPE, GoldBotRenderer::new);
         event.registerEntityRenderer(JEntities.GOLDER_TYPE, GolderRenderer::new);
+        event.registerEntityRenderer(JEntities.DYNASTER_TYPE, DynasterRenderer::new);
 
         //NPC
         event.registerEntityRenderer(JEntities.MAGE_TYPE, MageRenderer::new);
@@ -98,6 +99,7 @@ public class JEntityRenderRegistry {
         event.registerLayerDefinition(JModelLayers.EUCA_CHARGER_MODEL_LAYER, EucaChargerModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.GOLD_BOT_MODEL_LAYER, GoldBotModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.GOLDER_MODEL_LAYER, GolderModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.DYNASTER_MODEL_LAYER, DynasterModel::createBodyLayer);
 
         //NPC
         event.registerLayerDefinition(JModelLayers.MAGE_MODEL_LAYER, MageModel::createBodyLayer);
