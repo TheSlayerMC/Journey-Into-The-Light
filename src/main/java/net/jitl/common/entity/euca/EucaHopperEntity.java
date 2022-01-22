@@ -149,15 +149,15 @@ public class EucaHopperEntity extends TamableAnimal implements NeutralMob {
                     this.gameEvent(GameEvent.MOB_INTERACT, this.eyeBlockPosition());
                     return InteractionResult.SUCCESS;
                 }
-                    InteractionResult interactionresult = super.mobInteract(player, hand);
-                    if ((!interactionresult.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
-                        this.setOrderedToSit(!this.isOrderedToSit());
-                        this.jumping = false;
-                        this.navigation.stop();
-                        this.setTarget((LivingEntity)null);
-                        return InteractionResult.SUCCESS;
-                    }
-                    return interactionresult;
+                InteractionResult interactionresult = super.mobInteract(player, hand);
+                if ((!interactionresult.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
+                    this.setOrderedToSit(!this.isOrderedToSit());
+                    this.jumping = false;
+                    this.navigation.stop();
+                    this.setTarget((LivingEntity)null);
+                    return InteractionResult.SUCCESS;
+                }
+                return interactionresult;
             } else if (itemstack.is(this.tameItem) && !this.isAngry()) {
                 if (!player.getAbilities().instabuild) {
                     itemstack.shrink(1);

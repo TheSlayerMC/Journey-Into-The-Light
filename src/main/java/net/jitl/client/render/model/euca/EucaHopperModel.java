@@ -62,8 +62,10 @@ public class EucaHopperModel<T extends EucaHopperEntity> extends EntityModel<T> 
         this.back_left_leg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
         this.back_right_leg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
 
-        if(entity.isTame() && entity.isInSittingPose()) {
+        if(entity.isInSittingPose()) {
             this.tail.xRot = -0.5F;
+        } else {
+            this.tail.xRot = 0.5F;
         }
     }
 }
