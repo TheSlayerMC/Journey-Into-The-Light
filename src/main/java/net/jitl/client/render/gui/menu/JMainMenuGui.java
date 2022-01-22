@@ -24,7 +24,6 @@ import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
 import net.minecraft.client.gui.screens.multiplayer.SafetyScreen;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.PanoramaRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.CommonComponents;
@@ -73,7 +72,7 @@ public class JMainMenuGui extends TitleScreen {
 	private Screen realmsNotificationsScreen;
 	private int copyrightWidth;
 	private int copyrightX;
-	private final PanoramaRenderer panorama = new PanoramaRenderer(CUBE_MAP);
+	//private final PanoramaRenderer panorama = new PanoramaRenderer(CUBE_MAP);
 	private final boolean fading;
 	private long fadeInStart;
 
@@ -274,7 +273,7 @@ public class JMainMenuGui extends TitleScreen {
 
 		float f = this.fading ? (float) (Util.getMillis() - this.fadeInStart) / 1000.0F : 1.0F;
 		//fill(matrixStack, 0, 0, this.width, this.height, -1);
-		this.panorama.render(partialTicks, Mth.clamp(f, 0.0F, 1.0F));
+		CUBE_MAP.renderSkybox(mouseX, mouseY, partialTicks);
 
 		this.fillGradient(matrixStack, 0, 0, this.width, this.height, -2130706433, 16777215);
 		this.fillGradient(matrixStack, 0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
