@@ -1,5 +1,7 @@
 package net.jitl.common.entity.euca;
 
+import net.jitl.core.init.world.JBiomeRegistry;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -8,10 +10,13 @@ import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
+import java.util.Objects;
 import java.util.Random;
 
 public class ShimmererEntity extends FlyingMob implements Enemy {
@@ -35,6 +40,12 @@ public class ShimmererEntity extends FlyingMob implements Enemy {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.FOLLOW_RANGE, 100.0D);
+    }
+
+    public static boolean canSpawn(EntityType<ShimmererEntity> entity, ServerLevelAccessor s, MobSpawnType m, BlockPos p, Random r) {
+        return !s.getBlockState(p).is(Blocks.WATER)
+                && Objects.equals(s.getBiome(p), JBiomeRegistry.EUCA_PLAINS)
+                || Objects.equals(s.getBiome(p), JBiomeRegistry.EUCA_GOLDITE_GRAINS);
     }
 
     @Override

@@ -11,7 +11,6 @@ public class JBiomeRegistry {
 
     public static Biome EUCA_PLAINS;
     public static Biome EUCA_GOLDITE_GRAINS;
-    public static Biome EUCA_SILVER_PLAINS;
 
     public static Biome DEPTHS;
 
@@ -32,9 +31,6 @@ public class JBiomeRegistry {
 
         EUCA_GOLDITE_GRAINS.setRegistryName(JITL.rl("euca/euca_goldite_grains"));
         event.getRegistry().register(EUCA_GOLDITE_GRAINS);
-
-        EUCA_SILVER_PLAINS.setRegistryName(JITL.rl("euca/euca_silver_plains"));
-        event.getRegistry().register(EUCA_SILVER_PLAINS);
 
         FROZEN_WASTES.setRegistryName(JITL.rl("frozen/frozen_wastes"));
         event.getRegistry().register(FROZEN_WASTES);
