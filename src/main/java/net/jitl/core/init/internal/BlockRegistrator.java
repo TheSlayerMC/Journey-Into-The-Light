@@ -11,6 +11,7 @@ import net.jitl.common.block.crop.TomatoCropBlock;
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.DepthsPortalFrameBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
+import net.jitl.common.block.trees.BitterwoodTreeGrower;
 import net.jitl.common.block.trees.DyingFrozenTree;
 import net.jitl.common.block.trees.EucaGoldTreeGrower;
 import net.jitl.common.block.trees.EucaGreenTreeGrower;
@@ -278,6 +279,9 @@ public class BlockRegistrator {
 
         registerSpeciallyRenderedBlock("frostwood_sapling", "Frostwood Sapling", () -> new JSaplingBlock(new DyingFrozenTree(), JBlockProperties.PLANT_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/frostwood_sapling")));
+
+        registerSpeciallyRenderedBlock("bitterwood_sapling", "Bitterwood Sapling", () -> new JSaplingBlock(new BitterwoodTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/bitterwood_sapling")));
 
         registerSpeciallyRenderedBlock("goldite_bulb", "Goldite Bulb", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
