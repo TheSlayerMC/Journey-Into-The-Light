@@ -1,4 +1,4 @@
-package net.jitl.client.render.entity;
+package net.jitl.client.render.entity.overworld;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;

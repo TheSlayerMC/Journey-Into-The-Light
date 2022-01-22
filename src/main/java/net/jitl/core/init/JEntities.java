@@ -2,6 +2,7 @@ package net.jitl.core.init;
 
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.base.BossCrystalEntity;
+import net.jitl.common.entity.euca.EucaChargerEntity;
 import net.jitl.common.entity.euca.EucaHopperEntity;
 import net.jitl.common.entity.euca.ShimmererEntity;
 import net.jitl.common.entity.frozen.*;
@@ -177,6 +178,15 @@ public class JEntities {
             .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EucaHopperEntity::canSpawn)
             .attributes(() -> EucaHopperEntity.createAttributes().build())
+            .retrieve();
+
+    public static final EntityType<EucaChargerEntity> EUCA_CHARGER_TYPE = REGISTER.registerMob("euca_charger",
+                    Builder.of(EucaChargerEntity::new, MobCategory.MONSTER)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(1F, 1F))
+            .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .attributes(() -> EucaChargerEntity.createAttributes().build())
             .retrieve();
 
     public static final EntityType<ShimmererEntity> SHIMMERER_TYPE = REGISTER.registerMob("shimmerer",

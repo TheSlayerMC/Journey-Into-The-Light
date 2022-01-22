@@ -1,4 +1,4 @@
-package net.jitl.client.render.entity;
+package net.jitl.client.render.entity.overworld;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.render.JModelLayers;

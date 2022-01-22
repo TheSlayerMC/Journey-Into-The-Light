@@ -1,4 +1,4 @@
-package net.jitl.client.render.entity;
+package net.jitl.client.render.entity.overworld;
 
 
 import net.jitl.client.render.JModelLayers;
