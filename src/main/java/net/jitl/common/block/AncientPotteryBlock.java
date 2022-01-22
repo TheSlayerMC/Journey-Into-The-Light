@@ -14,15 +14,21 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -33,16 +39,16 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
     }
 
     //FIXME
-   /* @Override
+    @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        VoxelShape middle = Block.box(1.0D, 14.0D, 1.0D, 15.0D, 2.0D, 15.0D);
-        VoxelShape bottom = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 0.0D, 14.0D);
+        VoxelShape middle = Block.box(1.0D, 2.0D, 1.0D, 15.0D, 14.0D, 15.0D);
+        VoxelShape bottom = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D);
         VoxelShape top = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D);
         VoxelShape topMid = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 18.0D, 11.0D);
         VoxelShape lip = Block.box(4.0D, 18.0D, 4.0D, 12.0D, 20.0D, 12.0D);
 
         return Shapes.or(middle, bottom, top, lip, topMid);
-    }*/
+    }
 
     //TODO: "destroy" method only gets called when a player destroys the block.
     // need to find a solution so other causes of destruction, like explosions, also drop inventory contents
