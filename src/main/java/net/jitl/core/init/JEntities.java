@@ -184,7 +184,7 @@ public class JEntities {
                     Builder.of(EucaChargerEntity::new, MobCategory.MONSTER)
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
-                            .sized(0.7F, 0.7F))
+                            .sized(0.7F, 1.0F))
             .spawnEgg(EUCA_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .attributes(() -> EucaChargerEntity.createAttributes().build())
             .retrieve();
