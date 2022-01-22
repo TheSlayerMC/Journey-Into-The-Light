@@ -25,32 +25,32 @@ public class EucaBotSpawner extends Feature<NoneFeatureConfiguration> {
         BlockPos pos = context.origin();
         WorldGenLevel reader = context.level();
         Random random = context.random();
-        int minHeight = 13;
+        int minHeight = 18;
         int maxHeight = 7;
         Block spawnerBlock = JBlocks.GOLD_BOT_SPAWNER;
-        int xPos = pos.getX() + random.nextInt(8) - random.nextInt(8);
-        int zPos = pos.getZ() + random.nextInt(8) - random.nextInt(8);
-        int yPos = reader.getHeight(Heightmap.Types.WORLD_SURFACE_WG, xPos, zPos) - 1;
+        int xPos = pos.getX();
+        int zPos = pos.getZ();
+        int yPos = reader.getHeight(Heightmap.Types.WORLD_SURFACE_WG, xPos, zPos);
 
-        BlockPos.MutableBlockPos placement = new BlockPos.MutableBlockPos(xPos, yPos, zPos);
-
-        if (!JRuleTests.GOLD_GRASS_EUCA.get().test(reader.getBlockState(pos.below()), random)) {
-            return false;
-        } else {
+        BlockPos placement = new BlockPos(xPos, yPos, zPos);
+        if(reader.getBlockState(placement.below()) == JBlocks.GOLDITE_GRASS_BLOCK.defaultBlockState() ||
+                reader.getBlockState(placement.below()) == JBlocks.EUCA_GOLD_GRASS_BLOCK.defaultBlockState()) {
             int height = random.nextInt(minHeight) + random.nextInt(maxHeight) + 3;
-            for(int i = 0; i < height; i++) {
-                placeShaft(reader, placement.move(Direction.UP));
+            for (int i = 0; i < height; i++) {
+                placeShaft(reader, placement.above(i));
             }
-            BlockPos spawnerPos = placement.above(2);
+            BlockPos spawnerPos = new BlockPos(xPos, yPos + height, zPos);
             setBlock(reader, spawnerPos, JBlocks.EUCA_BRICK.defaultBlockState());
             spawnerPos = spawnerPos.above(1);
             setBlock(reader, spawnerPos, spawnerBlock.defaultBlockState());
             spawnerPos = spawnerPos.above(1);
             setBlock(reader, spawnerPos, spawnerBlock.defaultBlockState());
-            addRectangle(7, 3, 1, xPos - 3, yPos + height + 1, zPos - 1, JBlocks.EUCA_TILE, reader);
-            addRectangle(3, 7, 1, xPos - 1, yPos + height + 1, zPos - 3, JBlocks.EUCA_TILE, reader);
-            addRectangle(5, 5, 1, xPos - 2, yPos + height + 1, zPos - 2, JBlocks.EUCA_TILE, reader);
+            addRectangle(7, 3, 1, xPos - 3, yPos + height, zPos - 1, JBlocks.EUCA_TILE, reader);
+            addRectangle(3, 7, 1, xPos - 1, yPos + height, zPos - 3, JBlocks.EUCA_TILE, reader);
+            addRectangle(5, 5, 1, xPos - 2, yPos + height, zPos - 2, JBlocks.EUCA_TILE, reader);
             return true;
+        } else {
+            return false;
         }
     }
 
