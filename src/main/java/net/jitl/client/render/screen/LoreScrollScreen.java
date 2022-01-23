@@ -100,6 +100,7 @@ public class LoreScrollScreen extends Screen {
         int x0 = width / 2 - w / 2;
         int y0 = height / 2 - h / 2;
 
+        //FIXME port
         /*for (int x = 0; x < widthRectCount; x++) {
             for (int y = 0; y < heightRectCount; y++) {
                 int textureX = x == 0 ? 0 : (x == widthRectCount - 1 ? 64 : 32);

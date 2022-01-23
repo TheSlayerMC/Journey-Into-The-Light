@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import ru.timeconqueror.timecore.api.util.client.DrawHelper;
 
 import javax.annotation.Nullable;
 
@@ -294,12 +295,12 @@ public class LoreScrollEntryScreen extends Screen {
             RenderSystem.disableTexture();
             RenderSystem.enableBlend();
 
-            //FIXME port
+            //FIXME slider rendering
             // Slider path background
-            alpha = RenderUtils.getAlpha(SLIDER_PATH_COLOR);
-            red = RenderUtils.getRed(SLIDER_PATH_COLOR);
-            green = RenderUtils.getGreen(SLIDER_PATH_COLOR);
-            blue = RenderUtils.getBlue(SLIDER_PATH_COLOR);
+            alpha = DrawHelper.getAlpha(SLIDER_PATH_COLOR);
+            red = DrawHelper.getRed(SLIDER_PATH_COLOR);
+            green = DrawHelper.getGreen(SLIDER_PATH_COLOR);
+            blue = DrawHelper.getBlue(SLIDER_PATH_COLOR);
             worldr.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
             worldr.vertex(scrollButtonLeftTop, this.bottom, 0.0D).uv(0.0F, 1.0F).color(red, green, blue, alpha).endVertex();
             worldr.vertex(scrollButtonRightTop, this.bottom, 0.0D).uv(1.0F, 1.0F).color(red, green, blue, alpha).endVertex();
@@ -307,20 +308,20 @@ public class LoreScrollEntryScreen extends Screen {
             worldr.vertex(scrollButtonLeftTop, this.top, 0.0D).uv(0.0F, 0.0F).color(red, green, blue, alpha).endVertex();
 
             // Dark slider part
-            alpha = RenderUtils.getAlpha(SLIDER_DARK_COLOR);
-            red = RenderUtils.getRed(SLIDER_DARK_COLOR);
-            green = RenderUtils.getGreen(SLIDER_DARK_COLOR);
-            blue = RenderUtils.getBlue(SLIDER_DARK_COLOR);
+            alpha = DrawHelper.getAlpha(SLIDER_DARK_COLOR);
+            red = DrawHelper.getRed(SLIDER_DARK_COLOR);
+            green = DrawHelper.getGreen(SLIDER_DARK_COLOR);
+            blue = DrawHelper.getBlue(SLIDER_DARK_COLOR);
             worldr.vertex(scrollButtonLeftTop, barTop + height, 0.0D).uv(0.0F, 1.0F).color(red, green, blue, alpha).endVertex();
             worldr.vertex(scrollButtonRightTop, barTop + height, 0.0D).uv(1.0F, 1.0F).color(red, green, blue, alpha).endVertex();
             worldr.vertex(scrollButtonRightTop, barTop, 0.0D).uv(1.0F, 0.0F).color(red, green, blue, alpha).endVertex();
             worldr.vertex(scrollButtonLeftTop, barTop, 0.0D).uv(0.0F, 0.0F).color(red, green, blue, alpha).endVertex();
 
             // Light slider part
-            alpha = RenderUtils.getAlpha(SLIDER_LIGHT_COLOR);
-            red = RenderUtils.getRed(SLIDER_LIGHT_COLOR);
-            green = RenderUtils.getGreen(SLIDER_LIGHT_COLOR);
-            blue = RenderUtils.getBlue(SLIDER_LIGHT_COLOR);
+            alpha = DrawHelper.getAlpha(SLIDER_LIGHT_COLOR);
+            red = DrawHelper.getRed(SLIDER_LIGHT_COLOR);
+            green = DrawHelper.getGreen(SLIDER_LIGHT_COLOR);
+            blue = DrawHelper.getBlue(SLIDER_LIGHT_COLOR);
             worldr.vertex(scrollButtonLeftTop, barTop + height - 1, 0.0D).uv(0.0F, 1.0F).color(red, green, blue, alpha).endVertex();
             worldr.vertex(scrollButtonRightTop - 1, barTop + height - 1, 0.0D).uv(1.0F, 1.0F).color(red, green, blue, alpha).endVertex();
             worldr.vertex(scrollButtonRightTop - 1, barTop, 0.0D).uv(1.0F, 0.0F).color(red, green, blue, alpha).endVertex();
@@ -338,6 +339,7 @@ public class LoreScrollEntryScreen extends Screen {
     }
 
     @Override
+    //FIXME wrong method?
     public void afterMouseAction() {
         super.afterMouseAction();
         boolean isHovering = mouseX >= this.left && mouseX <= this.left + this.entryWidth &&
@@ -345,14 +347,14 @@ public class LoreScrollEntryScreen extends Screen {
         if (!isHovering)
             return;
         MouseHandler mouseHandler = new MouseHandler(minecraft);
-        int scroll = InputConstants.MOD_CONTROL; //FIXME
+        int scroll = InputConstants.MOD_CONTROL; //FIXME correct scroll
         if (scroll != 0) {
             this.scrollDistance += (-1 * scroll / 120.0F) * 10;
         }
     }
 
     @Override
-    public boolean charTyped(char typedChar, int keyCode) {
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers_) {
         if (keyCode == 1) {
             if (parentCategory != null) {
                 this.minecraft.setScreen(new LoreScrollScreen(parentCategory));
@@ -360,6 +362,6 @@ public class LoreScrollEntryScreen extends Screen {
                 minecraft.setScreen(null);
             }
         }
-        return super.charTyped(typedChar, keyCode);
+        return true;
     }
 }
