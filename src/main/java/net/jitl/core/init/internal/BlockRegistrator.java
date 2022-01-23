@@ -183,7 +183,7 @@ public class BlockRegistrator {
 
         registerDefaultBlock("block_of_mud", "Block O' Mud", () -> new Block(JBlockProperties.MUD_PROPS.create()));
 
-        registerWoodType("euca_brown", "Brown Euca", "euca_green_sapling", "Green Euca Sapling", new EucaGreenTreeGrower());
+        registerWoodType("euca_brown", "Brown Euca", "euca_brown_sapling", "Brown Euca Sapling", new EucaGreenTreeGrower());
         registerWoodType("euca_gold", "Golden Euca", "euca_gold_sapling", "Golden Euca Sapling", new EucaGoldTreeGrower());
         registerWoodType("frozen", "Frosty");
 
@@ -486,6 +486,9 @@ public class BlockRegistrator {
         registerSlabBlock(name + "_plank_slab", enName + " Plank Slab", name + "_plank", () -> new SlabBlock(JBlockProperties.WOOD_PROPS.create()));
         registerCustomRenderedBlock(name + "_fence", enName + " Plank Fence", () -> new FenceBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerCustomRenderedBlock(name + "_gate", enName + " Plank Gate", () -> new FenceGateBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
+        registerCustomRenderedBlock(name + "_trap_door", enName + " Trap Door", () -> new TrapDoorBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
+        registerCustomRenderedBlock(name + "_pressure_plate", enName + " Pressure Plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, JBlockProperties.WOOD_PROPS.create()));
+        registerCustomRenderedBlock(name + "_door", enName + " Door", () -> new DoorBlock(JBlockProperties.WOOD_PROPS.create()));
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {
