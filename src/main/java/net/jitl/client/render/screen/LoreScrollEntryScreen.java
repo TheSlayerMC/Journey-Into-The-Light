@@ -1,5 +1,6 @@
 package net.jitl.client.render.screen;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.jitl.client.util.EnumHexColor;
@@ -19,7 +20,7 @@ import javax.annotation.Nullable;
 
 public class LoreScrollEntryScreen extends Screen {
 
-    private static final ResourceLocation BG = JITL.rl("textures/gui/gui_scroll_base.png");
+    private static final ResourceLocation BG = JITL.rl("textures/gui/scroll_base.png");
     private static final int SLIDER_LIGHT_COLOR = 0xFFe5bd85;
     private static final int SLIDER_PATH_COLOR = 0x333c2c14;
     private static final int SLIDER_DARK_COLOR = 0xFFc18a3c;
@@ -99,12 +100,12 @@ public class LoreScrollEntryScreen extends Screen {
      * Draws header and comment, if entry has it.
      */
     private void drawHeader(PoseStack poseStack, int maxX, int y0, Tesselator tess) {
-        float zLevel = this.initialMouseClickY; //FIXME wtf is zlevel?
+        float zLevel = this.getBlitOffset();
         if (scrollEntry.hasComment()) {
-            RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getTitleKey()).toString(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, EnumHexColor.BLACK.getInt(), 1.5F, headerHeight - 5, false);
-            RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getCommentKey()).toString(), left + (maxX - left) / 2 + 1, y0 + (int) ((float) font.lineHeight * 0.7), (int) zLevel, EnumHexColor.DARK_BROWN.getInt(), 1F, headerHeight + 5, false);
+            RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getTitleKey()).getKey(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, EnumHexColor.BLACK.getInt(), 1.5F, headerHeight - 5, false);
+            RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getCommentKey()).getKey(), left + (maxX - left) / 2 + 1, y0 + (int) ((float) font.lineHeight * 0.7), (int) zLevel, EnumHexColor.DARK_BROWN.getInt(), 1F, headerHeight + 5, false);
         } else {
-            RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getTitleKey()).toString(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, EnumHexColor.BLACK.getInt(), 1.2F, headerHeight, false);
+            RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getTitleKey()).getKey(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, EnumHexColor.BLACK.getInt(), 1.2F, headerHeight, false);
         }
     }
 
@@ -138,7 +139,7 @@ public class LoreScrollEntryScreen extends Screen {
         BufferBuilder bufferBuilder = tesselator.getBuilder();
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, BG);
-        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        //bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
 
         int heightRectCount = (height - (height <= 480 ? 12 : 48)) / 32;
         int widthRectCount = height <= 480 ? 6 : 10;
@@ -294,73 +295,71 @@ public class LoreScrollEntryScreen extends Screen {
             RenderSystem.enableBlend();
 
             //FIXME port
-            /*
             // Slider path background
             alpha = RenderUtils.getAlpha(SLIDER_PATH_COLOR);
             red = RenderUtils.getRed(SLIDER_PATH_COLOR);
             green = RenderUtils.getGreen(SLIDER_PATH_COLOR);
             blue = RenderUtils.getBlue(SLIDER_PATH_COLOR);
-            worldr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-            worldr.pos(scrollButtonLeftTop, this.bottom, 0.0D).tex(0.0D, 1.0D).color(red, green, blue, alpha).endVertex();
-            worldr.pos(scrollButtonRightTop, this.bottom, 0.0D).tex(1.0D, 1.0D).color(red, green, blue, alpha).endVertex();
-            worldr.pos(scrollButtonRightTop, this.top, 0.0D).tex(1.0D, 0.0D).color(red, green, blue, alpha).endVertex();
-            worldr.pos(scrollButtonLeftTop, this.top, 0.0D).tex(0.0D, 0.0D).color(red, green, blue, alpha).endVertex();
+            worldr.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+            worldr.vertex(scrollButtonLeftTop, this.bottom, 0.0D).uv(0.0F, 1.0F).color(red, green, blue, alpha).endVertex();
+            worldr.vertex(scrollButtonRightTop, this.bottom, 0.0D).uv(1.0F, 1.0F).color(red, green, blue, alpha).endVertex();
+            worldr.vertex(scrollButtonRightTop, this.top, 0.0D).uv(1.0F, 0.0F).color(red, green, blue, alpha).endVertex();
+            worldr.vertex(scrollButtonLeftTop, this.top, 0.0D).uv(0.0F, 0.0F).color(red, green, blue, alpha).endVertex();
 
             // Dark slider part
             alpha = RenderUtils.getAlpha(SLIDER_DARK_COLOR);
             red = RenderUtils.getRed(SLIDER_DARK_COLOR);
             green = RenderUtils.getGreen(SLIDER_DARK_COLOR);
             blue = RenderUtils.getBlue(SLIDER_DARK_COLOR);
-            worldr.pos(scrollButtonLeftTop, barTop + height, 0.0D).tex(0.0D, 1.0D).color(red, green, blue, alpha).endVertex();
-            worldr.pos(scrollButtonRightTop, barTop + height, 0.0D).tex(1.0D, 1.0D).color(red, green, blue, alpha).endVertex();
-            worldr.pos(scrollButtonRightTop, barTop, 0.0D).tex(1.0D, 0.0D).color(red, green, blue, alpha).endVertex();
-            worldr.pos(scrollButtonLeftTop, barTop, 0.0D).tex(0.0D, 0.0D).color(red, green, blue, alpha).endVertex();
+            worldr.vertex(scrollButtonLeftTop, barTop + height, 0.0D).uv(0.0F, 1.0F).color(red, green, blue, alpha).endVertex();
+            worldr.vertex(scrollButtonRightTop, barTop + height, 0.0D).uv(1.0F, 1.0F).color(red, green, blue, alpha).endVertex();
+            worldr.vertex(scrollButtonRightTop, barTop, 0.0D).uv(1.0F, 0.0F).color(red, green, blue, alpha).endVertex();
+            worldr.vertex(scrollButtonLeftTop, barTop, 0.0D).uv(0.0F, 0.0F).color(red, green, blue, alpha).endVertex();
 
             // Light slider part
             alpha = RenderUtils.getAlpha(SLIDER_LIGHT_COLOR);
             red = RenderUtils.getRed(SLIDER_LIGHT_COLOR);
             green = RenderUtils.getGreen(SLIDER_LIGHT_COLOR);
             blue = RenderUtils.getBlue(SLIDER_LIGHT_COLOR);
-            worldr.pos(scrollButtonLeftTop, barTop + height - 1, 0.0D).tex(0.0D, 1.0D).color(red, green, blue, alpha).endVertex();
-            worldr.pos(scrollButtonRightTop - 1, barTop + height - 1, 0.0D).tex(1.0D, 1.0D).color(red, green, blue, alpha).endVertex();
-            worldr.pos(scrollButtonRightTop - 1, barTop, 0.0D).tex(1.0D, 0.0D).color(red, green, blue, alpha).endVertex();
-            worldr.pos(scrollButtonLeftTop, barTop, 0.0D).tex(0.0D, 0.0D).color(red, green, blue, alpha).endVertex();
-            tess.draw();
+            worldr.vertex(scrollButtonLeftTop, barTop + height - 1, 0.0D).uv(0.0F, 1.0F).color(red, green, blue, alpha).endVertex();
+            worldr.vertex(scrollButtonRightTop - 1, barTop + height - 1, 0.0D).uv(1.0F, 1.0F).color(red, green, blue, alpha).endVertex();
+            worldr.vertex(scrollButtonRightTop - 1, barTop, 0.0D).uv(1.0F, 0.0F).color(red, green, blue, alpha).endVertex();
+            worldr.vertex(scrollButtonLeftTop, barTop, 0.0D).uv(0.0F, 0.0F).color(red, green, blue, alpha).endVertex();
+            tess.end();
 
-            GlStateManager.disableAlpha();
-            GlStateManager.disableBlend();
+            RenderSystem.disableBlend();
         }
 
         this.drawScreen(mouseX, mouseY);
-        GlStateManager.enableTexture2D();
-        GlStateManager.shadeModel(GL11.GL_FLAT);
-        GlStateManager.enableAlpha();
-        GlStateManager.disableBlend();
+        RenderSystem.enableTexture();
+        //GlStateManager.shadeModel(GL11.GL_FLAT);
+        RenderSystem.disableBlend();
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
-    }*/
+    }
 
-    /*@Override
-    public void handleMouseInput() {
+    @Override
+    public void afterMouseAction() {
+        super.afterMouseAction();
         boolean isHovering = mouseX >= this.left && mouseX <= this.left + this.entryWidth &&
                 mouseY >= this.top && mouseY <= this.bottom;
         if (!isHovering)
             return;
-
-        int scroll = Mouse.getEventDWheel();
+        MouseHandler mouseHandler = new MouseHandler(minecraft);
+        int scroll = InputConstants.MOD_CONTROL; //FIXME
         if (scroll != 0) {
             this.scrollDistance += (-1 * scroll / 120.0F) * 10;
         }
     }
 
     @Override
-    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+    public boolean charTyped(char typedChar, int keyCode) {
         if (keyCode == 1) {
             if (parentCategory != null) {
-                this.mc.displayGuiScreen(new GuiLoreScroll(parentCategory));
+                this.minecraft.setScreen(new LoreScrollScreen(parentCategory));
             } else {
-                mc.displayGuiScreen(null);
+                minecraft.setScreen(null);
             }
-        }*/
         }
+        return super.charTyped(typedChar, keyCode);
     }
 }

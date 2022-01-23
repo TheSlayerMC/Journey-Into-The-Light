@@ -3,6 +3,7 @@ package net.jitl.core.init;
 import net.jitl.common.item.JFuelItem;
 import net.jitl.common.item.StaffItem;
 import net.jitl.common.item.TestBugItem;
+import net.jitl.common.item.interactive.LoreScrollItem;
 import net.jitl.core.JITL;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
@@ -11,7 +12,7 @@ import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 
 @ObjectHolder(JITL.MODID)
 public class JItems {
-    public static final Item LORE_SCROLL = promise();
+    public static final LoreScrollItem LORE_SCROLL = promise();
     public static final Item MUSIC_DISC_HAUNT_MUSKIE_2 = promise();
     public static final Item MUSIC_DISC_JITL_THEME = promise();
     public static final Item SNOWFLAKESSS = promise();

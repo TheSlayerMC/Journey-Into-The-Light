@@ -62,7 +62,7 @@ public class LoreScrollItem extends Item {
 
             stack.setTag(tagCompound);
         } else {
-            JITL.LOGGER.error("Provided stack param is not an {}", LoreScrollItem.class, new IllegalArgumentException());
+            JITL.LOGGER.error("Provided stack param is not of {}", LoreScrollItem.class, new IllegalArgumentException());
         }
     }
 

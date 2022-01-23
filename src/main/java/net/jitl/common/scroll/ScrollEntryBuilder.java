@@ -1,7 +1,6 @@
 package net.jitl.common.scroll;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.network.chat.Component;
 import net.minecraftforge.common.util.Lazy;
 
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class ScrollEntryBuilder {
         return this;
     }
 
-    public ScrollEntryBuilder addTextComponent(Component langKey) {
+    public ScrollEntryBuilder addTextComponent(String langKey) {
         pageContent.add(new TextDescComponent(langKey));
         return this;
     }

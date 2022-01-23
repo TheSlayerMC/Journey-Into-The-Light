@@ -22,7 +22,7 @@ public class ScrollEntry {
     /**
      * Name of Entry
      */
-    private String titleKey;
+    private final String titleKey;
     /**
      * Commentary that will be displayed under the title.
      */
@@ -36,7 +36,6 @@ public class ScrollEntry {
     private final int y;
 
     public ScrollEntry(String id, String titleKey, @Nullable String commentKey, Lazy<ItemStack> displayedItem, List<IDescComponent> desc, int x, int y) {
-        this.titleKey = titleKey;
         this.displayedItem = displayedItem;
         this.x = x;
         this.y = y;

@@ -2,9 +2,8 @@ package net.jitl.common.scroll;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.FormattedCharSequence;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.util.FormattedCharSequence;
 
 import java.util.List;
 
@@ -12,11 +11,11 @@ import java.util.List;
  * Code by TimeConqueror
  */
 public class TextDescComponent implements IDescComponent {
-    private final Component langKey;
+    private final String langKey;
     private int contentHeight;
     private List<FormattedCharSequence> wrappedText;
 
-    public TextDescComponent(Component langKey) {
+    public TextDescComponent(String langKey) {
         this.langKey = langKey;
     }
 

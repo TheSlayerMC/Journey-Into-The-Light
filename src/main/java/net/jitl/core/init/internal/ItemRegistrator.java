@@ -25,6 +25,7 @@ import net.jitl.common.item.gear.abilities.korite.KoriteSwordAbility;
 import net.jitl.common.item.gear.abilities.mekyum.MekyumSwordAbility;
 import net.jitl.common.item.interactive.AncientPieceItem;
 import net.jitl.common.item.interactive.FlameCoinItem;
+import net.jitl.common.item.interactive.LoreScrollItem;
 import net.jitl.common.item.interactive.MinersPearlItem;
 import net.jitl.common.item.throwable.KnifeItem;
 import net.jitl.common.item.throwable.PiercerItem;
@@ -68,7 +69,7 @@ public class ItemRegistrator {
     private static void register() {
 
         //OVERWORLD ITEMS
-        registerItem("lore_scroll", "Lore Scroll", () -> new Item(itemGrouped()));
+        registerItem("lore_scroll", "Lore Scroll", () -> new LoreScrollItem(itemGrouped()));
         registerItem("dreadiron_ingot", "Dreadiron Ingot");
         registerItem("sapphire", "Sapphire");
         registerItem("iridium_nugget", "Iridium Nugget");
