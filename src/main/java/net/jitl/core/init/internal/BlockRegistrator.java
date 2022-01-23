@@ -489,7 +489,7 @@ public class BlockRegistrator {
         registerSlabBlock(name + "_plank_slab", enName + " Plank Slab", name + "_plank", () -> new SlabBlock(JBlockProperties.WOOD_PROPS.create()));
         registerCustomRenderedBlock(name + "_fence", enName + " Plank Fence", () -> new FenceBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerCustomRenderedBlock(name + "_gate", enName + " Plank Gate", () -> new FenceGateBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
-        registerCustomRenderedBlock(name + "_trap_door", enName + " Trap Door", () -> new TrapDoorBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
+        registerTrapDoorBlock(name + "_trap_door", enName + " Trap Door", "_trap_door", () -> new TrapDoorBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerCustomRenderedBlock(name + "_pressure_plate", enName + " Pressure Plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, JBlockProperties.WOOD_PROPS.create()));
         registerButtonBlock(name + "_button", enName + " Button", name + "_plank", () -> new ButtonBlock(true, JBlockProperties.WOOD_PROPS.create()) {
             @Override
@@ -704,6 +704,16 @@ public class BlockRegistrator {
                 .model(JITL.bml("block/" + name), () -> JBlockModels.button(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_pressed"), () -> JBlockModels.buttonPressed(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_inventory"), () -> JBlockModels.buttonInventory(JITL.tl("block/" + textureName)));
+    }
+
+    private static void registerTrapDoorBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.trapDoorState(JITL.bml("block/" + name + "_bottom"), JITL.bml("block/" + name + "_top"), JITL.bml("block/" + name + "_open")))
+                .model(JITL.bml("block/" + name + "_top"), () -> JBlockModels.trapDoorTop(JITL.tl("block/" + textureName)))
+                .model(JITL.bml("block/" + name + "_bottom"), () -> JBlockModels.trapDoorBottom(JITL.tl("block/" + textureName)))
+                .model(JITL.bml("block/" + name + "_open"), () -> JBlockModels.trapDoorOpen(JITL.tl("block/" + textureName)));
     }
 
     private static void registerRandomizedTextureBlock(String name, String enName, Supplier<Block> blockSupplier, CreativeModeTab creativeModeTab, Supplier<RenderTypeWrapper> renderType) {

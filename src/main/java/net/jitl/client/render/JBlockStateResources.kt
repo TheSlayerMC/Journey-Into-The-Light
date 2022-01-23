@@ -151,6 +151,68 @@ object JBlockStateResources {
     }
 
     @JvmStatic
+    fun trapDoorState(bottom: BlockModelLocation, top: BlockModelLocation, open: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "facing=east,half=bottom,open=false" {
+                    "model" set bottom
+                }
+                "facing=east,half=bottom,open=true" {
+                    "model" set open
+                    y = 90
+                }
+                "facing=east,half=top,open=false" {
+                    "model" set top
+                }
+                "facing=east,half=top,open=true" {
+                    "model" set open
+                    y = 90
+                }
+                "facing=north,half=bottom,open=false" {
+                    "model" set bottom
+                }
+                "facing=north,half=bottom,open=true" {
+                    "model" set open
+                }
+                "facing=north,half=top,open=false" {
+                    "model" set top
+                }
+                "facing=north,half=top,open=true" {
+                    "model" set open
+                }
+                "facing=south,half=bottom,open=false" {
+                    "model" set bottom
+                }
+                "facing=south,half=bottom,open=true" {
+                    "model" set open
+                    y = 180
+                }
+                "facing=south,half=top,open=false" {
+                    "model" set top
+                }
+                "facing=south,half=top,open=true" {
+                    "model" set open
+                    y = 180
+                }
+                "facing=west,half=bottom,open=false" {
+                    "model" set bottom
+                }
+                "facing=west,half=bottom,open=true" {
+                    "model" set open
+                    y = 270
+                }
+                "facing=west,half=top,open=false" {
+                    "model" set top
+                }
+                "facing=west,half=top,open=true" {
+                    "model" set open
+                    y = 270
+                }
+            }
+        })
+    }
+
+    @JvmStatic
     fun buttonState(button: BlockModelLocation, pressed: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(json {
             "variants" {

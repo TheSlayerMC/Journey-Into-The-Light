@@ -93,6 +93,30 @@ object JBlockModels {
     })
 
     @JvmStatic
+    fun trapDoorTop(texture: TextureLocation) = BlockModel(json {
+        "parent" set "block/template_trapdoor_top"
+        "textures" {
+            "texture" set texture.toString()
+        }
+    })
+
+    @JvmStatic
+    fun trapDoorBottom(texture: TextureLocation) = BlockModel(json {
+        "parent" set "block/template_trapdoor_bottom"
+        "textures" {
+            "texture" set texture.toString()
+        }
+    })
+
+    @JvmStatic
+    fun trapDoorOpen(texture: TextureLocation) = BlockModel(json {
+        "parent" set "block/template_trapdoor_open"
+        "textures" {
+            "texture" set texture.toString()
+        }
+    })
+
+    @JvmStatic
     fun crop(textureCrop: TextureLocation) = BlockModel(json {
         "parent" set "block/crop"
         "textures" {
