@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "jitl:euca_gold_log",
+    "jitl:euca_brown_log",
+    "jitl:frozen_log",
+    "jitl:burned_bark"
+  ]
+}

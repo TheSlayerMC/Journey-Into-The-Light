@@ -13,6 +13,8 @@ public class JTags {
     public static final SetTag.Named<Block> EUCA_STONE_ORE_REPLACEABLES = tagBlock("euca_stone_ore_replaceables");
     public static final SetTag.Named<Block> BOIL_STONE_ORE_REPLACEABLES = tagBlock("boil_stone_ore_replaceables");
 
+    public static final SetTag.Named<Block> JLOGS = tagBlock("jlogs");
+
     private static Tag.Named<Item> tagItem(String name) {
         return ItemTags.createOptional(JITL.rl(name));
     }
