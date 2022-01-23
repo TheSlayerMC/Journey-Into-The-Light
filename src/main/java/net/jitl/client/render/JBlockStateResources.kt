@@ -152,45 +152,55 @@ object JBlockStateResources {
 
     @JvmStatic
     fun fenceState(post: BlockModelLocation, side: BlockModelLocation): BlockStateResource {
-        return BlockStateResource.fromJson(json {
-            "multipart"[
-                    {
-                        "apply" {
-                            "model" set post
+        return BlockStateResource.fromJson(
+            json
+            {
+                "multipart"[
+                        {
+                            "apply" {
+                                "model" set post
+                            }
+                        },
+                        {
+                            "when" {
+                                "north" to true
+                            }
+                            "apply" {
+                                "model" set side
+                                uvlock to true
+                            }
+                        },
+                        {
+                            "when" {
+                                "east" to true
+                            }
+                            "apply" {
+                                "model" set side
+                                y = 90
+                                uvlock to true
+                            }
+                        },
+                        {
+                            "when" {
+                                "south" to true
+                            }
+                            "apply" {
+                                "model" set side
+                                y = 180
+                                uvlock to true
+                            }
+                        },
+                        {
+                            "when" {
+                                "west" to true
+                            }
+                            "apply" {
+                                "model" set side
+                                y = 270
+                                uvlock to true
+                            }
                         }
-                        "when" {
-                            "north" to true
-                        }
-                        "apply" {
-                            "model" set side
-                            uvlock to true
-                        }
-                        "when" {
-                            "east" to true
-                        }
-                        "apply" {
-                            "model" set side
-                            y = 90
-                            uvlock to true
-                        }
-                        "when" {
-                            "south" to true
-                        }
-                        "apply" {
-                            "model" set side
-                            y = 180
-                            uvlock to true
-                        }
-                        "when" {
-                            "west" to true
-                        }
-                        "apply" {
-                            "model" set side
-                            y = 270
-                            uvlock to true
-                        }
-                    }
-            ]
+                ]
         })
     }
 
