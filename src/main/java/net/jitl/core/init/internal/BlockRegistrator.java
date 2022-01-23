@@ -489,15 +489,15 @@ public class BlockRegistrator {
         registerSlabBlock(name + "_plank_slab", enName + " Plank Slab", name + "_plank", () -> new SlabBlock(JBlockProperties.WOOD_PROPS.create()));
         registerCustomRenderedBlock(name + "_fence", enName + " Plank Fence", () -> new FenceBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerCustomRenderedBlock(name + "_gate", enName + " Plank Gate", () -> new FenceGateBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
-        registerTrapDoorBlock(name + "_trap_door", enName + " Trap Door", "_trap_door", () -> new TrapDoorBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
-        registerCustomRenderedBlock(name + "_pressure_plate", enName + " Pressure Plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, JBlockProperties.WOOD_PROPS.create()));
+        registerTrapDoorBlock(name + "_trap_door", enName + " Trap Door", name + "_trap_door", () -> new TrapDoorBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
+        registerPressurePlateBlock(name + "_pressure_plate", enName + " Pressure Plate", name + "_plank", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, JBlockProperties.WOOD_PROPS.create()));
+        registerDoorBlock(name + "_door", enName + " Door", name + "_door", () -> new DoorBlock(JBlockProperties.WOOD_PROPS.create()));
         registerButtonBlock(name + "_button", enName + " Button", name + "_plank", () -> new ButtonBlock(true, JBlockProperties.WOOD_PROPS.create()) {
             @Override
             protected @NotNull SoundEvent getSound(boolean isOn) {
                 return isOn ? SoundEvents.WOODEN_BUTTON_CLICK_ON : SoundEvents.WOODEN_BUTTON_CLICK_OFF;
             }
         });
-        registerCustomRenderedBlock(name + "_door", enName + " Door", () -> new DoorBlock(JBlockProperties.WOOD_PROPS.create()));
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {
@@ -693,7 +693,7 @@ public class BlockRegistrator {
                 .defaultBlockItem(JTabs.BLOCKS)
                 .state(JBlockStateResources.slabState(JITL.bml("block/" + name), JITL.bml("block/" + textureName), JITL.bml("block/" + name + "_top")))
                 .model(JITL.bml("block/" + name), () -> JBlockModels.slab(JITL.tl("block/" + textureName)))
-                .model(JITL.bml("block/" + name + "_top"), () -> JBlockModels.slab(JITL.tl("block/" + textureName)));
+                .model(JITL.bml("block/" + name + "_top"), () -> JBlockModels.slabTop(JITL.tl("block/" + textureName)));
     }
 
     private static void registerButtonBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
@@ -706,6 +706,17 @@ public class BlockRegistrator {
                 .model(JITL.bml("block/" + name + "_inventory"), () -> JBlockModels.buttonInventory(JITL.tl("block/" + textureName)));
     }
 
+    private static void registerDoorBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.doorState(JITL.bml("block/" + name + "_top"), JITL.bml("block/" + name + "_bottom"), JITL.bml("block/" + name + "_top_hinge"), JITL.bml("block/" + name + "_bottom_hinge")))
+                .model(JITL.bml("block/" + name + "_top"), () -> JBlockModels.doorTop(JITL.tl("block/" + textureName + "_top"), JITL.tl("block/" + textureName + "_bottom")))
+                .model(JITL.bml("block/" + name + "_bottom"), () -> JBlockModels.doorBottom(JITL.tl("block/" + textureName + "_top"), JITL.tl("block/" + textureName + "_bottom")))
+                .model(JITL.bml("block/" + name + "_top_hinge"), () -> JBlockModels.doorTopHinge(JITL.tl("block/" + textureName + "_top"), JITL.tl("block/" + textureName + "_bottom")))
+                .model(JITL.bml("block/" + name + "_bottom_hinge"), () -> JBlockModels.doorBottomHinge(JITL.tl("block/" + textureName + "_top"), JITL.tl("block/" + textureName + "_bottom")));
+    }
+
     private static void registerTrapDoorBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
@@ -714,6 +725,15 @@ public class BlockRegistrator {
                 .model(JITL.bml("block/" + name + "_top"), () -> JBlockModels.trapDoorTop(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_bottom"), () -> JBlockModels.trapDoorBottom(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_open"), () -> JBlockModels.trapDoorOpen(JITL.tl("block/" + textureName)));
+    }
+
+    private static void registerPressurePlateBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.pressurePlateState(JITL.bml("block/" + name), JITL.bml("block/" + name + "_down")))
+                .model(JITL.bml("block/" + name), () -> JBlockModels.pressurePlate(JITL.tl("block/" + textureName)))
+                .model(JITL.bml("block/" + name + "_down"), () -> JBlockModels.pressurePlateDown(JITL.tl("block/" + textureName)));
     }
 
     private static void registerRandomizedTextureBlock(String name, String enName, Supplier<Block> blockSupplier, CreativeModeTab creativeModeTab, Supplier<RenderTypeWrapper> renderType) {

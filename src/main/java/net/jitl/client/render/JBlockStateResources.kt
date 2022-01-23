@@ -151,6 +151,134 @@ object JBlockStateResources {
     }
 
     @JvmStatic
+    fun doorState(top: BlockModelLocation, bottom: BlockModelLocation, top_hinge: BlockModelLocation, bottom_hinge: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "facing=east,half=lower,hinge=left,open=false" {
+                    "model" set bottom
+                }
+                "facing=east,half=lower,hinge=left,open=true" {
+                    "model" set bottom_hinge
+                    y = 90
+                }
+                "facing=east,half=lower,hinge=right,open=false" {
+                    "model" set bottom
+                }
+                "facing=east,half=lower,hinge=right,open=true" {
+                    "model" set bottom
+                    y = 270
+                }
+                "facing=east,half=upper,hinge=left,open=false" {
+                    "model" set top
+                }
+                "facing=east,half=upper,hinge=left,open=true" {
+                    "model" set top_hinge
+                    y = 90
+                }
+                "facing=east,half=upper,hinge=right,open=false" {
+                    "model" set top_hinge
+                }
+                "facing=east,half=upper,hinge=right,open=true" {
+                    "model" set top
+                    y = 270
+                }
+                "facing=north,half=lower,hinge=left,open=false" {
+                    "model" set bottom
+                    y = 270
+                }
+                "facing=north,half=lower,hinge=left,open=true" {
+                "model" set bottom_hinge
+                }
+                "facing=north,half=lower,hinge=right,open=false" {
+                    "model" set bottom_hinge
+                    y = 270
+                }
+                "facing=north,half=lower,hinge=right,open=true" {
+                    "model" set bottom
+                    y = 180
+                }
+                "facing=north,half=upper,hinge=left,open=false" {
+                    "model" set top
+                    y = 270
+                }
+                "facing=north,half=upper,hinge=left,open=true" {
+                    "model" set top_hinge
+                }
+                "facing=north,half=upper,hinge=right,open=false" {
+                    "model" set top_hinge
+                    y = 270
+                }
+                "facing=north,half=upper,hinge=right,open=true" {
+                    "model" set top
+                    y = 180
+                }
+                "facing=south,half=lower,hinge=left,open=false" {
+                    "model" set bottom
+                    y = 90
+                }
+                "facing=south,half=lower,hinge=left,open=true" {
+                    "model" set bottom_hinge
+                    y = 180
+                }
+                "facing=south,half=lower,hinge=right,open=false" {
+                    "model" set bottom_hinge
+                    y = 90
+                }
+                "facing=south,half=lower,hinge=right,open=true" {
+                    "model" set bottom
+                }
+                "facing=south,half=upper,hinge=left,open=false" {
+                    "model" set top
+                    y = 90
+                }
+                "facing=south,half=upper,hinge=left,open=true" {
+                    "model" set top_hinge
+                    y = 180
+                }
+                "facing=south,half=upper,hinge=right,open=false" {
+                    "model" set top_hinge
+                    y = 90
+                }
+                "facing=south,half=upper,hinge=right,open=true" {
+                    "model" set top
+                }
+                "facing=west,half=lower,hinge=left,open=false" {
+                    "model" set bottom
+                    y = 180
+                }
+                "facing=west,half=lower,hinge=left,open=true" {
+                    "model" set bottom_hinge
+                    y = 270
+                }
+                "facing=west,half=lower,hinge=right,open=false" {
+                    "model" set bottom_hinge
+                    y = 180
+                }
+                "facing=west,half=lower,hinge=right,open=true" {
+                    "model" set bottom
+                    y = 90
+                }
+                "facing=west,half=upper,hinge=left,open=false" {
+                    "model" set top
+                    y = 180
+                }
+                "facing=west,half=upper,hinge=left,open=true" {
+                    "model" set top_hinge
+                    y = 270
+                }
+                "facing=west,half=upper,hinge=right,open=false" {
+                    "model" set top_hinge
+                    y = 180
+                }
+                "facing=west,half=upper,hinge=right,open=true" {
+                    "model" set top
+                    y = 90
+                }
+            }
+        })
+    }
+
+    @JvmStatic
     fun trapDoorState(bottom: BlockModelLocation, top: BlockModelLocation, open: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(json {
             "variants" {
@@ -207,6 +335,20 @@ object JBlockStateResources {
                 "facing=west,half=top,open=true" {
                     "model" set open
                     y = 270
+                }
+            }
+        })
+    }
+
+    @JvmStatic
+    fun pressurePlateState(up: BlockModelLocation, down: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "powered=false" {
+                    "model" set up
+                }
+                "powered=true" {
+                    "model" set down
                 }
             }
         })

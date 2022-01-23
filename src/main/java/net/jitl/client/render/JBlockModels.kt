@@ -69,6 +69,52 @@ object JBlockModels {
     })
 
     @JvmStatic
+    fun slabTop(texture: TextureLocation) = BlockModel(json {
+        "parent" set "block/slab_top"
+        "textures" {
+            "top" set texture.toString()
+            "bottom" set texture.toString()
+            "side" set texture.toString()
+        }
+    })
+
+    @JvmStatic
+    fun doorTop(top: TextureLocation, bottom: TextureLocation) = BlockModel(json {
+        "parent" set "block/door_top"
+        "textures" {
+            "top" set top.toString()
+            "bottom" set bottom.toString()
+        }
+    })
+
+    @JvmStatic
+    fun doorBottom(top: TextureLocation, bottom: TextureLocation) = BlockModel(json {
+        "parent" set "block/door_bottom"
+        "textures" {
+            "top" set top.toString()
+            "bottom" set bottom.toString()
+        }
+    })
+
+    @JvmStatic
+    fun doorTopHinge(top: TextureLocation, bottom: TextureLocation) = BlockModel(json {
+        "parent" set "block/door_top_rh"
+        "textures" {
+            "top" set top.toString()
+            "bottom" set bottom.toString()
+        }
+    })
+
+    @JvmStatic
+    fun doorBottomHinge(top: TextureLocation, bottom: TextureLocation) = BlockModel(json {
+        "parent" set "block/door_bottom_rh"
+        "textures" {
+            "top" set top.toString()
+            "bottom" set bottom.toString()
+        }
+    })
+
+    @JvmStatic
     fun button(texture: TextureLocation) = BlockModel(json {
         "parent" set "block/button"
         "textures" {
@@ -95,6 +141,22 @@ object JBlockModels {
     @JvmStatic
     fun trapDoorTop(texture: TextureLocation) = BlockModel(json {
         "parent" set "block/template_trapdoor_top"
+        "textures" {
+            "texture" set texture.toString()
+        }
+    })
+
+    @JvmStatic
+    fun pressurePlate(texture: TextureLocation) = BlockModel(json {
+        "parent" set "block/pressure_plate_up"
+        "textures" {
+            "texture" set texture.toString()
+        }
+    })
+
+    @JvmStatic
+    fun pressurePlateDown(texture: TextureLocation) = BlockModel(json {
+        "parent" set "block/pressure_plate_down"
         "textures" {
             "texture" set texture.toString()
         }
