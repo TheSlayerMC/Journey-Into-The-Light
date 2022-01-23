@@ -88,7 +88,7 @@ object JBlockModels {
 
     @JvmStatic
     fun fencePost(tex: TextureLocation) = BlockModel(json {
-        "parent" set "block/fence_post"
+        "parent" set "minecraft:block/fence_post"
         "textures" {
             "texture" set tex.toString()
         }
@@ -96,7 +96,7 @@ object JBlockModels {
 
     @JvmStatic
     fun fenceSide(tex: TextureLocation) = BlockModel(json {
-        "parent" set "block/fence_side"
+        "parent" set "minecraft:block/fence_side"
         "textures" {
             "texture" set tex.toString()
         }
