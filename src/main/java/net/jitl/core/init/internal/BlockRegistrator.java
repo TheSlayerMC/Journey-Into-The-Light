@@ -31,6 +31,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.client.resource.BlockModel;
 import ru.timeconqueror.timecore.api.client.resource.BlockModels;
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResource;
@@ -490,10 +491,10 @@ public class BlockRegistrator {
         registerCustomRenderedBlock(name + "_gate", enName + " Plank Gate", () -> new FenceGateBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerCustomRenderedBlock(name + "_trap_door", enName + " Trap Door", () -> new TrapDoorBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerCustomRenderedBlock(name + "_pressure_plate", enName + " Pressure Plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, JBlockProperties.WOOD_PROPS.create()));
-        registerButtonBlock(name + "_button", enName + " Button", "_plank", () -> new ButtonBlock(true, JBlockProperties.WOOD_PROPS.create()) {
+        registerButtonBlock(name + "_button", enName + " Button", name + "_plank", () -> new ButtonBlock(true, JBlockProperties.WOOD_PROPS.create()) {
             @Override
-            protected SoundEvent getSound(boolean isOn_) {
-                return SoundEvents.WOODEN_BUTTON_CLICK_ON;
+            protected @NotNull SoundEvent getSound(boolean isOn) {
+                return isOn ? SoundEvents.WOODEN_BUTTON_CLICK_ON : SoundEvents.WOODEN_BUTTON_CLICK_OFF;
             }
         });
         registerCustomRenderedBlock(name + "_door", enName + " Door", () -> new DoorBlock(JBlockProperties.WOOD_PROPS.create()));
@@ -700,8 +701,9 @@ public class BlockRegistrator {
                 .name(enName)
                 .defaultBlockItem(JTabs.BLOCKS)
                 .state(JBlockStateResources.buttonState(JITL.bml("block/" + name), JITL.bml("block/" + name + "_pressed")))
-                .model(JITL.bml("block/" + name), () -> JBlockModels.button(JITL.tl("block/" + name)))
-                .model(JITL.bml("block/" + name + "_pressed"), () -> JBlockModels.buttonPressed(JITL.tl("block/" + textureName)));
+                .model(JITL.bml("block/" + name), () -> JBlockModels.button(JITL.tl("block/" + textureName)))
+                .model(JITL.bml("block/" + name + "_pressed"), () -> JBlockModels.buttonPressed(JITL.tl("block/" + textureName)))
+                .model(JITL.bml("block/" + name + "_inventory"), () -> JBlockModels.buttonInventory(JITL.tl("block/" + textureName)));
     }
 
     private static void registerRandomizedTextureBlock(String name, String enName, Supplier<Block> blockSupplier, CreativeModeTab creativeModeTab, Supplier<RenderTypeWrapper> renderType) {
