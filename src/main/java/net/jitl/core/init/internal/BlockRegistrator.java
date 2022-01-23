@@ -189,7 +189,7 @@ public class BlockRegistrator {
         registerWoodType("euca_brown", "Brown Euca", "euca_brown_sapling", "Brown Euca Sapling", new EucaGreenTreeGrower());
         registerWoodType("euca_gold", "Golden Euca", "euca_gold_sapling", "Golden Euca Sapling", new EucaGoldTreeGrower());
         registerWoodType("frozen", "Frosty");
-        registerWoodType("burned_bark", "Burned Bark", "burned_sapling", "Burned Sapling", new BurnedTreeGrower());
+        registerBarkType("burned_bark", "Burned Bark", "burned_sapling", "Burned Sapling", new BurnedTreeGrower());
 
         registerDefaultBlock("euca_brick", "Euca Brick");
         RegistryObject<Block> eucaDungeonBricks = registerBlock("euca_dungeon_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
@@ -478,6 +478,30 @@ public class BlockRegistrator {
         registerWoodType(name, enName);
         registerSpeciallyRenderedBlock(saplingName, saplingEnName, () -> new JSaplingBlock(tree, JBlockProperties.PLANT_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/" + saplingName)));
+    }
+
+    public static void registerBarkType(String name, String enName, String saplingName, String saplingEnName, AbstractTreeGrower tree) {
+        registerBarkType(name, enName);
+        registerSpeciallyRenderedBlock(saplingName, saplingEnName, () -> new JSaplingBlock(tree, JBlockProperties.PLANT_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/" + saplingName)));
+    }
+
+    public static void registerBarkType(String name, String enName) {
+        registerLogBlock(name, enName);
+        RegistryObject<Block> plank = registerBlock(name + "_plank", enName + " Planks", () -> new Block(JBlockProperties.WOOD_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs(name + "_stairs", enName + " Stairs", plank, JBlockProperties.WOOD_PROPS.create());
+        registerSlabBlock(name + "_plank_slab", enName + " Plank Slab", name + "_plank", () -> new SlabBlock(JBlockProperties.WOOD_PROPS.create()));
+        registerFenceBlock(name + "_fence", enName + " Plank Fence", name + "_plank", () -> new JFenceBlock(JBlockProperties.WOOD_PROPS.create()));
+        registerFenceGateBlock(name + "_gate", enName + " Plank Gate", name + "_plank", () -> new FenceGateBlock(JBlockProperties.WOOD_PROPS.create()));
+        registerTrapDoorBlock(name + "_trap_door", enName + " Trap Door", name + "_trap_door", () -> new TrapDoorBlock(JBlockProperties.DOOR_PROPS.create()));
+        registerPressurePlateBlock(name + "_pressure_plate", enName + " Pressure Plate", name + "_plank", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, JBlockProperties.WOOD_PROPS.create()));
+        registerDoorBlock(name + "_door", enName + " Door", name + "_door", () -> new DoorBlock(JBlockProperties.DOOR_PROPS.create()));
+        registerButtonBlock(name + "_button", enName + " Button", name + "_plank", () -> new ButtonBlock(true, JBlockProperties.WOOD_PROPS.create()) {
+            @Override
+            protected @NotNull SoundEvent getSound(boolean isOn) {
+                return isOn ? SoundEvents.WOODEN_BUTTON_CLICK_ON : SoundEvents.WOODEN_BUTTON_CLICK_OFF;
+            }
+        });
     }
 
     public static void registerWoodType(String name, String enName) {
