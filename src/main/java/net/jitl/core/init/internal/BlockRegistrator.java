@@ -182,7 +182,7 @@ public class BlockRegistrator {
                 "iron_crate_front");
 
         registerDefaultBlock("block_of_mud", "Block O' Mud", () -> new Block(JBlockProperties.MUD_PROPS.create()));
-        
+
         registerWoodType("euca_brown", "Brown Euca", "euca_green_sapling", "Green Euca Sapling", new EucaGreenTreeGrower());
         registerWoodType("euca_gold", "Golden Euca", "euca_gold_sapling", "Golden Euca Sapling", new EucaGoldTreeGrower());
         registerWoodType("frozen", "Frosty");
@@ -316,12 +316,6 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("euca_silver_gold_flower", "Euca Silver Gold Flower", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
                 () -> BlockModels.crossModel(JITL.tl("block/euca_silver_gold_flower")));
-
-        registerSpeciallyRenderedBlock("euca_gold_sapling", "Euca Gold Sapling", () -> new JSaplingBlock(new EucaGoldTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
-                () -> BlockModels.crossModel(JITL.tl("block/euca_gold_sapling")));
-
-        registerSpeciallyRenderedBlock("euca_green_sapling", "Euca Green Sapling", () -> new JSaplingBlock(new EucaGreenTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
-                () -> BlockModels.crossModel(JITL.tl("block/euca_green_sapling")));
 
         registerCampfireBlock("bitterwood_campfire", "Bitterwood Campfire", () -> new CampfireBlock(true, 1, JBlockProperties.WOOD_PROPS.create().noOcclusion()));
 
