@@ -72,13 +72,12 @@ public class PotTile extends RandomizableContainerBlockEntity {
         return new TranslatableComponent("jitl.tile.pot");
     }
 
-    public static void serverTick(Level level_, BlockPos pos_, BlockState state_, PotTile blockEntity_) {
-        Level level = blockEntity_.level;
-        if (blockEntity_.hasFallen) {
+    public static void serverTick(Level level, BlockPos pos, BlockState state, PotTile blockEntity) {
+        if (blockEntity.hasFallen) {
             if (level != null) {
-                Containers.dropContents(level, pos_, blockEntity_);
-                level.destroyBlock(pos_, true);
-                blockEntity_.setRemoved();
+                Containers.dropContents(level, pos, blockEntity);
+                level.destroyBlock(pos, true);
+                blockEntity.setRemoved();
             }
         }
     }

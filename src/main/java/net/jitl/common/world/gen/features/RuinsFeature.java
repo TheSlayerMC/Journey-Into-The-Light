@@ -43,13 +43,17 @@ public class RuinsFeature extends Feature<RuinsFeatureConfig> {
 					placePos.move(Direction.UP);
 				}
 				if (rand.nextInt(4) == 0) {
-					BlockPos chestPos = new BlockPos(pos.getX(), yPos, pos.getZ());
-					if (config.spawnBlock.test(reader.getBlockState(chestPos.below()), rand) && reader.getBlockState(chestPos).getBlock() == Blocks.AIR) {
-						BlockState chestState = Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(rand));
-						reader.setBlock(chestPos, chestState, 2);
-						RandomizableContainerBlockEntity.setLootTable(reader, rand, chestPos, config.resourceLocation);
-					}
-				}
+                    BlockPos chestPos = new BlockPos(pos.getX(), yPos - 2, pos.getZ());
+                    BlockPos dirtPos = new BlockPos(pos.getX(), yPos - 1, pos.getZ());
+                    BlockPos spawnPos = new BlockPos(pos.getX(), yPos, pos.getZ());
+
+                    if (config.spawnBlock.test(reader.getBlockState(spawnPos.below()), rand)) {
+                        BlockState chestState = Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(rand));
+                        reader.setBlock(dirtPos, Blocks.COARSE_DIRT.defaultBlockState(), 2);
+                        reader.setBlock(chestPos, chestState, 2);
+                        RandomizableContainerBlockEntity.setLootTable(reader, rand, chestPos, config.resourceLocation);
+                    }
+                }
 			}
 			return true;
 		}
