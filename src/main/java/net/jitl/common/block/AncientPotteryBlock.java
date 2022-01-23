@@ -34,19 +34,19 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 
 public class AncientPotteryBlock extends JFallingTileContainerBlock {
+    public static final VoxelShape MIDDLE = Block.box(1.0D, 2.0D, 1.0D, 15.0D, 14.0D, 15.0D);
+    public static final VoxelShape BOTTOM = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D);
+    public static final VoxelShape TOP = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+    public static final VoxelShape TOP_MID = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 18.0D, 11.0D);
+    public static final VoxelShape LIP = Block.box(4.0D, 18.0D, 4.0D, 12.0D, 20.0D, 12.0D);
+
     public AncientPotteryBlock() {
         super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), PotTile::new);
     }
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        VoxelShape middle = Block.box(1.0D, 2.0D, 1.0D, 15.0D, 14.0D, 15.0D);
-        VoxelShape bottom = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D);
-        VoxelShape top = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-        VoxelShape topMid = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 18.0D, 11.0D);
-        VoxelShape lip = Block.box(4.0D, 18.0D, 4.0D, 12.0D, 20.0D, 12.0D);
-
-        return Shapes.or(middle, bottom, top, lip, topMid);
+        return Shapes.or(MIDDLE, BOTTOM, TOP, LIP, TOP_MID);
     }
 
     @Override
