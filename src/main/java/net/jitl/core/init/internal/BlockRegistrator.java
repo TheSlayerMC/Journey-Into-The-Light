@@ -189,6 +189,7 @@ public class BlockRegistrator {
         registerWoodType("euca_brown", "Brown Euca", "euca_brown_sapling", "Brown Euca Sapling", new EucaGreenTreeGrower());
         registerWoodType("euca_gold", "Golden Euca", "euca_gold_sapling", "Golden Euca Sapling", new EucaGoldTreeGrower());
         registerWoodType("frozen", "Frosty");
+        registerWoodType("burned_bark", "Burned Bark", "burned_sapling", "Burned Sapling", new BurnedTreeGrower());
 
         registerDefaultBlock("euca_brick", "Euca Brick");
         RegistryObject<Block> eucaDungeonBricks = registerBlock("euca_dungeon_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
@@ -288,9 +289,6 @@ public class BlockRegistrator {
 
         registerSpeciallyRenderedBlock("charred_sapling", "Charred Sapling", () -> new JSaplingBlock(new CharredTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/charred_sapling")));
-
-        registerSpeciallyRenderedBlock("burned_sapling", "Burned Sapling", () -> new JSaplingBlock(new BurnedTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
-                () -> BlockModels.crossModel(JITL.tl("block/burned_sapling")));
 
         registerSpeciallyRenderedBlock("goldite_bulb", "Goldite Bulb", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
@@ -431,7 +429,7 @@ public class BlockRegistrator {
 
         registerSpeciallyRenderedBlockWithRenderType("scorched_cactus", "Scorched Cactus", JBlockCactus::new, () -> RenderTypeWrappers.CUTOUT);
 
-        registerLogBlock("burned_bark", "Burned Bark");
+
         registerCustomRenderLayerBlock("charred_leaves", "Charred Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
 
         registerCrossRenderedBlock("inferno_bush", "Inferno Bush", () -> new JPlantBlock(JBlockProperties.FIRE_PLANT_PROPS.create())
