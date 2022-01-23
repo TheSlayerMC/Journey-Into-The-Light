@@ -487,7 +487,7 @@ public class BlockRegistrator {
         RegistryObject<Block> plank = registerBlock(name + "_plank", enName + " Planks", () -> new Block(JBlockProperties.WOOD_PROPS.create()));
         KBlockRegistrator.INSTANCE.registerStairs(name + "_stairs", enName + " Stairs", plank, JBlockProperties.WOOD_PROPS.create());
         registerSlabBlock(name + "_plank_slab", enName + " Plank Slab", name + "_plank", () -> new SlabBlock(JBlockProperties.WOOD_PROPS.create()));
-        registerCustomRenderedBlock(name + "_fence", enName + " Plank Fence", () -> new FenceBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
+        registerFenceBlock(name + "_fence", enName + " Plank Fence", name + "_plank", () -> new FenceBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerFenceGateBlock(name + "_gate", enName + " Plank Gate", name + "_plank", () -> new FenceGateBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerTrapDoorBlock(name + "_trap_door", enName + " Trap Door", name + "_trap_door", () -> new TrapDoorBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerPressurePlateBlock(name + "_pressure_plate", enName + " Pressure Plate", name + "_plank", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, JBlockProperties.WOOD_PROPS.create()));
@@ -704,6 +704,15 @@ public class BlockRegistrator {
                 .model(JITL.bml("block/" + name), () -> JBlockModels.button(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_pressed"), () -> JBlockModels.buttonPressed(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_inventory"), () -> JBlockModels.buttonInventory(JITL.tl("block/" + textureName)));
+    }
+
+    private static void registerFenceBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.fenceState(JITL.bml("block/" + name + "_post"), JITL.bml("block/" + name + "_side")))
+                .model(JITL.bml("block/" + name + "_post"), () -> JBlockModels.fencePost(JITL.tl("block/" + textureName)))
+                .model(JITL.bml("block/" + name + "_side"), () -> JBlockModels.fenceSide(JITL.tl("block/" + textureName)));
     }
 
     private static void registerDoorBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
