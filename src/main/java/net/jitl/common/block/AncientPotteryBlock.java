@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -83,6 +84,7 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
 
     @Override
     protected void falling(FallingBlockEntity fallingEntity) {
+        fallingEntity.setHurtsEntities(2.0F, 20);
         BlockEntity tileEntity = fallingEntity.level.getBlockEntity(fallingEntity.blockPosition());
         if (tileEntity instanceof PotTile) {
             fallingEntity.blockData = tileEntity.saveWithoutMetadata();
@@ -102,9 +104,9 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
                     for (int i = 0; i < slots; i++) {
                         if (!stack.isEmpty()) {
                             stack = invWrapper.insertItem(i, stack, false);
-                            worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                         }
                     }
+                    worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundSource.BLOCKS, 1.0F, Mth.nextFloat(player.getRandom(), 0.75F, 1.25F));
                     if (stack.isEmpty() || stack.getCount() != prevStack.getCount()) {
                         player.setItemInHand(handIn, stack);
                         return InteractionResult.SUCCESS;
