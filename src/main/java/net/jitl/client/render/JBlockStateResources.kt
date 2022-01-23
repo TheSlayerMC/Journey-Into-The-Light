@@ -289,7 +289,7 @@ object JBlockStateResources {
                     y = 90
                 }
                 "facing=east,half=lower,hinge=right,open=false" {
-                    "model" set bottom
+                    "model" set bottom_hinge
                 }
                 "facing=east,half=lower,hinge=right,open=true" {
                     "model" set bottom
