@@ -13,6 +13,10 @@
     "jitl:empty_blood_rune",
     "jitl:deep_mycelium",
     "jitl:bloodcrust_ore",
-    "jitl:blazium_ore"
+    "jitl:blazium_ore",
+    "jitl:storon_ore",
+    "jitl:mekyum_ore",
+    "jitl:korite_ore",
+    "jitl:celestium_ore"
   ]
 }
