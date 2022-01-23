@@ -12,6 +12,7 @@ public class JFenceBlock extends FenceBlock {
         super(properties);
     }
 
+    @Override
     public boolean connectsTo(BlockState state_, boolean isSideSolid_, Direction direction_) {
         Block block = state_.getBlock();
         boolean flag = block == this;
