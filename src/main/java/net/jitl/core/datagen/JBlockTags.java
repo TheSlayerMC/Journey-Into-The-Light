@@ -54,7 +54,11 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.EMPTY_BLOOD_RUNE,
                 JBlocks.DEEP_MYCELIUM,
                 JBlocks.BLOODCRUST_ORE,
-                JBlocks.BLAZIUM_ORE
+                JBlocks.BLAZIUM_ORE,
+                JBlocks.STORON_ORE,
+                JBlocks.MEKYUM_ORE,
+                JBlocks.KORITE_ORE,
+                JBlocks.CELESTIUM_ORE
         );
     }
 
@@ -72,7 +76,11 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.DREADIRON_BLOCK
         );
         tag(BlockTags.NEEDS_DIAMOND_TOOL).add(
-                JBlocks.BLAZIUM_ORE
+                JBlocks.BLAZIUM_ORE,
+                JBlocks.STORON_ORE,
+                JBlocks.MEKYUM_ORE,
+                JBlocks.KORITE_ORE,
+                JBlocks.CELESTIUM_ORE
         );
         tag(Tags.Blocks.NEEDS_WOOD_TOOL).add(
                 JBlocks.DEEP_MYCELIUM
