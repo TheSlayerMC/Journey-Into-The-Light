@@ -488,7 +488,7 @@ public class BlockRegistrator {
         KBlockRegistrator.INSTANCE.registerStairs(name + "_stairs", enName + " Stairs", plank, JBlockProperties.WOOD_PROPS.create());
         registerSlabBlock(name + "_plank_slab", enName + " Plank Slab", name + "_plank", () -> new SlabBlock(JBlockProperties.WOOD_PROPS.create()));
         registerCustomRenderedBlock(name + "_fence", enName + " Plank Fence", () -> new FenceBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
-        registerCustomRenderedBlock(name + "_gate", enName + " Plank Gate", () -> new FenceGateBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
+        registerFenceGateBlock(name + "_gate", enName + " Plank Gate", name + "_plank", () -> new FenceGateBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerTrapDoorBlock(name + "_trap_door", enName + " Trap Door", name + "_trap_door", () -> new TrapDoorBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerPressurePlateBlock(name + "_pressure_plate", enName + " Pressure Plate", name + "_plank", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, JBlockProperties.WOOD_PROPS.create()));
         registerDoorBlock(name + "_door", enName + " Door", name + "_door", () -> new DoorBlock(JBlockProperties.WOOD_PROPS.create()));
@@ -715,6 +715,17 @@ public class BlockRegistrator {
                 .model(JITL.bml("block/" + name + "_bottom"), () -> JBlockModels.doorBottom(JITL.tl("block/" + textureName + "_top"), JITL.tl("block/" + textureName + "_bottom")))
                 .model(JITL.bml("block/" + name + "_top_hinge"), () -> JBlockModels.doorTopHinge(JITL.tl("block/" + textureName + "_top"), JITL.tl("block/" + textureName + "_bottom")))
                 .model(JITL.bml("block/" + name + "_bottom_hinge"), () -> JBlockModels.doorBottomHinge(JITL.tl("block/" + textureName + "_top"), JITL.tl("block/" + textureName + "_bottom")));
+    }
+
+    private static void registerFenceGateBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.gateState(JITL.bml("block/" + name), JITL.bml("block/" + name + "_open"), JITL.bml("block/" + name + "_wall"), JITL.bml("block/" + name + "_wall_open")))
+                .model(JITL.bml("block/" + name), () -> JBlockModels.gate(JITL.tl("block/" + textureName)))
+                .model(JITL.bml("block/" + name + "_open"), () -> JBlockModels.gateOpen(JITL.tl("block/" + textureName)))
+                .model(JITL.bml("block/" + name + "_wall"), () -> JBlockModels.gateWall(JITL.tl("block/" + textureName)))
+                .model(JITL.bml("block/" + name + "_wall_open"), () -> JBlockModels.gateWallOpen(JITL.tl("block/" + textureName)));
     }
 
     private static void registerTrapDoorBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
