@@ -6,7 +6,9 @@ import net.jitl.core.init.JSounds;
 import net.jitl.core.init.JTiles;
 import net.jitl.core.util.JBlockProperties;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -16,7 +18,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -33,7 +34,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 
 public class AncientPotteryBlock extends JFallingTileContainerBlock {
-
     public AncientPotteryBlock() {
         super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), PotTile::new);
     }
@@ -49,56 +49,52 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
         return Shapes.or(middle, bottom, top, lip, topMid);
     }
 
-    //TODO: "destroy" method only gets called when a player destroys the block.
-    // need to find a solution so other causes of destruction, like explosions, also drop inventory contents
-    @Override
-    public void destroy(LevelAccessor worldIn, BlockPos pos, BlockState state) {
-        BlockEntity tileentity = worldIn.getBlockEntity(pos);
-        if (tileentity instanceof Container) {
-            Containers.dropContents((Level) worldIn, pos, (Container) tileentity);
-        }
-    }
-
     @Override
     public RenderShape getRenderShape(BlockState state_) {
         return RenderShape.MODEL;
     }
 
-    /*@Override
-    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!isFree(state) && !isMoving) {
+    @Override
+    public void onRemove(@NotNull BlockState state, Level worldIn, BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
+        boolean bottomIsSolid = !worldIn.getBlockState(pos.below()).isAir() || state.is(BlockTags.FIRE) || material.isLiquid() || material.isReplaceable();
+        if (bottomIsSolid) {
             if (!state.is(newState.getBlock())) {
-                TileEntity tileentity = worldIn.getBlockEntity(pos);
-                if (tileentity instanceof IInventory) {
-                    InventoryHelper.dropContents(worldIn, pos, (IInventory) tileentity);
+                BlockEntity tileentity = worldIn.getBlockEntity(pos);
+                if (tileentity instanceof Container) {
+                    CompoundTag tag = tileentity.saveWithoutMetadata();
+                    boolean hasFallen = tag.getBoolean("fallen");
+                    if (!hasFallen) {
+                        Containers.dropContents(worldIn, pos, (Container) tileentity);
+                    }
                     worldIn.updateNeighbourForOutputSignal(pos, this);
+                    worldIn.removeBlockEntity(pos);
                 }
-                super.onRemove(state, worldIn, pos, newState, false);
             }
         }
-    }*/
+        super.onRemove(state, worldIn, pos, newState, false);
+    }
 
     @Override
-    public void onLand(Level worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, FallingBlockEntity fallingBlock) {
-        fallingBlock.blockData.putBoolean("fallen", true);
+    public void onLand(@NotNull Level worldIn, @NotNull BlockPos pos, @NotNull BlockState fallingState, @NotNull BlockState hitState, FallingBlockEntity fallingBlock) {
+        CompoundTag blockData = fallingBlock.blockData;
+        if (blockData != null)
+            blockData.putBoolean("fallen", true);
     }
 
     @Override
     protected void falling(FallingBlockEntity fallingEntity) {
         BlockEntity tileEntity = fallingEntity.level.getBlockEntity(fallingEntity.blockPosition());
         if (tileEntity instanceof PotTile) {
-            fallingEntity.blockData = tileEntity.saveWithoutMetadata(); //FIXME test me
+            fallingEntity.blockData = tileEntity.saveWithoutMetadata();
         }
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public InteractionResult use(@NotNull BlockState state, Level worldIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
+        ItemStack heldStack = player.getItemInHand(handIn);
         if (!worldIn.isClientSide()) {
-            if (worldIn.getBlockEntity(pos) instanceof PotTile) {
-                PotTile potTile = (PotTile) worldIn.getBlockEntity(pos);
+            if (worldIn.getBlockEntity(pos) instanceof PotTile potTile) {
                 InvWrapper invWrapper = new InvWrapper(potTile);
-                ItemStack heldStack = player.getItemInHand(handIn);
-
                 if (!heldStack.isEmpty()) {
                     ItemStack stack = heldStack;
                     ItemStack prevStack = stack.copy();
@@ -106,13 +102,13 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
                     for (int i = 0; i < slots; i++) {
                         if (!stack.isEmpty()) {
                             stack = invWrapper.insertItem(i, stack, false);
+                            worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                         }
                     }
                     if (stack.isEmpty() || stack.getCount() != prevStack.getCount()) {
                         player.setItemInHand(handIn, stack);
                         return InteractionResult.SUCCESS;
                     }
-                    worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
             }
             return InteractionResult.sidedSuccess(worldIn.isClientSide);
