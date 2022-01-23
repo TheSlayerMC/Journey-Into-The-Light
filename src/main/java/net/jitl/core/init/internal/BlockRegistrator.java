@@ -24,6 +24,8 @@ import net.jitl.core.init.JTabs;
 import net.jitl.core.init.world.Dimensions;
 import net.jitl.core.util.JBlockProperties;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
@@ -488,6 +490,12 @@ public class BlockRegistrator {
         registerCustomRenderedBlock(name + "_gate", enName + " Plank Gate", () -> new FenceGateBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerCustomRenderedBlock(name + "_trap_door", enName + " Trap Door", () -> new TrapDoorBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
         registerCustomRenderedBlock(name + "_pressure_plate", enName + " Pressure Plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, JBlockProperties.WOOD_PROPS.create()));
+        registerButtonBlock(name + "_button", enName + " Button", "_plank", () -> new ButtonBlock(true, JBlockProperties.WOOD_PROPS.create()) {
+            @Override
+            protected SoundEvent getSound(boolean isOn_) {
+                return SoundEvents.WOODEN_BUTTON_CLICK_ON;
+            }
+        });
         registerCustomRenderedBlock(name + "_door", enName + " Door", () -> new DoorBlock(JBlockProperties.WOOD_PROPS.create()));
     }
 
@@ -685,6 +693,15 @@ public class BlockRegistrator {
                 .state(JBlockStateResources.slabState(JITL.bml("block/" + name), JITL.bml("block/" + textureName), JITL.bml("block/" + name + "_top")))
                 .model(JITL.bml("block/" + name), () -> JBlockModels.slab(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_top"), () -> JBlockModels.slab(JITL.tl("block/" + textureName)));
+    }
+
+    private static void registerButtonBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .state(JBlockStateResources.buttonState(JITL.bml("block/" + name), JITL.bml("block/" + name + "_pressed")))
+                .model(JITL.bml("block/" + name), () -> JBlockModels.button(JITL.tl("block/" + name)))
+                .model(JITL.bml("block/" + name + "_pressed"), () -> JBlockModels.buttonPressed(JITL.tl("block/" + textureName)));
     }
 
     private static void registerRandomizedTextureBlock(String name, String enName, Supplier<Block> blockSupplier, CreativeModeTab creativeModeTab, Supplier<RenderTypeWrapper> renderType) {

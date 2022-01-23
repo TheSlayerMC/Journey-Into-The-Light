@@ -69,6 +69,22 @@ object JBlockModels {
     })
 
     @JvmStatic
+    fun button(texture: TextureLocation) = BlockModel(json {
+        "parent" set "block/button"
+        "textures" {
+            "texture" set texture.toString()
+        }
+    })
+
+    @JvmStatic
+    fun buttonPressed(texture: TextureLocation) = BlockModel(json {
+        "parent" set "block/button_pressed"
+        "textures" {
+            "texture" set texture.toString()
+        }
+    })
+
+    @JvmStatic
     fun crop(textureCrop: TextureLocation) = BlockModel(json {
         "parent" set "block/crop"
         "textures" {

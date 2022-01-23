@@ -4,6 +4,7 @@ import net.jitl.common.block.base.XZFacedBlock
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResource
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation
 import ru.timeconqueror.timecore.api.util.json
+import ru.timeconqueror.timecore.api.util.uvlock
 import ru.timeconqueror.timecore.api.util.x
 import ru.timeconqueror.timecore.api.util.y
 
@@ -144,6 +145,128 @@ object JBlockStateResources {
                 }
                 "type=top" {
                     "model" set top
+                }
+            }
+        })
+    }
+
+    @JvmStatic
+    fun buttonState(button: BlockModelLocation, pressed: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "face=ceiling,facing=east,powered=false" {
+                    "model" set button
+                    y = 270
+                    x = 180
+                }
+                "face=ceiling,facing=east,powered=true" {
+                    "model" set pressed
+                    y = 270
+                    x = 180
+                }
+                "face=ceiling,facing=north,powered=false" {
+                    "model" set button
+                    y = 180
+                    x = 180
+                }
+                "face=ceiling,facing=north,powered=true" {
+                    "model" set pressed
+                    y = 180
+                    x = 180
+                }
+                "face=ceiling,facing=south,powered=false" {
+                    "model" set button
+                    x = 180
+                }
+                "face=ceiling,facing=south,powered=true" {
+                    "model" set pressed
+                    x = 180
+                }
+                "face=ceiling,facing=west,powered=false" {
+                    "model" set button
+                    y = 90
+                    x = 180
+                }
+                "face=ceiling,facing=west,powered=true" {
+                    "model" set pressed
+                    y = 90
+                    x = 180
+                }
+                "face=floor,facing=east,powered=false" {
+                    "model" set button
+                    y = 90
+                }
+                "face=floor,facing=east,powered=true" {
+                    "model" set pressed
+                    y = 90
+                }
+                "face=floor,facing=north,powered=false" {
+                    "model" set button
+                }
+                "face=floor,facing=north,powered=true" {
+                    "model" set pressed
+                }
+                "face=floor,facing=south,powered=false" {
+                    "model" set button
+                    y = 180
+                }
+                "face=floor,facing=south,powered=true" {
+                    "model" set pressed
+                    y = 180
+                }
+                "face=floor,facing=west,powered=false" {
+                    "model" set button
+                    y = 270
+                }
+                "face=floor,facing=west,powered=true" {
+                    "model" set pressed
+                    y = 270
+                }
+                "face=wall,facing=east,powered=false" {
+                    "model" set button
+                    y = 90
+                    x = 90
+                    uvlock to true
+                }
+                "face=wall,facing=east,powered=true" {
+                    "model" set pressed
+                    y = 90
+                    x = 90
+                    uvlock to true
+                }
+                "face=wall,facing=north,powered=false" {
+                    "model" set button
+                    x = 90
+                    uvlock to true
+                }
+                "face=wall,facing=north,powered=true" {
+                    "model" set pressed
+                    x = 90
+                    uvlock to true
+                }
+                "face=wall,facing=south,powered=false" {
+                    "model" set button
+                    y = 180
+                    x = 90
+                    uvlock to true
+                }
+                "face=wall,facing=south,powered=true" {
+                    "model" set pressed
+                    y = 180
+                    x = 90
+                    uvlock to true
+                }
+                "face=wall,facing=west,powered=false" {
+                    "model" set button
+                    y = 270
+                    x = 90
+                    uvlock to true
+                }
+                "face=wall,facing=west,powered=true" {
+                    "model" set pressed
+                    y = 270
+                    x = 90
+                    uvlock to true
                 }
             }
         })
