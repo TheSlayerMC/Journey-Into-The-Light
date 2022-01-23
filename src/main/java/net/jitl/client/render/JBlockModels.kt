@@ -79,6 +79,38 @@ object JBlockModels {
     })
 
     @JvmStatic
+    fun gate(tex: TextureLocation) = BlockModel(json {
+        "parent" set "block/template_fence_gate"
+        "textures" {
+            "texture" set tex.toString()
+        }
+    })
+
+    @JvmStatic
+    fun gateOpen(tex: TextureLocation) = BlockModel(json {
+        "parent" set "block/template_fence_gate_open"
+        "textures" {
+            "texture" set tex.toString()
+        }
+    })
+
+    @JvmStatic
+    fun gateWall(tex: TextureLocation) = BlockModel(json {
+        "parent" set "block/template_fence_gate_wall"
+        "textures" {
+            "texture" set tex.toString()
+        }
+    })
+
+    @JvmStatic
+    fun gateWallOpen(tex: TextureLocation) = BlockModel(json {
+        "parent" set "block/template_fence_gate_wall_open"
+        "textures" {
+            "texture" set tex.toString()
+        }
+    })
+
+    @JvmStatic
     fun doorTop(top: TextureLocation, bottom: TextureLocation) = BlockModel(json {
         "parent" set "block/door_top"
         "textures" {

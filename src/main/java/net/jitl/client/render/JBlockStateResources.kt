@@ -151,6 +151,90 @@ object JBlockStateResources {
     }
 
     @JvmStatic
+    fun gateState(gate: BlockModelLocation, gateOpen: BlockModelLocation, gateWall: BlockModelLocation, gateWallOpen: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "facing=east,in_wall=false,open=false" {
+                    uvlock to true
+                    y = 270
+                    "model" set gate
+                }
+                "facing=east,in_wall=false,open=true" {
+                    uvlock to true
+                    y = 270
+                    "model" set gateOpen
+                }
+                "facing=east,in_wall=true,open=false" {
+                    uvlock to true
+                    y = 270
+                    "model" set gateWall
+                }
+                "facing=east,in_wall=true,open=true" {
+                    uvlock to true
+                    y = 270
+                    "model" set gateWallOpen
+                }
+                "facing=north,in_wall=false,open=false" {
+                    uvlock to true
+                    y = 180
+                    "model" set gate
+                }
+                "facing=north,in_wall=false,open=true" {
+                    uvlock to true
+                    y = 180
+                    "model" set gateOpen
+                }
+                "facing=north,in_wall=true,open=false" {
+                    uvlock to true
+                    y = 180
+                    "model" set gateWall
+                }
+                "facing=north,in_wall=true,open=true" {
+                    uvlock to true
+                    y = 180
+                    "model" set gateWallOpen
+                }
+                "facing=south,in_wall=false,open=false" {
+                    uvlock to true
+                    "model" set gate
+                }
+                "facing=south,in_wall=false,open=true" {
+                    uvlock to true
+                    "model" set gateOpen
+                }
+                "facing=south,in_wall=true,open=false" {
+                    uvlock to true
+                    "model" set gateWall
+                }
+                "facing=south,in_wall=true,open=true" {
+                    uvlock to true
+                    "model" set gateWallOpen
+                }
+                "facing=west,in_wall=false,open=false" {
+                    uvlock to true
+                    y = 90
+                    "model" set gate
+                }
+                "facing=west,in_wall=false,open=true" {
+                    uvlock to true
+                    y = 90
+                    "model" set gateOpen
+                }
+                "facing=west,in_wall=true,open=false" {
+                    uvlock to true
+                    y = 90
+                    "model" set gateWall
+                }
+                "facing=west,in_wall=true,open=true" {
+                    uvlock to true
+                    y = 90
+                    "model" set gateWallOpen
+                }
+            }
+        })
+    }
+
+    @JvmStatic
     fun doorState(top: BlockModelLocation, bottom: BlockModelLocation, top_hinge: BlockModelLocation, bottom_hinge: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(json {
             "variants" {
