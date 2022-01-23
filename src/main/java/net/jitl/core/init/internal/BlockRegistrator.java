@@ -27,6 +27,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraftforge.registries.RegistryObject;
 import ru.timeconqueror.timecore.api.client.resource.BlockModel;
 import ru.timeconqueror.timecore.api.client.resource.BlockModels;
@@ -181,17 +182,18 @@ public class BlockRegistrator {
                 "iron_crate_front");
 
         registerDefaultBlock("block_of_mud", "Block O' Mud", () -> new Block(JBlockProperties.MUD_PROPS.create()));
+        
+        registerWoodType("euca_brown", "Brown Euca", "euca_green_sapling", "Green Euca Sapling", new EucaGreenTreeGrower());
+        registerWoodType("euca_gold", "Golden Euca", "euca_gold_sapling", "Golden Euca Sapling", new EucaGoldTreeGrower());
+        registerWoodType("frozen", "Frosty");
 
         registerDefaultBlock("euca_brick", "Euca Brick");
-        RegistryObject<Block> eucaGoldPlank = registerBlock("euca_gold_plank", "Euca Golden Plank", () -> new Block(JBlockProperties.WOOD_PROPS.create()));
-        KBlockRegistrator.INSTANCE.registerStairs("euca_golden_stairs", "Euca Golden Stairs", eucaGoldPlank, JBlockProperties.WOOD_PROPS.create());
         RegistryObject<Block> eucaDungeonBricks = registerBlock("euca_dungeon_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         KBlockRegistrator.INSTANCE.registerStairs("euca_dungeon_stairs", "Euca Dungeon Stairs", eucaDungeonBricks, JBlockProperties.STONE_PROPS.create());
-        registerSlabBlock("euca_gold_plank_slab", "Euca Gold Planks Slab", "euca_gold_plank", () -> new SlabBlock(JBlockProperties.WOOD_PROPS.create()));
         registerDefaultBlock("euca_dungeon_tile", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("euca_gold_stone", "Euca Gold Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("euca_runic_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
-        registerDefaultBlock("euca_runic_lamp", "Euca Dungeon Lamp", () -> new Block(JBlockProperties.STONE_PROPS.create().lightLevel((state29) -> {
+        registerDefaultBlock("euca_runic_lamp", "Euca Dungeon Lamp", () -> new Block(JBlockProperties.STONE_PROPS.create().lightLevel((state) -> {
             return 6;
         })));
         registerDefaultBlock("euca_square_dungeon_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
@@ -314,10 +316,6 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("euca_silver_gold_flower", "Euca Silver Gold Flower", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
                 () -> BlockModels.crossModel(JITL.tl("block/euca_silver_gold_flower")));
-
-        registerLogBlock("euca_gold_log", "Gold Euca Log");
-        registerLogBlock("euca_brown_log", "Brown Euca Log");
-        registerLogBlock("frozen_log", "Frosty Log");
 
         registerSpeciallyRenderedBlock("euca_gold_sapling", "Euca Gold Sapling", () -> new JSaplingBlock(new EucaGoldTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
                 () -> BlockModels.crossModel(JITL.tl("block/euca_gold_sapling")));
@@ -481,9 +479,20 @@ public class BlockRegistrator {
         registerOrientableRenderedBlock("boil_lock", "Boiling Lock", LockBlock::new, "boil_lock_top", "boil_lock_side", "boil_lock_front");
     }
 
+    public static void registerWoodType(String name, String enName, String saplingName, String saplingEnName, AbstractTreeGrower tree) {
+        registerWoodType(name, enName);
+        registerSpeciallyRenderedBlock(saplingName, saplingEnName, () -> new JSaplingBlock(tree, JBlockProperties.PLANT_PROPS.create()),
+                () -> BlockModels.crossModel(JITL.tl("block/" + saplingName)));
+    }
 
-
-    
+    public static void registerWoodType(String name, String enName) {
+        registerLogBlock(name + "_log", enName + " Log");
+        RegistryObject<Block> plank = registerBlock(name + "_plank", enName + " Planks", () -> new Block(JBlockProperties.WOOD_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs(name + "_stairs", enName + " Stairs", plank, JBlockProperties.WOOD_PROPS.create());
+        registerSlabBlock(name + "_plank_slab", enName + " Plank Slab", name + "_plank", () -> new SlabBlock(JBlockProperties.WOOD_PROPS.create()));
+        registerCustomRenderedBlock(name + "_fence", enName + " Plank Fence", () -> new FenceBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
+        registerCustomRenderedBlock(name + "_gate", enName + " Plank Gate", () -> new FenceGateBlock(JBlockProperties.WOOD_PROPS.create()));//FIXME
+    }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {
         return REGISTER.register(name, block).name(enName);
