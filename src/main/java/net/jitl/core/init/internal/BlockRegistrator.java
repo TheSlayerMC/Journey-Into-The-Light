@@ -711,9 +711,10 @@ public class BlockRegistrator {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .defaultBlockItem(JTabs.BLOCKS)
-                .state(JBlockStateResources.fenceState(JITL.bml("block/" + name + "_post"), JITL.bml("block/" + name + "_side")))
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
                 .model(JITL.bml("block/" + name + "_post"), () -> JBlockModels.fencePost(JITL.tl("block/" + textureName)))
-                .model(JITL.bml("block/" + name + "_side"), () -> JBlockModels.fenceSide(JITL.tl("block/" + textureName)));
+                .model(JITL.bml("block/" + name + "_side"), () -> JBlockModels.fenceSide(JITL.tl("block/" + textureName)))
+                .state(JBlockStateResources.fenceState(JITL.bml("block/" + name + "_post"), JITL.bml("block/" + name + "_side")));
     }
 
     private static void registerDoorBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
