@@ -30,7 +30,7 @@ public class KeybindEventHandler {
         ClientRegistry.registerKeyBinding(keyAmulet);
     }
 
-    static void onKeyPressed(InputEvent.KeyInputEvent event) {
+    public static void onKeyPressed(InputEvent.KeyInputEvent event) {
         InputConstants.Key key = InputConstants.getKey(event.getKey(), event.getScanCode());
         if (MINECRAFT.screen == null) {
             assert MINECRAFT.player != null;

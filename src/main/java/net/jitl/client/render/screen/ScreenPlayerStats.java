@@ -33,63 +33,39 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
     public ScreenPlayerStats(Inventory playerInventory) {
         super(new ContainerEmpty(), playerInventory, new TranslatableComponent("jitl.stats"));
         this.imageWidth = 242;
-        this.imageHeight = 204;
+        this.imageHeight = 197;
         //this.stats = JCapabilityProvider.asJourneyPlayer(Minecraft.getInstance().player).getPlayerStats();
     }
 
     @Override
     protected void init() {
         super.init();
-        int i = (this.width - this.imageWidth) / 2;
-        int j = (this.height - this.imageHeight) / 2;
-        int k = j + 16 + 2;
-
-        this.nextButton = this.addWidget(new PageButton(i + 5, k, false, new StatButtonPress(i + 5, k, false), true));
-        this.previousButton = this.addWidget(new PageButton(i + 5, k + 20, true, new StatButtonPress(i + 5, k + 20, true), true));
+        int w = (this.width - this.imageWidth) / 2;
+        int h = (this.height - this.imageHeight) / 2;
+        int xPos = w + 95;
+        int yPos = h + 177;
+        this.nextButton = this.addRenderableWidget(new PageButton(xPos + 32, yPos, true, (button) -> {
+            this.flipPage(true);
+        }, true));
+        this.previousButton = this.addRenderableWidget(new PageButton(xPos, yPos, false, (button) -> {
+            this.flipPage(false);
+        }, true));
+        this.updateButtonVisibility();
     }
 
-    class StatButtonPress extends Button implements Button.OnPress {
-
-        private final boolean forward;
-        public StatButtonPress(int x, int y, boolean forward) {
-            super(x, y, 12, 19, TextComponent.EMPTY, (button_) -> { });
-            this.forward = forward;
-        }
-        @Override
-        public void onPress(@NotNull Button button) {
-            if(forward) pageNumber++;
-            else pageNumber--;
-        }
-
-        @Override
-        public void renderButton(@NotNull PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-            matrixStack.pushPose();
-            RenderSystem.setShader(GameRenderer::getPositionTexColorNormalShader);
-            RenderSystem.setShaderTexture(0, BACKGROUND);
-            RenderSystem.enableBlend();
-            RenderSystem.defaultBlendFunc();
-            RenderSystem.enableDepthTest();
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            height = 15;
-            boolean flag = x >= this.x && y >= this.y && x < this.x + this.width && y < this.y + this.height;
-            int k = 217;
-            int l = 4;
-
-            if (!this.active) {
-                l += this.width * 2;
-            } else if (flag) {
-                l += this.width;
-            }
-
-            if (this.forward) {
-                k += this.height;
-            }
-            this.blit(matrixStack, this.x, this.y, l, k, this.width, this.height);
-            RenderSystem.disableBlend();
-            RenderSystem.disableDepthTest();
-            matrixStack.popPose();
-        }
+    private void updateButtonVisibility() {
+        this.nextButton.visible = true;
+        this.previousButton.visible = true;
+        this.nextButton.active = pageNumber != 1;
+        this.previousButton.active = pageNumber != 0;
     }
+
+    protected void flipPage(boolean forward) {
+        if(forward) this.pageNumber++;
+        else this.pageNumber--;
+        this.updateButtonVisibility();
+    }
+
 
     @Override
     protected void renderBg(PoseStack poseStack, float partialTick, int mouseX, int mouseY) {
@@ -101,14 +77,14 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         poseStack.pushPose();
         RenderSystem.setShader(GameRenderer::getPositionTexColorNormalShader);
         RenderSystem.setShaderTexture(0, this.BACKGROUND);
-
         blit(poseStack, x, y, 0, 0, this.imageWidth, this.imageHeight);
+
         switch(pageNumber) {
             case 0:
                 page1(poseStack);
                 break;
             case 1:
-                //page2(poseStack);
+                page2(poseStack);
                 break;
             default:
                 break;
@@ -126,13 +102,13 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
 
         h += height;
 
+        drawKnowledgeSprite(stack, x, h, 96, 10, EnumKnowledgeType.END, "End");
         drawKnowledgeSprite(stack, 126, h, 160, 10, EnumKnowledgeType.FROZEN, "Frozen Lands");
-        drawKnowledgeSprite(stack, x, h, 64, 10, EnumKnowledgeType.NETHER, "Nether");
 
         h += height;
 
-        drawKnowledgeSprite(stack, 126, h, 96, 10, EnumKnowledgeType.END, "End");
-        drawKnowledgeSprite(stack, x, h, 128, 10, EnumKnowledgeType.BOIL, "Boiling Point");
+        drawKnowledgeSprite(stack, x, h, 64, 10, EnumKnowledgeType.NETHER, "The Nether");
+        drawKnowledgeSprite(stack, 126, h, 128, 10, EnumKnowledgeType.BOIL, "Boiling Point");
 
         h += height - 2;
 
@@ -141,22 +117,25 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
     }
 
     public void drawSprite(PoseStack matrixStack, int x, int y, int spriteX, int spriteY, String s) {
-
         int k = (width - imageWidth) / 2;
         int l = (height - imageHeight) / 2;
         matrixStack.pushPose();
         RenderSystem.setShader(GameRenderer::getPositionTexColorNormalShader);
         RenderSystem.setShaderTexture(0, this.BACKGROUND);
-        blit(matrixStack, k + x - 4, l + y - 4, 138, 212, 115, 40);
+
+        blit(matrixStack, k + x - 4, l + y - 4, 0, 216, 115, 40); //Draws the yellow rectangle
         matrixStack.popPose();
 
         matrixStack.pushPose();
         RenderSystem.setShader(GameRenderer::getPositionTexColorNormalShader);
         RenderSystem.setShaderTexture(0, this.KNOWLEDGE_SPRITE);
-        blit(matrixStack, k + x, l + y, spriteX, spriteY, 32, 32);
-        font.draw(matrixStack, s, k + x + 35, l + y + 5, 4210752);
+
+        blit(matrixStack, k + x, l + y, spriteX, spriteY, 32, 32); //Draws the knowledge sprite
+        font.draw(matrixStack, s, k + x + 35, l + y + 5, 4210752); //Draws the sprite name
+
         if(s.contains("Sentacoins"))
             font.draw(matrixStack, "0"/*stats.getSentacoinValue()*/, k + x + 35, l + y + 15, 4210752);
+
         matrixStack.popPose();
         RenderSystem.enableDepthTest();
     }
@@ -173,18 +152,17 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
 
         //float percents = knowledge.getAmountOnCurrentLevel() / knowledge.getLevelCapacity(knowledge.getLevelCount());
         float percents = 50F;
-        int width = (int) (percents * progressBarSize);
+        int width = 50;//(int) (percents * progressBarSize);
 
         int progressBarX = k + x + 35, progressBarY = l + y + 19;
-
         blit(matrixStack, progressBarX, progressBarY, 0, 5, progressBarSize, 5);
         blit(matrixStack, progressBarX, progressBarY, 0, 0, width, 5);
 
         int lvX = progressBarX + 29, lvY = progressBarY - 1;
 
-        int getLevelCount = 48;
+        int getLevelCount = 50;
 
-        font.drawShadow(matrixStack, "" + getLevelCount, getLevelCount > 10 ? lvX - 2 : getLevelCount > 100 ? lvX - 4 : lvX, lvY, ArgbColor.from(ChatFormatting.BLUE));
+        font.drawShadow(matrixStack, "" + getLevelCount, getLevelCount > 10 ? lvX - 2 : getLevelCount > 100 ? lvX - 4 : lvX, lvY, ArgbColor.from(ChatFormatting.WHITE));
         matrixStack.popPose();
         RenderSystem.enableDepthTest();
     }
