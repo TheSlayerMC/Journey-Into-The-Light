@@ -103,6 +103,12 @@ public class JBlockProperties {
 			.sound(SoundType.WOOD)
 			.strength(2.0F, 3.0F));
 
+	public static final BlockPropsFactory DOOR_PROPS = new BlockPropsFactory(() -> Properties.of
+					(Material.WOOD)
+			.sound(SoundType.WOOD)
+			.noOcclusion()
+			.strength(2.0F, 3.0F));
+
 	public static final BlockPropsFactory SHROOM_SHELF = new BlockPropsFactory(() -> Properties.of
 			(Material.WOOD)
 			.sound(SoundType.FUNGUS)
