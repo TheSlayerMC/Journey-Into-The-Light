@@ -66,28 +66,21 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         this.updateButtonVisibility();
     }
 
-
     @Override
     protected void renderBg(PoseStack poseStack, float partialTick, int mouseX, int mouseY) {
-        this.renderBackground(poseStack);
-
+        this.renderBackground(poseStack);//Dims around the GUI for a more vanilla look
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
-
         poseStack.pushPose();
         RenderSystem.setShader(GameRenderer::getPositionTexColorNormalShader);
         RenderSystem.setShaderTexture(0, this.BACKGROUND);
-        blit(poseStack, x, y, 0, 0, this.imageWidth, this.imageHeight);
+        blit(poseStack, x, y, 0, 0, this.imageWidth, this.imageHeight);//Draws the main Background
 
         switch(pageNumber) {
-            case 0:
-                page1(poseStack);
-                break;
-            case 1:
-                page2(poseStack);
-                break;
-            default:
-                break;
+            case 0 -> page1(poseStack);
+            case 1 -> page2(poseStack);
+            default -> {
+            }
         }
         poseStack.popPose();
         RenderSystem.enableDepthTest();
@@ -106,12 +99,10 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         drawKnowledgeSprite(stack, 126, h, 160, 10, EnumKnowledgeType.FROZEN, "Frozen Lands");
 
         h += height;
-
         drawKnowledgeSprite(stack, x, h, 64, 10, EnumKnowledgeType.NETHER, "The Nether");
         drawKnowledgeSprite(stack, 126, h, 128, 10, EnumKnowledgeType.BOIL, "Boiling Point");
 
-        h += height - 2;
-
+        h += height;
         drawKnowledgeSprite(stack, x, h, 192, 10, EnumKnowledgeType.EUCA, "Euca");
         drawKnowledgeSprite(stack, 126, h, 224, 10, EnumKnowledgeType.DEPTHS, "The Depths");
     }
@@ -123,7 +114,7 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         RenderSystem.setShader(GameRenderer::getPositionTexColorNormalShader);
         RenderSystem.setShaderTexture(0, this.BACKGROUND);
 
-        blit(matrixStack, k + x - 4, l + y - 4, 0, 216, 115, 40); //Draws the yellow rectangle
+        blit(matrixStack, k + x - 4, l + y - 4, 0, 216, 115, 40);//Draws the yellow rectangle bg for the sprites
         matrixStack.popPose();
 
         matrixStack.pushPose();
@@ -195,34 +186,7 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
     }
 
     @Override
-    protected void renderLabels(@NotNull PoseStack matrixStack, int x, int y) { }
+    protected void renderLabels(@NotNull PoseStack matrixStack, int x, int y) {
 
-    /*
     }
-
-    /*
-
-
-
-    private class PageButton extends Button implements Button.OnPress {
-        private final boolean prev;
-
-        public PageButton(int x, int y, Boolean prev, OnPress pressable) {
-            super(x, y, 12, 19, TextComponent.EMPTY, pressable);
-            this.prev = prev;
-            this.visible = true;
-        }
-
-        @Override
-        public void onPress(@NotNull Button b) {//why wont this call
-            if(prev) {
-                pageNumber++;
-                System.out.println("!!!!!");
-            } else {
-                pageNumber--;
-                System.out.println("XXXXX");
-            }
-        }
-
-        */
 }
