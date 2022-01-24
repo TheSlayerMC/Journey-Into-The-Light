@@ -73,8 +73,8 @@ public class PotTile extends RandomizableContainerBlockEntity {
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, PotTile blockEntity) {
-        if (blockEntity.hasFallen) {
-            if (level != null) {
+        if (level != null) {
+            if (blockEntity.hasFallen) {
                 Containers.dropContents(level, pos, blockEntity);
                 level.destroyBlock(pos, true);
                 blockEntity.setRemoved();

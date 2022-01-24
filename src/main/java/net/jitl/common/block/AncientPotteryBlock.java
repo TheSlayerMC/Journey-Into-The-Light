@@ -10,7 +10,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
-import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -61,14 +60,13 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
         if (bottomIsSolid) {
             if (!state.is(newState.getBlock())) {
                 BlockEntity tileentity = worldIn.getBlockEntity(pos);
-                if (tileentity instanceof Container) {
-                    CompoundTag tag = tileentity.saveWithoutMetadata();
+                if (tileentity instanceof PotTile potTile) {
+                    CompoundTag tag = potTile.saveWithoutMetadata();
                     boolean hasFallen = tag.getBoolean("fallen");
                     if (!hasFallen) {
-                        Containers.dropContents(worldIn, pos, (Container) tileentity);
+                        Containers.dropContents(worldIn, pos, potTile);
                     }
                     worldIn.updateNeighbourForOutputSignal(pos, this);
-                    worldIn.removeBlockEntity(pos);
                 }
             }
         }

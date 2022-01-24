@@ -19,7 +19,7 @@ public class JSoundTypes {
 			1.0F,
 			1.0F,
 			JSounds.POTTERY_BREAK,
-			JSounds.POTTERY_DIG,
+			() -> SoundEvents.GLASS_STEP,
 			JSounds.POTTERY_DIG,
 			JSounds.POTTERY_DIG,
 			JSounds.POTTERY_BREAK);
