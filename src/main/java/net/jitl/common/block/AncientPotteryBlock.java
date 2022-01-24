@@ -39,6 +39,7 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
     public static final VoxelShape TOP = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     public static final VoxelShape TOP_MID = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 18.0D, 11.0D);
     public static final VoxelShape LIP = Block.box(4.0D, 18.0D, 4.0D, 12.0D, 20.0D, 12.0D);
+    public static final VoxelShape SHAPE = Shapes.or(BOTTOM, MIDDLE, TOP, LIP, TOP_MID);
 
     public AncientPotteryBlock() {
         super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), PotTile::new);
@@ -46,7 +47,7 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        return Shapes.or(MIDDLE, BOTTOM, TOP, LIP, TOP_MID);
+        return SHAPE;
     }
 
     @Override
