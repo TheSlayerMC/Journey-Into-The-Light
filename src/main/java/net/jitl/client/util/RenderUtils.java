@@ -12,8 +12,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.HoverEvent;
-import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
@@ -335,26 +334,26 @@ public class RenderUtils {
         }
     }
 
-    protected static void renderComponentHoverEffect(PoseStack poseStack_, @Nullable Style style_, int mouseX_, int mouseY_) {
-        if (style_ != null && style_.getHoverEvent() != null) {
-            HoverEvent hoverevent = style_.getHoverEvent();
-            HoverEvent.ItemStackInfo hoverevent$itemstackinfo = hoverevent.getValue(HoverEvent.Action.SHOW_ITEM);
-            if (hoverevent$itemstackinfo != null) {
-                renderTooltip(poseStack_, hoverevent$itemstackinfo.getItemStack(), mouseX_, mouseY_);
-            } else {
-                HoverEvent.EntityTooltipInfo hoverevent$entitytooltipinfo = hoverevent.getValue(HoverEvent.Action.SHOW_ENTITY);
-                if (hoverevent$entitytooltipinfo != null) {
-                    if (minecraft.options.advancedItemTooltips) {
-                        renderComponentTooltip(poseStack_, hoverevent$entitytooltipinfo.getTooltipLines(), mouseX_, mouseY_);
-                    }
-                } else {
-                    Component component = hoverevent.getValue(HoverEvent.Action.SHOW_TEXT);
-                    if (component != null) {
-                        renderTooltip(poseStack_, minecraft.font.split(component, Math.max(width / 2, 200)), mouseX_, mouseY_);
-                    }
-                }
-            }
-
-        }
+    public static void renderTextureOverlay(ResourceLocation textureLocation, float alpha) {
+        Minecraft minecraft = Minecraft.getInstance();
+        int width = minecraft.getWindow().getGuiScaledWidth();
+        int height = minecraft.getWindow().getGuiScaledHeight();
+        RenderSystem.disableDepthTest();
+        RenderSystem.depthMask(false);
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, alpha);
+        RenderSystem.setShaderTexture(0, textureLocation);
+        Tesselator tesselator = Tesselator.getInstance();
+        BufferBuilder bufferbuilder = tesselator.getBuilder();
+        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        bufferbuilder.vertex(0.0D, height, -90.0D).uv(0.0F, 1.0F).endVertex();
+        bufferbuilder.vertex(width, height, -90.0D).uv(1.0F, 1.0F).endVertex();
+        bufferbuilder.vertex(width, 0.0D, -90.0D).uv(1.0F, 0.0F).endVertex();
+        bufferbuilder.vertex(0.0D, 0.0D, -90.0D).uv(0.0F, 0.0F).endVertex();
+        tesselator.end();
+        RenderSystem.depthMask(true);
+        RenderSystem.enableDepthTest();
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
     }
 }

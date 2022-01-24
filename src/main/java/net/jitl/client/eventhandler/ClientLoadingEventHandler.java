@@ -1,6 +1,7 @@
 package net.jitl.client.eventhandler;
 
 import net.jitl.client.Models;
+import net.jitl.client.render.overlay.Overlays;
 import net.jitl.client.world.BoilRenderInfo;
 import net.jitl.client.world.EucaRenderInfo;
 import net.jitl.client.world.FrozenRenderInfo;
@@ -16,6 +17,7 @@ public class ClientLoadingEventHandler {
     public static void regToBus(IEventBus modBus, IEventBus forgeBus) {
         modBus.addListener(ClientLoadingEventHandler::onClientSetup);
         Models.regToBus(modBus, forgeBus);
+        Overlays.regToBus(modBus, forgeBus);
     }
 
     private static void onClientSetup(FMLClientSetupEvent event) {

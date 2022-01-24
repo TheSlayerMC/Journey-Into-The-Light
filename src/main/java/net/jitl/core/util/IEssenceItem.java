@@ -1,5 +1,7 @@
 package net.jitl.core.util;
 
+//TODO: move to tag system!
+@Deprecated
 public interface IEssenceItem {
     /**
      * interface used to group all Essence-related items under one umbrella

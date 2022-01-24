@@ -1,17 +1,23 @@
 package net.jitl.core.init.world;
 
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
+
 public class
 JStructures {
-    /*
+
     public static final Marker STRUCTURE_MARKER = MarkerManager.getMarker("JSTRUCTURES");
 
-    @AutoRegistrable
+     /* @AutoRegistrable
     private static final StructureFeatureRegister REGISTER = new StructureFeatureRegister(JITL.MODID);
 
     public static final StructureFeatureRegister.StructureHolder<JigsawConfiguration, IllagerBunkerStructure> ILlAGER_BUNKER =
-            REGISTER.register("illager_bunker", IllagerBunkerStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(40, 10), JigsawConfiguration.CODEC, new JigsawConfiguration(, 1))
+            REGISTER.register("illager_bunker", IllagerBunkerStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(40, 10), JigsawConfiguration.CODEC, new JigsawConfiguration(() -> PlainVillagePools.START, 0))
+                    .allowedInBiomes((biome, biomeKey) -> biomeKey.getBiomeCategory().equals(Biome.BiomeCategory.MESA))
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
+
 
     public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)

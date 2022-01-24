@@ -1,25 +1,14 @@
 package net.jitl.client.eventhandler;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.render.gui.button.ToggleMenuButton;
 import net.jitl.client.render.gui.menu.JMainMenuGui;
-import net.jitl.client.render.overlay.RenderFrostburnOverlay;
-import net.jitl.client.util.RenderUtils;
-import net.jitl.common.capability.player.JPlayer;
-import net.jitl.common.capability.player.data.Essence;
 import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.common.helper.JBossInfo;
 import net.jitl.core.JITL;
 import net.jitl.core.config.JClientConfig;
 import net.jitl.core.config.JConfigs;
-import net.jitl.core.init.JEffects;
-import net.jitl.core.util.IEssenceItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.ScreenEvent;
@@ -30,8 +19,10 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class GuiEventHandler {
-	private static float transparency;
-	private static float burnoutTransparency;
+
+	//TODO: remove me
+	//private static float transparency;
+	//private static float burnoutTransparency;
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void overrideMainMenu(ScreenOpenEvent event) {
@@ -74,18 +65,8 @@ public class GuiEventHandler {
 		}
 	}
 
-	@SubscribeEvent()
-	public static void renderFrostburnOverlay(RenderGameOverlayEvent.Pre event) {
-		if (event.getType() == RenderGameOverlayEvent.ElementType.LAYER) { //FIXME: thank you for deleting the element type, forge! ~ Dizzle
-			Minecraft minecraft = Minecraft.getInstance();
-			Player player = minecraft.player;
-			if (player != null && player.hasEffect(JEffects.FROSTBURN.get())) {
-				RenderFrostburnOverlay.render(minecraft);
-			}
-		}
-	}
-
-	@SubscribeEvent()
+	//TODO: remove me
+	/*@SubscribeEvent()
 	public static void renderEssenceBar(RenderGameOverlayEvent.Post event) {
 		if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
 			Minecraft minecraft = Minecraft.getInstance();
@@ -147,5 +128,5 @@ public class GuiEventHandler {
 
 	public static boolean instanceOfEssenceItem(Item isEssence) {
 		return isEssence instanceof IEssenceItem;
-	}
+	}*/
 }
