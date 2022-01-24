@@ -172,6 +172,14 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> ICE_SPIKE = REGISTER.register(
+                    "ice_spike",
+                    GenerationStep.Decoration.RAW_GENERATION,
+                    () -> JConfiguredFeatures.ICE_SPIKE.get()
+                            .placed(patch(3, 5, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.FROZEN_WASTES)
+            .asPromise();
+
     public static final Promised<? extends PlacedFeature> SULPHUR_DEPOSIT = REGISTER.register(
                     "sulphur_deposit",
                     GenerationStep.Decoration.SURFACE_STRUCTURES,

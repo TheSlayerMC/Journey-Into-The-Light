@@ -5,6 +5,7 @@ import com.mojang.serialization.Dynamic;
 import net.jitl.common.entity.base.JEntityAction;
 import net.jitl.common.entity.tasks.FrozenTrollTasks;
 import net.jitl.core.JITL;
+import net.jitl.core.init.JItems;
 import net.jitl.core.init.JSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -223,7 +224,7 @@ public class FrozenTrollEntity extends Monster {
     }
 
     public JEntityAction getArmPose() {
-        if (FrozenTrollTasks.isLovedItem(this.getOffhandItem())) { //FIXME not detecting offhand item?
+        if (this.getOffhandItem().is(JItems.RIMESTONE)) { //FIXME not detecting offhand item?
             return JEntityAction.ADMIRING_ITEM;
         } else {
             return JEntityAction.DEFAULT;

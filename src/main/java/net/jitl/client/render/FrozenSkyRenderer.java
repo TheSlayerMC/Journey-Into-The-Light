@@ -1,6 +1,5 @@
 package net.jitl.client.render;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
@@ -76,17 +75,6 @@ public class FrozenSkyRenderer implements ISkyRenderHandler {
             BufferUploader.end(bufferbuilder);
             matrixStack.popPose();
         }
-        RenderSystem.enableTexture();
-        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-
-        matrixStack.pushPose();
-
-        RenderSystem.disableTexture();
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.disableBlend();
-        matrixStack.popPose();
-        RenderSystem.disableTexture();
-        RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
 
         if (world.effects().hasGround()) {
             RenderSystem.setShaderColor(x * 0.2F + 0.04F, y * 0.2F + 0.04F, z * 0.6F + 0.1F, 1.0F);

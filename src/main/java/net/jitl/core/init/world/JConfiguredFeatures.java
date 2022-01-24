@@ -250,14 +250,17 @@ public class JConfiguredFeatures {
                                                     BlockPredicate.wouldSurvive(JBlocks.SCORCHED_CACTUS.defaultBlockState(), BlockPos.ZERO)))))));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_DEPOSIT =
-                       REGISTER.register("sulpur_deposit", () -> JFeatures.SULPHUR_DEPOSIT.get().configured(new BlockStateConfiguration(JBlocks.SULPHUR_ROCK.defaultBlockState())));
+            REGISTER.register("sulpur_deposit", () -> JFeatures.SULPHUR_DEPOSIT.get().configured(new BlockStateConfiguration(JBlocks.SULPHUR_ROCK.defaultBlockState())));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> EUCA_WATER =
             REGISTER.register("euca_water", () -> JFeatures.EUCA_WATER_GEN.get().configured((new SpringConfiguration(Fluids.WATER.defaultFluidState(), false, 4, 1, ImmutableSet.of(JBlocks.GOLDITE_STONE, JBlocks.GOLDITE_DIRT)))));
 
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> SULPHUR_CRYSTAL =
-           REGISTER.register("sulphar_crystal", () -> JFeatures.SULPHUR_CRYSTAL.get().configured(FeatureConfiguration.NONE));
+            REGISTER.register("sulphar_crystal", () -> JFeatures.SULPHUR_CRYSTAL.get().configured(FeatureConfiguration.NONE));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> ICE_SPIKE =
+            REGISTER.register("ice_spike", () -> JFeatures.FROZEN_ICE_SPIKE.get().configured(FeatureConfiguration.NONE));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_FIRE =
             REGISTER.register("boiling_fire",

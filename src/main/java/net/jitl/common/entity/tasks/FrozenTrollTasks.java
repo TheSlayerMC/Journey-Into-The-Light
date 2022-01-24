@@ -196,8 +196,6 @@ public class FrozenTrollTasks {
             frozenTrollEntity.take(itemEntity_, 1);
             itemstack = removeOneItemFromItemEntity(itemEntity_);
         }
-
-        Item item = itemstack.getItem();
         if (isLovedItem(itemstack)) {
             frozenTrollEntity.getBrain().eraseMemory(MemoryModuleType.TIME_TRYING_TO_REACH_ADMIRE_ITEM);
             holdInOffhand(frozenTrollEntity, itemstack);

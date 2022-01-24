@@ -16,7 +16,6 @@ import net.minecraft.world.entity.HumanoidArm;
 import org.jetbrains.annotations.NotNull;
 
 public class FrozenTrollModel<T extends Entity> extends ListModel<T> implements ArmedModel {
-
     private final ModelPart head;
     private final ModelPart leg1;
     private final ModelPart leg2;
@@ -37,11 +36,11 @@ public class FrozenTrollModel<T extends Entity> extends ListModel<T> implements 
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-5.0F, -8.625F, -2.75F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
-                .texOffs(32, 30).addBox(-3.0F, 0.375F, -6.25F, 6.0F, 5.0F, 2.0F, new CubeDeformation(0.0F))
-                .texOffs(32, 11).addBox(-2.0F, 5.375F, -5.75F, 4.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 0).addBox(-4.0F, -7.625F, -6.75F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 0).addBox(3.0F, -8.625F, -2.75F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 10.625F, 3.75F));
+        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(-5.0F, -7.625F, 0.25F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(32, 30).addBox(-3.0F, 1.375F, -3.25F, 6.0F, 5.0F, 2.0F, new CubeDeformation(0.0F))
+                .texOffs(32, 11).addBox(-2.0F, 6.375F, -2.75F, 4.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(-4.0F, -6.625F, -3.75F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(3.0F, -7.625F, 0.25F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 9.625F, 0.75F));
 
         PartDefinition leg1 = partdefinition.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(16, 30).mirror().addBox(-2.0F, -0.5F, -2.0F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(2.25F, 17.5F, 2.0F));
 
@@ -74,9 +73,8 @@ public class FrozenTrollModel<T extends Entity> extends ListModel<T> implements 
         this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
         this.head.xRot = headPitch * ((float) Math.PI / 180F);
         if (entityIn instanceof FrozenTrollEntity frozenTrollEntity) {
-            JITL.LOGGER.info("entity is frozen troll");
             JEntityAction entityAction = frozenTrollEntity.getArmPose();
-            JITL.LOGGER.info(entityAction);
+            //JITL.LOGGER.info(entityAction);
             if (entityAction == JEntityAction.ADMIRING_ITEM) {
                 JITL.LOGGER.info("entity is admiring item");
                 this.head.xRot = 0.5F;
