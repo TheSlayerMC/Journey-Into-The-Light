@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "jitl:celestium_ingot_from_block"
+      "jitl:celestium_gemstone_from_block"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "jitl:celestium_ingot_from_block"
+        "recipe": "jitl:celestium_gemstone_from_block"
       }
     }
   },

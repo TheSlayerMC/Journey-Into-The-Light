@@ -168,15 +168,11 @@ public class ItemRegistrator {
         //BOILING POINT ITEMS
         registerItem("ash", "Ash");
 
-		//EUCA ITEMS
-		registerItem("celestium_ingot", "Celestium Ingot");
-		registerItem("korite_ingot", "Korite Ingot");
-        registerItem("mekyum_ingot", "Mekyum Ingot");
-        registerItem("storon_ingot", "Storon Ingot");
-        registerItem("raw_celestium", "Raw Celestium");
-        registerItem("raw_korite", "Raw Korite");
-        registerItem("raw_mekyum", "Raw Mekyum");
-        registerItem("raw_storon", "Raw Storon");
+        //EUCA ITEMS
+        registerItem("celestium_gemstone", "Celestium Gemstone");
+        registerItem("korite_gemstone", "Korite Gemstone");
+        registerItem("mekyum_gemstone", "Mekyum Gemstone");
+        registerItem("storon_gemstone", "Storon Gemstone");
 
         //DEVELOPER ITEMS
         registerItem("test_bug", "Test Bug", TestBugItem::new);

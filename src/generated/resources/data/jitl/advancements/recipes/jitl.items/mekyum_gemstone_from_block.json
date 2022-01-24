@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "jitl:storon_ingot_from_block"
+      "jitl:mekyum_gemstone_from_block"
     ]
   },
   "criteria": {
-    "has_storon_block": {
+    "has_mekyum_block": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "jitl:storon_block"
+              "jitl:mekyum_block"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "jitl:storon_ingot_from_block"
+        "recipe": "jitl:mekyum_gemstone_from_block"
       }
     }
   },
   "requirements": [
     [
-      "has_storon_block",
+      "has_mekyum_block",
       "has_the_recipe"
     ]
   ]

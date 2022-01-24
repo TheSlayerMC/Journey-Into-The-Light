@@ -52,7 +52,7 @@ public class FrozenTrollTasks {
     }
 
     public static boolean isLovedItem(ItemStack item) {
-        return item == new ItemStack(JItems.RIMESTONE);
+        return Objects.equals(item, new ItemStack(JItems.RIMESTONE));
     }
 
     private static void initCoreActivity(Brain<FrozenTrollEntity> brain_) {
@@ -301,7 +301,7 @@ public class FrozenTrollTasks {
         return frozenTrollEntity.getOffhandItem().isEmpty() || !isLovedItem(frozenTrollEntity.getOffhandItem());
     }
 
-    private static boolean isAdmiringItem(FrozenTrollEntity frozenTrollEntity) {
+    public static boolean isAdmiringItem(FrozenTrollEntity frozenTrollEntity) {
         return frozenTrollEntity.getBrain().hasMemoryValue(MemoryModuleType.ADMIRING_ITEM);
     }
 

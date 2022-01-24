@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_storon_ingot": {
+    "has_storon_gemstone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "jitl:storon_ingot"
+              "jitl:storon_gemstone"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_storon_ingot",
+      "has_storon_gemstone",
       "has_the_recipe"
     ]
   ]

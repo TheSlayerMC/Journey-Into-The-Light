@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "storon_ingot",
+  "group": "celestium_gemstone",
   "ingredients": [
     {
-      "item": "jitl:storon_block"
+      "item": "jitl:celestium_block"
     }
   ],
   "result": {
-    "item": "jitl:storon_ingot",
+    "item": "jitl:celestium_gemstone",
     "count": 9
   }
 }

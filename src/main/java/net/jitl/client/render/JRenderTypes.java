@@ -27,6 +27,7 @@ public class JRenderTypes extends RenderType {
                         .createCompositeState(false));
     }
 
+    //FIXME
     public static RenderType fullbrightCutout(ResourceLocation texture) {
         return RenderHelper.rtTextured(JITL.rl("fullbright_cutout"),
                 VertexFormat.Mode.QUADS,
@@ -34,7 +35,7 @@ public class JRenderTypes extends RenderType {
                 texture,
                 builder -> builder
                         //.setShadeModelState(SMOOTH_SHADE)
-                        .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER)); //FIXME: subject to change ~ Dizzle
+                        .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER));
     }
 
     public static RenderType transparentCutout(ResourceLocation texture) {

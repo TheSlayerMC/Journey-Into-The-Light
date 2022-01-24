@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_mekyum_ingot": {
+    "has_mekyum_gemstone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "jitl:mekyum_ingot"
+              "jitl:mekyum_gemstone"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_mekyum_ingot",
+      "has_mekyum_gemstone",
       "has_the_recipe"
     ]
   ]

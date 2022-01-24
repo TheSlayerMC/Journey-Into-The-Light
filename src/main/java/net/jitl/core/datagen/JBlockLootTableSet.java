@@ -48,11 +48,11 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		registerSpecialOre(JBlocks.CRIMSON_QUARTZ_ORE, JItems.CRIMSON_QUARTZ);
 		registerDefaultOre(JBlocks.SULPHUR_ROCK);
 		registerSpecialOreWithExtraCount(JBlocks.SULPHUR_CRYSTAL, JItems.SULPHUR_POWDER, 1, 4);
-		registerSpecialOre(JBlocks.MEKYUM_ORE, JItems.RAW_MEKYUM);
+		registerSpecialOre(JBlocks.MEKYUM_ORE, JItems.MEKYUM_GEMSTONE);
 		registerSpecialOre(JBlocks.BLAZIUM_ORE, JItems.RAW_BLAZIUM);
-		registerSpecialOre(JBlocks.CELESTIUM_ORE, JItems.RAW_CELESTIUM);
-		registerSpecialOre(JBlocks.KORITE_ORE, JItems.RAW_KORITE);
-		registerSpecialOre(JBlocks.STORON_ORE, JItems.RAW_STORON);
+		registerSpecialOre(JBlocks.CELESTIUM_ORE, JItems.CELESTIUM_GEMSTONE);
+		registerSpecialOre(JBlocks.KORITE_ORE, JItems.KORITE_GEMSTONE);
+		registerSpecialOre(JBlocks.STORON_ORE, JItems.STORON_GEMSTONE);
 		registerSpecialOre(JBlocks.ENDERILLIUM_ORE, JItems.ENDERILLIUM_SHARD);
 	}
 

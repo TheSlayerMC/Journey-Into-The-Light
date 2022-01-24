@@ -68,13 +68,16 @@ public class FrozenTrollEntity extends Monster {
             MemoryModuleType.INTERACTION_TARGET,
             MemoryModuleType.PATH,
             MemoryModuleType.ANGRY_AT,
+            MemoryModuleType.UNIVERSAL_ANGER,
             MemoryModuleType.AVOID_TARGET,
             MemoryModuleType.ADMIRING_ITEM,
             MemoryModuleType.TIME_TRYING_TO_REACH_ADMIRE_ITEM,
             MemoryModuleType.ADMIRING_DISABLED,
             MemoryModuleType.DISABLE_WALK_TO_ADMIRE_ITEM,
             MemoryModuleType.NEAREST_VISIBLE_NEMESIS,
-            MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM);
+            MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM,
+            MemoryModuleType.NEAREST_REPELLENT);
+
 
     public FrozenTrollEntity(EntityType<? extends FrozenTrollEntity> entityType, Level world) {
         super(entityType, world);
@@ -220,7 +223,7 @@ public class FrozenTrollEntity extends Monster {
     }
 
     public JEntityAction getArmPose() {
-        if (FrozenTrollTasks.isLovedItem(this.getOffhandItem())) {
+        if (FrozenTrollTasks.isLovedItem(this.getOffhandItem())) { //FIXME not detecting offhand item?
             return JEntityAction.ADMIRING_ITEM;
         } else {
             return JEntityAction.DEFAULT;

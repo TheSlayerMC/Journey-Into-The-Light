@@ -35,9 +35,9 @@ public class JRecipeRegister extends JRecipeProvider {
 		addOreBlockRecipe(recipeConsumer, JItems.BLOODCRUST_INGOT, JBlocks.BLOODCRUST_BLOCK);
 		addOreBlockRecipe(recipeConsumer, JItems.ENDERILLIUM_SHARD, JBlocks.ENDERILLIUM_BLOCK);
 		addOreBlockRecipe(recipeConsumer, JItems.ASH, JBlocks.ASHUAL_BLOCK);
-		addOreBlockRecipe(recipeConsumer, JItems.CELESTIUM_INGOT, JBlocks.CELESTIUM_BLOCK);
-		addOreBlockRecipe(recipeConsumer, JItems.MEKYUM_INGOT, JBlocks.MEKYUM_BLOCK);
-		addOreBlockRecipe(recipeConsumer, JItems.STORON_INGOT, JBlocks.STORON_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.CELESTIUM_GEMSTONE, JBlocks.CELESTIUM_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.MEKYUM_GEMSTONE, JBlocks.MEKYUM_BLOCK);
+		addOreBlockRecipe(recipeConsumer, JItems.STORON_GEMSTONE, JBlocks.STORON_BLOCK);
 		addOreBlockRecipe(recipeConsumer, JItems.DREADIRON_INGOT, JBlocks.DREADIRON_BLOCK);
 		addOreBlockRecipe(recipeConsumer, JItems.PERIDOT_GEMSTONE, JBlocks.PERIDOT_BLOCK);
 		addOreBlockRecipe(recipeConsumer, JItems.RIMESTONE, JBlocks.RIMESTONE_BLOCK);

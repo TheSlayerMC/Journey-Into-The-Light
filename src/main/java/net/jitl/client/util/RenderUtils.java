@@ -4,20 +4,39 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
+import net.minecraft.network.chat.Style;
 import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 /**
  * Copy of {@link net.minecraft.client.gui.GuiComponent} with static context
  */
 
-//TODO: merge with JRenderUtils (or vice-versa)
 public class RenderUtils {
+    private static final Minecraft minecraft = Minecraft.getInstance();
+    private static final int width = Minecraft.getInstance().getWindow().getGuiScaledWidth();
+    private static final int height = Minecraft.getInstance().getWindow().getGuiScaledHeight();
+    protected static Font font = Minecraft.getInstance().font;
+    protected static ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
 
     public static void drawCenteredStringWithCustomScale(PoseStack poseStack, Font fontRendererIn, String text, int x, int y, int zLevel, int color, float scaleFactor, int availableHeight, boolean hasShadow) {
         poseStack.pushPose();
@@ -155,5 +174,187 @@ public class RenderUtils {
         bufferbuilder.vertex(matrix, (float) x1, (float) y1, (float) blitOffset).uv(minU, minV).endVertex();
         bufferbuilder.end();
         BufferUploader.end(bufferbuilder);
+    }
+
+    public static void renderTooltip(PoseStack matrixStack, Component text, int mouseX, int mouseY, int textWidth, int textHeight) {
+        renderComponentTooltip(matrixStack, Collections.singletonList(text), mouseX, mouseY, textWidth, textHeight);
+    }
+
+    public static void renderComponentTooltip(PoseStack matrixStack_, List<Component> textComponentList, int mouseX, int mouseY, int textWidth, int textHeight) {
+        Font font = Minecraft.getInstance().font;
+        renderWrappedToolTip(matrixStack_, textComponentList, mouseX, mouseY, textWidth, textHeight, font);
+    }
+
+    public static void renderWrappedToolTip(PoseStack matrixStack, List<Component> tooltips, int mouseX, int mouseY, int textWidth, int textHeight, Font font) {
+        renderTooltip(matrixStack, tooltips, Optional.empty(), mouseX, mouseY, font);
+    }
+
+    private static Font tooltipFont = null;
+    private static ItemStack tooltipStack = ItemStack.EMPTY;
+
+    protected static void renderTooltip(PoseStack poseStack_, ItemStack itemStack_, int mouseX_, int mouseY_) {
+        tooltipStack = itemStack_;
+        renderTooltip(poseStack_, getTooltipFromItem(itemStack_), itemStack_.getTooltipImage(), mouseX_, mouseY_);
+        tooltipStack = ItemStack.EMPTY;
+    }
+
+    public void renderTooltip(PoseStack poseStack, List<Component> textComponents, Optional<TooltipComponent> tooltipComponent, int x, int y, ItemStack stack) {
+        renderTooltip(poseStack, textComponents, tooltipComponent, x, y, null, stack);
+    }
+
+    public static void renderTooltip(PoseStack poseStack, List<Component> textComponents, Optional<TooltipComponent> tooltipComponent, int x, int y, @Nullable Font font) {
+        renderTooltip(poseStack, textComponents, tooltipComponent, x, y, font, ItemStack.EMPTY);
+    }
+
+    public static void renderTooltip(PoseStack poseStack, List<Component> textComponents, Optional<TooltipComponent> tooltipComponent, int x, int y, @Nullable Font font, ItemStack stack) {
+        tooltipFont = font;
+        tooltipStack = stack;
+        renderTooltip(poseStack, textComponents, tooltipComponent, x, y);
+        tooltipFont = null;
+        tooltipStack = ItemStack.EMPTY;
+    }
+
+    public static void renderTooltip(PoseStack poseStack_, List<Component> tooltips_, Optional<TooltipComponent> visualTooltipComponent_, int mouseX_, int mouseY_) {
+        List<ClientTooltipComponent> list = net.minecraftforge.client.ForgeHooksClient.gatherTooltipComponents(tooltipStack, tooltips_, visualTooltipComponent_, mouseX_, width, height, tooltipFont, font);
+        renderTooltipInternal(poseStack_, list, mouseX_, mouseY_);
+    }
+
+    public static List<Component> getTooltipFromItem(ItemStack itemStack_) {
+        return itemStack_.getTooltipLines(minecraft.player, minecraft.options.advancedItemTooltips ? TooltipFlag.Default.ADVANCED : TooltipFlag.Default.NORMAL);
+    }
+
+    public void renderTooltip(PoseStack poseStack_, Component text_, int mouseX_, int mouseY_) {
+        renderTooltip(poseStack_, Arrays.asList(text_.getVisualOrderText()), mouseX_, mouseY_);
+    }
+
+    public static void renderComponentTooltip(PoseStack poseStack_, List<Component> tooltips_, int mouseX_, int mouseY_) {
+        List<ClientTooltipComponent> components = net.minecraftforge.client.ForgeHooksClient.gatherTooltipComponents(tooltipStack, tooltips_, mouseX_, width, height, tooltipFont, font);
+        renderTooltipInternal(poseStack_, components, mouseX_, mouseY_);
+    }
+
+    public void renderComponentTooltip(PoseStack poseStack, List<? extends net.minecraft.network.chat.FormattedText> tooltips, int mouseX, int mouseY, ItemStack stack) {
+        this.renderComponentTooltip(poseStack, tooltips, mouseX, mouseY, null, stack);
+    }
+
+    public void renderComponentTooltip(PoseStack poseStack, List<? extends net.minecraft.network.chat.FormattedText> tooltips, int mouseX, int mouseY, @Nullable Font font) {
+        this.renderComponentTooltip(poseStack, tooltips, mouseX, mouseY, font, ItemStack.EMPTY);
+    }
+
+    public void renderComponentTooltip(PoseStack poseStack, List<? extends net.minecraft.network.chat.FormattedText> tooltips, int mouseX, int mouseY, @Nullable Font font, ItemStack stack) {
+        tooltipFont = font;
+        tooltipStack = stack;
+        List<ClientTooltipComponent> components = net.minecraftforge.client.ForgeHooksClient.gatherTooltipComponents(stack, tooltips, mouseX, width, height, tooltipFont, font);
+        renderTooltipInternal(poseStack, components, mouseX, mouseY);
+        tooltipFont = null;
+        tooltipStack = ItemStack.EMPTY;
+    }
+
+    public static void renderTooltip(PoseStack poseStack_, List<? extends FormattedCharSequence> tooltips_, int mouseX_, int mouseY_) {
+        renderTooltipInternal(poseStack_, tooltips_.stream().map(ClientTooltipComponent::create).collect(Collectors.toList()), mouseX_, mouseY_);
+    }
+
+    public static void renderTooltip(PoseStack poseStack, List<? extends FormattedCharSequence> lines, int x, int y, Font font) {
+        tooltipFont = font;
+        renderTooltip(poseStack, lines, x, y);
+        tooltipFont = null;
+    }
+
+    private static void renderTooltipInternal(PoseStack poseStack_, List<ClientTooltipComponent> clientTooltipComponents_, int mouseX_, int mouseY_) {
+        if (!clientTooltipComponents_.isEmpty()) {
+            net.minecraftforge.client.event.RenderTooltipEvent.Pre preEvent = net.minecraftforge.client.ForgeHooksClient.onRenderTooltipPre(tooltipStack, poseStack_, mouseX_, mouseY_, width, height, clientTooltipComponents_, tooltipFont, font);
+            if (preEvent.isCanceled()) return;
+            int i = 0;
+            int j = clientTooltipComponents_.size() == 1 ? -2 : 0;
+
+            for (ClientTooltipComponent clienttooltipcomponent : clientTooltipComponents_) {
+                int k = clienttooltipcomponent.getWidth(preEvent.getFont());
+                if (k > i) {
+                    i = k;
+                }
+
+                j += clienttooltipcomponent.getHeight();
+            }
+
+            int j2 = preEvent.getX() + 12;
+            int k2 = preEvent.getY() - 12;
+            if (j2 + i > width) {
+                j2 -= 28 + i;
+            }
+
+            if (k2 + j + 6 > height) {
+                k2 = height - j - 6;
+            }
+
+            poseStack_.pushPose();
+            float f = itemRenderer.blitOffset;
+            itemRenderer.blitOffset = 400.0F;
+            Tesselator tesselator = Tesselator.getInstance();
+            BufferBuilder bufferbuilder = tesselator.getBuilder();
+            RenderSystem.setShader(GameRenderer::getPositionColorShader);
+            bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+            Matrix4f matrix4f = poseStack_.last().pose();
+            net.minecraftforge.client.event.RenderTooltipEvent.Color colorEvent = net.minecraftforge.client.ForgeHooksClient.onRenderTooltipColor(tooltipStack, poseStack_, j2, k2, preEvent.getFont(), clientTooltipComponents_);
+            fillGradient(matrix4f, bufferbuilder, j2 - 3, k2 - 4, j2 + i + 3, k2 - 3, 400, colorEvent.getBackgroundStart(), colorEvent.getBackgroundStart());
+            fillGradient(matrix4f, bufferbuilder, j2 - 3, k2 + j + 3, j2 + i + 3, k2 + j + 4, 400, colorEvent.getBackgroundEnd(), colorEvent.getBackgroundEnd());
+            fillGradient(matrix4f, bufferbuilder, j2 - 3, k2 - 3, j2 + i + 3, k2 + j + 3, 400, colorEvent.getBackgroundStart(), colorEvent.getBackgroundEnd());
+            fillGradient(matrix4f, bufferbuilder, j2 - 4, k2 - 3, j2 - 3, k2 + j + 3, 400, colorEvent.getBackgroundStart(), colorEvent.getBackgroundEnd());
+            fillGradient(matrix4f, bufferbuilder, j2 + i + 3, k2 - 3, j2 + i + 4, k2 + j + 3, 400, colorEvent.getBackgroundStart(), colorEvent.getBackgroundEnd());
+            fillGradient(matrix4f, bufferbuilder, j2 - 3, k2 - 3 + 1, j2 - 3 + 1, k2 + j + 3 - 1, 400, colorEvent.getBorderStart(), colorEvent.getBorderEnd());
+            fillGradient(matrix4f, bufferbuilder, j2 + i + 2, k2 - 3 + 1, j2 + i + 3, k2 + j + 3 - 1, 400, colorEvent.getBorderStart(), colorEvent.getBorderEnd());
+            fillGradient(matrix4f, bufferbuilder, j2 - 3, k2 - 3, j2 + i + 3, k2 - 3 + 1, 400, colorEvent.getBorderStart(), colorEvent.getBorderStart());
+            fillGradient(matrix4f, bufferbuilder, j2 - 3, k2 + j + 2, j2 + i + 3, k2 + j + 3, 400, colorEvent.getBorderEnd(), colorEvent.getBorderEnd());
+            RenderSystem.enableDepthTest();
+            RenderSystem.disableTexture();
+            RenderSystem.enableBlend();
+            RenderSystem.defaultBlendFunc();
+            bufferbuilder.end();
+            BufferUploader.end(bufferbuilder);
+            RenderSystem.disableBlend();
+            RenderSystem.enableTexture();
+            MultiBufferSource.BufferSource multibuffersource$buffersource = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
+            poseStack_.translate(0.0D, 0.0D, 400.0D);
+            int l1 = k2;
+
+            for (int i2 = 0; i2 < clientTooltipComponents_.size(); ++i2) {
+                ClientTooltipComponent clienttooltipcomponent1 = clientTooltipComponents_.get(i2);
+                clienttooltipcomponent1.renderText(preEvent.getFont(), j2, l1, matrix4f, multibuffersource$buffersource);
+                l1 += clienttooltipcomponent1.getHeight() + (i2 == 0 ? 2 : 0);
+            }
+
+            multibuffersource$buffersource.endBatch();
+            poseStack_.popPose();
+            l1 = k2;
+
+            for (int l2 = 0; l2 < clientTooltipComponents_.size(); ++l2) {
+                ClientTooltipComponent clienttooltipcomponent2 = clientTooltipComponents_.get(l2);
+                clienttooltipcomponent2.renderImage(preEvent.getFont(), j2, l1, poseStack_, itemRenderer, 400);
+                l1 += clienttooltipcomponent2.getHeight() + (l2 == 0 ? 2 : 0);
+            }
+
+            itemRenderer.blitOffset = f;
+        }
+    }
+
+    protected static void renderComponentHoverEffect(PoseStack poseStack_, @Nullable Style style_, int mouseX_, int mouseY_) {
+        if (style_ != null && style_.getHoverEvent() != null) {
+            HoverEvent hoverevent = style_.getHoverEvent();
+            HoverEvent.ItemStackInfo hoverevent$itemstackinfo = hoverevent.getValue(HoverEvent.Action.SHOW_ITEM);
+            if (hoverevent$itemstackinfo != null) {
+                renderTooltip(poseStack_, hoverevent$itemstackinfo.getItemStack(), mouseX_, mouseY_);
+            } else {
+                HoverEvent.EntityTooltipInfo hoverevent$entitytooltipinfo = hoverevent.getValue(HoverEvent.Action.SHOW_ENTITY);
+                if (hoverevent$entitytooltipinfo != null) {
+                    if (minecraft.options.advancedItemTooltips) {
+                        renderComponentTooltip(poseStack_, hoverevent$entitytooltipinfo.getTooltipLines(), mouseX_, mouseY_);
+                    }
+                } else {
+                    Component component = hoverevent.getValue(HoverEvent.Action.SHOW_TEXT);
+                    if (component != null) {
+                        renderTooltip(poseStack_, minecraft.font.split(component, Math.max(width / 2, 200)), mouseX_, mouseY_);
+                    }
+                }
+            }
+
+        }
     }
 }

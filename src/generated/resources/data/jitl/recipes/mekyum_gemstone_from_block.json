@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "mekyum_ingot",
+  "group": "mekyum_gemstone",
   "ingredients": [
     {
       "item": "jitl:mekyum_block"
     }
   ],
   "result": {
-    "item": "jitl:mekyum_ingot",
+    "item": "jitl:mekyum_gemstone",
     "count": 9
   }
 }

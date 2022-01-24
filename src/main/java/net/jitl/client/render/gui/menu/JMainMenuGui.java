@@ -47,7 +47,6 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-//FIXME fix buttons
 @OnlyIn(Dist.CLIENT)
 public class JMainMenuGui extends TitleScreen {
 	private static final Logger LOGGER = LogManager.getLogger();
@@ -336,18 +335,6 @@ public class JMainMenuGui extends TitleScreen {
 					((AbstractWidget)guieventlistener).setAlpha(f1);
 				}
 			}
-
-			//FIXME
-			/*int buttonSize;
-			for (buttonSize = 0; buttonSize < this.buttons.size(); ++buttonSize) {
-				(this.buttons.get(buttonSize)).renderButton(matrixStack, mouseX, mouseY, partialTicks);
-			}
-
-			for (buttonSize = 0; buttonSize < this.buttons.size(); ++buttonSize) {
-				(this.buttons.get(buttonSize)).renderToolTip(matrixStack, mouseX, mouseY);
-			}*/
-
-			//super.render(matrixStack, mouseX, mouseY, partialTicks);
 
 			for (Widget widget : this.renderables) {
 				widget.render(matrixStack, mouseX, mouseY, partialTicks);

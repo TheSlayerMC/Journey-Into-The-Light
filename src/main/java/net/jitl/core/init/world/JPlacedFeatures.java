@@ -360,7 +360,7 @@ public class JPlacedFeatures {
                     "ore_mekyum",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.MEKYUM_ORE.get()
-                            .placed(orePlacement(CountPlacement.of(20),
+                            .placed(orePlacement(CountPlacement.of(5),
                                     HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(128)))))
             .allowedInBiomes(BiomePredicate.EUCA_GOLD_PLAINS)
             .asPromise();
@@ -369,7 +369,7 @@ public class JPlacedFeatures {
                     "ore_storon",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.STORON_ORE.get()
-                            .placed(orePlacement(CountPlacement.of(20),
+                            .placed(orePlacement(CountPlacement.of(5),
                                     HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(128)))))
             .allowedInBiomes(BiomePredicate.EUCA_GOLD_PLAINS)
             .asPromise();
@@ -378,7 +378,7 @@ public class JPlacedFeatures {
                     "ore_celestium",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.CELESTIUM_ORE.get()
-                            .placed(orePlacement(CountPlacement.of(20),
+                            .placed(orePlacement(CountPlacement.of(5),
                                     HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(128)))))
             .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
             .asPromise();
@@ -387,7 +387,7 @@ public class JPlacedFeatures {
                     "ore_korite",
                     GenerationStep.Decoration.UNDERGROUND_ORES,
                     () -> JConfiguredFeatures.KORITE_ORE.get()
-                            .placed(orePlacement(CountPlacement.of(20),
+                            .placed(orePlacement(CountPlacement.of(5),
                                     HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(128)))))
             .allowedInBiomes(BiomePredicate.GOLDITE_GRAINS)
             .asPromise();

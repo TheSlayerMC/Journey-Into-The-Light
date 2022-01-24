@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_celestium_ingot": {
+    "has_celestium_gemstone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "jitl:celestium_ingot"
+              "jitl:celestium_gemstone"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_celestium_ingot",
+      "has_celestium_gemstone",
       "has_the_recipe"
     ]
   ]

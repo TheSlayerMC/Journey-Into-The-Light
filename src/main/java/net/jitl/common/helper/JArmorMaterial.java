@@ -17,7 +17,7 @@ public enum JArmorMaterial implements ArmorMaterial {
     LUNIUM("lunium", 33, new int[]{3, 6, 8, 3}, 2.0F, 0.0F, SoundEvents.ARMOR_EQUIP_IRON, JItems.LUNIUM_INGOT),
     SHADIUM("shadium", 33, new int[]{3, 6, 8, 3}, 2.0F, 0.0F, SoundEvents.ARMOR_EQUIP_IRON, JItems.SHADIUM_INGOT),
     BLOODCRUST("bloodcrust", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.BLOODCRUST_INGOT),
-    CELESTIUM("celestium", 27, new int[]{2, 5, 7, 3}, 0F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.CELESTIUM_INGOT),
+    CELESTIUM("celestium", 27, new int[]{2, 5, 7, 3}, 0F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.CELESTIUM_GEMSTONE),
 
     DREADIRON("dreadiron", 24, new int[]{2, 5, 6, 2}, 1.0F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, JItems.DREADIRON_INGOT),
     SNOW_GOGGLES("snow", 27, new int[]{3, 6, 8, 3}, 0.5F, 0.2F, SoundEvents.ARMOR_EQUIP_IRON, Blocks.GLASS.asItem());

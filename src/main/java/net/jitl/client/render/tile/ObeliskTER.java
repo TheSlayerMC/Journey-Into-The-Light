@@ -24,7 +24,7 @@ import java.util.Objects;
 
 public class ObeliskTER implements BlockEntityRenderer<ObeliskTile> {
 
-    //FIXME
+    //FIXME lighting is too dark.
     public static final ResourceLocation OBELISK_LOCATION = JITL.rl("textures/models/block/obelisk.png");
 
     private final ModelPart top;

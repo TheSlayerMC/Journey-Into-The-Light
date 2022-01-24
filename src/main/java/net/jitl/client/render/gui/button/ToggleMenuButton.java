@@ -1,10 +1,10 @@
 package net.jitl.client.render.gui.button;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.jitl.client.util.RenderUtils;
 import net.jitl.core.JITL;
 import net.jitl.core.config.JClientConfig;
 import net.jitl.core.config.JConfigs;
-import net.jitl.core.util.JRenderUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 
@@ -27,8 +27,9 @@ public class ToggleMenuButton extends JImageButton {
 	public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		super.renderButton(matrixStack, mouseX, mouseY, partialTicks);
 		if (isHovered) {
-			Component textKey = menuEnabled ? DISABLE_JITL_MENU : ENABLE_JITL_MENU;
-			JRenderUtils.Text.renderTooltip(matrixStack, textKey, 16, 0, TEXT_WIDTH, TEXT_HEIGHT);
-		}
+            Component textKey = menuEnabled ? DISABLE_JITL_MENU : ENABLE_JITL_MENU;
+            RenderUtils.renderTooltip(matrixStack, textKey, 16, 0, TEXT_WIDTH, TEXT_HEIGHT);
+            //FIXME
+        }
 	}
 }
