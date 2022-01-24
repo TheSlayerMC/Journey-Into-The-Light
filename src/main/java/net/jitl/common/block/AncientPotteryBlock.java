@@ -66,11 +66,10 @@ public class AncientPotteryBlock extends JFallingTileContainerBlock {
                     if (!hasFallen) {
                         Containers.dropContents(worldIn, pos, potTile);
                     }
-                    worldIn.updateNeighbourForOutputSignal(pos, this);
                 }
             }
         }
-        super.onRemove(state, worldIn, pos, newState, false);
+        super.onRemove(state, worldIn, pos, newState, isMoving);
     }
 
     @Override
