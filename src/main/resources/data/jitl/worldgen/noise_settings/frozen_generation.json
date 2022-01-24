@@ -2728,8 +2728,8 @@
       }
     }
   },
-  "sea_level": 63,
+  "sea_level": 42,
   "structures": {
-    "structures": { }
+    "structures": {}
   }
 }

@@ -300,11 +300,27 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.FROZEN_BITTERWOOD_FORST)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> FROZEN_VEG = REGISTER.register(
+                    "frozen_veg",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.FROZEN_VEG.get()
+                            .placed(patch(12, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> FROZEN_FLOWERS = REGISTER.register(
+                    "frozen_flowers",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.FROZEN_FLOWERS.get()
+                            .placed(patch(12, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
     public static final Promised<? extends PlacedFeature> EUCA_GOLD_TREE = REGISTER.register(
                     "euca_gold_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.EUCA_GOLD_TREES.get()
-                                    .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.EUCA_GOLD_SAPLING)))
+                            .placed(treePlacement(PlacementUtils.countExtra(4, 0.1F, 1), JBlocks.EUCA_GOLD_SAPLING)))
             .allowedInBiomes(BiomePredicate.EUCA_GOLD_PLAINS)
             .asPromise();
 

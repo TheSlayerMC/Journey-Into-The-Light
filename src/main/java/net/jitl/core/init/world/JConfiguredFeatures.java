@@ -448,6 +448,26 @@ public class JConfiguredFeatures {
                                     .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
                                     .build()));
 
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_VEG =
+            REGISTER.register("frozen_veg",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.ICE_BUSH.defaultBlockState(), 1)
+                                                    .add(JBlocks.FROSTBERRY_THORN.defaultBlockState(), 5)))))));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_FLOWERS =
+            REGISTER.register("frozen_flowers",
+                    () -> Feature.RANDOM_PATCH.configured(
+                            FeatureUtils.simplePatchConfiguration(
+                                    Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
+                                            new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                                    .add(JBlocks.CICLEBLOOM.defaultBlockState(), 1)
+                                                    .add(JBlocks.FROZEN_BLOOM.defaultBlockState(), 15)
+                                                    .add(JBlocks.ICE_BUD.defaultBlockState(), 10)))))));
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> GOLDITE_VEG =
             REGISTER.register("goldite_veg",
                     () -> Feature.RANDOM_PATCH.configured(
@@ -545,15 +565,7 @@ public class JConfiguredFeatures {
                             () -> JFeatures.EUCA_BOT_SPAWNER.get().configured(NoneFeatureConfiguration.NONE));
 
     //FIXME port
-   /* public static final Promised<? extends ConfiguredFeature<?, ?>> GLIMMER_ROOTS =
-            REGISTER.register("glimmer_roots",
-                    () -> JFeatures.GLIMMER_ROOTS.get()
-                            .configured(FeatureConfiguration.NONE)
-                            .range(256)
-                            .squared()
-                            .countRandom(64))
-                    .setBiomePredicate(EUCA_BIOMES)
-                    .asPromise();
+   /*
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BLOODCRUST_ORE =
             REGISTER.register("bloodcrust_ore",

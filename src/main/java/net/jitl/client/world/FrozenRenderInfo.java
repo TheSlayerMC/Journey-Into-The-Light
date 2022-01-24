@@ -10,12 +10,10 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.client.renderer.DimensionSpecialEffects.SkyType;
-
 public class FrozenRenderInfo extends DimensionSpecialEffects {
 
     public FrozenRenderInfo() {
-        super(90.0F, true, SkyType.NORMAL, false, false);
+        super(164.0F, true, SkyType.NORMAL, false, false);
     }
 
     @Override
