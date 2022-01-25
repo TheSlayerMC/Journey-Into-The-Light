@@ -6,12 +6,10 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
-import java.util.Map;
-import java.util.stream.Stream;
-
 import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.model.vehicle.JBoatModel;
 import net.jitl.common.entity.vehicle.JBoat;
+import net.jitl.core.JITL;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -22,6 +20,9 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
+import java.util.stream.Stream;
 
 @OnlyIn(Dist.CLIENT)
 public class JBoatRenderer extends EntityRenderer<JBoat> {
@@ -34,7 +35,7 @@ public class JBoatRenderer extends EntityRenderer<JBoat> {
         this.boatResources = Stream.of(JBoat.Type.values()).collect(ImmutableMap.toImmutableMap((type) -> {
             return type;
         }, (JBoatType) -> {
-            return Pair.of(new ResourceLocation("textures/entity/boat/" + JBoatType.getName() + ".png"), new JBoatModel(context.bakeLayer(JModelLayers.createBoatModelName(JBoatType))));
+            return Pair.of(JITL.rl("textures/entity/boat/" + JBoatType.getName() + ".png"), new JBoatModel(context.bakeLayer(JModelLayers.createBoatModelName(JBoatType))));
         }));
     }
 
