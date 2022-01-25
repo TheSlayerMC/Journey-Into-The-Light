@@ -717,8 +717,6 @@ public class BlockRegistrator {
                 .model(JITL.bml("block/" + name + "_post"), () -> JBlockModels.fencePost(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_side"), () -> JBlockModels.fenceSide(JITL.tl("block/" + textureName)))
                 .state(JBlockStateResources.fenceState(JITL.bml("block/" + name + "_post"), JITL.bml("block/" + name + "_side")));
-        for(int i = 0; i < 100; i++)
-        System.out.println(JBlockStateResources.fenceState(JITL.bml("block/" + name + "_post"), JITL.bml("block/" + name + "_side")).toJson());
     }
 
     private static void registerDoorBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {
