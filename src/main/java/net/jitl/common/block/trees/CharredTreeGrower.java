@@ -16,6 +16,7 @@ public class CharredTreeGrower extends AbstractTreeGrower {
         return switch (random.nextInt(2)) {
             case 0 -> JConfiguredFeatures.LARGE_CHARRED_TREE.get();
             case 1 -> JConfiguredFeatures.MEDIUM_BURNED_TREE.get();
+            case 2 -> JConfiguredFeatures.SMALL_BURNED_TREE.get();
             default -> JConfiguredFeatures.SMALL_BURNED_TREE.get();
         };
     }
