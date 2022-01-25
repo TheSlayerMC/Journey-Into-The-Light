@@ -32,6 +32,7 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -54,7 +55,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class JBoat extends Entity {
+public class JBoat extends Boat {
 
     private static final EntityDataAccessor<Integer> DATAIDHURT = SynchedEntityData.defineId(JBoat.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATAIDHURTDIR = SynchedEntityData.defineId(JBoat.class, EntityDataSerializers.INT);
@@ -258,7 +259,6 @@ public class JBoat extends Entity {
         if(this.getDamage() > 0.0F) 
             this.setDamage(this.getDamage() - 1.0F);
 
-        super.tick();
         this.tickLerp();
         if(this.isControlledByLocalInstance()) {
             if(!(this.getFirstPassenger() instanceof Player)) {
@@ -751,7 +751,7 @@ public class JBoat extends Entity {
     public void setHurtTime(int timeSinceHit) {
         this.entityData.set(DATAIDHURT, timeSinceHit);
     }
-    
+
     public int getHurtTime() {
         return this.entityData.get(DATAIDHURT);
     }
@@ -771,7 +771,7 @@ public class JBoat extends Entity {
     public void setHurtDir(int forwardDirection) {
         this.entityData.set(DATAIDHURTDIR, forwardDirection);
     }
-    
+
     public int getHurtDir() {
         return this.entityData.get(DATAIDHURTDIR);
     }

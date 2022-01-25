@@ -304,8 +304,7 @@ public class JEntities {
 
     public static final EntityType<JBoat> JBOAT_TYPE = REGISTER.register("jboat",
                     Builder.<JBoat>of(JBoat::new, MobCategory.MISC)
-                            .setTrackingRange(80)
-                            .setShouldReceiveVelocityUpdates(true)
+                            .setTrackingRange(10)
                             .sized(1.375F, 0.5625F))
             .retrieve();
 
