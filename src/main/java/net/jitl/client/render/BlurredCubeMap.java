@@ -16,15 +16,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class BlurredCubeMap {
     private static final int SIDES = 6;
-    private final DynamicTexture viewportTexture;
     private static float panoramaTimer;
     private static final ResourceLocation[] images = new ResourceLocation[6];
     private final ResourceLocation backgroundTexture;
 
     public BlurredCubeMap(ResourceLocation baseImageLocation_) {
         Minecraft mc = Minecraft.getInstance();
-        viewportTexture = new DynamicTexture(256, 256, false);
-        backgroundTexture = mc.getTextureManager().register("background", this.viewportTexture);
+        DynamicTexture viewportTexture = new DynamicTexture(256, 256, true);
+        backgroundTexture = mc.getTextureManager().register("background", viewportTexture);
         for (int i = 0; i < 6; ++i) {
             images[i] = new ResourceLocation(baseImageLocation_.getNamespace(), baseImageLocation_.getPath() + "_" + i + ".png");
         }
