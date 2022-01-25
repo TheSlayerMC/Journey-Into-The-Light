@@ -263,13 +263,7 @@ public class JConfiguredFeatures {
             REGISTER.register("ice_spike", () -> JFeatures.FROZEN_ICE_SPIKE.get().configured(FeatureConfiguration.NONE));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_FIRE =
-            REGISTER.register("boiling_fire",
-                    () -> Feature.RANDOM_PATCH.configured(
-                            FeatureUtils.simpleRandomPatchConfiguration(1, Feature.RANDOM_PATCH.configured(
-                                    FeatureUtils.simplePatchConfiguration(
-                                            Feature.SIMPLE_BLOCK.configured(
-                                                    new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.FIRE))))).placed()
-                            )));
+            REGISTER.register("boiling_fire", surfacePatchFeature(() -> Blocks.FIRE.defaultBlockState()));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOIL_SANDS_VEG =
             REGISTER.register("boil_sands_veg",
@@ -277,10 +271,10 @@ public class JConfiguredFeatures {
                             FeatureUtils.simplePatchConfiguration(
                                     Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(
                                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 3)
-                                                    .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 1)
-                                                    .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 6)
-                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 6)))))));
+                                                    .add(JBlocks.TALL_MOLTEN_PLANT.defaultBlockState(), 1)
+                                                    .add(JBlocks.LAVA_BLOOM.defaultBlockState(), 2)
+                                                    .add(JBlocks.CRUMBLING_PINE.defaultBlockState(), 8)
+                                                    .add(JBlocks.TALL_CRUMBLING_PINE.defaultBlockState(), 2)))))));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOIL_VEG =
             REGISTER.register("boil_veg",

@@ -192,7 +192,7 @@ public class JPlacedFeatures {
                     "boiling_fire",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.BOILING_FIRE.get()
-                            .placed(surfaceFloorPatch(1, 5, JBlocks.HOT_GROUND, JBlocks.SCORCHED_RUBBLE, JBlocks.CHARRED_GRASS, JBlocks.VOLCANIC_SAND)))
+                            .placed(surfaceFloorPatch(1, 6, JBlocks.HOT_GROUND, JBlocks.SCORCHED_RUBBLE, JBlocks.CHARRED_GRASS, JBlocks.VOLCANIC_SAND)))
             .allowedInBiomes(BiomePredicate.BOIL_FIRE_BIOMES)
             .asPromise();
 
