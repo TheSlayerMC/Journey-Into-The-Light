@@ -306,7 +306,7 @@ public class JEntities {
                     Builder.<JBoat>of(JBoat::new, MobCategory.MISC)
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
-                            .sized(0.5F, 0.5F))
+                            .sized(1.375F, 0.5625F))
             .retrieve();
 
     public static final EntityType<KnifeEntity> KNIFE_TYPE = REGISTER.register("knife",
