@@ -151,7 +151,7 @@ public class JPlacedFeatures {
                     "boil_stalagmite",
                     GenerationStep.Decoration.SURFACE_STRUCTURES,
                     () -> JConfiguredFeatures.SCORCHED_STALAGMITE.get()
-                            .placed(patch(75, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(95, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.SCORCHED_WASTELAND)
             .asPromise();
 

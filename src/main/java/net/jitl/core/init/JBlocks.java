@@ -232,6 +232,7 @@ public class JBlocks {
     public static final Block RUBBLE = promise();
     public static final Block VOLCANIC_SAND = promise();
     public static final Block VOLCANIC_SOIL = promise();
+    public static final Block VOLCANIC_SANDSTONE = promise();
     public static final Block HOT_GROUND = promise();
     public static final Block SCORCHED_RUBBLE = promise();
     public static final Block ASH_BLOCK = promise();

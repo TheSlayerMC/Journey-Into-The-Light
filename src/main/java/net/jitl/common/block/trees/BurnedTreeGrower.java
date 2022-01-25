@@ -13,12 +13,6 @@ public class BurnedTreeGrower extends AbstractTreeGrower {
     @Nullable
     @Override
     protected ConfiguredFeature<?, ?> getConfiguredFeature(@NotNull Random random, boolean largeHive_) {
-        ConfiguredFeature tree = switch (random.nextInt(2)) {
-            case 0 -> JConfiguredFeatures.DYING_BURNED_TREE.get();
-            case 1 -> JConfiguredFeatures.MEDIUM_BURNED_TREE.get();
-            case 2 -> JConfiguredFeatures.SMALL_BURNED_TREE.get();
-            default -> JConfiguredFeatures.DYING_BURNED_TREE.get();
-        };
-        return tree;
+        return JConfiguredFeatures.DYING_BURNED_TREE.get();
     }
 }

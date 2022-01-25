@@ -136,6 +136,9 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("essencia_altar", "Essencia Altar", () -> new EssenciaAltarBlock(JBlockProperties.BRICK_PROPS.create()),
                 () -> BlockModels.cubeBottomTopModel(JITL.tl("block/essencia_altar_top"), JITL.tl("block/essencia_altar_side"), JITL.tl("block/essencia_altar_bottom")));
 
+        registerSpeciallyRenderedBlock("volcanic_sandstone", "Volcanic Sandstone", () -> new Block(JBlockProperties.HOLD_FIRE.create()),
+                () -> BlockModels.cubeBottomTopModel(JITL.tl("block/volcanic_sandstone_top"), JITL.tl("block/volcanic_sandstone"), JITL.tl("block/volcanic_sandstone_bottom")));
+
         registerDefaultBlock("corrupted_blood_rock", "Corrupted Blood Rock", () -> new Block(JBlockProperties.NETHER_BASALT_ORE_PROPS.create()));
         registerDefaultBlock("smooth_corrupted_blood_rock", "Smooth Corrupted Blood Rock", () -> new Block(JBlockProperties.BRICK_PROPS.create()));
 
@@ -197,9 +200,7 @@ public class BlockRegistrator {
         registerDefaultBlock("euca_dungeon_tile", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("euca_gold_stone", "Euca Gold Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("euca_runic_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
-        registerDefaultBlock("euca_runic_lamp", "Euca Dungeon Lamp", () -> new Block(JBlockProperties.STONE_PROPS.create().lightLevel((state) -> {
-            return 6;
-        })));
+        registerDefaultBlock("euca_runic_lamp", "Euca Dungeon Lamp", () -> new Block(JBlockProperties.STONE_PROPS.create().lightLevel((state) -> 6)));
         registerDefaultBlock("euca_square_dungeon_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("euca_square_runic_bricks", "Euca Dungeon Brick", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("euca_tile", "Euca Tile");
@@ -278,17 +279,11 @@ public class BlockRegistrator {
         registerRandomizedRotatedBlock("goldite_stone", "Goldite Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
 
         registerSpeciallyRenderedBlock("goldite_farmland", "Goldite Farmland", GolditeFarmlandBlock::new);
-
         registerTallCrossRenderedBlock("goldite_tall_grass", "Tall Goldite Grass", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.EUCA_GRASS_BLOCKS));
 
-        registerSpeciallyRenderedBlock("frostwood_sapling", "Frostwood Sapling", () -> new JSaplingBlock(new DyingFrozenTree(), JBlockProperties.PLANT_PROPS.create()),
-                () -> BlockModels.crossModel(JITL.tl("block/frostwood_sapling")));
-
-        registerSpeciallyRenderedBlock("bitterwood_sapling", "Bitterwood Sapling", () -> new JSaplingBlock(new BitterwoodTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
-                () -> BlockModels.crossModel(JITL.tl("block/bitterwood_sapling")));
-
-        registerSpeciallyRenderedBlock("charred_sapling", "Charred Sapling", () -> new JSaplingBlock(new CharredTreeGrower(), JBlockProperties.PLANT_PROPS.create()),
-                () -> BlockModels.crossModel(JITL.tl("block/charred_sapling")));
+        registerCrossRenderedBlock("frostwood_sapling", "Frostwood Sapling", () -> new JSaplingBlock(new DyingFrozenTree(), JBlockProperties.PLANT_PROPS.create()));
+        registerCrossRenderedBlock("bitterwood_sapling", "Bitterwood Sapling", () -> new JSaplingBlock(new BitterwoodTreeGrower(), JBlockProperties.PLANT_PROPS.create()));
+        registerCrossRenderedBlock("charred_sapling", "Charred Sapling", () -> new JSaplingBlock(new CharredTreeGrower(), JBlockProperties.PLANT_PROPS.create()));
 
         registerSpeciallyRenderedBlock("goldite_bulb", "Goldite Bulb", () -> new JPlantBlock(JBlockProperties.PLANT_PROPS.create())
                         .setGroundPredicate(GroundPredicate.EUCA_GRASS_BLOCKS),
@@ -409,7 +404,7 @@ public class BlockRegistrator {
         registerGrassBlock("depths_grass_block", "Depths Grass", () -> new JSpreadableSnowyDirtBlock(JBlockProperties.GRASS_PROPS.create(), depthsDirt.get()), JITL.tl("block/depths_dirt"));
 
         registerRandomizedRotatedBlock("rubble", "Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
-        registerRandomizedRotatedBlock("volcanic_sand", "Volcanic Sand", () -> new JGrassBlock(JBlockProperties.HOLD_FIRE_SAND.create(), null));
+        registerRandomizedRotatedBlock("volcanic_sand", "Volcanic Sand", () -> new FallingBlock(JBlockProperties.HOLD_FIRE_SAND.create()));
         registerDefaultBlock("volcanic_soil", "Volcanic Soil", () -> new JBlock(JBlockProperties.HOLD_FIRE_SAND));
         registerRandomizedRotatedBlock("hot_ground", "Hot Ground", () -> new JBlock(JBlockProperties.HOLD_FIRE));
         registerRandomizedRotatedBlock("scorched_rubble", "Scorched Rubble", () -> new JBlock(JBlockProperties.HOLD_FIRE));
@@ -476,8 +471,7 @@ public class BlockRegistrator {
 
     public static void registerWoodType(String name, String enName, String saplingName, String saplingEnName, AbstractTreeGrower tree) {
         registerWoodType(name, enName);
-        registerSpeciallyRenderedBlock(saplingName, saplingEnName, () -> new JSaplingBlock(tree, JBlockProperties.PLANT_PROPS.create()),
-                () -> BlockModels.crossModel(JITL.tl("block/" + saplingName)));
+        registerCrossRenderedBlock(saplingName, saplingEnName, () -> new JSaplingBlock(tree, JBlockProperties.PLANT_PROPS.create()));
     }
 
     public static void registerWoodType(String name, String enName) {

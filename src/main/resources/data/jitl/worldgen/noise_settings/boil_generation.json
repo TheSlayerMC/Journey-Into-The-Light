@@ -102,7 +102,7 @@
               "if_true": {
                 "type": "minecraft:stone_depth",
                 "surface_type": "floor",
-                "add_surface_depth": false,
+                "add_surface_depth": true,
                 "add_surface_secondary_depth": false,
                 "offset": 0
               },
@@ -145,7 +145,7 @@
               "then_run": {
                 "type": "minecraft:block",
                 "result_state": {
-                  "Name": "jitl:rubble"
+                  "Name": "jitl:volcanic_sandstone"
                 }
               }
             }
@@ -5833,7 +5833,7 @@
       }
     }
   },
-  "sea_level": 42,
+  "sea_level": 40,
   "structures": {
     "structures": {}
   }
