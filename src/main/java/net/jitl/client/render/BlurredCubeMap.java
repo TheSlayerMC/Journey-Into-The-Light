@@ -15,22 +15,23 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class BlurredCubeMap {
-    private final Minecraft mc = Minecraft.getInstance();
     private static final int SIDES = 6;
     private final DynamicTexture viewportTexture;
-    private float panoramaTimer;
-    private final ResourceLocation[] images = new ResourceLocation[6];
+    private static float panoramaTimer;
+    private static final ResourceLocation[] images = new ResourceLocation[6];
     private final ResourceLocation backgroundTexture;
 
     public BlurredCubeMap(ResourceLocation baseImageLocation_) {
-        this.viewportTexture = new DynamicTexture(256, 256, false);
-        this.backgroundTexture = this.mc.getTextureManager().register("background", this.viewportTexture);
+        Minecraft mc = Minecraft.getInstance();
+        viewportTexture = new DynamicTexture(256, 256, false);
+        backgroundTexture = mc.getTextureManager().register("background", this.viewportTexture);
         for (int i = 0; i < 6; ++i) {
-            this.images[i] = new ResourceLocation(baseImageLocation_.getNamespace(), baseImageLocation_.getPath() + "_" + i + ".png");
+            images[i] = new ResourceLocation(baseImageLocation_.getNamespace(), baseImageLocation_.getPath() + "_" + i + ".png");
         }
     }
 
-    private void drawPanorama(int mouseX, int mouseY, float partialTicks) {
+    private static void drawPanorama(int mouseX, int mouseY, float partialTicks) {
+        Minecraft mc = Minecraft.getInstance();
         Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuilder();
         Matrix4f matrix4f = Matrix4f.perspective(85.0D, (float) mc.getWindow().getWidth() / (float) mc.getWindow().getHeight(), 0.05F, 10.0F);
@@ -47,16 +48,14 @@ public class BlurredCubeMap {
         RenderSystem.disableCull();
         RenderSystem.depthMask(false);
         RenderSystem.defaultBlendFunc();
-        int i = 8;
 
         for (int j = 0; j < 64; ++j) {
             posestack.pushPose();
             float f = ((float) (j % 8) / 8.0F - 0.5F) / 64.0F;
             float f1 = ((float) (j / 8) / 8.0F - 0.5F) / 64.0F;
-            float f2 = 0.0F;
             posestack.translate(f, f1, 0.0F);
-            posestack.mulPose(Vector3f.XP.rotationDegrees(Mth.sin(this.panoramaTimer / 400.0F) * 25.0F + 20.0F));
-            posestack.mulPose(Vector3f.YP.rotationDegrees(-this.panoramaTimer * 0.1F));
+            posestack.mulPose(Vector3f.XP.rotationDegrees(Mth.sin(panoramaTimer / 400.0F) * 25.0F + 20.0F));
+            posestack.mulPose(Vector3f.YP.rotationDegrees(-panoramaTimer * 0.1F));
 
             for (int k = 0; k < 6; ++k) {
                 posestack.pushPose();
@@ -81,10 +80,9 @@ public class BlurredCubeMap {
                     posestack.mulPose(Vector3f.XP.rotationDegrees(-90.0F));
                 }
 
-                RenderSystem.setShaderTexture(0, this.images[k]);
+                RenderSystem.setShaderTexture(0, images[k]);
                 bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
                 int l = 255 / (j + 1);
-                float f3 = 0.0F;
                 bufferbuilder.vertex(-1.0D, -1.0D, 1.0D).uv(0.0F, 0.0F).color(255, 255, 255, l).endVertex();
                 bufferbuilder.vertex(1.0D, -1.0D, 1.0D).uv(1.0F, 0.0F).color(255, 255, 255, l).endVertex();
                 bufferbuilder.vertex(1.0D, 1.0D, 1.0D).uv(1.0F, 1.0F).color(255, 255, 255, l).endVertex();
@@ -106,12 +104,13 @@ public class BlurredCubeMap {
     }
 
     private void rotateAndBlurSkybox() {
+        Minecraft mc = Minecraft.getInstance();
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, backgroundTexture);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.texParameter(3553, 10241, 9729);
         RenderSystem.texParameter(3553, 10240, 9729);
-        //GlStateManager._glCopyTexSubImage2D(3553, 0, 0, 0, 0, 0, 256, 256);
+        GlStateManager._glCopyTexSubImage2D(3553, 0, 0, 0, 0, 0, 256, 256);
         RenderSystem.enableBlend();
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA,
                 GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE,
@@ -140,10 +139,11 @@ public class BlurredCubeMap {
     }
 
     public void renderSkybox(int mouseX, int mouseY, float partialTicks) {
-        //this.mc.getFramebuffer().unbindFramebuffer();
-        this.panoramaTimer += partialTicks;
+        Minecraft mc = Minecraft.getInstance();
+        mc.getMainRenderTarget().unbindWrite();
+        panoramaTimer += partialTicks;
         RenderSystem.viewport(0, 0, 256, 256);
-        this.drawPanorama(mouseX, mouseY, partialTicks);
+        drawPanorama(mouseX, mouseY, partialTicks);
         this.rotateAndBlurSkybox();
         this.rotateAndBlurSkybox();
         this.rotateAndBlurSkybox();
@@ -151,27 +151,25 @@ public class BlurredCubeMap {
         this.rotateAndBlurSkybox();
         this.rotateAndBlurSkybox();
         this.rotateAndBlurSkybox();
-        //this.mc.getFramebuffer().bindFramebuffer(true);
-        int width = mc.getWindow().getWidth();
-        int height = mc.getWindow().getHeight();
+        mc.getMainRenderTarget().bindWrite(true);
+        int width = mc.getWindow().getScreenWidth();
+        int height = mc.getWindow().getScreenHeight();
 
         RenderSystem.viewport(0, 0, width, height);
         float f = 120.0F / (float) (Math.max(width, height));
         float f1 = (float) height * f / 256.0F;
         float f2 = (float) width * f / 256.0F;
-        int i = width;
-        int j = height;
         Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuilder();
         bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
-        assert this.mc.screen != null;
-        bufferbuilder.vertex(0.0D, j, this.mc.screen.getBlitOffset()).uv(0.5F - f1, 0.5F + f2)
+        assert mc.screen != null;
+        bufferbuilder.vertex(0.0D, height, mc.screen.getBlitOffset()).uv(0.5F - f1, 0.5F + f2)
                 .color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        bufferbuilder.vertex(i, j, this.mc.screen.getBlitOffset()).uv(0.5F - f1, 0.5F - f2)
+        bufferbuilder.vertex(width, height, mc.screen.getBlitOffset()).uv(0.5F - f1, 0.5F - f2)
                 .color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        bufferbuilder.vertex(i, 0.0D, this.mc.screen.getBlitOffset()).uv(0.5F + f1, 0.5F - f2)
+        bufferbuilder.vertex(width, 0.0D, mc.screen.getBlitOffset()).uv(0.5F + f1, 0.5F - f2)
                 .color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        bufferbuilder.vertex(0.0D, 0.0D, this.mc.screen.getBlitOffset()).uv(0.5F + f1, 0.5F + f2)
+        bufferbuilder.vertex(0.0D, 0.0D, mc.screen.getBlitOffset()).uv(0.5F + f1, 0.5F + f2)
                 .color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
         tessellator.end();
     }
