@@ -538,6 +538,8 @@ public class BlockRegistrator {
                         () -> BlockModels.cubeBottomTopModel(JITL.tl("block/" + name + "_top"), JITL.tl("block/" + name + "_side"), JITL.tl("block/" + name + "_top")));
     }
 
+
+
     /**
      * Registers a block with a default model, blockstate, and stone properties as a registry object
      */
@@ -715,6 +717,8 @@ public class BlockRegistrator {
                 .model(JITL.bml("block/" + name + "_post"), () -> JBlockModels.fencePost(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_side"), () -> JBlockModels.fenceSide(JITL.tl("block/" + textureName)))
                 .state(JBlockStateResources.fenceState(JITL.bml("block/" + name + "_post"), JITL.bml("block/" + name + "_side")));
+        for(int i = 0; i < 100; i++)
+        System.out.println(JBlockStateResources.fenceState(JITL.bml("block/" + name + "_post"), JITL.bml("block/" + name + "_side")).toJson());
     }
 
     private static void registerDoorBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {

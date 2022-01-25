@@ -163,7 +163,7 @@ object JBlockStateResources {
                         },
                         {
                             "when" {
-                                "north" to true
+                                "north" set "true"
                             }
                             "apply" {
                                 "model" set side
@@ -172,7 +172,7 @@ object JBlockStateResources {
                         },
                         {
                             "when" {
-                                "east" to true
+                                "east" set "true"
                             }
                             "apply" {
                                 "model" set side
@@ -182,7 +182,7 @@ object JBlockStateResources {
                         },
                         {
                             "when" {
-                                "south" to true
+                                "south" set "true"
                             }
                             "apply" {
                                 "model" set side
@@ -192,7 +192,7 @@ object JBlockStateResources {
                         },
                         {
                             "when" {
-                                "west" to true
+                                "west" set "true"
                             }
                             "apply" {
                                 "model" set side
