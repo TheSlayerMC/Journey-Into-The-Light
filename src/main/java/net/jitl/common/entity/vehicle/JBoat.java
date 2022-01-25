@@ -443,9 +443,7 @@ public class JBoat extends Boat {
         return (float)(l + 1);
     }
 
-    /**
-     * Decides how much the JBoat should be gliding on the land (based on any slippery blocks)
-     */
+    @Override
     public float getGroundFriction() {
         AABB aabb = this.getBoundingBox();
         AABB aabb1 = new AABB(aabb.minX, aabb.minY - 0.001D, aabb.minZ, aabb.maxX, aabb.minY, aabb.maxZ);
