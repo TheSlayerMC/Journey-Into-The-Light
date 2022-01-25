@@ -32,11 +32,9 @@ public class JBoatRenderer extends EntityRenderer<JBoat> {
     public JBoatRenderer(EntityRendererProvider.Context context) {
         super(context);
         this.shadowRadius = 0.8F;
-        this.boatResources = Stream.of(JBoat.Type.values()).collect(ImmutableMap.toImmutableMap((type) -> {
-            return type;
-        }, (JBoatType) -> {
-            return Pair.of(JITL.rl("textures/entity/boat/" + JBoatType.getName() + ".png"), new JBoatModel(context.bakeLayer(JModelLayers.createBoatModelName(JBoatType))));
-        }));
+        this.boatResources = Stream.of(JBoat.Type.values()).collect(ImmutableMap.toImmutableMap(
+                (type) -> type,
+                (JBoatType) -> Pair.of(JITL.rl("textures/entity/boat/" + JBoatType.getName() + ".png"), new JBoatModel(context.bakeLayer(JModelLayers.createBoatModelName(JBoatType))))));
     }
 
     @Override
