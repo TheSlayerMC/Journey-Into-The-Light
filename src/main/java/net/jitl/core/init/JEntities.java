@@ -10,6 +10,7 @@ import net.jitl.common.entity.overworld.*;
 import net.jitl.common.entity.pet.MiniBoomEntity;
 import net.jitl.common.entity.projectile.*;
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
+import net.jitl.common.entity.vehicle.JBoat;
 import net.jitl.core.JITL;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EntityType.Builder;
@@ -296,6 +297,13 @@ public class JEntities {
 
     public static final EntityType<EssenciaProjectileEntity> ESSENCIA_PROJECTILE_TYPE = REGISTER.register("essencia_projectile",
                     Builder.<EssenciaProjectileEntity>of(EssenciaProjectileEntity::new, MobCategory.MISC)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(0.5F, 0.5F))
+            .retrieve();
+
+    public static final EntityType<JBoat> JBOAT_TYPE = REGISTER.register("jboat",
+                    Builder.<JBoat>of(JBoat::new, MobCategory.MISC)
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(0.5F, 0.5F))

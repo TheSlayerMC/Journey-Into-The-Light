@@ -10,10 +10,15 @@ import net.jitl.client.render.model.*;
 import net.jitl.client.render.model.block.*;
 import net.jitl.client.render.model.euca.*;
 import net.jitl.client.render.model.frozen.*;
+import net.jitl.client.render.model.vehicle.JBoatModel;
+import net.jitl.client.render.vehicle.JBoatRenderer;
+import net.jitl.common.entity.vehicle.JBoat;
 import net.jitl.core.JITL;
 import net.jitl.core.init.JEntities;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -72,6 +77,8 @@ public class JEntityRenderRegistry {
         event.registerEntityRenderer(JEntities.CAPYBARA_TYPE, CapybaraRenderer::new);
         event.registerEntityRenderer(JEntities.EUCA_HOPPER_TYPE, EucaHopperRenderer::new);
 
+        //VEHICLES
+        event.registerEntityRenderer(JEntities.JBOAT_TYPE, JBoatRenderer::new);
     }
 
     @SubscribeEvent
@@ -112,5 +119,10 @@ public class JEntityRenderRegistry {
         event.registerLayerDefinition(JModelLayers.CAPYBARA_MODEL_LAYER, CapybaraModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.CAPYBARA_SADDLE_LAYER, CapybaraModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.EUCA_HOPPER_MODEL_LAYER, EucaHopperModel::createBodyLayer);
+
+        //VEHICLES
+        for(JBoat.Type type : JBoat.Type.values()) {
+            event.registerLayerDefinition(JModelLayers.createBoatModelName(type), JBoatModel::createBodyModel);
+        }
     }
 }

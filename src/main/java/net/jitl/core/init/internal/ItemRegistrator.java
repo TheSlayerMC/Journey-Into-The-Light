@@ -1,6 +1,7 @@
 package net.jitl.core.init.internal;
 
 import net.jitl.common.entity.projectile.*;
+import net.jitl.common.entity.vehicle.JBoat;
 import net.jitl.common.helper.JArmorMaterial;
 import net.jitl.common.helper.JToolTiers;
 import net.jitl.common.item.*;
@@ -23,10 +24,7 @@ import net.jitl.common.item.gear.abilities.bloodcrust.BloodcrustToolAbility;
 import net.jitl.common.item.gear.abilities.celestium.CelestiumArmorAbility;
 import net.jitl.common.item.gear.abilities.korite.KoriteSwordAbility;
 import net.jitl.common.item.gear.abilities.mekyum.MekyumSwordAbility;
-import net.jitl.common.item.interactive.AncientPieceItem;
-import net.jitl.common.item.interactive.FlameCoinItem;
-import net.jitl.common.item.interactive.LoreScrollItem;
-import net.jitl.common.item.interactive.MinersPearlItem;
+import net.jitl.common.item.interactive.*;
 import net.jitl.common.item.throwable.KnifeItem;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.common.item.throwable.ThrowableItem;
@@ -248,6 +246,12 @@ public class ItemRegistrator {
         registerItem("music_disc_haunt_muskie_2", "Music Disc", () -> new RecordItem(1, JSounds.HAUNT_MUSKIE_2::get, itemGrouped().stacksTo(1)));
         registerItem("music_disc_jitl_theme", "Music Disc", () -> new RecordItem(1, JSounds.MENU_MUSIC::get, itemGrouped().stacksTo(1)));
         registerItem("music_disc_snowflakesss", "Music Disc", () -> new RecordItem(1, JSounds.SNOWFLAKESSS::get, itemGrouped().stacksTo(1)));
+
+        registerItem("gold_euca_boat", "Golden Euca Boat", () -> new JBoatItem(JBoat.Type.GOLD_EUCA, itemGrouped()));
+        registerItem("brown_euca_boat", "Brown Euca Boat", () -> new JBoatItem(JBoat.Type.BROWN_EUCA, itemGrouped()));
+        registerItem("frozen_boat", "Frosty Boat", () -> new JBoatItem(JBoat.Type.FROZEN, itemGrouped()));
+        registerItem("burned_boat", "Burned Boat", () -> new JBoatItem(JBoat.Type.BURNED, itemGrouped()));
+
     }
 
     public static void addMaterialToolsWeapons(String name, JToolTiers tiers, IAbility sworldAbility, IAbility toolAbility) {

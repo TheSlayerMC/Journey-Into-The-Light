@@ -1,8 +1,10 @@
 package net.jitl.client.render;
 
 import com.google.common.collect.Sets;
+import net.jitl.common.entity.vehicle.JBoat;
 import net.jitl.core.JITL;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.world.entity.vehicle.Boat;
 
 import java.util.Set;
 
@@ -49,5 +51,9 @@ public class JModelLayers {
 
     private static ModelLayerLocation createLocation(String path, String model) {
         return new ModelLayerLocation(JITL.rl(path), model);
+    }
+
+    public static ModelLayerLocation createBoatModelName(JBoat.Type type) {
+        return createLocation("boat/" + type.getName(), "main");
     }
 }

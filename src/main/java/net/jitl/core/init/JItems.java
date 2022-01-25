@@ -193,4 +193,11 @@ public class JItems {
 
     public static final Item FLAME_COIN = promise();
     public static final Item BOIL_KEY = promise();
+
+    public static final Item GOLD_EUCA_BOAT = promise();
+    public static final Item BROWN_EUCA_BOAT = promise();
+    public static final Item FROZEN_BOAT = promise();
+    public static final Item BURNED_BOAT = promise();
+
+
 }
