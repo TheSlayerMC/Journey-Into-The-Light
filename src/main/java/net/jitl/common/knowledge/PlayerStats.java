@@ -30,6 +30,8 @@ public interface PlayerStats {
              */
             void add(float amount, EnumKnowledgeType type);
 
+            void addLevel(int amount, EnumKnowledgeType type);
+
             /**
              * Removes knowledge from the player.
              *

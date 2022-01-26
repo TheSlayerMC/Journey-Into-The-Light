@@ -21,6 +21,7 @@ public class KnowledgeStorageImpl extends SerializableInnerCap<CompoundTag, Know
 		}
 	}
 
+	@Override
 	public void addLevel(int amount, EnumKnowledgeType type) {
 		levels += amount;
 		Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(type, true));
