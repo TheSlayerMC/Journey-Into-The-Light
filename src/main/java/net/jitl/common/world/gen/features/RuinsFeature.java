@@ -2,6 +2,7 @@ package net.jitl.common.world.gen.features;
 
 import com.mojang.serialization.Codec;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
+import net.jitl.core.init.JBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import ru.timeconqueror.timecore.api.util.RandHelper;
 
 import java.util.Random;
 
@@ -35,7 +37,7 @@ public class RuinsFeature extends Feature<RuinsFeatureConfig> {
 			for (int j1 = 0; j1 < columns; j1++) {
 				int xPos = pos.getX() + rand.nextInt(config.maxSpreading);
 				int zPos = pos.getZ() + rand.nextInt(config.maxSpreading);
-				int yPos = reader.getHeight(Heightmap.Types.WORLD_SURFACE_WG, xPos, zPos);
+				int yPos = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, xPos, zPos);
 				int height = 1 + rand.nextInt(config.maxHeight);
 				placePos.set(xPos, yPos, zPos);
 				for (int i = 0; i < height; ++i) {
@@ -48,11 +50,14 @@ public class RuinsFeature extends Feature<RuinsFeatureConfig> {
                     BlockPos spawnPos = new BlockPos(pos.getX(), yPos, pos.getZ());
 
                     if (config.spawnBlock.test(reader.getBlockState(spawnPos.below()), rand)) {
-                        BlockState chestState = Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(rand));
-                        reader.setBlock(dirtPos, Blocks.COARSE_DIRT.defaultBlockState(), 2);
-                        reader.setBlock(chestPos, chestState, 2);
-                        RandomizableContainerBlockEntity.setLootTable(reader, rand, chestPos, config.resourceLocation);
-                    }
+						BlockState chestState = RandHelper.flipCoin(
+								rand,
+								Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(rand)),
+								JBlocks.CLAY_POTTERY.defaultBlockState());
+						reader.setBlock(dirtPos, Blocks.COARSE_DIRT.defaultBlockState(), 2);
+						reader.setBlock(chestPos, chestState, 2);
+						RandomizableContainerBlockEntity.setLootTable(reader, rand, chestPos, config.resourceLocation);
+					}
                 }
 			}
 			return true;

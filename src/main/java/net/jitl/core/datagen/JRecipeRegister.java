@@ -75,7 +75,7 @@ public class JRecipeRegister extends JRecipeProvider {
 				.pattern("#I#")
 				.pattern("###").unlockedBy(inputToKey(JItems.BLOOD), has(JItems.BLOOD)).save(recipeConsumer);
 
-		ShapedRecipeBuilder.shaped(JBlocks.ANCIENT_POTTERY, 1).define('#', JItems.POTTERY_SHARD)
+		ShapedRecipeBuilder.shaped(JBlocks.CLAY_POTTERY, 1).define('#', JItems.POTTERY_SHARD)
 				.pattern("###")
 				.pattern("# #")
 				.pattern("###").unlockedBy(inputToKey(JItems.POTTERY_SHARD), has(JItems.POTTERY_SHARD)).save(recipeConsumer);

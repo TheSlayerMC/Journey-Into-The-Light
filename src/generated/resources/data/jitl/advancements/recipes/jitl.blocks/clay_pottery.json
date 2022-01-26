@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "jitl:ancient_pottery"
+      "jitl:clay_pottery"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "jitl:ancient_pottery"
+        "recipe": "jitl:clay_pottery"
       }
     }
   },
