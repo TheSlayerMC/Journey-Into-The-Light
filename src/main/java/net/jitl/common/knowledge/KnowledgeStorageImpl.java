@@ -4,6 +4,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 
 public class KnowledgeStorageImpl extends SerializableInnerCap<CompoundTag, KnowledgeStorageImpl> implements PlayerStats.KnowledgeStorage {
+
 	private float amountOnLevel;
 	private int levels;
 

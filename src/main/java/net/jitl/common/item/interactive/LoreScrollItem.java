@@ -1,6 +1,9 @@
 package net.jitl.common.item.interactive;
 
 import net.jitl.client.render.screen.LoreScrollEntryScreen;
+import net.jitl.common.capability.player.JPlayer;
+import net.jitl.common.helper.EnumKnowledgeType;
+import net.jitl.common.knowledge.PlayerStats;
 import net.jitl.common.scroll.ScrollAPI;
 import net.jitl.common.scroll.ScrollCategory;
 import net.jitl.common.scroll.ScrollEntry;
@@ -21,25 +24,46 @@ import ru.timeconqueror.timecore.api.util.ChatUtils;
 import ru.timeconqueror.timecore.api.util.Pair;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class LoreScrollItem extends Item {
+
+    private EnumKnowledgeType knowledge;
+
     public LoreScrollItem(Properties properties_) {
         super(properties_);
+    }
+
+    public LoreScrollItem(EnumKnowledgeType knowledge, Properties prop) {
+        super(prop);
+        this.knowledge = knowledge;
     }
 
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level worldIn, @NotNull Player playerIn, @NotNull InteractionHand handIn) {
         ItemStack heldItem = playerIn.getItemInHand(handIn);
+        CompoundTag tag = heldItem.getTag();
+        if(tag == null) tag = new CompoundTag();
+
+        //Check if opened previously, if first time add knowledge
+        boolean hasOpenedBefore = false;
+        tag.putBoolean("openedBefore", false);
+
+        if(tag.contains("openedBefore"))
+            hasOpenedBefore = tag.getBoolean("openedBefore");
 
         if (worldIn.isClientSide) {
             ScrollEntry entry = getScrollEntry(heldItem);
             if (entry != null) {
                 displayScrollGui(null, entry);
+                if(!hasOpenedBefore) {
+                    Objects.requireNonNull(JPlayer.from(playerIn)).knowledge.addXP(knowledge, 100);//FIXME
+                }
+                tag.putBoolean("openedBefore", true);
             } else {
                 ChatUtils.sendInformativeError(JITL.MODID, playerIn, "Can't retrieve entry from provided itemstack.", Pair.of("Itemstack", heldItem), Pair.of("Tag Compound", heldItem.getTag()));
             }
         }
-
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, heldItem);
     }
 
