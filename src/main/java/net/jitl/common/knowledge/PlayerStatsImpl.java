@@ -21,7 +21,7 @@ public class PlayerStatsImpl extends SerializableInnerCap<CompoundTag, PlayerSta
 
 	@Override
 	public void addKnowledge(EnumKnowledgeType type, float amount) {
-		getKnowledge(type).add(amount);
+		getKnowledge(type).add(amount, type);
 	}
 
 	@Override
