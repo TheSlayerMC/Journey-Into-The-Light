@@ -28,15 +28,8 @@ import java.util.Objects;
 
 public class LoreScrollItem extends Item {
 
-    private EnumKnowledgeType knowledge;
-
     public LoreScrollItem(Properties properties_) {
         super(properties_);
-    }
-
-    public LoreScrollItem(EnumKnowledgeType knowledge, Properties prop) {
-        super(prop);
-        this.knowledge = knowledge;
     }
 
     @Override
@@ -45,23 +38,21 @@ public class LoreScrollItem extends Item {
         CompoundTag tag = heldItem.getTag();
         if(tag == null) tag = new CompoundTag();
 
-        //Check if opened previously, if first time add knowledge
-        tag.putBoolean("openedBefore", false);
-        heldItem.setTag(tag);
         if (worldIn.isClientSide) {
             ScrollEntry entry = getScrollEntry(heldItem);
             if (entry != null) {
                 displayScrollGui(null, entry);
                 if(!tag.getBoolean("openedBefore")) {
-                    //if(knowledge != null)
-                    //Objects.requireNonNull(JPlayer.from(playerIn)).knowledge
-                    //        .addXP(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), tag.getFloat("xp"));//FIXME
+//                    if(tag.getString("knowledge") != null) {
+//                        Objects.requireNonNull(JPlayer.from(playerIn)).knowledge
+//                            .addXP(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), tag.getFloat("xp"));//FIXME
+//                    }
+                    System.out.println("KNOWLEDGE TYPE: " + tag.getString("knowledge"));
+                    System.out.println("XP AMOUNT: " + tag.getFloat("xp"));
+                    System.out.println("HAVE BEEN OPENED ALREADY: " + tag.getBoolean("openedBefore"));
                     tag.putBoolean("openedBefore", true);
-
                 }
                 System.out.println(tag.getBoolean("openedBefore"));
-                System.out.println(tag.getString("knowledge"));
-                System.out.println(tag.getFloat("xp"));
             } else {
                 ChatUtils.sendInformativeError(JITL.MODID, playerIn, "Can't retrieve entry from provided itemstack.", Pair.of("Itemstack", heldItem), Pair.of("Tag Compound", heldItem.getTag()));
             }
@@ -87,6 +78,7 @@ public class LoreScrollItem extends Item {
             tagCompound.putString("entry", entry.getId());
             tagCompound.putString("knowledge", knowledge.getName());
             tagCompound.putFloat("xp", xp);
+            tagCompound.putBoolean("openedBefore", false);
 
             stack.setTag(tagCompound);
         } else {
