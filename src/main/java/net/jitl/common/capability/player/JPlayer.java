@@ -65,7 +65,6 @@ public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
                 return cap.orElseThrow(IllegalStateException::new);
             }
         }
-
         return null;
     }
 }

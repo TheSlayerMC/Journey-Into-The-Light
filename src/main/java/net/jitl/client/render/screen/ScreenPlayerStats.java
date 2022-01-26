@@ -39,7 +39,7 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         super(new ContainerEmpty(), playerInventory, new TranslatableComponent("jitl.stats"));
         this.imageWidth = 242;
         this.imageHeight = 197;
-        this.jPlayer = Objects.requireNonNull(JPlayer.from(ClientProxy.player()));
+        this.jPlayer = JPlayer.from(ClientProxy.player());
     }
 
     @Override
