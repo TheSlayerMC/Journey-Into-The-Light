@@ -464,7 +464,7 @@ public class BlockRegistrator {
 
         registerSpeciallyRenderedBlock("frozen_pedestal", "Frozen Pedestal", JBlockPedestal::new);
 
-        registerSpeciallyRenderedBlock("ancient_pottery", "Ancient Pottery", AncientPotteryBlock::new);
+        registerSpeciallyRenderedBlock("clay_pottery", "Clay Pottery", ClayPotteryBlock::new);
 
         registerOrientableRenderedBlock("boil_lock", "Boiling Lock", LockBlock::new, "boil_lock_top", "boil_lock_side", "boil_lock_front");
     }

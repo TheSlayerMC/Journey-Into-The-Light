@@ -36,7 +36,7 @@ public class JTiles {
             REGISTER.registerSingleBound("essencia_altar", EssenciaAltarTile::new, () -> JBlocks.ESSENCIA_ALTAR).regCustomRenderer(() -> EssenciaAltarTER::new);
             REGISTER.registerSingleBound("guardian_tower_brain", GuardianTowerBrainTile::new, () -> JBlocks.GUARDIAN_TOWER_BRAIN);
             REGISTER.registerSingleBound("pedestal", PedestalTile::new, () -> JBlocks.FROZEN_PEDESTAL).regCustomRenderer(() -> PedestalTER::new);
-            REGISTER.registerSingleBound("ancient_pottery", PotTile::new, () -> JBlocks.ANCIENT_POTTERY);
+            REGISTER.registerSingleBound("ancient_pottery", PotTile::new, () -> JBlocks.CLAY_POTTERY);
             REGISTER.registerSingleBound("obelisk", ObeliskTile::new, () -> JBlocks.ANCIENT_OBELISK).regCustomRenderer(() -> ObeliskTER::new);
 
         }

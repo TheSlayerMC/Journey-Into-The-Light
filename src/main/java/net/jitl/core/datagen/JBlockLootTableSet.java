@@ -116,7 +116,7 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 	}
 
 	private void initUtilityBlocks() {
-		registerSpecialOreWithExtraCount(JBlocks.ANCIENT_POTTERY, JItems.POTTERY_SHARD, 2, 5);
+		registerSpecialOreWithExtraCount(JBlocks.CLAY_POTTERY, JItems.POTTERY_SHARD, 2, 5);
 	}
 
 	/**

@@ -33,15 +33,13 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class AncientPotteryBlock extends JFallingTileContainerBlock {
-    public static final VoxelShape MIDDLE = Block.box(1.0D, 2.0D, 1.0D, 15.0D, 14.0D, 15.0D);
-    public static final VoxelShape BOTTOM = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D);
-    public static final VoxelShape TOP = Block.box(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-    public static final VoxelShape TOP_MID = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 18.0D, 11.0D);
-    public static final VoxelShape LIP = Block.box(4.0D, 18.0D, 4.0D, 12.0D, 20.0D, 12.0D);
-    public static final VoxelShape SHAPE = Shapes.or(BOTTOM, MIDDLE, TOP, LIP, TOP_MID);
+public class ClayPotteryBlock extends JFallingTileContainerBlock {
+    public static final VoxelShape MIDDLE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 12.0D, 15.0D);
+    private static final VoxelShape FUNNEL = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 14.0D, 11.0D);
+    private static final VoxelShape LIP = Block.box(4.0D, 14.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+    public static final VoxelShape SHAPE = Shapes.or(MIDDLE, LIP, FUNNEL);
 
-    public AncientPotteryBlock() {
+    public ClayPotteryBlock() {
         super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), PotTile::new);
     }
 
