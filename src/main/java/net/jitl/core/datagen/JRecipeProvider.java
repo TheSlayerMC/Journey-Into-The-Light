@@ -5,6 +5,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
@@ -60,11 +61,88 @@ public class JRecipeProvider extends RecipeProvider {
 		addHoeRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName(recipePrefix.getString() + "hoe"));
 	}
 
+	protected void addToolsetRecipes(Consumer<FinishedRecipe> recipeConsumer, ItemLike stickItem, ItemLike materialItem, RecipePrefix recipePrefix, String prefix) {
+		addAxeRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName((recipePrefix.getString() + "axe"), prefix));
+		addPickaxeRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName((recipePrefix.getString() + "pickaxe"), prefix));
+		addShovelRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName((recipePrefix.getString() + "shovel"), prefix));
+		addSwordRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName((recipePrefix.getString() + "sword"), prefix));
+		addHoeRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName((recipePrefix.getString() + "hoe"), prefix));
+	}
+
 	public void addArmorRecipes(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem, RecipePrefix recipePrefix) {
 		addHelmetRecipe(recipeConsumer, materialItem, getItemFromRegistryName((recipePrefix.getString() + "helmet")));
 		addChestplateRecipe(recipeConsumer, materialItem, getItemFromRegistryName((recipePrefix.getString() + "chestplate")));
 		addLeggingsRecipe(recipeConsumer, materialItem, getItemFromRegistryName((recipePrefix.getString() + "leggings")));
 		addBootsRecipe(recipeConsumer, materialItem, getItemFromRegistryName((recipePrefix.getString() + "boots")));
+	}
+
+	public void addWoodType(Consumer<FinishedRecipe> recipeConsumer, ItemLike log, ItemLike plank, ItemLike stairs, ItemLike slab, ItemLike fence, ItemLike gate, ItemLike trapdoor, ItemLike pressureplate, ItemLike door, ItemLike button, ItemLike boat) {
+		addToolsetRecipes(recipeConsumer, Items.STICK, plank, RecipePrefix.WOODEN, "minecraft");
+		addBoatRecipe(recipeConsumer, plank, boat);
+		addStairRecipe(recipeConsumer, plank, stairs);
+		addSlabRecipe(recipeConsumer, plank, slab);
+		addFenceRecipe(recipeConsumer, plank, Items.STICK, fence);
+		addFenceGateRecipe(recipeConsumer, Items.STICK, plank, gate);
+		addTrapdoorRecipe(recipeConsumer, plank, trapdoor);
+		addPressureplateRecipe(recipeConsumer, plank, pressureplate);
+		addDoorRecipe(recipeConsumer, plank, door);
+		addStick(recipeConsumer, plank);
+		ShapelessRecipeBuilder.shapeless(plank, 4).requires(log).save(recipeConsumer);
+		ShapelessRecipeBuilder.shapeless(button, 1).requires(plank).save(recipeConsumer);
+	}
+
+	protected void addStick(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem) {
+		ShapedRecipeBuilder.shaped(Items.STICK, 4).define('#', materialItem)
+				.pattern("#")
+				.pattern("#").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
+	}
+
+	protected void addDoorRecipe(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem, ItemLike output) {
+		ShapedRecipeBuilder.shaped(output, 1).define('#', materialItem)
+				.pattern("##")
+				.pattern("##")
+				.pattern("##").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
+	}
+
+	protected void addPressureplateRecipe(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem, ItemLike output) {
+		ShapedRecipeBuilder.shaped(output, 1).define('#', materialItem)
+				.pattern("##").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
+	}
+
+	protected void addTrapdoorRecipe(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem, ItemLike output) {
+		ShapedRecipeBuilder.shaped(output, 1).define('#', materialItem)
+				.pattern("###")
+				.pattern("###").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
+	}
+
+	protected void addFenceGateRecipe(Consumer<FinishedRecipe> recipeConsumer, ItemLike stickItem, ItemLike materialItem, ItemLike output) {
+		ShapedRecipeBuilder.shaped(output, 1).define('#', materialItem).define('I', stickItem)
+				.pattern("#I#")
+				.pattern("#I#").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
+	}
+
+	protected void addFenceRecipe(Consumer<FinishedRecipe> recipeConsumer, ItemLike stickItem, ItemLike materialItem, ItemLike output) {
+		ShapedRecipeBuilder.shaped(output, 1).define('#', materialItem).define('I', stickItem)
+				.pattern("#I#")
+				.pattern("#I#").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
+	}
+
+	protected void addSlabRecipe(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem, ItemLike output) {
+		ShapedRecipeBuilder.shaped(output, 1).define('#', materialItem)
+				.pattern("###").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
+	}
+
+	protected void addStairRecipe(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem, ItemLike output) {
+		ShapedRecipeBuilder.shaped(output, 1).define('#', materialItem)
+				.pattern("#  ")
+				.pattern("## ")
+				.pattern("###").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
+	}
+
+	protected void addBoatRecipe(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem, ItemLike output) {
+		ShapedRecipeBuilder.shaped(output, 1).define('#', materialItem)
+				.pattern("# #")
+				.pattern("###").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
 	}
 
 	protected void addPickaxeRecipe(Consumer<FinishedRecipe> recipeConsumer, ItemLike stickItem, ItemLike materialItem, ItemLike output) {
@@ -164,11 +242,17 @@ public class JRecipeProvider extends RecipeProvider {
 		return ForgeRegistries.ITEMS.getValue(new ResourceLocation(JITL.MODID, registryName));
 	}
 
+	public ItemLike getItemFromRegistryName(String registryName, String modID) {
+		return ForgeRegistries.ITEMS.getValue(new ResourceLocation(modID, registryName));
+	}
+
 	public enum RecipePrefix {
 
 		SAPPHIRE("sapphire_"),
 		LUNIUM("lunium_"),
-		SHADIUM("shadium_");
+		SHADIUM("shadium_"),
+		WOODEN("wooden_")
+		;
 
 		String prefix;
 

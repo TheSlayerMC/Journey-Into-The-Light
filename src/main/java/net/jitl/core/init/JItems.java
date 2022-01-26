@@ -199,6 +199,11 @@ public class JItems {
     public static final Item FROZEN_BOAT = promise();
     public static final Item BURNED_BOAT = promise();
 
+    public static final Item GOLD_EUCA_DOOR = promise();
+    public static final Item BROWN_EUCA_DOOR = promise();
+    public static final Item FROZEN_DOOR = promise();
+    public static final Item BURNED_DOOR = promise();
+
     public static final Item OVERWORLD_KNOWLEDGE = promise();
     public static final Item NETHER_KNOWLEDGE = promise();
     public static final Item END_KNOWLEDGE = promise();
