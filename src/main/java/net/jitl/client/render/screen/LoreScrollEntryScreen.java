@@ -1,5 +1,6 @@
 package net.jitl.client.render.screen;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.jitl.client.util.EnumHexColor;
@@ -343,7 +344,7 @@ public class LoreScrollEntryScreen extends Screen {
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 
-    /*@Override
+    @Override
     //FIXME wrong method?
     public void afterMouseAction() {
         super.afterMouseAction();
@@ -367,6 +368,9 @@ public class LoreScrollEntryScreen extends Screen {
                 minecraft.setScreen(null);
             }
         }
+        if(keyCode == 256) {
+            minecraft.setScreen(null);
+        }
         return true;
-    }*/
+    }
 }
