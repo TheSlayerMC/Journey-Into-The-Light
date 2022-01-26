@@ -38,6 +38,11 @@
       "jitl:items/bottle_plug"
     ]
   },
+  "music.toast": {
+    "sounds": [
+      "jitl:music/toast"
+    ]
+  },
   "block.grassy_permafrost.break": {
     "sounds": [
       "jitl:blocks/break/grassy_permafrost_1",

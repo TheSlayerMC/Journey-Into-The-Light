@@ -12,6 +12,7 @@ public class JSounds {
     private static final SoundRegister REGISTER = new SoundRegister(JITL.MODID);
 
     public static final RegistryObject<SoundEvent> ICE_CRYSTAL_BREAK = REGISTER.register("block.ice_crystal.break");
+    public static final RegistryObject<SoundEvent> TOAST = REGISTER.register("music.toast");
 
     public static final RegistryObject<SoundEvent> MUD_BLOCK_BREAK = REGISTER.register("block.mud.break");
     public static final RegistryObject<SoundEvent> MUD_BLOCK_DIG = REGISTER.register("block.mud.dig");
