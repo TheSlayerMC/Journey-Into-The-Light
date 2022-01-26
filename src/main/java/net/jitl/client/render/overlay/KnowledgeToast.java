@@ -3,8 +3,10 @@ package net.jitl.client.render.overlay;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.render.JToast;
+import net.jitl.common.helper.ArgbColor;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.core.init.JSounds;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.toasts.ToastComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -34,10 +36,10 @@ public class KnowledgeToast implements JToast {
         toastComponent.blit(poseStack, 0, 0, 0, 0, this.width(), this.height());
         if (displayinfo != null) {
             List<FormattedCharSequence> list = toastComponent.getMinecraft().font.split(displayinfo.getDescription(), 125);
-            int i = displayinfo.getFrame() == JFrameType.LEVEL ? 16746751 : 16776960;
+            int i = displayinfo.getFrame() == JFrameType.LEVEL ? ArgbColor.from(ChatFormatting.DARK_PURPLE) : ArgbColor.from(ChatFormatting.BLACK);
             if (list.size() == 1) {
-                toastComponent.getMinecraft().font.draw(poseStack, displayinfo.getFrame().getDisplayName(), 30.0F, 18.0F, i | -16777216);
-                toastComponent.getMinecraft().font.draw(poseStack, list.get(0), 30.0F, 7.0F, -1);
+                toastComponent.getMinecraft().font.draw(poseStack, displayinfo.getFrame().getDisplayName(), 30.0F, 18.0F, i);//Level or XP
+                toastComponent.getMinecraft().font.draw(poseStack, list.get(0), 30.0F, 7.0F, ArgbColor.from(ChatFormatting.BLACK));// Knowledge name
             } else {
                 int j = 1500;
                 float f = 300.0F;
