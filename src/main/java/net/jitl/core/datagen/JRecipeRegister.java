@@ -21,6 +21,7 @@ public class JRecipeRegister extends JRecipeProvider {
 		buildBlockRecipes(recipeConsumer);
 		buildItemRecipes(recipeConsumer);
 		buildToolRecipes(recipeConsumer);
+		buildWoodTypes(recipeConsumer);
 		buildBlastingRecipes();
 		buildSmeltingRecipes();
 		buildCookingRecipes();
@@ -84,6 +85,13 @@ public class JRecipeRegister extends JRecipeProvider {
 
 	public void buildToolRecipes(Consumer<FinishedRecipe> recipeConsumer) {
 		addToolsetAndArmorRecipes(recipeConsumer, JItems.OBSIDIAN_ROD, JItems.SAPPHIRE, RecipePrefix.SAPPHIRE);
+	}
+
+	public void buildWoodTypes(Consumer<FinishedRecipe> consumer) {
+		addWoodType(consumer, JBlocks.EUCA_GOLD_LOG, JBlocks.EUCA_GOLD_PLANKS, JBlocks.EUCA_GOLD_STAIRS, JBlocks.EUCA_GOLD_PLANK_SLAB, JBlocks.EUCA_GOLD_FENCE, JBlocks.EUCA_GOLD_GATE, JBlocks.EUCA_GOLD_TRAP_DOOR, JBlocks.EUCA_GOLD_PRESSURE_PLATE, JItems.GOLD_EUCA_DOOR, JBlocks.EUCA_GOLD_BUTTON, JItems.GOLD_EUCA_BOAT);
+		addWoodType(consumer, JBlocks.EUCA_BROWN_LOG, JBlocks.EUCA_BROWN_PLANKS, JBlocks.EUCA_BROWN_STAIRS, JBlocks.EUCA_BROWN_PLANK_SLAB, JBlocks.EUCA_BROWN_FENCE, JBlocks.EUCA_BROWN_GATE, JBlocks.EUCA_BROWN_TRAP_DOOR, JBlocks.EUCA_BROWN_PRESSURE_PLATE, JItems.BROWN_EUCA_DOOR, JBlocks.EUCA_BROWN_BUTTON, JItems.BROWN_EUCA_BOAT);
+		addWoodType(consumer, JBlocks.FROZEN_LOG, JBlocks.FROZEN_PLANKS, JBlocks.FROZEN_STAIRS, JBlocks.FROZEN_PLANK_SLAB, JBlocks.FROZEN_FENCE, JBlocks.FROZEN_GATE, JBlocks.FROZEN_TRAP_DOOR, JBlocks.FROZEN_PRESSURE_PLATE, JItems.FROZEN_DOOR, JBlocks.FROZEN_BUTTON, JItems.FROZEN_BOAT);
+		addWoodType(consumer, JBlocks.BURNED_BARK, JBlocks.BURNED_BARK_PLANKS, JBlocks.BURNED_BARK_STAIRS, JBlocks.BURNED_BARK_PLANK_SLAB, JBlocks.BURNED_BARK_FENCE, JBlocks.BURNED_BARK_GATE, JBlocks.BURNED_BARK_TRAP_DOOR, JBlocks.BURNED_BARK_PRESSURE_PLATE, JItems.BURNED_DOOR, JBlocks.BURNED_BARK_BUTTON, JItems.BURNED_BOAT);
 	}
 
 	public void buildBlastingRecipes() {

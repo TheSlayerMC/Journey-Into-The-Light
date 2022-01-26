@@ -200,6 +200,41 @@ public class JBlocks {
     public static final Block FROZEN_PLANKS = promise();
     public static final Block BURNED_BARK_PLANKS = promise();
 
+    public static final Block EUCA_GOLD_STAIRS = promise();
+    public static final Block EUCA_BROWN_STAIRS = promise();
+    public static final Block FROZEN_STAIRS = promise();
+    public static final Block BURNED_BARK_STAIRS = promise();
+
+    public static final Block EUCA_GOLD_FENCE = promise();
+    public static final Block EUCA_BROWN_FENCE = promise();
+    public static final Block FROZEN_FENCE = promise();
+    public static final Block BURNED_BARK_FENCE = promise();
+
+    public static final Block EUCA_GOLD_PLANK_SLAB = promise();
+    public static final Block EUCA_BROWN_PLANK_SLAB = promise();
+    public static final Block FROZEN_PLANK_SLAB = promise();
+    public static final Block BURNED_BARK_PLANK_SLAB = promise();
+
+    public static final Block EUCA_GOLD_TRAP_DOOR = promise();
+    public static final Block EUCA_BROWN_TRAP_DOOR = promise();
+    public static final Block FROZEN_TRAP_DOOR = promise();
+    public static final Block BURNED_BARK_TRAP_DOOR = promise();
+
+    public static final Block EUCA_GOLD_GATE = promise();
+    public static final Block EUCA_BROWN_GATE = promise();
+    public static final Block FROZEN_GATE = promise();
+    public static final Block BURNED_BARK_GATE = promise();
+
+    public static final Block EUCA_GOLD_PRESSURE_PLATE = promise();
+    public static final Block EUCA_BROWN_PRESSURE_PLATE = promise();
+    public static final Block FROZEN_PRESSURE_PLATE = promise();
+    public static final Block BURNED_BARK_PRESSURE_PLATE = promise();
+
+    public static final Block EUCA_GOLD_BUTTON = promise();
+    public static final Block EUCA_BROWN_BUTTON = promise();
+    public static final Block FROZEN_BUTTON = promise();
+    public static final Block BURNED_BARK_BUTTON = promise();
+
     public static final Block GOLDITE_DIRT = promise();
     public static final Block GOLDITE_FARMLAND = promise();
 
@@ -302,4 +337,6 @@ public class JBlocks {
     public static final Block CLAY_POTTERY = promise();
 
     public static final Block DREADIRON_BLOCK = promise();
+
+
 }
