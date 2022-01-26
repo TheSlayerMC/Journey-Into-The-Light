@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "jitl:euca_gold_log"
+    }
+  ],
+  "result": {
+    "item": "jitl:euca_gold_plank",
+    "count": 4
+  }
+}

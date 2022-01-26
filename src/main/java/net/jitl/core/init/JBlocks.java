@@ -6,6 +6,7 @@ import net.jitl.common.block.foliage.*;
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.core.JITL;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.StairBlock;
@@ -195,10 +196,10 @@ public class JBlocks {
     public static final Block GOLDITE_GRASS_BLOCK = promise();
     public static final Block EUCA_GOLD_GRASS_BLOCK = promise();
 
-    public static final Block EUCA_GOLD_PLANKS = promise();
-    public static final Block EUCA_BROWN_PLANKS = promise();
-    public static final Block FROZEN_PLANKS = promise();
-    public static final Block BURNED_BARK_PLANKS = promise();
+    public static final Block EUCA_GOLD_PLANK = promise();
+    public static final Block EUCA_BROWN_PLANK = promise();
+    public static final Block FROZEN_PLANK = promise();
+    public static final Block BURNED_BARK_PLANK = promise();
 
     public static final Block EUCA_GOLD_STAIRS = promise();
     public static final Block EUCA_BROWN_STAIRS = promise();
@@ -234,6 +235,11 @@ public class JBlocks {
     public static final Block EUCA_BROWN_BUTTON = promise();
     public static final Block FROZEN_BUTTON = promise();
     public static final Block BURNED_BARK_BUTTON = promise();
+
+    public static final Block EUCA_GOLD_DOOR = promise();
+    public static final Block EUCA_BROWN_DOOR = promise();
+    public static final Block FROZEN_DOOR = promise();
+    public static final Block BURNED_BARK_DOOR = promise();
 
     public static final Block GOLDITE_DIRT = promise();
     public static final Block GOLDITE_FARMLAND = promise();

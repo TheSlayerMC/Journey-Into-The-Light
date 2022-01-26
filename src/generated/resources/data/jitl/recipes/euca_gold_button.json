@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "jitl:euca_gold_plank"
+    }
+  ],
+  "result": {
+    "item": "jitl:euca_gold_button"
+  }
+}

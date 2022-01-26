@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:frozen_stairs"
+    ]
+  },
+  "criteria": {
+    "has_frozen_plank": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:frozen_plank"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:frozen_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_frozen_plank",
+      "has_the_recipe"
+    ]
+  ]
+}

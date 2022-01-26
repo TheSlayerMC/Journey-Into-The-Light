@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "jitl:burned_bark_plank"
+    }
+  ],
+  "result": {
+    "item": "jitl:burned_bark_button"
+  }
+}

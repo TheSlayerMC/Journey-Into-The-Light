@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "jitl:burned_bark_plank"
+    }
+  },
+  "result": {
+    "item": "jitl:burned_bark_pressure_plate"
+  }
+}

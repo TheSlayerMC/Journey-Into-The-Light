@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:gold_euca_boat"
+    ]
+  },
+  "criteria": {
+    "has_euca_gold_plank": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:euca_gold_plank"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:gold_euca_boat"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_euca_gold_plank",
+      "has_the_recipe"
+    ]
+  ]
+}

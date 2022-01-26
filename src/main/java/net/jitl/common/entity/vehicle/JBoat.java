@@ -40,7 +40,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WaterlilyBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -832,10 +831,10 @@ public class JBoat extends Boat {
     }
 
     public enum Type {
-        GOLD_EUCA(JBlocks.EUCA_GOLD_PLANKS, "gold_euca"),
-        BROWN_EUCA(JBlocks.EUCA_BROWN_PLANKS, "brown_euca"),
-        FROZEN(JBlocks.FROZEN_PLANKS, "frozen"),
-        BURNED(JBlocks.BURNED_BARK_PLANKS, "burned");
+        GOLD_EUCA(JBlocks.EUCA_GOLD_PLANK, "gold_euca"),
+        BROWN_EUCA(JBlocks.EUCA_BROWN_PLANK, "brown_euca"),
+        FROZEN(JBlocks.FROZEN_PLANK, "frozen"),
+        BURNED(JBlocks.BURNED_BARK_PLANK, "burned");
 
         private final String name;
         private final Block planks;

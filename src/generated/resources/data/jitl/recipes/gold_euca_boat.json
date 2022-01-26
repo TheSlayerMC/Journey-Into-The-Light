@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "jitl:euca_gold_plank"
+    }
+  },
+  "result": {
+    "item": "jitl:gold_euca_boat"
+  }
+}

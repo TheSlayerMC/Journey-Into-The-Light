@@ -4,6 +4,7 @@ import net.jitl.core.JITL;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -61,14 +62,6 @@ public class JRecipeProvider extends RecipeProvider {
 		addHoeRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName(recipePrefix.getString() + "hoe"));
 	}
 
-	protected void addToolsetRecipes(Consumer<FinishedRecipe> recipeConsumer, ItemLike stickItem, ItemLike materialItem, RecipePrefix recipePrefix, String prefix) {
-		addAxeRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName((recipePrefix.getString() + "axe"), prefix));
-		addPickaxeRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName((recipePrefix.getString() + "pickaxe"), prefix));
-		addShovelRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName((recipePrefix.getString() + "shovel"), prefix));
-		addSwordRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName((recipePrefix.getString() + "sword"), prefix));
-		addHoeRecipe(recipeConsumer, stickItem, materialItem, getItemFromRegistryName((recipePrefix.getString() + "hoe"), prefix));
-	}
-
 	public void addArmorRecipes(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem, RecipePrefix recipePrefix) {
 		addHelmetRecipe(recipeConsumer, materialItem, getItemFromRegistryName((recipePrefix.getString() + "helmet")));
 		addChestplateRecipe(recipeConsumer, materialItem, getItemFromRegistryName((recipePrefix.getString() + "chestplate")));
@@ -77,7 +70,11 @@ public class JRecipeProvider extends RecipeProvider {
 	}
 
 	public void addWoodType(Consumer<FinishedRecipe> recipeConsumer, ItemLike log, ItemLike plank, ItemLike stairs, ItemLike slab, ItemLike fence, ItemLike gate, ItemLike trapdoor, ItemLike pressureplate, ItemLike door, ItemLike button, ItemLike boat) {
-		addToolsetRecipes(recipeConsumer, Items.STICK, plank, RecipePrefix.WOODEN, "minecraft");
+		//addAxeRecipe(recipeConsumer, Items.STICK, plank, Items.WOODEN_AXE);
+		//addPickaxeRecipe(recipeConsumer, Items.STICK, plank, Items.WOODEN_PICKAXE);
+		//addShovelRecipe(recipeConsumer, Items.STICK, plank, Items.WOODEN_SHOVEL);
+		//addSwordRecipe(recipeConsumer, Items.STICK, plank, Items.WOODEN_SWORD);
+		//addHoeRecipe(recipeConsumer, Items.STICK, plank, Items.WOODEN_HOE);
 		addBoatRecipe(recipeConsumer, plank, boat);
 		addStairRecipe(recipeConsumer, plank, stairs);
 		addSlabRecipe(recipeConsumer, plank, slab);
@@ -86,9 +83,17 @@ public class JRecipeProvider extends RecipeProvider {
 		addTrapdoorRecipe(recipeConsumer, plank, trapdoor);
 		addPressureplateRecipe(recipeConsumer, plank, pressureplate);
 		addDoorRecipe(recipeConsumer, plank, door);
-		addStick(recipeConsumer, plank);
-		ShapelessRecipeBuilder.shapeless(plank, 4).requires(log).save(recipeConsumer);
-		ShapelessRecipeBuilder.shapeless(button, 1).requires(plank).save(recipeConsumer);
+		//addStick(recipeConsumer, plank);
+		planksFromLogs(recipeConsumer, plank, log);
+		buttonBuilder(recipeConsumer, button, plank);
+	}
+
+	protected void buttonBuilder(Consumer<FinishedRecipe> recipeConsumer, ItemLike button, ItemLike material) {
+		ShapelessRecipeBuilder.shapeless(button).requires(material).unlockedBy(inputToKey(material), has(material)).save(recipeConsumer);
+	}
+
+	protected void planksFromLogs(Consumer<FinishedRecipe> finishedRecipeConsumer, ItemLike planks, ItemLike logs) {
+		ShapelessRecipeBuilder.shapeless(planks, 4).requires(logs).unlockedBy(inputToKey(logs), has(logs)).save(finishedRecipeConsumer);
 	}
 
 	protected void addStick(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem) {

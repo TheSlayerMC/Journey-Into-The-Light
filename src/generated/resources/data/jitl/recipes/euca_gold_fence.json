@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "I": {
+      "item": "jitl:euca_gold_plank"
+    }
+  },
+  "result": {
+    "item": "jitl:euca_gold_fence"
+  }
+}

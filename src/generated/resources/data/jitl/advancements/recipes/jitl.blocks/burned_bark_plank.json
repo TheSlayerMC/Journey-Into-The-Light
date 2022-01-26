@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:burned_bark_plank"
+    ]
+  },
+  "criteria": {
+    "has_burned_bark": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:burned_bark"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:burned_bark_plank"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_burned_bark",
+      "has_the_recipe"
+    ]
+  ]
+}

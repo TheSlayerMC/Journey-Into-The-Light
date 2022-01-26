@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "jitl:euca_brown_plank"
+    ]
+  },
+  "criteria": {
+    "has_euca_brown_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "jitl:euca_brown_log"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jitl:euca_brown_plank"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_euca_brown_log",
+      "has_the_recipe"
+    ]
+  ]
+}
