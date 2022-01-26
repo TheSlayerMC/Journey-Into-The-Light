@@ -71,7 +71,7 @@ public class JBoatRenderer extends EntityRenderer<JBoat> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(JBoat entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull JBoat entity) {
         return getModelWithLocation(entity).getFirst();
     }
 
