@@ -4,8 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.render.JToast;
 import net.jitl.common.helper.EnumKnowledgeType;
-import net.minecraft.advancements.DisplayInfo;
-import net.minecraft.advancements.FrameType;
 import net.minecraft.client.gui.components.toasts.ToastComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -31,14 +29,14 @@ public class KnowledgeToast implements JToast {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, TEXTURE);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        DisplayInfo displayinfo = isLevel ? this.knowledge.getLevelDisplay() : this.knowledge.getXPDisplay();
+        JDisplayInfo displayinfo = isLevel ? this.knowledge.getLevelDisplay() : this.knowledge.getXPDisplay();
         toastComponent.blit(poseStack, 0, 0, 0, 0, this.width(), this.height());
         if (displayinfo != null) {
-            List<FormattedCharSequence> list = toastComponent.getMinecraft().font.split(displayinfo.getTitle(), 125);
-            int i = displayinfo.getFrame() == FrameType.CHALLENGE ? 16746751 : 16776960;
+            List<FormattedCharSequence> list = toastComponent.getMinecraft().font.split(displayinfo.getDescription(), 125);
+            int i = displayinfo.getFrame() == JFrameType.LEVEL ? 16746751 : 16776960;
             if (list.size() == 1) {
-                toastComponent.getMinecraft().font.draw(poseStack, displayinfo.getFrame().getDisplayName(), 30.0F, 7.0F, i | -16777216);
-                toastComponent.getMinecraft().font.draw(poseStack, list.get(0), 30.0F, 18.0F, -1);
+                toastComponent.getMinecraft().font.draw(poseStack, displayinfo.getFrame().getDisplayName(), 30.0F, 18.0F, i | -16777216);
+                toastComponent.getMinecraft().font.draw(poseStack, list.get(0), 30.0F, 7.0F, -1);
             } else {
                 int j = 1500;
                 float f = 300.0F;
@@ -58,7 +56,7 @@ public class KnowledgeToast implements JToast {
 
             if (!this.playedSound && timeSinceLastVisible > 0L) {
                 this.playedSound = true;
-                if (displayinfo.getFrame() == FrameType.CHALLENGE) {
+                if (displayinfo.getFrame() == JFrameType.LEVEL) {
                     toastComponent.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1.0F, 1.0F));
                 }
             }
