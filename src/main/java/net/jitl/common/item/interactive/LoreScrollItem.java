@@ -47,7 +47,7 @@ public class LoreScrollItem extends Item {
 
         //Check if opened previously, if first time add knowledge
         tag.putBoolean("openedBefore", false);
-
+        heldItem.setTag(tag);
         if (worldIn.isClientSide) {
             ScrollEntry entry = getScrollEntry(heldItem);
             if (entry != null) {
