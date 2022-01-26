@@ -1,5 +1,8 @@
 package net.jitl.common.knowledge;
 
+import net.jitl.client.render.overlay.KnowledgeToast;
+import net.jitl.common.helper.EnumKnowledgeType;
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 
@@ -9,13 +12,18 @@ public class KnowledgeStorageImpl extends SerializableInnerCap<CompoundTag, Know
 	private int levels;
 
 	@Override
-	public void add(float amount) {
+	public void add(float amount, EnumKnowledgeType type) {
 		if (amountOnLevel + amount >= getLevelCapacity(levels)) {
 			amountOnLevel = amountOnLevel + amount - getLevelCapacity(levels);
-			levels += 1;
+			addLevel(1, type);
 		} else {
 			amountOnLevel += amount;
 		}
+	}
+
+	public void addLevel(int amount, EnumKnowledgeType type) {
+		levels += amount;
+		Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(type, true));
 	}
 
 	@Override

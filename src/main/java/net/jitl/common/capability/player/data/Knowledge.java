@@ -1,7 +1,9 @@
 package net.jitl.common.capability.player.data;
 
+import net.jitl.client.render.overlay.KnowledgeToast;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.common.knowledge.KnowledgeStorageImpl;
+import net.minecraft.client.Minecraft;
 import ru.timeconqueror.timecore.common.capability.property.CoffeeProperty;
 import ru.timeconqueror.timecore.common.capability.property.container.PropertyContainer;
 
@@ -36,7 +38,13 @@ public class Knowledge extends PropertyContainer {
         return knowledgeMap.get(type).getAmountOnCurrentLevel();
     }
 
+    public void addXP(EnumKnowledgeType type, float xp, boolean showXPToast) {
+        knowledgeMap.get(type).add(xp, type);
+        if(showXPToast)
+            Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(type, true));
+    }
+
     public void addXP(EnumKnowledgeType type, float xp) {
-        knowledgeMap.get(type).add(xp);
+        this.addXP(type, xp, false);
     }
 }

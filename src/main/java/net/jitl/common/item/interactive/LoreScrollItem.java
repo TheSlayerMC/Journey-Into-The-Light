@@ -49,13 +49,7 @@ public class LoreScrollItem extends Item {
                         //Objects.requireNonNull(JPlayer.from(playerIn)).knowledge
                        //     .addXP(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), tag.getFloat("xp"));//FIXME
                     }
-                    System.out.println("KNOWLEDGE TYPE: " + tag.getString("knowledge"));
-                    System.out.println("XP AMOUNT: " + tag.getFloat("xp"));
-                    System.out.println("HAVE BEEN OPENED ALREADY: " + tag.getBoolean("openedBefore"));
                     tag.putBoolean("openedBefore", true);
-                    Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), true));
-                    Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), false));
-
                 }
             } else {
                 ChatUtils.sendInformativeError(JITL.MODID, playerIn, "Can't retrieve entry from provided itemstack.", Pair.of("Itemstack", heldItem), Pair.of("Tag Compound", heldItem.getTag()));
