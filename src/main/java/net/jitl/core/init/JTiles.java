@@ -21,7 +21,8 @@ public class JTiles {
     public static final BlockEntityType<EssenciaAltarTile> ESSENCIA_ALTAR = promise();
     public static final BlockEntityType<GuardianTowerBrainTile> GUARDIAN_TOWER_BRAIN = promise();
     public static final BlockEntityType<PedestalTile> PEDESTAL = promise();
-    public static final BlockEntityType<PotTile> ANCIENT_POTTERY = promise();
+    public static final BlockEntityType<ClayPotTile> CLAY_POTTERY = promise();
+    public static final BlockEntityType<ClayVaseTile> CLAY_VASE = promise();
     public static final BlockEntityType<ObeliskTile> OBELISK = promise();
 
 
@@ -36,7 +37,8 @@ public class JTiles {
             REGISTER.registerSingleBound("essencia_altar", EssenciaAltarTile::new, () -> JBlocks.ESSENCIA_ALTAR).regCustomRenderer(() -> EssenciaAltarTER::new);
             REGISTER.registerSingleBound("guardian_tower_brain", GuardianTowerBrainTile::new, () -> JBlocks.GUARDIAN_TOWER_BRAIN);
             REGISTER.registerSingleBound("pedestal", PedestalTile::new, () -> JBlocks.FROZEN_PEDESTAL).regCustomRenderer(() -> PedestalTER::new);
-            REGISTER.registerSingleBound("ancient_pottery", PotTile::new, () -> JBlocks.CLAY_POTTERY);
+            REGISTER.registerSingleBound("clay_pottery", ClayPotTile::new, () -> JBlocks.CLAY_POTTERY);
+            REGISTER.registerSingleBound("clay_vase", ClayVaseTile::new, () -> JBlocks.CLAY_VASE);
             REGISTER.registerSingleBound("obelisk", ObeliskTile::new, () -> JBlocks.ANCIENT_OBELISK).regCustomRenderer(() -> ObeliskTER::new);
 
         }

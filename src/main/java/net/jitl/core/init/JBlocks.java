@@ -300,6 +300,7 @@ public class JBlocks {
 
     public static final Block FROZEN_PEDESTAL = promise();
     public static final Block CLAY_POTTERY = promise();
+    public static final Block CLAY_VASE = promise();
 
     public static final Block DREADIRON_BLOCK = promise();
 }

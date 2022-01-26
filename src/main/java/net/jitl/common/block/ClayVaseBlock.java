@@ -1,7 +1,7 @@
 package net.jitl.common.block;
 
 import net.jitl.common.block.base.JFallingTileContainerBlock;
-import net.jitl.common.tile.ClayPotTile;
+import net.jitl.common.tile.ClayVaseTile;
 import net.jitl.core.init.JSounds;
 import net.jitl.core.init.JTiles;
 import net.jitl.core.util.JBlockProperties;
@@ -14,6 +14,7 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -33,18 +34,16 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class ClayPotteryBlock extends JFallingTileContainerBlock {
-    public static final VoxelShape MIDDLE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 12.0D, 15.0D);
-    private static final VoxelShape FUNNEL = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 14.0D, 11.0D);
-    private static final VoxelShape LIP = Block.box(4.0D, 14.0D, 4.0D, 12.0D, 16.0D, 12.0D);
-    public static final VoxelShape SHAPE = Shapes.or(MIDDLE, LIP, FUNNEL);
+public class ClayVaseBlock extends JFallingTileContainerBlock {
 
-    public ClayPotteryBlock() {
-        super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), ClayPotTile::new);
+    public ClayVaseBlock() {
+        super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), ClayVaseTile::new);
     }
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        VoxelShape FUNNEL = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 8.0D, 11.0D);
+        VoxelShape SHAPE = Shapes.or(FUNNEL);
         return SHAPE;
     }
 
@@ -59,11 +58,11 @@ public class ClayPotteryBlock extends JFallingTileContainerBlock {
         if (bottomIsSolid) {
             if (!state.is(newState.getBlock())) {
                 BlockEntity tileentity = worldIn.getBlockEntity(pos);
-                if (tileentity instanceof ClayPotTile ClayPotTile) {
-                    CompoundTag tag = ClayPotTile.saveWithoutMetadata();
+                if (tileentity instanceof ClayVaseTile ClayVaseTile) {
+                    CompoundTag tag = ClayVaseTile.saveWithoutMetadata();
                     boolean hasFallen = tag.getBoolean("fallen");
                     if (!hasFallen) {
-                        Containers.dropContents(worldIn, pos, ClayPotTile);
+                        Containers.dropContents(worldIn, pos, ClayVaseTile);
                     }
                 }
             }
@@ -80,9 +79,9 @@ public class ClayPotteryBlock extends JFallingTileContainerBlock {
 
     @Override
     protected void falling(FallingBlockEntity fallingEntity) {
-        fallingEntity.setHurtsEntities(2.0F, 20);
+        fallingEntity.setHurtsEntities(0.5F, 5);
         BlockEntity tileEntity = fallingEntity.level.getBlockEntity(fallingEntity.blockPosition());
-        if (tileEntity instanceof ClayPotTile) {
+        if (tileEntity instanceof ClayVaseTile) {
             fallingEntity.blockData = tileEntity.saveWithoutMetadata();
         }
     }
@@ -91,12 +90,12 @@ public class ClayPotteryBlock extends JFallingTileContainerBlock {
     public InteractionResult use(@NotNull BlockState state, Level worldIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(handIn);
         if (!worldIn.isClientSide()) {
-            if (worldIn.getBlockEntity(pos) instanceof ClayPotTile ClayPotTile) {
-                InvWrapper invWrapper = new InvWrapper(ClayPotTile);
-                if (!heldStack.isEmpty()) {
+            if (worldIn.getBlockEntity(pos) instanceof ClayVaseTile ClayVaseTile) {
+                InvWrapper invWrapper = new InvWrapper(ClayVaseTile);
+                int slots = invWrapper.getSlots();
+                if (!heldStack.isEmpty() && !player.isCrouching()) {
                     ItemStack stack = heldStack;
                     ItemStack prevStack = stack.copy();
-                    int slots = invWrapper.getSlots();
                     for (int i = 0; i < slots; i++) {
                         if (!stack.isEmpty()) {
                             stack = invWrapper.insertItem(i, stack, false);
@@ -108,6 +107,17 @@ public class ClayPotteryBlock extends JFallingTileContainerBlock {
                         return InteractionResult.SUCCESS;
                     }
                 }
+                if (player.isCrouching()) {
+                    for (int i = 0; i < slots; i++) {
+                        ItemStack extractItem = invWrapper.extractItem(i, 1, false);
+                        if (!extractItem.isEmpty()) {
+                            ItemEntity itemEntity = new ItemEntity(worldIn, player.getX(), player.getY(), player.getZ(), extractItem);
+                            worldIn.addFreshEntity(itemEntity);
+                            worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundSource.BLOCKS, 1.0F, Mth.nextFloat(player.getRandom(), 1.25F, 1.50F));
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+                }
             }
             return InteractionResult.sidedSuccess(worldIn.isClientSide);
         }
@@ -117,12 +127,11 @@ public class ClayPotteryBlock extends JFallingTileContainerBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level_, BlockState state_, BlockEntityType<T> blockEntityType_) {
-        return createTicker(level_, blockEntityType_, JTiles.CLAY_POTTERY);
+        return createTicker(level_, blockEntityType_, JTiles.CLAY_VASE);
     }
 
     @Nullable
-    protected static <T extends BlockEntity> BlockEntityTicker<T> createTicker(Level level_, BlockEntityType<T> givenType_, BlockEntityType<? extends ClayPotTile> expectedType_) {
-        return level_.isClientSide ? null : createTickerHelper(givenType_, expectedType_, ClayPotTile::serverTick);
+    protected static <T extends BlockEntity> BlockEntityTicker<T> createTicker(Level level_, BlockEntityType<T> givenType_, BlockEntityType<? extends ClayVaseTile> expectedType_) {
+        return level_.isClientSide ? null : createTickerHelper(givenType_, expectedType_, ClayVaseTile::serverTick);
     }
 }
-

@@ -16,12 +16,12 @@ import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class PotTile extends RandomizableContainerBlockEntity {
+public class ClayPotTile extends RandomizableContainerBlockEntity {
     private NonNullList<ItemStack> inventory = NonNullList.withSize(27, ItemStack.EMPTY);
     private boolean hasFallen;
 
-    public PotTile(BlockPos blockPos_, BlockState blockState_) {
-        super(JTiles.ANCIENT_POTTERY, blockPos_, blockState_);
+    public ClayPotTile(BlockPos blockPos_, BlockState blockState_) {
+        super(JTiles.CLAY_POTTERY, blockPos_, blockState_);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class PotTile extends RandomizableContainerBlockEntity {
         return new TranslatableComponent("jitl.tile.pot");
     }
 
-    public static void serverTick(Level level, BlockPos pos, BlockState state, PotTile blockEntity) {
+    public static void serverTick(Level level, BlockPos pos, BlockState state, ClayPotTile blockEntity) {
         if (level != null) {
             if (blockEntity.hasFallen) {
                 Containers.dropContents(level, pos, blockEntity);
