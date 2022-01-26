@@ -171,7 +171,6 @@ public class LoreScrollEntryScreen extends Screen {
     }
 
     private void drawScrollingContent(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-
         int indent = 17;
         this.left = guix0 + indent + 4;
         this.top = guiy0 + indent;
@@ -260,19 +259,19 @@ public class LoreScrollEntryScreen extends Screen {
                  * Draws borders and background of each part.
                  *
                  * */
-//                    GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-//                    GlStateManager.disableTexture2D();
-//                    worldr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-//                    worldr.pos(min, partTop + partBuffer + 2, 0).tex(0, 1).color(0x80, 0x80, 0x80, 0xFF).endVertex();
-//                    worldr.pos(max, partTop + partBuffer + 2, 0).tex(1, 1).color(0x80, 0x80, 0x80, 0xFF).endVertex();
-//                    worldr.pos(max, partTop - 2, 0).tex(1, 0).color(0x80, 0x80, 0x80, 0xFF).endVertex();
-//                    worldr.pos(min, partTop - 2, 0).tex(0, 0).color(0x80, 0x80, 0x80, 0xFF).endVertex();
-//                    worldr.pos(min + 1, partTop + partBuffer + 1, 0).tex(0, 1).color(0x00, 0x00, 0x00, 0xFF).endVertex();
-//                    worldr.pos(max - 1, partTop + partBuffer + 1, 0).tex(1, 1).color(0x00, 0x00, 0x00, 0xFF).endVertex();
-//                    worldr.pos(max - 1, partTop - 1, 0).tex(1, 0).color(0x00, 0x00, 0x00, 0xFF).endVertex();
-//                    worldr.pos(min + 1, partTop - 1, 0).tex(0, 0).color(0x00, 0x00, 0x00, 0xFF).endVertex();
-//                    tess.draw();
-//                    GlStateManager.enableTexture2D();
+                    /*RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+                    RenderSystem.disableTexture();
+                    worldr.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+                    worldr.vertex(min, partTop + partBuffer + 2, 0).uv(0, 1).color(0x80, 0x80, 0x80, 0xFF).endVertex();
+                    worldr.vertex(max, partTop + partBuffer + 2, 0).uv(1, 1).color(0x80, 0x80, 0x80, 0xFF).endVertex();
+                    worldr.vertex(max, partTop - 2, 0).uv(1, 0).color(0x80, 0x80, 0x80, 0xFF).endVertex();
+                    worldr.vertex(min, partTop - 2, 0).uv(0, 0).color(0x80, 0x80, 0x80, 0xFF).endVertex();
+                    worldr.vertex(min + 1, partTop + partBuffer + 1, 0).uv(0, 1).color(0x00, 0x00, 0x00, 0xFF).endVertex();
+                    worldr.vertex(max - 1, partTop + partBuffer + 1, 0).uv(1, 1).color(0x00, 0x00, 0x00, 0xFF).endVertex();
+                    worldr.vertex(max - 1, partTop - 1, 0).uv(1, 0).color(0x00, 0x00, 0x00, 0xFF).endVertex();
+                    worldr.vertex(min + 1, partTop - 1, 0).uv(0, 0).color(0x00, 0x00, 0x00, 0xFF).endVertex();
+                    tess.end();
+                    RenderSystem.enableTexture();*/
 
                 this.drawContentPart(poseStack, partIdx, max - min - 4, partTop, partBuffer, tess);
             }
