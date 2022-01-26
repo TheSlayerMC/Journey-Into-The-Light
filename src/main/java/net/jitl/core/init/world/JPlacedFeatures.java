@@ -62,7 +62,7 @@ public class JPlacedFeatures {
                     "default_overworld_ruins",
                     GenerationStep.Decoration.SURFACE_STRUCTURES,
                     () -> JConfiguredFeatures.DEFAULT_OVERWORLD_RUINS.get()
-                            .placed(rarePatch(10, 3)))
+                            .placed(rarePatch(10, 7)))
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> DESERT_OVERWORLD_RUINS = REGISTER.register(
