@@ -9,6 +9,6 @@ import net.minecraft.world.item.ItemStack;
 public class KnowledgeXPDisplay extends JDisplayInfo {
 
     public KnowledgeXPDisplay(String name, Item item, boolean isLevel) {
-        super(new ItemStack(item), new TranslatableComponent("knowledge." + name.toLowerCase()), isLevel ? JFrameType.LEVEL : JFrameType.XP);
+        super(new ItemStack(item), new TranslatableComponent("jitl.knowledge." + name.toLowerCase()), isLevel ? JFrameType.LEVEL : JFrameType.XP);
     }
 }

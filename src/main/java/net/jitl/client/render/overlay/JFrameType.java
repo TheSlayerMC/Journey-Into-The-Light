@@ -1,6 +1,5 @@
 package net.jitl.client.render.overlay;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 
@@ -16,7 +15,7 @@ public enum JFrameType {
     JFrameType(String name, int texture) {
         this.name = name;
         this.texture = texture;
-        this.displayName = new TranslatableComponent("knowledge." + name);
+        this.displayName = new TranslatableComponent("jitl.knowledge." + name);
     }
 
     public String getName() {
