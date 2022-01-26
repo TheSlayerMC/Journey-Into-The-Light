@@ -28,6 +28,7 @@ import javax.annotation.Nullable;
 
 public class LoreScrollItem extends Item {
 
+    String test;
     public LoreScrollItem(Properties properties_) {
         super(properties_);
     }
