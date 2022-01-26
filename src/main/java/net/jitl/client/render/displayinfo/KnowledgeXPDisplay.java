@@ -12,6 +12,7 @@ public class KnowledgeXPDisplay extends DisplayInfo {
 
     public KnowledgeXPDisplay(String name, Item item, @Nullable ResourceLocation background, boolean isLevel) {
         super(new ItemStack(item),
-                new TextComponent(name + " Knowledge"), isLevel ? new TextComponent("Level Up!") : new TextComponent("XP Received!"), background, isLevel ? FrameType.CHALLENGE : FrameType.TASK, true, false, false);
+                new TextComponent(name + " Knowledge"), isLevel ? new TextComponent("Level Up!") : new TextComponent("XP Received!")
+                , background, isLevel ? FrameType.CHALLENGE : FrameType.TASK, true, false, false);
     }
 }
