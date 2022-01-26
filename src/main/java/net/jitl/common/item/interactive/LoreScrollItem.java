@@ -53,7 +53,6 @@ public class LoreScrollItem extends Item {
                     System.out.println("HAVE BEEN OPENED ALREADY: " + tag.getBoolean("openedBefore"));
                     tag.putBoolean("openedBefore", true);
                 }
-                System.out.println(tag.getBoolean("openedBefore"));
             } else {
                 ChatUtils.sendInformativeError(JITL.MODID, playerIn, "Can't retrieve entry from provided itemstack.", Pair.of("Itemstack", heldItem), Pair.of("Tag Compound", heldItem.getTag()));
             }

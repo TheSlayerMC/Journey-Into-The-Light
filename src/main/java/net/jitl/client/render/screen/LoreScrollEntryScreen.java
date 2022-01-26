@@ -367,9 +367,6 @@ public class LoreScrollEntryScreen extends Screen {
                 minecraft.setScreen(null);
             }
         }
-        if(keyCode == 256) {
-            minecraft.setScreen(null);
-        }
         return true;
     }*/
 }
