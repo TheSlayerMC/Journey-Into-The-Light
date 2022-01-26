@@ -34,16 +34,14 @@ public class KnowledgeToast implements JToast {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         JDisplayInfo displayinfo = isLevel ? this.knowledge.getLevelDisplay() : this.knowledge.getXPDisplay();
         toastComponent.blit(poseStack, 0, 0, 0, 0, this.width(), this.height());
-        if (displayinfo != null) {
+        if(displayinfo != null) {
             List<FormattedCharSequence> list = toastComponent.getMinecraft().font.split(displayinfo.getDescription(), 125);
             int i = displayinfo.getFrame() == JFrameType.LEVEL ? ArgbColor.from(ChatFormatting.DARK_PURPLE) : ArgbColor.from(ChatFormatting.BLACK);
-            if (list.size() == 1) {
-                toastComponent.getMinecraft().font.draw(poseStack, displayinfo.getFrame().getDisplayName(), 30.0F, 18.0F, ArgbColor.from(ChatFormatting.UNDERLINE) + i);//Level or XP
+            if(list.size() == 1) {
+                toastComponent.getMinecraft().font.draw(poseStack, displayinfo.getFrame().getDisplayName(), 30.0F, 18.0F, i);//Level or XP
                 toastComponent.getMinecraft().font.draw(poseStack, list.get(0), 30.0F, 7.0F, ArgbColor.from(ChatFormatting.BLACK));// Knowledge name
             } else {
-                int j = 1500;
-                float f = 300.0F;
-                if (timeSinceLastVisible < 1500L) {
+                if(timeSinceLastVisible < 1500L) {
                     int k = Mth.floor(Mth.clamp((float)(1500L - timeSinceLastVisible) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
                     toastComponent.getMinecraft().font.draw(poseStack, displayinfo.getFrame().getDisplayName(), 30.0F, 11.0F, i | k);
                 } else {
@@ -56,19 +54,15 @@ public class KnowledgeToast implements JToast {
                     }
                 }
             }
-
-            if (!this.playedSound && timeSinceLastVisible > 0L) {
+            if(!this.playedSound && timeSinceLastVisible > 0L) {
                 this.playedSound = true;
-
                 if(displayinfo.getFrame() == JFrameType.LEVEL) {
                     toastComponent.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(JSounds.TOAST.get(), 1.0F, 1.0F));
                 }
-
                 if(displayinfo.getFrame() == JFrameType.XP) {
                     toastComponent.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.PLAYER_LEVELUP, 1.0F, 1.0F));
                 }
             }
-
             toastComponent.getMinecraft().getItemRenderer().renderAndDecorateFakeItem(displayinfo.getIcon(), 8, 8);
             return timeSinceLastVisible >= 5000L ? JToast.Visibility.HIDE : JToast.Visibility.SHOW;
         } else {
