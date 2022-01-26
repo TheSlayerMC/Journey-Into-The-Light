@@ -3,6 +3,8 @@ package net.jitl.client.render.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.common.capability.JCapabilityProvider;
+import net.jitl.common.capability.player.JPlayer;
+import net.jitl.common.capability.player.data.Knowledge;
 import net.jitl.common.container.ContainerEmpty;
 import net.jitl.common.helper.ArgbColor;
 import net.jitl.common.helper.EnumKnowledgeType;
@@ -20,6 +22,9 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
+import ru.timeconqueror.timecore.api.util.client.ClientProxy;
+
+import java.util.Objects;
 
 public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
 
@@ -28,13 +33,13 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
     private final ResourceLocation KNOWLEDGE_SPRITE = JITL.rl("textures/gui/knowledge/knowledge_sprites.png");
     private final ResourceLocation BACKGROUND = JITL.rl("textures/gui/stats.png");
     public int pageNumber = 0;
-    //private final PlayerStats stats;
+    private final JPlayer jPlayer;
 
     public ScreenPlayerStats(Inventory playerInventory) {
         super(new ContainerEmpty(), playerInventory, new TranslatableComponent("jitl.stats"));
         this.imageWidth = 242;
         this.imageHeight = 197;
-        //this.stats = JCapabilityProvider.asJourneyPlayer(Minecraft.getInstance().player).getPlayerStats();
+        this.jPlayer = Objects.requireNonNull(JPlayer.from(ClientProxy.player()));
     }
 
     @Override
@@ -125,7 +130,7 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         font.draw(matrixStack, s, k + x + 35, l + y + 5, 4210752); //Draws the sprite name
 
         if(s.contains("Sentacoins"))
-            font.draw(matrixStack, "0"/*stats.getSentacoinValue()*/, k + x + 35, l + y + 15, 4210752);
+            font.draw(matrixStack, "" + jPlayer.sentacoins.getAmount(), k + x + 35, l + y + 15, 4210752);
 
         matrixStack.popPose();
         RenderSystem.enableDepthTest();
@@ -139,11 +144,10 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         matrixStack.pushPose();
         RenderSystem.setShader(GameRenderer::getPositionTexColorNormalShader);
         RenderSystem.setShaderTexture(0, this.KNOWLEDGE_SPRITE);
-        //PlayerStats.KnowledgeStorage knowledge = stats.getKnowledge(type);
+        Knowledge knowledge = jPlayer.knowledge;
 
-        //float percents = knowledge.getAmountOnCurrentLevel() / knowledge.getLevelCapacity(knowledge.getLevelCount());
-        float percents = 50F;
-        int width = 50;//(int) (percents * progressBarSize);
+        float percents = knowledge.getXP(type) / knowledge.getLevelCapacity(knowledge.getLevel(type));
+        int width = (int) (percents * progressBarSize);
 
         int progressBarX = k + x + 35, progressBarY = l + y + 19;
         blit(matrixStack, progressBarX, progressBarY, 0, 5, progressBarSize, 5);
@@ -151,7 +155,7 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
 
         int lvX = progressBarX + 29, lvY = progressBarY - 1;
 
-        int getLevelCount = 50;
+        int getLevelCount = knowledge.getLevel(type);
 
         font.drawShadow(matrixStack, "" + getLevelCount, getLevelCount > 10 ? lvX - 2 : getLevelCount > 100 ? lvX - 4 : lvX, lvY, ArgbColor.from(ChatFormatting.WHITE));
         matrixStack.popPose();

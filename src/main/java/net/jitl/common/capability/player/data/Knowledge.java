@@ -28,6 +28,10 @@ public class Knowledge extends PropertyContainer {
         return knowledgeMap.get(knowledgeType);
     }
 
+    public float getLevelCapacity(int level) {
+        return level >= 5 ? 50 : level >= 10 ? 70 : level >= 15 ? 90 : level >= 20 ? 110 : level >= 30 ? 130 : level >= 40 ? 150 : 30;
+    }
+
     public float getXP(EnumKnowledgeType type) {
         return knowledgeMap.get(type).getAmountOnCurrentLevel();
     }
