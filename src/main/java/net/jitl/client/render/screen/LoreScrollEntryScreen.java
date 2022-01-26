@@ -1,6 +1,5 @@
 package net.jitl.client.render.screen;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.jitl.client.util.EnumHexColor;
@@ -56,6 +55,11 @@ public class LoreScrollEntryScreen extends Screen {
         this.parentCategory = parentCategory;
     }
 
+    @Override
+    public boolean shouldCloseOnEsc() {
+        return true;
+    }
+
     /**
      * Draw anything special on the screen. GL_SCISSOR is enabled for anything that
      * is rendered outside of the view box. Do not mess with SCISSOR unless you support this.
@@ -103,10 +107,11 @@ public class LoreScrollEntryScreen extends Screen {
     private void drawHeader(PoseStack poseStack, int maxX, int y0, Tesselator tess) {
         float zLevel = this.getBlitOffset();
         if (scrollEntry.hasComment()) {
-            RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getTitleKey()).getKey(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, EnumHexColor.BLACK.getInt(), 1.5F, headerHeight - 5, false);
-            RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getCommentKey()).getKey(), left + (maxX - left) / 2 + 1, y0 + (int) ((float) font.lineHeight * 0.7), (int) zLevel, EnumHexColor.DARK_BROWN.getInt(), 1F, headerHeight + 5, false);
+            RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getTitleKey()).getKey(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, EnumHexColor.BROWN.getInt(), 1.5F, headerHeight - 5, false);
+            if (scrollEntry.getCommentKey() != null)
+                RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getCommentKey()).getKey(), left + (maxX - left) / 2 + 1, y0 + (int) ((float) font.lineHeight * 0.7), (int) zLevel, EnumHexColor.DARK_BROWN.getInt(), 1F, headerHeight + 5, false);
         } else {
-            RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getTitleKey()).getKey(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, EnumHexColor.BLACK.getInt(), 1.2F, headerHeight, false);
+            RenderUtils.drawCenteredStringWithCustomScale(poseStack, font, new TranslatableComponent(scrollEntry.getTitleKey()).getKey(), left + (maxX - left) / 2 + 1, y0, (int) zLevel, EnumHexColor.BROWN.getInt(), 1.2F, headerHeight, false);
         }
     }
 
@@ -338,7 +343,7 @@ public class LoreScrollEntryScreen extends Screen {
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 
-    @Override
+    /*@Override
     //FIXME wrong method?
     public void afterMouseAction() {
         super.afterMouseAction();
@@ -366,5 +371,5 @@ public class LoreScrollEntryScreen extends Screen {
             minecraft.setScreen(null);
         }
         return true;
-    }
+    }*/
 }

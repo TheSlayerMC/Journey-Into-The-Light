@@ -14,11 +14,11 @@ public class ScrollEntries {
     private static final ResourceLocation BG = JITL.rl("textures/gui/scroll_background.png");
 
     public static final ScrollEntry SENTERIAN_GOSPEL = new ScrollEntryBuilder("senterian_gospel", "Senterian Gospel", "Book of Divinity", () -> new ItemStack(JItems.LOOT_POUCH_GOLD), 10, 10)
-            .addTextComponent("scroll.journey.sentry_gospel")
+            .addTextComponent("scroll.jitl.sentry_gospel")
             .build();
 
     public static final ScrollEntry MY_LAST_WORDS = new ScrollEntryBuilder("my_last_words", "My Last Words", "They're Coming...", () -> new ItemStack(JBlocks.GOLDITE_STONE), 10, 10)
-            .addTextComponent("scroll.journey.chap1.my_last_words")
+            .addTextComponent("scroll.jitl.chap1.my_last_words")
             .build();
 
     public static void register() {
