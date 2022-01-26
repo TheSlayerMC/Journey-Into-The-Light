@@ -56,7 +56,7 @@ public class KnowledgeStorageImpl extends SerializableInnerCap<CompoundTag, Know
 				}
 			}
 
-			throw new IllegalStateException("This shouldn't be achieved, because if all levels' acapacity is smaller than removed amount, it should be cut in the start of the method");
+			throw new IllegalStateException("This shouldn't be achieved, because if all levels' at capacity is smaller than removed amount, it should be cut in the start of the method");
 		} else {
 			amountOnLevel -= amount;
 			return 0;
