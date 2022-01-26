@@ -93,9 +93,8 @@ public class JRecipeProvider extends RecipeProvider {
 
 	protected void addStick(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem) {
 		ShapedRecipeBuilder.shaped(Items.STICK, 4).define('#', materialItem)
-				.pattern("##")
-				.pattern("##")
-				.pattern("##").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
+				.pattern("#")
+				.pattern("#").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
 	}
 
 	protected void addDoorRecipe(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem, ItemLike output) {
