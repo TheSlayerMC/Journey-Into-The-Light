@@ -38,7 +38,7 @@ public class KnowledgeToast implements JToast {
             List<FormattedCharSequence> list = toastComponent.getMinecraft().font.split(displayinfo.getDescription(), 125);
             int i = displayinfo.getFrame() == JFrameType.LEVEL ? ArgbColor.from(ChatFormatting.DARK_PURPLE) : ArgbColor.from(ChatFormatting.BLACK);
             if (list.size() == 1) {
-                toastComponent.getMinecraft().font.draw(poseStack, displayinfo.getFrame().getDisplayName(), 30.0F, 18.0F, i);//Level or XP
+                toastComponent.getMinecraft().font.draw(poseStack, displayinfo.getFrame().getDisplayName(), 30.0F, 18.0F, ArgbColor.from(ChatFormatting.UNDERLINE) + i);//Level or XP
                 toastComponent.getMinecraft().font.draw(poseStack, list.get(0), 30.0F, 7.0F, ArgbColor.from(ChatFormatting.BLACK));// Knowledge name
             } else {
                 int j = 1500;
