@@ -55,9 +55,10 @@ public class LoreScrollItem extends Item {
         if (worldIn.isClientSide) {
             ScrollEntry entry = getScrollEntry(heldItem);
             if (entry != null) {
-                displayScrollGui(null, entry);
                 if(!hasOpenedBefore) {
-                    Objects.requireNonNull(JPlayer.from(playerIn)).knowledge.addXP(knowledge, 100);//FIXME
+                    displayScrollGui(null, entry);
+                    //if(knowledge != null)
+                        //Objects.requireNonNull(JPlayer.from(playerIn)).knowledge.addXP(knowledge, 100);//FIXME
                 }
                 tag.putBoolean("openedBefore", true);
             } else {
