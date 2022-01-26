@@ -6,8 +6,8 @@ import net.minecraft.network.chat.TranslatableComponent;
 
 public enum JFrameType {
 
-    LEVEL("Level Up!", 26),
-    XP("Experience Gained!", 52);
+    LEVEL("level", 26),
+    XP("experience", 52);
 
     private final String name;
     private final int texture;
@@ -16,7 +16,7 @@ public enum JFrameType {
     JFrameType(String name, int texture) {
         this.name = name;
         this.texture = texture;
-        this.displayName = new TranslatableComponent(name);
+        this.displayName = new TranslatableComponent("knowledge." + name);
     }
 
     public String getName() {
