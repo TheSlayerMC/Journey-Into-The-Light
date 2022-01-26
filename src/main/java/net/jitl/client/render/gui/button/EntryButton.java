@@ -51,8 +51,9 @@ public class EntryButton extends Button {
     public ScrollCategory category;
     protected boolean hovered;
 
-    public EntryButton(int x, int y, int widthIn, int heightIn, ScrollEntry entry, ScrollCategory category) {
+    public EntryButton(int id, int x, int y, int widthIn, int heightIn, ScrollEntry entry, ScrollCategory category) {
         super(x, y, widthIn, heightIn, new TranslatableComponent(""), null);
+        this.id = id;
         this.enabled = true;
         this.visible = true;
         this.x = x;

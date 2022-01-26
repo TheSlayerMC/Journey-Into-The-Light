@@ -2,20 +2,29 @@ package net.jitl.client.render.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Matrix4f;
+import net.jitl.client.render.gui.button.EntryButton;
 import net.jitl.common.scroll.ScrollAPI;
 import net.jitl.common.scroll.ScrollCategory;
 import net.jitl.common.scroll.ScrollEntry;
 import net.jitl.core.JITL;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.client.gui.GuiUtils;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 public class LoreScrollScreen extends Screen {
     private static final ResourceLocation BG = JITL.rl("textures/gui/gui_scroll_base.png");
     public ScrollCategory currentCategory;
     //TODO fixme
-    //protected HashMap<Integer, GuiEntryButton> entryButtonList = new HashMap<>();
+    protected HashMap<Integer, EntryButton> entryButtonList = new HashMap<>();
 
     //For Dragging Menu
     private int draggingCategoryWidth;
@@ -78,8 +87,8 @@ public class LoreScrollScreen extends Screen {
             for (int j = 0; j < category.getEntryList().size(); j++) {
                 ScrollEntry entry = ScrollAPI.getEntryByIndex(category, j);
 
-                // FIXME entry button
-                //addEntryButton(new GuiEntryButton(i + j, entry.getX(), entry.getY(), entryButtonSize, entryButtonSize, entry, category));
+                //FIXME entry button
+                addEntryButton(new EntryButton(i + j, entry.getX(), entry.getY(), entryButtonSize, entryButtonSize, entry, category));
             }
         }
     }
@@ -231,11 +240,12 @@ public class LoreScrollScreen extends Screen {
         boolean isCatButtonListHovering = (mouseX >= buttonListLeft && mouseX <= buttonListRight && mouseY >= buttonListTop && mouseY <= buttonListBottom) || (mouseX >= scrollButtonLeftTop && mouseX <= scrollButtonRightTop);
         int listViewHeight = buttonListBottom - buttonListTop;
 
-        if (Mouse.isButtonDown(0)) {
+        MouseHandler mouseHandler = minecraft.mouseHandler;
+        if (mouseHandler.isMiddlePressed()) {
             if (this.blInitialMouseClickY == -1.0F) {
                 if (isCatButtonListHovering) {
-                    for (GuiButton button : buttonList) {
-                        if (button.mousePressed(mc, mouseX, mouseY)) {
+                    for (Button button : buttonList) {
+                        if (button.mouseClicked(mouseX, mouseY, buttonList)) {
                             currentCategory = ScrollAPI.getCategoryByName(button.displayString);
                         }
                     }
@@ -338,10 +348,10 @@ public class LoreScrollScreen extends Screen {
         GlStateManager.disableBlend();
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
         GlStateManager.popMatrix();
-    }
+    }*/
 
     @Override
-    public boolean doesGuiPauseGame() {
+    public boolean isPauseScreen() {
         return false;
     }
 
@@ -374,7 +384,7 @@ public class LoreScrollScreen extends Screen {
         }
     }
 
-    private void applyScrollLimitsForCatButtons() {
+    /*private void applyScrollLimitsForCatButtons() {
         int blHiddenHeight = catButtonsHeight + (ScrollAPI.getCategoryMap().size() - 1) * border - (buttonListBottom - buttonListTop - 4);
         if (blHiddenHeight < 0) {
             blHiddenHeight /= 2;
@@ -402,27 +412,27 @@ public class LoreScrollScreen extends Screen {
         if (scroll != 0) {
             this.blscrollDistance += (-1 * scroll / 120.0F) * 10;
         }
-    }
+    } */
 
-    protected <T extends GuiEntryButton> T addEntryButton(T buttonIn) {
+    protected <T extends EntryButton> T addEntryButton(T buttonIn) {
         entryButtonList.put(buttonIn.id, buttonIn);
         return buttonIn;
     }
 
-    private void renderEntryInfo(FontRenderer font, GuiEntryButton button) {
+    private void renderEntryInfo(PoseStack poseStack, Font font, EntryButton button) {
 
         List<String> textLines = new ArrayList<>();
-        textLines.add(TextFormatting.AQUA + I18n.format(button.entry.getTitleKey()));
-        textLines.add(I18n.format(button.entry.getCommentKey()));
+        textLines.add(new TranslatableComponent(button.entry.getTitleKey()).getKey());
+        textLines.add(new TranslatableComponent(button.entry.getCommentKey()).getKey());
 
-        GlStateManager.disableRescaleNormal();
-        RenderHelper.disableStandardItemLighting();
-        GlStateManager.disableLighting();
-        GlStateManager.disableDepth();
+        //GlStateManager.disableRescaleNormal();
+        //RenderHelper.disableStandardItemLighting();
+        //GlStateManager.disableLighting();
+        RenderSystem.disableDepthTest();
         int tooltipTextWidth = 0;
 
         for (String textLine : textLines) {
-            int textLineWidth = font.getStringWidth(textLine);
+            int textLineWidth = font.width(textLine);
 
             if (textLineWidth > tooltipTextWidth) {
                 tooltipTextWidth = textLineWidth;
@@ -451,13 +461,13 @@ public class LoreScrollScreen extends Screen {
             List<String> wrappedTextLines = new ArrayList<>();
             for (int i = 0; i < textLines.size(); i++) {
                 String textLine = textLines.get(i);
-                List<String> wrappedLine = font.listFormattedStringToWidth(textLine, tooltipTextWidth);
+                List<String> wrappedLine = Collections.singletonList(font.plainSubstrByWidth(textLine, tooltipTextWidth));
                 if (i == 0) {
                     titleLinesCount = wrappedLine.size();
                 }
 
                 for (String line : wrappedLine) {
-                    int lineWidth = font.getStringWidth(line);
+                    int lineWidth = font.width(line);
                     if (lineWidth > wrappedTooltipWidth) {
                         wrappedTooltipWidth = lineWidth;
                     }
@@ -494,21 +504,22 @@ public class LoreScrollScreen extends Screen {
         int backgroundColor = 0xF0000814;
         int borderColorStart = 0xFF05409C;
         int borderColorEnd = (borderColorStart & 0xFEFEFE) >> 1 | borderColorStart & 0xFF000000;
-        GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY - 4, tooltipX + tooltipTextWidth + 3, tooltipY - 3, backgroundColor, backgroundColor);
-        GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY + tooltipHeight + 3, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 4, backgroundColor, backgroundColor);
-        GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
-        GuiUtils.drawGradientRect(zLevel, tooltipX - 4, tooltipY - 3, tooltipX - 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
-        GuiUtils.drawGradientRect(zLevel, tooltipX + tooltipTextWidth + 3, tooltipY - 3, tooltipX + tooltipTextWidth + 4, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
-        GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3 + 1, tooltipX - 3 + 1, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
-        GuiUtils.drawGradientRect(zLevel, tooltipX + tooltipTextWidth + 2, tooltipY - 3 + 1, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
-        GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY - 3 + 1, borderColorStart, borderColorStart);
-        GuiUtils.drawGradientRect(zLevel, tooltipX - 3, tooltipY + tooltipHeight + 2, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, borderColorEnd, borderColorEnd);
+        Matrix4f matrix4f = RenderSystem.getProjectionMatrix();
+        GuiUtils.drawGradientRect(matrix4f, zLevel, tooltipX - 3, tooltipY - 4, tooltipX + tooltipTextWidth + 3, tooltipY - 3, backgroundColor, backgroundColor);
+        GuiUtils.drawGradientRect(matrix4f, zLevel, tooltipX - 3, tooltipY + tooltipHeight + 3, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 4, backgroundColor, backgroundColor);
+        GuiUtils.drawGradientRect(matrix4f, zLevel, tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
+        GuiUtils.drawGradientRect(matrix4f, zLevel, tooltipX - 4, tooltipY - 3, tooltipX - 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
+        GuiUtils.drawGradientRect(matrix4f, zLevel, tooltipX + tooltipTextWidth + 3, tooltipY - 3, tooltipX + tooltipTextWidth + 4, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
+        GuiUtils.drawGradientRect(matrix4f, zLevel, tooltipX - 3, tooltipY - 3 + 1, tooltipX - 3 + 1, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
+        GuiUtils.drawGradientRect(matrix4f, zLevel, tooltipX + tooltipTextWidth + 2, tooltipY - 3 + 1, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
+        GuiUtils.drawGradientRect(matrix4f, zLevel, tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY - 3 + 1, borderColorStart, borderColorStart);
+        GuiUtils.drawGradientRect(matrix4f, zLevel, tooltipX - 3, tooltipY + tooltipHeight + 2, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, borderColorEnd, borderColorEnd);
 
         int tooltipTop = tooltipY;
 
         for (int lineNumber = 0; lineNumber < textLines.size(); ++lineNumber) {
             String line = textLines.get(lineNumber);
-            font.drawStringWithShadow(line, (float) tooltipX, (float) tooltipY, -1);
+            font.drawShadow(poseStack, line, (float) tooltipX, (float) tooltipY, -1);
 
             if (lineNumber + 1 == titleLinesCount) {
                 tooltipY += 2;
@@ -517,9 +528,9 @@ public class LoreScrollScreen extends Screen {
             tooltipY += 10;
         }
 
-        GlStateManager.enableLighting();
-        GlStateManager.enableDepth();
-        RenderHelper.enableStandardItemLighting();
-        GlStateManager.enableRescaleNormal();
-    }*/
+        //GlStateManager.enableLighting();
+        RenderSystem.enableDepthTest();
+        //RenderHelper.enableStandardItemLighting();
+        //GlStateManager.enableRescaleNormal();
+    }
 }
