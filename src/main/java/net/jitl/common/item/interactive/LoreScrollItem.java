@@ -1,15 +1,15 @@
 package net.jitl.common.item.interactive;
 
 import net.jitl.client.render.screen.LoreScrollEntryScreen;
-import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.helper.EnumKnowledgeType;
-import net.jitl.common.knowledge.PlayerStats;
 import net.jitl.common.scroll.ScrollAPI;
 import net.jitl.common.scroll.ScrollCategory;
 import net.jitl.common.scroll.ScrollEntry;
 import net.jitl.core.JITL;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -24,7 +24,6 @@ import ru.timeconqueror.timecore.api.util.ChatUtils;
 import ru.timeconqueror.timecore.api.util.Pair;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 
 public class LoreScrollItem extends Item {
 
@@ -50,7 +49,9 @@ public class LoreScrollItem extends Item {
         heldItem.setTag(tag);
         if (worldIn.isClientSide) {
             ScrollEntry entry = getScrollEntry(heldItem);
+
             if (entry != null) {
+                Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forLocalAmbience(SoundEvents.BOOK_PAGE_TURN, 1.0F, 1.0F));
                 displayScrollGui(null, entry);
                 if(!tag.getBoolean("openedBefore")) {
                     //if(knowledge != null)
