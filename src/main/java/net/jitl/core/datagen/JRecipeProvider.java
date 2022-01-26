@@ -133,7 +133,7 @@ public class JRecipeProvider extends RecipeProvider {
 	}
 
 	protected void addSlabRecipe(Consumer<FinishedRecipe> recipeConsumer, ItemLike materialItem, ItemLike output) {
-		ShapedRecipeBuilder.shaped(output, 1).define('#', materialItem)
+		ShapedRecipeBuilder.shaped(output, 6).define('#', materialItem)
 				.pattern("###").unlockedBy(inputToKey(materialItem), has(materialItem)).save(recipeConsumer);
 	}
 
