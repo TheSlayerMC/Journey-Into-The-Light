@@ -19,9 +19,11 @@ public class KnowledgeToast implements JToast {
 
     private final EnumKnowledgeType knowledge;
     private boolean playedSound;
+    private final boolean isLevel;
 
-    public KnowledgeToast(EnumKnowledgeType knowledge) {
+    public KnowledgeToast(EnumKnowledgeType knowledge, boolean isLevel) {
         this.knowledge = knowledge;
+        this.isLevel = isLevel;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class KnowledgeToast implements JToast {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, TEXTURE);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        DisplayInfo displayinfo = this.knowledge.getXPDisplay();
+        DisplayInfo displayinfo = isLevel ? this.knowledge.getLevelDisplay() : this.knowledge.getXPDisplay();
         toastComponent.blit(poseStack, 0, 0, 0, 0, this.width(), this.height());
         if (displayinfo != null) {
             List<FormattedCharSequence> list = toastComponent.getMinecraft().font.split(displayinfo.getTitle(), 125);

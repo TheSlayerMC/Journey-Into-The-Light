@@ -1,7 +1,6 @@
 package net.jitl.common.item.interactive;
 
 import net.jitl.client.render.overlay.KnowledgeToast;
-import net.jitl.client.render.overlay.KnowledgeXPToast;
 import net.jitl.client.render.screen.LoreScrollEntryScreen;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.common.scroll.ScrollAPI;
@@ -54,7 +53,7 @@ public class LoreScrollItem extends Item {
                     System.out.println("XP AMOUNT: " + tag.getFloat("xp"));
                     System.out.println("HAVE BEEN OPENED ALREADY: " + tag.getBoolean("openedBefore"));
                     tag.putBoolean("openedBefore", true);
-                    Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge"))));
+                    Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), true));
                 }
             } else {
                 ChatUtils.sendInformativeError(JITL.MODID, playerIn, "Can't retrieve entry from provided itemstack.", Pair.of("Itemstack", heldItem), Pair.of("Tag Compound", heldItem.getTag()));
