@@ -344,18 +344,18 @@ public class LoreScrollEntryScreen extends Screen {
     }
 
     @Override
-    //FIXME wrong method?
-    public void afterMouseAction() {
-        super.afterMouseAction();
+    public boolean mouseScrolled(double mouseX_, double mouseY_, double delta_) {
         boolean isHovering = mouseX >= this.left && mouseX <= this.left + this.entryWidth &&
                 mouseY >= this.top && mouseY <= this.bottom;
         if (!isHovering)
-            return;
+            return false;
         MouseHandler mouseHandler = new MouseHandler(minecraft);
         int scroll = InputConstants.MOD_CONTROL; //FIXME correct scroll
-        if (scroll != 0) {
-            this.scrollDistance += (-1 * scroll / 120.0F) * 10;
-        }
+        //if (mouseScrolled(mouseX, mouseY, delta_)) {
+        JITL.LOGGER.info("mouse scrolled");
+        this.scrollDistance += (-1 * scroll / 120.0F) * 10;
+        //}
+        return super.mouseScrolled(mouseX_, mouseY_, delta_);
     }
 
     @Override
@@ -367,7 +367,7 @@ public class LoreScrollEntryScreen extends Screen {
                 minecraft.setScreen(null);
             }
         }
-        if(keyCode == 256) {
+        if (keyCode == 256) {
             minecraft.setScreen(null);
         }
         return true;
