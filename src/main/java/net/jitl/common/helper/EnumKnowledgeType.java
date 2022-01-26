@@ -3,6 +3,7 @@ package net.jitl.common.helper;
 import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 public enum EnumKnowledgeType {
     OVERWORLD("overworld"),
@@ -33,6 +34,23 @@ public enum EnumKnowledgeType {
 
     public String getName() {
         return name;
+    }
+
+    public static EnumKnowledgeType getKnowledgeFromName(String name) {
+        return switch (name.toLowerCase()) {
+            case "overworld" -> OVERWORLD;
+            case "nether" -> NETHER;
+            case "end" -> END;
+            case "euca" -> EUCA;
+            case "boil" -> BOIL;
+            case "frozen" -> FROZEN;
+            case "depths" -> DEPTHS;
+            case "corba" -> CORBA;
+            case "cloudia" -> CLOUDIA;
+            case "terrania" -> TERRANIA;
+            case "senterian" -> SENTERIAN;
+            default -> null;
+        };
     }
 
     public static void writeToBuffer(EnumKnowledgeType type, FriendlyByteBuf buf) {

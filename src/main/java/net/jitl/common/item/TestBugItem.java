@@ -1,5 +1,6 @@
 package net.jitl.common.item;
 
+import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.common.item.interactive.LoreScrollItem;
 import net.jitl.core.init.JItems;
 import net.jitl.core.init.client.ScrollEntries;
@@ -20,7 +21,7 @@ public class TestBugItem extends Item {
         //ConfiguredFeature<BlockStateFeatureConfig, ?> configuredfeature = JFeatures.TORRID_CRYSTAL.get().configured(new BlockStateFeatureConfig(JBlocks.TORRID_CRYSTAL.defaultBlockState()));
         if (!worldIn.isClientSide()) {
             ItemStack scrollStack = new ItemStack(JItems.LORE_SCROLL);
-            LoreScrollItem.bindScrollEntry(scrollStack, ScrollEntries.SENTERIAN_GOSPEL);
+            LoreScrollItem.bindScrollEntry(scrollStack, ScrollEntries.SENTERIAN_GOSPEL, EnumKnowledgeType.SENTERIAN, 50F);
             playerIn.addItem(scrollStack);
            /* List<ItemStack> loot = new ArrayList<>();
             loot.add(new ItemStack(JItems.LUNIUM_POWDER, 5));

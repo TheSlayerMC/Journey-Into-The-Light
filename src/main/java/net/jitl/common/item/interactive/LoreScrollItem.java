@@ -46,21 +46,22 @@ public class LoreScrollItem extends Item {
         if(tag == null) tag = new CompoundTag();
 
         //Check if opened previously, if first time add knowledge
-        boolean hasOpenedBefore = false;
         tag.putBoolean("openedBefore", false);
-
-        if(tag.contains("openedBefore"))
-            hasOpenedBefore = tag.getBoolean("openedBefore");
 
         if (worldIn.isClientSide) {
             ScrollEntry entry = getScrollEntry(heldItem);
             if (entry != null) {
-                if(!hasOpenedBefore) {
-                    displayScrollGui(null, entry);
+                displayScrollGui(null, entry);
+                if(!tag.getBoolean("openedBefore")) {
                     //if(knowledge != null)
-                        //Objects.requireNonNull(JPlayer.from(playerIn)).knowledge.addXP(knowledge, 100);//FIXME
+                    //Objects.requireNonNull(JPlayer.from(playerIn)).knowledge
+                    //        .addXP(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), tag.getFloat("xp"));//FIXME
+                    tag.putBoolean("openedBefore", true);
+
                 }
-                tag.putBoolean("openedBefore", true);
+                System.out.println(tag.getString("openedBefore"));
+                System.out.println(tag.getString("knowledge"));
+                System.out.println(tag.getString("xp"));
             } else {
                 ChatUtils.sendInformativeError(JITL.MODID, playerIn, "Can't retrieve entry from provided itemstack.", Pair.of("Itemstack", heldItem), Pair.of("Tag Compound", heldItem.getTag()));
             }
@@ -77,13 +78,15 @@ public class LoreScrollItem extends Item {
      * Writes scroll entry into provided itemstack.
      * If itemstack is not an ItemLoreScroll item, it will print the error and won't write nbt tag.
      */
-    public static void bindScrollEntry(ItemStack stack, ScrollEntry entry) {
+    public static void bindScrollEntry(ItemStack stack, ScrollEntry entry, EnumKnowledgeType knowledge, float xp) {
         if (stack.getItem() instanceof LoreScrollItem) {
             CompoundTag tagCompound = stack.getTag();
 
             if (tagCompound == null) tagCompound = new CompoundTag();
 
             tagCompound.putString("entry", entry.getId());
+            tagCompound.putString("knowledge", knowledge.getName());
+            tagCompound.putFloat("xp", xp);
 
             stack.setTag(tagCompound);
         } else {
