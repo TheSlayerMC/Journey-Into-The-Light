@@ -1,9 +1,11 @@
 package net.jitl.common.item;
 
+import net.jitl.client.render.overlay.KnowledgeToast;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.common.item.interactive.LoreScrollItem;
 import net.jitl.core.init.JItems;
 import net.jitl.core.init.client.ScrollEntries;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -29,6 +31,8 @@ public class TestBugItem extends Item {
             loot.add(new ItemStack(JItems.BLOOD, 5));
             BossCrystalEntity.create(worldIn, playerIn.position(), BossCrystalEntity.Type.CORBA, loot);
             return InteractionResultHolder.success(playerIn.getItemInHand(handIn));*/
+        } else {
+            Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(EnumKnowledgeType.CORBA, true));
         }
         return InteractionResultHolder.success(playerIn.getItemInHand(handIn));
     }
