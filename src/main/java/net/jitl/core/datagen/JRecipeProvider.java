@@ -4,7 +4,6 @@ import net.jitl.core.JITL;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -231,7 +230,7 @@ public class JRecipeProvider extends RecipeProvider {
 	 */
 	protected String inputToKey(ItemLike input) {
 		String key = "has_" + Objects.requireNonNull(input.asItem().getRegistryName()).getPath();
-		System.out.println(key);
+		JITL.LOGGER.info(key);
 		return key;
 	}
 

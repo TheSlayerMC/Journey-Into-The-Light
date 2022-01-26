@@ -43,6 +43,11 @@
       "jitl:music/toast"
     ]
   },
+  "music.toast_special": {
+    "sounds": [
+      "jitl:music/toast_special"
+    ]
+  },
   "block.grassy_permafrost.break": {
     "sounds": [
       "jitl:blocks/break/grassy_permafrost_1",

@@ -1,6 +1,5 @@
 package net.jitl.client.render.screen;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.jitl.client.util.EnumHexColor;
@@ -350,17 +349,19 @@ public class LoreScrollEntryScreen extends Screen {
         if (!isHovering)
             return false;
         MouseHandler mouseHandler = new MouseHandler(minecraft);
-        int scroll = InputConstants.MOD_CONTROL; //FIXME correct scroll
+        int scroll = 0; //(int) mouseHandler.accumulatedScroll; //fixme check correct scroll velocity
+
         //if (mouseScrolled(mouseX, mouseY, delta_)) {
-        JITL.LOGGER.info("mouse scrolled");
         this.scrollDistance += (-1 * scroll / 120.0F) * 10;
+        JITL.LOGGER.info(scroll);
         //}
         return super.mouseScrolled(mouseX_, mouseY_, delta_);
     }
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers_) {
-        if (keyCode == 1) {
+        JITL.LOGGER.info(keyCode);
+        if (keyCode == 67) {
             if (parentCategory != null) {
                 this.minecraft.setScreen(new LoreScrollScreen(parentCategory));
             } else {

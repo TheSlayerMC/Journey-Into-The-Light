@@ -32,7 +32,12 @@ public class TestBugItem extends Item {
             BossCrystalEntity.create(worldIn, playerIn.position(), BossCrystalEntity.Type.CORBA, loot);
             return InteractionResultHolder.success(playerIn.getItemInHand(handIn));*/
         } else {
-            Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(EnumKnowledgeType.CORBA, true));
+            if (playerIn.isCrouching()) {
+                Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(EnumKnowledgeType.CORBA, true));
+            } else {
+                Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(EnumKnowledgeType.DEPTHS, false));
+            }
+
         }
         return InteractionResultHolder.success(playerIn.getItemInHand(handIn));
     }
