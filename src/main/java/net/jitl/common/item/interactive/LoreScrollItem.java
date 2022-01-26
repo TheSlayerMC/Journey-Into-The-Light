@@ -1,5 +1,7 @@
 package net.jitl.common.item.interactive;
 
+import net.jitl.client.render.overlay.KnowledgeToast;
+import net.jitl.client.render.overlay.KnowledgeXPToast;
 import net.jitl.client.render.screen.LoreScrollEntryScreen;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.common.scroll.ScrollAPI;
@@ -44,14 +46,15 @@ public class LoreScrollItem extends Item {
                 Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forLocalAmbience(SoundEvents.BOOK_PAGE_TURN, 1.0F, 1.0F));
                 displayScrollGui(null, entry);
                 if(!tag.getBoolean("openedBefore")) {
-//                    if(tag.getString("knowledge") != null) {
-//                        Objects.requireNonNull(JPlayer.from(playerIn)).knowledge
-//                            .addXP(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), tag.getFloat("xp"));//FIXME
-//                    }
+                    if(!tag.getString("knowledge").equals("")) {
+                        //Objects.requireNonNull(JPlayer.from(playerIn)).knowledge
+                       //     .addXP(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), tag.getFloat("xp"));//FIXME
+                    }
                     System.out.println("KNOWLEDGE TYPE: " + tag.getString("knowledge"));
                     System.out.println("XP AMOUNT: " + tag.getFloat("xp"));
                     System.out.println("HAVE BEEN OPENED ALREADY: " + tag.getBoolean("openedBefore"));
                     tag.putBoolean("openedBefore", true);
+                    Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge"))));
                 }
             } else {
                 ChatUtils.sendInformativeError(JITL.MODID, playerIn, "Can't retrieve entry from provided itemstack.", Pair.of("Itemstack", heldItem), Pair.of("Tag Compound", heldItem.getTag()));

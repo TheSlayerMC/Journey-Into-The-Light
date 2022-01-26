@@ -252,6 +252,19 @@ public class ItemRegistrator {
         registerItem("frozen_boat", "Frosty Boat", () -> new JBoatItem(JBoat.Type.FROZEN, itemGrouped()));
         registerItem("burned_boat", "Burned Boat", () -> new JBoatItem(JBoat.Type.BURNED, itemGrouped()));
 
+        //TODO no creative tab
+        registerItem("overworld_knowledge", "Knowledge");
+        registerItem("nether_knowledge", "Knowledge");
+        registerItem("end_knowledge", "Knowledge");
+        registerItem("boil_knowledge", "Knowledge");
+        registerItem("frozen_knowledge", "Knowledge");
+        registerItem("euca_knowledge", "Knowledge");
+        registerItem("depths_knowledge", "Knowledge");
+        registerItem("corba_knowledge", "Knowledge");
+        registerItem("cloudia_knowledge", "Knowledge");
+        registerItem("terrania_knowledge", "Knowledge");
+        registerItem("senterian_knowledge", "Knowledge");
+
     }
 
     public static void addMaterialToolsWeapons(String name, JToolTiers tiers, IAbility sworldAbility, IAbility toolAbility) {

@@ -1,22 +1,46 @@
 package net.jitl.common.helper;
 
+import net.jitl.client.render.displayinfo.KnowledgeXPDisplay;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JItems;
+import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.HashMap;
-import java.util.Locale;
 
 public enum EnumKnowledgeType {
-    OVERWORLD("overworld"),
-    NETHER("nether"),
-    END("end"),
-    EUCA("euca"),
-    BOIL("boil"),
-    FROZEN("frozen"),
-    DEPTHS("depths"),
-    CORBA("corba"),
-    CLOUDIA("cloudia"),
-    TERRANIA("terrania"),
-    SENTERIAN("senterian");
+    OVERWORLD("overworld", new KnowledgeXPDisplay("Overworld", JItems.OVERWORLD_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), false)
+            , new KnowledgeXPDisplay("Overworld", JItems.OVERWORLD_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), true)),
+
+    NETHER("nether", new KnowledgeXPDisplay("The Nether", JItems.NETHER_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), false)
+            , new KnowledgeXPDisplay("The Nether", JItems.NETHER_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), true)),
+
+    END("end", new KnowledgeXPDisplay("The End", JItems.END_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), false)
+            , new KnowledgeXPDisplay("The End", JItems.END_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), true)),
+
+    EUCA("euca", new KnowledgeXPDisplay("Euca", JItems.EUCA_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), false)
+            , new KnowledgeXPDisplay("Euca", JItems.EUCA_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), true)),
+
+    BOIL("boil", new KnowledgeXPDisplay("Boiling Point", JItems.BOIL_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), false)
+            , new KnowledgeXPDisplay("Boiling Point", JItems.BOIL_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), true)),
+
+    FROZEN("frozen", new KnowledgeXPDisplay("Frozen", JItems.FROZEN_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), false)
+            , new KnowledgeXPDisplay("Frozen", JItems.FROZEN_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), true)),
+
+    DEPTHS("depths", new KnowledgeXPDisplay("The Depths", JItems.DEPTHS_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), false)
+            , new KnowledgeXPDisplay("The Depths", JItems.DEPTHS_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), true)),
+
+    CORBA("corba", new KnowledgeXPDisplay("Corba", JItems.CORBA_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), false)
+            , new KnowledgeXPDisplay("Corba", JItems.CORBA_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), true)),
+
+    CLOUDIA("cloudia", new KnowledgeXPDisplay("Cloudia", JItems.CLOUDIA_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), false)
+            , new KnowledgeXPDisplay("Cloudia", JItems.CLOUDIA_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), true)),
+
+    TERRANIA("terrania", new KnowledgeXPDisplay("Terrania", JItems.TERRANIA_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), false)
+            , new KnowledgeXPDisplay("Terrania", JItems.TERRANIA_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), true)),
+
+    SENTERIAN("senterian", new KnowledgeXPDisplay("Senterian", JItems.SENTERIAN_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), false)
+            , new KnowledgeXPDisplay("Senterian", JItems.SENTERIAN_KNOWLEDGE, JITL.rl("textures/gui/toasts.png"), true));
 
     private static final HashMap<String, EnumKnowledgeType> BY_NAME = new HashMap<>();
 
@@ -27,13 +51,24 @@ public enum EnumKnowledgeType {
     }
 
     private final String name;
+    private DisplayInfo xp, level;
 
-    EnumKnowledgeType(String name) {
+    EnumKnowledgeType(String name, DisplayInfo xp, DisplayInfo level) {
         this.name = name;
+        this.xp = xp;
+        this.level = level;
     }
 
     public String getName() {
         return name;
+    }
+
+    public DisplayInfo getXPDisplay() {
+        return xp;
+    }
+
+    public DisplayInfo getLevelDisplay() {
+        return level;
     }
 
     public static EnumKnowledgeType getKnowledgeFromName(String name) {
