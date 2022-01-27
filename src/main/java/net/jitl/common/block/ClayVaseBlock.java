@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 public class ClayVaseBlock extends JFallingTileContainerBlock {
 
     public ClayVaseBlock() {
-        super(JBlockProperties.POTTERY_PROPS.create().noOcclusion(), ClayVaseTile::new);
+        super(JBlockProperties.VASE_PROPS.create().noOcclusion(), ClayVaseTile::new);
     }
 
     @Override

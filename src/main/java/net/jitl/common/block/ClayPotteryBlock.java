@@ -14,6 +14,7 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -93,10 +94,10 @@ public class ClayPotteryBlock extends JFallingTileContainerBlock {
         if (!worldIn.isClientSide()) {
             if (worldIn.getBlockEntity(pos) instanceof ClayPotTile ClayPotTile) {
                 InvWrapper invWrapper = new InvWrapper(ClayPotTile);
-                if (!heldStack.isEmpty()) {
+                int slots = invWrapper.getSlots();
+                if (!heldStack.isEmpty() && !player.isCrouching()) {
                     ItemStack stack = heldStack;
                     ItemStack prevStack = stack.copy();
-                    int slots = invWrapper.getSlots();
                     for (int i = 0; i < slots; i++) {
                         if (!stack.isEmpty()) {
                             stack = invWrapper.insertItem(i, stack, false);
@@ -106,6 +107,17 @@ public class ClayPotteryBlock extends JFallingTileContainerBlock {
                     if (stack.isEmpty() || stack.getCount() != prevStack.getCount()) {
                         player.setItemInHand(handIn, stack);
                         return InteractionResult.SUCCESS;
+                    }
+                }
+                if (player.isCrouching()) {
+                    for (int i = 0; i < slots; i++) {
+                        ItemStack extractItem = invWrapper.extractItem(i, 1, false);
+                        if (!extractItem.isEmpty()) {
+                            ItemEntity itemEntity = new ItemEntity(worldIn, player.getX(), player.getY(), player.getZ(), extractItem);
+                            worldIn.addFreshEntity(itemEntity);
+                            worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundSource.BLOCKS, 1.0F, Mth.nextFloat(player.getRandom(), 1.25F, 1.50F));
+                            return InteractionResult.SUCCESS;
+                        }
                     }
                 }
             }

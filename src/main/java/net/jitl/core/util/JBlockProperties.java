@@ -167,6 +167,11 @@ public class JBlockProperties {
 			.sound(JSoundTypes.POTTERY)
 			.strength(0.5F, 0.5F));
 
+	public static final BlockPropsFactory VASE_PROPS = new BlockPropsFactory(() -> Properties.of
+					(Material.STONE)
+			.sound(JSoundTypes.VASE)
+			.strength(0.5F, 0.5F));
+
 	public static final BlockPropsFactory NETHER_BASALT_ORE_PROPS = new BlockPropsFactory(() -> Properties.of
 					(Material.STONE)
 			.sound(SoundType.BASALT)

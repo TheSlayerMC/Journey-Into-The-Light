@@ -24,6 +24,15 @@ public class JSoundTypes {
 			JSounds.POTTERY_DIG,
 			JSounds.POTTERY_BREAK);
 
+	public static final SoundType VASE = new TimeSoundType(
+			1.0F,
+			1.33F,
+			JSounds.POTTERY_BREAK,
+			() -> SoundEvents.GLASS_STEP,
+			JSounds.POTTERY_DIG,
+			JSounds.POTTERY_DIG,
+			JSounds.POTTERY_BREAK);
+
 	public static final SoundType LUNIUM_BLOCK = new TimeSoundType(
 			1.0F,
 			1.0F,
