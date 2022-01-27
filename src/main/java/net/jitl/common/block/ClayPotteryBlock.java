@@ -110,20 +110,26 @@ public class ClayPotteryBlock extends JFallingTileContainerBlock {
                     }
                 }
                 if (player.isCrouching()) {
-                    for (int i = 0; i < slots; i++) {
-                        ItemStack extractItem = invWrapper.extractItem(i, 1, false);
-                        if (!extractItem.isEmpty()) {
-                            ItemEntity itemEntity = new ItemEntity(worldIn, player.getX(), player.getY(), player.getZ(), extractItem);
-                            worldIn.addFreshEntity(itemEntity);
-                            worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundSource.BLOCKS, 1.0F, Mth.nextFloat(player.getRandom(), 1.25F, 1.50F));
-                            return InteractionResult.SUCCESS;
-                        }
-                    }
+                    removeItemsFromContainer(worldIn, player, invWrapper, pos, slots, 64);
+                } else {
+                    removeItemsFromContainer(worldIn, player, invWrapper, pos, slots, 1);
                 }
+                return InteractionResult.SUCCESS;
             }
             return InteractionResult.sidedSuccess(worldIn.isClientSide);
         }
         return InteractionResult.sidedSuccess(worldIn.isClientSide);
+    }
+
+    private void removeItemsFromContainer(Level worldIn, Player player, InvWrapper invWrapper, BlockPos pos, int slots, int amount) {
+        for (int i = 0; i < slots; i++) {
+            ItemStack extractItem = invWrapper.extractItem(i, amount, false);
+            if (!extractItem.isEmpty()) {
+                ItemEntity itemEntity = new ItemEntity(worldIn, player.getX(), player.getY(), player.getZ(), extractItem);
+                worldIn.addFreshEntity(itemEntity);
+                worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundSource.BLOCKS, 1.0F, Mth.nextFloat(player.getRandom(), 1.25F, 1.50F));
+            }
+        }
     }
 
     @Nullable

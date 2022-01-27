@@ -5,8 +5,8 @@ import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 
 public class HongoModel<T extends Entity> extends ListModel<T> {
 
@@ -32,13 +32,13 @@ public class HongoModel<T extends Entity> extends ListModel<T> {
                 .texOffs(0, 38).addBox(-6.0F, 1.3333F, -5.6667F, 12.0F, 14.0F, 11.0F, new CubeDeformation(0.0F))
                 .texOffs(1, 1).addBox(-10.5F, -5.6667F, -10.6667F, 21.0F, 7.0F, 21.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.3333F, 0.6667F));
 
-        PartDefinition blLeg = partdefinition.addOrReplaceChild("blLeg", CubeListBuilder.create().texOffs(49, 38).addBox(-8.0F, -9.0F, 2.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+        PartDefinition blLeg = partdefinition.addOrReplaceChild("blLeg", CubeListBuilder.create().texOffs(49, 38).addBox(-3.0F, 0.0F, -3.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(-5.0F, 15.0F, 5.0F));
 
-        PartDefinition fLLeg = partdefinition.addOrReplaceChild("fLLeg", CubeListBuilder.create().texOffs(49, 38).addBox(-8.0F, -9.0F, -7.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+        PartDefinition fLLeg = partdefinition.addOrReplaceChild("fLLeg", CubeListBuilder.create().texOffs(49, 38).addBox(-3.0F, 0.0F, -3.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(-5.0F, 15.0F, -4.0F));
 
-        PartDefinition bRLeg = partdefinition.addOrReplaceChild("bRLeg", CubeListBuilder.create().texOffs(49, 38).addBox(2.0F, -9.0F, 2.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+        PartDefinition bRLeg = partdefinition.addOrReplaceChild("bRLeg", CubeListBuilder.create().texOffs(49, 38).addBox(-3.0F, 0.0F, -3.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(5.0F, 15.0F, 5.0F));
 
-        PartDefinition fRLeg = partdefinition.addOrReplaceChild("fRLeg", CubeListBuilder.create().texOffs(49, 38).addBox(2.0F, -9.0F, -7.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+        PartDefinition fRLeg = partdefinition.addOrReplaceChild("fRLeg", CubeListBuilder.create().texOffs(49, 38).addBox(-3.0F, 0.0F, -3.0F, 6.0F, 9.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(5.0F, 15.0F, -4.0F));
 
         return LayerDefinition.create(meshdefinition, 256, 64);
     }
