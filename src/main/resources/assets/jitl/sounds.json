@@ -21,7 +21,8 @@
   "block.pottery.break": {
     "sounds": [
       "jitl:blocks/break/pottery_1",
-      "jitl:blocks/break/pottery_2"
+      "jitl:blocks/break/pottery_2",
+      "jitl:blocks/break/pottery_3"
     ],
     "subtitle": "subtitles.block.generic.break"
   },

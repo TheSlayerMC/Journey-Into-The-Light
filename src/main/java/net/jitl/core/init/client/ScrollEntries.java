@@ -4,6 +4,7 @@ import net.jitl.common.scroll.ScrollAPI;
 import net.jitl.common.scroll.ScrollCategory;
 import net.jitl.common.scroll.ScrollEntry;
 import net.jitl.common.scroll.ScrollEntryBuilder;
+import net.jitl.common.scroll.components.SentryKingComponent;
 import net.jitl.core.JITL;
 import net.jitl.core.init.JBlocks;
 import net.jitl.core.init.JItems;
@@ -15,6 +16,7 @@ public class ScrollEntries {
 
     public static final ScrollEntry SENTERIAN_GOSPEL = new ScrollEntryBuilder("senterian_gospel", "Senterian Gospel", "Book of Divinity", () -> new ItemStack(JItems.LOOT_POUCH_GOLD), 10, 10)
             .addTextComponent("scroll.jitl.sentry_gospel")
+            .addComponent(new SentryKingComponent())
             .build();
 
     public static final ScrollEntry MY_LAST_WORDS = new ScrollEntryBuilder("my_last_words", "My Last Words", "They're Coming...", () -> new ItemStack(JBlocks.GOLDITE_STONE), 10, 10)
