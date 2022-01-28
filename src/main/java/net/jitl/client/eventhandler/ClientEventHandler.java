@@ -1,8 +1,11 @@
 package net.jitl.client.eventhandler;
 
+import net.jitl.common.capability.player.JPlayer;
 import net.jitl.core.init.JBlocks;
 import net.jitl.core.init.JItems;
+import net.jitl.core.init.world.Dimensions;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.DrawSelectionEvent;
@@ -11,6 +14,7 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import ru.timeconqueror.timecore.api.util.client.ClientProxy;
+import top.theillusivec4.curios.api.CuriosApi;
 
 @Mod.EventBusSubscriber(Dist.CLIENT)
 public class ClientEventHandler {
@@ -32,9 +36,10 @@ public class ClientEventHandler {
             event.setCanceled(true);
         }
     }
-//FIXME 
+
+    //FIXME
     public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
-       /* Player player = ClientProxy.player();
+        Player player = ClientProxy.player();
         if (player != null) {
             JPlayer cap = JPlayer.from(player);
             if (player.level.dimension() == Dimensions.FROZEN_LANDS) {
@@ -58,6 +63,6 @@ public class ClientEventHandler {
                 }
                 event.setCanceled(true);
             }
-        }*/
+        }
     }
 }
