@@ -1,7 +1,6 @@
 {
   "replace": false,
   "entries": [
-    "jitl:overworld_chests",
-    "jitl:fishing_treasure"
+    "jitl:overworld_chests"
   ]
 }
