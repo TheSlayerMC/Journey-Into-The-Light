@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.timeconqueror.timecore.common.capability.CoffeeCapability;
 import ru.timeconqueror.timecore.common.capability.owner.CapabilityOwner;
-import ru.timeconqueror.timecore.common.capability.owner.serializer.CapabilityOwnerSerializer;
+import ru.timeconqueror.timecore.common.capability.owner.serializer.CapabilityOwnerCodec;
 
 //FIXME check if it's saved to the disk
 //FIXME make it be kept? upon death since it's commented now
@@ -40,7 +40,7 @@ public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
 
     @NotNull
     @Override
-    public CapabilityOwnerSerializer<Entity> getOwnerSerializer() {
+    public CapabilityOwnerCodec<Entity> getOwnerSerializer() {
         return CapabilityOwner.ENTITY.getSerializer();
     }
 
