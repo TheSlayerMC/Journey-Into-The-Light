@@ -56,7 +56,6 @@ public class KnowledgeToast implements JToast {
             if(!this.playedSound && timeSinceLastVisible > 0L) {
                 this.playedSound = true;
                 if(displayinfo.getFrame() == JFrameType.LEVEL) {
-                    toastComponent.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(JSounds.TOAST.get(), 1.0F, 1.0F));
                     toastComponent.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(JSounds.TOAST_SPECIAL.get(), 1.0F, 1.0F));
                 }
                 if(displayinfo.getFrame() == JFrameType.XP) {
