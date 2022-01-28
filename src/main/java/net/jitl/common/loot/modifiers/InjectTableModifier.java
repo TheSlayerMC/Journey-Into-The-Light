@@ -2,6 +2,7 @@ package net.jitl.common.loot.modifiers;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import net.jitl.core.JITL;
 import net.jitl.core.util.LootHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -50,6 +51,8 @@ public class InjectTableModifier extends LootModifier {
         public InjectTableModifier read(ResourceLocation location, JsonObject object, LootItemCondition[] ailootcondition) {
             JsonPrimitive newTableProperty = object.getAsJsonPrimitive("new_table");
             ResourceLocation newTable = new ResourceLocation(newTableProperty.getAsString());
+            JITL.LOGGER.info("Reading Loot Modifier Table: " + newTable);
+
             return new InjectTableModifier(ailootcondition, newTable);
         }
 
@@ -59,6 +62,7 @@ public class InjectTableModifier extends LootModifier {
             ResourceLocation newTable = instance.getNewTable();
 
             JsonObject jsonObject = this.makeConditions(conditions);
+            JITL.LOGGER.info("Writing Loot Modifier Table: " + newTable);
 
             jsonObject.addProperty("new_table", newTable.toString());
             if (getRegistryName() != null) {

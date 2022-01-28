@@ -3,9 +3,13 @@ package net.jitl.common.item;
 import net.jitl.client.render.overlay.KnowledgeToast;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.common.item.interactive.LoreScrollItem;
+import net.jitl.core.JITL;
 import net.jitl.core.init.JItems;
 import net.jitl.core.init.client.ScrollEntries;
 import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -25,6 +29,19 @@ public class TestBugItem extends Item {
             ItemStack scrollStack = new ItemStack(JItems.LORE_SCROLL);
             LoreScrollItem.bindScrollEntry(scrollStack, ScrollEntries.SENTERIAN_GOSPEL, EnumKnowledgeType.SENTERIAN, 50F);
             playerIn.addItem(scrollStack);
+
+            if (worldIn instanceof ServerLevel serverLevel) {
+                var advancement = serverLevel.getServer().getServerResources().getAdvancements().getAdvancement(new ResourceLocation("minecraft:advancements/story/root"));
+                if (playerIn instanceof ServerPlayer serverPlayer) {
+                    if (advancement != null) {
+                        boolean isComplete = serverPlayer.getAdvancements().getOrStartProgress(advancement).isDone();
+                        if (isComplete) {
+                            JITL.LOGGER.info("Player has advancement");
+                        }
+                    }
+                }
+            }
+
            /* List<ItemStack> loot = new ArrayList<>();
             loot.add(new ItemStack(JItems.LUNIUM_POWDER, 5));
             loot.add(new ItemStack(Items.DIAMOND, 5));
