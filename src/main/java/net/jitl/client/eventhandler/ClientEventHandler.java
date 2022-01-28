@@ -39,7 +39,7 @@ public class ClientEventHandler {
     }
 
     public static void onFogDensityEvent(EntityViewRenderEvent.RenderFogEvent event) {
-        float farPlaneDistance = event.getFarPlaneDistance() / 2;
+        float farPlaneDistance = 150;
         Player player = ClientProxy.player();
         if (player != null) {
             JPlayer cap = JPlayer.from(player);
