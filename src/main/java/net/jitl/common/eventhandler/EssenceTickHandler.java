@@ -17,7 +17,6 @@ public class EssenceTickHandler {
     @SubscribeEvent()
     public static void tick(TickEvent.PlayerTickEvent event) {
         if (event.side == LogicalSide.SERVER) {
-            //FIXME uncomment when player cap is fixed
             if (Essence.getMaxEssence(event.player) > 0) {
                 JPlayer playerCapability = JPlayer.from(event.player);
                 if (playerCapability != null) {

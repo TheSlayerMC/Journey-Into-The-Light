@@ -1,5 +1,6 @@
 package net.jitl.client.eventhandler;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.core.init.JBlocks;
 import net.jitl.core.init.JItems;
@@ -37,31 +38,29 @@ public class ClientEventHandler {
         }
     }
 
-    //FIXME
-    public static void onFogDensityEvent(EntityViewRenderEvent.FogDensity event) {
+    public static void onFogDensityEvent(EntityViewRenderEvent.RenderFogEvent event) {
         Player player = ClientProxy.player();
         if (player != null) {
             JPlayer cap = JPlayer.from(player);
             if (player.level.dimension() == Dimensions.FROZEN_LANDS) {
+                float density = 0.15F;
                 if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
                     if (cap != null) {
                         if (!cap.fogDensity.isDensityEnabled()) {
-                            event.setDensity(0.05F);
+                            density = 0.5F;
                         } else {
-                            event.setDensity(0.005F);
+                            density = 0.95F;
                         }
                     } else {
-                        event.setDensity(0.05F);
+                        density = 0.5F;
                     }
                 } else if (cap != null) {
                     if (cap.fogDensity.isDensityEnabled()) {
-                        event.setDensity(0.01F);
+                        density = 0.65F;
                     }
-
-                } else {
-                    event.setDensity(0.15F);
                 }
-                event.setCanceled(true);
+                RenderSystem.setShaderFogStart(density);
+                RenderSystem.setShaderFogEnd(density * 150);
             }
         }
     }
