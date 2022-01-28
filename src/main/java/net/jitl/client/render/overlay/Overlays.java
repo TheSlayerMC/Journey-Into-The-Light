@@ -89,7 +89,7 @@ public class Overlays {
                         float sin = (float) Math.sin((float) player.tickCount / 5F) / 2F + 0.5F; //sin function ranging from 0 to 1
                         float cooldownFade = Math.min(cooldown, 10) / 10; //when the cooldown starts getting close to zero, it fades out
 
-                        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, sin * cooldownFade); //TODO: test me ~ Dizzle
+                        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, sin * cooldownFade);
                         RenderUtils.blit(matrixStack, w, l, 0, 0, 81, 5, 81, 15);
                     } else {
                         int i = (int) ((currentEssence / maxEssence) * 81);

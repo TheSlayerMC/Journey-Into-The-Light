@@ -1,7 +1,7 @@
 package net.jitl.common.item.interactive;
 
-import net.jitl.client.render.overlay.KnowledgeToast;
 import net.jitl.client.render.screen.LoreScrollEntryScreen;
+import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.common.scroll.ScrollAPI;
 import net.jitl.common.scroll.ScrollCategory;
@@ -25,6 +25,7 @@ import ru.timeconqueror.timecore.api.util.ChatUtils;
 import ru.timeconqueror.timecore.api.util.Pair;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class LoreScrollItem extends Item {
 
@@ -46,8 +47,8 @@ public class LoreScrollItem extends Item {
                 displayScrollGui(null, entry);
                 if(!tag.getBoolean("openedBefore")) {
                     if(!tag.getString("knowledge").equals("")) {
-                        //Objects.requireNonNull(JPlayer.from(playerIn)).knowledge
-                       //     .addXP(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), tag.getFloat("xp"));//FIXME
+                        Objects.requireNonNull(JPlayer.from(playerIn)).knowledge
+                                .addXP(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), tag.getFloat("xp"));//FIXME test
                     }
                     tag.putBoolean("openedBefore", true);
                 }
