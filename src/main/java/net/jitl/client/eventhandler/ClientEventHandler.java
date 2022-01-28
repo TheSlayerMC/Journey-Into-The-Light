@@ -39,6 +39,7 @@ public class ClientEventHandler {
     }
 
     public static void onFogDensityEvent(EntityViewRenderEvent.RenderFogEvent event) {
+        float farPlaneDistance = event.getFarPlaneDistance();
         Player player = ClientProxy.player();
         if (player != null) {
             JPlayer cap = JPlayer.from(player);
@@ -49,18 +50,18 @@ public class ClientEventHandler {
                         if (!cap.fogDensity.isDensityEnabled()) {
                             density = 0.5F;
                         } else {
-                            density = 0.95F;
+                            density = 1.25F;
                         }
                     } else {
                         density = 0.5F;
                     }
                 } else if (cap != null) {
                     if (cap.fogDensity.isDensityEnabled()) {
-                        density = 0.65F;
+                        density = 0.85F;
                     }
                 }
                 RenderSystem.setShaderFogStart(density);
-                RenderSystem.setShaderFogEnd(density * 150);
+                RenderSystem.setShaderFogEnd(density * farPlaneDistance);
             }
         }
     }
