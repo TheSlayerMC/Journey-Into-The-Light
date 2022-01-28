@@ -9,21 +9,15 @@ import net.minecraft.world.item.ItemStack;
 public class JDisplayInfo {
 
     private final Component description;
-    private final ItemStack icon;
     private final JFrameType frame;
 
-    public JDisplayInfo(ItemStack icon, Component description, JFrameType frame) {
+    public JDisplayInfo(Component description, JFrameType frame) {
         this.description = description;
-        this.icon = icon;
         this.frame = frame;
     }
 
     public Component getDescription() {
         return this.description;
-    }
-
-    public ItemStack getIcon() {
-        return this.icon;
     }
 
     public JFrameType getFrame() {
