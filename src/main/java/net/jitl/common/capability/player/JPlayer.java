@@ -14,13 +14,13 @@ import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import ru.timeconqueror.timecore.common.capability.CoffeeCapability;
+import ru.timeconqueror.timecore.common.capability.CoffeeCapabilityInstance;
 import ru.timeconqueror.timecore.common.capability.owner.CapabilityOwner;
 import ru.timeconqueror.timecore.common.capability.owner.serializer.CapabilityOwnerCodec;
 
 //FIXME check if it's saved to the disk
 //FIXME make it be kept? upon death since it's commented now
-public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
+public class JPlayer extends CoffeeCapabilityInstance<Entity> implements IJPlayer {
     public final Essence essence = container("essence", new Essence());
     public final Sentacoins sentacoins = container("sentacoins", new Sentacoins());
     public final FogDensity fogDensity = container("fogDensity", new FogDensity());
@@ -34,7 +34,7 @@ public class JPlayer extends CoffeeCapability<Entity> implements IJPlayer {
 
     @NotNull
     @Override
-    public Capability<? extends CoffeeCapability<Entity>> getCapability() {
+    public Capability<? extends CoffeeCapabilityInstance<Entity>> getCapability() {
         return JCapabilities.PLAYER;
     }
 
