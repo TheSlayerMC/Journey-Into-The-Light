@@ -57,20 +57,24 @@ public class KnowledgeToast implements JToast {
                     }
                 }
             }
-            if(!this.playedSound && timeSinceLastVisible > 0L) {
+            if (!this.playedSound && timeSinceLastVisible > 0L) {
                 this.playedSound = true;
-                if(displayinfo.getFrame() == JFrameType.LEVEL) {
+                if (displayinfo.getFrame() == JFrameType.LEVEL) {
                     toastComponent.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(JSounds.TOAST_SPECIAL.get(), 1.0F, 1.0F));
                 }
-                if(displayinfo.getFrame() == JFrameType.XP) {
+                if (displayinfo.getFrame() == JFrameType.XP) {
                     toastComponent.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(JSounds.TOAST.get(), 1.0F, 1.0F));
                 }
             }
-            //toastComponent.getMinecraft().getItemRenderer().renderAndDecorateFakeItem(displayinfo.getIcon(), 8, 8);
+            float scale = 0.8F;
+            double translate = 2.5D;
             poseStack.pushPose();
+            poseStack.scale(scale, scale, scale);
+            poseStack.translate(translate, translate, translate);
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderTexture(0, KNOWLEDGE_SPRITE);
-            toastComponent.blit(poseStack, 8, 8, knowledge.getSpriteX(), knowledge.getSpriteY(), 32, 32);
+            toastComponent.blit(poseStack, 1, 1, knowledge.getSpriteX(), knowledge.getSpriteY(), 32, 32);
+
             poseStack.popPose();
             return timeSinceLastVisible >= 5000L ? JToast.Visibility.HIDE : JToast.Visibility.SHOW;
         } else {

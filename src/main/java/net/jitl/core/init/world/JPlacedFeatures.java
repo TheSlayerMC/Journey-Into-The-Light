@@ -434,6 +434,24 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.BOIL_FIRE_BIOMES)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> ORE_RIMESTONE = REGISTER.register(
+                    "ore_rimestone",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.RIMESTONE_ORE.get()
+                            .placed(orePlacement(CountPlacement.of(12),
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256)))))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_PERIDOT = REGISTER.register(
+                    "ore_peridot",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.PERIDOT_ORE.get()
+                            .placed(orePlacement(CountPlacement.of(12),
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256)))))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
     public static final Promised<? extends PlacedFeature> EUCA_BOULDER = REGISTER.register(
                     "euca_boulder",
                     GenerationStep.Decoration.RAW_GENERATION,

@@ -58,7 +58,9 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.STORON_ORE,
                 JBlocks.MEKYUM_ORE,
                 JBlocks.KORITE_ORE,
-                JBlocks.CELESTIUM_ORE
+                JBlocks.CELESTIUM_ORE,
+                JBlocks.RIMESTONE_ORE,
+                JBlocks.PERIDOT_ORE
         );
     }
 
@@ -73,7 +75,9 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.DEEPSLATE_LUNIUM_ORE,
                 JBlocks.IRIDIUM_ORE,
                 JBlocks.DEEPSLATE_IRIDIUM_ORE,
-                JBlocks.DREADIRON_BLOCK
+                JBlocks.DREADIRON_BLOCK,
+                JBlocks.RIMESTONE_ORE,
+                JBlocks.PERIDOT_ORE
         );
         tag(BlockTags.NEEDS_DIAMOND_TOOL).add(
                 JBlocks.BLAZIUM_ORE,

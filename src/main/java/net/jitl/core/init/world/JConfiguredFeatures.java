@@ -51,6 +51,7 @@ public class JConfiguredFeatures {
     public static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
     public static final RuleTest EUCA_ORE_REPLACEABLES = new TagMatchTest(JTags.EUCA_STONE_ORE_REPLACEABLES);
     public static final RuleTest BOIL_ORE_REPLACEABLES = new TagMatchTest(JTags.BOIL_STONE_ORE_REPLACEABLES);
+    public static final RuleTest FROZEN_ORE_REPLACEABLES = new TagMatchTest(JTags.FROZEN_STONE_ORE_REPLACEABLES);
 
     //FIXME lunium ore is null
     /*public static final List<OreConfiguration.TargetBlockState> ORE_LUNIUM_TARGET_LIST = List.of(
@@ -547,6 +548,16 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> BLAZIUM_ORE =
             REGISTER.register("blazium_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
                     OreConfiguration.target(BOIL_ORE_REPLACEABLES, JBlocks.BLAZIUM_ORE.defaultBlockState())),
+                    7)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> RIMESTONE_ORE =
+            REGISTER.register("rimestone_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(FROZEN_ORE_REPLACEABLES, JBlocks.RIMESTONE_ORE.defaultBlockState())),
+                    7)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> PERIDOT_ORE =
+            REGISTER.register("peridot_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(FROZEN_ORE_REPLACEABLES, JBlocks.PERIDOT_ORE.defaultBlockState())),
                     7)));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWING_FUNGI =
