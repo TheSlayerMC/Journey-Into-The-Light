@@ -4,11 +4,12 @@ import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.player.data.Portal;
 import net.jitl.core.JITL;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = JITL.MODID)
+@Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class PortalOverlayHandler {
 
     @SubscribeEvent

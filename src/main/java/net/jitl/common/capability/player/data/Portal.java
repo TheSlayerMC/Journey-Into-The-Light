@@ -1,9 +1,13 @@
 package net.jitl.common.capability.player.data;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.Block;
 import ru.timeconqueror.timecore.common.capability.property.container.PropertyContainer;
 
 public class Portal extends PropertyContainer {
+    //FIXME sync
     public float portalOverlayTime = 0F;
     public float oldPortalOverlayTime = 0F;
     public Block portalBlockToRender;
@@ -12,7 +16,6 @@ public class Portal extends PropertyContainer {
      * The time it takes for a player to teleport after colliding with a JITL portal block
      */
     public int portalTimer = 0;
-
 
     /**
      * Called whenever a player has collided with a JITL portal block. initiates portal animation
@@ -26,6 +29,10 @@ public class Portal extends PropertyContainer {
             ++portalTimer;
             portalOverlayTime += alphaTime;
             if (portalOverlayTime > 1.0F) portalOverlayTime = 1.0F;
+            if (portalOverlayTime == 0.01F) {
+                Minecraft minecraft = Minecraft.getInstance();
+                minecraft.getSoundManager().play(SimpleSoundInstance.forLocalAmbience(SoundEvents.PORTAL_TRIGGER, 1.0F, 1.0F));
+            }
             inPortal = false;
         } else {
             if (portalOverlayTime > 0) portalOverlayTime -= 0.05F;
