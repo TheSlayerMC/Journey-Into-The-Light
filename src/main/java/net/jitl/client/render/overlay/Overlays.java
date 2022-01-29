@@ -67,7 +67,7 @@ public class Overlays {
             JPlayer jPlayer = JPlayer.from(player);
             if (jPlayer != null) {
                 Portal playerPortalOverlay = jPlayer.portal;
-                float timeInPortal = playerPortalOverlay.getPortalOverlayTime() * 1.2F + playerPortalOverlay.getOldPortalOverlayTime() - playerPortalOverlay.getPortalOverlayTime();
+                float timeInPortal = playerPortalOverlay.getOldPortalOverlayTime() * 1.45F + (playerPortalOverlay.getPortalOverlayTime() - playerPortalOverlay.getOldPortalOverlayTime()) * partialTicks;
                 if (timeInPortal > 0.0F) {
                     if (timeInPortal < 1.0F) {
                         timeInPortal *= timeInPortal;

@@ -1,19 +1,18 @@
 package net.jitl.common.capability.player.data;
 
-import net.jitl.core.JITL;
 import net.minecraft.world.level.block.Block;
 import ru.timeconqueror.timecore.common.capability.property.container.PropertyContainer;
 
 public class Portal extends PropertyContainer {
-    public float portalOverlayTime;
-    public float oldPortalOverlayTime;
-
+    public float portalOverlayTime = 0F;
+    public float oldPortalOverlayTime = 0F;
     public Block portalBlockToRender;
 
     /**
      * The time it takes for a player to teleport after colliding with a JITL portal block
      */
-    public int timeBeforeTeleport = 300;
+    public int portalTimer = 0;
+
 
     /**
      * Called whenever a player has collided with a JITL portal block. initiates portal animation
@@ -22,38 +21,36 @@ public class Portal extends PropertyContainer {
 
     public void onTick() {
         oldPortalOverlayTime = portalOverlayTime;
-
         float alphaTime = 0.01F;
         if (inPortal) {
+            ++portalTimer;
             portalOverlayTime += alphaTime;
-            JITL.LOGGER.info("Portal Overlay Time" + portalOverlayTime);
-            JITL.LOGGER.info("Alpha Time" + alphaTime);
+            if (portalOverlayTime > 1.0F) portalOverlayTime = 1.0F;
             inPortal = false;
         } else {
             if (portalOverlayTime > 0) portalOverlayTime -= 0.05F;
+
             if (portalOverlayTime < 0) portalOverlayTime = 0;
+
+            if (portalTimer > 0) portalTimer -= 4;
         }
     }
 
-    public int getTimeBeforeTeleport() {
-        return timeBeforeTeleport;
-    }
-
-    public void setPortalTime(int time) {
-        this.timeBeforeTeleport = time;
-    }
-
-    public void setInPortal(Block portalBlock) {
+    public void setInPortal(Block portalBlock, boolean inPortal) {
         portalBlockToRender = portalBlock;
-        inPortal = true;
+        this.inPortal = inPortal;
     }
 
     public Block getPortalBlockToRender() {
         return portalBlockToRender;
     }
 
-    public boolean isInPortal() {
-        return inPortal;
+    public void setPortalTimer(int timer) {
+        portalTimer = timer;
+    }
+
+    public int getPortalTimer() {
+        return portalTimer;
     }
 
     public float getPortalOverlayTime() {
