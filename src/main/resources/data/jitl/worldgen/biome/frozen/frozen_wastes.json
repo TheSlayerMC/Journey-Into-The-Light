@@ -24,7 +24,11 @@
       "probability": 0.06428
     }
   },
-  "carvers": {},
+  "carvers": {
+    "air": [
+      "jitl:frozen_cave"
+    ]
+  },
   "spawners": {
     "monster": [
       {

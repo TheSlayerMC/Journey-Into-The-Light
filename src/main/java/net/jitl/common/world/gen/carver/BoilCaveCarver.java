@@ -17,10 +17,10 @@ import org.apache.commons.lang3.mutable.MutableBoolean;
 import java.util.Random;
 import java.util.function.Function;
 
-public class FrozenCaveCarver extends CaveWorldCarver {
-    public FrozenCaveCarver(Codec<CaveCarverConfiguration> codec_) {
+public class BoilCaveCarver extends CaveWorldCarver {
+    public BoilCaveCarver(Codec<CaveCarverConfiguration> codec_) {
         super(codec_);
-        this.replaceableBlocks = ImmutableSet.of(JBlocks.PERMAFROST, JBlocks.CRUMBLED_PERMAFROST, JBlocks.GRASSY_PERMAFROST);
+        this.replaceableBlocks = ImmutableSet.of(JBlocks.ASH_BLOCK, JBlocks.HOT_GROUND, JBlocks.VOLCANIC_SAND, JBlocks.VOLCANIC_SANDSTONE, JBlocks.VOLCANIC_SOIL, JBlocks.RUBBLE, JBlocks.SCORCHED_RUBBLE);
         this.liquids = ImmutableSet.of(Fluids.LAVA, Fluids.WATER);
     }
 

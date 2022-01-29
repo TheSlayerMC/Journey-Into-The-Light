@@ -60,7 +60,11 @@
       }
     ]
   },
-  "carvers": {},
+  "carvers": {
+    "air": [
+      "jitl:frozen_cave"
+    ]
+  },
   "spawn_costs": {},
   "features": [
     [
