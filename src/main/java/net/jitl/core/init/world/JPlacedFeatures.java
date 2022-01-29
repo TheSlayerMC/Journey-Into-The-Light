@@ -216,7 +216,7 @@ public class JPlacedFeatures {
                     "charred_fields_veg",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.CHARRED_FIELDS_VEG.get()
-                            .placed(patch(2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(7, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
             .asPromise();
 

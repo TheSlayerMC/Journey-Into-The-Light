@@ -45,10 +45,10 @@ public class FrozenTrollHeldItemLayer<T extends LivingEntity, M extends EntityMo
             matrixStack_.pushPose();
             this.getParentModel().translateToHand(handSide_, matrixStack_);
             matrixStack_.mulPose(Vector3f.XP.rotationDegrees(-90.0F));
-            if (livingEntity_ instanceof FrozenTrollEntity) {
-                FrozenTrollEntity frozenTrollEntity = (FrozenTrollEntity) livingEntity_;
+            boolean flag = handSide_ == HumanoidArm.LEFT;
+            if (livingEntity_ instanceof FrozenTrollEntity frozenTrollEntity) {
                 JEntityAction entityAction = frozenTrollEntity.getArmPose();
-                if (entityAction == JEntityAction.ADMIRING_ITEM) {
+                if (entityAction == JEntityAction.ADMIRING_ITEM && flag) {
                     matrixStack_.mulPose(Vector3f.YP.rotationDegrees(195.0F));
                     matrixStack_.mulPose(Vector3f.ZP.rotationDegrees(15.0F));
                     matrixStack_.translate(0.465F, -0.2, 0.03);
@@ -58,7 +58,6 @@ public class FrozenTrollHeldItemLayer<T extends LivingEntity, M extends EntityMo
             } else {
                 matrixStack_.mulPose(Vector3f.YP.rotationDegrees(180.0F));
             }
-            boolean flag = handSide_ == HumanoidArm.LEFT;
             matrixStack_.translate((float) (flag ? -1 : 1) / 14.0F, 0.125D, -0.625D);
             Minecraft.getInstance().getItemInHandRenderer().renderItem(livingEntity_, itemStack_, transformType_, flag, matrixStack_, renderTypeBuffer_, int_);
             matrixStack_.popPose();

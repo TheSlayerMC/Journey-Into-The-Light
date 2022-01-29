@@ -80,7 +80,7 @@ public class IllagerMechEntity extends Raider implements AnimatedObject<IllagerM
         this.goalSelector.addGoal(4, new AttackGoal());
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Villager.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false,
                 (livingEntity_) -> livingEntity_ instanceof Enemy &&
                         !(livingEntity_ instanceof Creeper) &&

@@ -46,7 +46,7 @@ public class ClientEventHandler {
             if (player.level.dimension() == Dimensions.FROZEN_LANDS) {
                 float density = 0.15F;
                 float curioMult = 2.33F;
-                float capMult = 5.66F;
+                float capMult = 8.66F;
                 float curioCapMult = curioMult + capMult;
 
                 if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
