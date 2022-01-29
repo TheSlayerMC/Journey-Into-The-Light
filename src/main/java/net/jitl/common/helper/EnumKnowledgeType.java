@@ -1,8 +1,7 @@
 package net.jitl.common.helper;
 
 import net.jitl.client.render.displayinfo.KnowledgeXPDisplay;
-import net.jitl.client.render.overlay.JDisplayInfo;
-import net.jitl.core.init.JItems;
+import net.jitl.client.render.overlay.internal.JDisplayInfo;
 import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.HashMap;
@@ -50,8 +49,10 @@ public enum EnumKnowledgeType {
     }
 
     private final String name;
-    private JDisplayInfo xp, level;
-    private int spriteX, spriteY;
+    private final JDisplayInfo xp;
+    private final JDisplayInfo level;
+    private final int spriteX;
+    private final int spriteY;
 
     EnumKnowledgeType(String name, int spriteX, int spriteY, JDisplayInfo xp, JDisplayInfo level) {
         this.name = name;

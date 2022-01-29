@@ -1,6 +1,6 @@
 package net.jitl.common.item;
 
-import net.jitl.client.render.overlay.KnowledgeToast;
+import net.jitl.client.render.overlay.internal.KnowledgeToast;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.common.item.interactive.LoreScrollItem;
 import net.jitl.core.JITL;

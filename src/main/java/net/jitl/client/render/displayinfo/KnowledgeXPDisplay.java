@@ -1,7 +1,7 @@
 package net.jitl.client.render.displayinfo;
 
-import net.jitl.client.render.overlay.JDisplayInfo;
-import net.jitl.client.render.overlay.JFrameType;
+import net.jitl.client.render.overlay.internal.JDisplayInfo;
+import net.jitl.client.render.overlay.internal.JFrameType;
 import net.minecraft.network.chat.TranslatableComponent;
 
 public class KnowledgeXPDisplay extends JDisplayInfo {

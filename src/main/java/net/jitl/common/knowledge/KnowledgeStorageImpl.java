@@ -1,6 +1,6 @@
 package net.jitl.common.knowledge;
 
-import net.jitl.client.render.overlay.KnowledgeToast;
+import net.jitl.client.render.overlay.internal.KnowledgeToast;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;

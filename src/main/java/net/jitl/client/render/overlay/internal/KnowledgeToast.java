@@ -1,4 +1,4 @@
-package net.jitl.client.render.overlay;
+package net.jitl.client.render.overlay.internal;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
