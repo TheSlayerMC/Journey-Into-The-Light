@@ -111,14 +111,18 @@ public class JBasePortalBlock extends Block {
                 if (!entity.level.isClientSide && !pos.equals(entity.portalEntrancePos)) {
                     entity.portalEntrancePos = pos.immutable();
                 }
-                JPlayer jPlayer = JPlayer.from((Player) entity);
-                if (jPlayer != null) {
-                    Portal portal = jPlayer.portal;
-                    portal.setInPortal(this, true);
-                    int cooldownTime = portal.getPortalTimer();
-                    if (cooldownTime >= entity.getPortalWaitTime()) {
-                        teleport(entity);
-                        portal.setPortalTimer(0);
+                if (entity instanceof Player player) {
+                    JPlayer jPlayer = JPlayer.from(player);
+                    if (jPlayer != null) {
+                        Portal portal = jPlayer.portal;
+                        portal.setInPortal(this, true);
+                        int cooldownTime = portal.getPortalTimer();
+                        if (cooldownTime >= player.getPortalWaitTime()) {
+                            teleport(player);
+                            portal.setPortalTimer(0);
+                        }
+                    } else {
+                        teleport(player);
                     }
                 } else {
                     teleport(entity);
