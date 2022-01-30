@@ -20,7 +20,7 @@ import ru.timeconqueror.timecore.common.capability.owner.serializer.CapabilityOw
 public class JPlayer extends CoffeeCapabilityInstance<Entity> implements IJPlayer {
     public final Essence essence = container("essence", new Essence());
     public final Sentacoins sentacoins = container("sentacoins", new Sentacoins());
-    public final FogDensity fogDensity = container("fogDensity", new FogDensity());
+    public final FrozenBlizzard frozenBlizzard = container("frozen_blizzard", new FrozenBlizzard());
     public final Knowledge knowledge = container("knowledge", new Knowledge());
     public final Portal portal = container("portal", new Portal());
 

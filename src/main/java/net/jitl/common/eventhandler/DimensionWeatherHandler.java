@@ -1,7 +1,7 @@
 package net.jitl.common.eventhandler;
 
 import net.jitl.common.capability.player.JPlayer;
-import net.jitl.common.capability.player.data.FogDensity;
+import net.jitl.common.capability.player.data.FrozenBlizzard;
 import net.jitl.core.JITL;
 import net.jitl.core.init.world.Dimensions;
 import net.minecraft.world.entity.player.Player;
@@ -21,8 +21,8 @@ public class DimensionWeatherHandler {
         if (level.dimension() == Dimensions.FROZEN_LANDS) {
             JPlayer jPlayer = JPlayer.from(player);
             if (jPlayer != null) {
-                FogDensity fogDensity = jPlayer.fogDensity;
-                if (fogDensity.isDensityEnabled()) {
+                FrozenBlizzard frozenBlizzard = jPlayer.frozenBlizzard;
+                if (frozenBlizzard.isBlizzardDisabled()) {
                     level.setRainLevel(0.0F);
                 } else {
                     level.setRainLevel(5.0F);

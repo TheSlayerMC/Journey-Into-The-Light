@@ -51,7 +51,7 @@ public class ClientEventHandler {
 
                 if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
                     if (cap != null) {
-                        if (!cap.fogDensity.isDensityEnabled()) {
+                        if (!cap.frozenBlizzard.isBlizzardDisabled()) {
                             density *= curioMult;
                         } else {
                             density *= curioCapMult;
@@ -60,7 +60,7 @@ public class ClientEventHandler {
                         density *= curioMult;
                     }
                 } else if (cap != null) {
-                    if (cap.fogDensity.isDensityEnabled()) {
+                    if (cap.frozenBlizzard.isBlizzardDisabled()) {
                         density *= capMult;
                     }
                 }

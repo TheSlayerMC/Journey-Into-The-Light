@@ -183,7 +183,7 @@ public class FrozenGuardianEntity extends PathfinderMob {
                             if (isActivated()) {
                                 if (!level.isClientSide) {
                                     summonLightning(pos);
-                                    disableFogDensity();
+                                    disableFrozenBlizzard();
                                 }
                                 tile.setItem(0, ItemStack.EMPTY);
                             }
@@ -209,13 +209,13 @@ public class FrozenGuardianEntity extends PathfinderMob {
             this.level.addFreshEntity(bolt);
     }
 
-    public void disableFogDensity() {
+    public void disableFrozenBlizzard() {
         int playerArea = 10;
-        AABB axisalignedbb = AABB.unitCubeFromLowerCorner(this.position()).inflate(playerArea, 10.0D, playerArea);
-        for(Player player : this.level.getEntitiesOfClass(Player.class, axisalignedbb)) {
+        AABB axisalignedbb = AABB.unitCubeFromLowerCorner(this.position()).inflate(playerArea);
+        for (Player player : this.level.getEntitiesOfClass(Player.class, axisalignedbb)) {
             JPlayer capability = JPlayer.from(player);
-            if(capability != null) {
-                capability.fogDensity.setDensityEnabled(true);
+            if (capability != null) {
+                capability.frozenBlizzard.setBlizzardDisabled(true);
                 capability.detectAndSendChanges();
             }
         }
