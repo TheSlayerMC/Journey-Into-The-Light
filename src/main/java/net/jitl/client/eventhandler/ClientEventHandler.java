@@ -47,7 +47,7 @@ public class ClientEventHandler {
                 float density = 0.15F;
                 float curioMult = 2.33F;
                 float capMult = 8.66F;
-                float curioCapMult = curioMult + capMult;
+                float curioCapMult = (curioMult + 2.0F) + capMult;
 
                 if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
                     if (cap != null) {
