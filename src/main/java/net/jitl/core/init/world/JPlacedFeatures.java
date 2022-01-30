@@ -33,7 +33,7 @@ public class JPlacedFeatures {
                     "tartberry_bush",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.TARTBERRY_BUSH.get()
-                            .placed(patch(5, 14, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(2, 16, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.IN_FORESTS)
             .asPromise();
 
@@ -306,6 +306,14 @@ public class JPlacedFeatures {
                     () -> JConfiguredFeatures.SMALL_FROZEN_BITTERWOOOD_TREE.get()
                             .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.BITTERWOOD_SAPLING)))
             .allowedInBiomes(BiomePredicate.FROZEN_BITTERWOOD_FORST)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> REDCURRANT_BUSH = REGISTER.register(
+                    "redcurrant_bush",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.REDCURRANT_BUSH.get()
+                            .placed(patch(2, 16, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> FROZEN_VEG = REGISTER.register(

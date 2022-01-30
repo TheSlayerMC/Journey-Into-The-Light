@@ -64,6 +64,9 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> TARTBERRY_BUSH =
             REGISTER.register("tartberry_bush", surfacePatchFeature(() -> JBlocks.TARTBERRY_BUSH.defaultBlockState()));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> REDCURRANT_BUSH =
+            REGISTER.register("redcurrant_bush", surfacePatchFeature(() -> JBlocks.REDCURRANT_BUSH.defaultBlockState()));
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> DEFAULT_OVERWORLD_RUINS =
             REGISTER.register("default_overworld_ruins",
                     () -> JFeatures.RUINS.get()
@@ -265,6 +268,7 @@ public class JConfiguredFeatures {
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_FIRE =
             REGISTER.register("boiling_fire", surfacePatchFeature(() -> Blocks.FIRE.defaultBlockState()));
+
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOIL_SANDS_VEG =
             REGISTER.register("boil_sands_veg",
