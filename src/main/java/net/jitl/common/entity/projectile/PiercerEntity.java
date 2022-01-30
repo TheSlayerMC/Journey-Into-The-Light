@@ -9,6 +9,8 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -134,6 +136,10 @@ public class PiercerEntity extends AbstractArrow implements ItemSupplier {
                 ++this.soundTickCount;
             }
         }
+        if (getStack().isEmpty()) {
+            level.playSound(null, blockPosition(), SoundEvents.ITEM_BREAK, SoundSource.AMBIENT, 1.0F, 1.0F);
+            discard();
+        }
     }
 
     private boolean isAcceptibleReturnOwner() {
@@ -159,9 +165,8 @@ public class PiercerEntity extends AbstractArrow implements ItemSupplier {
         Entity entity = entityRayTraceResult_.getEntity();
         if (entity instanceof LivingEntity && entity != this.getOwner()) {
             if (!level.isClientSide()) {
-                if (getOwner() instanceof ServerPlayer) {
-                    ServerPlayer player = (ServerPlayer) getOwner();
-                    getStack().hurt(1, player.getRandom(), player);
+                if (getOwner() instanceof ServerPlayer player) {
+                    getStack().hurtAndBreak(1, player, (context) -> context.broadcastBreakEvent(player.getUsedItemHand()));
                 }
 
                 if (entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) getBaseDamage())) {
