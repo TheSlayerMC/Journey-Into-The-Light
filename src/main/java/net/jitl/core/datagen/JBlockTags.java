@@ -60,12 +60,23 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.KORITE_ORE,
                 JBlocks.CELESTIUM_ORE,
                 JBlocks.RIMESTONE_ORE,
-                JBlocks.PERIDOT_ORE
+                JBlocks.PERIDOT_ORE,
+                JBlocks.PERMAFROST
+        );
+        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
+                JBlocks.CRUMBLED_PERMAFROST,
+                JBlocks.GRASSY_PERMAFROST
+        );
+        tag(BlockTags.MINEABLE_WITH_AXE).add(
+                JBlocks.FROZEN_LOG
         );
     }
 
     //TODO: finish required tool tags
     public void addRequiredToolTags() {
+        tag(BlockTags.NEEDS_STONE_TOOL).add(
+                JBlocks.PERMAFROST
+        );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 JBlocks.SAPPHIRE_ORE,
                 JBlocks.DEEPSLATE_SAPPHIRE_ORE,
