@@ -6,7 +6,6 @@ import net.jitl.common.block.foliage.*;
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
 import net.jitl.core.JITL;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.StairBlock;
@@ -161,6 +160,7 @@ public class JBlocks {
     public static final Block CRUMBLED_PERMAFROST = promise();
     public static final Block PERMAFROST = promise();
     public static final Block FROSTY_ICE = promise();
+    public static final Block ICICLE = promise();
     public static final Block FROZEN_LEAVES = promise();
     public static final Block FROZEN_LOG = promise();
 

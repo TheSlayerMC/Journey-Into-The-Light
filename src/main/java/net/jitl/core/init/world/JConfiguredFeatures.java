@@ -2,6 +2,8 @@ package net.jitl.core.init.world;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import net.jitl.common.world.gen.features.featureconfig.FrostyIceClusterFeatureConfig;
+import net.jitl.common.world.gen.features.featureconfig.IcicleFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
 import net.jitl.common.world.gen.treedecorator.*;
@@ -34,6 +36,8 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
+import net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement;
+import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluids;
@@ -450,6 +454,57 @@ public class JConfiguredFeatures {
                                     .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
                                     .build()));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_ICICLE =
+            REGISTER.register("frozen_icicle",
+                    () -> Feature.SIMPLE_RANDOM_SELECTOR.configured(new SimpleRandomFeatureConfiguration(ImmutableList.of(() ->
+                            JFeatures.FROZEN_ICICLE.get().configured(
+                                            new IcicleFeatureConfig(
+                                                    0.2F,
+                                                    0.7F,
+                                                    0.5F,
+                                                    0.5F))
+                                    .placed(
+                                            EnvironmentScanPlacement.scanningFor(
+                                                    Direction.DOWN,
+                                                    BlockPredicate.solid(),
+                                                    BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE,
+                                                    12),
+                                            RandomOffsetPlacement.vertical(
+                                                    ConstantInt.of(1))), () ->
+                            JFeatures.FROZEN_ICICLE.get().configured(
+                                            new IcicleFeatureConfig(
+                                                    0.2F,
+                                                    0.7F,
+                                                    0.5F,
+                                                    0.5F))
+                                    .placed(
+                                            EnvironmentScanPlacement.scanningFor(
+                                                    Direction.UP,
+                                                    BlockPredicate.solid(),
+                                                    BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE,
+                                                    12),
+                                            RandomOffsetPlacement.vertical(
+                                                    ConstantInt.of(-1)))))));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FROSTY_ICE_CLUSTER =
+            REGISTER.register("frosty_ice_cluster",
+                    () -> JFeatures.FROSTY_ICE_CLUSTER.get().configured(
+                            new FrostyIceClusterFeatureConfig(
+                                    12,
+                                    UniformInt.of(3, 6),
+                                    UniformInt.of(2, 8),
+                                    1,
+                                    3,
+                                    UniformInt.of(2, 4),
+                                    UniformFloat.of(0.3F, 0.7F),
+                                    ClampedNormalFloat.of(
+                                            0.1F,
+                                            0.3F,
+                                            0.1F,
+                                            0.9F),
+                                    0.1F,
+                                    3,
+                                    8)));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_VEG =
             REGISTER.register("frozen_veg",

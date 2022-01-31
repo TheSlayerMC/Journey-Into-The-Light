@@ -8,7 +8,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.valueproviders.ClampedNormalInt;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -178,6 +180,32 @@ public class JPlacedFeatures {
                     () -> JConfiguredFeatures.ICE_SPIKE.get()
                             .placed(patch(3, 5, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.FROZEN_WASTES)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ICICLE = REGISTER.register(
+                    "icicle",
+                    GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
+                    () -> JConfiguredFeatures.FROZEN_ICICLE.get()
+                            .placed(
+                                    CountPlacement.of(UniformInt.of(192, 256)),
+                                    InSquarePlacement.spread(),
+                                    PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                                    CountPlacement.of(UniformInt.of(1, 5)),
+                                    RandomOffsetPlacement.of(ClampedNormalInt.of(0.0F, 3.0F, -10, 10), ClampedNormalInt.of(0.0F, 0.6F, -2, 2)),
+                                    BiomeFilter.biome()))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> FROSTY_ICE_CLUSTER = REGISTER.register(
+                    "frosty_ice_cluster",
+                    GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
+                    () -> JConfiguredFeatures.FROSTY_ICE_CLUSTER.get()
+                            .placed(
+                                    CountPlacement.of(UniformInt.of(48, 96)),
+                                    InSquarePlacement.spread(),
+                                    PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                                    BiomeFilter.biome()))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> SULPHUR_DEPOSIT = REGISTER.register(
