@@ -31,7 +31,7 @@ public class Portal extends PropertyContainer {
             if (portalOverlayTime > 1.0F) portalOverlayTime = 1.0F;
             if (portalOverlayTime == 0.01F) {
                 Minecraft minecraft = Minecraft.getInstance();
-                minecraft.getSoundManager().play(SimpleSoundInstance.forLocalAmbience(SoundEvents.PORTAL_TRIGGER, 1.0F, 1.0F));
+                minecraft.getSoundManager().play(SimpleSoundInstance.forLocalAmbience(SoundEvents.PORTAL_TRIGGER, 1.0F, 0.65F));
             }
             inPortal = false;
         } else {

@@ -1,0 +1,41 @@
+{
+  "parent": "jitl:jitl/frozen/root",
+  "display": {
+    "icon": {
+      "item": "jitl:redcurrant_berry"
+    },
+    "title": {
+      "translate": "jitl.advancement.frozen.ride_capybara.title"
+    },
+    "description": {
+      "translate": "jitl.advancement.frozen.ride_capybara.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ride_capybara": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "vehicle": {
+                "type": "jitl:capybara"
+              }
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ride_capybara"
+    ]
+  ]
+}

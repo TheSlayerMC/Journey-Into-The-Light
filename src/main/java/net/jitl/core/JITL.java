@@ -58,7 +58,6 @@ public class JITL {
 			JBiomeGeneration.generateBiomes();
 			ScrollEntries.register();
 		});
-		//JCapabilityProvider.registerCapabilities(); //fixme
 		Raid.RaiderType.create("illager_mech", JEntities.ILLAGER_MECH_TYPE, new int[]{0, 0, 0, 1, 0, 1, 0, 2}); //TODO: move me
 	}
 

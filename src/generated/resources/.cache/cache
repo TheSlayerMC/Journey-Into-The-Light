@@ -1,4 +1,7 @@
 73c326fe2f06f934fb51f8f56cbd7b82dca6b853 data/forge/tags/blocks/needs_wood_tool.json
+da56a03c46e66a77d2408bfbf0ed7a507039e9e4 data/jitl/advancements/jitl/frozen/ride_capybara.json
+bc17bf8f98d62a39744a6de75ce224f654b79a9e data/jitl/advancements/jitl/frozen/root.json
+f4c1e380fb454041bd71b42eae6b45788d35cfef data/jitl/advancements/jitl/overworld/root.json
 82a3bde2bef44e9fbaff953953e1ca8ee8373121 data/jitl/advancements/recipes/jitl.armor/dreadiron_boots_smithing.json
 b9223f6cc50627a07245d8b1d2057b19a8b85d79 data/jitl/advancements/recipes/jitl.armor/dreadiron_chestplate_smithing.json
 af2392c85c2188e751c876ddfdcdf9df02797d28 data/jitl/advancements/recipes/jitl.armor/dreadiron_helmet_smithing.json
@@ -259,6 +262,7 @@ fc0982b663ea6df5f33922813ae7adcf2af9a333 data/jitl/recipes/shadium_block.json
 2420b488e4ce6412f023cc4581c68272094e8462 data/jitl/recipes/shadium_ingot_from_block.json
 bb400a849055c07df2f15ae00dca5ba3845e8345 data/jitl/recipes/storon_block.json
 1227ee6f42d389d3c349b347a157eda124b8d0c7 data/jitl/recipes/storon_gemstone_from_block.json
+df9a9bb71519bdf46686ba82a3758bb03b065f4d data/jitl/tags/items/frozen_troll_loved_items.json
 65ee1e888b24d9326614c25d2b49e485479ea55e data/minecraft/tags/blocks/mineable/axe.json
 92ed811ec8c4fcb04ff6d7f76cb937489176b94f data/minecraft/tags/blocks/mineable/pickaxe.json
 e49d3632a8ad513a7a74a88b2f51e990f110e55b data/minecraft/tags/blocks/mineable/shovel.json

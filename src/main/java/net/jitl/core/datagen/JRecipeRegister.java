@@ -1,5 +1,6 @@
 package net.jitl.core.datagen;
 
+import net.jitl.core.datagen.provider.JRecipeProvider;
 import net.jitl.core.init.JBlocks;
 import net.jitl.core.init.JItems;
 import net.minecraft.data.DataGenerator;
