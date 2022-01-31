@@ -110,9 +110,9 @@ public class ClayPotteryBlock extends JFallingTileContainerBlock {
                     }
                 }
                 if (player.isCrouching()) {
-                    removeItemsFromContainer(worldIn, player, invWrapper, pos, slots, 64);
+                    extract(worldIn, player, invWrapper, pos, slots, 64);
                 } else {
-                    removeItemsFromContainer(worldIn, player, invWrapper, pos, slots, 1);
+                    extract(worldIn, player, invWrapper, pos, slots, 1);
                 }
                 return InteractionResult.SUCCESS;
             }
@@ -121,13 +121,16 @@ public class ClayPotteryBlock extends JFallingTileContainerBlock {
         return InteractionResult.sidedSuccess(worldIn.isClientSide);
     }
 
-    private void removeItemsFromContainer(Level worldIn, Player player, InvWrapper invWrapper, BlockPos pos, int slots, int amount) {
+    private void extract(Level worldIn, Player player, InvWrapper invWrapper, BlockPos pos, int slots, int count) {
         for (int i = 0; i < slots; i++) {
-            ItemStack extractItem = invWrapper.extractItem(i, amount, false);
+            ItemStack extractItem = invWrapper.extractItem(i, count, false);
             if (!extractItem.isEmpty()) {
                 ItemEntity itemEntity = new ItemEntity(worldIn, player.getX(), player.getY(), player.getZ(), extractItem);
                 worldIn.addFreshEntity(itemEntity);
                 worldIn.playSound(null, pos, JSounds.BOTTLE_PLUG.get(), SoundSource.BLOCKS, 1.0F, Mth.nextFloat(player.getRandom(), 1.25F, 1.50F));
+                if (count < 64) {
+                    break;
+                }
             }
         }
     }

@@ -116,6 +116,7 @@ public class GearAbilityHandler {
                 filler.addOverview();
             } else if (material == ArmorMaterials.CHAIN) {
                 TooltipFiller filler = new TooltipFiller(event.getToolTip(), "chain_gear");
+                filler.addOverview();
             }
         }
     }
