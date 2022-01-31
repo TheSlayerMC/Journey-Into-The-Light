@@ -202,7 +202,7 @@ public class FrozenGuardianEntity extends PathfinderMob {
 
     public void summonLightning(BlockPos pos) {
         EssenciaBoltEntity bolt = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, level);
-        bolt.setPos(pos.getX(), pos.getY() + 1.2, pos.getZ());
+        bolt.setPos(pos.getX(), pos.getY() + 1.0D, pos.getZ());
         bolt.setARGB(0x5acbff);
         bolt.setVisualOnly(true);
         if(!level.isClientSide)

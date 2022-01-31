@@ -23,7 +23,7 @@ public class PedestalTER implements BlockEntityRenderer<PedestalTile> {
     @Override
     public void render(PedestalTile e, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         ItemStack i = e.getItem(0);
-        renderItem(i, new double[]{0.5D, 1.55D, 0.5D}, matrixStackIn, bufferIn, combinedOverlayIn, combinedLightIn, 1.0F);
+        renderItem(i, new double[]{0.5D, 1.25D, 0.5D}, matrixStackIn, bufferIn, combinedOverlayIn, combinedLightIn, 1.0F);
     }
 
     private void renderItem(ItemStack stack, double[] translation, PoseStack matrixStack, MultiBufferSource buffer, int combinedOverlay, int lightLevel, float scale) {

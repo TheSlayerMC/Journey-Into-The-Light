@@ -26,6 +26,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 public class JBlockPedestal extends JTileContainerBlock {
+    private static final VoxelShape PEDESTAL = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 14.0D, 11.0D);
+    private static final VoxelShape BOTTOM = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 2D, 12.0D);
+    private static final VoxelShape TOP = Block.box(4.0D, 14.0D, 4.0D, 12.0D, 16D, 12.0D);
+    private static final VoxelShape SHAPE = Shapes.or(PEDESTAL, BOTTOM, TOP);
 
     public JBlockPedestal() {
         super(JBlockProperties.STONE_PROPS.create(), PedestalTile::new);
@@ -33,13 +37,7 @@ public class JBlockPedestal extends JTileContainerBlock {
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        VoxelShape pedestal = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 20.0D, 11.0D);
-        VoxelShape bottom = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 1D, 13.0D);
-        VoxelShape bottom1 = Block.box(4.0D, 1.0D, 4.0D, 12.0D, 3D, 12.0D);
-        VoxelShape top = Block.box(3.0D, 19.0D, 3.0D, 13.0D, 20D, 13.0D);
-        VoxelShape top1 = Block.box(4.0D, 17.0D, 4.0D, 12.0D, 19D, 12.0D);
-        VoxelShape top2 = Block.box(5.0D, 20.0D,5.0D, 11D, 21.0D, 11D);
-        return Shapes.or(pedestal, bottom, bottom1, top, top1, top2);
+        return SHAPE;
     }
 
     @Override
