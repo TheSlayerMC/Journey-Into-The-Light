@@ -17,22 +17,29 @@ import org.jetbrains.annotations.NotNull;
 
 public class Entity2DRenderer<T extends Entity> extends EntityRenderer<T> {
     private final RenderType renderType;
-    private final float scale;
-    private final boolean fullBright;
+    private float scale;
+    private boolean fullBright = false;
+    private boolean projectile = false;
 
-    public Entity2DRenderer(EntityRendererProvider.Context context, ResourceLocation texture, boolean fullBright) {
-        this(context, texture, 1F, fullBright);
-    }
-
-    public Entity2DRenderer(EntityRendererProvider.Context context, ResourceLocation texture, float scaleFactor, boolean fullBright) {
+    public Entity2DRenderer(EntityRendererProvider.Context context, ResourceLocation texture) {
         super(context);
         this.renderType = RenderType.entityCutoutNoCull(texture);
-        this.scale = scaleFactor;
-        this.fullBright = fullBright;
     }
 
-    @Override //copypaste from DragonFireballRenderer except for custom scale
+    @Override
     public void render(@NotNull T entityIn, float entityYaw, float partialTicks, @NotNull PoseStack matrixStackIn, @NotNull MultiBufferSource bufferIn, int packedLightIn) {
+        if (projectile) {
+            if (entityIn.tickCount >= 2 || !(this.entityRenderDispatcher.camera.getEntity().distanceToSqr(entityIn) < 12.25D)) {
+                renderProjectile(matrixStackIn, bufferIn, packedLightIn);
+            }
+        } else {
+            renderProjectile(matrixStackIn, bufferIn, packedLightIn);
+        }
+        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+    }
+
+
+    private void renderProjectile(@NotNull PoseStack matrixStackIn, @NotNull MultiBufferSource bufferIn, int packedLightIn) {
         matrixStackIn.pushPose();
         matrixStackIn.scale(scale, scale, scale);
         matrixStackIn.mulPose(this.entityRenderDispatcher.cameraOrientation());
@@ -55,10 +62,23 @@ public class Entity2DRenderer<T extends Entity> extends EntityRenderer<T> {
         vertex(ivertexbuilder, pose, normal, packedLightLevel, 0, 1, 0, 0);
 
         matrixStackIn.popPose();
-        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 
-    //copypaste from DragonFireballRenderer
+    public Entity2DRenderer<T> scale(float scale) {
+        this.scale = scale;
+        return this;
+    }
+
+    public Entity2DRenderer<T> fullbright(boolean fullbright) {
+        this.fullBright = fullbright;
+        return this;
+    }
+
+    public Entity2DRenderer<T> projectile(boolean projectile) {
+        this.projectile = projectile;
+        return this;
+    }
+
     private static void vertex(VertexConsumer builder, Matrix4f pose, Matrix3f normal, int lightmapUV, float x, float y, int u, int v) {
         builder.vertex(pose, x - 0.5F, y - 0.5F, 0.0F).color(255, 255, 255, 255).uv((float) u, (float) v).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(lightmapUV).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
     }

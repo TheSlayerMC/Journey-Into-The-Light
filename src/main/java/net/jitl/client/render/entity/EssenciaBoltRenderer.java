@@ -87,7 +87,7 @@ public class EssenciaBoltRenderer extends EntityRenderer<EssenciaBoltEntity> {
                     anotherDirectionExpansion *= 1F / 3;
 
                     int argb = entityIn.getARGB();
-                    int alpha = 1;
+                    float alpha = 0.3F;
 
                     float red = DrawHelper.getRed(argb) / 255F;
                     float green = DrawHelper.getGreen(argb) / 255F;

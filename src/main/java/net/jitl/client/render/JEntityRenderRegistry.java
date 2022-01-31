@@ -1,13 +1,16 @@
 package net.jitl.client.render;
 
 import net.jitl.client.render.entity.*;
-import net.jitl.client.render.entity.base.*;
+import net.jitl.client.render.entity.base.BossCrystalRenderer;
+import net.jitl.client.render.entity.base.Entity2DRenderer;
 import net.jitl.client.render.entity.euca.*;
 import net.jitl.client.render.entity.frozen.*;
-import net.jitl.client.render.entity.nether.*;
+import net.jitl.client.render.entity.nether.WitherspineRenderer;
 import net.jitl.client.render.entity.overworld.*;
-import net.jitl.client.render.model.*;
-import net.jitl.client.render.model.block.*;
+import net.jitl.client.render.model.BoomModel;
+import net.jitl.client.render.model.HongoModel;
+import net.jitl.client.render.model.MageModel;
+import net.jitl.client.render.model.block.ObeliskModel;
 import net.jitl.client.render.model.euca.*;
 import net.jitl.client.render.model.frozen.*;
 import net.jitl.client.render.model.vehicle.JBoatModel;
@@ -16,9 +19,7 @@ import net.jitl.common.entity.vehicle.JBoat;
 import net.jitl.core.JITL;
 import net.jitl.core.init.JEntities;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -65,8 +66,14 @@ public class JEntityRenderRegistry {
 
         //Projectiles
         event.registerEntityRenderer(JEntities.FLORO_MUD_TYPE, ThrownItemRenderer::new);
-        event.registerEntityRenderer(JEntities.CONJURING_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/conjuring.png"), 0.5F, true));
-        event.registerEntityRenderer(JEntities.ESSENCIA_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/essencia.png"), 0.5F, true));
+        event.registerEntityRenderer(JEntities.CONJURING_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/conjuring.png"))
+                .fullbright(true)
+                .projectile(true)
+                .scale(0.5F));
+        event.registerEntityRenderer(JEntities.ESSENCIA_PROJECTILE_TYPE, manager -> new Entity2DRenderer<>(manager, JITL.rl("textures/entity/projectile/essencia.png"))
+                .fullbright(true)
+                .projectile(true)
+                .scale(0.5F));
         event.registerEntityRenderer(JEntities.KNIFE_TYPE, manager -> new KnifeRenderer(manager, Minecraft.getInstance().getItemRenderer()));
         event.registerEntityRenderer(JEntities.PIERCER_TYPE, manager -> new PiercerRenderer(manager, Minecraft.getInstance().getItemRenderer()));
         event.registerEntityRenderer(JEntities.CALCIA_MINE_TYPE, ParticleProjectileRenderer::new);
