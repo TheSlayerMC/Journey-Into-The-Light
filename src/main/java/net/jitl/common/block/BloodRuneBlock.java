@@ -1,94 +1,58 @@
 package net.jitl.common.block;
 
-import net.jitl.common.entity.EssenciaBoltEntity;
-import net.jitl.core.init.JEntities;
-import net.jitl.core.init.JItems;
-import net.jitl.core.init.JParticleManager;
-import net.jitl.core.init.JSounds;
+import net.jitl.common.block.base.JTileContainerBlock;
+import net.jitl.common.tile.BloodRuneTile;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.NotNull;
 
-//TODO: I don't think we're going to use this (remove?)
-public class BloodRuneBlock extends Block {
+public class BloodRuneBlock extends JTileContainerBlock {
 
 	public BloodRuneBlock(Properties properties) {
-		super(properties);
+		super(properties, BloodRuneTile::new);
 	}
 
 	@Override
-	public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
-		ItemStack inHandItem = player.getItemInHand(handIn);
-		if (inHandItem.getItem() == JItems.POWDER_OF_ESSENCIA) {
-			for (ItemEntity itementity : worldIn.getEntitiesOfClass(ItemEntity.class, new AABB(pos.above()))) {
-				Block rune = null;
-				if (itementity.getItem().getItem() == Items.ROTTEN_FLESH) {
-//					rune = JBlocks.BLOOD_RUNE_FLESH;
-				}
-				if (itementity.getItem().getItem() == Items.TORCH) {
-//					rune = JBlocks.BLOOD_RUNE_SOUL;
-				}
-				if (itementity.getItem().getItem() == Items.BONE) {
-//					rune = JBlocks.BLOOD_RUNE_DEATH;
-				}
-				if (itementity.getItem().getItem() == Items.APPLE) {
-//					rune = JBlocks.BLOOD_RUNE_LIFE;
-				}
-
-				if (rune != null) {
-					EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, worldIn);
-					essenciaBoltEntity.setPos(pos.getX(), pos.above().getY(), pos.getZ());
-					essenciaBoltEntity.setARGB(0xff4800);
-					essenciaBoltEntity.setVisualOnly(true);
-
-					worldIn.addFreshEntity(essenciaBoltEntity);
-					worldIn.setBlock(pos, rune.defaultBlockState(), 1);
-					itementity.remove(Entity.RemovalReason.DISCARDED);
-					worldIn.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundSource.BLOCKS, 1.0F, player.getRandom().nextFloat() + 0.5F);
-					if (!player.isCreative()) {
-						inHandItem.shrink(1);
-					}
-					if (worldIn.isClientSide) {
-						spawnParticles(worldIn, player, pos);
-					}
-				} else {
-					return InteractionResult.FAIL;
-				}
+	public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+		if (!state.is(newState.getBlock())) {
+			BlockEntity tileentity = worldIn.getBlockEntity(pos);
+			if (tileentity instanceof Container) {
+				Containers.dropContents(worldIn, pos, (Container) tileentity);
+				worldIn.updateNeighbourForOutputSignal(pos, this);
 			}
+
+			super.onRemove(state, worldIn, pos, newState, isMoving);
 		}
-		return InteractionResult.PASS;
 	}
 
-	public void spawnParticles(Level worldIn, Player player, BlockPos pos) {
-		for (int i = 0; i < 6; i++) {
-			ParticleOptions particle = JParticleManager.RED_FLAME.get();
-			int posThreshold = 16;
-			int speedThreshold = 64;
-			float posRandom0 = (float) player.getRandom().nextInt(2 + i) / posThreshold;
-			float posRandom1 = (float) player.getRandom().nextInt(2 + i) / posThreshold;
-			float posRandom2 = (float) player.getRandom().nextInt(2 + i) / posThreshold;
-			float posRandom3 = (float) player.getRandom().nextInt(2 + i) / posThreshold;
-			float speedRandom0 = (posRandom0 + 1) / speedThreshold;
-			float speedRandom1 = (posRandom1 + 2) / speedThreshold;
-			float speedRandom2 = (posRandom2 + 1) / speedThreshold;
-			float speedRandom3 = (posRandom3 + 2) / speedThreshold;
-			worldIn.addParticle(particle, (pos.getX() + posRandom0) + 0.5F, pos.above().getY(), (pos.getZ() - posRandom0) + 0.5F, speedRandom0, speedRandom2, -speedRandom3);
-			worldIn.addParticle(particle, (pos.getX() - posRandom1) + 0.5F, pos.above().getY(), (pos.getZ() + posRandom1) + 0.5F, -speedRandom1, speedRandom1, speedRandom2);
-			worldIn.addParticle(particle, (pos.getX() - posRandom2) + 0.5F, pos.above().getY(), (pos.getZ() - posRandom2) + 0.5F, -speedRandom2, speedRandom0, -speedRandom1);
-			worldIn.addParticle(particle, (pos.getX() + posRandom3) + 0.5F, pos.above().getY(), (pos.getZ() + posRandom3) + 0.5F, speedRandom3, speedRandom3, speedRandom0);
+	@Override
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		Item heldItem = player.getMainHandItem().getItem();
+		if (worldIn.getBlockEntity(pos) instanceof BloodRuneTile rune) {
+			rune.getItem(0);
+			if (!worldIn.isClientSide)
+				worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5F, pos.getY() + 1.4F, pos.getZ() + 0.5F, rune.getItem(0)));
+			rune.setItem(0, ItemStack.EMPTY);
+			if (heldItem == Items.AMETHYST_SHARD) {
+				rune.setItem(0, new ItemStack(heldItem));
+				worldIn.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+				if (!player.isCreative())
+					player.getMainHandItem().shrink(1);
+			}
 		}
+		return InteractionResult.sidedSuccess(worldIn.isClientSide);
 	}
 }
