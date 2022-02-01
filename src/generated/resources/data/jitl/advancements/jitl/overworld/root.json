@@ -4,10 +4,10 @@
       "item": "jitl:euca_gold_grass_block"
     },
     "title": {
-      "translate": "jitl.advancement.overworld.root.title"
+      "translate": "advancement.jitl.overworld.root.title"
     },
     "description": {
-      "translate": "jitl.advancement.overworld.root.desc"
+      "translate": "advancement.jitl.overworld.root.desc"
     },
     "frame": "task",
     "show_toast": false,

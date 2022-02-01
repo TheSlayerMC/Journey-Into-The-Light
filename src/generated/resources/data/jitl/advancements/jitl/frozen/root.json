@@ -4,10 +4,10 @@
       "item": "jitl:frozen_portal_frame"
     },
     "title": {
-      "translate": "jitl.advancement.frozen.root.title"
+      "translate": "advancement.jitl.frozen.root.title"
     },
     "description": {
-      "translate": "jitl.advancement.frozen.root.desc"
+      "translate": "advancement.jitl.frozen.root.desc"
     },
     "frame": "task",
     "show_toast": true,

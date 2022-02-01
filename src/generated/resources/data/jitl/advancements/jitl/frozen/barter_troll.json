@@ -2,30 +2,33 @@
   "parent": "jitl:jitl/frozen/root",
   "display": {
     "icon": {
-      "item": "jitl:redcurrant_berry"
+      "item": "jitl:rimestone"
     },
     "title": {
-      "translate": "advancement.jitl.frozen.ride_capybara.title"
+      "translate": "advancement.jitl.frozen.barter_troll.title"
     },
     "description": {
-      "translate": "advancement.jitl.frozen.ride_capybara.desc"
+      "translate": "advancement.jitl.frozen.barter_troll.desc"
     },
-    "frame": "goal",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
   "criteria": {
-    "ride_capybara": {
-      "trigger": "minecraft:started_riding",
+    "barter_troll": {
+      "trigger": "minecraft:player_interacted_with_entity",
       "conditions": {
-        "player": [
+        "item": {
+          "items": [
+            "jitl:rimestone"
+          ]
+        },
+        "entity": [
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "vehicle": {
-                "type": "jitl:capybara"
-              }
+              "type": "jitl:frozen_troll"
             },
             "entity": "this"
           }
@@ -35,7 +38,7 @@
   },
   "requirements": [
     [
-      "ride_capybara"
+      "barter_troll"
     ]
   ]
 }
