@@ -4,10 +4,7 @@ import com.google.common.annotations.VisibleForTesting;
 import net.jitl.core.init.JBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
@@ -131,23 +128,6 @@ public class IcicleBlock extends Block implements Fallable, SimpleWaterloggedBlo
             super.fallOn(level_, state_, pos_, entity_, float_);
         }
 
-    }
-
-    /**
-     * Called periodically clientside on blocks near the player to show effects (like furnace fire particles).
-     */
-    @Override
-    public void animateTick(BlockState state_, Level level_, BlockPos pos_, Random random_) {
-        if (canDrip(state_)) {
-            float f = random_.nextFloat();
-            if (!(f > 0.12F)) {
-                getFluidAboveStalactite(level_, pos_, state_).filter((fluid2_) -> {
-                    return f < 0.02F || canFillCauldron(fluid2_);
-                }).ifPresent((fluid3_) -> {
-                    spawnDripParticle(level_, pos_, state_, fluid3_);
-                });
-            }
-        }
     }
 
     @Override
@@ -407,24 +387,6 @@ public class IcicleBlock extends Block implements Fallable, SimpleWaterloggedBlo
         createDripstone(level_, blockpos, Direction.DOWN, DripstoneThickness.TIP_MERGE);
         createDripstone(level_, blockpos1, Direction.UP, DripstoneThickness.TIP_MERGE);
     }
-
-    public static void spawnDripParticle(Level level_, BlockPos pos_, BlockState state_) {
-        getFluidAboveStalactite(level_, pos_, state_).ifPresent((fluid5_) -> {
-            spawnDripParticle(level_, pos_, state_, fluid5_);
-        });
-    }
-
-    private static void spawnDripParticle(Level level_, BlockPos pos_, BlockState state_, Fluid fluid_) {
-        Vec3 vec3 = state_.getOffset(level_, pos_);
-        double d0 = 0.0625D;
-        double d1 = (double) pos_.getX() + 0.5D + vec3.x;
-        double d2 = (double) ((float) (pos_.getY() + 1) - 0.6875F) - 0.0625D;
-        double d3 = (double) pos_.getZ() + 0.5D + vec3.z;
-        Fluid fluid = getDripFluid(level_, fluid_);
-        ParticleOptions particleoptions = fluid.is(FluidTags.LAVA) ? ParticleTypes.DRIPPING_DRIPSTONE_LAVA : ParticleTypes.DRIPPING_DRIPSTONE_WATER;
-        level_.addParticle(particleoptions, d1, d2, d3, 0.0D, 0.0D, 0.0D);
-    }
-
     @Nullable
     private static BlockPos findTip(BlockState state_, LevelAccessor level_, BlockPos pos_, int range_, boolean allowMerged_) {
         if (isTip(state_, allowMerged_)) {

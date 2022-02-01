@@ -196,6 +196,14 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> FROST_CRYSTAL_PATCH = REGISTER.register(
+                    "frost_crystal_patch",
+                    GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
+                    () -> JConfiguredFeatures.FROST_CRYSTAL.get()
+                            .placed(surfaceFloorPatch(28, JBlocks.FROSTY_ICE)))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
     public static final Promised<? extends PlacedFeature> FROSTY_ICE_CLUSTER = REGISTER.register(
                     "frosty_ice_cluster",
                     GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
@@ -207,6 +215,19 @@ public class JPlacedFeatures {
                                     BiomeFilter.biome()))
             .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
             .asPromise();
+
+    public static final Promised<? extends PlacedFeature> LARGE_ICICLE = REGISTER.register(
+                    "large_icicle",
+                    GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
+                    () -> JConfiguredFeatures.LARGE_ICICLE.get()
+                            .placed(
+                                    CountPlacement.of(UniformInt.of(10, 48)),
+                                    InSquarePlacement.spread(),
+                                    PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                                    BiomeFilter.biome()))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
 
     public static final Promised<? extends PlacedFeature> SULPHUR_DEPOSIT = REGISTER.register(
                     "sulphur_deposit",
@@ -520,6 +541,16 @@ public class JPlacedFeatures {
                 BiomeFilter.biome());
     }
 
+    private static List<PlacementModifier> patch(int count, int chance, PlacementModifier placementModifier, Block... blockPredicate) {
+        return List.of(
+                CountPlacement.of(count),
+                InSquarePlacement.spread(),
+                placementModifier,
+                RarityFilter.onAverageOnceEvery(chance),
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(List.of(blockPredicate), Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                BiomeFilter.biome());
+    }
+
     private static List<PlacementModifier> undergroundCeilingPatch(int count, Block blockPredicatte) {
         return List.of(
                 CountPlacement.of(count),
@@ -540,12 +571,12 @@ public class JPlacedFeatures {
                 BiomeFilter.biome());
     }
 
-    private static List<PlacementModifier> undergroundFloorPatch(int count, Block ... blockPredicatte) {
+    private static List<PlacementModifier> undergroundFloorPatch(int count, Block... blockPredicate) {
         return List.of(
                 CountPlacement.of(count),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(List.of(blockPredicatte), Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(List.of(blockPredicate), Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(1)),
                 BiomeFilter.biome());
     }

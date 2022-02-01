@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import net.jitl.common.world.gen.features.featureconfig.FrostyIceClusterFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.IcicleFeatureConfig;
+import net.jitl.common.world.gen.features.featureconfig.LargeIcicleFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
 import net.jitl.common.world.gen.treedecorator.*;
@@ -67,6 +68,9 @@ public class JConfiguredFeatures {
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> TARTBERRY_BUSH =
             REGISTER.register("tartberry_bush", surfacePatchFeature(() -> JBlocks.TARTBERRY_BUSH.defaultBlockState()));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FROST_CRYSTAL =
+            REGISTER.register("frost_crystal", surfacePatchFeature(() -> JBlocks.FROST_CRYSTAL_LARGE.defaultBlockState()));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> REDCURRANT_BUSH =
             REGISTER.register("redcurrant_bush", surfacePatchFeature(() -> JBlocks.REDCURRANT_BUSH.defaultBlockState()));
@@ -505,6 +509,20 @@ public class JConfiguredFeatures {
                                     0.1F,
                                     3,
                                     8)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_ICICLE =
+            REGISTER.register("large_icicle",
+                    () -> JFeatures.LARGE_ICICLE.get().configured(
+                            new LargeIcicleFeatureConfig(
+                                    30,
+                                    UniformInt.of(3, 19),
+                                    UniformFloat.of(0.4F, 2.0F),
+                                    0.33F,
+                                    UniformFloat.of(0.3F, 0.9F),
+                                    UniformFloat.of(0.4F, 1.0F),
+                                    UniformFloat.of(0.0F, 0.3F),
+                                    4,
+                                    0.6F)));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_VEG =
             REGISTER.register("frozen_veg",
