@@ -1,7 +1,6 @@
 package net.jitl.common.capability.player.data;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.jitl.core.util.ClientTools;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.Block;
 import ru.timeconqueror.timecore.common.capability.property.container.PropertyContainer;
@@ -30,8 +29,7 @@ public class Portal extends PropertyContainer {
             portalOverlayTime += alphaTime;
             if (portalOverlayTime > 1.0F) portalOverlayTime = 1.0F;
             if (portalOverlayTime == 0.01F) {
-                Minecraft minecraft = Minecraft.getInstance();
-                minecraft.getSoundManager().play(SimpleSoundInstance.forLocalAmbience(SoundEvents.PORTAL_TRIGGER, 1.0F, 0.65F));
+                ClientTools.playLocalSound(SoundEvents.PORTAL_TRIGGER, 1.0F, 0.65F);
             }
             inPortal = false;
         } else {

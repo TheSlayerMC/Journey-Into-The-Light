@@ -7,8 +7,8 @@ import net.jitl.common.scroll.ScrollAPI;
 import net.jitl.common.scroll.ScrollCategory;
 import net.jitl.common.scroll.ScrollEntry;
 import net.jitl.core.JITL;
+import net.jitl.core.util.ClientTools;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -43,7 +43,7 @@ public class LoreScrollItem extends Item {
             ScrollEntry entry = getScrollEntry(heldItem);
 
             if (entry != null) {
-                Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forLocalAmbience(SoundEvents.BOOK_PAGE_TURN, 1.0F, 1.0F));
+                ClientTools.playLocalSound(SoundEvents.BOOK_PAGE_TURN, 1.0F, 1.0F);
                 displayScrollGui(null, entry);
                 if(!tag.getBoolean("openedBefore")) {
                     if(!tag.getString("knowledge").equals("")) {
