@@ -18,6 +18,22 @@
     ],
     "subtitle": "subtitles.block.generic.break"
   },
+  "block.icicle.break": {
+    "sounds": [
+      "jitl:blocks/break/icicle_1",
+      "jitl:blocks/break/icicle_2",
+      "jitl:blocks/break/icicle_3"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.icicle.dig": {
+    "sounds": [
+      "jitl:blocks/dig/icicle_1",
+      "jitl:blocks/dig/icicle_2",
+      "jitl:blocks/dig/icicle_3"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
   "block.pottery.break": {
     "sounds": [
       "jitl:blocks/break/pottery_1",

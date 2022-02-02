@@ -231,7 +231,7 @@ public class JBlockProperties {
 
     public static final BlockPropsFactory ICICLE_PROPS = new BlockPropsFactory(() -> Properties.of
                     (Material.ICE)
-            .sound(SoundType.GLASS)
+            .sound(JSoundTypes.ICICLE)
             .lightLevel((light) -> 6)
             .requiresCorrectToolForDrops()
             .noOcclusion()
