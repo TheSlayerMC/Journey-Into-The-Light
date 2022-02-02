@@ -96,7 +96,7 @@ public class ItemRegistrator {
         registerItem("peridot_gemstone", "Peridot Gemstone");
         registerItem("rimestone", "Rimestone");
         registerItem("redcurrant_berry", "Redcurrant Berry", () -> new Item(itemGrouped().food(JFoods.REDCURRANT)));
-        registerHandheldItem("redcurrant_on_a_stick", "Redcurrant On A Stick", () -> new FoodOnAStickItem<>(itemGrouped(), JEntities.CAPYBARA_TYPE, 7));
+        registerHandheldRodItem("redcurrant_on_a_stick", "Redcurrant On A Stick", () -> new FoodOnAStickItem<>(itemGrouped(), JEntities.CAPYBARA_TYPE, 7));
         registerItem("crystal_apple", "Crystal Apple", () -> new CrystalAppleItem(itemGrouped().food(JFoods.CRYSTAL_APPLE).rarity(Rarity.EPIC)));
         registerItem("frostborn_soul", "Frostborn Soul");
         registerItem("ice_amulet", "Ice Amulet", () -> new IceAmuletItem(itemGrouped().stacksTo(1)));
@@ -317,6 +317,12 @@ public class ItemRegistrator {
     private static void registerHandheldItem(String name, String enName, Supplier<Item> toolItemSupplier) {
         REGISTER.register(name, toolItemSupplier)
                 .model(StandardItemModelParents.HANDHELD)
+                .name(enName);
+    }
+
+    private static void registerHandheldRodItem(String name, String enName, Supplier<Item> toolItemSupplier) {
+        REGISTER.register(name, toolItemSupplier)
+                .model(StandardItemModelParents.HANDHELD_ROD)
                 .name(enName);
     }
 
