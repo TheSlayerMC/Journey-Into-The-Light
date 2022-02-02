@@ -90,13 +90,13 @@ public class BlockRegistrator {
 
         registerDefaultBlock("mossy_essence_stone", "Mossy Essence Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
         registerDefaultBlock("ancient_catalyst", "Ancient Catalyst", () -> new AncientCatalystBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
-        registerCustomRenderedBlock("ancient_socket", "Ancient Socket", AncientSocketBlock::new);
+        registerCustomRenderedBlock("ancient_socket", "Ancient Socket", AncientSocketBlock::new, JTabs.BLOCKS);
 
         registerColumnRenderedBlock("ancient_stone", "Ancient Stone", () -> new RotatedPillarBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()),
                 "ancient_stone",
                 "ancient_stone_side");
         registerSpeciallyRenderedBlock("ancient_obelisk", "Ancient Obelisk",
-                () -> new JTileContainerBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create().noOcclusion(), (pos, state) -> new ObeliskTile(pos, state)));
+                () -> new JTileContainerBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create().noOcclusion(), ObeliskTile::new));
 
         registerEmissiveRenderedBlock("ancient_stone_runic_0", "Ancient Runic Stone", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()),
                 BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_0")), BlockModels.cubeAllModel(JITL.blockTl("ancient_stone_runic_0_overlay")));
@@ -320,7 +320,7 @@ public class BlockRegistrator {
 
         registerCustomRenderLayerBlock("frozen_leaves", "Frozen Leaves", () -> new JLeavesBlock(JBlockProperties.LEAVES_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.CUTOUT);
         registerCustomRenderLayerBlock("frosty_ice", "Frosty Ice", () -> new Block(JBlockProperties.ICE_PROPS.create()), JTabs.DECORATION, () -> RenderTypeWrappers.TRANSLUCENT);
-        registerCustomRenderedBlock("icicle", "Icicle", () -> new IcicleBlock(JBlockProperties.ICICLE_PROPS.create()));
+        registerCustomRenderedBlock("icicle", "Icicle", () -> new IcicleBlock(JBlockProperties.ICICLE_PROPS.create()), JTabs.DECORATION);
 
         registerAttachedRenderedBlock("frost_crystal_large", "Large Frost Crystal", () -> new AttachedBlock(JBlockProperties.ICE_PROPS.create().lightLevel((intf) -> 4)),
                 "frost_crystal_large");
@@ -335,8 +335,8 @@ public class BlockRegistrator {
 
         registerCustomAttachedRenderedBlock("ice_shroom_shelf", "Ice Shroom Shelf", () -> new AttachedBlock(JBlockProperties.SHROOM_SHELF.create().lightLevel((intf) -> 4)));
 
-        registerCustomRenderedBlock("icy_brush", "Icy Brush", () -> new VineBlock(JBlockProperties.VINES_PROPS.create()));
-        registerCustomRenderedBlock("charred_brush", "Charred Brush", () -> new VineBlock(JBlockProperties.VINES_PROPS.create()));
+        registerCustomRenderedBlock("icy_brush", "Icy Brush", () -> new VineBlock(JBlockProperties.VINES_PROPS.create()), JTabs.DECORATION);
+        registerCustomRenderedBlock("charred_brush", "Charred Brush", () -> new VineBlock(JBlockProperties.VINES_PROPS.create()), JTabs.DECORATION);
 
         RegistryObject<Block> packedSnowBricks = registerBlock("packed_snow_bricks", "Packed Snow Bricks", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
         KBlockRegistrator.INSTANCE.registerStairs("packed_snow_brick_stairs", "Packed Snow Brick Stairs", packedSnowBricks, JBlockProperties.PERMAFROST_PROPS.create());
@@ -398,8 +398,8 @@ public class BlockRegistrator {
 
         registerDefaultBlock("depths_stone", "Depths Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerDefaultBlock("depths_lamp", "Depths Lamp", () -> new Block(JBlockProperties.GLOW_BLOCK.create()));
-        registerCustomRenderedBlock("depths_portal_frame", "Depths Portal Frame", () -> new DepthsPortalFrameBlock(JBlockProperties.BRICK_PROPS.create()));
-        registerCustomRenderedBlock("depths_portal", "Depths Portal", () -> new DepthsPortalBlock(JBlockProperties.PORTAL.create()));
+        registerCustomRenderedBlock("depths_portal_frame", "Depths Portal Frame", () -> new DepthsPortalFrameBlock(JBlockProperties.BRICK_PROPS.create()), JTabs.PORTALS);
+        registerCustomRenderedBlock("depths_portal", "Depths Portal", () -> new DepthsPortalBlock(JBlockProperties.PORTAL.create()), JTabs.PORTALS);
 
         RegistryObject<Block> depthsDirt = registerBlock("depths_dirt", "Depths Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
         registerGrassBlock("depths_grass_block", "Depths Grass", () -> new JSpreadableSnowyDirtBlock(JBlockProperties.GRASS_PROPS.create(), depthsDirt.get()), JITL.tl("block/depths_dirt"));
@@ -461,7 +461,7 @@ public class BlockRegistrator {
                 () -> BlockModels.crossModel(JITL.tl("block/tall_sizzleshroom_top")));
 
         registerCustomRenderedBlock("tall_fungi", "Fluorescent Fungi", () -> new JPlantBlock(JBlockProperties.GLOWSHROOM_PROPS.create(), false)
-                .setGroundPredicate(GroundPredicate.UNDERGROUND));
+                .setGroundPredicate(GroundPredicate.UNDERGROUND), JTabs.DECORATION);
 
         registerSpeciallyRenderedBlock("frozen_pedestal", "Frozen Pedestal", JBlockPedestal::new);
 
@@ -659,11 +659,13 @@ public class BlockRegistrator {
     /**
      * Registers a block with no pre-generated blockstate, block or item model
      */
-    private static void registerCustomRenderedBlock(String name, String enName, Supplier<Block> blockSupplier) {
+    private static void registerCustomRenderedBlock(String name, String enName, Supplier<Block> blockSupplier, CreativeModeTab tab) {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .renderLayer(() -> RenderTypeWrappers.CUTOUT_MIPPED)
-                .defaultBlockItem(JTabs.BLOCKS);
+                .defaultBlockItem(tab, (itemChain) -> {
+                    itemChain.defaultModel(JITL.tl("block/" + name));
+                });
     }
 
     private static void registerPortalBlock(String name, String enName, Supplier<Block> blockSupplier) {

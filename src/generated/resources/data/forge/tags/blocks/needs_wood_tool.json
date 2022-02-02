@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "jitl:deep_mycelium"
+    "jitl:deep_mycelium",
+    "jitl:icicle"
   ]
 }

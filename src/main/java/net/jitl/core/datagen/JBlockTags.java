@@ -61,7 +61,8 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.CELESTIUM_ORE,
                 JBlocks.RIMESTONE_ORE,
                 JBlocks.PERIDOT_ORE,
-                JBlocks.PERMAFROST
+                JBlocks.PERMAFROST,
+                JBlocks.ICICLE
         );
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 JBlocks.CRUMBLED_PERMAFROST,
@@ -74,6 +75,10 @@ public class JBlockTags extends BlockTagsProvider {
 
     //TODO: finish required tool tags
     public void addRequiredToolTags() {
+        tag(Tags.Blocks.NEEDS_WOOD_TOOL).add(
+                JBlocks.DEEP_MYCELIUM,
+                JBlocks.ICICLE
+        );
         tag(BlockTags.NEEDS_STONE_TOOL).add(
                 JBlocks.PERMAFROST
         );
@@ -96,9 +101,6 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.MEKYUM_ORE,
                 JBlocks.KORITE_ORE,
                 JBlocks.CELESTIUM_ORE
-        );
-        tag(Tags.Blocks.NEEDS_WOOD_TOOL).add(
-                JBlocks.DEEP_MYCELIUM
         );
     }
 }
