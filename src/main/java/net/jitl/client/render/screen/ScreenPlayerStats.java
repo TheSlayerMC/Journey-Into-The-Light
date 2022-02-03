@@ -96,20 +96,20 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         int x = 9;
         int h = 9;
         drawSprite(stack, x, h, 0, 74, "Sentacoins:");
-        drawKnowledgeSprite(stack, 126, h, 32, 10, EnumKnowledgeType.OVERWORLD, "Overworld");
+        drawKnowledgeSprite(stack, 126, h, EnumKnowledgeType.OVERWORLD, "Overworld");
 
         h += height;
 
-        drawKnowledgeSprite(stack, x, h, 96, 10, EnumKnowledgeType.END, "End");
-        drawKnowledgeSprite(stack, 126, h, 160, 10, EnumKnowledgeType.FROZEN, "Frozen Lands");
+        drawKnowledgeSprite(stack, x, h, EnumKnowledgeType.END, "End");
+        drawKnowledgeSprite(stack, 126, h, EnumKnowledgeType.FROZEN, "Frozen Lands");
 
         h += height;
-        drawKnowledgeSprite(stack, x, h, 64, 10, EnumKnowledgeType.NETHER, "The Nether");
-        drawKnowledgeSprite(stack, 126, h, 128, 10, EnumKnowledgeType.BOIL, "Boiling Point");
+        drawKnowledgeSprite(stack, x, h, EnumKnowledgeType.NETHER, "The Nether");
+        drawKnowledgeSprite(stack, 126, h, EnumKnowledgeType.BOIL, "Boiling Point");
 
         h += height;
-        drawKnowledgeSprite(stack, x, h, 192, 10, EnumKnowledgeType.EUCA, "Euca");
-        drawKnowledgeSprite(stack, 126, h, 224, 10, EnumKnowledgeType.DEPTHS, "The Depths");
+        drawKnowledgeSprite(stack, x, h, EnumKnowledgeType.EUCA, "Euca");
+        drawKnowledgeSprite(stack, 126, h, EnumKnowledgeType.DEPTHS, "The Depths");
     }
 
     public void drawSprite(PoseStack matrixStack, int x, int y, int spriteX, int spriteY, String s) {
@@ -136,8 +136,8 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         RenderSystem.enableDepthTest();
     }
 
-    public void drawKnowledgeSprite(PoseStack matrixStack, int x, int y, int spriteX, int spriteY, EnumKnowledgeType type, String s) {
-        drawSprite(matrixStack, x, y, spriteX, spriteY, s);
+    public void drawKnowledgeSprite(PoseStack matrixStack, int x, int y, EnumKnowledgeType type, String s) {
+        drawSprite(matrixStack, x, y, type.getSpriteX(), type.getSpriteY(), s);
         int progressBarSize = 65;
         int k = (width - imageWidth) / 2;
         int l = (height - imageHeight) / 2;
@@ -167,13 +167,13 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
         int x = 9;
         int h = 9;
 
-        drawKnowledgeSprite(stack, x, h, 0, 42, EnumKnowledgeType.CORBA, "Corba");
-        drawKnowledgeSprite(stack, 126, h, 32, 42, EnumKnowledgeType.TERRANIA, "Terrania");
+        drawKnowledgeSprite(stack, x, h,  EnumKnowledgeType.CORBA, "Corba");
+        drawKnowledgeSprite(stack, 126, h,  EnumKnowledgeType.TERRANIA, "Terrania");
 
         h += height;
 
-        drawKnowledgeSprite(stack, x, h, 64, 42, EnumKnowledgeType.CLOUDIA, "Cloudia");
-        drawKnowledgeSprite(stack, 126, h, 96, 42, EnumKnowledgeType.SENTERIAN, "Senterain");
+        drawKnowledgeSprite(stack, x, h,  EnumKnowledgeType.CLOUDIA, "Cloudia");
+        drawKnowledgeSprite(stack, 126, h,  EnumKnowledgeType.SENTERIAN, "Senterain");
         //h += height;
         //drawKnowledgeSprite(x, h, 128, 10, 0.30F, E"SDHFSDH");
         //drawKnowledgeSprite(126, h, 160, 10, 0.75F, "Frozen Lands");

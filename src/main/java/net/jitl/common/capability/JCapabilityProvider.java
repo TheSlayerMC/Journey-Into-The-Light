@@ -2,12 +2,10 @@ package net.jitl.common.capability;
 
 import net.jitl.common.capability.armorability.ArmorSetCapability;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
-import net.jitl.common.capability.currentstructure.CurrentStructureCapability;
 import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
 import net.jitl.common.capability.player.IJPlayer;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.pressedkeys.IPressedKeysCapability;
-import net.jitl.common.capability.pressedkeys.PressedKeysCapability;
 import net.jitl.core.JITL;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -49,8 +47,6 @@ public class JCapabilityProvider {
                         event.addCapability(JITL.rl("jitl_player_data"), new CoffeeCapabilityProvider<>(new JPlayer(player)));
                     }
                     event.addCapability(JITL.rl("current_armor"), new CoffeeCapabilityProvider<>(new ArmorSetCapability()));
-                    event.addCapability(JITL.rl("current_structure"), new CoffeeCapabilityProvider<>(new CurrentStructureCapability()));
-                    event.addCapability(JITL.rl("pressed_keys"), new CoffeeCapabilityProvider<>(new PressedKeysCapability()));
                 }
             }
         }

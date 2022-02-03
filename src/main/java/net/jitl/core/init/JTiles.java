@@ -1,9 +1,6 @@
 package net.jitl.core.init;
 
-import net.jitl.client.render.tile.EssenciaAltarTER;
-import net.jitl.client.render.tile.LaserEmitterTER;
-import net.jitl.client.render.tile.ObeliskTER;
-import net.jitl.client.render.tile.PedestalTER;
+import net.jitl.client.render.tile.*;
 import net.jitl.common.tile.*;
 import net.jitl.core.JITL;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -24,7 +21,7 @@ public class JTiles {
     public static final BlockEntityType<ClayPotTile> CLAY_POTTERY = promise();
     public static final BlockEntityType<ClayVaseTile> CLAY_VASE = promise();
     public static final BlockEntityType<ObeliskTile> OBELISK = promise();
-
+    public static final BlockEntityType<BloodRuneTile> BLOOD_RUNE = promise();
 
     private static class Registrator {
         @AutoRegistrable
@@ -40,7 +37,7 @@ public class JTiles {
             REGISTER.registerSingleBound("clay_pottery", ClayPotTile::new, () -> JBlocks.CLAY_POTTERY);
             REGISTER.registerSingleBound("clay_vase", ClayVaseTile::new, () -> JBlocks.CLAY_VASE);
             REGISTER.registerSingleBound("obelisk", ObeliskTile::new, () -> JBlocks.ANCIENT_OBELISK).regCustomRenderer(() -> ObeliskTER::new);
-
+            REGISTER.registerSingleBound("blood_rune", BloodRuneTile::new, () -> JBlocks.EMPTY_BLOOD_RUNE).regCustomRenderer(() -> BloodRuneTER::new);
         }
     }
 }

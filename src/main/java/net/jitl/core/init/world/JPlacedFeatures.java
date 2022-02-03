@@ -8,7 +8,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.valueproviders.ClampedNormalInt;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -33,7 +35,7 @@ public class JPlacedFeatures {
                     "tartberry_bush",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.TARTBERRY_BUSH.get()
-                            .placed(patch(5, 14, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(2, 16, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.IN_FORESTS)
             .asPromise();
 
@@ -180,6 +182,53 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.FROZEN_WASTES)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> ICICLE = REGISTER.register(
+                    "icicle",
+                    GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
+                    () -> JConfiguredFeatures.FROZEN_ICICLE.get()
+                            .placed(
+                                    CountPlacement.of(UniformInt.of(192, 256)),
+                                    InSquarePlacement.spread(),
+                                    PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                                    CountPlacement.of(UniformInt.of(1, 5)),
+                                    RandomOffsetPlacement.of(ClampedNormalInt.of(0.0F, 3.0F, -10, 10), ClampedNormalInt.of(0.0F, 0.6F, -2, 2)),
+                                    BiomeFilter.biome()))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> FROST_CRYSTAL_PATCH = REGISTER.register(
+                    "frost_crystal_patch",
+                    GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
+                    () -> JConfiguredFeatures.FROST_CRYSTAL.get()
+                            .placed(surfaceFloorPatch(28, JBlocks.FROSTY_ICE)))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> FROSTY_ICE_CLUSTER = REGISTER.register(
+                    "frosty_ice_cluster",
+                    GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
+                    () -> JConfiguredFeatures.FROSTY_ICE_CLUSTER.get()
+                            .placed(
+                                    CountPlacement.of(UniformInt.of(48, 96)),
+                                    InSquarePlacement.spread(),
+                                    PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                                    BiomeFilter.biome()))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> LARGE_ICICLE = REGISTER.register(
+                    "large_icicle",
+                    GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
+                    () -> JConfiguredFeatures.LARGE_ICICLE.get()
+                            .placed(
+                                    CountPlacement.of(UniformInt.of(10, 48)),
+                                    InSquarePlacement.spread(),
+                                    PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                                    BiomeFilter.biome()))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
+
     public static final Promised<? extends PlacedFeature> SULPHUR_DEPOSIT = REGISTER.register(
                     "sulphur_deposit",
                     GenerationStep.Decoration.SURFACE_STRUCTURES,
@@ -216,7 +265,7 @@ public class JPlacedFeatures {
                     "charred_fields_veg",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.CHARRED_FIELDS_VEG.get()
-                            .placed(patch(2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+                            .placed(patch(7, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
             .asPromise();
 
@@ -306,6 +355,14 @@ public class JPlacedFeatures {
                     () -> JConfiguredFeatures.SMALL_FROZEN_BITTERWOOOD_TREE.get()
                             .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.BITTERWOOD_SAPLING)))
             .allowedInBiomes(BiomePredicate.FROZEN_BITTERWOOD_FORST)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> REDCURRANT_BUSH = REGISTER.register(
+                    "redcurrant_bush",
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    () -> JConfiguredFeatures.REDCURRANT_BUSH.get()
+                            .placed(patch(2, 16, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> FROZEN_VEG = REGISTER.register(
@@ -434,6 +491,24 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.BOIL_FIRE_BIOMES)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> ORE_RIMESTONE = REGISTER.register(
+                    "ore_rimestone",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.RIMESTONE_ORE.get()
+                            .placed(orePlacement(CountPlacement.of(12),
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256)))))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
+    public static final Promised<? extends PlacedFeature> ORE_PERIDOT = REGISTER.register(
+                    "ore_peridot",
+                    GenerationStep.Decoration.UNDERGROUND_ORES,
+                    () -> JConfiguredFeatures.PERIDOT_ORE.get()
+                            .placed(orePlacement(CountPlacement.of(12),
+                                    HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(256)))))
+            .allowedInBiomes(BiomePredicate.FROZEN_BIOMES)
+            .asPromise();
+
     public static final Promised<? extends PlacedFeature> EUCA_BOULDER = REGISTER.register(
                     "euca_boulder",
                     GenerationStep.Decoration.RAW_GENERATION,
@@ -466,6 +541,16 @@ public class JPlacedFeatures {
                 BiomeFilter.biome());
     }
 
+    private static List<PlacementModifier> patch(int count, int chance, PlacementModifier placementModifier, Block... blockPredicate) {
+        return List.of(
+                CountPlacement.of(count),
+                InSquarePlacement.spread(),
+                placementModifier,
+                RarityFilter.onAverageOnceEvery(chance),
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(List.of(blockPredicate), Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                BiomeFilter.biome());
+    }
+
     private static List<PlacementModifier> undergroundCeilingPatch(int count, Block blockPredicatte) {
         return List.of(
                 CountPlacement.of(count),
@@ -486,12 +571,12 @@ public class JPlacedFeatures {
                 BiomeFilter.biome());
     }
 
-    private static List<PlacementModifier> undergroundFloorPatch(int count, Block ... blockPredicatte) {
+    private static List<PlacementModifier> undergroundFloorPatch(int count, Block... blockPredicate) {
         return List.of(
                 CountPlacement.of(count),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(List.of(blockPredicatte), Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(List.of(blockPredicate), Vec3i.ZERO), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(1)),
                 BiomeFilter.biome());
     }

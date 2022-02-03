@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.common.entity.base.JEntityAction;
 import net.jitl.common.entity.frozen.FrozenTrollEntity;
-import net.jitl.core.JITL;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -74,9 +73,7 @@ public class FrozenTrollModel<T extends Entity> extends ListModel<T> implements 
         this.head.xRot = headPitch * ((float) Math.PI / 180F);
         if (entityIn instanceof FrozenTrollEntity frozenTrollEntity) {
             JEntityAction entityAction = frozenTrollEntity.getArmPose();
-            //JITL.LOGGER.info(entityAction);
             if (entityAction == JEntityAction.ADMIRING_ITEM) {
-                JITL.LOGGER.info("entity is admiring item");
                 this.head.xRot = 0.5F;
                 this.head.yRot = 0.0F;
                 this.arm1.yRot = 0.3F;

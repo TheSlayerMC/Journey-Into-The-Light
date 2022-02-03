@@ -1,6 +1,6 @@
 {
-  "temperature": -0.8,
-  "downfall": 0.85,
+  "temperature": -0.5,
+  "downfall": 0.4,
   "precipitation": "snow",
   "category": "taiga",
   "effects": {
@@ -60,7 +60,11 @@
       }
     ]
   },
-  "carvers": {},
+  "carvers": {
+    "air": [
+      "jitl:frozen_cave"
+    ]
+  },
   "spawn_costs": {},
   "features": [
     [

@@ -1,15 +1,17 @@
-package net.jitl.client.render.overlay;
+package net.jitl.client.render.overlay.internal;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.render.JToast;
 import net.jitl.common.helper.ArgbColor;
 import net.jitl.common.helper.EnumKnowledgeType;
+import net.jitl.core.JITL;
 import net.jitl.core.init.JSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.toasts.ToastComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 
@@ -20,6 +22,8 @@ public class KnowledgeToast implements JToast {
     private final EnumKnowledgeType knowledge;
     private boolean playedSound;
     private final boolean isLevel;
+    private final ResourceLocation KNOWLEDGE_SPRITE = JITL.rl("textures/gui/knowledge/knowledge_sprites.png");
+
 
     public KnowledgeToast(EnumKnowledgeType knowledge, boolean isLevel) {
         this.knowledge = knowledge;
@@ -53,17 +57,25 @@ public class KnowledgeToast implements JToast {
                     }
                 }
             }
-            if(!this.playedSound && timeSinceLastVisible > 0L) {
+            if (!this.playedSound && timeSinceLastVisible > 0L) {
                 this.playedSound = true;
-                if(displayinfo.getFrame() == JFrameType.LEVEL) {
-                    toastComponent.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(JSounds.TOAST.get(), 1.0F, 1.0F));
+                if (displayinfo.getFrame() == JFrameType.LEVEL) {
                     toastComponent.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(JSounds.TOAST_SPECIAL.get(), 1.0F, 1.0F));
                 }
-                if(displayinfo.getFrame() == JFrameType.XP) {
+                if (displayinfo.getFrame() == JFrameType.XP) {
                     toastComponent.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(JSounds.TOAST.get(), 1.0F, 1.0F));
                 }
             }
-            toastComponent.getMinecraft().getItemRenderer().renderAndDecorateFakeItem(displayinfo.getIcon(), 8, 8);
+            float scale = 0.8F;
+            double translate = 2.5D;
+            poseStack.pushPose();
+            poseStack.scale(scale, scale, scale);
+            poseStack.translate(translate, translate, translate);
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderTexture(0, KNOWLEDGE_SPRITE);
+            toastComponent.blit(poseStack, 1, 1, knowledge.getSpriteX(), knowledge.getSpriteY(), 32, 32);
+
+            poseStack.popPose();
             return timeSinceLastVisible >= 5000L ? JToast.Visibility.HIDE : JToast.Visibility.SHOW;
         } else {
             return JToast.Visibility.HIDE;

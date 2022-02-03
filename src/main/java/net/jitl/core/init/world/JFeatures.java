@@ -7,9 +7,11 @@ import net.jitl.common.world.gen.features.euca.BoulderFeature;
 import net.jitl.common.world.gen.features.euca.EucaBotSpawner;
 import net.jitl.common.world.gen.features.euca.EucaTreeFeature;
 import net.jitl.common.world.gen.features.euca.GlimmerRootFeature;
-import net.jitl.common.world.gen.features.featureconfig.EucaTreeFeatureConfig;
-import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
+import net.jitl.common.world.gen.features.featureconfig.*;
+import net.jitl.common.world.gen.features.frozen.FrostyIceClusterFeature;
 import net.jitl.common.world.gen.features.frozen.FrozenIceSpikeFeature;
+import net.jitl.common.world.gen.features.frozen.IcicleFeature;
+import net.jitl.common.world.gen.features.frozen.LargeIcicleFeature;
 import net.jitl.core.JITL;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.SpringFeature;
@@ -42,6 +44,9 @@ public class JFeatures {
     public static final RegistryObject<Feature<BlockStateConfiguration>> TORRID_CRYSTAL = REGISTER.register("torrid_crystal", () -> new TorridCrystalFeature(BlockStateConfiguration.CODEC));
 
     public static final RegistryObject<Feature<BlockStateConfiguration>> BOULDER = REGISTER.register("boulder", () -> new BoulderFeature(BlockStateConfiguration.CODEC));
+    public static final RegistryObject<Feature<IcicleFeatureConfig>> FROZEN_ICICLE = REGISTER.register("frozen_icicle", () -> new IcicleFeature(IcicleFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<FrostyIceClusterFeatureConfig>> FROSTY_ICE_CLUSTER = REGISTER.register("frosty_ice_cluster", () -> new FrostyIceClusterFeature(FrostyIceClusterFeatureConfig.CODEC));
+    public static final RegistryObject<Feature<LargeIcicleFeatureConfig>> LARGE_ICICLE = REGISTER.register("large_icicle", () -> new LargeIcicleFeature(LargeIcicleFeatureConfig.CODEC));
 
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> FLAME_BULB = REGISTER.register("flame_bulb", () -> new FlameBulbFeature(NoneFeatureConfiguration.CODEC));
 }

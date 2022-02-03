@@ -3,10 +3,12 @@ package net.jitl.client.render;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.jitl.core.JITL;
+import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import ru.timeconqueror.timecore.api.util.client.RenderHelper;
 
+//FIXME fix render types!!!!
 public class JRenderTypes extends RenderType {
     public JRenderTypes(String nameIn, VertexFormat formatIn, VertexFormat.Mode drawModeIn, int bufferSizeIn, boolean useDelegateIn, boolean needsSortingIn, Runnable setupTaskIn, Runnable clearTaskIn) {
         super(nameIn, formatIn, drawModeIn, bufferSizeIn, useDelegateIn, needsSortingIn, setupTaskIn, clearTaskIn);
@@ -34,8 +36,10 @@ public class JRenderTypes extends RenderType {
                 DefaultVertexFormat.POSITION_TEX,
                 texture,
                 builder -> builder
-                        //.setShadeModelState(SMOOTH_SHADE)
-                        .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER));
+                        .setTextureState(new TextureStateShard(texture, false, false))
+                        .setShaderState(RenderStateShard.RENDERTYPE_CUTOUT_SHADER)
+                        .setLightmapState(LightmapStateShard.NO_LIGHTMAP)
+                        .createCompositeState(false));
     }
 
     public static RenderType transparentCutout(ResourceLocation texture) {

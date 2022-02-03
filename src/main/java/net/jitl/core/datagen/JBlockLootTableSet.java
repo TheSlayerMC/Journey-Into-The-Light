@@ -16,7 +16,8 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import ru.timeconqueror.timecore.api.devtools.gen.loottable.BlockLootTableSet;
 
-public class JBlockLootTableSet extends BlockLootTableSet {
+public class
+JBlockLootTableSet extends BlockLootTableSet {
 
 	@Override
 	public void register() {
@@ -92,6 +93,7 @@ public class JBlockLootTableSet extends BlockLootTableSet {
 		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_TINY);
 
 		registerSpecialOreWithExtraCount(JBlocks.BLOCK_OF_MUD, JItems.MUD_BALL, 3, 4);
+		registerDropsSelf(JBlocks.ICICLE);
 	}
 
 	private void initFoliageBlocks() {

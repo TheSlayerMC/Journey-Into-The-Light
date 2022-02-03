@@ -3,8 +3,7 @@ package net.jitl.common.eventhandler;
 import net.jitl.core.JITL;
 import net.jitl.core.init.JEffects;
 import net.jitl.core.init.JSounds;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.jitl.core.util.ClientTools;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.PotionEvent;
@@ -47,10 +46,10 @@ public class PotionEventHandler {
     }
 
     private static void playFrostburnApplySound() {
-        Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forLocalAmbience(JSounds.CRYSTAL_APPLE_FREEZE.get(), 1.0F, 1.0F));
+        ClientTools.playLocalSound(JSounds.CRYSTAL_APPLE_FREEZE.get(), 1.0F, 1.0F);
     }
 
     private static void playFrostburnExpireSound() {
-        Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forLocalAmbience(JSounds.CRYSTAL_APPLE_UNFREEZE.get(), 1.0F, 1.0F));
+        ClientTools.playLocalSound(JSounds.CRYSTAL_APPLE_UNFREEZE.get(), 1.0F, 1.0F);
     }
 }

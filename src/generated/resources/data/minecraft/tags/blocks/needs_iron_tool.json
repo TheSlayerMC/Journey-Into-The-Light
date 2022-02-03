@@ -9,6 +9,8 @@
     "jitl:deepslate_lunium_ore",
     "jitl:iridium_ore",
     "jitl:deepslate_iridium_ore",
-    "jitl:dreadiron_block"
+    "jitl:dreadiron_block",
+    "jitl:rimestone_ore",
+    "jitl:peridot_ore"
   ]
 }

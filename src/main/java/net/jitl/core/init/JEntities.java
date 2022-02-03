@@ -75,7 +75,7 @@ public class JEntities {
                     Builder.of(FrozenTrollEntity::new, MobCategory.MONSTER)
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
-                            .sized(0.9F, 2.2F))
+                            .sized(0.9F, 1.35F))
             .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FrozenTrollEntity::canSpawn)
             .spawnEgg(FROZEN_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .attributes(() -> FrozenTrollEntity.createAttributes().build())

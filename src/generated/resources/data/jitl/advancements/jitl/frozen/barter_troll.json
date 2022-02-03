@@ -1,0 +1,44 @@
+{
+  "parent": "jitl:jitl/frozen/root",
+  "display": {
+    "icon": {
+      "item": "jitl:rimestone"
+    },
+    "title": {
+      "translate": "advancement.jitl.frozen.barter_troll.title"
+    },
+    "description": {
+      "translate": "advancement.jitl.frozen.barter_troll.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "barter_troll": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "item": {
+          "items": [
+            "jitl:rimestone"
+          ]
+        },
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "jitl:frozen_troll"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "barter_troll"
+    ]
+  ]
+}

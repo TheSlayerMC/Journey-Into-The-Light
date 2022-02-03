@@ -15,6 +15,15 @@ public class JSoundTypes {
 			JSounds.MUD_BLOCK_DIG,
 			JSounds.MUD_BLOCK_BREAK);
 
+	public static final SoundType ICICLE = new TimeSoundType(
+			1.0F,
+			1.0F,
+			JSounds.ICICLE_BREAK,
+			JSounds.ICICLE_DIG,
+			JSounds.ICICLE_BREAK,
+			JSounds.ICICLE_DIG,
+			JSounds.ICICLE_BREAK);
+
 	public static final SoundType POTTERY = new TimeSoundType(
 			1.0F,
 			1.0F,

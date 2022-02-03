@@ -2,6 +2,9 @@ package net.jitl.core.init.world;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import net.jitl.common.world.gen.features.featureconfig.FrostyIceClusterFeatureConfig;
+import net.jitl.common.world.gen.features.featureconfig.IcicleFeatureConfig;
+import net.jitl.common.world.gen.features.featureconfig.LargeIcicleFeatureConfig;
 import net.jitl.common.world.gen.features.featureconfig.RuinsFeatureConfig;
 import net.jitl.common.world.gen.foliageplacer.SphericalFoliagePlacer;
 import net.jitl.common.world.gen.treedecorator.*;
@@ -34,6 +37,8 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
+import net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement;
+import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluids;
@@ -51,6 +56,7 @@ public class JConfiguredFeatures {
     public static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
     public static final RuleTest EUCA_ORE_REPLACEABLES = new TagMatchTest(JTags.EUCA_STONE_ORE_REPLACEABLES);
     public static final RuleTest BOIL_ORE_REPLACEABLES = new TagMatchTest(JTags.BOIL_STONE_ORE_REPLACEABLES);
+    public static final RuleTest FROZEN_ORE_REPLACEABLES = new TagMatchTest(JTags.FROZEN_STONE_ORE_REPLACEABLES);
 
     //FIXME lunium ore is null
     /*public static final List<OreConfiguration.TargetBlockState> ORE_LUNIUM_TARGET_LIST = List.of(
@@ -62,6 +68,12 @@ public class JConfiguredFeatures {
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> TARTBERRY_BUSH =
             REGISTER.register("tartberry_bush", surfacePatchFeature(() -> JBlocks.TARTBERRY_BUSH.defaultBlockState()));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FROST_CRYSTAL =
+            REGISTER.register("frost_crystal", surfacePatchFeature(() -> JBlocks.FROST_CRYSTAL_LARGE.defaultBlockState()));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> REDCURRANT_BUSH =
+            REGISTER.register("redcurrant_bush", surfacePatchFeature(() -> JBlocks.REDCURRANT_BUSH.defaultBlockState()));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> DEFAULT_OVERWORLD_RUINS =
             REGISTER.register("default_overworld_ruins",
@@ -265,6 +277,7 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_FIRE =
             REGISTER.register("boiling_fire", surfacePatchFeature(() -> Blocks.FIRE.defaultBlockState()));
 
+
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOIL_SANDS_VEG =
             REGISTER.register("boil_sands_veg",
                     () -> Feature.RANDOM_PATCH.configured(
@@ -445,6 +458,71 @@ public class JConfiguredFeatures {
                                     .dirt(BlockStateProvider.simple(JBlocks.GRASSY_PERMAFROST))
                                     .build()));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_ICICLE =
+            REGISTER.register("frozen_icicle",
+                    () -> Feature.SIMPLE_RANDOM_SELECTOR.configured(new SimpleRandomFeatureConfiguration(ImmutableList.of(() ->
+                            JFeatures.FROZEN_ICICLE.get().configured(
+                                            new IcicleFeatureConfig(
+                                                    0.2F,
+                                                    0.7F,
+                                                    0.5F,
+                                                    0.5F))
+                                    .placed(
+                                            EnvironmentScanPlacement.scanningFor(
+                                                    Direction.DOWN,
+                                                    BlockPredicate.solid(),
+                                                    BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE,
+                                                    12),
+                                            RandomOffsetPlacement.vertical(
+                                                    ConstantInt.of(1))), () ->
+                            JFeatures.FROZEN_ICICLE.get().configured(
+                                            new IcicleFeatureConfig(
+                                                    0.2F,
+                                                    0.7F,
+                                                    0.5F,
+                                                    0.5F))
+                                    .placed(
+                                            EnvironmentScanPlacement.scanningFor(
+                                                    Direction.UP,
+                                                    BlockPredicate.solid(),
+                                                    BlockPredicate.ONLY_IN_AIR_OR_WATER_PREDICATE,
+                                                    12),
+                                            RandomOffsetPlacement.vertical(
+                                                    ConstantInt.of(-1)))))));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> FROSTY_ICE_CLUSTER =
+            REGISTER.register("frosty_ice_cluster",
+                    () -> JFeatures.FROSTY_ICE_CLUSTER.get().configured(
+                            new FrostyIceClusterFeatureConfig(
+                                    12,
+                                    UniformInt.of(3, 6),
+                                    UniformInt.of(2, 8),
+                                    1,
+                                    3,
+                                    UniformInt.of(2, 4),
+                                    UniformFloat.of(0.3F, 0.7F),
+                                    ClampedNormalFloat.of(
+                                            0.1F,
+                                            0.3F,
+                                            0.1F,
+                                            0.9F),
+                                    0.1F,
+                                    3,
+                                    8)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> LARGE_ICICLE =
+            REGISTER.register("large_icicle",
+                    () -> JFeatures.LARGE_ICICLE.get().configured(
+                            new LargeIcicleFeatureConfig(
+                                    30,
+                                    UniformInt.of(3, 19),
+                                    UniformFloat.of(0.4F, 2.0F),
+                                    0.33F,
+                                    UniformFloat.of(0.3F, 0.9F),
+                                    UniformFloat.of(0.4F, 1.0F),
+                                    UniformFloat.of(0.0F, 0.3F),
+                                    4,
+                                    0.6F)));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> FROZEN_VEG =
             REGISTER.register("frozen_veg",
@@ -547,6 +625,16 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> BLAZIUM_ORE =
             REGISTER.register("blazium_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
                     OreConfiguration.target(BOIL_ORE_REPLACEABLES, JBlocks.BLAZIUM_ORE.defaultBlockState())),
+                    7)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> RIMESTONE_ORE =
+            REGISTER.register("rimestone_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(FROZEN_ORE_REPLACEABLES, JBlocks.RIMESTONE_ORE.defaultBlockState())),
+                    7)));
+
+    public static final Promised<? extends ConfiguredFeature<?, ?>> PERIDOT_ORE =
+            REGISTER.register("peridot_ore", () -> Feature.ORE.configured(new OreConfiguration(List.of(
+                    OreConfiguration.target(FROZEN_ORE_REPLACEABLES, JBlocks.PERIDOT_ORE.defaultBlockState())),
                     7)));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> GLOWING_FUNGI =

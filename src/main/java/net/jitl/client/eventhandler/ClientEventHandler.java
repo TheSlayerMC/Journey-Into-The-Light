@@ -39,19 +39,19 @@ public class ClientEventHandler {
     }
 
     public static void onFogDensityEvent(EntityViewRenderEvent.RenderFogEvent event) {
-        float farPlaneDistance = event.getFarPlaneDistance() / 2;
+        float farPlaneDistance = event.getFarPlaneDistance();
         Player player = ClientProxy.player();
         if (player != null) {
             JPlayer cap = JPlayer.from(player);
             if (player.level.dimension() == Dimensions.FROZEN_LANDS) {
                 float density = 0.15F;
                 float curioMult = 2.33F;
-                float capMult = 5.66F;
-                float curioCapMult = curioMult + capMult;
+                float capMult = 8.66F;
+                float curioCapMult = (curioMult + 2.0F) + capMult;
 
                 if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
                     if (cap != null) {
-                        if (!cap.fogDensity.isDensityEnabled()) {
+                        if (!cap.frozenBlizzard.isBlizzardDisabled()) {
                             density *= curioMult;
                         } else {
                             density *= curioCapMult;
@@ -60,7 +60,7 @@ public class ClientEventHandler {
                         density *= curioMult;
                     }
                 } else if (cap != null) {
-                    if (cap.fogDensity.isDensityEnabled()) {
+                    if (cap.frozenBlizzard.isBlizzardDisabled()) {
                         density *= capMult;
                     }
                 }

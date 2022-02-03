@@ -1,9 +1,6 @@
 package net.jitl.common.capability.player;
 
-import net.jitl.common.capability.player.data.Essence;
-import net.jitl.common.capability.player.data.FogDensity;
-import net.jitl.common.capability.player.data.Knowledge;
-import net.jitl.common.capability.player.data.Sentacoins;
+import net.jitl.common.capability.player.data.*;
 import net.jitl.core.init.JCapabilities;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -23,8 +20,9 @@ import ru.timeconqueror.timecore.common.capability.owner.serializer.CapabilityOw
 public class JPlayer extends CoffeeCapabilityInstance<Entity> implements IJPlayer {
     public final Essence essence = container("essence", new Essence());
     public final Sentacoins sentacoins = container("sentacoins", new Sentacoins());
-    public final FogDensity fogDensity = container("fogDensity", new FogDensity());
+    public final FrozenBlizzard frozenBlizzard = container("frozen_blizzard", new FrozenBlizzard());
     public final Knowledge knowledge = container("knowledge", new Knowledge());
+    public final Portal portal = container("portal", new Portal());
 
     private final Player player;
 

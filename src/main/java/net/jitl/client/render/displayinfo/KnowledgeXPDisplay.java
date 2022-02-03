@@ -1,14 +1,12 @@
 package net.jitl.client.render.displayinfo;
 
-import net.jitl.client.render.overlay.JDisplayInfo;
-import net.jitl.client.render.overlay.JFrameType;
+import net.jitl.client.render.overlay.internal.JDisplayInfo;
+import net.jitl.client.render.overlay.internal.JFrameType;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 public class KnowledgeXPDisplay extends JDisplayInfo {
 
-    public KnowledgeXPDisplay(String name, Item item, boolean isLevel) {
-        super(new ItemStack(item), new TranslatableComponent("jitl.knowledge." + name.toLowerCase()), isLevel ? JFrameType.LEVEL : JFrameType.XP);
+    public KnowledgeXPDisplay(String name, boolean isLevel) {
+        super(new TranslatableComponent("jitl.knowledge." + name.toLowerCase()), isLevel ? JFrameType.LEVEL : JFrameType.XP);
     }
 }

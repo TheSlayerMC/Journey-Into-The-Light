@@ -1,4 +1,4 @@
-package net.jitl.core.datagen;
+package net.jitl.core.datagen.provider;
 
 import net.jitl.core.JITL;
 import net.minecraft.data.DataGenerator;

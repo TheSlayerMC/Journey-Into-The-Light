@@ -1,4 +1,8 @@
-73c326fe2f06f934fb51f8f56cbd7b82dca6b853 data/forge/tags/blocks/needs_wood_tool.json
+60c6308b5638bf381aa22d8f39099b7c54d6cf9a data/forge/tags/blocks/needs_wood_tool.json
+42ec12be6c309c6f3b7ee6431f3155644f0db93b data/jitl/advancements/jitl/frozen/barter_troll.json
+7ea5af19e7cb5b60eb160e4b2457c570785eb087 data/jitl/advancements/jitl/frozen/ride_capybara.json
+dbfdca361de698ac815539a3a64333e3c522656a data/jitl/advancements/jitl/frozen/root.json
+b319c85f431266d270186b05a25f5225b55bbbfa data/jitl/advancements/jitl/overworld/root.json
 82a3bde2bef44e9fbaff953953e1ca8ee8373121 data/jitl/advancements/recipes/jitl.armor/dreadiron_boots_smithing.json
 b9223f6cc50627a07245d8b1d2057b19a8b85d79 data/jitl/advancements/recipes/jitl.armor/dreadiron_chestplate_smithing.json
 af2392c85c2188e751c876ddfdcdf9df02797d28 data/jitl/advancements/recipes/jitl.armor/dreadiron_helmet_smithing.json
@@ -139,6 +143,7 @@ c30c36d171051a6dfcf56b38abbae279487f4b88 data/jitl/loot_tables/blocks/glimmer_ro
 385862f6f79b816b3655f21dccfccd4ca878fb5e data/jitl/loot_tables/blocks/ice_bud.json
 50fdead0e6b5a00d64d258bc90bf1d4a4c77cca9 data/jitl/loot_tables/blocks/ice_bush.json
 ba9123961d6c8b865fc0f05c8f740c5d3aafd12c data/jitl/loot_tables/blocks/ice_shroom_shelf.json
+2e3f26d3735c9db13ca0bfc20f7cd2d3c3db84e7 data/jitl/loot_tables/blocks/icicle.json
 2cc3d2b0617aa13e177797ff20a8d62b77fadd4f data/jitl/loot_tables/blocks/icy_brush.json
 6c832b6bf2a691479848551c8f870f8f1d69195c data/jitl/loot_tables/blocks/icy_ivy.json
 6c832b6bf2a691479848551c8f870f8f1d69195c data/jitl/loot_tables/blocks/icy_ivy_plant.json
@@ -259,6 +264,10 @@ fc0982b663ea6df5f33922813ae7adcf2af9a333 data/jitl/recipes/shadium_block.json
 2420b488e4ce6412f023cc4581c68272094e8462 data/jitl/recipes/shadium_ingot_from_block.json
 bb400a849055c07df2f15ae00dca5ba3845e8345 data/jitl/recipes/storon_block.json
 1227ee6f42d389d3c349b347a157eda124b8d0c7 data/jitl/recipes/storon_gemstone_from_block.json
-26384af012f2a7b351d0085d72fe443b7a499302 data/minecraft/tags/blocks/mineable/pickaxe.json
+df9a9bb71519bdf46686ba82a3758bb03b065f4d data/jitl/tags/items/frozen_troll_loved_items.json
+65ee1e888b24d9326614c25d2b49e485479ea55e data/minecraft/tags/blocks/mineable/axe.json
+4f14cd26d4cd7e220acacbb5f665c9a207ec92c8 data/minecraft/tags/blocks/mineable/pickaxe.json
+e49d3632a8ad513a7a74a88b2f51e990f110e55b data/minecraft/tags/blocks/mineable/shovel.json
 a36f90a5f5b5b009226e495708486e1dff355285 data/minecraft/tags/blocks/needs_diamond_tool.json
-a9ae064d50597855f2a656bee0e95d336e874033 data/minecraft/tags/blocks/needs_iron_tool.json
+864a257a967bbe4bc84aaf10480a71fb85afc9c0 data/minecraft/tags/blocks/needs_iron_tool.json
+b27581d7c8da0d6c45e3bc5d99f2b17faf9b89ac data/minecraft/tags/blocks/needs_stone_tool.json

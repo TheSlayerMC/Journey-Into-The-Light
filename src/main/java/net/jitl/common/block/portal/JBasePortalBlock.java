@@ -1,5 +1,7 @@
 package net.jitl.common.block.portal;
 
+import net.jitl.common.capability.player.JPlayer;
+import net.jitl.common.capability.player.data.Portal;
 import net.jitl.common.dimension.BaseTeleporter;
 import net.jitl.core.init.JBlocks;
 import net.jitl.core.init.world.Dimensions;
@@ -10,6 +12,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -108,28 +111,45 @@ public class JBasePortalBlock extends Block {
                 if (!entity.level.isClientSide && !pos.equals(entity.portalEntrancePos)) {
                     entity.portalEntrancePos = pos.immutable();
                 }
-                Level entityWorld = entity.level;
-                if (entityWorld != null) {
-                    MinecraftServer minecraftserver = entityWorld.getServer();
-                    if (minecraftserver != null) {
-                        ResourceKey<Level> destination = entity.level.dimension() == dimensionID ? Level.OVERWORLD : dimensionID;
-                        ServerLevel destinationWorld = minecraftserver.getLevel(destination);
-                        PoiType poi = Dimensions.EUCA_PORTAL.get();
-                        if (this == JBlocks.EUCA_PORTAL)
-                            poi = Dimensions.EUCA_PORTAL.get();
-                        if (this == JBlocks.FROZEN_PORTAL)
-                            poi = Dimensions.FROZEN_PORTAL.get();
-                        if (this == JBlocks.BOIL_PORTAL)
-                            poi = Dimensions.BOILING_PORTAL.get();
-
-                        if (destinationWorld != null && minecraftserver.isNetherEnabled() && !entity.isPassenger()) {
-                            entity.level.getProfiler().push(Objects.requireNonNull(this.getRegistryName()).toString());
-                            entity.setPortalCooldown();
-                            entity.changeDimension(destinationWorld, new BaseTeleporter(destinationWorld, this, frame.get(), poi, destination));
-                            entity.level.getProfiler().pop();
+                if (entity instanceof Player player) {
+                    JPlayer jPlayer = JPlayer.from(player);
+                    if (jPlayer != null) {
+                        Portal portal = jPlayer.portal;
+                        portal.setInPortal(this, true);
+                        int cooldownTime = portal.getPortalTimer();
+                        if (cooldownTime >= player.getPortalWaitTime()) {
+                            teleport(player);
+                            portal.setPortalTimer(0);
                         }
+                    } else {
+                        teleport(player);
                     }
+                } else {
+                    teleport(entity);
                 }
+            }
+        }
+    }
+
+    public void teleport(Entity entity) {
+        Level entityWorld = entity.level;
+        MinecraftServer minecraftserver = entityWorld.getServer();
+        if (minecraftserver != null) {
+            ResourceKey<Level> destination = entity.level.dimension() == dimensionID ? Level.OVERWORLD : dimensionID;
+            ServerLevel destinationWorld = minecraftserver.getLevel(destination);
+            PoiType poi = Dimensions.EUCA_PORTAL.get();
+            if (this == JBlocks.EUCA_PORTAL)
+                poi = Dimensions.EUCA_PORTAL.get();
+            if (this == JBlocks.FROZEN_PORTAL)
+                poi = Dimensions.FROZEN_PORTAL.get();
+            if (this == JBlocks.BOIL_PORTAL)
+                poi = Dimensions.BOILING_PORTAL.get();
+
+            if (destinationWorld != null && minecraftserver.isNetherEnabled() && !entity.isPassenger()) {
+                entity.level.getProfiler().push(Objects.requireNonNull(this.getRegistryName()).toString());
+                entity.setPortalCooldown();
+                entity.changeDimension(destinationWorld, new BaseTeleporter(destinationWorld, this, frame.get(), poi, destination));
+                entity.level.getProfiler().pop();
             }
         }
     }

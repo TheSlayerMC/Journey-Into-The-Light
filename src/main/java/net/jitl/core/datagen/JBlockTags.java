@@ -58,12 +58,30 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.STORON_ORE,
                 JBlocks.MEKYUM_ORE,
                 JBlocks.KORITE_ORE,
-                JBlocks.CELESTIUM_ORE
+                JBlocks.CELESTIUM_ORE,
+                JBlocks.RIMESTONE_ORE,
+                JBlocks.PERIDOT_ORE,
+                JBlocks.PERMAFROST,
+                JBlocks.ICICLE
+        );
+        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
+                JBlocks.CRUMBLED_PERMAFROST,
+                JBlocks.GRASSY_PERMAFROST
+        );
+        tag(BlockTags.MINEABLE_WITH_AXE).add(
+                JBlocks.FROZEN_LOG
         );
     }
 
     //TODO: finish required tool tags
     public void addRequiredToolTags() {
+        tag(Tags.Blocks.NEEDS_WOOD_TOOL).add(
+                JBlocks.DEEP_MYCELIUM,
+                JBlocks.ICICLE
+        );
+        tag(BlockTags.NEEDS_STONE_TOOL).add(
+                JBlocks.PERMAFROST
+        );
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 JBlocks.SAPPHIRE_ORE,
                 JBlocks.DEEPSLATE_SAPPHIRE_ORE,
@@ -73,7 +91,9 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.DEEPSLATE_LUNIUM_ORE,
                 JBlocks.IRIDIUM_ORE,
                 JBlocks.DEEPSLATE_IRIDIUM_ORE,
-                JBlocks.DREADIRON_BLOCK
+                JBlocks.DREADIRON_BLOCK,
+                JBlocks.RIMESTONE_ORE,
+                JBlocks.PERIDOT_ORE
         );
         tag(BlockTags.NEEDS_DIAMOND_TOOL).add(
                 JBlocks.BLAZIUM_ORE,
@@ -81,9 +101,6 @@ public class JBlockTags extends BlockTagsProvider {
                 JBlocks.MEKYUM_ORE,
                 JBlocks.KORITE_ORE,
                 JBlocks.CELESTIUM_ORE
-        );
-        tag(Tags.Blocks.NEEDS_WOOD_TOOL).add(
-                JBlocks.DEEP_MYCELIUM
         );
     }
 }

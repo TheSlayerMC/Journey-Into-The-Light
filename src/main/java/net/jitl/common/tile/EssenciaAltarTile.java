@@ -159,6 +159,7 @@ public class EssenciaAltarTile extends SyncableTile {
 
     @Override
     protected void writeNBT(CompoundTag nbt, SerializationType type) {
+        //FIXME crashes when placed in world
         super.writeNBT(nbt, type);
 
         nbt.putBoolean("activated", activated);

@@ -45,8 +45,7 @@ import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static net.jitl.core.util.JItemProperties.itemGrouped;
-import static net.jitl.core.util.JItemProperties.rangedWeaponsGrouped;
+import static net.jitl.core.util.JItemProperties.*;
 
 public class ItemRegistrator {
     private static final IAbility BASIC = new IAbility() {};
@@ -97,7 +96,7 @@ public class ItemRegistrator {
         registerItem("peridot_gemstone", "Peridot Gemstone");
         registerItem("rimestone", "Rimestone");
         registerItem("redcurrant_berry", "Redcurrant Berry", () -> new Item(itemGrouped().food(JFoods.REDCURRANT)));
-        registerHandheldItem("redcurrant_on_a_stick", "Redcurrant On A Stick", () -> new FoodOnAStickItem<>(itemGrouped(), JEntities.CAPYBARA_TYPE, 7));
+        registerHandheldRodItem("redcurrant_on_a_stick", "Redcurrant On A Stick", () -> new FoodOnAStickItem<>(itemGrouped(), JEntities.CAPYBARA_TYPE, 7));
         registerItem("crystal_apple", "Crystal Apple", () -> new CrystalAppleItem(itemGrouped().food(JFoods.CRYSTAL_APPLE).rarity(Rarity.EPIC)));
         registerItem("frostborn_soul", "Frostborn Soul");
         registerItem("ice_amulet", "Ice Amulet", () -> new IceAmuletItem(itemGrouped().stacksTo(1)));
@@ -210,7 +209,7 @@ public class ItemRegistrator {
 
         registerItem("skull_of_decay", "Skull Of Decay", () -> new JCurioItem(itemGrouped().stacksTo(1)).ability(true).drawback(true).overview(true));
 
-        registerItem("miners_pearl", "Miners Pearl", () -> new MinersPearlItem(itemGrouped().stacksTo(1)));
+        registerItem("miners_pearl", "Miners Pearl", () -> new MinersPearlItem(itemGrouped().stacksTo(1).durability(1)));
 
         registerItem("heart_container_small", "Heart Container", () -> new HeartContainerItem(itemGrouped().stacksTo(1)).health(1).ability(true).drawback(true).overview(true));
         registerItem("heart_container_medium", "Heart Container", () -> new HeartContainerItem(itemGrouped().stacksTo(1)).health(4));
@@ -228,10 +227,10 @@ public class ItemRegistrator {
         registerItem("dynaster_amulet", "Amulet of the Dynaster", () -> new DynasterAmuletItem(itemGrouped().stacksTo(1)));
         registerItem("cloudwalker_amulet", "Cloudwalker's Amulet", () -> new CloudwalkingAmuletItem(itemGrouped().stacksTo(1)));
 
-        registerItem("very_weak_essence_crystal", "Very Weak Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(2F));
-        registerItem("weak_essence_crystal", "Weak Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(5F));
-        registerItem("strong_essence_crystal", "Strong Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(10F));
-        registerItem("very_strong_essence_crystal", "Very Strong Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(15F));
+        registerItem("very_weak_essence_crystal", "Very Weak Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(1F));
+        registerItem("weak_essence_crystal", "Weak Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(2.5F));
+        registerItem("strong_essence_crystal", "Strong Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(5F));
+        registerItem("very_strong_essence_crystal", "Very Strong Essence Crystal", () -> new EssenceCatalystItem(itemGrouped().stacksTo(1)).essence(10F));
 
         registerItem("breathing_stone", "Breathing Stone", () -> new RegenCatalystItem(itemGrouped().stacksTo(1)).speed(0.0112F));
 
@@ -252,18 +251,17 @@ public class ItemRegistrator {
         registerItem("frozen_boat", "Frosty Boat", () -> new JBoatItem(JBoat.Type.FROZEN, itemGrouped()));
         registerItem("burned_boat", "Burned Boat", () -> new JBoatItem(JBoat.Type.BURNED, itemGrouped()));
 
-        //TODO no creative tab
-        registerItem("overworld_knowledge", "Knowledge");
-        registerItem("nether_knowledge", "Knowledge");
-        registerItem("end_knowledge", "Knowledge");
-        registerItem("boil_knowledge", "Knowledge");
-        registerItem("frozen_knowledge", "Knowledge");
-        registerItem("euca_knowledge", "Knowledge");
-        registerItem("depths_knowledge", "Knowledge");
-        registerItem("corba_knowledge", "Knowledge");
-        registerItem("cloudia_knowledge", "Knowledge");
-        registerItem("terrania_knowledge", "Knowledge");
-        registerItem("senterian_knowledge", "Knowledge");
+        registerItem("overworld_knowledge", "Knowledge", () -> new Item(noGroup()));
+        registerItem("nether_knowledge", "Knowledge", () -> new Item(noGroup()));
+        registerItem("end_knowledge", "Knowledge", () -> new Item(noGroup()));
+        registerItem("boil_knowledge", "Knowledge", () -> new Item(noGroup()));
+        registerItem("frozen_knowledge", "Knowledge", () -> new Item(noGroup()));
+        registerItem("euca_knowledge", "Knowledge", () -> new Item(noGroup()));
+        registerItem("depths_knowledge", "Knowledge", () -> new Item(noGroup()));
+        registerItem("corba_knowledge", "Knowledge", () -> new Item(noGroup()));
+        registerItem("cloudia_knowledge", "Knowledge", () -> new Item(noGroup()));
+        registerItem("terrania_knowledge", "Knowledge", () -> new Item(noGroup()));
+        registerItem("senterian_knowledge", "Knowledge", () -> new Item(noGroup()));
 
     }
 
@@ -319,6 +317,12 @@ public class ItemRegistrator {
     private static void registerHandheldItem(String name, String enName, Supplier<Item> toolItemSupplier) {
         REGISTER.register(name, toolItemSupplier)
                 .model(StandardItemModelParents.HANDHELD)
+                .name(enName);
+    }
+
+    private static void registerHandheldRodItem(String name, String enName, Supplier<Item> toolItemSupplier) {
+        REGISTER.register(name, toolItemSupplier)
+                .model(StandardItemModelParents.HANDHELD_ROD)
                 .name(enName);
     }
 

@@ -1,4 +1,4 @@
-package net.jitl.client.render.overlay;
+package net.jitl.client.render.overlay.internal;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;

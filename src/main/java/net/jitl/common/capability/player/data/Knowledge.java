@@ -1,10 +1,9 @@
 package net.jitl.common.capability.player.data;
 
-import net.jitl.client.render.overlay.KnowledgeToast;
+import net.jitl.client.render.overlay.internal.KnowledgeToast;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.common.knowledge.KnowledgeStorageImpl;
 import net.minecraft.client.Minecraft;
-import ru.timeconqueror.timecore.common.capability.property.CoffeeProperty;
 import ru.timeconqueror.timecore.common.capability.property.container.PropertyContainer;
 
 import java.util.HashMap;
