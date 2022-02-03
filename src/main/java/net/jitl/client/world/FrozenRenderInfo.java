@@ -1,6 +1,6 @@
 package net.jitl.client.world;
 
-import net.jitl.client.render.CustomCloudRenderer;
+import net.jitl.client.render.FrozenCloudsRenderer;
 import net.jitl.client.render.FrozenSkyRenderer;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.world.phys.Vec3;
@@ -10,7 +10,7 @@ public class FrozenRenderInfo extends DimensionSpecialEffects {
 
     public FrozenRenderInfo() {
         super(164.0F, true, SkyType.NORMAL, false, false);
-        setCloudRenderHandler(new CustomCloudRenderer());
+        setCloudRenderHandler(new FrozenCloudsRenderer());
         setSkyRenderHandler(new FrozenSkyRenderer());
     }
 
