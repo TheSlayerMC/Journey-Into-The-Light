@@ -1,14 +1,23 @@
 package net.jitl.core.init.world;
 
+import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
+import net.jitl.core.JITL;
+import net.minecraft.data.worldgen.PlainVillagePools;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
+import ru.timeconqueror.timecore.api.registry.StructureFeatureRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
+import ru.timeconqueror.timecore.api.storage.StructureTags;
 
 public class
 JStructures {
 
     public static final Marker STRUCTURE_MARKER = MarkerManager.getMarker("JSTRUCTURES");
 
-     /* @AutoRegistrable
+    @AutoRegistrable
     private static final StructureFeatureRegister REGISTER = new StructureFeatureRegister(JITL.MODID);
 
     public static final StructureFeatureRegister.StructureHolder<JigsawConfiguration, IllagerBunkerStructure> ILlAGER_BUNKER =
@@ -19,7 +28,7 @@ JStructures {
                     .asHolder();
 
 
-    public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
+   /* public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
