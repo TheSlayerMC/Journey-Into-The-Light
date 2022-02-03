@@ -1,47 +1,29 @@
 package net.jitl.common.world.gen.structures.frozen.guardianruins;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.structure.PostPlacementProcessor;
+import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 
 public class GuardianRuinStructure extends StructureFeature<NoneFeatureConfiguration> {
-    public GuardianRuinStructure(Codec<NoneFeatureConfiguration> configCodec_, PieceGeneratorSupplier<NoneFeatureConfiguration> piecesGenerator_, PostPlacementProcessor postPlacementProcessor_) {
-        super(configCodec_, piecesGenerator_, postPlacementProcessor_);
-    }
-   /* public GuardianRuinStructure(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
+    public GuardianRuinStructure(Codec<NoneFeatureConfiguration> configCodec_) {
+        super(configCodec_, PieceGeneratorSupplier.simple(PieceGeneratorSupplier.checkForBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG), GuardianRuinStructure::generatePieces));
     }
 
-    @Override
-    public @NotNull StructureStartFactory<NoneFeatureConfiguration> getStartFactory() {
-        return Start::new;
+    private static void generatePieces(StructurePiecesBuilder collector_, PieceGenerator.Context<NoneFeatureConfiguration> context_) {
+        BlockPos blockpos = new BlockPos(context_.chunkPos().getMinBlockX(), 64 /* WHAT THE FUCKKK */, context_.chunkPos().getMinBlockZ());
+        Rotation rotation = Rotation.getRandom(context_.random());
+        GuardianRuinPieces.addPieces(context_.structureManager(), blockpos, rotation, collector_, context_.random());
     }
 
     @Override
-    public @NotNull Decoration step() {
-        return Decoration.SURFACE_STRUCTURES;
+    public GenerationStep.Decoration step() {
+        return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
-
-    public static class Start extends StructureStart<NoneFeatureConfiguration> {
-        public Start(StructureFeature<NoneFeatureConfiguration> structure, int chunkX, int chunkZ, BoundingBox mutableBoundingBox_, int references, long seed) {
-            super(structure, chunkX, chunkZ, mutableBoundingBox_, references, seed);
-        }
-
-        public void generatePieces(@NotNull RegistryAccess dynamicRegistries, @NotNull ChunkGenerator chunkGenerator, @NotNull StructureManager templateManager, int chunkX, int chunkZ, @NotNull Biome biome_, @NotNull NoneFeatureConfiguration featureConfig_) {
-            int x = chunkX << 4;
-            int z = chunkZ << 4;
-
-            int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator, x, z, x + GuardianRuinPieces.BB_WIDTH, z + GuardianRuinPieces.BB_WIDTH);
-            surface -= 1;
-
-            BlockPos start = new BlockPos(x, surface, z);
-            JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", GuardianRuinPieces.class.getSimpleName(), start);
-
-            GuardianRuinPieces.generate(pieces, templateManager, start);
-
-            this.calculateBoundingBox();
-        }
-    }*/
 }

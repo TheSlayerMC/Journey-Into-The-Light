@@ -1,11 +1,14 @@
 package net.jitl.core.init.world;
 
+import net.jitl.common.world.gen.structures.frozen.EskimoCampStructure;
+import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinStructure;
 import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
 import net.jitl.core.JITL;
 import net.minecraft.data.worldgen.PlainVillagePools;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 import ru.timeconqueror.timecore.api.registry.StructureFeatureRegister;
@@ -25,6 +28,21 @@ public class JStructures {
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
+
+    public static final StructureFeatureRegister.StructureHolder<JigsawConfiguration, EskimoCampStructure> ESKIMO_CAMP_STRUCTURE =
+            REGISTER.register("eskimo_camp", EskimoCampStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), JigsawConfiguration.CODEC, new JigsawConfiguration(() -> PlainVillagePools.START, 0))
+                    .transformsSurroundingLand()
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.FROZEN_LANDS)
+                    .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
+    public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, GuardianRuinStructure> GUARDIAN_RUIN =
+            REGISTER.register("guardian_ruin", GuardianRuinStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
+                    .transformsSurroundingLand()
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.FROZEN_LANDS)
+                    .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
 
    /* public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
@@ -58,20 +76,6 @@ public class JStructures {
     public static final StructureHolder<NoneFeatureConfiguration, EucaDungeonStructure> EUCA_SHPHERE_DUNGEON =
             REGISTER.register("euca_sphere_dungeon", EucaDungeonStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.EUCA_WORLD)
-                    .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
-                    .asHolder();
-
-    public static final StructureHolder<NoneFeatureConfiguration, EskimoCampStructure> ESKIMO_CAMP =
-            REGISTER.register("eskimo_camp", EskimoCampStructure::new, TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
-                    .transformsSurroundingLand()
-                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.FROZEN_WORLD)
-                    .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
-                    .asHolder();
-
-    public static final StructureHolder<NoneFeatureConfiguration, GuardianRuinStructure> GUARDIAN_RUIN =
-            REGISTER.register("guardian_ruin", GuardianRuinStructure::new, TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
-                    .transformsSurroundingLand()
-                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.FROZEN_WORLD)
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 

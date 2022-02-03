@@ -1,27 +1,38 @@
 package net.jitl.common.world.gen.structures.frozen;
 
 import com.mojang.serialization.Codec;
+import net.jitl.core.JITL;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.structure.PostPlacementProcessor;
+import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
+import net.minecraft.world.level.levelgen.feature.structures.JigsawPlacement;
+import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 
 
-public class EskimoCampStructure extends StructureFeature<NoneFeatureConfiguration> {
-    public EskimoCampStructure(Codec<NoneFeatureConfiguration> configCodec_, PieceGeneratorSupplier<NoneFeatureConfiguration> piecesGenerator_, PostPlacementProcessor postPlacementProcessor_) {
-        super(configCodec_, piecesGenerator_, postPlacementProcessor_);
-    }
-    /*private static final List<MobSpawnSettings.SpawnerData> SPAWNERS_LIST = ImmutableList.of(
-            new MobSpawnSettings.SpawnerData(JEntities.ESKIMO_TYPE, 1, 1, 1)
-    );
+public class EskimoCampStructure extends StructureFeature<JigsawConfiguration> {
+    public EskimoCampStructure(Codec<JigsawConfiguration> codec) {
+        super(codec, (context) -> {
+            JigsawConfiguration config = new JigsawConfiguration(() -> context.registryAccess().ownedRegistryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(JITL.rl("frozen/eskimo_camp/starting_well")), 2);
 
-    public EskimoCampStructure(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
-    }
+            int x = context.chunkPos().getMinBlockX();
+            int z = context.chunkPos().getMinBlockZ();
+            /*int chunkX = (x << 4) + 7;
+            int chunkZ = (z << 4) + 7;
 
-    @Override
-    public StructureStartFactory<NoneFeatureConfiguration> getStartFactory() {
-        return Start::new;
+            ChunkGenerator chunkGenerator = context.chunkGenerator();
+            LevelHeightAccessor heightAccessor = context.heightAccessor();
+
+            int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator, x, z, x + 7, z + 7, heightAccessor);
+            surface -= 1;*/
+
+            BlockPos startPos = new BlockPos(x, 64, z);
+
+            PieceGeneratorSupplier.Context<JigsawConfiguration> structureContext = new PieceGeneratorSupplier.Context<>(context.chunkGenerator(), context.biomeSource(), context.seed(), context.chunkPos(), config, context.heightAccessor(), context.validBiome(), context.structureManager(), context.registryAccess());
+            return JigsawPlacement.addPieces(structureContext, PoolElementStructurePiece::new, startPos, false, false);
+        });
     }
 
     @Override
@@ -30,50 +41,7 @@ public class EskimoCampStructure extends StructureFeature<NoneFeatureConfigurati
     }
 
     @Override
-    public List<MobSpawnSettings.SpawnerData> getDefaultSpawnList() {
-        return SPAWNERS_LIST;
+    public String getFeatureName() {
+        return "jitl:eskimo_camp";
     }
-
-    @Override
-    protected boolean isFeatureChunk(ChunkGenerator chunkGenerator_, BiomeSource biomeProvider_, long long_, WorldgenRandom sharedSeedRandom_, int int_, int int1_, Biome biome_, ChunkPos chunkPos_, NoneFeatureConfiguration featureConfig_) {
-        for (Biome biome : biomeProvider_.getBiomesWithin(int_ * 16 + 9, chunkGenerator_.getSeaLevel(), int1_ * 16 + 9, 32)) {
-            if (!biome.getGenerationSettings().isValidStart(this)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static class Start extends StructureStart<NoneFeatureConfiguration> {
-
-        public Start(StructureFeature<NoneFeatureConfiguration> structure_, int int_, int int1_, BoundingBox mutableBoundingBox_, int int2_, long long_) {
-            super(structure_, int_, int1_, mutableBoundingBox_, int2_, long_);
-        }
-
-        @Override
-        public void generatePieces(RegistryAccess dynamicRegistries_, ChunkGenerator chunkGenerator_, StructureManager templateManager_, int x, int z, Biome biome_, NoneFeatureConfiguration featureConfig_) {
-            int chunkX = (x << 4) + 7;
-            int chunkZ = (z << 4) + 7;
-
-            int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator_, x, z, x + 7, z + 7);
-            surface -= 1;
-
-            BlockPos pos = new BlockPos(chunkX, surface, chunkZ);
-            if (chunkGenerator_.getBaseHeight(chunkX, chunkZ, Heightmap.Types.WORLD_SURFACE_WG) > 0) {
-                JigsawPlacement.addPieces(dynamicRegistries_,
-                        new JigsawConfiguration(() -> dynamicRegistries_.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(JITL.rl("frozen/eskimo_camp/starting_well")), 2),
-                        PoolElementStructurePiece::new,
-                        chunkGenerator_,
-                        templateManager_,
-                        pos,
-                        pieces,
-                        random,
-                        true,
-                        true);
-            }
-            pieces.forEach(piece -> piece.move(0, 0, 0));
-            calculateBoundingBox();
-            moveInsideHeights(random, 64, 68);
-        }
-    }*/
 }

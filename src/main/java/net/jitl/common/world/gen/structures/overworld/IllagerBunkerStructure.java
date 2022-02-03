@@ -16,16 +16,17 @@ import net.minecraft.world.level.levelgen.feature.structures.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 
+import java.util.Collections;
 import java.util.List;
 
 
 public class IllagerBunkerStructure extends StructureFeature<JigsawConfiguration> {
     private static final List<MobSpawnSettings.SpawnerData> SPAWNERS_LIST = ImmutableList.of(
-            new MobSpawnSettings.SpawnerData(EntityType.PILLAGER, 20, 1, 10),
-            new MobSpawnSettings.SpawnerData(EntityType.VINDICATOR, 50, 1, 10),
-            new MobSpawnSettings.SpawnerData(EntityType.ILLUSIONER, 2, 1, 1),
+            new MobSpawnSettings.SpawnerData(EntityType.PILLAGER, 10, 1, 10),
+            new MobSpawnSettings.SpawnerData(EntityType.VINDICATOR, 30, 1, 10),
+            new MobSpawnSettings.SpawnerData(EntityType.ILLUSIONER, 1, 1, 1),
             new MobSpawnSettings.SpawnerData(EntityType.EVOKER, 5, 1, 1),
-            new MobSpawnSettings.SpawnerData(JEntities.ILLAGER_MECH_TYPE, 5, 1, 1)
+            new MobSpawnSettings.SpawnerData(JEntities.ILLAGER_MECH_TYPE, 3, 1, 1)
     );
 
     public IllagerBunkerStructure(Codec<JigsawConfiguration> codec) {
@@ -39,7 +40,11 @@ public class IllagerBunkerStructure extends StructureFeature<JigsawConfiguration
 
     @Override
     public List<MobSpawnSettings.SpawnerData> getDefaultSpawnList(MobCategory category) {
-        return SPAWNERS_LIST;
+        if (category == MobCategory.MONSTER || category == MobCategory.CREATURE) {
+            return SPAWNERS_LIST;
+        }
+
+        return Collections.emptyList();
     }
 
     @Override
