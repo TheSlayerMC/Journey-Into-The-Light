@@ -12,8 +12,7 @@ import ru.timeconqueror.timecore.api.registry.StructureFeatureRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 import ru.timeconqueror.timecore.api.storage.StructureTags;
 
-public class
-JStructures {
+public class JStructures {
 
     public static final Marker STRUCTURE_MARKER = MarkerManager.getMarker("JSTRUCTURES");
 
@@ -26,7 +25,6 @@ JStructures {
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
-
 
    /* public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
