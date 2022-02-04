@@ -36,18 +36,18 @@ public class JAdvancements implements Consumer<Consumer<Advancement>> {
 
         Advancement mage = Advancement.Builder.advancement()
                 .display(
-                        JBlocks.EUCA_GOLD_GRASS_BLOCK,
+                        JItems.POWDER_OF_ESSENCIA,
                         new TranslatableComponent("advancement.jitl.overworld.mage.title"),
                         new TranslatableComponent("advancement.jitl.overworld.mage.desc"),
-                        JITL.rl("textures/block/dungeon_bricks.png"),
+                        null,
                         FrameType.GOAL,
                         true,
-                        false,
+                        true,
                         false
                 )
                 .addCriterion("mage_chat", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(
                         EntityPredicate.Composite.ANY,
-                        ItemPredicate.Builder.item().of(JItems.POWDER_OF_ESSENCIA),//FIXME Make be done with anything in hand
+                        ItemPredicate.Builder.item(),
                         EntityPredicate.Composite.wrap(EntityPredicate.Builder.entity().of(JEntities.MAGE_TYPE).build())))
                 .save(advancementConsumer, overworldID("mage_chat"));
 

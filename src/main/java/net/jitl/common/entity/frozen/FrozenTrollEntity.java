@@ -76,8 +76,8 @@ public class FrozenTrollEntity extends Monster {
             MemoryModuleType.ADMIRING_DISABLED,
             MemoryModuleType.DISABLE_WALK_TO_ADMIRE_ITEM,
             MemoryModuleType.NEAREST_VISIBLE_NEMESIS,
-            MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM,
-            MemoryModuleType.NEAREST_REPELLENT);
+            MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM
+    );
 
 
     public FrozenTrollEntity(EntityType<? extends FrozenTrollEntity> entityType, Level world) {
