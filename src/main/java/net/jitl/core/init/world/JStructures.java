@@ -27,7 +27,7 @@ public class JStructures {
     public static final StructureFeatureRegister.StructureHolder<JigsawConfiguration, IllagerBunkerStructure> ILlAGER_BUNKER =
             REGISTER.register("illager_bunker", IllagerBunkerStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(40, 10), JigsawConfiguration.CODEC, new JigsawConfiguration(() -> PlainVillagePools.START, 0))
                     .allowedInBiomes((biome, biomeKey) -> biomeKey.getBiomeCategory().equals(Biome.BiomeCategory.MESA))
-                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD) //FIXME broken dimension predicate
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
