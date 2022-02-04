@@ -5,6 +5,7 @@ import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinStr
 import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
 import net.jitl.core.JITL;
 import net.minecraft.data.worldgen.PlainVillagePools;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -26,14 +27,14 @@ public class JStructures {
     public static final StructureFeatureRegister.StructureHolder<JigsawConfiguration, IllagerBunkerStructure> ILlAGER_BUNKER =
             REGISTER.register("illager_bunker", IllagerBunkerStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(40, 10), JigsawConfiguration.CODEC, new JigsawConfiguration(() -> PlainVillagePools.START, 0))
                     .allowedInBiomes((biome, biomeKey) -> biomeKey.getBiomeCategory().equals(Biome.BiomeCategory.MESA))
-                    //.allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD) //FIXME broken dimension predicate
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD) //FIXME broken dimension predicate
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
     public static final StructureFeatureRegister.StructureHolder<JigsawConfiguration, EskimoCampStructure> ESKIMO_CAMP_STRUCTURE =
             REGISTER.register("eskimo_camp", EskimoCampStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), JigsawConfiguration.CODEC, new JigsawConfiguration(() -> PlainVillagePools.START, 0))
                     .transformsSurroundingLand()
-                    //.allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.FROZEN_LANDS)
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.FROZEN_LANDS)
                     .allowedInBiomes(((biomeResourceKey, biome) -> Objects.equals(biomeResourceKey.location(), JITL.rl("frozen/dying_forest"))))
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
@@ -42,8 +43,8 @@ public class JStructures {
     public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, GuardianRuinStructure> GUARDIAN_RUIN =
             REGISTER.register("guardian_ruin", GuardianRuinStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
-                    //.allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.FROZEN_LANDS)
-                    .allowedInBiomes(((biomeResourceKey, biome) -> Objects.equals(biomeResourceKey.location(), JITL.rl("frozen/dying_forest"))))
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.FROZEN_LANDS)
+                    .allowedInBiomes(((biomeResourceKey, biome) -> Objects.equals(biomeResourceKey.location(), JITL.rl("frozen/frozen_wastes"))))
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
