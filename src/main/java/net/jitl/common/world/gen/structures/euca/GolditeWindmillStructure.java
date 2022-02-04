@@ -1,4 +1,4 @@
-package net.jitl.common.world.gen.structures.overworld;
+package net.jitl.common.world.gen.structures.euca;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
@@ -14,7 +14,10 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.structure.*;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import net.minecraft.world.level.levelgen.structure.StructurePieceAccessor;
+import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
@@ -25,26 +28,25 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlac
 import java.util.Map;
 import java.util.Random;
 
-public class AncientRuinsStructure extends StructureFeature<NoneFeatureConfiguration> {
+public class GolditeWindmillStructure extends StructureFeature<NoneFeatureConfiguration> {
 
-    public static final ResourceLocation RUINS = JITL.rl("overworld/ancient_ruins");
+    public static final ResourceLocation WINDMILL = JITL.rl("euca/goldite_windmill");
 
-    static final Map<ResourceLocation, BlockPos> PIVOTS = ImmutableMap.of(RUINS, new BlockPos(3, 25, 5));
+    static final Map<ResourceLocation, BlockPos> PIVOTS = ImmutableMap.of(WINDMILL, new BlockPos(20, 45, 20));
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
-            RUINS, new BlockPos(0, -1, 0)
+            WINDMILL, new BlockPos(0, -1, 0)
     );
 
-    public AncientRuinsStructure(Codec<NoneFeatureConfiguration> configCodec_) {
-        super(configCodec_, PieceGeneratorSupplier.simple(PieceGeneratorSupplier.checkForBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG), AncientRuinsStructure::generatePieces));
+    public GolditeWindmillStructure(Codec<NoneFeatureConfiguration> configCodec_) {
+        super(configCodec_, PieceGeneratorSupplier.simple(PieceGeneratorSupplier.checkForBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG), GolditeWindmillStructure::generatePieces));
     }
 
     private static void generatePieces(StructurePiecesBuilder collector_, PieceGenerator.Context<NoneFeatureConfiguration> context_) {
         BlockPos blockPos = context_.chunkPos().getWorldPosition();
         int landHeight = context_.chunkGenerator().getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context_.heightAccessor());
-        landHeight -= 7;
         BlockPos blockpos = new BlockPos(context_.chunkPos().getMinBlockX(), landHeight - 1, context_.chunkPos().getMinBlockZ());
         Rotation rotation = Rotation.getRandom(context_.random());
-        AncientRuinsStructure.addPieces(context_.structureManager(), blockpos, rotation, collector_, context_.random());
+        GolditeWindmillStructure.addPieces(context_.structureManager(), blockpos, rotation, collector_, context_.random());
     }
 
     @Override
@@ -53,31 +55,31 @@ public class AncientRuinsStructure extends StructureFeature<NoneFeatureConfigura
     }
 
     public static void addPieces(StructureManager structureManager, BlockPos pos, Rotation rotation, StructurePieceAccessor pieces, Random random) {
-        pieces.addPiece(createPiece(structureManager, RUINS, pos, rotation, true));
+        pieces.addPiece(createPiece(structureManager, WINDMILL, pos, rotation, true));
     }
 
     public static StructurePiece createPiece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos, Rotation rotation, boolean applyGenerationNoise) {
-        return new AncientRuinsStructure.Piece(templateManager, templateLocation, pos, rotation, 0);
+        return new GolditeWindmillStructure.Piece(templateManager, templateLocation, pos, rotation, 0);
     }
 
     public static class Piece extends TemplateStructurePiece {
         public Piece(StructureManager structureManager_, ResourceLocation location_, BlockPos pos_, Rotation rotation, int down_) {
-            super(JStructurePieces.ANCIENT_RUINS.get(), 0, structureManager_, location_, location_.toString(), makeSettings(rotation, location_), makePosition(location_, pos_, down_));
+            super(JStructurePieces.GOLDITE_WINDMILL.get(), 0, structureManager_, location_, location_.toString(), makeSettings(rotation, location_), makePosition(location_, pos_, down_));
         }
 
         public Piece(StructurePieceSerializationContext structurePieceSerializationContext, CompoundTag compoundTag) {
-            super(JStructurePieces.ANCIENT_RUINS.get(), compoundTag, structurePieceSerializationContext.structureManager(), (resourceLocation_) -> makeSettings(Rotation.valueOf(compoundTag.getString("Rot")), resourceLocation_));
+            super(JStructurePieces.GOLDITE_WINDMILL.get(), compoundTag, structurePieceSerializationContext.structureManager(), (resourceLocation_) -> makeSettings(Rotation.valueOf(compoundTag.getString("Rot")), resourceLocation_));
         }
 
         private static StructurePlaceSettings makeSettings(Rotation rotation_, ResourceLocation location_) {
             return (new StructurePlaceSettings())
                     .setRotation(rotation_)
                     .setMirror(Mirror.NONE)
-                    .setRotationPivot(AncientRuinsStructure.PIVOTS.get(location_));
+                    .setRotationPivot(GolditeWindmillStructure.PIVOTS.get(location_));
         }
 
         private static BlockPos makePosition(ResourceLocation location_, BlockPos pos_, int down_) {
-            return pos_.offset(AncientRuinsStructure.OFFSETS.get(location_)).below(down_);
+            return pos_.offset(GolditeWindmillStructure.OFFSETS.get(location_)).below(down_);
         }
 
         @Override

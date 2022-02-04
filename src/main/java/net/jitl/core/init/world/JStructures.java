@@ -1,7 +1,9 @@
 package net.jitl.core.init.world;
 
+import net.jitl.common.world.gen.structures.euca.GolditeWindmillStructure;
 import net.jitl.common.world.gen.structures.frozen.EskimoCampStructure;
 import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinStructure;
+import net.jitl.common.world.gen.structures.overworld.AncientRuinsStructure;
 import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
 import net.jitl.core.JITL;
@@ -58,6 +60,20 @@ public class JStructures {
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
+    public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, AncientRuinsStructure> ANCIENT_RUINS =
+            REGISTER.register("ancient_ruins", AncientRuinsStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
+                    .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
+    public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, GolditeWindmillStructure> GOLDITE_WINDMILL =
+            REGISTER.register("goldite_windmill", GolditeWindmillStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
+                    .transformsSurroundingLand()
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.EUCA)
+                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), JITL.rl("euca/euca_goldite_grains")))
+                    .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
 
    /* public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
@@ -73,8 +89,6 @@ public class JStructures {
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
-
-
     public static final StructureHolder<NoneFeatureConfiguration, AlloyMenderStructure> ALLOY_MENDER =
             REGISTER.register("alloy_mender_hut", AlloyMenderStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
@@ -85,20 +99,6 @@ public class JStructures {
     public static final StructureHolder<NoneFeatureConfiguration, EucaDungeonStructure> EUCA_SHPHERE_DUNGEON =
             REGISTER.register("euca_sphere_dungeon", EucaDungeonStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.EUCA_WORLD)
-                    .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
-                    .asHolder();
-
-    public static final StructureHolder<NoneFeatureConfiguration, GolditeWindmillStructure> GOLDITE_WINDMILL =
-            REGISTER.register("goldite_windmill", GolditeWindmillStructure::new, TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
-                    .transformsSurroundingLand()
-                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.EUCA_WORLD)
-                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), JITL.rl("euca/euca_goldite_grains")))
-                    .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
-                    .asHolder();
-
-    public static final StructureHolder<NoneFeatureConfiguration, AncientRuinsStructure> ANCIENT_RUINS =
-            REGISTER.register("ancient_ruins", AncientRuinsStructure::new, TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
-                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
