@@ -33,6 +33,24 @@ public class JAdvancements implements Consumer<Consumer<Advancement>> {
                 )
                 .addCriterion("tick", new TickTrigger.TriggerInstance(EntityPredicate.Composite.ANY))
                 .save(advancementConsumer, overworldID("root"));
+
+        Advancement mage = Advancement.Builder.advancement()
+                .display(
+                        JBlocks.EUCA_GOLD_GRASS_BLOCK,
+                        new TranslatableComponent("advancement.jitl.overworld.mage.title"),
+                        new TranslatableComponent("advancement.jitl.overworld.mage.desc"),
+                        JITL.rl("textures/block/dungeon_bricks.png"),
+                        FrameType.GOAL,
+                        true,
+                        false,
+                        false
+                )
+                .addCriterion("mage_chat", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(
+                        EntityPredicate.Composite.ANY,
+                        ItemPredicate.Builder.item().of(JItems.POWDER_OF_ESSENCIA),//FIXME Make be done with anything in hand
+                        EntityPredicate.Composite.wrap(EntityPredicate.Builder.entity().of(JEntities.MAGE_TYPE).build())))
+                .save(advancementConsumer, overworldID("mage_chat"));
+
     }
 
     private void frozen(Consumer<Advancement> advancementConsumer) {

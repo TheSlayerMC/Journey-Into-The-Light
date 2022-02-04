@@ -1,0 +1,44 @@
+{
+  "display": {
+    "icon": {
+      "item": "jitl:euca_gold_grass_block"
+    },
+    "title": {
+      "translate": "advancement.jitl.overworld.mage.title"
+    },
+    "description": {
+      "translate": "advancement.jitl.overworld.mage.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "jitl:textures/block/dungeon_bricks.png"
+  },
+  "criteria": {
+    "mage_chat": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "item": {
+          "items": [
+            "jitl:powder_of_essencia"
+          ]
+        },
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "jitl:mage"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mage_chat"
+    ]
+  ]
+}
