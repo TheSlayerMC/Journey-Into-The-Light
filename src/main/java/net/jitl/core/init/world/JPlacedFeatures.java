@@ -176,7 +176,7 @@ public class JPlacedFeatures {
 
     public static final Promised<? extends PlacedFeature> ICE_SPIKE = REGISTER.register(
                     "ice_spike",
-                    GenerationStep.Decoration.RAW_GENERATION,
+                    GenerationStep.Decoration.SURFACE_STRUCTURES,
                     () -> JConfiguredFeatures.ICE_SPIKE.get()
                             .placed(patch(3, 5, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
             .allowedInBiomes(BiomePredicate.FROZEN_WASTES)

@@ -17,7 +17,10 @@ public class GuardianRuinStructure extends StructureFeature<NoneFeatureConfigura
     }
 
     private static void generatePieces(StructurePiecesBuilder collector_, PieceGenerator.Context<NoneFeatureConfiguration> context_) {
-        BlockPos blockpos = new BlockPos(context_.chunkPos().getMinBlockX(), 64 /* WHAT THE FUCKKK */, context_.chunkPos().getMinBlockZ());
+        BlockPos blockPos = context_.chunkPos().getWorldPosition();
+        int landHeight = context_.chunkGenerator().getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context_.heightAccessor());
+
+        BlockPos blockpos = new BlockPos(context_.chunkPos().getMinBlockX(), landHeight - 1, context_.chunkPos().getMinBlockZ());
         Rotation rotation = Rotation.getRandom(context_.random());
         GuardianRuinPieces.addPieces(context_.structureManager(), blockpos, rotation, collector_, context_.random());
     }

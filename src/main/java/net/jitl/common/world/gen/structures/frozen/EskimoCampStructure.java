@@ -5,6 +5,7 @@ import net.jitl.core.JITL;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
 import net.minecraft.world.level.levelgen.feature.structures.JigsawPlacement;
@@ -17,18 +18,10 @@ public class EskimoCampStructure extends StructureFeature<JigsawConfiguration> {
         super(codec, (context) -> {
             JigsawConfiguration config = new JigsawConfiguration(() -> context.registryAccess().ownedRegistryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(JITL.rl("frozen/eskimo_camp/starting_well")), 2);
 
-            int x = context.chunkPos().getMinBlockX();
-            int z = context.chunkPos().getMinBlockZ();
-            /*int chunkX = (x << 4) + 7;
-            int chunkZ = (z << 4) + 7;
+            BlockPos blockPos = context.chunkPos().getWorldPosition();
+            int landHeight = context.chunkGenerator().getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor());
 
-            ChunkGenerator chunkGenerator = context.chunkGenerator();
-            LevelHeightAccessor heightAccessor = context.heightAccessor();
-
-            int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator, x, z, x + 7, z + 7, heightAccessor);
-            surface -= 1;*/
-
-            BlockPos startPos = new BlockPos(x, 64, z);
+            BlockPos startPos = new BlockPos(context.chunkPos().getMinBlockX(), landHeight + 1, context.chunkPos().getMinBlockZ());
 
             PieceGeneratorSupplier.Context<JigsawConfiguration> structureContext = new PieceGeneratorSupplier.Context<>(context.chunkGenerator(), context.biomeSource(), context.seed(), context.chunkPos(), config, context.heightAccessor(), context.validBiome(), context.structureManager(), context.registryAccess());
             return JigsawPlacement.addPieces(structureContext, PoolElementStructurePiece::new, startPos, false, false);
