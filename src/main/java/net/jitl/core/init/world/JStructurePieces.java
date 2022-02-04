@@ -1,6 +1,7 @@
 package net.jitl.core.init.world;
 
 import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinPieces;
+import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
 import net.jitl.core.JITL;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.levelgen.feature.StructurePieceType;
@@ -14,8 +15,9 @@ public class JStructurePieces {
 
     public static final Promised<StructurePieceType> GUARDIAN_RUIN = REGISTER.register("guardian_ruin", () -> GuardianRuinPieces.Piece::new);
 
+    public static final Promised<StructurePieceType> MAGE = REGISTER.register("mage", () -> MageHouseStructure.Piece::new);
 
-    /*public static final Promised<StructurePieceType> MAGE = REGISTER.register("mage", new MageHouseStructure());
+    /*
 
     public static final Promised<StructurePieceType> GUARDIAN_TOWER_PIECE = REGISTER.register("gt/p", () -> GuardianTowerPieces.Piece::new);
     public static final Promised<StructurePieceType> GUARDIAN_TOWER_NO_GRASS_TOUCHED_PIECE = REGISTER.register("gt/ngtp", () -> GuardianTowerPieces.NoGrassTouchedPiece::new);

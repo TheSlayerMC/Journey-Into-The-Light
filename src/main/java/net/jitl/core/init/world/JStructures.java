@@ -3,8 +3,10 @@ package net.jitl.core.init.world;
 import net.jitl.common.world.gen.structures.frozen.EskimoCampStructure;
 import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinStructure;
 import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
+import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
 import net.jitl.core.JITL;
 import net.minecraft.data.worldgen.PlainVillagePools;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
@@ -48,6 +50,14 @@ public class JStructures {
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
+    public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, MageHouseStructure> MAGE_HOUSE =
+            REGISTER.register("mage_house", MageHouseStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
+                    .transformsSurroundingLand()
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
+                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), new ResourceLocation("dark_forest")))
+                    .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
 
    /* public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
@@ -63,13 +73,7 @@ public class JStructures {
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
-    public static final StructureHolder<NoneFeatureConfiguration, MageHouseStructure> MAGE_HOUSE =
-            REGISTER.register("mage_house", MageHouseStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
-                    .transformsSurroundingLand()
-                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
-                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), new ResourceLocation("dark_forest")))
-                    .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
-                    .asHolder();
+
 
     public static final StructureHolder<NoneFeatureConfiguration, AlloyMenderStructure> ALLOY_MENDER =
             REGISTER.register("alloy_mender_hut", AlloyMenderStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
