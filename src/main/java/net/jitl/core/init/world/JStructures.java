@@ -75,7 +75,6 @@ public class JStructures {
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
-
     public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, EucaDungeonStructure> EUCA_SHPHERE_DUNGEON =
             REGISTER.register("euca_sphere_dungeon", EucaDungeonStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.EUCA)
