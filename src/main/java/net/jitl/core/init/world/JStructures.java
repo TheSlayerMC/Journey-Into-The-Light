@@ -1,5 +1,6 @@
 package net.jitl.core.init.world;
 
+import net.jitl.common.world.gen.structures.euca.EucaDungeonStructure;
 import net.jitl.common.world.gen.structures.euca.GolditeWindmillStructure;
 import net.jitl.common.world.gen.structures.frozen.EskimoCampStructure;
 import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinStructure;
@@ -75,6 +76,13 @@ public class JStructures {
                     .asHolder();
 
 
+    public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, EucaDungeonStructure> EUCA_SHPHERE_DUNGEON =
+            REGISTER.register("euca_sphere_dungeon", EucaDungeonStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.EUCA)
+                    .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
+
    /* public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
@@ -92,12 +100,6 @@ public class JStructures {
     public static final StructureHolder<NoneFeatureConfiguration, AlloyMenderStructure> ALLOY_MENDER =
             REGISTER.register("alloy_mender_hut", AlloyMenderStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
-                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.EUCA_WORLD)
-                    .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
-                    .asHolder();
-
-    public static final StructureHolder<NoneFeatureConfiguration, EucaDungeonStructure> EUCA_SHPHERE_DUNGEON =
-            REGISTER.register("euca_sphere_dungeon", EucaDungeonStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.EUCA_WORLD)
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();

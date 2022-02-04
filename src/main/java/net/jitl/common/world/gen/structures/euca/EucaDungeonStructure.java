@@ -1,29 +1,54 @@
 package net.jitl.common.world.gen.structures.euca;
 
+import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
+import net.jitl.core.JITL;
+import net.jitl.core.init.world.JStructurePieces;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.structure.PostPlacementProcessor;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import net.minecraft.world.level.levelgen.structure.StructurePieceAccessor;
+import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
+import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+
+import java.util.Map;
+import java.util.Random;
 
 public class EucaDungeonStructure extends StructureFeature<NoneFeatureConfiguration> {
-    public EucaDungeonStructure(Codec<NoneFeatureConfiguration> configCodec_, PieceGeneratorSupplier<NoneFeatureConfiguration> piecesGenerator_, PostPlacementProcessor postPlacementProcessor_) {
-        super(configCodec_, piecesGenerator_, postPlacementProcessor_);
-    }
 
-    /*public static final ResourceLocation SPHERE = JITL.rl("euca/euca_sphere_dungeon");
+    public static final ResourceLocation SPHERE = JITL.rl("euca/euca_sphere_dungeon");
 
+    static final Map<ResourceLocation, BlockPos> PIVOTS = ImmutableMap.of(SPHERE, new BlockPos(5, 20, 5));
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
-            SPHERE, BlockPos.ZERO
+            SPHERE, new BlockPos(0, -1, 0)
     );
 
-    public EucaDungeonStructure(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
+    public EucaDungeonStructure(Codec<NoneFeatureConfiguration> configCodec_) {
+        super(configCodec_, PieceGeneratorSupplier.simple(PieceGeneratorSupplier.checkForBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG), EucaDungeonStructure::generatePieces));
     }
 
-    @Override
-    public StructureStartFactory<NoneFeatureConfiguration> getStartFactory() {
-        return Start::new;
+    private static void generatePieces(StructurePiecesBuilder collector_, PieceGenerator.Context<NoneFeatureConfiguration> context_) {
+        Random random = new Random();
+        BlockPos blockPos = context_.chunkPos().getWorldPosition();
+        int landHeight = context_.chunkGenerator().getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context_.heightAccessor());
+        landHeight += random.nextInt(85);
+        BlockPos blockpos = new BlockPos(context_.chunkPos().getMinBlockX(), landHeight - 1, context_.chunkPos().getMinBlockZ());
+        Rotation rotation = Rotation.getRandom(context_.random());
+        EucaDungeonStructure.addPieces(context_.structureManager(), blockpos, rotation, collector_, context_.random());
     }
 
     @Override
@@ -31,80 +56,43 @@ public class EucaDungeonStructure extends StructureFeature<NoneFeatureConfigurat
         return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
-    public static StructurePiece createPiece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos, boolean applyGenerationNoise) {
-        return new Piece(templateManager, templateLocation, pos);
+    public static void addPieces(StructureManager structureManager, BlockPos pos, Rotation rotation, StructurePieceAccessor pieces, Random random) {
+        pieces.addPiece(createPiece(structureManager, SPHERE, pos, rotation, true));
     }
 
-    public static void generate(List<StructurePiece> pieces, StructureManager templateManager, BlockPos surfacePos) {
-        BlockPos changeable = surfacePos;
-        pieces.add(createPiece(templateManager, EucaDungeonStructure.SPHERE, surfacePos, true));
-    }
-
-    public static class Start extends StructureStart<NoneFeatureConfiguration> {
-        public Start(StructureFeature<NoneFeatureConfiguration> structure, int chunkX, int chunkZ, BoundingBox mutableBoundingBox_, int references, long seed) {
-            super(structure, chunkX, chunkZ, mutableBoundingBox_, references, seed);
-        }
-
-        public void generatePieces(RegistryAccess dynamicRegistries, ChunkGenerator chunkGenerator, StructureManager templateManager, int chunkX, int chunkZ, Biome biome_, NoneFeatureConfiguration featureConfig_) {
-            int x = chunkX << 4;
-            int z = chunkZ << 4;
-
-            int surface = GenHelper.getAverageFirstFreeHeight(chunkGenerator, x, z, x + 10, z + 10);
-            surface += random.nextInt(85);
-
-            BlockPos start = new BlockPos(x, surface, z);
-            JITL.LOGGER.debug(JStructures.STRUCTURE_MARKER, "Attempting to generate {} on {}", EucaDungeonStructure.class.getSimpleName(), start);
-
-            generate(pieces, templateManager, start);
-
-            this.calculateBoundingBox();
-        }*//*
+    public static StructurePiece createPiece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos, Rotation rotation, boolean applyGenerationNoise) {
+        return new EucaDungeonStructure.Piece(templateManager, templateLocation, pos, rotation, 0);
     }
 
     public static class Piece extends TemplateStructurePiece {
-        private final ResourceLocation templateLocation;
-
-        public Piece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            this(JStructurePieces.EUCA_DUNGEON.get(), templateManager, templateLocation, pos);
+        public Piece(StructureManager structureManager_, ResourceLocation location_, BlockPos pos_, Rotation rotation, int down_) {
+            super(JStructurePieces.EUCA_DUNGEON.get(), 0, structureManager_, location_, location_.toString(), makeSettings(rotation, location_), makePosition(location_, pos_, down_));
         }
 
-        public Piece(StructureManager templateManager, CompoundTag nbt) {
-            this(JStructurePieces.EUCA_DUNGEON.get(), templateManager, nbt);
+        public Piece(StructurePieceSerializationContext structurePieceSerializationContext, CompoundTag compoundTag) {
+            super(JStructurePieces.EUCA_DUNGEON.get(), compoundTag, structurePieceSerializationContext.structureManager(), (resourceLocation_) -> makeSettings(Rotation.valueOf(compoundTag.getString("Rot")), resourceLocation_));
         }
 
-        protected Piece(StructurePieceType type, StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos) {
-            super(type, 0);
-            this.templateLocation = templateLocation;
-            this.templatePosition = pos.offset(OFFSETS.get(templateLocation));
-            loadTemplate(templateManager);
+        private static StructurePlaceSettings makeSettings(Rotation rotation_, ResourceLocation location_) {
+            return (new StructurePlaceSettings())
+                    .setRotation(rotation_)
+                    .setMirror(Mirror.NONE)
+                    .setRotationPivot(EucaDungeonStructure.PIVOTS.get(location_));
         }
 
-        protected Piece(StructurePieceType type, StructureManager templateManager, CompoundTag nbt) {
-            super(type, nbt);
-            this.templateLocation = new ResourceLocation(nbt.getString("template"));
-            loadTemplate(templateManager);
+        private static BlockPos makePosition(ResourceLocation location_, BlockPos pos_, int down_) {
+            return pos_.offset(EucaDungeonStructure.OFFSETS.get(location_)).below(down_);
         }
 
         @Override
-        protected void addAdditionalSaveData(CompoundTag tagCompound) {
-            super.addAdditionalSaveData(tagCompound);
-            tagCompound.putString("template", this.templateLocation.toString());
-        }
-
-        private void loadTemplate(StructureManager templateManager) {
-            Random random = new Random();
-            StructureTemplate template = templateManager.getOrCreate(this.templateLocation);
-            StructurePlaceSettings placementsettings = new StructurePlaceSettings()
-                    .setRotation(Rotation.getRandom(random))
-                    .setMirror(Mirror.NONE);
-//                    .setRotationPivot()
-//                    .addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
-            this.setup(template, this.templatePosition, placementsettings);
+        protected void addAdditionalSaveData(StructurePieceSerializationContext context, CompoundTag tag) {
+            super.addAdditionalSaveData(context, tag);
+            tag.putString("Rot", this.placeSettings.getRotation().name());
         }
 
         @Override
-        protected void handleDataMarker(String function, BlockPos pos, ServerLevelAccessor worldIn, Random rand, BoundingBox sbb) {
+        protected void handleDataMarker(String marker_, BlockPos pos_, ServerLevelAccessor level_, Random random_, BoundingBox box_) {
 
         }
-    }*/
+    }
 }

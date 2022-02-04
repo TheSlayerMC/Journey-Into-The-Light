@@ -1,5 +1,6 @@
 package net.jitl.core.init.world;
 
+import net.jitl.common.world.gen.structures.euca.EucaDungeonStructure;
 import net.jitl.common.world.gen.structures.euca.GolditeWindmillStructure;
 import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinPieces;
 import net.jitl.common.world.gen.structures.overworld.AncientRuinsStructure;
@@ -23,6 +24,8 @@ public class JStructurePieces {
 
     public static final Promised<StructurePieceType> GOLDITE_WINDMILL = REGISTER.register("goldite_windmill", () -> GolditeWindmillStructure.Piece::new);
 
+    public static final Promised<StructurePieceType> EUCA_DUNGEON = REGISTER.register("euca_dungeon", () -> EucaDungeonStructure.Piece::new);
+
     /*
     public static final Promised<StructurePieceType> GUARDIAN_TOWER_PIECE = REGISTER.register("gt/p", () -> GuardianTowerPieces.Piece::new);
     public static final Promised<StructurePieceType> GUARDIAN_TOWER_NO_GRASS_TOUCHED_PIECE = REGISTER.register("gt/ngtp", () -> GuardianTowerPieces.NoGrassTouchedPiece::new);
@@ -30,7 +33,6 @@ public class JStructurePieces {
     public static final Promised<StructurePieceType> BLACKSMITH = REGISTER.register("bs", () -> BlacksmithStructure.Piece::new);
 
     public static final Promised<StructurePieceType> ALLOY_MENDER = REGISTER.register("alloy_mender", () -> AlloyMenderStructure.Piece::new);
-    public static final Promised<StructurePieceType> EUCA_DUNGEON = REGISTER.register("euca_dungeon", () -> EucaDungeonStructure.Piece::new);
     */
 
 
