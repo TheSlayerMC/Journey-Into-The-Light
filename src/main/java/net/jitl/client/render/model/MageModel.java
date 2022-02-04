@@ -17,7 +17,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class MageModel<T extends Entity> extends ListModel<T> implements HeadedModel, VillagerHeadModel {
 
     private final ModelPart head;
-    private final ModelPart nose;
     private final ModelPart body;
     private final ModelPart arms;
     private final ModelPart leg0;
@@ -25,7 +24,6 @@ public class MageModel<T extends Entity> extends ListModel<T> implements HeadedM
 
     public MageModel(ModelPart root) {
         this.head = root.getChild("head");
-        this.nose = root.getChild("nose");
         this.body = root.getChild("body");
         this.arms = root.getChild("arms");
         this.leg0 = root.getChild("leg0");
@@ -40,9 +38,8 @@ public class MageModel<T extends Entity> extends ListModel<T> implements HeadedM
                 .texOffs(0, 64).mirror().addBox(-5.0F, -10.05F, -5.0F, 10.0F, 2.0F, 10.0F, new CubeDeformation(0.0F)).mirror(false)
                 .texOffs(0, 76).mirror().addBox(-3.75F, -13.5F, -3.0F, 7.0F, 4.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false)
                 .texOffs(0, 87).mirror().addBox(-2.5F, -16.5F, -1.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false)
-                .texOffs(0, 95).mirror().addBox(-1.25F, -18.0F, 1.0F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.25F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-        PartDefinition nose = partdefinition.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(24, 0).mirror().addBox(-1.0F, -1.0F, -6.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, -2.0F, 0.0F));
+                .texOffs(0, 95).mirror().addBox(-1.25F, -18.0F, 1.0F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.25F)).mirror(false)
+                .texOffs(24, 0).mirror().addBox(-1.0F, -3.0F, -6.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 20).mirror().addBox(-4.0F, 0.0F, -3.0F, 8.0F, 12.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false)
                 .texOffs(0, 38).mirror().addBox(-4.0F, 0.0F, -3.0F, 8.0F, 18.0F, 6.0F, new CubeDeformation(0.5F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
@@ -60,7 +57,7 @@ public class MageModel<T extends Entity> extends ListModel<T> implements HeadedM
 
     @Override
     public Iterable<ModelPart> parts() {
-        return ImmutableList.of(this.head, this.body, this.arms, this.leg0, this.leg1, this.nose);
+        return ImmutableList.of(this.head, this.body, this.arms, this.leg0, this.leg1);
     }
 
     @Override
