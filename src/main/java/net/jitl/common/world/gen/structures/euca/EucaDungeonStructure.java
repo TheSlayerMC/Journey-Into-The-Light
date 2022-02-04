@@ -45,7 +45,7 @@ public class EucaDungeonStructure extends StructureFeature<NoneFeatureConfigurat
         Random random = new Random();
         BlockPos blockPos = context_.chunkPos().getWorldPosition();
         int landHeight = context_.chunkGenerator().getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context_.heightAccessor());
-        landHeight += random.nextInt(85);
+        landHeight += 15 + random.nextInt(70);
         BlockPos blockpos = new BlockPos(context_.chunkPos().getMinBlockX(), landHeight - 1, context_.chunkPos().getMinBlockZ());
         Rotation rotation = Rotation.getRandom(context_.random());
         EucaDungeonStructure.addPieces(context_.structureManager(), blockpos, rotation, collector_, context_.random());
