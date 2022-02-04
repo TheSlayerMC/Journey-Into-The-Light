@@ -1,5 +1,6 @@
 package net.jitl.core.init.world;
 
+import net.jitl.common.world.gen.structures.boil.DirerockStrongholdStructure;
 import net.jitl.common.world.gen.structures.euca.EucaDungeonStructure;
 import net.jitl.common.world.gen.structures.euca.GolditeWindmillStructure;
 import net.jitl.common.world.gen.structures.frozen.EskimoCampStructure;
@@ -40,7 +41,7 @@ public class JStructures {
             REGISTER.register("eskimo_camp", EskimoCampStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), JigsawConfiguration.CODEC, new JigsawConfiguration(() -> PlainVillagePools.START, 0))
                     .transformsSurroundingLand()
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.FROZEN_LANDS)
-                    .allowedInBiomes(((biomeResourceKey, biome) -> Objects.equals(biomeResourceKey.location(), JITL.rl("frozen/dying_forest"))))
+                    .allowedInBiomes(((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), JITL.rl("frozen/dying_forest"))))
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
@@ -49,7 +50,7 @@ public class JStructures {
             REGISTER.register("guardian_ruin", GuardianRuinStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.FROZEN_LANDS)
-                    .allowedInBiomes(((biomeResourceKey, biome) -> Objects.equals(biomeResourceKey.location(), JITL.rl("frozen/frozen_wastes"))))
+                    .allowedInBiomes(((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), JITL.rl("frozen/frozen_wastes"))))
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
@@ -81,6 +82,12 @@ public class JStructures {
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
+    public static final StructureFeatureRegister.StructureHolder<JigsawConfiguration, DirerockStrongholdStructure> DIREROCK_STRONGHOLD =
+            REGISTER.register("direrock_stronghold", DirerockStrongholdStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(15, 10), JigsawConfiguration.CODEC, new JigsawConfiguration(() -> PlainVillagePools.START, 0))
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.BOIL)
+                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), JITL.rl("boil/scorched_wastelands")))
+                    .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
 
    /* public static final StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
@@ -100,13 +107,6 @@ public class JStructures {
             REGISTER.register("alloy_mender_hut", AlloyMenderStructure::new, TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.EUCA_WORLD)
-                    .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
-                    .asHolder();
-
-    public static final StructureHolder<NoneFeatureConfiguration, DirerockStrongholdStructure> DIREROCK_STRONGHOLD =
-            REGISTER.register("direrock_stronghold", DirerockStrongholdStructure::new, TimeStructureSeparationSettings.create(15, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
-                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == JDimensions.BOIL_WORLD)
-                    .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), JITL.rl("boil/scorched_wastelands")))
                     .tagged(Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();*/
 }
