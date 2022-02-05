@@ -1,5 +1,6 @@
 package net.jitl.core.config;
 
+import net.jitl.client.render.overlay.internal.EssencePosition;
 import net.jitl.core.JITL;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
@@ -30,6 +31,7 @@ public class JClientConfig extends Config {
 
 		public ForgeConfigSpec.BooleanValue ENABLE_JITL_MENU_SCREEN;
 		public ForgeConfigSpec.BooleanValue ENABLE_MENU_TOGGLE_BUTTON;
+		public ForgeConfigSpec.EnumValue<EssencePosition> ESSENCE_POSITION;
 
 		public GuiCategory(@NotNull String key, @Nullable String comment) {
 			super(key, comment);
@@ -43,12 +45,16 @@ public class JClientConfig extends Config {
 			ENABLE_JITL_MENU_SCREEN = builder
 					.comment("If set to 'true', the JITL main menu theme will be enabled by default. "
 							+ "This can also be toggled in the main menu itself by pressing the top-left button if enabled.")
-					.define("enable_jitl_menu_screen", true);
+					.define("Enable JITL Menu Screen", true);
 
 			ENABLE_MENU_TOGGLE_BUTTON = builder
 					.comment("If set to 'true', the button that toggles the main menu theme will be visible. "
 							+ "If set to 'false', the button will no longer appear on the main menu screen.")
-					.define("enable_toggle_menu_screen", true);
+					.define("Enable JITL Menu Screen Toggle Button", true);
+
+			ESSENCE_POSITION = builder
+					.comment("Determines the position of the Essence bar in-game. ")
+					.defineEnum("Essence Bar Position: ", EssencePosition.OVER_EXP_BAR);
 		}
 
 		public boolean isJITLMenuEnabled() {
@@ -61,6 +67,22 @@ public class JClientConfig extends Config {
 
 		public boolean isToggleMenuButtonEnabled() {
 			return ENABLE_MENU_TOGGLE_BUTTON.get();
+		}
+
+		public int getEssenceXPos() {
+			return ESSENCE_POSITION.get().getX();
+		}
+
+		public int getEssenceYPos() {
+			return ESSENCE_POSITION.get().getY();
+		}
+
+		public EssencePosition getEssencePosition() {
+			return ESSENCE_POSITION.get();
+		}
+
+		public void setEssencePosition(EssencePosition essencePosition) {
+			ESSENCE_POSITION.set(essencePosition);
 		}
 	}
 }

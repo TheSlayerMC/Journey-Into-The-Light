@@ -6,15 +6,21 @@ import net.jitl.client.util.RenderUtils;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.player.data.Essence;
 import net.jitl.core.JITL;
+import net.jitl.core.config.JClientConfig;
+import net.jitl.core.config.JConfigs;
 import net.jitl.core.util.IEssenceItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class EssenceOverlay {
     private static float transparency;
     private static float burnoutTransparency;
+
+    private static final ResourceLocation OVER_EXP_TEXTURE = JITL.tl("gui/essence_over_exp.png").fullLocation();
+    private static final ResourceLocation ABOVE_HUNGER_TEXTURE = JITL.tl("gui/essence_over_hunger.png").fullLocation();
 
     public static void render(PoseStack matrixStack, int height, int width) {
         Minecraft minecraft = Minecraft.getInstance();
@@ -27,6 +33,10 @@ public class EssenceOverlay {
                 float cooldown = cap.essence.getBurnout();
 
                 boolean isEssenceUsed = currentEssence < maxEssence;
+
+                /*
+                 * Handles the transparency of the Essence bar
+                 */
                 if ((instanceOfEssenceItem(player.getMainHandItem().getItem()) || isEssenceUsed) && transparency <= 1.0) {
                     transparency += .02;
                 } else if (transparency > 0) {
@@ -35,37 +45,63 @@ public class EssenceOverlay {
 
                 boolean cooldownActive = cooldown > 1.0F;
 
+                /*
+                 * Handles the transparency of the burnout overlay
+                 */
                 if (cooldownActive && burnoutTransparency < 1) {
                     burnoutTransparency += .02;
                 } else if (burnoutTransparency > 0) {
                     burnoutTransparency -= .02;
                 }
 
-                if (!minecraft.options.hideGui && transparency > 0) {
-                    int l = height - 32 + 3;
-                    int w = width / 2 - 91;
+                /*
+                 * Determines the position of the Essence bar
+                 */
+                JClientConfig.GuiCategory config = JConfigs.CLIENT.GUI_CATEGORY;
+                EssencePosition essencePosition = config.getEssencePosition();
+                int yPos = config.getEssenceYPos();
+                int xPos = config.getEssenceXPos();
+
+                if (!minecraft.options.hideGui && transparency > 0 && !player.isSpectator()) {
+                    int y = height - yPos;
+                    int x = width / 2 - xPos;
 
                     RenderSystem.setShader(GameRenderer::getPositionTexShader);
-                    RenderSystem.setShaderTexture(0, JITL.tl("gui/essence.png").fullLocation());
+                    RenderSystem.setShaderTexture(0, getTextureBasedOnPosition(essencePosition));
                     RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, transparency);
 
-                    RenderUtils.blit(matrixStack, w, l, 0, 5, 81, 5, 81, 15);
+                    /*
+                     * Our texture is relative to the configured position.
+                     * So, we have to adapt the UV, render height and texture height of the rectangle depending on the configured position.
+                     */
+                    boolean isOverXPBar = essencePosition == EssencePosition.OVER_EXP_BAR;
+                    int barHeight = isOverXPBar ? 5 : 9;
+                    int texHeight = isOverXPBar ? 15 : 27;
+                    int backgroundVOffset = isOverXPBar ? 5 : 9;
+                    int burnoutVOffset = isOverXPBar ? 10 : 18;
+
+                    RenderUtils.blit(matrixStack, x, y, 0, backgroundVOffset, 81, barHeight, 81, texHeight);
 
                     if (cooldownActive) {
-                        float sin = (float) Math.sin((float) player.tickCount / 5F) / 2F + 0.5F; //sin function ranging from 0 to 1
-                        float cooldownFade = Math.min(cooldown, 10) / 10; //when the cooldown starts getting close to zero, it fades out
-
+                        /*
+                         * Sin function ranging from 0 to 1
+                         */
+                        float sin = (float) Math.sin((float) player.tickCount / 5F) / 2F + 0.5F;
+                        /*
+                         * When the cooldown starts getting close to zero, the bar fades out.
+                         */
+                        float cooldownFade = Math.min(cooldown, 10) / 10;
                         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, sin * cooldownFade);
-                        RenderUtils.blit(matrixStack, w, l, 0, 0, 81, 5, 81, 15);
+
+                        RenderUtils.blit(matrixStack, x, y, 0, 0, 81, barHeight, 81, texHeight);
                     } else {
                         int i = (int) ((currentEssence / maxEssence) * 81);
-                        RenderUtils.blit(matrixStack, w, l, 0, 0, i, 5, 81, 15);
+                        RenderUtils.blit(matrixStack, x, y, 0, 0, i, barHeight, 81, texHeight);
                     }
-
 
                     if (burnoutTransparency > 0) {
                         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, burnoutTransparency);
-                        RenderUtils.blit(matrixStack, w, l, 0, 10, 81, 5, 81, 15);
+                        RenderUtils.blit(matrixStack, x, y, 0, burnoutVOffset, 81, barHeight, 81, texHeight);
                     }
                 }
             }
@@ -78,5 +114,17 @@ public class EssenceOverlay {
      */
     public static boolean instanceOfEssenceItem(Item isEssence) {
         return isEssence instanceof IEssenceItem;
+    }
+
+
+    /**
+     * Returns a texture based off of the configured position set by the player.
+     */
+    private static ResourceLocation getTextureBasedOnPosition(EssencePosition essencePosition) {
+        if (essencePosition == EssencePosition.OVER_EXP_BAR) {
+            return OVER_EXP_TEXTURE;
+        } else {
+            return ABOVE_HUNGER_TEXTURE;
+        }
     }
 }
