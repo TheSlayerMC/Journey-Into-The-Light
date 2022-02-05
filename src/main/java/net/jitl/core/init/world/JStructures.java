@@ -8,7 +8,6 @@ import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinStr
 import net.jitl.common.world.gen.structures.overworld.AncientRuinsStructure;
 import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
-import net.jitl.common.world.gen.structures.overworld.guardian.GuardianTowerStructure;
 import net.jitl.core.JITL;
 import net.minecraft.data.worldgen.PlainVillagePools;
 import net.minecraft.resources.ResourceLocation;
@@ -90,12 +89,12 @@ public class JStructures {
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
-    public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
+   /* public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, GuardianTowerStructure> GUARDIAN_TOWER_HOLDER =
             REGISTER.register("guardian_tower", GuardianTowerStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
-                    .asHolder();
+                    .asHolder();*/
 
    /*
 
