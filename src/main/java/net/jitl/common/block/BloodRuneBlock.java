@@ -11,9 +11,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -40,14 +38,14 @@ public class BloodRuneBlock extends JTileContainerBlock {
 
 	@Override
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		Item heldItem = player.getMainHandItem().getItem();
+		ItemStack heldItem = player.getMainHandItem();
 		if (worldIn.getBlockEntity(pos) instanceof BloodRuneTile rune) {
 			rune.getItem(0);
 			if (!worldIn.isClientSide)
 				worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5F, pos.getY() + 1.4F, pos.getZ() + 0.5F, rune.getItem(0)));
 			rune.setItem(0, ItemStack.EMPTY);
-			if (heldItem == Items.AMETHYST_SHARD) {
-				rune.setItem(0, new ItemStack(heldItem));
+			if (!heldItem.isEmpty()) {
+				rune.setItem(0, new ItemStack(heldItem.getItem(), 1));
 				worldIn.playSound(null, pos, SoundEvents.END_PORTAL_FRAME_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 				if (!player.isCreative())
 					player.getMainHandItem().shrink(1);
