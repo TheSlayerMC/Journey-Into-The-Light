@@ -19,6 +19,7 @@ public class EssenceOverlay {
     private static float transparency;
     private static float burnoutTransparency;
 
+    private static final ResourceLocation UNDER_CROSSHAIR_TEXTURE = JITL.tl("gui/essence_under_crosshair.png").fullLocation();
     private static final ResourceLocation OVER_EXP_TEXTURE = JITL.tl("gui/essence_over_exp.png").fullLocation();
     private static final ResourceLocation ABOVE_HUNGER_TEXTURE = JITL.tl("gui/essence_over_hunger.png").fullLocation();
 
@@ -63,22 +64,51 @@ public class EssenceOverlay {
                 int xPos = config.getEssenceXPos();
 
                 if (!minecraft.options.hideGui && transparency > 0 && !player.isSpectator()) {
-                    int y = height - yPos;
-                    int x = width / 2 - xPos;
+                    boolean belowCrosshair = essencePosition == EssencePosition.BELOW_CROSSHAIR;
+
+                    /*
+                     * We apply a separate algorithm if the bar is configured to be rendered under the crosshair
+                     */
+                    int crosshairY = height / 2;
+                    int crosshairX = width / 2;
+
+                    /*
+                     * Default algorithm for all other position types
+                     */
+                    int y = belowCrosshair ? crosshairY : height - yPos;
+                    int x = belowCrosshair ? crosshairX : width / 2 - xPos;
+
+                    matrixStack.pushPose();
+
+                    /*
+                     * Translates and scales the bar if it's rendered below the crosshair
+                     */
+                    if (belowCrosshair) {
+                        double widthTranslation = (width / 2F) - 76;
+                        double heightTranslation = (height / 2F) + 48;
+                        matrixStack.translate(widthTranslation, heightTranslation, 0);
+                        matrixStack.scale(0.65F, 0.65F, 0);
+                        matrixStack.translate(-widthTranslation, -heightTranslation, 0);
+                    }
+
+                    /*
+                     * Adds a slight transparency modifier if the bar is rendered below the crosshair
+                     */
+                    float addedAlpha = belowCrosshair ? 0.5F : 0;
 
                     RenderSystem.setShader(GameRenderer::getPositionTexShader);
                     RenderSystem.setShaderTexture(0, getTextureBasedOnPosition(essencePosition));
-                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, transparency);
+                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, transparency - addedAlpha);
 
                     /*
                      * Our texture is relative to the configured position.
                      * So, we have to adapt the UV, render height and texture height of the rectangle depending on the configured position.
                      */
-                    boolean isOverXPBar = essencePosition == EssencePosition.OVER_EXP_BAR;
-                    int barHeight = isOverXPBar ? 5 : 9;
-                    int texHeight = isOverXPBar ? 15 : 27;
-                    int backgroundVOffset = isOverXPBar ? 5 : 9;
-                    int burnoutVOffset = isOverXPBar ? 10 : 18;
+                    boolean renderSmall = essencePosition == EssencePosition.OVER_EXPERIENCE_BAR || essencePosition == EssencePosition.BELOW_CROSSHAIR;
+                    int barHeight = renderSmall ? 5 : 9;
+                    int texHeight = renderSmall ? 15 : 27;
+                    int backgroundVOffset = renderSmall ? 5 : 9;
+                    int burnoutVOffset = renderSmall ? 10 : 18;
 
                     RenderUtils.blit(matrixStack, x, y, 0, backgroundVOffset, 81, barHeight, 81, texHeight);
 
@@ -91,7 +121,7 @@ public class EssenceOverlay {
                          * When the cooldown starts getting close to zero, the bar fades out.
                          */
                         float cooldownFade = Math.min(cooldown, 10) / 10;
-                        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, sin * cooldownFade);
+                        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, (sin * cooldownFade) - addedAlpha);
 
                         RenderUtils.blit(matrixStack, x, y, 0, 0, 81, barHeight, 81, texHeight);
                     } else {
@@ -100,9 +130,10 @@ public class EssenceOverlay {
                     }
 
                     if (burnoutTransparency > 0) {
-                        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, burnoutTransparency);
+                        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, burnoutTransparency - addedAlpha);
                         RenderUtils.blit(matrixStack, x, y, 0, burnoutVOffset, 81, barHeight, 81, texHeight);
                     }
+                    matrixStack.popPose();
                 }
             }
         }
@@ -121,8 +152,11 @@ public class EssenceOverlay {
      * Returns a texture based off of the configured position set by the player.
      */
     private static ResourceLocation getTextureBasedOnPosition(EssencePosition essencePosition) {
-        if (essencePosition == EssencePosition.OVER_EXP_BAR) {
+        if (essencePosition == EssencePosition.OVER_EXPERIENCE_BAR) {
             return OVER_EXP_TEXTURE;
+        }
+        if (essencePosition == EssencePosition.BELOW_CROSSHAIR) {
+            return UNDER_CROSSHAIR_TEXTURE;
         } else {
             return ABOVE_HUNGER_TEXTURE;
         }

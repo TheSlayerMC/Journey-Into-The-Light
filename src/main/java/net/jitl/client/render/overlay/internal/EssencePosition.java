@@ -1,10 +1,11 @@
 package net.jitl.client.render.overlay.internal;
 
 public enum EssencePosition {
-    OVER_EXP_BAR(91, 29),
+    OVER_EXPERIENCE_BAR(91, 29),
     ABOVE_HUNGER_BAR(-10, 49),
-    LEFT_OF_TOOLBAR(175, 13),
-    RIGHT_OF_TOOLBAR(-96, 13);
+    LEFT_OF_HOTBAR(175, 13),
+    RIGHT_OF_HOTBAR(-96, 13),
+    BELOW_CROSSHAIR(10, 10);
 
     private final int x;
     private final int y;

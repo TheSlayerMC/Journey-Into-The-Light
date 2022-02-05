@@ -54,7 +54,7 @@ public class JClientConfig extends Config {
 
 			ESSENCE_POSITION = builder
 					.comment("Determines the position of the Essence bar in-game. ")
-					.defineEnum("Essence Bar Position: ", EssencePosition.OVER_EXP_BAR);
+					.defineEnum("Essence Bar Position: ", EssencePosition.OVER_EXPERIENCE_BAR);
 		}
 
 		public boolean isJITLMenuEnabled() {
