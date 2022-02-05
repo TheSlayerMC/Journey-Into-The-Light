@@ -40,7 +40,7 @@ public class MageHouseStructure extends StructureFeature<NoneFeatureConfiguratio
     private static void generatePieces(StructurePiecesBuilder collector_, PieceGenerator.Context<NoneFeatureConfiguration> context_) {
         BlockPos blockPos = context_.chunkPos().getWorldPosition();
         int landHeight = context_.chunkGenerator().getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context_.heightAccessor());
-
+        landHeight -= 1;
         BlockPos blockpos = new BlockPos(context_.chunkPos().getMinBlockX(), landHeight - 1, context_.chunkPos().getMinBlockZ());
         Rotation rotation = Rotation.getRandom(context_.random());
         MageHouseStructure.addPieces(context_.structureManager(), blockpos, rotation, collector_, context_.random());
