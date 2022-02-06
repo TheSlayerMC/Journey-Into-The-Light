@@ -3,7 +3,7 @@ package net.jitl.common.entity.frozen;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import net.jitl.client.dialogue.ClientDialogueNode;
+import net.jitl.client.dialogue.ClientDialoguePage;
 import net.jitl.client.render.gui.dialogue.DialogueScreen;
 import net.jitl.common.entity.base.JVillagerEntity;
 import net.jitl.common.entity.base.trades.CurrencyForItemsTrade;
@@ -51,7 +51,7 @@ public class EskimoEntity extends JVillagerEntity {
         options.add("farts");
         options.add("nuts");
         options.add("butts");
-        return new DialogueScreen(new ClientDialogueNode(JITL.rl("eskimo"), "poop", options));
+        return new DialogueScreen(new ClientDialoguePage(JITL.rl("eskimo"), "poop", options));
     }
 
     public static AttributeSupplier.Builder createAttributes() {

@@ -1,36 +1,37 @@
 package net.jitl.common.dialogue;
 
-/*import net.jitl.network.S2CCloseDialogueGuiMsg;
+import net.jitl.client.render.gui.dialogue.DialogueScreen;
+import net.jitl.core.network.dialogue.CDialoguePressOptionPacket;
+import net.jitl.core.network.dialogue.SCloseDialogueGuiPacket;
+import net.jitl.core.network.dialogue.SOpenDialogueGuiPacket;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.network.NetworkEvent;
+import ru.timeconqueror.timecore.api.util.NetworkUtils;
+
+import java.util.Objects;
 
 public class DialogueNetHandler {
-    public static class S2CCloseDialogueHandler extends BasicMsgHandler<S2CCloseDialogueGuiMsg, IMessage> {
-        @Override
-        @OnlyIn(Side.CLIENT)
-        protected void doOnMessage(S2CCloseDialogueGuiMsg message, MessageContext ctx) {
-            JManagers.DIALOGUE_MANAGER.getNetHandler().handleDialogueClosePacket(message, ctx);
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void handleDialogueClosePacket(S2CCloseDialogueGuiMsg message, MessageContext ctx) {
+    @OnlyIn(Dist.CLIENT)
+    public static void handleDialogueClosePacket(SCloseDialogueGuiPacket message, NetworkEvent.Context ctx) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.currentScreen instanceof GuiDialogue) {
-            mc.displayGuiScreen(null);
+        if (mc.screen instanceof DialogueScreen) {
+            mc.setScreen(null);
         }
     }
 
-    @SideOnly(Side.CLIENT)
-    public void handleDialogueOpenPacket(S2COpenDialogueGuiMsg message, MessageContext ctx) {
-        Minecraft.getMinecraft().displayGuiScreen(new GuiDialogue(message.getClientNode()));
+    @OnlyIn(Dist.CLIENT)
+    public static void handleDialogueOpenPacket(SOpenDialogueGuiPacket message, NetworkEvent.Context ctx) {
+        Minecraft.getInstance().setScreen(new DialogueScreen(message.getClientPage()));
     }
 
-    public void handlePressOptionPacket(C2SChosenOptionMsg message, MessageContext ctx) {
+    public static void handlePressOptionPacket(CDialoguePressOptionPacket message, NetworkEvent.Context ctx) {
         try {
-            JManagers.DIALOGUE_MANAGER.handleDialogueChosenOption(ctx.getServerHandler().player, message.getOptionIndex());
+            DialogueManager.getInstance().handlePressedOption(Objects.requireNonNull(ctx.getSender()), message.optionIndex());
         } catch (DialogueSystemException e) {
-            NetworkUtils.kickPlayer(ctx.getServerHandler().player, new TextComponentString(e.getLocalizedMessage()));
+            NetworkUtils.kickPlayer(ctx.getSender(), new TextComponent(e.getLocalizedMessage()));//FIXME TEST
         }
     }
-}*/
+}

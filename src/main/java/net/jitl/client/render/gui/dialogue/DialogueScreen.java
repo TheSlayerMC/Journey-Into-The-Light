@@ -2,7 +2,7 @@ package net.jitl.client.render.gui.dialogue;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.jitl.client.dialogue.ClientDialogueNode;
+import net.jitl.client.dialogue.ClientDialoguePage;
 import net.jitl.client.render.gui.base.JScreen;
 import net.jitl.client.render.gui.button.NoTextureButton;
 import net.jitl.client.util.Rectangle;
@@ -21,14 +21,14 @@ public class DialogueScreen extends JScreen {
     private static final int INDENT = 6;
     private static final int INDENT_OFFSET = 8;
 
-    private final ClientDialogueNode node;
+    private final ClientDialoguePage node;
 
     private Rectangle guiRect;
     private Rectangle mobIconRect;
     private Rectangle optionsRect;
     private Rectangle mobTextRect;
 
-    public DialogueScreen(ClientDialogueNode node) {
+    public DialogueScreen(ClientDialoguePage node) {
         super(new TranslatableComponent("test"));
         this.node = node;
     }

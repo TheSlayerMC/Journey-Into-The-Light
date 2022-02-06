@@ -1,25 +1,23 @@
 package net.jitl.client.dialogue;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
-import java.util.Objects;
 
-public class ClientDialogueNode {
+public class ClientDialoguePage {
     private final String textKey;
     private final List<String> optionTextKeys;
     private final LivingEntity npc;
 
-    public ClientDialogueNode(ResourceLocation entityKey, String textKey, List<String> optionTextKeys) {
+    public ClientDialoguePage(ResourceLocation entityKey, String textKey, List<String> optionTextKeys) {
         this.textKey = textKey;
         this.optionTextKeys = optionTextKeys;
 
-        EntityType entityType = Objects.requireNonNull(ForgeRegistries.ENTITIES.getValue(entityKey));
-        assert Minecraft.getInstance().level != null;
+        EntityType entityType = ForgeRegistries.ENTITIES.getValue(entityKey);
         npc = (LivingEntity) entityType.create(Minecraft.getInstance().level);
     }
 

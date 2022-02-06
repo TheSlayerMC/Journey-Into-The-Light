@@ -2,15 +2,14 @@ package net.jitl.common.dialogue;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DialogueNode {
-    public static final DialogueNode END = new DialogueNode("");
-    public static final Action EMPTY_ACTION = (world, player) -> {
-    };
+public class DialoguePage {
+    public static final DialoguePage END = new DialoguePage("", null, "", new CharacterMap());
 
     /**
      * Will be shown when there is no option added to the node.
@@ -18,12 +17,19 @@ public class DialogueNode {
     private static final List<Option> STANDBY_END_OPTION_LIST = Collections.singletonList(new Option("dialogue.jitl.standby_end_option"));
 
     private final String text;
+    @Nullable
     private List<Option> options;
+    private final String characterId;
+    private final CharacterMap characterMap;
 
-    protected DialogueNode(String text) {
+    public DialoguePage(String text, @Nullable List<Option> options, String characterId, CharacterMap characterMap) {
         this.text = text;
+        this.options = options;
+        this.characterId = characterId;
+        this.characterMap = characterMap;
     }
 
+    @Deprecated //TODO remove
     protected void addOption(Option option) {
         if (options == null) options = new ArrayList<>();
         options.add(option);
@@ -47,8 +53,8 @@ public class DialogueNode {
 
     public static class Option {
         private final String text;
-        private DialogueNode nextNode = END;
-        private Action onClickAction = EMPTY_ACTION;
+        private DialoguePage nextNode = END;
+        private Action onClickAction = Action.EMPTY;
 
         protected Option(String text) {
             this.text = text;
@@ -58,7 +64,7 @@ public class DialogueNode {
             this.onClickAction = onClickAction;
         }
 
-        protected void setNextNode(DialogueNode nextNode) {
+        protected void setNextNode(DialoguePage nextNode) {
             this.nextNode = nextNode;
         }
 
@@ -66,7 +72,7 @@ public class DialogueNode {
             return text;
         }
 
-        public DialogueNode getNextNode() {
+        public DialoguePage getNextNode() {
             return nextNode;
         }
 
@@ -84,6 +90,9 @@ public class DialogueNode {
     }
 
     public interface Action {
+        Action EMPTY = (world, player) -> {
+        };
+
         void onClick(Level world, ServerPlayer player);
     }
 }

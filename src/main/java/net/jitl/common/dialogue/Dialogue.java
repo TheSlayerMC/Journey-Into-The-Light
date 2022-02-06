@@ -4,9 +4,9 @@ import net.minecraft.resources.ResourceLocation;
 
 public class Dialogue {
     private final ResourceLocation id;
-    private final DialogueNode rootNode;
+    private final DialoguePage rootNode;
 
-    protected Dialogue(ResourceLocation id, DialogueNode rootNode) {
+    protected Dialogue(ResourceLocation id, DialoguePage rootNode) {
         this.id = id;
         this.rootNode = rootNode;
     }
@@ -15,7 +15,7 @@ public class Dialogue {
         return id;
     }
 
-    public DialogueNode getRootNode() {
+    public DialoguePage getRootNode() {
         return rootNode;
     }
 }

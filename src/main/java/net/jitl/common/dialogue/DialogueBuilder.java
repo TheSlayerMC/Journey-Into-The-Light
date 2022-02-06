@@ -2,8 +2,9 @@ package net.jitl.common.dialogue;
 
 import net.minecraft.resources.ResourceLocation;
 
+@Deprecated // fixme: for removal
 public class DialogueBuilder {
-    public static DialogueNode branch(NodeBuilder rootBuilder) {
+    public static DialoguePage branch(NodeBuilder rootBuilder) {
         return rootBuilder.node;
     }
 
@@ -11,7 +12,7 @@ public class DialogueBuilder {
         return dialogue(id, rootNodeBuilder.node);
     }
 
-    public static Dialogue dialogue(ResourceLocation id, DialogueNode rootNode) {
+    public static Dialogue dialogue(ResourceLocation id, DialoguePage rootNode) {
         return new Dialogue(id, rootNode);
     }
 
@@ -24,10 +25,10 @@ public class DialogueBuilder {
     }
 
     public static class NodeBuilder {
-        private final DialogueNode node;
+        private final DialoguePage node;
 
         private NodeBuilder(String text) {
-            node = new DialogueNode(text);
+            node = new DialoguePage(text, null, "minecraft:sheep", new CharacterMap());
         }
 
         public NodeBuilder addOption(OptionBuilder builder) {
@@ -37,10 +38,10 @@ public class DialogueBuilder {
     }
 
     public static class OptionBuilder {
-        private final DialogueNode.Option option;
+        private final DialoguePage.Option option;
 
         private OptionBuilder(String text) {
-            option = new DialogueNode.Option(text);
+            option = new DialoguePage.Option(text);
         }
 
         public OptionBuilder leadsTo(NodeBuilder nextNode) {
@@ -48,7 +49,7 @@ public class DialogueBuilder {
             return this;
         }
 
-        public OptionBuilder withAction(DialogueNode.Action action) {
+        public OptionBuilder withAction(DialoguePage.Action action) {
             option.setOnClickAction(action);
             return this;
         }

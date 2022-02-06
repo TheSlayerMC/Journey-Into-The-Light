@@ -1,6 +1,9 @@
 package net.jitl.core.network;
 
 import net.jitl.core.JITL;
+import net.jitl.core.network.dialogue.CDialoguePressOptionPacket;
+import net.jitl.core.network.dialogue.SCloseDialogueGuiPacket;
+import net.jitl.core.network.dialogue.SOpenDialogueGuiPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.PacketDistributor;
@@ -18,6 +21,9 @@ public class JPacketHandler {
             .regPacket(SCurrentStructurePacket.class, new SCurrentStructurePacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
             .regPacket(KeyPressedPacket.class, new KeyPressedPacket.Handler(), NetworkDirection.PLAY_TO_SERVER)
             .regPacket(JBossPacket.class, new JBossPacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
+            .regPacket(CDialoguePressOptionPacket.class, new CDialoguePressOptionPacket.Handler(), NetworkDirection.PLAY_TO_SERVER)
+            .regPacket(SCloseDialogueGuiPacket.class, new SCloseDialogueGuiPacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
+            .regPacket(SOpenDialogueGuiPacket.class, new SOpenDialogueGuiPacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
             .asChannel();
 
     public static <MSG> void sendToPlayer(ServerPlayer player, MSG message) {

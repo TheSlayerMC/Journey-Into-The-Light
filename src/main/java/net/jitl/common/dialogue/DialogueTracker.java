@@ -1,13 +1,24 @@
 package net.jitl.common.dialogue;
 
-public class DialogueTracker {
-    /*private final UUID playerId;
-    private final Class<? extends LivingEntity> npcClass;
-    private DialogueNode currentNode;
+import net.jitl.core.network.JPacketHandler;
+import net.jitl.core.network.dialogue.SCloseDialogueGuiPacket;
+import net.jitl.core.network.dialogue.SOpenDialogueGuiPacket;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import ru.timeconqueror.timecore.api.util.NetworkUtils;
 
-    public DialogueTracker(UUID playerId, Class<? extends LivingEntity> npcClass, DialogueNode currentNode) {
+import java.util.Optional;
+import java.util.UUID;
+
+public class DialogueTracker {
+    private final UUID playerId;
+    private final EntityType<? extends LivingEntity> entityType;
+    private DialoguePage currentNode;
+
+    public DialogueTracker(UUID playerId, EntityType<? extends LivingEntity> entityType, DialoguePage currentNode) {
         this.playerId = playerId;
-        this.npcClass = npcClass;
+        this.entityType = entityType;
         this.currentNode = currentNode;
     }
 
@@ -15,7 +26,7 @@ public class DialogueTracker {
         return playerId;
     }
 
-    public DialogueNode getCurrentNode() {
+    public DialoguePage getCurrentNode() {
         return currentNode;
     }
 
@@ -23,18 +34,18 @@ public class DialogueTracker {
         openGuiWithCurrentNode();
     }
 
-    public void pressOption(ServerPlayerEntity player, int optionIndex) throws DialogueSystemException {
+    public void pressOption(ServerPlayer player, int optionIndex) throws DialogueSystemException {
         if (optionIndex >= currentNode.getOptions().size()) { // this can be achieved when someone try to use cheaty exploits
             throw new DialogueSystemException("Tracker received the index " + optionIndex + "that doesn't fit options list size (" + currentNode.getOptions().size() + "). Problem node: " + currentNode);
         }
 
-        DialogueNode.Option option = currentNode.getOptions().get(optionIndex);
-        option.onClickAction(player.world, player);
+        DialoguePage.Option option = currentNode.getOptions().get(optionIndex);
+        option.onClickAction(player.level, player);
 
         currentNode = option.getNextNode();
 
-        if (currentNode == DialogueNode.END) {
-            JManagers.DIALOGUE_MANAGER.removeTracker(this);
+        if (currentNode == DialoguePage.END) {
+            DialogueManager.getInstance().removeTracker(this);
             closeGui();
         } else {
             openGuiWithCurrentNode();
@@ -42,14 +53,14 @@ public class DialogueTracker {
     }
 
     private void openGuiWithCurrentNode() {
-        NetworkHandler.INSTANCE.sendTo(new S2COpenDialogueGuiMsg(npcClass, currentNode), getPlayer());
+        getPlayer().ifPresent(player -> JPacketHandler.sendToPlayer(player, new SOpenDialogueGuiPacket(entityType, currentNode)));
     }
 
     private void closeGui() {
-        NetworkHandler.INSTANCE.sendTo(new S2CCloseDialogueGuiMsg(), getPlayer());
+        getPlayer().ifPresent(player -> JPacketHandler.sendToPlayer(player, new SCloseDialogueGuiPacket()));
     }
 
-    private ServerPlayerEntity getPlayer() {
-        return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(playerId);
-    }*/
+    private Optional<ServerPlayer> getPlayer() {
+        return NetworkUtils.getPlayer(playerId);
+    }
 }
