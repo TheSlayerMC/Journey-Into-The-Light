@@ -1,5 +1,6 @@
 package net.jitl.client.render.overlay.internal;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.util.RenderUtils;
@@ -113,6 +114,9 @@ public class EssenceOverlay {
                         matrixStack.translate(widthTranslation, heightTranslation, 0);
                         matrixStack.scale(0.65F, 0.65F, 0);
                         matrixStack.translate(-widthTranslation, -heightTranslation, 0);
+
+                        RenderSystem.enableBlend();
+                        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ZERO);
                     }
 
                     /*
