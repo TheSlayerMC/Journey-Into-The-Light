@@ -12,6 +12,9 @@ import net.jitl.core.util.IEssenceItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
@@ -78,6 +81,27 @@ public class EssenceOverlay {
                     int y = belowCrosshair ? crosshairY : height - yPos;
                     int x = belowCrosshair ? crosshairX : width / 2 - xPos;
 
+                    boolean aboveHunger = essencePosition == EssencePosition.ABOVE_HUNGER_BAR;
+                    boolean isUnderwater = player.isEyeInFluid(FluidTags.WATER) || Math.min(player.getAirSupply(), player.getMaxAirSupply()) < player.getMaxAirSupply();
+                    /*
+                     * Checks if the bubble meter should render, and if the Essence position should be above the hunger bar.
+                     * If true, moves the Essence bar up 10 pixels
+                     */
+                    if (isUnderwater && aboveHunger)
+                        y -= 10;
+
+                    LivingEntity livingentity = getPlayerVehicleWithHealth(player);
+                    int vehicalMaxhearts = getVehicleMaxHearts(livingentity);
+
+                    /*
+                     * Checks if the player is riding a living vehicle (like a horse or a pig)
+                     * If true, moves the Essence bar up according to the number of heart rows the vehicle has
+                     */
+                    if (vehicalMaxhearts > 0 && aboveHunger) {
+                        int heartRows = (int) Math.ceil((double) vehicalMaxhearts / 10.0D) - 1;
+                        y -= heartRows * 10;
+                    }
+
                     matrixStack.pushPose();
 
                     /*
@@ -143,10 +167,9 @@ public class EssenceOverlay {
      * Method used to group all Essence-related items under one umbrella.
      * Allows Essence transparency rendering to be compatible with (hopefully) all Essence-related items without referencing many individual classes/items
      */
-    public static boolean instanceOfEssenceItem(Item isEssence) {
+    private static boolean instanceOfEssenceItem(Item isEssence) {
         return isEssence instanceof IEssenceItem;
     }
-
 
     /**
      * Returns a texture based off of the configured position set by the player.
@@ -160,5 +183,34 @@ public class EssenceOverlay {
         } else {
             return ABOVE_HUNGER_TEXTURE;
         }
+    }
+
+    private static int getVehicleMaxHearts(LivingEntity mountEntity) {
+        if (mountEntity != null && mountEntity.showVehicleHealth()) {
+            float maxHealth = mountEntity.getMaxHealth();
+            int i = (int) (maxHealth + 0.5F) / 2;
+            if (i > 30) {
+                i = 30;
+            }
+
+            return i;
+        } else {
+            return 0;
+        }
+    }
+
+    private static LivingEntity getPlayerVehicleWithHealth(Player player) {
+        if (player != null) {
+            Entity entity = player.getVehicle();
+            if (entity == null) {
+                return null;
+            }
+
+            if (entity instanceof LivingEntity) {
+                return (LivingEntity) entity;
+            }
+        }
+
+        return null;
     }
 }
