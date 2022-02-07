@@ -29,7 +29,7 @@ public class BlurredCubeMap {
         }
     }
 
-    private static void drawPanorama(int mouseX, int mouseY, float partialTicks) {
+    private static void drawPanorama() {
         Minecraft mc = Minecraft.getInstance();
         Tesselator tessellator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuilder();
@@ -137,12 +137,12 @@ public class BlurredCubeMap {
         RenderSystem.colorMask(true, true, true, true);
     }
 
-    public void renderSkybox(int mouseX, int mouseY, float partialTicks) {
+    public void renderSkybox(float partialTicks) {
         Minecraft mc = Minecraft.getInstance();
         mc.getMainRenderTarget().unbindWrite();
         panoramaTimer += partialTicks;
         RenderSystem.viewport(0, 0, 256, 256);
-        drawPanorama(mouseX, mouseY, partialTicks);
+        drawPanorama();
         this.rotateAndBlurSkybox();
         this.rotateAndBlurSkybox();
         this.rotateAndBlurSkybox();

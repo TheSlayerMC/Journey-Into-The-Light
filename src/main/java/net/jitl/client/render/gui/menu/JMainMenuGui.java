@@ -272,7 +272,7 @@ public class JMainMenuGui extends TitleScreen {
 
 		float f = this.fading ? (float) (Util.getMillis() - this.fadeInStart) / 1000.0F : 1.0F;
 		//fill(matrixStack, 0, 0, this.width, this.height, -1);
-		CUBE_MAP.renderSkybox(mouseX, mouseY, partialTicks);
+		CUBE_MAP.renderSkybox(partialTicks);
 
 		this.fillGradient(matrixStack, 0, 0, this.width, this.height, -2130706433, 16777215);
 		this.fillGradient(matrixStack, 0, 0, this.width, this.height, 0, Integer.MIN_VALUE);

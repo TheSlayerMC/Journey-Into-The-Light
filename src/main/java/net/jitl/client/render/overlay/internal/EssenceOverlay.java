@@ -60,7 +60,7 @@ public class EssenceOverlay {
                 }
 
                 /*
-                 * Determines the position of the Essence bar
+                 * Handles the configured position of the Essence bar
                  */
                 JClientConfig.GuiCategory config = JConfigs.CLIENT.GUI_CATEGORY;
                 EssencePosition essencePosition = config.getEssencePosition();
@@ -109,10 +109,11 @@ public class EssenceOverlay {
                      * Translates and scales the bar if it's rendered below the crosshair
                      */
                     if (belowCrosshair) {
-                        double widthTranslation = (width / 2F) - 76;
-                        double heightTranslation = (height / 2F) + 48;
+                        float scale = 0.5F;
+                        double widthTranslation = (width / 2F) - 42;
+                        double heightTranslation = (height / 2F) + 42;
                         matrixStack.translate(widthTranslation, heightTranslation, 0);
-                        matrixStack.scale(0.65F, 0.65F, 0);
+                        matrixStack.scale(scale, scale, 0);
                         matrixStack.translate(-widthTranslation, -heightTranslation, 0);
 
                         RenderSystem.enableBlend();
