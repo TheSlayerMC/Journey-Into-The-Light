@@ -1,4 +1,5 @@
 {
+  "parent": "jitl:jitl/overworld/root",
   "display": {
     "icon": {
       "item": "jitl:powder_of_essencia"

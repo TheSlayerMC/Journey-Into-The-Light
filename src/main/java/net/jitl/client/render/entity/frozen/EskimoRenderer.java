@@ -2,7 +2,7 @@ package net.jitl.client.render.entity.frozen;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.render.JModelLayers;
-import net.jitl.client.render.model.frozen.EskimoModel;
+import net.jitl.client.render.model.base.HoodedVillagerModel;
 import net.jitl.common.entity.frozen.EskimoEntity;
 import net.jitl.core.JITL;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -14,12 +14,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class EskimoRenderer extends MobRenderer<EskimoEntity, EskimoModel<EskimoEntity>> {
+public class EskimoRenderer extends MobRenderer<EskimoEntity, HoodedVillagerModel<EskimoEntity>> {
 
     private static final ResourceLocation ESKIMO_BASE_SKIN = JITL.rl("textures/entity/frozen/eskimo_base.png");
 
     public EskimoRenderer(EntityRendererProvider.Context context) {
-        super(context, new EskimoModel<>(context.bakeLayer(JModelLayers.ESKIMO_MODEL_LAYER)), 0.5F);
+        super(context, new HoodedVillagerModel<>(context.bakeLayer(JModelLayers.ESKIMO_MODEL_LAYER)), 0.5F);
         this.addLayer(new CustomHeadLayer<>(this, context.getModelSet()));
         //this.addLayer(new EskimoLevelPendantLayer(this, p_i50954_2_, "eskimo"));
         this.addLayer(new CrossedArmsItemLayer<>(this));

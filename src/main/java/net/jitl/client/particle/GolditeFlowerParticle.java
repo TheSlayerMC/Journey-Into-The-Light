@@ -3,18 +3,16 @@ package net.jitl.client.particle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
-@OnlyIn(Dist.CLIENT)
-public class CaveVineParticle extends TextureSheetParticle {
+public class GolditeFlowerParticle extends TextureSheetParticle {
     private final float rotSpeed;
     private final SpriteSet sprites;
 
-    private CaveVineParticle(ClientLevel worldIn, double x, double y, double z, SpriteSet spriteWithAge) {
-        super(worldIn, x, y, z);
+    protected GolditeFlowerParticle(ClientLevel worldIn, double x, double y, double z, double motionX, double motionY, double motionZ, SpriteSet spriteWithAge) {
+        super(worldIn, x, y, z, motionX, motionY, motionZ);
         this.sprites = spriteWithAge;
         this.quadSize *= 0.67499995F;
         int i = (int) (32.0D / (Math.random() * 0.8D + 0.2D));
@@ -30,23 +28,9 @@ public class CaveVineParticle extends TextureSheetParticle {
     }
 
     @Override
-    public float getQuadSize(float scaleFactor) {
-        return this.quadSize * Mth.clamp(((float) this.age + scaleFactor) / (float) this.lifetime * 32.0F, 0.0F, 1.0F);
-    }
-
-    @Override
-    public int getLightColor(float partialTick) {
-        float f = ((float) this.age + partialTick) / (float) this.lifetime;
-        f = Mth.clamp(f, 0.0F, 1.0F);
-        int i = super.getLightColor(partialTick);
-        int j = i & 255;
-        int k = i >> 16 & 255;
-        j = j + (int) (f * 15.0F * 16.0F);
-        if (j > 240) {
-            j = 240;
-        }
-
-        return j | k << 16;
+    public void move(double x, double y, double z) {
+        this.setBoundingBox(this.getBoundingBox().move(x, y, z));
+        this.setLocationFromBoundingbox();
     }
 
     @Override
@@ -60,25 +44,34 @@ public class CaveVineParticle extends TextureSheetParticle {
             this.setSpriteFromAge(this.sprites);
             this.oRoll = this.roll;
             this.roll += (float) Math.PI * this.rotSpeed * 2.0F;
-            this.move(this.xd, this.yd, this.zd);
-            this.yd -= 0.003F;
-            this.yd = Math.max(this.yd, -0.14F);
             if (this.onGround) {
                 this.oRoll = this.roll = 0.0F;
             }
+
+            this.move(this.xd, this.yd, this.zd);
+            this.yd -= 0.003F;
+            this.yd = Math.max(this.yd, -0.14F);
         }
+    }
+
+    @Override
+    public float getQuadSize(float scaleFactor) {
+        float f = ((float) this.age + scaleFactor) / (float) this.lifetime;
+        return this.quadSize * (1.0F - f * f * 0.5F);
     }
 
     @OnlyIn(Dist.CLIENT)
     public static class Factory implements ParticleProvider<SimpleParticleType> {
-        private final SpriteSet sprites;
+        private final SpriteSet sprite;
 
         public Factory(SpriteSet spriteSet) {
-            this.sprites = spriteSet;
+            this.sprite = spriteSet;
         }
 
         public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new CaveVineParticle(worldIn, x, y, z, this.sprites);
+            GolditeFlowerParticle golditeFlowerParticle = new GolditeFlowerParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, sprite);
+            golditeFlowerParticle.pickSprite(this.sprite);
+            return golditeFlowerParticle;
         }
     }
 }

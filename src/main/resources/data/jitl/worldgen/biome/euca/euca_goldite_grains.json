@@ -9,7 +9,13 @@
     "water_color": 14995007,
     "water_fog_color": 3355141,
     "grass_color": 13159169,
-    "foliage_color": 5660928
+    "foliage_color": 5660928,
+    "particle": {
+      "options": {
+        "type": "jitl:goldite_flower"
+      },
+      "probability": 0.001428
+    }
   },
   "spawners": {
     "monster": [

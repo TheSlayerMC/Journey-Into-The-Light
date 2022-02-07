@@ -9,7 +9,7 @@ import net.jitl.client.render.entity.nether.WitherspineRenderer;
 import net.jitl.client.render.entity.overworld.*;
 import net.jitl.client.render.model.BoomModel;
 import net.jitl.client.render.model.HongoModel;
-import net.jitl.client.render.model.MageModel;
+import net.jitl.client.render.model.base.HoodedVillagerModel;
 import net.jitl.client.render.model.block.ObeliskModel;
 import net.jitl.client.render.model.euca.*;
 import net.jitl.client.render.model.frozen.*;
@@ -116,8 +116,8 @@ public class JEntityRenderRegistry {
         event.registerLayerDefinition(JModelLayers.DYNASTER_MODEL_LAYER, DynasterModel::createBodyLayer);
 
         //NPC
-        event.registerLayerDefinition(JModelLayers.MAGE_MODEL_LAYER, MageModel::createBodyLayer);
-        event.registerLayerDefinition(JModelLayers.ESKIMO_MODEL_LAYER, EskimoModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.MAGE_MODEL_LAYER, HoodedVillagerModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.ESKIMO_MODEL_LAYER, HoodedVillagerModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.FROZEN_GUARDIAN_MODEL_LAYER, FrozenGuardianModel::createBodyLayer);
 
         //PETS

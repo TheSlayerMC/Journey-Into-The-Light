@@ -35,6 +35,7 @@ public class JAdvancements implements Consumer<Consumer<Advancement>> {
                 .save(advancementConsumer, overworldID("root"));
 
         Advancement mage = Advancement.Builder.advancement()
+                .parent(root)
                 .display(
                         JItems.POWDER_OF_ESSENCIA,
                         new TranslatableComponent("advancement.jitl.overworld.mage.title"),

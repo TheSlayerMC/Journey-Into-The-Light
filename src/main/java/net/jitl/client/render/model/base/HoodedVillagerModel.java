@@ -1,22 +1,20 @@
-package net.jitl.client.render.model.frozen;
+package net.jitl.client.render.model.base;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HeadedModel;
-import net.minecraft.client.model.VillagerHeadModel;
 import net.minecraft.client.model.ListModel;
+import net.minecraft.client.model.VillagerHeadModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.AbstractVillager;
-import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class EskimoModel<T extends Entity> extends ListModel<T> implements HeadedModel, VillagerHeadModel {
+public class HoodedVillagerModel<T extends Entity> extends ListModel<T> implements HeadedModel, VillagerHeadModel {
     private final ModelPart head2;
     private final ModelPart nose2;
     private final ModelPart body2;
@@ -30,7 +28,7 @@ public class EskimoModel<T extends Entity> extends ListModel<T> implements Heade
     private final ModelPart leg1;
     private final ModelPart arms;
 
-    public EskimoModel(ModelPart root) {
+    public HoodedVillagerModel(ModelPart root) {
         this.head2 = root.getChild("head2");
         this.nose2 = root.getChild("nose2");
         this.body2 = root.getChild("body2");
