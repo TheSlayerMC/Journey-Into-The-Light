@@ -51,7 +51,6 @@ public class JAdvancements implements Consumer<Consumer<Advancement>> {
                         ItemPredicate.Builder.item(),
                         EntityPredicate.Composite.wrap(EntityPredicate.Builder.entity().of(JEntities.MAGE_TYPE).build())))
                 .save(advancementConsumer, overworldID("mage_chat"));
-
     }
 
     private void frozen(Consumer<Advancement> advancementConsumer) {
@@ -68,6 +67,7 @@ public class JAdvancements implements Consumer<Consumer<Advancement>> {
                 )
                 .addCriterion("teleport_frozen", ChangeDimensionTrigger.TriggerInstance.changedDimensionTo(Dimensions.FROZEN_LANDS))
                 .save(advancementConsumer, frozenID("root"));
+
         Advancement ride_capybara = Advancement.Builder.advancement()
                 .parent(root)
                 .display(
@@ -82,6 +82,7 @@ public class JAdvancements implements Consumer<Consumer<Advancement>> {
                 )
                 .addCriterion("ride_capybara", StartRidingTrigger.TriggerInstance.playerStartsRiding(EntityPredicate.Builder.entity().vehicle(EntityPredicate.Builder.entity().of(JEntities.CAPYBARA_TYPE).build())))
                 .save(advancementConsumer, frozenID("ride_capybara"));
+
         Advancement barter_troll = Advancement.Builder.advancement()
                 .parent(root)
                 .display(

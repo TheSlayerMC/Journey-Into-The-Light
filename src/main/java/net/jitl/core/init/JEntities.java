@@ -57,7 +57,7 @@ public class JEntities {
                     Builder.of(EskimoEntity::new, MobCategory.MONSTER)
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
-                            .sized(1.5F, 2F))
+                            .sized(0.6F, 1.95F))
             .spawnEgg(FROZEN_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .attributes(() -> EskimoEntity.createAttributes().build())
             .retrieve();
@@ -66,7 +66,7 @@ public class JEntities {
                     Builder.of(MageEntity::new, MobCategory.MONSTER)
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
-                            .sized(0.9F, 2.2F))
+                            .sized(0.6F, 1.95F))
             .spawnEgg(TRADER_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .attributes(() -> MageEntity.createAttributes().build())
             .retrieve();

@@ -1,7 +1,8 @@
 package net.jitl.core.config;
 
-import net.jitl.client.render.overlay.internal.EssencePosition;
 import net.jitl.core.JITL;
+import net.jitl.core.config.enums.EssencePosition;
+import net.jitl.core.config.enums.HealthBarRendering;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
 import org.jetbrains.annotations.NotNull;
@@ -29,8 +30,9 @@ public class JClientConfig extends Config {
 
 	public static class GuiCategory extends ConfigSection {
 
-		public ForgeConfigSpec.BooleanValue ENABLE_JITL_MENU_SCREEN;
 		public ForgeConfigSpec.BooleanValue ENABLE_MENU_TOGGLE_BUTTON;
+		public ForgeConfigSpec.BooleanValue ENABLE_JITL_MENU_SCREEN;
+		public ForgeConfigSpec.EnumValue<HealthBarRendering> RENDER_ENTITY_HEALTH;
 		public ForgeConfigSpec.EnumValue<EssencePosition> ESSENCE_POSITION;
 
 		public GuiCategory(@NotNull String key, @Nullable String comment) {
@@ -51,6 +53,10 @@ public class JClientConfig extends Config {
 					.comment("If set to 'true', the button that toggles the main menu theme will be visible. "
 							+ "If set to 'false', the button will no longer appear on the main menu screen.")
 					.define("Enable JITL Menu Screen Toggle Button", true);
+
+			RENDER_ENTITY_HEALTH = builder
+					.comment("Determines if/when living entity's health bar will be rendered")
+					.defineEnum("Render health: ", HealthBarRendering.IN_DEBUG_MODE);
 
 			ESSENCE_POSITION = builder
 					.comment("Determines the position of the Essence bar in-game. ")
@@ -83,6 +89,14 @@ public class JClientConfig extends Config {
 
 		public void setEssencePosition(EssencePosition essencePosition) {
 			ESSENCE_POSITION.set(essencePosition);
+		}
+
+		public HealthBarRendering getHealthBarRendering() {
+			return RENDER_ENTITY_HEALTH.get();
+		}
+
+		public void setHealthBarRendering(HealthBarRendering healthBarRendering) {
+			RENDER_ENTITY_HEALTH.set(healthBarRendering);
 		}
 	}
 }

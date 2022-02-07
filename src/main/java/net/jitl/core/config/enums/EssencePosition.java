@@ -1,4 +1,4 @@
-package net.jitl.client.render.overlay.internal;
+package net.jitl.core.config.enums;
 
 public enum EssencePosition {
     OVER_EXPERIENCE_BAR(91, 29),

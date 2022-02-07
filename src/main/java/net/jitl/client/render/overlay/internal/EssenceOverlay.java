@@ -9,6 +9,7 @@ import net.jitl.common.capability.player.data.Essence;
 import net.jitl.core.JITL;
 import net.jitl.core.config.JClientConfig;
 import net.jitl.core.config.JConfigs;
+import net.jitl.core.config.enums.EssencePosition;
 import net.jitl.core.util.IEssenceItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
