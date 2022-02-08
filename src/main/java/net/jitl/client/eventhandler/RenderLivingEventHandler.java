@@ -1,21 +1,31 @@
 package net.jitl.client.eventhandler;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.jitl.client.util.RenderUtils;
 import net.jitl.core.JITL;
 import net.jitl.core.config.JClientConfig;
 import net.jitl.core.config.JConfigs;
 import net.jitl.core.config.enums.HealthBarRendering;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.text.DecimalFormat;
+
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class RenderLivingEventHandler {
+    private static final ResourceLocation HEALTH_BAR = JITL.tl("gui/health_bar.png").fullLocation();
 
     @SubscribeEvent()
     public static void onRenderLiving(RenderLivingEvent.Post event) {
@@ -33,32 +43,61 @@ public class RenderLivingEventHandler {
 
             double height = event.getEntity().getBoundingBox().getYsize();
 
-            String healthString = "Health: " + livingEntity.getHealth() + "/" + livingEntity.getMaxHealth();
+            Vec3 vector3d = new Vec3(livingEntity.getX(), livingEntity.getY(0.5), livingEntity.getZ());
+            Vec3 vector3d1 = new Vec3(minecraft.player.getX(), minecraft.player.getY(0.8), minecraft.player.getZ());
+            boolean canSee = livingEntity.level.clip(new ClipContext(vector3d, vector3d1, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, livingEntity)).getType() == HitResult.Type.MISS;
 
-            if (onlyRenderInDebug) {
-                if (minecraft.options.renderDebug) {
-                    renderHealth(minecraft, poseStack, livingEntity, healthString, 10, height, entityRenderDispatcher);
+            if (canSee) {
+                if (onlyRenderInDebug) {
+                    if (minecraft.options.renderDebug) {
+                        renderHealth(minecraft, poseStack, livingEntity, height, entityRenderDispatcher);
+                    }
+                } else {
+                    renderHealth(minecraft, poseStack, livingEntity, height, entityRenderDispatcher);
                 }
-            } else {
-                renderHealth(minecraft, poseStack, livingEntity, healthString, 10, height, entityRenderDispatcher);
             }
         }
     }
 
-    private static void renderHealth(Minecraft minecraft, PoseStack poseStack, LivingEntity e, String s, int distance, double height, EntityRenderDispatcher entityRenderDispatcher) {
+    private static void renderHealth(Minecraft minecraft, PoseStack poseStack, LivingEntity e, double height, EntityRenderDispatcher entityRenderDispatcher) {
         if (minecraft.player != null) {
+            int distance = 10;
             double d3 = e.distanceToSqr(minecraft.player);
             if (d3 <= distance * distance) {
                 Font fontrenderer = minecraft.font;
                 poseStack.pushPose();
 
+                float scale = -0.025F;
                 poseStack.translate(0, 0.5F + height, 0);
                 poseStack.mulPose(entityRenderDispatcher.cameraOrientation());
-                poseStack.scale(-0.025F, -0.025F, -0.025F);
+                poseStack.scale(scale, scale, 0);
 
-                int fontX = -40;
-                fontrenderer.drawShadow(poseStack, s, fontX, 0, 553648127);
-                fontrenderer.drawShadow(poseStack, s, fontX, 0, -1);
+                RenderSystem.enableDepthTest();
+                RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                RenderSystem.setShaderTexture(0, HEALTH_BAR);
+                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+
+                int barX = -40;
+                RenderUtils.blit(poseStack, barX, 0, 0, 5, 81, 5, 81, 10);
+
+                float health = e.getHealth();
+                float maxHealth = e.getMaxHealth();
+
+                int i = (int) ((health / maxHealth) * 81);
+                RenderUtils.blit(poseStack, barX, 0, 0, 0, i, 5, 81, 10);
+
+                DecimalFormat df = new DecimalFormat("##########.#");
+                String s = "Health: " + df.format(health) + "/" + df.format(maxHealth);
+
+                //TODO: disable depth test for font and bar
+                int fontX = -fontrenderer.width(s) / 2;
+                int fontY = -10;
+                fontrenderer.draw(poseStack, s, fontX + 1, fontY, 0);
+                fontrenderer.draw(poseStack, s, fontX - 1, fontY, 0);
+                fontrenderer.draw(poseStack, s, fontX, fontY + 1, 0);
+                fontrenderer.draw(poseStack, s, fontX, fontY - 1, 0);
+                fontrenderer.draw(poseStack, s, fontX, fontY, 16711680);
+                RenderSystem.disableDepthTest();
 
                 poseStack.popPose();
             }
