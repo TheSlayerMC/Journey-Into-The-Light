@@ -20,6 +20,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import ru.timeconqueror.timecore.api.util.client.DrawHelper;
 
 import java.text.DecimalFormat;
 
@@ -72,20 +73,54 @@ public class RenderLivingEventHandler {
                 poseStack.mulPose(entityRenderDispatcher.cameraOrientation());
                 poseStack.scale(scale, scale, 0);
 
-                RenderSystem.enableDepthTest();
+                RenderSystem.disableDepthTest();
+                RenderSystem.depthMask(false);
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderTexture(0, HEALTH_BAR);
-                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-
-                int barX = -40;
-                RenderUtils.blit(poseStack, barX, 0, 0, 5, 81, 5, 81, 10);
 
                 float health = e.getHealth();
                 float maxHealth = e.getMaxHealth();
 
+                int red = 16711680;
+                int yellow = 16776960;
+                int green = 65280;
+
+                int color = 0;
+                if (health <= maxHealth / 3)
+                    color = red;
+                else if (health <= maxHealth / 2 && health > maxHealth / 3)
+                    color = yellow;
+                else if (health <= maxHealth && health > maxHealth / 2)
+                    color = green;
+
+                float r = 0, g = 0, b = 0;
+
+                if (color == red) {
+                    r = DrawHelper.getRed(red) / 255F;
+                    g = DrawHelper.getGreen(red) / 255F;
+                    b = DrawHelper.getBlue(red) / 255F;
+
+                } else if (color == yellow) {
+                    r = DrawHelper.getRed(yellow) / 255F;
+                    g = DrawHelper.getGreen(yellow) / 255F;
+                    b = DrawHelper.getBlue(yellow) / 255F;
+
+                } else if (color == green) {
+                    r = DrawHelper.getRed(green) / 255F;
+                    g = DrawHelper.getGreen(green) / 255F;
+                    b = DrawHelper.getBlue(green) / 255F;
+                }
+
+                RenderSystem.setShaderColor(r, g, b, 1.0F);
+
+                int barX = -40;
+                RenderUtils.blit(poseStack, barX, 0, 0, 5, 81, 5, 81, 10);
+
                 int i = (int) ((health / maxHealth) * 81);
                 RenderUtils.blit(poseStack, barX, 0, 0, 0, i, 5, 81, 10);
 
+                RenderSystem.enableBlend();
+                RenderSystem.blendFuncSeparate(770, 771, 1, 0);
                 DecimalFormat df = new DecimalFormat("##########.#");
                 String s = "Health: " + df.format(health) + "/" + df.format(maxHealth);
 
@@ -96,8 +131,10 @@ public class RenderLivingEventHandler {
                 fontrenderer.draw(poseStack, s, fontX - 1, fontY, 0);
                 fontrenderer.draw(poseStack, s, fontX, fontY + 1, 0);
                 fontrenderer.draw(poseStack, s, fontX, fontY - 1, 0);
-                fontrenderer.draw(poseStack, s, fontX, fontY, 16711680);
-                RenderSystem.disableDepthTest();
+                fontrenderer.draw(poseStack, s, fontX, fontY, color);
+                RenderSystem.enableDepthTest();
+                RenderSystem.depthMask(true);
+                RenderSystem.disableBlend();
 
                 poseStack.popPose();
             }
