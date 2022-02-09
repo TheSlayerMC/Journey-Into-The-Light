@@ -2,7 +2,7 @@ package net.jitl.client.render.tile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import net.jitl.common.tile.BloodRuneTile;
+import net.jitl.common.tile.base.BaseBloodRuneTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -11,8 +11,9 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
-public class BloodRuneTER implements BlockEntityRenderer<BloodRuneTile> {
+public class BloodRuneTER<T extends BaseBloodRuneTile> implements BlockEntityRenderer<T> {
 
     private final ItemRenderer renderEntity;
 
@@ -21,7 +22,7 @@ public class BloodRuneTER implements BlockEntityRenderer<BloodRuneTile> {
     }
 
     @Override
-    public void render(BloodRuneTile e, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
+    public void render(T e, float partialTicks, @NotNull PoseStack matrixStackIn, @NotNull MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         ItemStack i = e.getItem(0);
         renderItem(i, new double[]{0.5D, 1.25D, 0.5D}, matrixStackIn, bufferIn, combinedOverlayIn, combinedLightIn, 1.0F);
     }
