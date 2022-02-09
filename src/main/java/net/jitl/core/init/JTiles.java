@@ -21,7 +21,12 @@ public class JTiles {
     public static final BlockEntityType<ClayPotTile> CLAY_POTTERY = promise();
     public static final BlockEntityType<ClayVaseTile> CLAY_VASE = promise();
     public static final BlockEntityType<ObeliskTile> OBELISK = promise();
+
     public static final BlockEntityType<BloodRuneTile> BLOOD_RUNE = promise();
+    public static final BlockEntityType<BloodRuneFleshTile> BLOOD_RUNE_FLESH = promise();
+    public static final BlockEntityType<BloodRuneSoulTile> BLOOD_RUNE_SOUL = promise();
+    public static final BlockEntityType<BloodRuneLifeTile> BLOOD_RUNE_LIFE = promise();
+    public static final BlockEntityType<BloodRuneDeathTile> BLOOD_RUNE_DEATH = promise();
 
     private static class Registrator {
         @AutoRegistrable
@@ -37,7 +42,15 @@ public class JTiles {
             REGISTER.registerSingleBound("clay_pottery", ClayPotTile::new, () -> JBlocks.CLAY_POTTERY);
             REGISTER.registerSingleBound("clay_vase", ClayVaseTile::new, () -> JBlocks.CLAY_VASE);
             REGISTER.registerSingleBound("obelisk", ObeliskTile::new, () -> JBlocks.ANCIENT_OBELISK).regCustomRenderer(() -> ObeliskTER::new);
+
             REGISTER.registerSingleBound("blood_rune", BloodRuneTile::new, () -> JBlocks.EMPTY_BLOOD_RUNE).regCustomRenderer(() -> BloodRuneTER::new);
+
+            //TODO simplify? all rune tiles are identical
+            REGISTER.registerSingleBound("blood_rune_flesh", BloodRuneFleshTile::new, () -> JBlocks.BLOOD_RUNE_FLESH).regCustomRenderer(() -> BloodRuneFleshTER::new);
+            REGISTER.registerSingleBound("blood_rune_soul", BloodRuneSoulTile::new, () -> JBlocks.BLOOD_RUNE_SOUL).regCustomRenderer(() -> BloodRuneSoulTER::new);
+            REGISTER.registerSingleBound("blood_rune_life", BloodRuneLifeTile::new, () -> JBlocks.BLOOD_RUNE_LIFE).regCustomRenderer(() -> BloodRuneLifeTER::new);
+            REGISTER.registerSingleBound("blood_rune_death", BloodRuneDeathTile::new, () -> JBlocks.BLOOD_RUNE_DEATH).regCustomRenderer(() -> BloodRuneDeathTER::new);
+
         }
     }
 }

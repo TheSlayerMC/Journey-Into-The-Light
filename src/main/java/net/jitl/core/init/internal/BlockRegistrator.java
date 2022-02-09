@@ -120,16 +120,17 @@ public class BlockRegistrator {
                 "blood_rock_pillar_side");
 
         BlockModel emptyBloodRuneModel = BlockModels.cubeTopModel(JITL.tl("block/empty_blood_rune"), JITL.tl("block/empty_blood_rune"));
-        registerEmissiveRenderedBlock("blood_rune_soul", "Blood Rune Of Soul", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
+
+        registerEmissiveRenderedBlock("blood_rune_soul", "Blood Rune Of Soul", () -> new BloodRuneSoulBlock(JBlockProperties.BRICK_PROPS.create()),
                 emptyBloodRuneModel,
                 BlockModels.cubeTopModel(JITL.tl("block/blood_rune_soul_front"), JITL.tl("block/blank")));
-        registerEmissiveRenderedBlock("blood_rune_flesh", "Blood Rune Of Flesh", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
+        registerEmissiveRenderedBlock("blood_rune_flesh", "Blood Rune Of Flesh", () -> new BloodRuneFleshBlock(JBlockProperties.BRICK_PROPS.create()),
                 emptyBloodRuneModel,
                 BlockModels.cubeTopModel(JITL.tl("block/blood_rune_flesh_front"), JITL.tl("block/blank")));
-        registerEmissiveRenderedBlock("blood_rune_life", "Blood Rune Of Life", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
+        registerEmissiveRenderedBlock("blood_rune_life", "Blood Rune Of Life", () -> new BloodRuneLifeBlock(JBlockProperties.BRICK_PROPS.create()),
                 emptyBloodRuneModel,
                 BlockModels.cubeTopModel(JITL.tl("block/blood_rune_life_front"), JITL.tl("block/blank")));
-        registerEmissiveRenderedBlock("blood_rune_death", "Blood Rune Of Death", () -> new Block(JBlockProperties.BRICK_PROPS.create()),
+        registerEmissiveRenderedBlock("blood_rune_death", "Blood Rune Of Death", () -> new BloodRuneDeathBlock(JBlockProperties.BRICK_PROPS.create()),
                 emptyBloodRuneModel,
                 BlockModels.cubeTopModel(JITL.tl("block/blood_rune_death_front"), JITL.tl("block/blank")));
 

@@ -31,14 +31,17 @@ public class JRenderTypes extends RenderType {
 
     //FIXME
     public static RenderType fullbrightCutout(ResourceLocation texture) {
-        return RenderHelper.rtTextured(JITL.rl("fullbright_cutout"),
-                VertexFormat.Mode.QUADS,
+        return RenderHelper.create(JITL.rl("fullbright_cutout").toString(),
                 DefaultVertexFormat.POSITION_TEX,
-                texture,
-                builder -> builder
-                        .setTextureState(new TextureStateShard(texture, false, false))
+                VertexFormat.Mode.QUADS,
+                256,
+                false,
+                false,
+                CompositeState.builder()
                         .setShaderState(RenderStateShard.RENDERTYPE_CUTOUT_SHADER)
-                        .setLightmapState(LightmapStateShard.NO_LIGHTMAP)
+                        .setTextureState(new TextureStateShard(texture, false, false))
+                        .setTransparencyState(ADDITIVE_TRANSPARENCY)
+                        .setWriteMaskState(COLOR_WRITE)
                         .createCompositeState(false));
     }
 
