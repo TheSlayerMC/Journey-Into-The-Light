@@ -3,7 +3,7 @@ package net.jitl.client.render.gui.menu;
 import com.google.common.util.concurrent.Runnables;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.mojang.realmsclient.RealmsMainScreen;
 import com.mojang.realmsclient.gui.screens.RealmsNotificationsScreen;
@@ -24,6 +24,7 @@ import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
 import net.minecraft.client.gui.screens.multiplayer.SafetyScreen;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.PanoramaRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.CommonComponents;
@@ -71,7 +72,7 @@ public class JMainMenuGui extends TitleScreen {
 	private Screen realmsNotificationsScreen;
 	private int copyrightWidth;
 	private int copyrightX;
-	//private final PanoramaRenderer panorama = new PanoramaRenderer(CUBE_MAP);
+	private final PanoramaRenderer panorama = new PanoramaRenderer(CUBE_MAP);
 	private final boolean fading;
 	private long fadeInStart;
 
@@ -272,7 +273,7 @@ public class JMainMenuGui extends TitleScreen {
 
 		float f = this.fading ? (float) (Util.getMillis() - this.fadeInStart) / 1000.0F : 1.0F;
 		//fill(matrixStack, 0, 0, this.width, this.height, -1);
-		CUBE_MAP.renderSkybox(partialTicks);
+		this.panorama.render(partialTicks, Mth.clamp(f, 0.0F, 1.0F));
 
 		this.fillGradient(matrixStack, 0, 0, this.width, this.height, -2130706433, 16777215);
 		this.fillGradient(matrixStack, 0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
@@ -398,26 +399,5 @@ public class JMainMenuGui extends TitleScreen {
 		}
 
 		this.minecraft.setScreen(this);
-	}
-
-	private void blurPanorama(Minecraft mc) {
-		RenderSystem.viewport(0, 0, mc.getWindow().getWidth(), mc.getWindow().getHeight());
-		float f = 120.0F / (float) (Math.max(this.width, this.height));
-		float f1 = (float) this.height * f / 256.0F;
-		float f2 = (float) this.width * f / 256.0F;
-		int i = this.width;
-		int j = this.height;
-		Tesselator tessellator = Tesselator.getInstance();
-		BufferBuilder bufferbuilder = tessellator.getBuilder();
-		bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
-		assert mc.screen != null;
-		bufferbuilder.vertex(0.0D, j, mc.screen.getBlitOffset()).uv(0.5F - f1, 0.5F + f2)
-				.color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-		bufferbuilder.vertex(i, j, mc.screen.getBlitOffset()).uv(0.5F - f1, 0.5F - f2)
-				.color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-		bufferbuilder.vertex(i, 0.0D, mc.screen.getBlitOffset()).uv(0.5F + f1, 0.5F - f2)
-				.color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-		bufferbuilder.vertex(0.0D, 0.0D, mc.screen.getBlitOffset()).uv(0.5F + f1, 0.5F + f2)
-				.color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
 	}
 }
