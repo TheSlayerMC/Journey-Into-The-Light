@@ -30,7 +30,9 @@ public class JClientConfig extends Config {
 
 	public static class GuiCategory extends ConfigSection {
 
-		public ForgeConfigSpec.BooleanValue ENABLE_ISOMETRIC_FOV;
+		public ForgeConfigSpec.BooleanValue ENABLE_ISOMETRIC_CAMERA;
+		public ForgeConfigSpec.BooleanValue LOCK_ISOMETRIC_PERSPECTIVE;
+
 		public ForgeConfigSpec.BooleanValue ENABLE_MENU_TOGGLE_BUTTON;
 		public ForgeConfigSpec.BooleanValue ENABLE_JITL_MENU_SCREEN;
 		public ForgeConfigSpec.EnumValue<HealthBarRendering> RENDER_ENTITY_HEALTH;
@@ -45,9 +47,13 @@ public class JClientConfig extends Config {
 		 */
 		@Override
 		public void setup(ImprovedConfigBuilder builder) {
-			ENABLE_ISOMETRIC_FOV = builder
-					.comment("If set to 'true', the FOV will be locked to the isometric view.")
-					.define("Enable Isometric FOV: ", false);
+			ENABLE_ISOMETRIC_CAMERA = builder
+					.comment("If set to 'true', the camera will be locked to the isometric view.")
+					.define("Enable Isometric Camera: ", false);
+
+			LOCK_ISOMETRIC_PERSPECTIVE = builder
+					.comment("If set to 'true', the perspective will be locked for the isometric camera")
+					.define("Lock Isometric Perspective: ", false);
 
 			ENABLE_JITL_MENU_SCREEN = builder
 					.comment("If set to 'true', the JITL main menu theme will be enabled by default. "
@@ -69,11 +75,19 @@ public class JClientConfig extends Config {
 		}
 
 		public boolean isIsometricFOVEnabled() {
-			return ENABLE_ISOMETRIC_FOV.get();
+			return ENABLE_ISOMETRIC_CAMERA.get();
 		}
 
 		public void setIsometricFov(boolean enabled) {
-			ENABLE_ISOMETRIC_FOV.set(enabled);
+			ENABLE_ISOMETRIC_CAMERA.set(enabled);
+		}
+
+		public boolean isIsometricPerspectiveLocked() {
+			return LOCK_ISOMETRIC_PERSPECTIVE.get();
+		}
+
+		public void lockIsometricPerspective(boolean enabled) {
+			LOCK_ISOMETRIC_PERSPECTIVE.set(enabled);
 		}
 
 		public boolean isJITLMenuEnabled() {

@@ -2,6 +2,7 @@ package net.jitl.client.eventhandler;
 
 import com.mojang.math.Vector3f;
 import net.jitl.core.JITL;
+import net.jitl.core.config.JClientConfig;
 import net.jitl.core.config.JConfigs;
 import net.minecraft.client.Camera;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,24 +19,31 @@ public class FOVEventHandler {
     @SubscribeEvent
     public static void overrideFOV(EntityViewRenderEvent.FieldOfView event) {
         if (JConfigs.CLIENT.GUI_CATEGORY.isIsometricFOVEnabled()) {
-            double FOV = 5;
-            event.setFOV(FOV);
+            event.setFOV(4);
         }
     }
 
     @SubscribeEvent
     public static void onScrolled(InputEvent.MouseScrollEvent event) {
+        double scrollAmplifier = 4;
+
         if (event.getScrollDelta() > 0) {
-            DELTA++;
+            DELTA += scrollAmplifier;
         } else {
-            DELTA--;
+            DELTA -= scrollAmplifier;
         }
     }
 
     @SubscribeEvent
     public static void overrideCamera(EntityViewRenderEvent.CameraSetup event) {
-        if (JConfigs.CLIENT.GUI_CATEGORY.isIsometricFOVEnabled()) {
+        JClientConfig clientConfig = JConfigs.CLIENT;
+
+        if (clientConfig.GUI_CATEGORY.isIsometricFOVEnabled()) {
             Camera camera = event.getCamera();
+
+            if (clientConfig.GUI_CATEGORY.isIsometricPerspectiveLocked()) {
+                camera.setRotation(135, 35);
+            }
 
             Vector3f lookVector = camera.getLookVector();
 
@@ -50,10 +58,6 @@ public class FOVEventHandler {
                     z = camera.getPosition().z;
 
             camera.setPosition(x + (DELTA * lookX), y + (DELTA * lookY), z + (DELTA * lookZ));
-
-            //FIXME: set up fixed camera angle:
-            // 45 degrees for X rot, 135 degress for Y rot
-            //camera.setRotation(135, 45);
         }
     }
 }

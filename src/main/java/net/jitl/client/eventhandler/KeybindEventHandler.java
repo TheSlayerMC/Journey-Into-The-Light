@@ -21,6 +21,7 @@ public class KeybindEventHandler {
     public static KeyMapping keyAmulet;
 
     public static KeyMapping keyIsometricView;
+    public static KeyMapping keyLockPerspective;
 
     private static final Minecraft MINECRAFT = Minecraft.getInstance();
 
@@ -29,7 +30,8 @@ public class KeybindEventHandler {
         keyArmor = new KeyMapping("Use Armor Ability", GLFW.GLFW_KEY_C, I18n.get("jitl.keys"));
         keyAmulet = new KeyMapping("Use Amulet Ability", GLFW.GLFW_KEY_V, I18n.get("jitl.keys"));
 
-        keyIsometricView = new KeyMapping("Toggle Isometric FOV", GLFW.GLFW_KEY_EQUAL, I18n.get("jitl.keys"));
+        keyIsometricView = new KeyMapping("Toggle Isometric Camera", GLFW.GLFW_KEY_EQUAL, I18n.get("jitl.keys"));
+        keyLockPerspective = new KeyMapping("Lock Isometric Perspective", GLFW.GLFW_KEY_DELETE, I18n.get("jitl.keys"));
 
         ClientRegistry.registerKeyBinding(keyStats);
         ClientRegistry.registerKeyBinding(keyArmor);
@@ -41,15 +43,23 @@ public class KeybindEventHandler {
     public static void onKeyPressed(InputEvent.KeyInputEvent event) {
         InputConstants.Key key = InputConstants.getKey(event.getKey(), event.getScanCode());
         if (MINECRAFT.screen == null) {
+
             assert MINECRAFT.player != null;
             int action = event.getAction();
+
             if (action == GLFW.GLFW_PRESS) {
+                JClientConfig clientConfig = JConfigs.CLIENT;
+
                 if (key == keyStats.getKey()) {
                     MINECRAFT.setScreen(new ScreenPlayerStats(MINECRAFT.player.getInventory()));
+
                 } else if (key == keyIsometricView.getKey()) {
-                    JClientConfig clientConfig = JConfigs.CLIENT;
                     boolean toggle = !clientConfig.GUI_CATEGORY.isIsometricFOVEnabled();
                     clientConfig.GUI_CATEGORY.setIsometricFov(toggle);
+
+                } else if (key == keyLockPerspective.getKey()) {
+                    boolean toggle = !clientConfig.GUI_CATEGORY.isIsometricPerspectiveLocked();
+                    clientConfig.GUI_CATEGORY.lockIsometricPerspective(toggle);
                 } else {
                     handleAbilityKeys(key, action);
                 }
