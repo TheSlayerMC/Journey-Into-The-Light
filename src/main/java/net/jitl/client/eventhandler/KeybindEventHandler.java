@@ -22,11 +22,15 @@ public class KeybindEventHandler {
 
     public static KeyMapping keyIsometricView;
     public static KeyMapping keyLockPerspective;
-
     public static KeyMapping keyMoveCameraUp;
     public static KeyMapping keyMoveCameraDown;
     public static KeyMapping keyMoveCameraLeft;
     public static KeyMapping keyMoveCameraRight;
+    public static KeyMapping keyRotateCameraClockwise;
+    public static KeyMapping keyRotateCameraCounterClockwise;
+    public static KeyMapping keyResetRotation;
+    public static KeyMapping keyResetCameraPosition;
+    public static KeyMapping keyResetAll;
 
     private static final Minecraft MINECRAFT = Minecraft.getInstance();
 
@@ -37,11 +41,15 @@ public class KeybindEventHandler {
 
         keyIsometricView = new KeyMapping("Toggle Isometric Camera", GLFW.GLFW_KEY_EQUAL, I18n.get("jitl.keys"));
         keyLockPerspective = new KeyMapping("Lock Isometric Perspective", GLFW.GLFW_KEY_DELETE, I18n.get("jitl.keys"));
-
         keyMoveCameraUp = new KeyMapping("Move Isometric Camera Up", GLFW.GLFW_KEY_UP, I18n.get("jitl.keys"));
         keyMoveCameraDown = new KeyMapping("Move Isometric Camera Down", GLFW.GLFW_KEY_DOWN, I18n.get("jitl.keys"));
         keyMoveCameraLeft = new KeyMapping("Move Isometric Camera Left", GLFW.GLFW_KEY_LEFT, I18n.get("jitl.keys"));
         keyMoveCameraRight = new KeyMapping("Move Isometric Camera Right", GLFW.GLFW_KEY_RIGHT, I18n.get("jitl.keys"));
+        keyRotateCameraClockwise = new KeyMapping("Rotate Camera Clockwise", GLFW.GLFW_KEY_RIGHT_BRACKET, I18n.get("jitl.keys"));
+        keyRotateCameraCounterClockwise = new KeyMapping("Rotate Camera Counter-Clockwise", GLFW.GLFW_KEY_LEFT_BRACKET, I18n.get("jitl.keys"));
+        keyResetRotation = new KeyMapping("Reset Camera Rotation", GLFW.GLFW_KEY_END, I18n.get("jitl.keys"));
+        keyResetCameraPosition = new KeyMapping("Reset Camera Position", GLFW.GLFW_KEY_PAGE_DOWN, I18n.get("jitl.keys"));
+        keyResetAll = new KeyMapping("Reset All Isometric Camera Settings", GLFW.GLFW_KEY_BACKSLASH, I18n.get("jitl.keys"));
 
         ClientRegistry.registerKeyBinding(keyStats);
         ClientRegistry.registerKeyBinding(keyArmor);
@@ -49,11 +57,14 @@ public class KeybindEventHandler {
 
         ClientRegistry.registerKeyBinding(keyIsometricView);
         ClientRegistry.registerKeyBinding(keyLockPerspective);
-
         ClientRegistry.registerKeyBinding(keyMoveCameraUp);
         ClientRegistry.registerKeyBinding(keyMoveCameraDown);
         ClientRegistry.registerKeyBinding(keyMoveCameraLeft);
         ClientRegistry.registerKeyBinding(keyMoveCameraRight);
+        ClientRegistry.registerKeyBinding(keyRotateCameraClockwise);
+        ClientRegistry.registerKeyBinding(keyRotateCameraCounterClockwise);
+        ClientRegistry.registerKeyBinding(keyResetRotation);
+        ClientRegistry.registerKeyBinding(keyResetAll);
     }
 
     public static void onKeyPressed(InputEvent.KeyInputEvent event) {

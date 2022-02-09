@@ -21,6 +21,8 @@ public class IsometricCameraHandler {
 
     private static double XAXIS = 0, YAXIS = 0;
 
+    private static float XROT = 135, YROT = 35;
+
     @SubscribeEvent
     public static void overrideFOV(EntityViewRenderEvent.FieldOfView event) {
         if (JConfigs.CLIENT.GUI_CATEGORY.isIsometricFOVEnabled()) {
@@ -63,6 +65,27 @@ public class IsometricCameraHandler {
 
         } else if (key == keyMoveCameraLeft.getKey()) {
             XAXIS -= keyAmplifier;
+
+            //TODO: this is jenky. Maybe set the camera position based on the look vector, so it doesn't jump around when you rotate?
+        } else if (key == keyRotateCameraClockwise.getKey()) {
+            XROT += keyAmplifier;
+
+        } else if (key == keyRotateCameraCounterClockwise.getKey()) {
+            XROT -= keyAmplifier;
+
+        } else if (key == keyResetRotation.getKey()) {
+            XROT = 135;
+
+        } else if (key == keyResetCameraPosition.getKey()) {
+            XAXIS = 0;
+            YAXIS = 0;
+
+        } else if (key == keyResetAll.getKey()) {
+            XROT = 135;
+            YROT = 35;
+            XAXIS = 0;
+            YAXIS = 0;
+            DELTA = 0;
         }
     }
 
@@ -74,7 +97,7 @@ public class IsometricCameraHandler {
             Camera camera = event.getCamera();
 
             if (clientConfig.GUI_CATEGORY.isIsometricPerspectiveLocked()) {
-                camera.setRotation(135, 35);
+                camera.setRotation(XROT, YROT);
             }
 
             Vector3f lookVector = camera.getLookVector();
