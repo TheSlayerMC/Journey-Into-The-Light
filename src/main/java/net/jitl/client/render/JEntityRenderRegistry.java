@@ -8,6 +8,7 @@ import net.jitl.client.render.entity.frozen.*;
 import net.jitl.client.render.entity.nether.WitherspineRenderer;
 import net.jitl.client.render.entity.overworld.*;
 import net.jitl.client.render.model.BoomModel;
+import net.jitl.client.render.model.BrownHongoModel;
 import net.jitl.client.render.model.HongoModel;
 import net.jitl.client.render.model.base.HoodedVillagerModel;
 import net.jitl.client.render.model.block.ObeliskModel;
@@ -36,6 +37,7 @@ public class JEntityRenderRegistry {
         //Mobs
 
         event.registerEntityRenderer(JEntities.HONGO_TYPE, HongoRenderer::new);
+        event.registerEntityRenderer(JEntities.BROWN_HONGO_TYPE, BrownHongoRenderer::new);
         event.registerEntityRenderer(JEntities.WITHERSHROOM_TYPE, WithershroomRenderer::new);
         event.registerEntityRenderer(JEntities.HONGLOW_TYPE, HonglowRenderer::new);
 
@@ -96,6 +98,7 @@ public class JEntityRenderRegistry {
 
         //Mobs
         event.registerLayerDefinition(JModelLayers.HONGO_MODEL_LAYER, HongoModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.BROWN_HONGO_MODEL_LAYER, BrownHongoModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.WITHERSHROOM_MODEL_LAYER, HongoModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.HONGLOW_MODEL_LAYER, HongoModel::createBodyLayer);
 

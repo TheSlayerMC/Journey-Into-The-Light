@@ -3,13 +3,15 @@ package net.jitl.common.entity.overworld;
 import net.jitl.common.entity.projectile.FloroMudEntity;
 import net.jitl.core.init.JAnimations;
 import net.jitl.core.init.JSounds;
-import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -21,8 +23,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.TimeCore;
@@ -38,7 +38,6 @@ import ru.timeconqueror.timecore.api.animation.BlendType;
 import ru.timeconqueror.timecore.api.animation.builders.AnimationSystemBuilder;
 
 import java.util.EnumSet;
-import java.util.Random;
 
 /**
  * How vanilla tasks work:
@@ -87,10 +86,6 @@ public class FloroEntity extends Monster implements RangedAttackMob, AnimatedObj
             predefinedAnimations.setWalkingAnimation(new AnimationStarter(JAnimations.floroWalk).setSpeed(3F), LAYER_WALKING);
             predefinedAnimations.setIdleAnimation(new AnimationStarter(JAnimations.floroIdle), LAYER_WALKING);
         });
-    }
-
-    public static boolean canSpawn(EntityType<? extends Monster> entityType, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
-        return !worldIn.getBlockState(pos).is(Blocks.WATER) && worldIn.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK);
     }
 
     @Override

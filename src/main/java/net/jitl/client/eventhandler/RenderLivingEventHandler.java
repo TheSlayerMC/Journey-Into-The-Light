@@ -29,7 +29,7 @@ public class RenderLivingEventHandler {
     private static final ResourceLocation HEALTH_BAR = JITL.tl("gui/health_bar.png").fullLocation();
 
     @SubscribeEvent()
-    public static void onRenderLiving(RenderLivingEvent.Post event) {
+    public static void onRenderLiving(RenderLivingEvent.Pre event) {
         Minecraft minecraft = Minecraft.getInstance();
 
         JClientConfig config = JConfigs.CLIENT;
@@ -71,10 +71,12 @@ public class RenderLivingEventHandler {
                 float scale = -0.025F;
                 poseStack.translate(0, 0.5F + height, 0);
                 poseStack.mulPose(entityRenderDispatcher.cameraOrientation());
-                poseStack.scale(scale, scale, 0);
+                poseStack.scale(scale, scale, scale);
 
                 RenderSystem.disableDepthTest();
                 RenderSystem.depthMask(false);
+                RenderSystem.enableBlend();
+                RenderSystem.blendFuncSeparate(770, 771, 1, 0);
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderTexture(0, HEALTH_BAR);
 
@@ -119,8 +121,6 @@ public class RenderLivingEventHandler {
                 int i = (int) ((health / maxHealth) * 81);
                 RenderUtils.blit(poseStack, barX, 0, 0, 0, i, 5, 81, 10);
 
-                RenderSystem.enableBlend();
-                RenderSystem.blendFuncSeparate(770, 771, 1, 0);
                 DecimalFormat df = new DecimalFormat("##########.#");
                 String s = "Health: " + df.format(health) + "/" + df.format(maxHealth);
 
@@ -132,6 +132,7 @@ public class RenderLivingEventHandler {
                 fontrenderer.draw(poseStack, s, fontX, fontY + 1, 0);
                 fontrenderer.draw(poseStack, s, fontX, fontY - 1, 0);
                 fontrenderer.draw(poseStack, s, fontX, fontY, color);
+
                 RenderSystem.enableDepthTest();
                 RenderSystem.depthMask(true);
                 RenderSystem.disableBlend();

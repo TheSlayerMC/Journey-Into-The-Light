@@ -12,15 +12,23 @@ import net.jitl.common.entity.projectile.*;
 import net.jitl.common.entity.projectile.base.JEffectCloudEntity;
 import net.jitl.common.entity.vehicle.JBoat;
 import net.jitl.core.JITL;
+import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EntityType.Builder;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
 import ru.timeconqueror.timecore.api.registry.EntityRegister;
 import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
-public class JEntities {
+import java.util.Random;
+
+public class
+JEntities {
     //dimension colors
     private static final int OVERWORLD_COLOR = 0x32f53f;
     private static final int NETHER_COLOR = 0x881a2b;
@@ -48,7 +56,7 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1F, 2F))
-            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FloroEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JEntities::canSpawnMonsterOnGrass)
             .spawnEgg(OVERWORLD_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .attributes(() -> FloroEntity.createAttributes().build())
             .retrieve();
@@ -135,9 +143,19 @@ public class JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.5F, 2F))
-            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HongoEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JEntities::canSpawnMonsterOnGrass)
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .attributes(() -> HongoEntity.createAttributes().build())
+            .retrieve();
+
+    public static final EntityType<BrownHongoEntity> BROWN_HONGO_TYPE = REGISTER.registerMob("brown_hongo",
+                    Builder.of(BrownHongoEntity::new, MobCategory.MONSTER)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(1.5F, 2.25F))
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JEntities::canSpawnMonsterOnGrass)
+            .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .attributes(() -> BrownHongoEntity.createAttributes().build())
             .retrieve();
 
     public static final EntityType<MiniBoomEntity> MINI_BOOM_TYPE = REGISTER.registerMob("miniboom",
@@ -349,6 +367,10 @@ public class JEntities {
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.0F, 3.0F))
             .retrieve();
+
+    public static boolean canSpawnMonsterOnGrass(EntityType<? extends Monster> type_, LevelAccessor level_, MobSpawnType reason_, BlockPos pos_, Random random_) {
+        return level_.getBlockState(pos_.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && Monster.checkAnyLightMonsterSpawnRules(type_, level_, reason_, pos_, random_);
+    }
 }
 
 

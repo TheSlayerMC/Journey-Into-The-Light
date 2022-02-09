@@ -4,7 +4,6 @@ import com.google.common.collect.Sets;
 import net.jitl.common.entity.vehicle.JBoat;
 import net.jitl.core.JITL;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.world.entity.vehicle.Boat;
 
 import java.util.Set;
 
@@ -15,6 +14,7 @@ public class JModelLayers {
     public static final ModelLayerLocation CAPYBARA_SADDLE_LAYER = register("capbara", "saddle");
     public static final ModelLayerLocation FROZEN_GUARDIAN_MODEL_LAYER = register("frozen_guardian");
     public static final ModelLayerLocation HONGO_MODEL_LAYER = register("hongo");
+    public static final ModelLayerLocation BROWN_HONGO_MODEL_LAYER = register("brown_hongo");
     public static final ModelLayerLocation WITHERSHROOM_MODEL_LAYER = register("withershroom");
     public static final ModelLayerLocation HONGLOW_MODEL_LAYER = register("honglow");
     public static final ModelLayerLocation FROZEN_TROLL_MODEL_LAYER = register("frozen_troll");
