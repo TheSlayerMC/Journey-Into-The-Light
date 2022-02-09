@@ -1,5 +1,6 @@
 package net.jitl.client.eventhandler;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.math.Vector3f;
 import net.jitl.core.JITL;
 import net.jitl.core.config.JClientConfig;
@@ -11,10 +12,14 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import static net.jitl.client.eventhandler.KeybindEventHandler.*;
+
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
-public class FOVEventHandler {
+public class IsometricCameraHandler {
 
     private static double DELTA = 0;
+
+    private static double XAXIS = 0, YAXIS = 0;
 
     @SubscribeEvent
     public static void overrideFOV(EntityViewRenderEvent.FieldOfView event) {
@@ -31,6 +36,33 @@ public class FOVEventHandler {
             DELTA += scrollAmplifier;
         } else {
             DELTA -= scrollAmplifier;
+        }
+    }
+
+    static void handleIsometricCameraKeys(InputConstants.Key key, int action) {
+        JClientConfig clientConfig = JConfigs.CLIENT;
+
+        double keyAmplifier = 2;
+
+        if (key == keyIsometricView.getKey()) {
+            boolean toggle = !clientConfig.GUI_CATEGORY.isIsometricFOVEnabled();
+            clientConfig.GUI_CATEGORY.setIsometricFov(toggle);
+
+        } else if (key == keyLockPerspective.getKey()) {
+            boolean toggle = !clientConfig.GUI_CATEGORY.isIsometricPerspectiveLocked();
+            clientConfig.GUI_CATEGORY.lockIsometricPerspective(toggle);
+
+        } else if (key == keyMoveCameraUp.getKey()) {
+            YAXIS += keyAmplifier;
+
+        } else if (key == keyMoveCameraDown.getKey()) {
+            YAXIS -= keyAmplifier;
+
+        } else if (key == keyMoveCameraRight.getKey()) {
+            XAXIS += keyAmplifier;
+
+        } else if (key == keyMoveCameraLeft.getKey()) {
+            XAXIS -= keyAmplifier;
         }
     }
 
@@ -57,7 +89,7 @@ public class FOVEventHandler {
                     y = camera.getPosition().y,
                     z = camera.getPosition().z;
 
-            camera.setPosition(x + (DELTA * lookX), y + (DELTA * lookY), z + (DELTA * lookZ));
+            camera.setPosition(x + (DELTA * lookX) + XAXIS, y + (DELTA * lookY) + YAXIS, z + (DELTA * lookZ));
         }
     }
 }
