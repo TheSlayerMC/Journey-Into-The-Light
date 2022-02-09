@@ -29,12 +29,12 @@ public class Overlays {
 
         OverlayRegistry.registerOverlayTop("Portal", (gui, mStack, partialTicks, screenWidth, screenHeight) -> {
             gui.setupOverlayRenderState(true, false);
-            portal(gui, mStack, partialTicks, screenWidth, screenHeight);
+            PortalOverlay.render(partialTicks);
         });
 
         OverlayRegistry.registerOverlayTop("Essence", (gui, mStack, partialTicks, screenWidth, screenHeight) -> {
             gui.setupOverlayRenderState(true, false);
-            essence(gui, mStack, partialTicks, screenWidth, screenHeight);
+            EssenceOverlay.render(mStack, screenHeight, screenWidth);
         });
     }
 
@@ -46,13 +46,5 @@ public class Overlays {
                 RenderUtils.renderTextureOverlay(FROSTBURN_LOCATION, 0.5F);
             }
         }
-    }
-
-    public static void portal(ForgeIngameGui gui, PoseStack mStack, float partialTicks, int width, int height) {
-        PortalOverlay.render(partialTicks);
-    }
-
-    public static void essence(ForgeIngameGui gui, PoseStack matrixStack, float partialTicks, int width, int height) {
-        EssenceOverlay.render(matrixStack, height, width);
     }
 }

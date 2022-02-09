@@ -2,6 +2,7 @@ package net.jitl.client.eventhandler;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.jitl.common.capability.player.JPlayer;
+import net.jitl.core.config.JConfigs;
 import net.jitl.core.init.JBlocks;
 import net.jitl.core.init.JItems;
 import net.jitl.core.init.world.Dimensions;
@@ -66,6 +67,11 @@ public class ClientEventHandler {
                 }
                 RenderSystem.setShaderFogStart(density);
                 RenderSystem.setShaderFogEnd(density * farPlaneDistance);
+            }
+
+            if (JConfigs.CLIENT.GUI_CATEGORY.isIsometricFOVEnabled()) {
+                RenderSystem.setShaderFogStart(1000F);
+                RenderSystem.setShaderFogEnd(1000F * farPlaneDistance);
             }
         }
     }
