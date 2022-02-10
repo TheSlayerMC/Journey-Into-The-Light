@@ -6,6 +6,8 @@ import net.jitl.core.JITL;
 import net.jitl.core.config.JClientConfig;
 import net.jitl.core.config.JConfigs;
 import net.minecraft.client.Camera;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.InputEvent;
@@ -22,6 +24,8 @@ public class IsometricCameraHandler {
     private static double XAXIS = 0, YAXIS = 0;
 
     private static float XROT = 135, YROT = 35;
+
+    private static int ANGLE_SNAP_TIMER = 0;
 
     @SubscribeEvent
     public static void overrideFOV(EntityViewRenderEvent.FieldOfView event) {
@@ -50,9 +54,13 @@ public class IsometricCameraHandler {
             boolean toggle = !clientConfig.GUI_CATEGORY.isIsometricFOVEnabled();
             clientConfig.GUI_CATEGORY.setIsometricFov(toggle);
 
+            ANGLE_SNAP_TIMER = 1;
+
         } else if (key == keyLockPerspective.getKey()) {
             boolean toggle = !clientConfig.GUI_CATEGORY.isIsometricPerspectiveLocked();
             clientConfig.GUI_CATEGORY.lockIsometricPerspective(toggle);
+
+            ANGLE_SNAP_TIMER = 1;
 
         } else if (key == keyMoveCameraUp.getKey()) {
             YAXIS += keyAmplifier;
@@ -87,6 +95,8 @@ public class IsometricCameraHandler {
             YAXIS = 0;
             DELTA = 0;
         }
+
+        //TODO: add "snap" angle keybind
     }
 
     @SubscribeEvent
@@ -95,6 +105,17 @@ public class IsometricCameraHandler {
 
         if (clientConfig.GUI_CATEGORY.isIsometricFOVEnabled()) {
             Camera camera = event.getCamera();
+
+            Entity entity = camera.getEntity();
+
+            if (entity instanceof Player player) {
+                if (ANGLE_SNAP_TIMER == 1) {
+                    player.setYRot(1215);
+                    player.setXRot(35);
+
+                    ANGLE_SNAP_TIMER = 0;
+                }
+            }
 
             if (clientConfig.GUI_CATEGORY.isIsometricPerspectiveLocked()) {
                 camera.setRotation(XROT, YROT);
@@ -112,7 +133,10 @@ public class IsometricCameraHandler {
                     y = camera.getPosition().y,
                     z = camera.getPosition().z;
 
-            camera.setPosition(x + (DELTA * lookX) + XAXIS, y + (DELTA * lookY) + YAXIS, z + (DELTA * lookZ));
+            camera.setPosition(
+                    x + (DELTA * lookX) + XAXIS,
+                    y + (DELTA * lookY) + YAXIS,
+                    z + (DELTA * lookZ));
         }
     }
 }
