@@ -3,6 +3,7 @@ package net.jitl.core.config;
 import net.jitl.core.JITL;
 import net.jitl.core.config.enums.EssencePosition;
 import net.jitl.core.config.enums.HealthBarRendering;
+import net.jitl.core.config.enums.IsometricAngleSnap;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
 import org.jetbrains.annotations.NotNull;
@@ -32,6 +33,7 @@ public class JClientConfig extends Config {
 
 		public ForgeConfigSpec.BooleanValue ENABLE_ISOMETRIC_CAMERA;
 		public ForgeConfigSpec.BooleanValue LOCK_ISOMETRIC_PERSPECTIVE;
+		public ForgeConfigSpec.EnumValue<IsometricAngleSnap> ISOMETRIC_ANGLE_SNAP;
 
 		public ForgeConfigSpec.BooleanValue ENABLE_MENU_TOGGLE_BUTTON;
 		public ForgeConfigSpec.BooleanValue ENABLE_JITL_MENU_SCREEN;
@@ -52,8 +54,12 @@ public class JClientConfig extends Config {
 					.define("Enable Isometric Camera: ", false);
 
 			LOCK_ISOMETRIC_PERSPECTIVE = builder
-					.comment("If set to 'true', the perspective will be locked for the isometric camera")
+					.comment("If set to 'true', the perspective will be locked for the isometric camera.")
 					.define("Lock Isometric Perspective: ", false);
+
+			ISOMETRIC_ANGLE_SNAP = builder
+					.comment("Determines snap angle of the isometric camera view.")
+					.defineEnum("Isometric Camera Angle: ", IsometricAngleSnap.NORTH_WEST);
 
 			ENABLE_JITL_MENU_SCREEN = builder
 					.comment("If set to 'true', the JITL main menu theme will be enabled by default. "
@@ -124,6 +130,14 @@ public class JClientConfig extends Config {
 
 		public void setHealthBarRendering(HealthBarRendering healthBarRendering) {
 			RENDER_ENTITY_HEALTH.set(healthBarRendering);
+		}
+
+		public IsometricAngleSnap getIsometricAngleSnap() {
+			return ISOMETRIC_ANGLE_SNAP.get();
+		}
+
+		public void setIsometricAngleSnap(IsometricAngleSnap isometricAngleSnap) {
+			ISOMETRIC_ANGLE_SNAP.set(isometricAngleSnap);
 		}
 	}
 }

@@ -31,6 +31,7 @@ public class KeybindEventHandler {
     public static KeyMapping keyResetRotation;
     public static KeyMapping keyResetCameraPosition;
     public static KeyMapping keyResetAll;
+    public static KeyMapping keyCycleSnapAngle;
 
     private static final Minecraft MINECRAFT = Minecraft.getInstance();
 
@@ -50,6 +51,7 @@ public class KeybindEventHandler {
         keyResetRotation = new KeyMapping("Reset Camera Rotation", GLFW.GLFW_KEY_END, I18n.get("jitl.keys"));
         keyResetCameraPosition = new KeyMapping("Reset Camera Position", GLFW.GLFW_KEY_PAGE_DOWN, I18n.get("jitl.keys"));
         keyResetAll = new KeyMapping("Reset All Isometric Camera Settings", GLFW.GLFW_KEY_BACKSLASH, I18n.get("jitl.keys"));
+        keyCycleSnapAngle = new KeyMapping("Cycle through isometric angles", GLFW.GLFW_KEY_MINUS, I18n.get("jitl.keys"));
 
         ClientRegistry.registerKeyBinding(keyStats);
         ClientRegistry.registerKeyBinding(keyArmor);
@@ -65,6 +67,7 @@ public class KeybindEventHandler {
         ClientRegistry.registerKeyBinding(keyRotateCameraCounterClockwise);
         ClientRegistry.registerKeyBinding(keyResetRotation);
         ClientRegistry.registerKeyBinding(keyResetAll);
+        ClientRegistry.registerKeyBinding(keyCycleSnapAngle);
     }
 
     public static void onKeyPressed(InputEvent.KeyInputEvent event) {
