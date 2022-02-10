@@ -25,7 +25,7 @@ public class IsometricCameraHandler {
 
     private static float XROT = 135, YROT = 35;
 
-    private static int ANGLE_SNAP_TIMER = 0;
+    private static int PLAYER_ANGLE_SNAP_TIMER = 0;
 
     @SubscribeEvent
     public static void overrideFOV(EntityViewRenderEvent.FieldOfView event) {
@@ -54,13 +54,13 @@ public class IsometricCameraHandler {
             boolean toggle = !clientConfig.GUI_CATEGORY.isIsometricFOVEnabled();
             clientConfig.GUI_CATEGORY.setIsometricFov(toggle);
 
-            ANGLE_SNAP_TIMER = 1;
+            PLAYER_ANGLE_SNAP_TIMER = 1;
 
         } else if (key == keyLockPerspective.getKey()) {
             boolean toggle = !clientConfig.GUI_CATEGORY.isIsometricPerspectiveLocked();
             clientConfig.GUI_CATEGORY.lockIsometricPerspective(toggle);
 
-            ANGLE_SNAP_TIMER = 1;
+            PLAYER_ANGLE_SNAP_TIMER = 1;
 
         } else if (key == keyMoveCameraUp.getKey()) {
             YAXIS += keyAmplifier;
@@ -95,9 +95,10 @@ public class IsometricCameraHandler {
             YAXIS = 0;
             DELTA = 0;
         }
-
-        //TODO: add "snap" angle keybind
     }
+
+    //TODO: add angle snap ability, to allow smooth changing of angle
+    // (e.g: north_west, south_west, north_east, south_east)
 
     @SubscribeEvent
     public static void overrideCamera(EntityViewRenderEvent.CameraSetup event) {
@@ -109,11 +110,11 @@ public class IsometricCameraHandler {
             Entity entity = camera.getEntity();
 
             if (entity instanceof Player player) {
-                if (ANGLE_SNAP_TIMER == 1) {
+                if (PLAYER_ANGLE_SNAP_TIMER == 1) {
                     player.setYRot(1215);
                     player.setXRot(35);
 
-                    ANGLE_SNAP_TIMER = 0;
+                    PLAYER_ANGLE_SNAP_TIMER = 0;
                 }
             }
 
