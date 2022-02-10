@@ -225,7 +225,7 @@ public class IsometricCameraHandler {
                         player.setXRot(35);
 
                     } else if (angleSnap == IsometricAngleSnap.SOUTH_WEST) {
-                        player.setYRot((float) 1125);
+                        player.setYRot((float) 1122);
                         player.setXRot(35);
 
                     } else if (angleSnap == IsometricAngleSnap.NORTH_EAST) {
@@ -249,7 +249,7 @@ public class IsometricCameraHandler {
                     camera.setRotation(XROT, YROT);
 
                 } else if (angleSnap == IsometricAngleSnap.SOUTH_WEST) {
-                    camera.setRotation(1125, YROT);
+                    camera.setRotation(1122, YROT);
 
                 } else if (angleSnap == IsometricAngleSnap.NORTH_EAST) {
                     camera.setRotation(1305, YROT);
