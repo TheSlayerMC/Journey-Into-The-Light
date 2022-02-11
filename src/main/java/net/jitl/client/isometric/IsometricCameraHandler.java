@@ -7,7 +7,6 @@ import net.jitl.core.config.JClientConfig;
 import net.jitl.core.config.JConfigs;
 import net.jitl.core.config.enums.IsometricAngleSnap;
 import net.minecraft.client.Camera;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -24,6 +23,7 @@ import static net.jitl.client.eventhandler.KeybindEventHandler.*;
 @Mod.EventBusSubscriber(modid = JITL.MODID, value = Dist.CLIENT)
 public class IsometricCameraHandler {
 
+    private static final double FOV = -1.7;
     //Counts the scroll wheel delta
     private static double DELTA = 0;
 
@@ -42,7 +42,7 @@ public class IsometricCameraHandler {
     @SubscribeEvent
     public static void overrideFOV(EntityViewRenderEvent.FieldOfView event) {
         if (JConfigs.CLIENT.GUI_CATEGORY.isIsometricFOVEnabled()) {
-            event.setFOV(-1.7);
+            event.setFOV(FOV);
         }
     }
 
@@ -176,12 +176,7 @@ public class IsometricCameraHandler {
 
             IsometricAngleSnap angleSnap = clientConfig.GUI_CATEGORY.getIsometricAngleSnap();
 
-            List<IsometricAngleSnap> snaps = List.of(
-                    IsometricAngleSnap.NORTH_WEST,
-                    IsometricAngleSnap.SOUTH_WEST,
-                    IsometricAngleSnap.SOUTH_EAST,
-                    IsometricAngleSnap.NORTH_EAST
-            );
+            List<IsometricAngleSnap> snaps = List.of(IsometricAngleSnap.NORTH_WEST, IsometricAngleSnap.SOUTH_WEST, IsometricAngleSnap.SOUTH_EAST, IsometricAngleSnap.NORTH_EAST);
 
             //TODO make better
             if (angleSnap == snaps.get(0)) {
@@ -211,8 +206,6 @@ public class IsometricCameraHandler {
         IsometricAngleSnap angleSnap = clientConfig.GUI_CATEGORY.getIsometricAngleSnap();
 
         GameRenderer gameRenderer = event.getRenderer();
-
-        Minecraft minecraft = Minecraft.getInstance();
 
         if (clientConfig.GUI_CATEGORY.isIsometricFOVEnabled()) {
             Camera camera = event.getCamera();
@@ -247,8 +240,6 @@ public class IsometricCameraHandler {
                 }
             }
 
-            Vector3f lookVector = camera.getLookVector();
-
             /*
             If the isometric perspective is locked, the camera's rotation will be set based on the IsometricAngleSnap that's configured
              */
@@ -266,6 +257,8 @@ public class IsometricCameraHandler {
                     camera.setRotation(1035, YROT);
                 }
             }
+
+            Vector3f lookVector = camera.getLookVector();
 
             float
                     lookX = lookVector.x(),
@@ -290,7 +283,7 @@ public class IsometricCameraHandler {
             /*
             Offset the zoom created by extremely low FOV
              */
-            gameRenderer.zoom = -0.17F;
+            gameRenderer.zoom = (float) (FOV * 0.1D);
         } else {
             /*
             Reset the zoom to 1.0F (TODO: this might cause problems)
