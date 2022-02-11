@@ -62,7 +62,7 @@ public class IsometricCameraHandler {
         }
     }
 
-    public static void handleIsometricCameraKeys(InputConstants.Key key, int action) {
+    public static void handleIsometricCameraKeys(InputConstants.Key key) {
         JClientConfig clientConfig = JConfigs.CLIENT;
 
         double keyAmplifier = 2;

@@ -39,6 +39,8 @@ public class JClientConfig extends Config {
 		public ForgeConfigSpec.BooleanValue ENABLE_JITL_MENU_SCREEN;
 		public ForgeConfigSpec.EnumValue<HealthBarRendering> RENDER_ENTITY_HEALTH;
 		public ForgeConfigSpec.EnumValue<EssencePosition> ESSENCE_POSITION;
+		public ForgeConfigSpec.IntValue BIG_SCREENSHOT_WIDTH;
+		public ForgeConfigSpec.IntValue BIG_SCREENSHOT_HEIGHT;
 
 		public GuiCategory(@NotNull String key, @Nullable String comment) {
 			super(key, comment);
@@ -78,6 +80,14 @@ public class JClientConfig extends Config {
 			ESSENCE_POSITION = builder
 					.comment("Determines the position of the Essence bar in-game. ")
 					.defineEnum("Essence Bar Position: ", EssencePosition.OVER_EXPERIENCE_BAR);
+
+			BIG_SCREENSHOT_WIDTH = builder
+					.comment("The width of any big screenshots you may take. ")
+					.defineInRange("Width: ", 3840, 128, 7680);
+
+			BIG_SCREENSHOT_HEIGHT = builder
+					.comment("The height of any big screenshots you may take. ")
+					.defineInRange("Height: ", 2160, 72, 4320);
 		}
 
 		public boolean isIsometricFOVEnabled() {
@@ -138,6 +148,14 @@ public class JClientConfig extends Config {
 
 		public void setIsometricAngleSnap(IsometricAngleSnap isometricAngleSnap) {
 			ISOMETRIC_ANGLE_SNAP.set(isometricAngleSnap);
+		}
+
+		public int getBigScreenshotWidth() {
+			return BIG_SCREENSHOT_WIDTH.get();
+		}
+
+		public int getBigScreenshotHeight() {
+			return BIG_SCREENSHOT_HEIGHT.get();
 		}
 	}
 }

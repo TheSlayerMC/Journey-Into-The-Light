@@ -12,6 +12,7 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.lwjgl.glfw.GLFW;
 
+import static net.jitl.client.isometric.BigScreenshotHandler.handleBigScreenshotKeys;
 import static net.jitl.client.isometric.IsometricCameraHandler.handleIsometricCameraKeys;
 
 public class KeybindEventHandler {
@@ -32,6 +33,7 @@ public class KeybindEventHandler {
     public static KeyMapping keyResetCameraPosition;
     public static KeyMapping keyResetAll;
     public static KeyMapping keyCycleSnapAngle;
+    public static KeyMapping keyBigScreenshot;
 
     private static final Minecraft MINECRAFT = Minecraft.getInstance();
 
@@ -51,7 +53,8 @@ public class KeybindEventHandler {
         keyResetRotation = new KeyMapping("Reset Camera Rotation", GLFW.GLFW_KEY_END, I18n.get("jitl.keys"));
         keyResetCameraPosition = new KeyMapping("Reset Camera Position", GLFW.GLFW_KEY_PAGE_DOWN, I18n.get("jitl.keys"));
         keyResetAll = new KeyMapping("Reset All Isometric Camera Settings", GLFW.GLFW_KEY_BACKSLASH, I18n.get("jitl.keys"));
-        keyCycleSnapAngle = new KeyMapping("Cycle through isometric angles", GLFW.GLFW_KEY_MINUS, I18n.get("jitl.keys"));
+        keyCycleSnapAngle = new KeyMapping("Cycle Through Isometric Angles", GLFW.GLFW_KEY_MINUS, I18n.get("jitl.keys"));
+        keyBigScreenshot = new KeyMapping("Take Big Screenshot", GLFW.GLFW_KEY_F9, I18n.get("jitl.keys"));
 
         ClientRegistry.registerKeyBinding(keyStats);
         ClientRegistry.registerKeyBinding(keyArmor);
@@ -68,6 +71,7 @@ public class KeybindEventHandler {
         ClientRegistry.registerKeyBinding(keyResetRotation);
         ClientRegistry.registerKeyBinding(keyResetAll);
         ClientRegistry.registerKeyBinding(keyCycleSnapAngle);
+        ClientRegistry.registerKeyBinding(keyBigScreenshot);
     }
 
     public static void onKeyPressed(InputEvent.KeyInputEvent event) {
@@ -82,7 +86,8 @@ public class KeybindEventHandler {
                     MINECRAFT.setScreen(new ScreenPlayerStats(MINECRAFT.player.getInventory()));
 
                 } else {
-                    handleIsometricCameraKeys(key, action);
+                    handleIsometricCameraKeys(key);
+                    handleBigScreenshotKeys(key);
                     handleAbilityKeys(key, action);
                 }
             } else if (action == GLFW.GLFW_RELEASE) {
