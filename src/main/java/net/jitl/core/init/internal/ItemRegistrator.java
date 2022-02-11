@@ -99,7 +99,7 @@ public class ItemRegistrator {
         registerHandheldRodItem("redcurrant_on_a_stick", "Redcurrant On A Stick", () -> new FoodOnAStickItem<>(itemGrouped(), JEntities.CAPYBARA_TYPE, 7));
         registerItem("crystal_apple", "Crystal Apple", () -> new CrystalAppleItem(itemGrouped().food(JFoods.CRYSTAL_APPLE).rarity(Rarity.EPIC)));
         registerItem("frostborn_soul", "Frostborn Soul");
-        registerItem("ice_amulet", "Ice Amulet", () -> new IceAmuletItem(itemGrouped().stacksTo(1)));
+        registerItem("ice_amulet", "Amulet of Glacial Bloodlust", () -> new IceAmuletItem(itemGrouped().stacksTo(1)));
 
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(itemGrouped(),
                 (world, thrower) -> new FloroMudEntity(JEntities.FLORO_MUD_TYPE, world, thrower, 0.0F)).setSound(() -> SoundEvents.SNOWBALL_THROW));

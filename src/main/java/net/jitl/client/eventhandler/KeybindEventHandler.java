@@ -12,7 +12,7 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.lwjgl.glfw.GLFW;
 
-import static net.jitl.client.eventhandler.IsometricCameraHandler.handleIsometricCameraKeys;
+import static net.jitl.client.isometric.IsometricCameraHandler.handleIsometricCameraKeys;
 
 public class KeybindEventHandler {
 
