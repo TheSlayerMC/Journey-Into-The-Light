@@ -10,7 +10,6 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.GL_BGR;
 
 public class RenderTargetCapturer {
-
     private static final int BPP = 3; // bytes per pixel
     private static final int TYPE = GL_UNSIGNED_BYTE;
     private static final Minecraft MC = Minecraft.getInstance();
@@ -59,7 +58,7 @@ public class RenderTargetCapturer {
     }
 
     private Dimension getCurrentDimension() {
-        return new Dimension(MC.getWindow().getGuiScaledWidth(), MC.getWindow().getGuiScaledHeight());
+        return new Dimension(MC.getWindow().getWidth(), MC.getWindow().getHeight());
     }
 
     public void capture() {
@@ -79,9 +78,10 @@ public class RenderTargetCapturer {
 
         int format = flipColors ? GL_BGR : GL_RGB;
 
+        RenderTarget renderTarget = MC.getMainRenderTarget();
+
         // read texture from framebuffer if enabled, otherwise use slower glReadPixels
-        if (MC.getMainRenderTarget().frameBufferId >= 0) {
-            RenderTarget renderTarget = MC.getMainRenderTarget();
+        if (renderTarget.frameBufferId >= 0) {
             glBindTexture(GL_TEXTURE_2D, renderTarget.getColorTextureId());
             glGetTexImage(GL_TEXTURE_2D, 0, format, TYPE, bb);
         } else {
