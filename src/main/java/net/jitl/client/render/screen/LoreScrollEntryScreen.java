@@ -305,7 +305,7 @@ public class LoreScrollEntryScreen extends Screen {
             red = DrawHelper.getRed(SLIDER_PATH_COLOR);
             green = DrawHelper.getGreen(SLIDER_PATH_COLOR);
             blue = DrawHelper.getBlue(SLIDER_PATH_COLOR);
-            worldr.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+            worldr.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
             worldr.vertex(scrollButtonLeftTop, this.bottom, 0.0D).uv(0.0F, 1.0F).color(red, green, blue, alpha).endVertex();
             worldr.vertex(scrollButtonRightTop, this.bottom, 0.0D).uv(1.0F, 1.0F).color(red, green, blue, alpha).endVertex();
             worldr.vertex(scrollButtonRightTop, this.top, 0.0D).uv(1.0F, 0.0F).color(red, green, blue, alpha).endVertex();
@@ -348,13 +348,9 @@ public class LoreScrollEntryScreen extends Screen {
                 mouseY >= this.top && mouseY <= this.bottom;
         if (!isHovering)
             return false;
-        MouseHandler mouseHandler = new MouseHandler(minecraft);
-        int scroll = 0; //(int) mouseHandler.accumulatedScroll; //fixme check correct scroll velocity
 
-        //if (mouseScrolled(mouseX, mouseY, delta_)) {
-        this.scrollDistance += (-1 * scroll / 120.0F) * 10;
-        JITL.LOGGER.info(scroll);
-        //}
+        this.scrollDistance += (-1 * delta_) * 2;
+
         return super.mouseScrolled(mouseX_, mouseY_, delta_);
     }
 

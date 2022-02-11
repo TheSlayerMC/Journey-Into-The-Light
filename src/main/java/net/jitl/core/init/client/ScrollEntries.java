@@ -23,11 +23,22 @@ public class ScrollEntries {
             .addTextComponent("scroll.jitl.chap1.my_last_words")
             .build();
 
+    public static final ScrollEntry TEST = new ScrollEntryBuilder("test", "test", "Testing. test. this is a test. this is test yeah this test hey", () -> new ItemStack(JBlocks.GOLDITE_STONE), 10, 10)
+            .addTextComponent("heyyyy. this is a really long text message. this is to test the scroll bar and image components. " +
+                    "anyway, how are you? what are you up to? whats up? im prpetty good. things are going good. this needs to be way longer " +
+                    "AHHHHHHHHHHHH AHA hahahahahah HEHEYEYEYEYYEH HAHAHAHAH heheyeyeh HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH HEYEYEYEYEYYEEY HEYEYY" +
+                    "HWHAHHTHATHTH WHWEAT WHAT WHAT WHAT WHAT")
+            .addComponent(new SentryKingComponent())
+            .build();
+
     public static void register() {
         ScrollAPI.registerCategory(new ScrollCategory("SENTRY_GOSPEL", BG));
         ScrollAPI.registerEntry("SENTRY_GOSPEL", SENTERIAN_GOSPEL);
 
         ScrollAPI.registerCategory(new ScrollCategory("MY_LAST_WORDS", BG));
         ScrollAPI.registerEntry("MY_LAST_WORDS", MY_LAST_WORDS);
+
+        ScrollAPI.registerCategory(new ScrollCategory("TEST", BG));
+        ScrollAPI.registerEntry("TEST", TEST);
     }
 }

@@ -27,7 +27,7 @@ public class TestBugItem extends Item {
         //ConfiguredFeature<BlockStateFeatureConfig, ?> configuredfeature = JFeatures.TORRID_CRYSTAL.get().configured(new BlockStateFeatureConfig(JBlocks.TORRID_CRYSTAL.defaultBlockState()));
         if (!worldIn.isClientSide()) {
             ItemStack scrollStack = new ItemStack(JItems.LORE_SCROLL);
-            LoreScrollItem.bindScrollEntry(scrollStack, ScrollEntries.SENTERIAN_GOSPEL, EnumKnowledgeType.SENTERIAN, 50F);
+            LoreScrollItem.bindScrollEntry(scrollStack, ScrollEntries.TEST, EnumKnowledgeType.SENTERIAN, 50F);
             playerIn.addItem(scrollStack);
 
             if (worldIn instanceof ServerLevel serverLevel) {
