@@ -733,7 +733,7 @@ public class BlockRegistrator {
         REGISTER.register(name, blockSupplier)
                 .name(enName)
                 .defaultBlockItem(JTabs.BLOCKS)
-                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
+                .renderLayer(() -> RenderTypeWrappers.TRANSLUCENT)
                 .model(JITL.bml("block/" + name + "_noside"), () -> JBlockModels.barCap(JITL.tl("block/" + name)))
                 .model(JITL.bml("block/" + name + "_noside_alt"), () -> JBlockModels.barCapAlt(JITL.tl("block/" + name)))
                 .model(JITL.bml("block/" + name + "_post"), () -> JBlockModels.barPost(JITL.tl("block/" + name)))
