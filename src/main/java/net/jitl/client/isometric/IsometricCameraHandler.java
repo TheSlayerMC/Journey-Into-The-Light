@@ -31,7 +31,7 @@ public class IsometricCameraHandler {
     private static double XAXIS = 0, YAXIS = 0;
 
     //Sets the default (NW) camera rotation to match the isometric view
-    private static float XROT = 135, YROT = 30;
+    private static float XROT, YROT;
 
     //Counts the player angle snap timer
     private static int PLAYER_ANGLE_SNAP_TIMER = 0;
@@ -100,7 +100,6 @@ public class IsometricCameraHandler {
          */
         else if (key == keyMoveCameraUp.getKey()) {
             YAXIS += keyAmplifier;
-
         }
 
         /*
@@ -109,7 +108,6 @@ public class IsometricCameraHandler {
          */
         else if (key == keyMoveCameraDown.getKey()) {
             YAXIS -= keyAmplifier;
-
         }
 
         /*
@@ -118,7 +116,6 @@ public class IsometricCameraHandler {
          */
         else if (key == keyMoveCameraRight.getKey()) {
             XAXIS += keyAmplifier;
-
         }
 
         /*
@@ -129,12 +126,15 @@ public class IsometricCameraHandler {
             XAXIS -= keyAmplifier;
 
             //FIXME make better
-        /*} else if (key == keyRotateCameraClockwise.getKey()) {
-            XROT += keyAmplifier;
+        } else if (key == keyRotateCameraClockwise.getKey()) {
+            YROT += keyAmplifier;
+
+            PLAYER_ANGLE_SNAP_TIMER = 1;
 
         } else if (key == keyRotateCameraCounterClockwise.getKey()) {
-            XROT -= keyAmplifier;*/
+            YROT -= keyAmplifier;
 
+            PLAYER_ANGLE_SNAP_TIMER = 1;
         }
 
         /*
@@ -142,8 +142,9 @@ public class IsometricCameraHandler {
         The default XROT of the NW position is 135
          */
         else if (key == keyResetRotation.getKey()) {
-            XROT = 135;
+            YROT = 0;
 
+            PLAYER_ANGLE_SNAP_TIMER = 1;
         }
 
         /*
@@ -152,19 +153,19 @@ public class IsometricCameraHandler {
         else if (key == keyResetCameraPosition.getKey()) {
             XAXIS = 0;
             YAXIS = 0;
-
         }
 
         /*
         Resets to position of the camera back to [0, 0], resets the X and Y rotation of the camera back to the NW position, and resets the zoom delta
          */
         else if (key == keyResetAll.getKey()) {
-            XROT = 135;
-            YROT = 30;
+            XROT = 0;
+            YROT = 0;
             XAXIS = 0;
             YAXIS = 0;
             DELTA = 0;
 
+            PLAYER_ANGLE_SNAP_TIMER = 1;
         }
 
         /*
@@ -192,6 +193,9 @@ public class IsometricCameraHandler {
                 config.GUI_CATEGORY.setIsometricAngleSnap(snaps.get(0));
             }
 
+            XROT = 0;
+            YROT = 0;
+
             PLAYER_ANGLE_SNAP_TIMER = 1;
         }
     }
@@ -207,6 +211,9 @@ public class IsometricCameraHandler {
 
         GameRenderer gameRenderer = event.getRenderer();
 
+        float xRot = 30 + XROT;
+        float yRot = -YROT;
+
         if (clientConfig.GUI_CATEGORY.isIsometricFOVEnabled()) {
             Camera camera = event.getCamera();
 
@@ -220,20 +227,20 @@ public class IsometricCameraHandler {
 
                 if (PLAYER_ANGLE_SNAP_TIMER == 1) {
                     if (angleSnap == IsometricAngleSnap.NORTH_WEST) {
-                        player.setYRot((float) 1215);
-                        player.setXRot(30);
+                        player.setYRot(135 + yRot);
+                        player.setXRot(xRot);
 
                     } else if (angleSnap == IsometricAngleSnap.SOUTH_WEST) {
-                        player.setYRot((float) 1125);
-                        player.setXRot(30);
+                        player.setYRot((float) 1125 + yRot);
+                        player.setXRot(xRot);
 
                     } else if (angleSnap == IsometricAngleSnap.NORTH_EAST) {
-                        player.setYRot((float) 945);
-                        player.setXRot(30);
+                        player.setYRot((float) 1305 + yRot);
+                        player.setXRot(xRot);
 
                     } else if (angleSnap == IsometricAngleSnap.SOUTH_EAST) {
-                        player.setYRot((float) 1035);
-                        player.setXRot(30);
+                        player.setYRot((float) 1035 + yRot);
+                        player.setXRot(xRot);
                     }
 
                     PLAYER_ANGLE_SNAP_TIMER = 0;
@@ -245,16 +252,16 @@ public class IsometricCameraHandler {
              */
             if (clientConfig.GUI_CATEGORY.isIsometricPerspectiveLocked()) {
                 if (angleSnap == IsometricAngleSnap.NORTH_WEST) {
-                    camera.setRotation(XROT, YROT);
+                    camera.setRotation(135 + yRot, xRot);
 
                 } else if (angleSnap == IsometricAngleSnap.SOUTH_WEST) {
-                    camera.setRotation(1125, YROT);
+                    camera.setRotation(1125 + yRot, xRot);
 
                 } else if (angleSnap == IsometricAngleSnap.NORTH_EAST) {
-                    camera.setRotation(1305, YROT);
+                    camera.setRotation(1305 + yRot, xRot);
 
                 } else if (angleSnap == IsometricAngleSnap.SOUTH_EAST) {
-                    camera.setRotation(1035, YROT);
+                    camera.setRotation(1035 + yRot, xRot);
                 }
             }
 
