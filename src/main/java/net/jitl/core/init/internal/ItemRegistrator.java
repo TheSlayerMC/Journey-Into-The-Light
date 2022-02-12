@@ -172,7 +172,7 @@ public class ItemRegistrator {
         registerItem("storon_gemstone", "Storon Gemstone");
 
         //DEVELOPER ITEMS
-        registerItem("test_bug", "Test Bug", TestBugItem::new);
+        registerItem("test_bug", "Test Bug", DebugItem::new);
         registerHandheldItem("creative_sword", "Creative Sword", () -> new JSwordItem(JToolTiers.CREATIVE, BASIC));
 
         //Mat armor and tools

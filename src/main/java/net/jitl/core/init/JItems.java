@@ -1,8 +1,8 @@
 package net.jitl.core.init;
 
+import net.jitl.common.item.DebugItem;
 import net.jitl.common.item.JFuelItem;
 import net.jitl.common.item.StaffItem;
-import net.jitl.common.item.TestBugItem;
 import net.jitl.common.item.interactive.LoreScrollItem;
 import net.jitl.core.JITL;
 import net.minecraft.world.item.Item;
@@ -81,7 +81,7 @@ public class JItems {
     public static final Item FLORO_PEDAL = promise();
     public static final Item FLORO_SEEDS = promise();
 
-    public static final TestBugItem TEST_BUG = promise();
+    public static final DebugItem TEST_BUG = promise();
 
     public static final StaffItem STAFF_OF_CONJURING = promise();
 

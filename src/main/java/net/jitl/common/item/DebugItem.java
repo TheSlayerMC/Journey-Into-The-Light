@@ -1,14 +1,10 @@
 package net.jitl.common.item;
 
 import net.jitl.client.render.overlay.internal.KnowledgeToast;
+import net.jitl.common.capability.dialog.DialogManager;
 import net.jitl.common.helper.EnumKnowledgeType;
-import net.jitl.common.item.interactive.LoreScrollItem;
-import net.jitl.core.JITL;
-import net.jitl.core.init.JItems;
-import net.jitl.core.init.client.ScrollEntries;
+import net.jitl.core.init.JDialogs;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -17,8 +13,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class TestBugItem extends Item {
-    public TestBugItem(Properties properties) {
+public class DebugItem extends Item {
+    public DebugItem(Properties properties) {
         super(properties);
     }
 
@@ -26,21 +22,22 @@ public class TestBugItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         //ConfiguredFeature<BlockStateFeatureConfig, ?> configuredfeature = JFeatures.TORRID_CRYSTAL.get().configured(new BlockStateFeatureConfig(JBlocks.TORRID_CRYSTAL.defaultBlockState()));
         if (!worldIn.isClientSide()) {
-            ItemStack scrollStack = new ItemStack(JItems.LORE_SCROLL);
-            LoreScrollItem.bindScrollEntry(scrollStack, ScrollEntries.TEST, EnumKnowledgeType.SENTERIAN, 50F);
-            playerIn.addItem(scrollStack);
-
-            if (worldIn instanceof ServerLevel serverLevel) {
-                var advancement = serverLevel.getServer().getServerResources().getAdvancements().getAdvancement(new ResourceLocation("minecraft:advancements/story/root"));
-                if (playerIn instanceof ServerPlayer serverPlayer) {
-                    if (advancement != null) {
-                        boolean isComplete = serverPlayer.getAdvancements().getOrStartProgress(advancement).isDone();
-                        if (isComplete) {
-                            JITL.LOGGER.info("Player has advancement");
-                        }
-                    }
-                }
-            }
+            DialogManager.of(((ServerPlayer) playerIn)).startDialog(JDialogs.test());
+//            ItemStack scrollStack = new ItemStack(JItems.LORE_SCROLL);
+//            LoreScrollItem.bindScrollEntry(scrollStack, ScrollEntries.TEST, EnumKnowledgeType.SENTERIAN, 50F);
+//            playerIn.addItem(scrollStack);
+//
+//            if (worldIn instanceof ServerLevel serverLevel) {
+//                var advancement = serverLevel.getServer().getServerResources().getAdvancements().getAdvancement(new ResourceLocation("minecraft:advancements/story/root"));
+//                if (playerIn instanceof ServerPlayer serverPlayer) {
+//                    if (advancement != null) {
+//                        boolean isComplete = serverPlayer.getAdvancements().getOrStartProgress(advancement).isDone();
+//                        if (isComplete) {
+//                            JITL.LOGGER.info("Player has advancement");
+//                        }
+//                    }
+//                }
+//            }
 
            /* List<ItemStack> loot = new ArrayList<>();
             loot.add(new ItemStack(JItems.LUNIUM_POWDER, 5));
