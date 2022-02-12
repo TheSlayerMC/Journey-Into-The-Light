@@ -23,6 +23,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 import java.util.Set;
 
 public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merchant, Enemy {
@@ -53,13 +54,14 @@ public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merc
         return offers;
     }
 
+    @Nullable
     protected abstract Int2ObjectMap<VillagerTrades.ItemListing[]> getVillagerTrades();
 
     @Nullable
     protected abstract Dialog getDialog();
 
     protected void provideTrades() {
-        VillagerTrades.ItemListing[] trades = getVillagerTrades().get(1);
+        VillagerTrades.ItemListing[] trades = Objects.requireNonNull(getVillagerTrades()).get(1);
         if (trades != null) {
             MerchantOffers merchantOffers = getOffers();
             addTrades(merchantOffers, trades);
