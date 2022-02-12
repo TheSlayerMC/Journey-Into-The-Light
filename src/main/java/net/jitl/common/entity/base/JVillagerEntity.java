@@ -2,8 +2,9 @@ package net.jitl.common.entity.base;
 
 import com.google.common.collect.Sets;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
+import net.jitl.common.capability.dialog.DialogManager;
+import net.jitl.common.dialog.Dialog;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -55,7 +56,7 @@ public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merc
     protected abstract Int2ObjectMap<VillagerTrades.ItemListing[]> getVillagerTrades();
 
     @Nullable
-    protected abstract Screen getDialogue(); //TODO: replace with page when dialogue is ported
+    protected abstract Dialog getDialogue(); //TODO: replace with page when dialogue is ported
 
     protected void provideTrades() {
         VillagerTrades.ItemListing[] trades = getVillagerTrades().get(1);
@@ -107,9 +108,8 @@ public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merc
                     return InteractionResult.sidedSuccess(level.isClientSide());
                 }
             } else {
-                if (level.isClientSide()) {
-                    Minecraft minecraft = Minecraft.getInstance();
-                    minecraft.setScreen(getDialogue());
+                if (!level.isClientSide()) {
+                    DialogManager.of(((ServerPlayer) playerEntity)).startDialog(getDialogue());
                 }
                 return InteractionResult.sidedSuccess(level.isClientSide());
             }

@@ -3,10 +3,10 @@ package net.jitl.common.entity.overworld;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.jitl.common.dialog.Dialog;
 import net.jitl.common.entity.base.JVillagerEntity;
 import net.jitl.common.entity.base.trades.CurrencyForItemsTrade;
 import net.jitl.core.init.JItems;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -18,6 +18,7 @@ import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import org.apache.commons.lang3.NotImplementedException;
 
 import javax.annotation.Nullable;
 
@@ -55,8 +56,8 @@ public class MageEntity extends JVillagerEntity {
 
     @Nullable
     @Override
-    protected Screen getDialogue() {
-        return null;
+    protected Dialog getDialogue() {
+        throw new NotImplementedException();//FIXME
     }
 
     public static AttributeSupplier.Builder createAttributes() {

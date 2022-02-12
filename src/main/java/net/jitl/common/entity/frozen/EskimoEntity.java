@@ -3,10 +3,10 @@ package net.jitl.common.entity.frozen;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.jitl.common.dialog.Dialog;
 import net.jitl.common.entity.base.JVillagerEntity;
 import net.jitl.common.entity.base.trades.CurrencyForItemsTrade;
 import net.jitl.core.init.JItems;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
@@ -42,7 +42,7 @@ public class EskimoEntity extends JVillagerEntity {
 
     @Nullable
     @Override
-    protected Screen getDialogue() {
+    protected Dialog getDialogue() {
         throw new NotImplementedException();//FIXME
     }
 
