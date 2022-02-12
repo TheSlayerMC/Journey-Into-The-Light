@@ -256,6 +256,88 @@ object JBlockStateResources {
     }
 
     @JvmStatic
+    fun paneState(post: BlockModelLocation, side: BlockModelLocation, side_alt: BlockModelLocation, noside: BlockModelLocation, noside_alt: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(
+            json {
+                "multipart"[
+                        {
+                            "apply" {
+                                "model" set post
+                            }
+                        },
+                        {
+                            "when" {
+                                "north" set "true"
+                            }
+                            "apply" {
+                                "model" set side
+                            }
+                        },
+                        {
+                            "when" {
+                                "east" set "true"
+                            }
+                            "apply" {
+                                "model" set side
+                                y = 90
+                            }
+                        },
+                        {
+                            "when" {
+                                "south" set "true"
+                            }
+                            "apply" {
+                                "model" set side_alt
+                            }
+                        },
+                        {
+                            "when" {
+                                "west" set "true"
+                            }
+                            "apply" {
+                                "model" set side_alt
+                                y = 90
+                            }
+                        },
+                        {
+                            "when" {
+                                "north" set "false"
+                            }
+                            "apply" {
+                                "model" set noside
+                            }
+                        },
+                        {
+                            "when" {
+                                "east" set "false"
+                            }
+                            "apply" {
+                                "model" set noside_alt
+                            }
+                        },
+                        {
+                            "when" {
+                                "south" set "false"
+                            }
+                            "apply" {
+                                "model" set noside_alt
+                                y = 90
+                            }
+                        },
+                        {
+                            "when" {
+                                "west" set "false"
+                            }
+                            "apply" {
+                                "model" set noside
+                                y = 270
+                            }
+                        }
+                ]
+            })
+    }
+
+    @JvmStatic
     fun fenceState(post: BlockModelLocation, side: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(
             json {

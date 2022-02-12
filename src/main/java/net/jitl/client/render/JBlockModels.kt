@@ -87,6 +87,49 @@ object JBlockModels {
     })
 
     @JvmStatic
+    fun paneSide(tex: TextureLocation, top: TextureLocation) = BlockModel(json {
+        "parent" set "minecraft:block/template_glass_pane_side"
+        "textures" {
+            "pane" set tex.toString()
+            "edge" set top.toString()
+        }
+    })
+
+    @JvmStatic
+    fun paneSideAlt(tex: TextureLocation, top: TextureLocation) = BlockModel(json {
+        "parent" set "minecraft:block/template_glass_pane_side_alt"
+        "textures" {
+            "pane" set tex.toString()
+            "edge" set top.toString()
+        }
+    })
+
+    @JvmStatic
+    fun panePost(tex: TextureLocation, top: TextureLocation) = BlockModel(json {
+        "parent" set "minecraft:block/template_glass_pane_post"
+        "textures" {
+            "pane" set tex.toString()
+            "edge" set top.toString()
+        }
+    })
+
+    @JvmStatic
+    fun paneNoSideAlt(tex: TextureLocation) = BlockModel(json {
+        "parent" set "minecraft:block/template_glass_pane_noside_alt"
+        "textures" {
+            "pane" set tex.toString()
+        }
+    })
+
+    @JvmStatic
+    fun paneNoSide(tex: TextureLocation) = BlockModel(json {
+        "parent" set "minecraft:block/template_glass_pane_noside"
+        "textures" {
+            "pane" set tex.toString()
+        }
+    })
+
+    @JvmStatic
     fun barSideAlt(tex: TextureLocation) = BlockModel(json {
         "parent" set "minecraft:block/iron_bars_side_alt"
         "textures" {
