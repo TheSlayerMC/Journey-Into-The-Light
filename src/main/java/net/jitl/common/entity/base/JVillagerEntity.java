@@ -55,7 +55,7 @@ public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merc
     protected abstract Int2ObjectMap<VillagerTrades.ItemListing[]> getVillagerTrades();
 
     @Nullable
-    protected abstract Screen getDialogue(); //TODO: replace with node when dialogue is ported
+    protected abstract Screen getDialogue(); //TODO: replace with page when dialogue is ported
 
     protected void provideTrades() {
         VillagerTrades.ItemListing[] trades = getVillagerTrades().get(1);
