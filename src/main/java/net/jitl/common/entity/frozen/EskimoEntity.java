@@ -3,11 +3,8 @@ package net.jitl.common.entity.frozen;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import net.jitl.client.dialogue.ClientDialoguePage;
-import net.jitl.client.render.gui.dialogue.DialogueScreen;
 import net.jitl.common.entity.base.JVillagerEntity;
 import net.jitl.common.entity.base.trades.CurrencyForItemsTrade;
-import net.jitl.core.JITL;
 import net.jitl.core.init.JItems;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.EntityType;
@@ -19,10 +16,9 @@ import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import org.apache.commons.lang3.NotImplementedException;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EskimoEntity extends JVillagerEntity {
 
@@ -47,11 +43,7 @@ public class EskimoEntity extends JVillagerEntity {
     @Nullable
     @Override
     protected Screen getDialogue() {
-        List<String> options = new ArrayList<>();
-        options.add("farts");
-        options.add("nuts");
-        options.add("butts");
-        return new DialogueScreen(new ClientDialoguePage(JITL.rl("eskimo"), "poop", options));
+        throw new NotImplementedException();//FIXME
     }
 
     public static AttributeSupplier.Builder createAttributes() {

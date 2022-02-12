@@ -1,35 +1,43 @@
-package net.jitl.client.render.gui.dialogue;
+package net.jitl.client.render.gui.dialog;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.jitl.client.dialogue.ClientDialoguePage;
 import net.jitl.client.render.gui.base.JScreen;
 import net.jitl.client.render.gui.button.NoTextureButton;
 import net.jitl.client.util.Rectangle;
+import net.jitl.client.util.RenderUtils;
+import net.jitl.common.dialog.ClientDialogPage;
+import net.jitl.common.dialog.DialogCharacter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class DialogueScreen extends JScreen {
+//TODO add close dialog c2s-packet to make the server know
+public class DialogScreen extends JScreen {
 
     private static final int INDENT = 6;
     private static final int INDENT_OFFSET = 8;
 
-    private final ClientDialoguePage node;
+    private final ClientDialogPage page;
+    @Nullable
+    private final LivingEntity entity;
 
     private Rectangle guiRect;
     private Rectangle mobIconRect;
     private Rectangle optionsRect;
     private Rectangle mobTextRect;
 
-    public DialogueScreen(ClientDialoguePage node) {
-        super(new TranslatableComponent("test"));
-        this.node = node;
+    public DialogScreen(ClientDialogPage page, @Nullable DialogCharacter character) {
+        super(TextComponent.EMPTY);
+        this.page = page;
+        this.entity = character != null ? character.entityType().create(getMinecraft().level) : null;
     }
 
     @Override
@@ -59,7 +67,7 @@ public class DialogueScreen extends JScreen {
         int allHeight = guiRect.bottom() - INDENT - optionsRect.top();
         int buttonHeight = 20;
 
-        List<String> options = node.getOptionTextKeys();
+        List<String> options = page.options();
 
         int optionsCenterY = optionsRect.top() + allHeight / 2;
         int indentCount = options.size() - 1;
@@ -93,23 +101,24 @@ public class DialogueScreen extends JScreen {
         renderDebugLayout(matrixStack, mouseX, mouseY, partialTicks);
 
         renderMobText();
-        renderEntity(width / (INDENT_OFFSET) * 6, (int) (mobIconRect.bottom() - mobIconRect.height() * -3.75F), mouseX, mouseY, node.getNpc());
+        if (entity != null) {
+            renderEntity(width / (INDENT_OFFSET) * 6, (int) (mobIconRect.bottom() - mobIconRect.height() * -3.75F), mouseX, mouseY, entity);
+        }
 
         super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 
     private void renderMobText() {
         //FIXME: replace with split string?
-        Component text = new TranslatableComponent(ChatFormatting.YELLOW + "" + ChatFormatting.ITALIC + node.getTextKey());
+        Component text = new TranslatableComponent(ChatFormatting.YELLOW + "" + ChatFormatting.ITALIC + page.text());
         font.drawWordWrap(text, mobTextRect.left() + INDENT * -(INDENT_OFFSET), mobTextRect.top() + INDENT + 48, Math.max(mobTextRect.width(), 2), 0xFFFFFF);
     }
 
     private void renderDebugLayout(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-        //TODO: outdated
-        /*RenderUtils.rectangle(poseStack, guiRect, 0xFF8851FF); // whole gui
+        RenderUtils.rectangle(poseStack, guiRect, 0xFF8851FF); // whole gui
         RenderUtils.rectangle(poseStack, mobIconRect, 0xFF194378); // mob icon background
         RenderUtils.rectangle(poseStack, mobTextRect, 0xFF963232); // mob text background
-        RenderUtils.rectangle(poseStack, optionsRect, 0x75000000); // options background*/
+        RenderUtils.rectangle(poseStack, optionsRect, 0x75000000); // options background
     }
 
     public static void renderEntity(int posX, int posY, float mouseX, float mouseY, LivingEntity entity) {
