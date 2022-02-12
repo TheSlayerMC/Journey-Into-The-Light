@@ -21,6 +21,8 @@ public class JSounds {
     public static final RegistryObject<SoundEvent> MUD_BLOCK_BREAK = REGISTER.register("block.mud.break");
     public static final RegistryObject<SoundEvent> MUD_BLOCK_DIG = REGISTER.register("block.mud.dig");
 
+    public static final RegistryObject<SoundEvent> EPIC_SOUND_0 = REGISTER.register("misc.epic_sound_0");
+
     public static final RegistryObject<SoundEvent> POTTERY_BREAK = REGISTER.register("block.pottery.break");
     public static final RegistryObject<SoundEvent> POTTERY_DIG = REGISTER.register("block.pottery.dig");
     public static final RegistryObject<SoundEvent> BOTTLE_PLUG = REGISTER.register("items.bottle_plug");

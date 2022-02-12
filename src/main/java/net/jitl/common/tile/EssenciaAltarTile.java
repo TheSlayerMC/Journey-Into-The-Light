@@ -134,7 +134,8 @@ public class EssenciaAltarTile extends SyncableTile {
         essenciaBoltEntity.setARGB(0xff4800);
         essenciaBoltEntity.setVisualOnly(true);
         world.addFreshEntity(essenciaBoltEntity);
-        world.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundSource.BLOCKS, 1.0F, random.nextFloat() + 0.5F);
+        world.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundSource.BLOCKS, 100.0F, random.nextFloat() + 0.5F);
+        world.playSound(null, pos, JSounds.EPIC_SOUND_0.get(), SoundSource.BLOCKS, 10000.0F, 1.0F);
     }
 
     public void spawnParticles(Level worldIn, BlockPos pos) {

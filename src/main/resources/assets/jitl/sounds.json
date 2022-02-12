@@ -18,6 +18,11 @@
     ],
     "subtitle": "subtitles.block.generic.break"
   },
+  "misc.epic_sound_0": {
+    "sounds": [
+      "jitl:misc/epic_sound_0"
+    ]
+  },
   "block.icicle.break": {
     "sounds": [
       "jitl:blocks/break/icicle_1",
