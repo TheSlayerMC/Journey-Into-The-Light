@@ -87,6 +87,65 @@ object JBlockModels {
     })
 
     @JvmStatic
+    fun barSideAlt(tex: TextureLocation) = BlockModel(json {
+        "parent" set "minecraft:block/iron_bars_side_alt"
+        "textures" {
+            "particle" set tex.toString()
+            "bars" set tex.toString()
+            "edge" set tex.toString()
+        }
+    })
+
+    @JvmStatic
+    fun barSide(tex: TextureLocation) = BlockModel(json {
+        "parent" set "minecraft:block/iron_bars_side"
+        "textures" {
+            "particle" set tex.toString()
+            "bars" set tex.toString()
+            "edge" set tex.toString()
+        }
+    })
+
+    @JvmStatic
+    fun barCap(tex: TextureLocation) = BlockModel(json {
+        "parent" set "minecraft:block/iron_bars_cap"
+        "textures" {
+            "particle" set tex.toString()
+            "bars" set tex.toString()
+            "edge" set tex.toString()
+        }
+    })
+
+    @JvmStatic
+    fun barCapAlt(tex: TextureLocation) = BlockModel(json {
+        "parent" set "minecraft:block/iron_bars_cap_alt"
+        "textures" {
+            "particle" set tex.toString()
+            "bars" set tex.toString()
+            "edge" set tex.toString()
+        }
+    })
+
+    @JvmStatic
+    fun barPost(tex: TextureLocation) = BlockModel(json {
+        "parent" set "minecraft:block/iron_bars_post"
+        "textures" {
+            "particle" set tex.toString()
+            "bars" set tex.toString()
+        }
+    })
+
+    @JvmStatic
+    fun barPostEnd(tex: TextureLocation) = BlockModel(json {
+        "parent" set "minecraft:block/iron_bars_post_ends"
+        "textures" {
+            "particle" set tex.toString()
+            "edge" set tex.toString()
+        }
+    })
+
+
+    @JvmStatic
     fun fencePost(tex: TextureLocation) = BlockModel(json {
         "parent" set "minecraft:block/fence_post"
         "textures" {

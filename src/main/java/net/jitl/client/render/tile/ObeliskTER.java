@@ -29,7 +29,7 @@ public class ObeliskTER implements BlockEntityRenderer<ObeliskTile> {
     @Override
     public void render(ObeliskTile tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         float timeD = (float) (360.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) / 16;
-        float yOffset = 1.0F;
+        float yOffset = 1.2F;
         renderPart(matrixStackIn, top, bufferIn, timeD, combinedLightIn, combinedOverlayIn, yOffset);
         renderPart(matrixStackIn, bottom, bufferIn, -timeD, combinedLightIn, combinedOverlayIn, 0);
     }

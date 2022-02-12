@@ -470,6 +470,8 @@ public class BlockRegistrator {
         registerSpeciallyRenderedBlock("clay_vase", "Clay Vase", ClayVaseBlock::new);
 
         registerOrientableRenderedBlock("boil_lock", "Boiling Lock", LockBlock::new, "boil_lock_top", "boil_lock_side", "boil_lock_front");
+
+        registerBarBlock("boiling_bars", "Boiling Bars", () -> new IronBarsBlock(JBlockProperties.STONE_PROPS.create()));
     }
 
     public static void registerWoodType(String name, String enName, String saplingName, String saplingEnName, AbstractTreeGrower tree) {
@@ -706,6 +708,22 @@ public class BlockRegistrator {
                 .model(JITL.bml("block/" + name), () -> JBlockModels.button(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_pressed"), () -> JBlockModels.buttonPressed(JITL.tl("block/" + textureName)))
                 .model(JITL.bml("block/" + name + "_inventory"), () -> JBlockModels.buttonInventory(JITL.tl("block/" + textureName)));
+    }
+
+    private static void registerBarBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
+                .model(JITL.bml("block/" + name + "_cap"), () -> JBlockModels.barCap(JITL.tl("block/" + name)))
+                .model(JITL.bml("block/" + name + "_cap_alt"), () -> JBlockModels.barCapAlt(JITL.tl("block/" + name)))
+                .model(JITL.bml("block/" + name + "_post"), () -> JBlockModels.barPost(JITL.tl("block/" + name)))
+                .model(JITL.bml("block/" + name + "_post_ends"), () -> JBlockModels.barPostEnd(JITL.tl("block/" + name)))
+                .model(JITL.bml("block/" + name + "_side"), () -> JBlockModels.barSide(JITL.tl("block/" + name)))
+                .model(JITL.bml("block/" + name + "_side_alt"), () -> JBlockModels.barSideAlt(JITL.tl("block/" + name)))
+                .state(JBlockStateResources.barState(JITL.bml("block/" + name + "_post"), JITL.bml("block/" + name + "_post_ends")
+                        , JITL.bml("block/" + name + "_cap"), JITL.bml("block/" + name + "_cap_alt")
+                        , JITL.bml("block/" + name + "_side"), JITL.bml("block/" + name + "_side_alt")));
     }
 
     private static void registerFenceBlock(String name, String enName, String textureName, Supplier<Block> blockSupplier) {

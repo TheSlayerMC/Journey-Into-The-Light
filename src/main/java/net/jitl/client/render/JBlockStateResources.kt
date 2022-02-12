@@ -151,10 +151,114 @@ object JBlockStateResources {
     }
 
     @JvmStatic
+    fun barState(post: BlockModelLocation, post_end: BlockModelLocation, cap: BlockModelLocation, cap_alt: BlockModelLocation, side: BlockModelLocation, side_alt: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(
+            json {
+                "multipart"[
+                        {
+                            "apply" {
+                                "model" set post_end
+                            }
+                        },
+                        {
+                            "when" {
+                                "north" set "false"
+                                "west" set "false"
+                                "south" set "false"
+                                "east" set "false"
+                            }
+                            "apply" {
+                                "model" set post
+                            }
+                        },
+                        {
+                            "when" {
+                                "north" set "true"
+                                "west" set "false"
+                                "south" set "false"
+                                "east" set "false"
+                            }
+                            "apply" {
+                                "model" set cap
+                            }
+                        },
+                        {
+                            "when" {
+                                "north" set "false"
+                                "west" set "false"
+                                "south" set "false"
+                                "east" set "true"
+                            }
+                            "apply" {
+                                "model" set cap
+                                y = 90
+                            }
+                        },
+                        {
+                            "when" {
+                                "north" set "false"
+                                "west" set "false"
+                                "south" set "true"
+                                "east" set "false"
+                            }
+                            "apply" {
+                                "model" set cap_alt
+                            }
+                        },
+                        {
+                            "when" {
+                                "north" set "false"
+                                "west" set "true"
+                                "south" set "false"
+                                "east" set "false"
+                            }
+                            "apply" {
+                                "model" set cap_alt
+                                y = 90
+                            }
+                        },
+                        {
+                            "when" {
+                                "north" set "true"
+                            }
+                            "apply" {
+                                "model" set side
+                            }
+                        },
+                        {
+                            "when" {
+                                "east" set "true"
+                            }
+                            "apply" {
+                                "model" set side
+                                y = 90
+                            }
+                        },
+                        {
+                            "when" {
+                                "south" set "true"
+                            }
+                            "apply" {
+                                "model" set side_alt
+                            }
+                        },
+                        {
+                            "when" {
+                                "west" set "true"
+                            }
+                            "apply" {
+                                "model" set side_alt
+                                y = 90
+                            }
+                        }
+                    ]
+            })
+    }
+
+    @JvmStatic
     fun fenceState(post: BlockModelLocation, side: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(
-            json
-            {
+            json {
                 "multipart"[
                         {
                             "apply" {
