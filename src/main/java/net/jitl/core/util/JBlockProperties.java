@@ -301,6 +301,11 @@ public class JBlockProperties {
             .sound(JSoundTypes.FUMICE)
             .strength(2.0F, 3.0F));
 
+    public static final BlockPropsFactory GLASS_PANE = new BlockPropsFactory(() -> Properties.of(Material.GLASS)
+            .sound(SoundType.GLASS)
+            .strength(0.3F)
+            .noOcclusion());
+
 
     private static boolean never(BlockState state, BlockGetter reader, BlockPos pos) {
         return false;
