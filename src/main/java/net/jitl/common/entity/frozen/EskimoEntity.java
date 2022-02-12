@@ -42,7 +42,7 @@ public class EskimoEntity extends JVillagerEntity {
 
     @Nullable
     @Override
-    protected Dialog getDialogue() {
+    protected Dialog getDialog() {
         throw new NotImplementedException();//FIXME
     }
 

@@ -56,7 +56,7 @@ public class MageEntity extends JVillagerEntity {
 
     @Nullable
     @Override
-    protected Dialog getDialogue() {
+    protected Dialog getDialog() {
         throw new NotImplementedException();//FIXME
     }
 

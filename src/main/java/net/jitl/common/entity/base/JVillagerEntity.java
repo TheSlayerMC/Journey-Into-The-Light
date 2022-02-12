@@ -56,7 +56,7 @@ public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merc
     protected abstract Int2ObjectMap<VillagerTrades.ItemListing[]> getVillagerTrades();
 
     @Nullable
-    protected abstract Dialog getDialogue(); //TODO: replace with page when dialogue is ported
+    protected abstract Dialog getDialog(); //TODO: replace with page when dialogue is ported
 
     protected void provideTrades() {
         VillagerTrades.ItemListing[] trades = getVillagerTrades().get(1);
@@ -97,7 +97,7 @@ public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merc
     @Override
     public InteractionResult mobInteract(Player playerEntity, InteractionHand playerHand) {
         if (isAlive() && this.playerEntity == null) {
-            if (getDialogue() == null) {
+            if (getDialog() == null) {
                 if (getOffers().isEmpty()) {
                     return InteractionResult.sidedSuccess(level.isClientSide());
                 } else {
@@ -109,7 +109,7 @@ public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merc
                 }
             } else {
                 if (!level.isClientSide()) {
-                    DialogManager.of(((ServerPlayer) playerEntity)).startDialog(getDialogue());
+                    DialogManager.of(((ServerPlayer) playerEntity)).startDialog(getDialog());
                 }
                 return InteractionResult.sidedSuccess(level.isClientSide());
             }
