@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldGenerationContext;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
@@ -46,6 +47,11 @@ public class BoilLockStructure extends StructureFeature<RangeConfiguration> {
 
     public BoilLockStructure(Codec<RangeConfiguration> configCodec_) {
         super(configCodec_, BoilLockStructure::generatePieces);
+    }
+
+    @Override
+    public GenerationStep.Decoration step() {
+        return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
     private static Optional<PieceGenerator<RangeConfiguration>> generatePieces(PieceGeneratorSupplier.Context<RangeConfiguration> context_) {
