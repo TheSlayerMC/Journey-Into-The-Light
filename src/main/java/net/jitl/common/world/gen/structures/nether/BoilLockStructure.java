@@ -5,15 +5,22 @@ import com.mojang.serialization.Codec;
 import net.jitl.core.JITL;
 import net.jitl.core.init.world.JStructurePieces;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.QuartPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.EmptyBlockGetter;
+import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.levelgen.WorldGenerationContext;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.RangeConfiguration;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.StructurePieceAccessor;
@@ -21,14 +28,14 @@ import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
-import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
-public class BoilLockStructure extends StructureFeature<NoneFeatureConfiguration> {
+public class BoilLockStructure extends StructureFeature<RangeConfiguration> {
 
     public static final ResourceLocation LOCK = JITL.rl("boil/boil_lock");
 
@@ -37,21 +44,39 @@ public class BoilLockStructure extends StructureFeature<NoneFeatureConfiguration
             LOCK, new BlockPos(0, -1, 0)
     );
 
-    public BoilLockStructure(Codec<NoneFeatureConfiguration> configCodec_) {
-        super(configCodec_, PieceGeneratorSupplier.simple(PieceGeneratorSupplier.checkForBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG), BoilLockStructure::generatePieces));
+    public BoilLockStructure(Codec<RangeConfiguration> configCodec_) {
+        super(configCodec_, BoilLockStructure::generatePieces);
     }
 
-    private static void generatePieces(StructurePiecesBuilder collector_, PieceGenerator.Context<NoneFeatureConfiguration> context_) {
-        BlockPos blockPos = context_.chunkPos().getWorldPosition();
-        int landHeight = context_.chunkGenerator().getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context_.heightAccessor());
-        BlockPos blockpos = new BlockPos(context_.chunkPos().getMinBlockX(), landHeight - 1, context_.chunkPos().getMinBlockZ());
-        Rotation rotation = Rotation.getRandom(context_.random());
-        BoilLockStructure.addPieces(context_.structureManager(), blockpos, rotation, collector_, context_.random());
-    }
-
-    @Override
-    public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.UNDERGROUND_STRUCTURES;
+    private static Optional<PieceGenerator<RangeConfiguration>> generatePieces(PieceGeneratorSupplier.Context<RangeConfiguration> context_) {
+        WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0L));
+        random.setLargeFeatureSeed(context_.seed(), context_.chunkPos().x, context_.chunkPos().z);
+        int i = context_.chunkPos().getMinBlockX() + random.nextInt(16);
+        int j = context_.chunkPos().getMinBlockZ() + random.nextInt(16);
+        int k = context_.chunkGenerator().getSeaLevel();
+        Rotation rotation = Rotation.getRandom(random);
+        WorldGenerationContext worldgenerationcontext = new WorldGenerationContext(context_.chunkGenerator(), context_.heightAccessor());
+        int l = (context_.config()).height.sample(random, worldgenerationcontext);
+        NoiseColumn noisecolumn = context_.chunkGenerator().getBaseColumn(i, j, context_.heightAccessor());
+        BlockPos.MutableBlockPos mbp = new BlockPos.MutableBlockPos(i, l, j);
+        while(l > k) {
+            BlockState blockstate = noisecolumn.getBlock(l);
+            l--;
+            BlockState blockstate1 = noisecolumn.getBlock(l);
+            if (blockstate.isAir() && (blockstate1.is(Blocks.SOUL_SAND) || (blockstate1.is(Blocks.NETHERRACK) || blockstate1.isFaceSturdy(EmptyBlockGetter.INSTANCE, mbp.setY(l), Direction.UP)))) {
+                break;
+            }
+        }
+        if (l <= k) {
+            return Optional.empty();
+        } else if (!context_.validBiome().test(context_.chunkGenerator().getNoiseBiome(QuartPos.fromBlock(i), QuartPos.fromBlock(l), QuartPos.fromBlock(j)))) {
+            return Optional.empty();
+        } else {
+            BlockPos blockpos = new BlockPos(i, l, j);
+            return Optional.of((structurePiecesBuilder_, context1_) -> {
+                BoilLockStructure.addPieces(context_.structureManager(),blockpos, rotation, structurePiecesBuilder_, random);
+            });
+        }
     }
 
     public static void addPieces(StructureManager structureManager, BlockPos pos, Rotation rotation, StructurePieceAccessor pieces, Random random) {
