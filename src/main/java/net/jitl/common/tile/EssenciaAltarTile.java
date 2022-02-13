@@ -134,6 +134,8 @@ public class EssenciaAltarTile extends SyncableTile {
         EssenciaBoltEntity essenciaBoltEntity = new EssenciaBoltEntity(JEntities.ESSENCIA_BOLT_TYPE, world);
         essenciaBoltEntity.setPos(pos.getX(), pos.above().getY(), pos.getZ());
         essenciaBoltEntity.setARGB(0xff4800);
+        essenciaBoltEntity.setThunderVolume(10000.0F);
+        essenciaBoltEntity.setStrikeVolume(0.25F);
         essenciaBoltEntity.setVisualOnly(true);
         world.addFreshEntity(essenciaBoltEntity);
         world.playSound(null, pos, JSounds.RUNE_ACTIVATE.get(), SoundSource.BLOCKS, 100.0F, random.nextFloat() + 0.5F);
