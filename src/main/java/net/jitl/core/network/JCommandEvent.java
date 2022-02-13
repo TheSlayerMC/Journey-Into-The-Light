@@ -25,7 +25,12 @@ public class JCommandEvent {
         LiteralArgumentBuilder<CommandSourceStack> jCommand = Commands.literal("jitl").requires((com) -> com.hasPermission(1));
         LiteralArgumentBuilder<CommandSourceStack> dim = jCommand.then(Commands.literal("dimension"));
 
+        dim.then(Commands.literal("overworld").executes(command -> changeDim(Objects.requireNonNull(command.getSource().getEntity()), Level.OVERWORLD)));
+        dim.then(Commands.literal("nether").executes(command -> changeDim(Objects.requireNonNull(command.getSource().getEntity()), Level.NETHER)));
+        dim.then(Commands.literal("end").executes(command -> changeDim(Objects.requireNonNull(command.getSource().getEntity()), Level.END)));
+        dim.then(Commands.literal("boil").executes(command -> changeDim(Objects.requireNonNull(command.getSource().getEntity()), Dimensions.BOIL)));
         dim.then(Commands.literal("euca").executes(command -> changeDim(Objects.requireNonNull(command.getSource().getEntity()), Dimensions.EUCA)));
+        dim.then(Commands.literal("frozen").executes(command -> changeDim(Objects.requireNonNull(command.getSource().getEntity()), Dimensions.FROZEN_LANDS)));
 
         dispatcher.register(jCommand);
         dispatcher.register(dim);
