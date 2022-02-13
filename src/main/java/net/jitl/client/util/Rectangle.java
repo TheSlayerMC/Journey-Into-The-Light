@@ -14,7 +14,7 @@ public class Rectangle {
         this.bottom = bottom;
     }
 
-    public static Rectangle createWithWidthHeight(int left, int top, int width, int height) {
+    public static Rectangle fromWidthAndHeight(int left, int top, int width, int height) {
         return new Rectangle(left, top, left + width, top + height);
     }
 
