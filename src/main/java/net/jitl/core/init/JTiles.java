@@ -50,7 +50,6 @@ public class JTiles {
 
             REGISTER.registerSingleBound("blood_rune", BloodRuneTile::new, () -> JBlocks.EMPTY_BLOOD_RUNE).regCustomRenderer(() -> BloodRuneTER::new);
 
-            //TODO simplify? all rune tiles are identical
             REGISTER.registerSingleBound("blood_rune_flesh", BloodRuneFleshTile::new, () -> JBlocks.BLOOD_RUNE_FLESH).regCustomRenderer(() -> BloodRuneTER::new);
             REGISTER.registerSingleBound("blood_rune_soul", BloodRuneSoulTile::new, () -> JBlocks.BLOOD_RUNE_SOUL).regCustomRenderer(() -> BloodRuneTER::new);
             REGISTER.registerSingleBound("blood_rune_life", BloodRuneLifeTile::new, () -> JBlocks.BLOOD_RUNE_LIFE).regCustomRenderer(() -> BloodRuneTER::new);
