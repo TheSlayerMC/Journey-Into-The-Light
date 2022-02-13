@@ -15,9 +15,11 @@ import net.minecraft.data.worldgen.PlainVillagePools;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RangeConfiguration;
+import net.minecraft.world.level.levelgen.heightproviders.UniformHeight;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 import ru.timeconqueror.timecore.api.registry.StructureFeatureRegister;
@@ -93,7 +95,7 @@ public class JStructures {
                     .asHolder();
 
     public static final StructureFeatureRegister.StructureHolder<RangeConfiguration, BoilLockStructure> BOIL_LOCK =
-            REGISTER.register("boil_lock", BoilLockStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(10, 5), RangeConfiguration.CODEC, RangeConfiguration.NONE)
+            REGISTER.register("boil_lock", BoilLockStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(10, 5), RangeConfiguration.CODEC, new RangeConfiguration(UniformHeight.of(VerticalAnchor.absolute(64), VerticalAnchor.belowTop(2))))
                     .transformsSurroundingLand()
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.NETHER)
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
