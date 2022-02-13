@@ -51,7 +51,7 @@ public class BoilLockStructure extends StructureFeature<RangeConfiguration> {
 
     @Override
     public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.SURFACE_STRUCTURES;
+        return GenerationStep.Decoration.UNDERGROUND_DECORATION;
     }
 
     private static Optional<PieceGenerator<RangeConfiguration>> generatePieces(PieceGeneratorSupplier.Context<RangeConfiguration> context_) {
