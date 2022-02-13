@@ -95,7 +95,7 @@ public class JStructures {
                     .asHolder();
 
     public static final StructureFeatureRegister.StructureHolder<RangeConfiguration, BoilLockStructure> BOIL_LOCK =
-            REGISTER.register("boil_lock", BoilLockStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(10, 5), RangeConfiguration.CODEC, new RangeConfiguration(UniformHeight.of(VerticalAnchor.absolute(32), VerticalAnchor.belowTop(2))))
+            REGISTER.register("boil_lock", BoilLockStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(10, 5), RangeConfiguration.CODEC, new RangeConfiguration(UniformHeight.of(VerticalAnchor.absolute(4), VerticalAnchor.belowTop(2))))
                     .transformsSurroundingLand()
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.NETHER)
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
