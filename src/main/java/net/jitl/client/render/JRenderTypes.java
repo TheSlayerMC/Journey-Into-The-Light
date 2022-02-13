@@ -31,18 +31,13 @@ public class JRenderTypes extends RenderType {
 
     //FIXME
     public static RenderType fullbrightCutout(ResourceLocation texture) {
-        return RenderHelper.create(JITL.rl("fullbright_cutout").toString(),
-                DefaultVertexFormat.POSITION_TEX,
+        return RenderHelper.rtTextured(JITL.rl("fullbright_cutout"),
                 VertexFormat.Mode.QUADS,
-                256,
-                false,
-                false,
-                CompositeState.builder()
-                        .setShaderState(RenderStateShard.RENDERTYPE_CUTOUT_SHADER)
-                        .setTextureState(new TextureStateShard(texture, false, false))
-                        .setTransparencyState(ADDITIVE_TRANSPARENCY)
-                        .setWriteMaskState(COLOR_WRITE)
-                        .createCompositeState(false));
+                DefaultVertexFormat.POSITION_TEX,
+                texture,
+                builder -> builder
+                        .setShaderState(RenderStateShard.POSITION_TEX_SHADER)
+                        .setCullState(RenderStateShard.NO_CULL)); //Still has culling??
     }
 
     public static RenderType transparentCutout(ResourceLocation texture) {

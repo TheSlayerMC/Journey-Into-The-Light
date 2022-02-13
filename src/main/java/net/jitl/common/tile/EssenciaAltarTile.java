@@ -44,7 +44,7 @@ public class EssenciaAltarTile extends SyncableTile {
         super(JTiles.ESSENCIA_ALTAR, pos, state);
     }
 
-    public static void serverTick(Level level, BlockPos pos, BlockState state_, EssenciaAltarTile blockEntity_) {
+    public static void tick(Level level, BlockPos pos, BlockState state_, EssenciaAltarTile blockEntity_) {
         if (blockEntity_.activated) {
             blockEntity_.checkNeighbours();
 
@@ -63,8 +63,10 @@ public class EssenciaAltarTile extends SyncableTile {
     }
 
     public void onRightClick(ServerPlayer entity, ItemStack itemStack) {
-        if (itemStack.getItem() == JItems.POWDER_OF_ESSENCIA) {
-            itemStack.shrink(1);
+        if (itemStack.getItem() == JItems.POWDER_OF_ESSENCIA && !activated) {
+            if (!entity.isCreative()) {
+                itemStack.shrink(1);
+            }
             level.playSound(null, this.getBlockPos(), JSounds.ESSENCIA_ALTAR_ACTIVATE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             activated = true;
             saveAndSync();
@@ -160,7 +162,6 @@ public class EssenciaAltarTile extends SyncableTile {
 
     @Override
     protected void writeNBT(CompoundTag nbt, SerializationType type) {
-        //FIXME crashes when placed in world
         super.writeNBT(nbt, type);
 
         nbt.putBoolean("activated", activated);

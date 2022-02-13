@@ -86,7 +86,6 @@ public class EssenciaAltarTER implements BlockEntityRenderer<EssenciaAltarTile> 
 
     public static void facedTopHorizontalQuad(VertexConsumer builder, PoseStack matrixStack, float x0, float z0, float width, float height, float y) {
         Matrix4f pose = matrixStack.last().pose();
-
         builder.vertex(pose, x0, y, z0).uv(0, 0).endVertex();
         builder.vertex(pose, x0, y, z0 + height).uv(0, 1).endVertex();
         builder.vertex(pose, x0 + width, y, z0 + height).uv(1, 1).endVertex();
@@ -95,7 +94,6 @@ public class EssenciaAltarTER implements BlockEntityRenderer<EssenciaAltarTile> 
 
     public static void facedTopPercentedQuad(VertexConsumer builder, PoseStack matrixStack, float x0, float z0, float width, float height, float y, boolean invertDirection) {
         Matrix4f pose = matrixStack.last().pose();
-
 
         int pixelHeight = (int) (height * 16);
         pixelHeight -= pixelHeight % 2 == 1 ? 1 : 0;
