@@ -5,6 +5,8 @@ import net.jitl.common.world.gen.structures.euca.EucaDungeonStructure;
 import net.jitl.common.world.gen.structures.euca.GolditeWindmillStructure;
 import net.jitl.common.world.gen.structures.frozen.EskimoCampStructure;
 import net.jitl.common.world.gen.structures.frozen.guardianruins.GuardianRuinStructure;
+import net.jitl.common.world.gen.structures.nether.BoilLockStructure;
+import net.jitl.common.world.gen.structures.nether.NetherTowerStructure;
 import net.jitl.common.world.gen.structures.overworld.AncientRuinsStructure;
 import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
@@ -86,6 +88,20 @@ public class JStructures {
             REGISTER.register("direrock_stronghold", DirerockStrongholdStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(15, 10), JigsawConfiguration.CODEC, new JigsawConfiguration(() -> PlainVillagePools.START, 0))
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Dimensions.BOIL)
                     .allowedInBiomes((biomeResourceKey, biome) -> Objects.equals(biome.getRegistryName(), JITL.rl("boil/scorched_wastelands")))
+                    .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
+    public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, BoilLockStructure> BOIL_LOCK =
+            REGISTER.register("boil_lock", BoilLockStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
+                    .transformsSurroundingLand()
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.NETHER)
+                    .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();
+
+    public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, NetherTowerStructure> NETHER_TOWER =
+            REGISTER.register("nether_tower", NetherTowerStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(10, 5), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
+                    .transformsSurroundingLand()
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.NETHER)
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
