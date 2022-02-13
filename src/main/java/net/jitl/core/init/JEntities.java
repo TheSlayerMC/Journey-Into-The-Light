@@ -4,6 +4,7 @@ import net.jitl.common.entity.EssenciaBoltEntity;
 import net.jitl.common.entity.base.BossCrystalEntity;
 import net.jitl.common.entity.euca.*;
 import net.jitl.common.entity.frozen.*;
+import net.jitl.common.entity.nether.MiniGhastEntity;
 import net.jitl.common.entity.nether.SoulWatcherEntity;
 import net.jitl.common.entity.nether.WitherspineEntity;
 import net.jitl.common.entity.overworld.*;
@@ -289,6 +290,15 @@ JEntities {
                             .sized(2.5F, 2.5F))
             .spawnEgg(NETHER_COLOR, BOSS_COLOR, JTabs.SPAWNERS)
             .attributes(() -> SoulWatcherEntity.createAttributes().build())
+            .retrieve();
+
+    public static final EntityType<MiniGhastEntity> MINI_GHAST_TYPE = REGISTER.registerMob("mini_ghast",
+                    Builder.of(MiniGhastEntity::new, MobCategory.MONSTER)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(0.7F, 1.0F))
+            .spawnEgg(NETHER_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .attributes(() -> MiniGhastEntity.createAttributes().build())
             .retrieve();
 
     public static final EntityType<EssenciaBoltEntity> ESSENCIA_BOLT_TYPE = REGISTER.register("essencia_bolt",

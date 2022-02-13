@@ -17,10 +17,7 @@ import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.common.tile.ObeliskTile;
 import net.jitl.core.JITL;
 import net.jitl.core.api.block.GroundPredicate;
-import net.jitl.core.init.JBlocks;
-import net.jitl.core.init.JEntities;
-import net.jitl.core.init.JItems;
-import net.jitl.core.init.JTabs;
+import net.jitl.core.init.*;
 import net.jitl.core.init.world.Dimensions;
 import net.jitl.core.util.JBlockProperties;
 import net.minecraft.client.renderer.RenderType;
@@ -208,7 +205,6 @@ public class BlockRegistrator {
         registerDefaultBlock("euca_tile", "Euca Tile");
 
         registerDefaultBlock("laser_emitter", "Laser Emitter", () -> new LaserEmitterBlock(JBlockProperties.STONE_PROPS.create().noOcclusion()));
-        registerCustomRenderLayerBlock("test_spawner", "Test Spawner", () -> new JSpawnerBlock(JEntities.WITHERSPINE_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
 
         registerTallCrossRenderedBlock("tall_green_glowshroom", "Tall Green Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
         registerTallCrossRenderedBlock("tall_blue_glowshroom", "Tall Blue Glowshroom", () -> new TallGlowshroomBlock(JBlockProperties.GLOWSHROOM_PROPS.create()));
@@ -351,7 +347,7 @@ public class BlockRegistrator {
         registerDefaultBlock("rimestone_ore", "Rimestone Ore", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
         registerDefaultBlock("rimestone_block", "Rimestone Block", () -> new Block(JBlockProperties.METAL_PROPS.create()));
 
-        registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.GOLD_BOT_TYPE), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
+        registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.GOLD_BOT_TYPE, JTiles.GOLD_BOT_SPAWNER), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
 
         registerCropBlock("tomato_crop", "Tomato Crop", new TomatoCropBlock());
         registerCropBlock("floro_crop", "Floro Crop", new FloroCropBlock());
@@ -475,6 +471,11 @@ public class BlockRegistrator {
         registerBarBlock("boiling_bars", "Boiling Bars", () -> new IronBarsBlock(JBlockProperties.STONE_PROPS.create()));
         registerPaneBlock("volcanic_glass_pane", "Volcanic Glass Pane", () -> new IronBarsBlock(JBlockProperties.GLASS_PANE.create()));
 
+        RegistryObject<Block> nether_dungeon_brick = registerBlock("nether_dungeon_brick", "Nether Dungeon Bricks", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs("nether_dungeon_brick_stairs", "Nether Dungeon Brick Stairs", nether_dungeon_brick, JBlockProperties.DUNGEON_BLOCK_PROPS.create());
+        registerSlabBlock("nether_dungeon_brick_slab", "Nether Dungeon Brick Slab", "nether_dungeon_brick", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
+
+        registerCustomRenderLayerBlock("mini_ghast_spawner", "Mini Ghast Spawner", () -> new JSpawnerBlock(JEntities.MINI_GHAST_TYPE, JTiles.MINI_GHAST_SPAWNER), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
     }
 
     public static void registerWoodType(String name, String enName, String saplingName, String saplingEnName, AbstractTreeGrower tree) {

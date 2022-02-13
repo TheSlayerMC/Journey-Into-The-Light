@@ -35,6 +35,7 @@ public class JModelLayers {
     public static final ModelLayerLocation SHIVERING_RAM_WOOL_LAYER = register("shivering_ram", "wool");
     public static final ModelLayerLocation OBELISK_TOP_MODEL_LAYER = register("obelisk_top");
     public static final ModelLayerLocation OBELISK_BOTTOM_MODEL_LAYER = register("obelisk_bottom");
+    public static final ModelLayerLocation MINI_GHAST_LAYER = register("mini_ghast");
 
     private static ModelLayerLocation register(String path) {
         return register(path, "main");

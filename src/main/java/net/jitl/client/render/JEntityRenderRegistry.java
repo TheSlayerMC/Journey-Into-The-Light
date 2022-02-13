@@ -5,6 +5,7 @@ import net.jitl.client.render.entity.base.BossCrystalRenderer;
 import net.jitl.client.render.entity.base.Entity2DRenderer;
 import net.jitl.client.render.entity.euca.*;
 import net.jitl.client.render.entity.frozen.*;
+import net.jitl.client.render.entity.nether.MiniGhastRenderer;
 import net.jitl.client.render.entity.nether.WitherspineRenderer;
 import net.jitl.client.render.entity.overworld.*;
 import net.jitl.client.render.model.BoomModel;
@@ -20,6 +21,7 @@ import net.jitl.common.entity.vehicle.JBoat;
 import net.jitl.core.JITL;
 import net.jitl.core.init.JEntities;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.GhastModel;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -60,6 +62,9 @@ public class JEntityRenderRegistry {
         event.registerEntityRenderer(JEntities.GOLD_BOT_TYPE, GoldBotRenderer::new);
         event.registerEntityRenderer(JEntities.GOLDER_TYPE, GolderRenderer::new);
         event.registerEntityRenderer(JEntities.DYNASTER_TYPE, DynasterRenderer::new);
+
+        event.registerEntityRenderer(JEntities.MINI_GHAST_TYPE, MiniGhastRenderer::new);
+
 
         //NPC
         event.registerEntityRenderer(JEntities.MAGE_TYPE, MageRenderer::new);
@@ -117,6 +122,8 @@ public class JEntityRenderRegistry {
         event.registerLayerDefinition(JModelLayers.GOLD_BOT_MODEL_LAYER, GoldBotModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.GOLDER_MODEL_LAYER, GolderModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.DYNASTER_MODEL_LAYER, DynasterModel::createBodyLayer);
+
+        event.registerLayerDefinition(JModelLayers.MINI_GHAST_LAYER, GhastModel::createBodyLayer);
 
         //NPC
         event.registerLayerDefinition(JModelLayers.MAGE_MODEL_LAYER, HoodedVillagerModel::createBodyLayer);

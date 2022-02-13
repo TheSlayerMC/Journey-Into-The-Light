@@ -304,8 +304,8 @@ public class JBlocks {
     public static final Block SMOOTH_RUBBLE = promise();
     public static final Block RUNIC_RUBBLE = promise();
 
-    public static final Block SILVER_BOT_SPAWNER = promise();
     public static final Block GOLD_BOT_SPAWNER = promise();
+    public static final Block MINI_GHAST_SPAWNER = promise();
 
     public static final Block TOMATO_CROP = promise();
     public static final Block FLORO_CROP = promise();

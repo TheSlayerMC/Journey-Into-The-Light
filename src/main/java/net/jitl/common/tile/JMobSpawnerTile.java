@@ -1,7 +1,6 @@
 package net.jitl.common.tile;
 
 import net.jitl.core.init.JBlocks;
-import net.jitl.core.init.JTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -9,8 +8,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.SpawnData;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
@@ -43,8 +42,8 @@ public class JMobSpawnerTile extends BlockEntity {
         }
     };
 
-    public JMobSpawnerTile(BlockPos pos, BlockState state) {
-        super(JTiles.MOB_SPAWNER, pos, state);
+    public JMobSpawnerTile(BlockPos pos, BlockState state, BlockEntityType spawner) {
+        super(spawner, pos, state);
     }
 
     @Override
