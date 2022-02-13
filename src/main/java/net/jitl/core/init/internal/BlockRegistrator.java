@@ -475,7 +475,7 @@ public class BlockRegistrator {
 
         RegistryObject<Block> nether_dungeon_brick = registerBlock("nether_dungeon_brick", "Nethic Dungeon Bricks", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
         KBlockRegistrator.INSTANCE.registerStairs("nether_dungeon_brick_stairs", "Nethic Dungeon Brick Stairs", nether_dungeon_brick, JBlockProperties.DUNGEON_BLOCK_PROPS.create());
-        registerSlabBlock("nether_dungeon_brick_slab", "Nethic Dungeon Brick Slab", "nether_dungeon_brick", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
+        registerSlabBlock("nether_dungeon_brick_slab", "Nethic Dungeon Brick Slab", "nether_dungeon_brick", () -> new SlabBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
 
         registerCustomRenderLayerBlock("mini_ghast_spawner", "Mini Ghast Spawner", MiniGhastSpawnerBlock::new, JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
     }
