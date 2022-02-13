@@ -54,18 +54,24 @@ public class BoilLockStructure extends StructureFeature<RangeConfiguration> {
         return GenerationStep.Decoration.UNDERGROUND_DECORATION;
     }
 
-    private static Optional<PieceGenerator<RangeConfiguration>> generatePieces(PieceGeneratorSupplier.Context<RangeConfiguration> context_) {
+    private static Optional<PieceGenerator<RangeConfiguration>> generatePieces(PieceGeneratorSupplier.Context<RangeConfiguration> context) {
         WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0L));
-        random.setLargeFeatureSeed(context_.seed(), context_.chunkPos().x, context_.chunkPos().z);
-        int i = context_.chunkPos().getMinBlockX() + random.nextInt(16);
-        int j = context_.chunkPos().getMinBlockZ() + random.nextInt(16);
-        int k = context_.chunkGenerator().getSeaLevel();
+
+        random.setLargeFeatureSeed(context.seed(), context.chunkPos().x, context.chunkPos().z);
+
+        int i = context.chunkPos().getMinBlockX() + random.nextInt(16);
+        int j = context.chunkPos().getMinBlockZ() + random.nextInt(16);
+        int k = context.chunkGenerator().getSeaLevel();
+
         Rotation rotation = Rotation.getRandom(random);
-        WorldGenerationContext worldgenerationcontext = new WorldGenerationContext(context_.chunkGenerator(), context_.heightAccessor());
-        int l = (context_.config()).height.sample(random, worldgenerationcontext);
-        NoiseColumn noisecolumn = context_.chunkGenerator().getBaseColumn(i, j, context_.heightAccessor());
+
+        WorldGenerationContext worldgenerationcontext = new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor());
+        int l = (context.config()).height.sample(random, worldgenerationcontext);
+
+        NoiseColumn noisecolumn = context.chunkGenerator().getBaseColumn(i, j, context.heightAccessor());
         BlockPos.MutableBlockPos mbp = new BlockPos.MutableBlockPos(i, l, j);
-        while(l > k) {
+
+        while (l > k) {
             BlockState blockstate = noisecolumn.getBlock(l);
             l--;
             BlockState blockstate1 = noisecolumn.getBlock(l);
@@ -75,13 +81,11 @@ public class BoilLockStructure extends StructureFeature<RangeConfiguration> {
         }
         if (l <= k) {
             return Optional.empty();
-        } else if (!context_.validBiome().test(context_.chunkGenerator().getNoiseBiome(QuartPos.fromBlock(i), QuartPos.fromBlock(l), QuartPos.fromBlock(j)))) {
+        } else if (!context.validBiome().test(context.chunkGenerator().getNoiseBiome(QuartPos.fromBlock(i), QuartPos.fromBlock(l), QuartPos.fromBlock(j)))) {
             return Optional.empty();
         } else {
             BlockPos blockpos = new BlockPos(i, l, j);
-            return Optional.of((structurePiecesBuilder_, context1_) -> {
-                BoilLockStructure.addPieces(context_.structureManager(),blockpos, rotation, structurePiecesBuilder_, random);
-            });
+            return Optional.of((structurePiecesBuilder_, context1_) -> BoilLockStructure.addPieces(context.structureManager(), blockpos, rotation, structurePiecesBuilder_, random));
         }
     }
 
