@@ -23,11 +23,12 @@ public class JCommandEvent {
         CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
 
         LiteralArgumentBuilder<CommandSourceStack> jCommand = Commands.literal("jitl").requires((com) -> com.hasPermission(1));
+        LiteralArgumentBuilder<CommandSourceStack> dim = jCommand.then(Commands.literal("dimension"));
 
-        jCommand.then(Commands.literal("dimension")
-                .then(Commands.literal("euca").executes(command -> changeDim(Objects.requireNonNull(command.getSource().getEntity()), Dimensions.EUCA))));
+        dim.then(Commands.literal("euca").executes(command -> changeDim(Objects.requireNonNull(command.getSource().getEntity()), Dimensions.EUCA)));
 
         dispatcher.register(jCommand);
+        dispatcher.register(dim);
     }
 
     public static int changeDim(Entity entity, ResourceKey<Level> destination) {
