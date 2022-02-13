@@ -1,12 +1,10 @@
-package net.jitl.common.block.base;
+package net.jitl.common.block.spawner;
 
-import net.jitl.common.tile.JMobSpawnerTile;
-import net.jitl.common.tile.spawner.GoldBotSpawnerTile;
 import net.jitl.common.tile.spawner.MiniGhastSpawnerTile;
-import net.jitl.core.init.JBlocks;
+import net.jitl.core.init.JEntities;
+import net.jitl.core.init.JTiles;
 import net.jitl.core.util.JBlockProperties;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -18,27 +16,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class JSpawnerBlock extends SpawnerBlock {
+public class MiniGhastSpawnerBlock extends SpawnerBlock {
 
-    protected final EntityType<?> entity;
-    protected final BlockEntityType tile;
-
-    public JSpawnerBlock(EntityType<?> mob, BlockEntityType tile) {
+    public MiniGhastSpawnerBlock() {
         super(JBlockProperties.SPAWNER_PROPS.create());
-        this.entity = mob;
-        this.tile = tile;
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        JMobSpawnerTile spawner = new MiniGhastSpawnerTile(pos, state);
-        if(state.getBlock() == JBlocks.MINI_GHAST_SPAWNER)
-            spawner = new MiniGhastSpawnerTile(pos, state);
-        if(state.getBlock() == JBlocks.GOLD_BOT_SPAWNER)
-            spawner = new GoldBotSpawnerTile(pos, state);
-
-        spawner.getSpawner().setEntityId(entity);
+        MiniGhastSpawnerTile spawner = new MiniGhastSpawnerTile(pos, state);
+        spawner.getSpawner().setEntityId(JEntities.MINI_GHAST_TYPE);
         return spawner;
     }
 
@@ -51,6 +39,6 @@ public class JSpawnerBlock extends SpawnerBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level_, @NotNull BlockState state_, @NotNull BlockEntityType<T> blockEntityType_) {
-        return createTickerHelper(blockEntityType_, this.tile, level_.isClientSide ? JMobSpawnerTile::clientTick : JMobSpawnerTile::serverTick);
+        return createTickerHelper(blockEntityType_, JTiles.MINI_GHAST_SPAWNER, level_.isClientSide ? MiniGhastSpawnerTile::clientTick : MiniGhastSpawnerTile::serverTick);
     }
 }

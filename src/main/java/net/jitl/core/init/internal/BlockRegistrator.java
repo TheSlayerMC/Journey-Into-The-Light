@@ -12,6 +12,8 @@ import net.jitl.common.block.foliage.*;
 import net.jitl.common.block.portal.DepthsPortalBlock;
 import net.jitl.common.block.portal.DepthsPortalFrameBlock;
 import net.jitl.common.block.portal.JBasePortalBlock;
+import net.jitl.common.block.spawner.GoldBotSpawnerBlock;
+import net.jitl.common.block.spawner.MiniGhastSpawnerBlock;
 import net.jitl.common.block.trees.*;
 import net.jitl.common.helper.EnumHarvestLevel;
 import net.jitl.common.tile.ObeliskTile;
@@ -347,7 +349,7 @@ public class BlockRegistrator {
         registerDefaultBlock("rimestone_ore", "Rimestone Ore", () -> new Block(JBlockProperties.PERMAFROST_PROPS.create()));
         registerDefaultBlock("rimestone_block", "Rimestone Block", () -> new Block(JBlockProperties.METAL_PROPS.create()));
 
-        registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", () -> new JSpawnerBlock(JEntities.GOLD_BOT_TYPE, JTiles.GOLD_BOT_SPAWNER), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
+        registerCustomRenderLayerBlock("gold_bot_spawner", "Goldbot Spawner", GoldBotSpawnerBlock::new, JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
 
         registerCropBlock("tomato_crop", "Tomato Crop", new TomatoCropBlock());
         registerCropBlock("floro_crop", "Floro Crop", new FloroCropBlock());
@@ -475,7 +477,7 @@ public class BlockRegistrator {
         KBlockRegistrator.INSTANCE.registerStairs("nether_dungeon_brick_stairs", "Nether Dungeon Brick Stairs", nether_dungeon_brick, JBlockProperties.DUNGEON_BLOCK_PROPS.create());
         registerSlabBlock("nether_dungeon_brick_slab", "Nether Dungeon Brick Slab", "nether_dungeon_brick", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
 
-        registerCustomRenderLayerBlock("mini_ghast_spawner", "Mini Ghast Spawner", () -> new JSpawnerBlock(JEntities.MINI_GHAST_TYPE, JTiles.MINI_GHAST_SPAWNER), JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
+        registerCustomRenderLayerBlock("mini_ghast_spawner", "Mini Ghast Spawner", MiniGhastSpawnerBlock::new, JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
     }
 
     public static void registerWoodType(String name, String enName, String saplingName, String saplingEnName, AbstractTreeGrower tree) {
