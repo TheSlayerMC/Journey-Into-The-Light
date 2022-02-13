@@ -473,9 +473,9 @@ public class BlockRegistrator {
         registerBarBlock("boiling_bars", "Boiling Bars", () -> new IronBarsBlock(JBlockProperties.STONE_PROPS.create()));
         registerPaneBlock("volcanic_glass_pane", "Volcanic Glass Pane", () -> new IronBarsBlock(JBlockProperties.GLASS_PANE.create()));
 
-        RegistryObject<Block> nether_dungeon_brick = registerBlock("nether_dungeon_brick", "Nether Dungeon Bricks", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
-        KBlockRegistrator.INSTANCE.registerStairs("nether_dungeon_brick_stairs", "Nether Dungeon Brick Stairs", nether_dungeon_brick, JBlockProperties.DUNGEON_BLOCK_PROPS.create());
-        registerSlabBlock("nether_dungeon_brick_slab", "Nether Dungeon Brick Slab", "nether_dungeon_brick", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
+        RegistryObject<Block> nether_dungeon_brick = registerBlock("nether_dungeon_brick", "Nethic Dungeon Bricks", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
+        KBlockRegistrator.INSTANCE.registerStairs("nether_dungeon_brick_stairs", "Nethic Dungeon Brick Stairs", nether_dungeon_brick, JBlockProperties.DUNGEON_BLOCK_PROPS.create());
+        registerSlabBlock("nether_dungeon_brick_slab", "Nethic Dungeon Brick Slab", "nether_dungeon_brick", () -> new Block(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
 
         registerCustomRenderLayerBlock("mini_ghast_spawner", "Mini Ghast Spawner", MiniGhastSpawnerBlock::new, JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
     }
