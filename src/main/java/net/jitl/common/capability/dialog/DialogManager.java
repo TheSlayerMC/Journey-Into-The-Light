@@ -32,6 +32,7 @@ public class DialogManager extends CoffeeCapabilityInstance<Entity> {
 
         closeDialog(false);
 
+        openedDialog = tracker;
         tracker.start();
     }
 

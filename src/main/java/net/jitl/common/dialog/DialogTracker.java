@@ -45,7 +45,7 @@ public class DialogTracker {
 
     public boolean handleOptionClick(int answer) {
         // this can be achieved when someone try to use cheaty exploits
-        if (currentPage == null || currentPage.getOptions() == null || answer < 0 || answer < currentPage.getOptions().size()) {
+        if (currentPage == null || currentPage.getOptions() == null || answer < 0 || answer >= currentPage.getOptions().size()) {
             return false;
         }
 
