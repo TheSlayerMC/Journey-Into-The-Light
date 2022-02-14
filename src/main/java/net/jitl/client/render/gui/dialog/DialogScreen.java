@@ -1,6 +1,5 @@
 package net.jitl.client.render.gui.dialog;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.base.Alignment;
 import net.jitl.client.base.ImprovedButton;
@@ -31,7 +30,6 @@ public class DialogScreen extends JScreen {
 
     private static final int INDENT = 6;
     private static final int PHRASE_INDENT = 45;
-    private static final int INDENT_OFFSET = 8;
 
     private final ClientDialogPage page;
 
@@ -40,11 +38,10 @@ public class DialogScreen extends JScreen {
     @Nullable
     private LivingEntity entity;
 
-    private Rectangle oldGuiRect;
     private Rectangle mobIconRect;
     private Rectangle mobTextRect;
-
-    private Rectangle guiRect;
+    private Rectangle mobInnerIconRect;
+    private Rectangle optionsShadowRect;
     private Rectangle optionsRect;
 
     public DialogScreen(ClientDialogPage page, @Nullable DialogCharacter character) {
@@ -57,20 +54,14 @@ public class DialogScreen extends JScreen {
     public void init() {
         super.init();
 
-        int guiWidth = 300;
-        int guiHeight = 200;
+        mobTextRect = new Rectangle(PHRASE_INDENT, INDENT, (int) (1.75 / 3F * width), centerY - 14 - INDENT - 16);
+        mobIconRect = new Rectangle(mobTextRect.right(), (int) (1.2 / 4F * height), width, height);
+        int mobMarginX = 2;
+        int mobOffsetY = (int) (mobIconRect.height() * 1.5F / 4);
+        mobInnerIconRect = Rectangle.fromWidthAndHeight(mobIconRect.left() + mobMarginX, mobIconRect.top() + mobOffsetY, mobIconRect.width() - mobMarginX * 2, mobIconRect.height());
 
-        int mobIconWidth = 80;
-
-        oldGuiRect = Rectangle.fromWidthAndHeight(centerX - guiWidth / 2, centerY - guiHeight / 2, guiWidth, guiHeight);
-        guiRect = Rectangle.fromWidthAndHeight(0, 0, width, height);
-        int mobIconRight = oldGuiRect.right() - INDENT;
-        int mobIconBottom = oldGuiRect.top() + INDENT + 80;
-
-        optionsRect = new Rectangle(0, centerY - 14, width, height - INDENT * 2);
-//        mobTextRect = new Rectangle(optionsRect.left() + INDENT, mobIconRect.top(), mobIconRect.left() - INDENT, mobIconRect.bottom());
-        mobTextRect = new Rectangle(PHRASE_INDENT, INDENT, (int) (2 / 3F * width), optionsRect.top() - INDENT - 16);
-        mobIconRect = new Rectangle(mobIconRight - mobIconWidth, oldGuiRect.top() + INDENT, mobIconRight, mobIconBottom);
+        optionsRect = new Rectangle(mobTextRect.left(), centerY - 14, mobIconRect.left(), height - INDENT * 2);
+        optionsShadowRect = new Rectangle(0, optionsRect.top(), width, optionsRect.bottom());
 
         ClientLevel level = Objects.requireNonNull(getMinecraft().level);
         this.entity = character != null ? character.entityType().create(level) : null;
@@ -109,13 +100,15 @@ public class DialogScreen extends JScreen {
     @Override
     public void render(@NotNull PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         renderBackground(matrixStack);
-        renderDebugLayout(matrixStack, mouseX, mouseY, partialTicks);
-
-        if (entity != null) {
-            renderEntity(width / (INDENT_OFFSET) * 6, (int) (mobIconRect.bottom() - mobIconRect.height() * -3.75F), mouseX, mouseY, entity);
+        if (Minecraft.getInstance().options.renderDebug) {
+            renderDebugLayout(matrixStack, mouseX, mouseY, partialTicks);
         }
 
-        RenderUtils.rectangle(matrixStack, optionsRect, 0x75000000); // options background
+        RenderUtils.rectangle(matrixStack, optionsShadowRect, 0x75000000);
+
+        if (entity != null) {
+            renderEntity(mouseX, mouseY, entity);
+        }
 
         renderMobText();
 
@@ -137,29 +130,45 @@ public class DialogScreen extends JScreen {
 
         for (String line : lines) {
             int h = font.wordWrapHeight(line, maxWidth);
-            font.drawWordWrap(TextComponent.EMPTY.plainCopy().append(new TextComponent(line)).withStyle(ChatFormatting.YELLOW), mobTextRect.left(), yStart, maxWidth, 0xFFFFFF);
+            font.drawWordWrap(TextComponent.EMPTY.plainCopy().append(new TextComponent(line)).withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC), mobTextRect.left(), yStart, maxWidth, 0xFFFFFF);
             yStart += h;
         }
     }
 
     private void renderDebugLayout(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-        RenderUtils.rectangle(poseStack, oldGuiRect, 0xFF8851FF); // whole gui
-        RenderUtils.rectangle(poseStack, mobIconRect, 0xFF194378); // mob icon background
-        RenderUtils.rectangle(poseStack, mobTextRect, 0xFF963232); // mob text background
+        RenderUtils.rectangle(poseStack, optionsRect, 0xFF8851FF);
+        RenderUtils.rectangle(poseStack, mobTextRect, 0xFF963232);
+        RenderUtils.rectangle(poseStack, mobIconRect, 0xFF194378);
+        RenderUtils.rectangle(poseStack, mobInnerIconRect, 0xFF33AA32);
     }
 
-    public static void renderEntity(int posX, int posY, float mouseX, float mouseY, LivingEntity entity) {
-        entity = Minecraft.getInstance().player;
-        float scaleFactor = (float) entity.getBoundingBox().maxY / 1.8F /* height of npc */;
-        scaleFactor = Math.max(scaleFactor, 0.5F); // make it so very small mobs won't be super big
+    public void renderEntity(float mouseX, float mouseY, LivingEntity entity) {
+        float scale = 92;
 
-        int adaptiveScale = (int) (164 /*scale for player */ / scaleFactor);
+        float scaledHeight = entity.getBbHeight() * scale; // standard scale
 
-        int playerEyeHeight = (int) entity.getEyeHeight() * (int) (adaptiveScale * 2.0F); // eye height of player in pixels of inventory gui
-        float eyeOffset = playerEyeHeight * entity.getEyeHeight() / (1.65F * scaleFactor) /* eye height of player in blocks */;
+        if (scaledHeight > mobInnerIconRect.height()) {
+            scale = scale * mobInnerIconRect.height() / scaledHeight;
+        } else if (scaledHeight < mobInnerIconRect.height() * 2 / 3F) {
+            scale = scale * (mobInnerIconRect.height() * 2 / 3F) / scaledHeight;
+        }
 
-        RenderSystem.setShaderColor(1, 1, 1, 1);
-        InventoryScreen.renderEntityInInventory(posX, posY, adaptiveScale, posX - mouseX, posY - mouseY - eyeOffset, entity);
+        //refresh scaled dimensions
+        float scaledWidth = entity.getBbWidth() * scale;
+
+        if (scaledWidth > mobInnerIconRect.width()) {
+            scale = scale * mobInnerIconRect.width() / scaledWidth;
+        }
+
+        //refresh scaled dimensions
+        scaledHeight = entity.getBbHeight() * scale;
+
+        int scaledEyeHeight = (int) (entity.getEyeHeight() * scale);
+        int renderX = mobInnerIconRect.left() + mobInnerIconRect.width() / 2;
+        int renderY = (int) (mobInnerIconRect.top() + scaledHeight);
+
+        // scale = 1 -> the whole entity is in one pixel
+        InventoryScreen.renderEntityInInventory(renderX, renderY, (int) scale, renderX - mouseX, renderY - mouseY - scaledEyeHeight, entity);
     }
 
     private static class DialogButton extends ImprovedButton {
