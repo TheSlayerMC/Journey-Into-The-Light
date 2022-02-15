@@ -211,11 +211,6 @@ public class DialogScreen extends JScreen {
         }
 
         @Override
-        public void onPress() {
-            super.onPress();
-        }
-
-        @Override
         public int getFGColor() {
             return isHoveredOrFocused() ? Objects.requireNonNull(ChatFormatting.YELLOW.getColor()) : super.getFGColor();
         }
