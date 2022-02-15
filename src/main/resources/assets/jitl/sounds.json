@@ -23,6 +23,11 @@
       "jitl:misc/epic_sound_0"
     ]
   },
+  "misc.dialog_basic": {
+    "sounds": [
+      "jitl:misc/dialog_basic"
+    ]
+  },
   "block.icicle.break": {
     "sounds": [
       "jitl:blocks/break/icicle_1",

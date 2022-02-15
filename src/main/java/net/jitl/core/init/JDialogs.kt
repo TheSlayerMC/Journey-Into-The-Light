@@ -12,6 +12,14 @@ object JDialogs {
         -"Hi!"
         -"How are you?"
         +"I'm fine!"
+        +"This text is pretty long."
+        +"This text is just a little bit longer."
+        +"Wow, this text is honestly super duper long."
+        +"This is some really long text. Wow. I mean, look at the size of this thing."
+        +"How are you?"
+        +"I'm fine!"
+        +"How are you?"
+        +"I'm fine!"
         +"Waaaaait..."
         options {
             "You're not real" {}

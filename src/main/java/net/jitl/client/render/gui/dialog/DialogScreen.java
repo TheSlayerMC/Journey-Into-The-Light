@@ -8,8 +8,11 @@ import net.jitl.client.util.Rectangle;
 import net.jitl.client.util.RenderUtils;
 import net.jitl.common.dialog.ClientDialogPage;
 import net.jitl.common.dialog.DialogCharacter;
+import net.jitl.core.JITL;
+import net.jitl.core.init.JSounds;
 import net.jitl.core.network.JPacketHandler;
 import net.jitl.core.network.dialogue.CDialogPressOptionPacket;
+import net.jitl.core.util.ClientTools;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
@@ -33,6 +36,7 @@ public class DialogScreen extends JScreen {
 
     private static int TICK = 0;
     private static int TEXT_COUNTER = 0;
+    private static String CURRENT_MOB_TEXT = "";
 
     private final ClientDialogPage page;
 
@@ -177,18 +181,24 @@ public class DialogScreen extends JScreen {
     }
 
     private String textCounter(String input) {
-        if (TICK >= 0 && TICK <= input.length()) {
-            int i = TEXT_COUNTER;
+        int tickMult = 4;
+        int tickDuration = (input.length() * tickMult);
 
-            String subStr = String.valueOf(input.subSequence(0, i));
+        if (TICK >= 0 && TICK <= tickDuration) {
+            if (TICK % tickMult == 0) {
+                int i = TEXT_COUNTER;
 
-            TEXT_COUNTER++;
+                CURRENT_MOB_TEXT = input.substring(0, i);
+
+                ClientTools.playLocalSound(JSounds.BASIC_DIALOG.get(), 1.0F, 1.0F);
+
+                TEXT_COUNTER++;
+            }
             TICK++;
-
-            return subStr;
+            return CURRENT_MOB_TEXT;
         } else {
-            if (TICK > input.length()) {
-                TICK = input.length() + 1;
+            if (TICK > tickDuration) {
+                TICK = tickDuration + 1;
             }
             return input;
         }
@@ -209,6 +219,7 @@ public class DialogScreen extends JScreen {
         @Override
         public void onPress() {
             super.onPress();
+            JITL.LOGGER.info("reset");
             resetTextCounter();
         }
 
