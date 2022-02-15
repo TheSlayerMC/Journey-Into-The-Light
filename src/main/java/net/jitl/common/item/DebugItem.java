@@ -1,10 +1,12 @@
 package net.jitl.common.item;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.render.overlay.internal.KnowledgeToast;
 import net.jitl.common.capability.dialog.DialogManager;
 import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.core.init.JDialogs;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -13,7 +15,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class DebugItem extends Item {
+public class
+DebugItem extends Item {
     public DebugItem(Properties properties) {
         super(properties);
     }
@@ -21,6 +24,13 @@ public class DebugItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         //ConfiguredFeature<BlockStateFeatureConfig, ?> configuredfeature = JFeatures.TORRID_CRYSTAL.get().configured(new BlockStateFeatureConfig(JBlocks.TORRID_CRYSTAL.defaultBlockState()));
+
+        Minecraft minecraft = Minecraft.getInstance();
+
+        Font fontRenderer = minecraft.font;
+
+        PoseStack poseStack = new PoseStack();
+
         if (!worldIn.isClientSide()) {
             DialogManager.of(((ServerPlayer) playerIn)).startDialog(JDialogs.test());
 //            ItemStack scrollStack = new ItemStack(JItems.LORE_SCROLL);

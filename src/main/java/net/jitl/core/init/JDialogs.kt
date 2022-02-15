@@ -7,6 +7,8 @@ import net.jitl.core.JITL
 object JDialogs {
     @JvmStatic
     val TEST: Dialog = dialog(JITL.rl("test")) {
+        define("illager_mech", JEntities.ILLAGER_MECH_TYPE)
+        character("illager_mech")
         -"Hi!"
         -"How are you?"
         +"I'm fine!"

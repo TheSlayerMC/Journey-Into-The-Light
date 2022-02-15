@@ -31,6 +31,9 @@ public class DialogScreen extends JScreen {
     private static final int INDENT = 6;
     private static final int PHRASE_INDENT = 45;
 
+    private static int TICK = 0;
+    private static int TEXT_COUNTER = 0;
+
     private final ClientDialogPage page;
 
     @Nullable
@@ -53,6 +56,8 @@ public class DialogScreen extends JScreen {
     @Override
     public void init() {
         super.init();
+
+        resetTextCounter();
 
         mobTextRect = new Rectangle(PHRASE_INDENT, INDENT, (int) (1.75 / 3F * width), centerY - 14 - INDENT - 16);
         mobIconRect = new Rectangle(mobTextRect.right(), (int) (1.2 / 4F * height), width, height);
@@ -116,7 +121,7 @@ public class DialogScreen extends JScreen {
     }
 
     private void renderMobText() {
-        String text = I18n.get(page.text());
+        String text = textCounter(I18n.get(page.text()));
 
         String[] lines = text.split("\n");
         int maxWidth = mobTextRect.width() - INDENT;
@@ -171,11 +176,40 @@ public class DialogScreen extends JScreen {
         InventoryScreen.renderEntityInInventory(renderX, renderY, (int) scale, renderX - mouseX, renderY - mouseY - scaledEyeHeight, entity);
     }
 
+    private String textCounter(String input) {
+        if (TICK >= 0 && TICK <= input.length()) {
+            int i = TEXT_COUNTER;
+
+            String subStr = String.valueOf(input.subSequence(0, i));
+
+            TEXT_COUNTER++;
+            TICK++;
+
+            return subStr;
+        } else {
+            if (TICK > input.length()) {
+                TICK = input.length() + 1;
+            }
+            return input;
+        }
+    }
+
+    private static void resetTextCounter() {
+        TEXT_COUNTER = 0;
+        TICK = 0;
+    }
+
     private static class DialogButton extends ImprovedButton {
         public DialogButton(int x_, int y_, int width_, int height_, Component message_, int optionIndex) {
             super(x_, y_, width_, height_, message_, button_ -> JPacketHandler.INSTANCE.sendToServer(new CDialogPressOptionPacket(optionIndex)));
             textureLocation = null;
             alignment = Alignment.LEFT;
+        }
+
+        @Override
+        public void onPress() {
+            super.onPress();
+            resetTextCounter();
         }
 
         @Override
