@@ -41,7 +41,7 @@ public class IsometricCameraHandler {
      */
     @SubscribeEvent
     public static void overrideFOV(EntityViewRenderEvent.FieldOfView event) {
-        if (JConfigs.CLIENT.GUI_CATEGORY.isIsometricFOVEnabled()) {
+        if (JConfigs.CLIENT.guiCategory.isIsometricFOVEnabled()) {
             event.setFOV(FOV);
         }
     }
@@ -73,8 +73,8 @@ public class IsometricCameraHandler {
         The look angle is important, because it lines up the camera to center of the screen when switching between modes and/or angle snaps
          */
         if (key == keyIsometricView.getKey()) {
-            boolean toggle = !clientConfig.GUI_CATEGORY.isIsometricFOVEnabled();
-            clientConfig.GUI_CATEGORY.setIsometricFov(toggle);
+            boolean toggle = !clientConfig.guiCategory.isIsometricFOVEnabled();
+            clientConfig.guiCategory.setIsometricFov(toggle);
 
             PLAYER_ANGLE_SNAP_TIMER = 1;
 
@@ -87,8 +87,8 @@ public class IsometricCameraHandler {
         Sets angle snap timer to 1, which sets the players look angle
          */
         else if (key == keyLockPerspective.getKey()) {
-            boolean toggle = !clientConfig.GUI_CATEGORY.isIsometricPerspectiveLocked();
-            clientConfig.GUI_CATEGORY.lockIsometricPerspective(toggle);
+            boolean toggle = !clientConfig.guiCategory.isIsometricPerspectiveLocked();
+            clientConfig.guiCategory.lockIsometricPerspective(toggle);
 
             PLAYER_ANGLE_SNAP_TIMER = 1;
 
@@ -175,22 +175,22 @@ public class IsometricCameraHandler {
         else if (key == keyCycleSnapAngle.getKey()) {
             JClientConfig config = JConfigs.CLIENT;
 
-            IsometricAngleSnap angleSnap = clientConfig.GUI_CATEGORY.getIsometricAngleSnap();
+            IsometricAngleSnap angleSnap = clientConfig.guiCategory.getIsometricAngleSnap();
 
             List<IsometricAngleSnap> snaps = List.of(IsometricAngleSnap.NORTH_WEST, IsometricAngleSnap.SOUTH_WEST, IsometricAngleSnap.SOUTH_EAST, IsometricAngleSnap.NORTH_EAST);
 
             //TODO make better
             if (angleSnap == snaps.get(0)) {
-                config.GUI_CATEGORY.setIsometricAngleSnap(snaps.get(1));
+                config.guiCategory.setIsometricAngleSnap(snaps.get(1));
 
             } else if (angleSnap == snaps.get(1)) {
-                config.GUI_CATEGORY.setIsometricAngleSnap(snaps.get(2));
+                config.guiCategory.setIsometricAngleSnap(snaps.get(2));
 
             } else if (angleSnap == snaps.get(2)) {
-                config.GUI_CATEGORY.setIsometricAngleSnap(snaps.get(3));
+                config.guiCategory.setIsometricAngleSnap(snaps.get(3));
 
             } else if (angleSnap == snaps.get(3)) {
-                config.GUI_CATEGORY.setIsometricAngleSnap(snaps.get(0));
+                config.guiCategory.setIsometricAngleSnap(snaps.get(0));
             }
 
             XROT = 0;
@@ -207,14 +207,14 @@ public class IsometricCameraHandler {
     public static void overrideCamera(EntityViewRenderEvent.CameraSetup event) {
         JClientConfig clientConfig = JConfigs.CLIENT;
 
-        IsometricAngleSnap angleSnap = clientConfig.GUI_CATEGORY.getIsometricAngleSnap();
+        IsometricAngleSnap angleSnap = clientConfig.guiCategory.getIsometricAngleSnap();
 
         GameRenderer gameRenderer = event.getRenderer();
 
         float xRot = 30 + XROT;
         float yRot = -YROT;
 
-        if (clientConfig.GUI_CATEGORY.isIsometricFOVEnabled()) {
+        if (clientConfig.guiCategory.isIsometricFOVEnabled()) {
             Camera camera = event.getCamera();
 
             Entity entity = camera.getEntity();
@@ -250,7 +250,7 @@ public class IsometricCameraHandler {
             /*
             If the isometric perspective is locked, the camera's rotation will be set based on the IsometricAngleSnap that's configured
              */
-            if (clientConfig.GUI_CATEGORY.isIsometricPerspectiveLocked()) {
+            if (clientConfig.guiCategory.isIsometricPerspectiveLocked()) {
                 if (angleSnap == IsometricAngleSnap.NORTH_WEST) {
                     camera.setRotation(135 + yRot, xRot);
 

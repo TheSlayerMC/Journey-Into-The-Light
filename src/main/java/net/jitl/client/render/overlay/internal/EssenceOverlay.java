@@ -63,7 +63,7 @@ public class EssenceOverlay {
                 /*
                  * Handles the configured position of the Essence bar
                  */
-                JClientConfig.GuiCategory config = JConfigs.CLIENT.GUI_CATEGORY;
+                JClientConfig.GuiCategory config = JConfigs.CLIENT.guiCategory;
                 EssencePosition essencePosition = config.getEssencePosition();
                 int yPos = config.getEssenceYPos();
                 int xPos = config.getEssenceXPos();

@@ -25,7 +25,7 @@ public class CaptureTask implements RenderTickTask {
 
     @Override
     public boolean onRenderTick(TickEvent.RenderTickEvent evt) throws Exception {
-        JClientConfig.GuiCategory guiCategory = JConfigs.CLIENT.GUI_CATEGORY;
+        JClientConfig.GuiCategory guiCategory = JConfigs.CLIENT.guiCategory;
         switch (frame) {
             // override viewport size (the following frame will be black)
             case 0:

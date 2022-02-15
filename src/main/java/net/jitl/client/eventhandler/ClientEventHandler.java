@@ -69,7 +69,7 @@ public class ClientEventHandler {
                 RenderSystem.setShaderFogEnd(density * farPlaneDistance);
             }
 
-            if (JConfigs.CLIENT.GUI_CATEGORY.isIsometricFOVEnabled()) {
+            if (JConfigs.CLIENT.guiCategory.isIsometricFOVEnabled()) {
                 RenderSystem.setShaderFogStart(1000F);
                 RenderSystem.setShaderFogEnd(1000F * farPlaneDistance);
             }

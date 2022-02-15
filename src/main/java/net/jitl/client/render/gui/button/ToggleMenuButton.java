@@ -11,7 +11,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 public class ToggleMenuButton extends JImageButton {
 
 	JClientConfig clientConfig = JConfigs.CLIENT;
-	private final boolean menuEnabled = clientConfig.GUI_CATEGORY.isJITLMenuEnabled();
+	private final boolean menuEnabled = clientConfig.guiCategory.isJITLMenuEnabled();
 
 	private static final int TEXT_WIDTH = 128;
 	private static final int TEXT_HEIGHT = 8;

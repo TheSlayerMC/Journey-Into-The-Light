@@ -18,4 +18,8 @@ public class JConfigs {
 		CONFIG_REGISTER.register(COMMON);
 		CONFIG_REGISTER.register(SERVER);
 	}
+
+	public static String resolveConfigPath(String fileName) {
+		return JITL.MODID + "/" + fileName + ".toml";
+	}
 }

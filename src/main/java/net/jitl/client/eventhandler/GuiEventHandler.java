@@ -22,7 +22,7 @@ public class GuiEventHandler {
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void overrideMainMenu(ScreenOpenEvent event) {
-		if (JConfigs.CLIENT.GUI_CATEGORY.isJITLMenuEnabled()) {
+		if (JConfigs.CLIENT.guiCategory.isJITLMenuEnabled()) {
 			if (event.getScreen() instanceof TitleScreen) {
 				event.setScreen(new JMainMenuGui(false));
 			}
@@ -31,7 +31,7 @@ public class GuiEventHandler {
 
 	@SubscribeEvent()
 	public static void onGuiInit(ScreenEvent.InitScreenEvent.Post event) {
-		JClientConfig.GuiCategory guiConfig = JConfigs.CLIENT.GUI_CATEGORY;
+		JClientConfig.GuiCategory guiConfig = JConfigs.CLIENT.guiCategory;
 		Minecraft minecraft = Minecraft.getInstance();
 		int x = event.getScreen().width / 1024;
 

@@ -33,7 +33,7 @@ public class RenderLivingEventHandler {
         Minecraft minecraft = Minecraft.getInstance();
 
         JClientConfig config = JConfigs.CLIENT;
-        HealthBarRendering healthBarRendering = config.GUI_CATEGORY.getHealthBarRendering();
+        HealthBarRendering healthBarRendering = config.guiCategory.getHealthBarRendering();
         boolean neverRender = healthBarRendering == HealthBarRendering.NEVER;
         boolean onlyRenderInDebug = healthBarRendering == HealthBarRendering.IN_DEBUG_MODE;
 

@@ -15,7 +15,7 @@ public class GUIMusicHandler {
     //handler for all GUI-related music (might be removed if there isn't any more GUI music)
     @SubscribeEvent()
     public static void guiMusicTick(TickEvent.ClientTickEvent event) {
-            if (Minecraft.getInstance().player == null && JConfigs.CLIENT.GUI_CATEGORY.isJITLMenuEnabled()) {
+            if (Minecraft.getInstance().player == null && JConfigs.CLIENT.guiCategory.isJITLMenuEnabled()) {
                 JMusicTicker.addTrack(new JMusic(JSounds.MENU_MUSIC.get(), 10, 0, 0));
             }
     }
