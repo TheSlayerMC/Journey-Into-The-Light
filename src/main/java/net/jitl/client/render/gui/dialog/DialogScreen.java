@@ -8,7 +8,6 @@ import net.jitl.client.util.Rectangle;
 import net.jitl.client.util.RenderUtils;
 import net.jitl.common.dialog.ClientDialogPage;
 import net.jitl.common.dialog.DialogCharacter;
-import net.jitl.core.JITL;
 import net.jitl.core.init.JSounds;
 import net.jitl.core.network.JPacketHandler;
 import net.jitl.core.network.dialogue.CDialogPressOptionPacket;
@@ -34,7 +33,7 @@ public class DialogScreen extends JScreen {
     private static final int INDENT = 6;
     private static final int PHRASE_INDENT = 45;
 
-    private static int TICK = 0;
+    private static int TEXT_TICK = 0;
     private static int TEXT_COUNTER = 0;
     private static String CURRENT_MOB_TEXT = "";
 
@@ -181,32 +180,34 @@ public class DialogScreen extends JScreen {
     }
 
     private String textCounter(String input) {
-        int tickMult = 4;
+        int tickMult = 7;
         int tickDuration = (input.length() * tickMult);
 
-        if (TICK >= 0 && TICK <= tickDuration) {
-            if (TICK % tickMult == 0) {
+        // check to make sure the tick is greater or equal to 0, and is less than or equal to the length of the text * the tick multiplier
+        if (TEXT_TICK >= 0 && TEXT_TICK <= tickDuration) {
+            // only count every (tickMult) ticks
+            if (TEXT_TICK % tickMult == 0) {
                 int i = TEXT_COUNTER;
 
+                // keep adding characters from the full string, until the last index is reached
                 CURRENT_MOB_TEXT = input.substring(0, i);
 
                 ClientTools.playLocalSound(JSounds.BASIC_DIALOG.get(), 1.0F, 1.0F);
 
                 TEXT_COUNTER++;
             }
-            TICK++;
+            TEXT_TICK++;
             return CURRENT_MOB_TEXT;
         } else {
-            if (TICK > tickDuration) {
-                TICK = tickDuration + 1;
-            }
+            if (TEXT_TICK > tickDuration)
+                TEXT_TICK = tickDuration + 1;
             return input;
         }
     }
 
     private static void resetTextCounter() {
         TEXT_COUNTER = 0;
-        TICK = 0;
+        TEXT_TICK = 0;
     }
 
     private static class DialogButton extends ImprovedButton {
@@ -219,7 +220,6 @@ public class DialogScreen extends JScreen {
         @Override
         public void onPress() {
             super.onPress();
-            JITL.LOGGER.info("reset");
             resetTextCounter();
         }
 
