@@ -33,9 +33,9 @@ public class DialogScreen extends JScreen {
     private static final int INDENT = 6;
     private static final int PHRASE_INDENT = 45;
 
-    private static int TEXT_TICK = 0;
-    private static int TEXT_COUNTER = 0;
-    private static String CURRENT_MOB_TEXT = "";
+    private int textTick = 0;
+    private int textCounter = 0;
+    private String currentMobText = "";
 
     private final ClientDialogPage page;
 
@@ -59,8 +59,6 @@ public class DialogScreen extends JScreen {
     @Override
     public void init() {
         super.init();
-
-        resetTextCounter();
 
         mobTextRect = new Rectangle(PHRASE_INDENT, INDENT, (int) (1.75 / 3F * width), centerY - 14 - INDENT - 16);
         mobIconRect = new Rectangle(mobTextRect.right(), (int) (1.2 / 4F * height), width, height);
@@ -184,30 +182,25 @@ public class DialogScreen extends JScreen {
         int tickDuration = (input.length() * tickMult);
 
         // check to make sure the tick is greater or equal to 0, and is less than or equal to the length of the text * the tick multiplier
-        if (TEXT_TICK >= 0 && TEXT_TICK <= tickDuration) {
+        if (textTick >= 0 && textTick <= tickDuration) {
             // only count every (tickMult) ticks
-            if (TEXT_TICK % tickMult == 0) {
-                int i = TEXT_COUNTER;
+            if (textTick % tickMult == 0) {
+                int i = textCounter;
 
                 // keep adding characters from the full string, until the last index is reached
-                CURRENT_MOB_TEXT = input.substring(0, i);
+                currentMobText = input.substring(0, i);
 
                 ClientTools.playLocalSound(JSounds.BASIC_DIALOG.get(), 1.0F, 1.0F);
 
-                TEXT_COUNTER++;
+                textCounter++;
             }
-            TEXT_TICK++;
-            return CURRENT_MOB_TEXT;
+            textTick++;
+            return currentMobText;
         } else {
-            if (TEXT_TICK > tickDuration)
-                TEXT_TICK = tickDuration + 1;
+            if (textTick > tickDuration)
+                textTick = tickDuration + 1;
             return input;
         }
-    }
-
-    private static void resetTextCounter() {
-        TEXT_COUNTER = 0;
-        TEXT_TICK = 0;
     }
 
     private static class DialogButton extends ImprovedButton {
@@ -220,7 +213,6 @@ public class DialogScreen extends JScreen {
         @Override
         public void onPress() {
             super.onPress();
-            resetTextCounter();
         }
 
         @Override
