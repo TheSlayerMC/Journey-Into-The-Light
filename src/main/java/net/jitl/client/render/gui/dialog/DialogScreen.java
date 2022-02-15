@@ -122,7 +122,7 @@ public class DialogScreen extends JScreen {
     }
 
     private void renderMobText() {
-        String text = textCounter(I18n.get(page.text()));
+        String text = tickBasedPrinting(I18n.get(page.text()));
 
         String[] lines = text.split("\n");
         int maxWidth = mobTextRect.width() - INDENT;
@@ -138,6 +138,30 @@ public class DialogScreen extends JScreen {
             int h = font.wordWrapHeight(line, maxWidth);
             font.drawWordWrap(TextComponent.EMPTY.plainCopy().append(new TextComponent(line)).withStyle(ChatFormatting.YELLOW, ChatFormatting.ITALIC), mobTextRect.left(), yStart, maxWidth, 0xFFFFFF);
             yStart += h;
+        }
+    }
+
+    private String tickBasedPrinting(String input) {
+        int tickMult = 7;
+        int tickDuration = input.length() * tickMult;
+
+        // check to make sure the tick is greater or equal to 0, and is less than or equal to the length of the text * the tick multiplier
+        if (textTick >= 0 && textTick <= tickDuration) {
+            // only count every (tickMult) ticks
+            if (textTick % tickMult == 0) {
+                int i = textCounter;
+
+                // keep adding characters from the full string, until the last index is reached
+                currentMobText = input.substring(0, i);
+
+                ClientTools.playLocalSound(JSounds.BASIC_DIALOG, 1.0F, 1.0F);
+
+                textCounter++;
+            }
+            textTick++;
+            return currentMobText;
+        } else {
+            return input;
         }
     }
 
@@ -175,32 +199,6 @@ public class DialogScreen extends JScreen {
 
         // scale = 1 -> the whole entity is in one pixel
         InventoryScreen.renderEntityInInventory(renderX, renderY, (int) scale, renderX - mouseX, renderY - mouseY - scaledEyeHeight, entity);
-    }
-
-    private String textCounter(String input) {
-        int tickMult = 7;
-        int tickDuration = (input.length() * tickMult);
-
-        // check to make sure the tick is greater or equal to 0, and is less than or equal to the length of the text * the tick multiplier
-        if (textTick >= 0 && textTick <= tickDuration) {
-            // only count every (tickMult) ticks
-            if (textTick % tickMult == 0) {
-                int i = textCounter;
-
-                // keep adding characters from the full string, until the last index is reached
-                currentMobText = input.substring(0, i);
-
-                ClientTools.playLocalSound(JSounds.BASIC_DIALOG.get(), 1.0F, 1.0F);
-
-                textCounter++;
-            }
-            textTick++;
-            return currentMobText;
-        } else {
-            if (textTick > tickDuration)
-                textTick = tickDuration + 1;
-            return input;
-        }
     }
 
     private static class DialogButton extends ImprovedButton {
