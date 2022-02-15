@@ -1,12 +1,7 @@
 package net.jitl.common.item;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.jitl.client.render.overlay.internal.KnowledgeToast;
 import net.jitl.common.capability.dialog.DialogManager;
-import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.core.init.JDialogs;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -23,14 +18,6 @@ DebugItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
-        //ConfiguredFeature<BlockStateFeatureConfig, ?> configuredfeature = JFeatures.TORRID_CRYSTAL.get().configured(new BlockStateFeatureConfig(JBlocks.TORRID_CRYSTAL.defaultBlockState()));
-
-        Minecraft minecraft = Minecraft.getInstance();
-
-        Font fontRenderer = minecraft.font;
-
-        PoseStack poseStack = new PoseStack();
-
         if (!worldIn.isClientSide()) {
             DialogManager.of(((ServerPlayer) playerIn)).startDialog(JDialogs.test());
 //            ItemStack scrollStack = new ItemStack(JItems.LORE_SCROLL);
@@ -55,13 +42,6 @@ DebugItem extends Item {
             loot.add(new ItemStack(JItems.BLOOD, 5));
             BossCrystalEntity.create(worldIn, playerIn.position(), BossCrystalEntity.Type.CORBA, loot);
             return InteractionResultHolder.success(playerIn.getItemInHand(handIn));*/
-        } else {
-            if (playerIn.isCrouching()) {
-                Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(EnumKnowledgeType.CORBA, true));
-            } else {
-                Minecraft.getInstance().getToasts().addToast(new KnowledgeToast(EnumKnowledgeType.DEPTHS, false));
-            }
-
         }
         return InteractionResultHolder.success(playerIn.getItemInHand(handIn));
     }
