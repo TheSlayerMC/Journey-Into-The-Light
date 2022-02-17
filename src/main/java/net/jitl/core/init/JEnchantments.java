@@ -1,9 +1,6 @@
 package net.jitl.core.init;
 
-import net.jitl.common.enchantment.AmbitEnchantment;
-import net.jitl.common.enchantment.FaithfulEnchantment;
-import net.jitl.common.enchantment.LightweightEnchantment;
-import net.jitl.common.enchantment.ScorchingEnchantment;
+import net.jitl.common.enchantment.*;
 import net.jitl.common.item.throwable.PiercerItem;
 import net.jitl.core.JITL;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -35,4 +32,7 @@ public class JEnchantments {
 
     public static final RegistryObject<Enchantment> FAITHFUL =
             REGISTER.register("faithful", () -> new FaithfulEnchantment(Enchantment.Rarity.COMMON, PIERCER, EquipmentSlot.MAINHAND));
+
+    public static final RegistryObject<Enchantment> HOT_TOUCH =
+            REGISTER.register("hot_touch", () -> new HotTouchEnchantment(Enchantment.Rarity.UNCOMMON, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
 }

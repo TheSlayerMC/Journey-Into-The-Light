@@ -1,6 +1,7 @@
 {
   "replace": false,
   "entries": [
-    "jitl:overworld_chests"
+    "jitl:overworld_chests",
+    "jitl:smelting"
   ]
 }
