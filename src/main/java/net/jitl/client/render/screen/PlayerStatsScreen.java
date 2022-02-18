@@ -2,31 +2,23 @@ package net.jitl.client.render.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.jitl.common.capability.JCapabilityProvider;
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.player.data.Knowledge;
-import net.jitl.common.container.ContainerEmpty;
+import net.jitl.common.container.EmptyContainer;
 import net.jitl.common.helper.ArgbColor;
 import net.jitl.common.helper.EnumKnowledgeType;
-import net.jitl.common.knowledge.PlayerStats;
 import net.jitl.core.JITL;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.PageButton;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.util.client.ClientProxy;
 
-import java.util.Objects;
-
-public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
+public class PlayerStatsScreen extends AbstractContainerScreen<EmptyContainer> {
 
     private PageButton nextButton;
     private PageButton previousButton;
@@ -35,8 +27,8 @@ public class ScreenPlayerStats extends AbstractContainerScreen<ContainerEmpty> {
     public int pageNumber = 0;
     private final JPlayer jPlayer;
 
-    public ScreenPlayerStats(Inventory playerInventory) {
-        super(new ContainerEmpty(), playerInventory, new TranslatableComponent("jitl.stats"));
+    public PlayerStatsScreen(Inventory playerInventory) {
+        super(new EmptyContainer(), playerInventory, new TranslatableComponent("jitl.stats"));
         this.imageWidth = 242;
         this.imageHeight = 197;
         this.jPlayer = JPlayer.from(ClientProxy.player());

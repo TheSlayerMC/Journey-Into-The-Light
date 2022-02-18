@@ -74,6 +74,7 @@ public class HongoEntity extends Monster {
             }
             if (source.getDirectEntity() instanceof WitherSkull) {
                 WithershroomEntity withershroomEntity = new WithershroomEntity(JEntities.WITHERSHROOM_TYPE, this.level);
+                withershroomEntity.setYBodyRot(this.yBodyRot);
                 withershroomEntity.setPos(this.getX(), this.getY(), this.getZ());
                 level.addFreshEntity(withershroomEntity);
                 this.remove(RemovalReason.DISCARDED);

@@ -1,7 +1,7 @@
 package net.jitl.client.eventhandler;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import net.jitl.client.render.screen.ScreenPlayerStats;
+import net.jitl.client.render.screen.PlayerStatsScreen;
 import net.jitl.core.network.JPacketHandler;
 import net.jitl.core.network.KeyPressedPacket;
 import net.minecraft.client.KeyMapping;
@@ -83,7 +83,7 @@ public class KeybindEventHandler {
 
             if (action == GLFW.GLFW_PRESS) {
                 if (key == keyStats.getKey()) {
-                    MINECRAFT.setScreen(new ScreenPlayerStats(MINECRAFT.player.getInventory()));
+                    MINECRAFT.setScreen(new PlayerStatsScreen(MINECRAFT.player.getInventory()));
 
                 } else {
                     handleIsometricCameraKeys(key);
