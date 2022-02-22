@@ -1,4 +1,4 @@
-package net.jitl.core.network;
+package net.jitl.core.init;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -7,7 +7,7 @@ import net.minecraft.commands.Commands;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class JCommandEvent {
+public class JCommands {
 
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event) {

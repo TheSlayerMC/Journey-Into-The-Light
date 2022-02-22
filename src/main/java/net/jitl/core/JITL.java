@@ -3,10 +3,10 @@ package net.jitl.core;
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.common.eventhandler.SmeltingEnchantHandler;
+import net.jitl.core.init.JCommands;
 import net.jitl.core.init.JEntities;
 import net.jitl.core.init.JLootConditions;
 import net.jitl.core.init.client.ScrollEntries;
-import net.jitl.core.network.JCommandEvent;
 import net.jitl.core.init.world.Dimensions;
 import net.jitl.core.init.world.JBiomeGeneration;
 import net.minecraft.resources.ResourceLocation;
@@ -62,7 +62,7 @@ public class JITL {
 			ScrollEntries.register();
 		});
 		Raid.RaiderType.create("illager_mech", JEntities.ILLAGER_MECH_TYPE, new int[]{0, 0, 0, 1, 0, 1, 0, 2}); //TODO: move me
-		MinecraftForge.EVENT_BUS.register(JCommandEvent.class);
+		MinecraftForge.EVENT_BUS.register(JCommands.class);
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {

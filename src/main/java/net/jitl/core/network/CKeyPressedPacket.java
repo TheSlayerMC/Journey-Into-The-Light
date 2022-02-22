@@ -10,30 +10,30 @@ import net.minecraftforge.network.NetworkEvent;
 import org.jetbrains.annotations.NotNull;
 import ru.timeconqueror.timecore.api.common.packet.ITimePacketHandler;
 
-public class KeyPressedPacket {
+public class CKeyPressedPacket {
 
     private final boolean isAmulet;
     private final boolean isDown;
 
-    public KeyPressedPacket(boolean key, boolean isDown) {
+    public CKeyPressedPacket(boolean key, boolean isDown) {
         isAmulet = key;
         this.isDown = isDown;
     }
 
-    public static class Handler implements ITimePacketHandler<KeyPressedPacket> {
+    public static class Handler implements ITimePacketHandler<CKeyPressedPacket> {
         @Override
-        public void encode(KeyPressedPacket packet, FriendlyByteBuf buffer) {
+        public void encode(CKeyPressedPacket packet, FriendlyByteBuf buffer) {
             buffer.writeBoolean(packet.isAmulet);
             buffer.writeBoolean(packet.isDown);
         }
 
         @Override
-        public @NotNull KeyPressedPacket decode(FriendlyByteBuf buffer) {
-            return new KeyPressedPacket(buffer.readBoolean(), buffer.readBoolean());
+        public @NotNull CKeyPressedPacket decode(FriendlyByteBuf buffer) {
+            return new CKeyPressedPacket(buffer.readBoolean(), buffer.readBoolean());
         }
 
         @Override
-        public boolean handle(KeyPressedPacket packet, NetworkEvent.Context ctx) {
+        public boolean handle(CKeyPressedPacket packet, NetworkEvent.Context ctx) {
             ctx.enqueueWork(() -> {
                 ServerPlayer player = ctx.getSender();
                 IPressedKeysCapability keys = JCapabilityProvider.getCapability(player, JCapabilityProvider.KEYS);

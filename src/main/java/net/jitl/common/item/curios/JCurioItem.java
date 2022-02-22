@@ -1,10 +1,10 @@
 package net.jitl.common.item.curios;
 
 import net.jitl.common.helper.TooltipFiller;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -14,8 +14,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
-
-import net.minecraft.world.item.Item.Properties;
+import java.util.Objects;
 
 public class JCurioItem extends Item implements ICurioItem {
     private boolean hasOverview;
@@ -48,15 +47,15 @@ public class JCurioItem extends Item implements ICurioItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level world, List<Component> text, @NotNull TooltipFlag flag) {
-        TooltipFiller tooltipFiller = new TooltipFiller(text, this.getRegistryName().getPath());
-        if (hasOverview = true) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level world, @NotNull List<Component> text, @NotNull TooltipFlag flag) {
+        TooltipFiller tooltipFiller = new TooltipFiller(text, Objects.requireNonNull(this.getRegistryName()).getPath());
+        if (hasOverview) {
             tooltipFiller.addOverview();
         }
-        if (hasAbility = true) {
+        if (hasAbility) {
             tooltipFiller.addDetail();
         }
-        if (hasNegativeEffects = true) {
+        if (hasNegativeEffects) {
             tooltipFiller.addDrawback();
         }
     }

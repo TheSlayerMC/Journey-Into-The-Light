@@ -96,19 +96,20 @@ public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merc
         }
     }
 
+    public void trade(Player playerEntity) {
+        if (!getOffers().isEmpty()) {
+            if (!level.isClientSide()) {
+                setTradingPlayer(playerEntity);
+                openTradingScreen(playerEntity, getDisplayName(), 1);
+            }
+        }
+    }
+
     @Override
-    public InteractionResult mobInteract(Player playerEntity, InteractionHand playerHand) {
+    public @NotNull InteractionResult mobInteract(@NotNull Player playerEntity, @NotNull InteractionHand playerHand) {
         if (isAlive() && this.playerEntity == null) {
             if (getDialog() == null) {
-                if (getOffers().isEmpty()) {
-                    return InteractionResult.sidedSuccess(level.isClientSide());
-                } else {
-                    if (!level.isClientSide()) {
-                        setTradingPlayer(playerEntity);
-                        openTradingScreen(playerEntity, getDisplayName(), 1);
-                    }
-                    return InteractionResult.sidedSuccess(level.isClientSide());
-                }
+                trade(playerEntity);
             } else {
                 if (!level.isClientSide()) {
                     DialogManager.of(((ServerPlayer) playerEntity)).startDialog(getDialog());
@@ -118,6 +119,7 @@ public abstract class JVillagerEntity extends PathfinderMob implements Npc, Merc
         } else {
             return super.mobInteract(playerEntity, playerHand);
         }
+        return super.mobInteract(playerEntity, playerHand);
     }
 
     @Override

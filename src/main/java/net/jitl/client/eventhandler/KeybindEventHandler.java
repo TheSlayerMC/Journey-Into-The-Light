@@ -2,8 +2,8 @@ package net.jitl.client.eventhandler;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.jitl.client.render.screen.PlayerStatsScreen;
+import net.jitl.core.network.CKeyPressedPacket;
 import net.jitl.core.network.JPacketHandler;
-import net.jitl.core.network.KeyPressedPacket;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
@@ -99,7 +99,7 @@ public class KeybindEventHandler {
     static void handleAbilityKeys(InputConstants.Key input, int action) {
         boolean key = input == keyAmulet.getKey();
         if (key || input == keyArmor.getKey()) {
-            JPacketHandler.INSTANCE.sendToServer(new KeyPressedPacket(key, action == GLFW.GLFW_PRESS));
+            JPacketHandler.INSTANCE.sendToServer(new CKeyPressedPacket(key, action == GLFW.GLFW_PRESS));
         }
     }
 }

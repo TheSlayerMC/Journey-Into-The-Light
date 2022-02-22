@@ -20,8 +20,8 @@ public class JPacketHandler {
 
     public static final SimpleChannel INSTANCE = REGISTER.createChannel("main", () -> PROTOCOL_STRING, PROTOCOL_STRING::equals, PROTOCOL_STRING::equals)
             .regPacket(SCurrentStructurePacket.class, new SCurrentStructurePacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
-            .regPacket(KeyPressedPacket.class, new KeyPressedPacket.Handler(), NetworkDirection.PLAY_TO_SERVER)
-            .regPacket(JBossPacket.class, new JBossPacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
+            .regPacket(CKeyPressedPacket.class, new CKeyPressedPacket.Handler(), NetworkDirection.PLAY_TO_SERVER)
+            .regPacket(SBossPacket.class, new SBossPacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
             .regPacket(CDialogPressOptionPacket.class, new CDialogPressOptionPacket.Handler(), NetworkDirection.PLAY_TO_SERVER)
             .regPacket(SCloseDialogGuiPacket.class, new SCloseDialogGuiPacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)
             .regPacket(SOpenDialogGuiPacket.class, new SOpenDialogGuiPacket.Handler(), NetworkDirection.PLAY_TO_CLIENT)

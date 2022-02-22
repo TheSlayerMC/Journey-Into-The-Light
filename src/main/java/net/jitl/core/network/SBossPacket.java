@@ -12,38 +12,37 @@ import ru.timeconqueror.timecore.api.common.packet.ITimePacketHandler;
 import java.io.IOException;
 import java.util.UUID;
 
-public class JBossPacket {
-
+public class SBossPacket {
     private final Operation addOrRemove;
     private final UUID barUUID;
     private final int bossNum;
 
-    private JBossPacket(Operation operation, UUID barUUID, int bossNum) {
+    private SBossPacket(Operation operation, UUID barUUID, int bossNum) {
         this.addOrRemove = operation;
         this.barUUID = barUUID;
         this.bossNum = bossNum;
     }
 
-    public JBossPacket(Operation operation, UUID barUUID, Entity boss) {
+    public SBossPacket(Operation operation, UUID barUUID, Entity boss) {
         this(operation, barUUID, boss.getId());
     }
 
-    public static class Handler implements ITimePacketHandler<JBossPacket> {
+    public static class Handler implements ITimePacketHandler<SBossPacket> {
 
         @Override
-        public void encode(JBossPacket packet, FriendlyByteBuf buffer) throws IOException {
+        public void encode(SBossPacket packet, FriendlyByteBuf buffer) throws IOException {
             buffer.writeEnum(packet.addOrRemove);
             buffer.writeUUID(packet.barUUID);
             buffer.writeInt(packet.bossNum);
         }
 
         @Override
-        public @NotNull JBossPacket decode(FriendlyByteBuf buffer) throws IOException {
-            return new JBossPacket(buffer.readEnum(Operation.class), buffer.readUUID(), buffer.readInt());
+        public @NotNull SBossPacket decode(FriendlyByteBuf buffer) throws IOException {
+            return new SBossPacket(buffer.readEnum(Operation.class), buffer.readUUID(), buffer.readInt());
         }
 
         @Override
-        public boolean handle(JBossPacket packet, NetworkEvent.Context ctx) {
+        public boolean handle(SBossPacket packet, NetworkEvent.Context ctx) {
             ctx.enqueueWork(() -> {
                 switch (packet.addOrRemove) {
                     case ADD -> {

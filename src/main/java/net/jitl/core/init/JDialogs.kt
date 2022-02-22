@@ -26,4 +26,34 @@ object JDialogs {
         -"I know! :/"
     }
         @JvmName("test") get
+
+    @JvmStatic
+    val MAGE: Dialog = dialog(JITL.rl("test")) {
+        define("mage", JEntities.MAGE_TYPE)
+        character("mage")
+        -"Bla bla bla."
+        -"Wanna learn about Essencia?"
+        options {
+            "What's Essencia?" {
+                -"Essencia is something cool and awesome and magical."
+                -"You can make cool wands and summon monsters and shit."
+                options {
+                    "Woah that sounds cool!" {
+                        -"Yeah it's sick"
+                    }
+                    "No thanks, that sounds stupid" {
+                        -"I know :("
+                    }
+                }
+            }
+            "No thanks." {}
+            "Can we trade?" {
+                action { world, player ->
+                    //Open trading menu
+                }
+            }
+        }
+        -"I know! :/"
+    }
+        @JvmName("mage") get
 }
