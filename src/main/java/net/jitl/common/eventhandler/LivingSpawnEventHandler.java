@@ -19,6 +19,13 @@ public class LivingSpawnEventHandler {
     @SubscribeEvent
     public static void setupSpawns(BiomeLoadingEvent event) {
         MobSpawnSettingsBuilder spawnSettingsBuilder = event.getSpawns();
+        spawnSettingsBuilder
+                .addSpawn(
+                        MobCategory.MONSTER,
+                        new MobSpawnSettings.SpawnerData(
+                                JEntities.HONGLOW_TYPE,
+                                55, 1, 2));
+
         if (event.getCategory() == Biome.BiomeCategory.PLAINS) {
             spawnSettingsBuilder
                     .addSpawn(

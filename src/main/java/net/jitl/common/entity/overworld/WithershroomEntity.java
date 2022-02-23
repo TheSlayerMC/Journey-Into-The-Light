@@ -23,7 +23,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.WitherSkull;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.GrassBlock;
@@ -50,10 +49,7 @@ public class WithershroomEntity extends Monster {
     }
 
     public static boolean canSpawn(EntityType<? extends PathfinderMob> entityType, LevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random random) {
-        return !worldIn.getBlockState(pos).is(Blocks.WATER)
-                && worldIn.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK)
-                && worldIn.getBiome(pos).getBiomeCategory() == Biome.BiomeCategory.MUSHROOM
-                || worldIn.getBiome(pos).getBiomeCategory() == Biome.BiomeCategory.SWAMP;
+        return false;
     }
 
     @Override

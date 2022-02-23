@@ -57,7 +57,7 @@ JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1F, 2F))
-            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JEntities::canSpawnMonsterOnGrass)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JEntities::monsterOnGrassSpawn)
             .spawnEgg(OVERWORLD_COLOR, HOSTILE_COLOR, JTabs.SPAWNERS)
             .attributes(() -> FloroEntity.createAttributes().build())
             .retrieve();
@@ -144,7 +144,7 @@ JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.5F, 2F))
-            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JEntities::canSpawnMonsterOnGrass)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JEntities::monsterOnGrassSpawn)
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .attributes(() -> HongoEntity.createAttributes().build())
             .retrieve();
@@ -154,7 +154,7 @@ JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.5F, 2.25F))
-            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JEntities::canSpawnMonsterOnGrass)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JEntities::monsterOnGrassSpawn)
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .attributes(() -> BrownHongoEntity.createAttributes().build())
             .retrieve();
@@ -183,7 +183,7 @@ JEntities {
                             .setTrackingRange(80)
                             .setShouldReceiveVelocityUpdates(true)
                             .sized(1.5F, 2F))
-            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HonglowEntity::canSpawn)
+            .spawnSettings(SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, JEntities::undergroundSpawn)
             .spawnEgg(OVERWORLD_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
             .attributes(() -> HonglowEntity.createAttributes().build())
             .retrieve();
@@ -378,8 +378,12 @@ JEntities {
                             .sized(1.0F, 3.0F))
             .retrieve();
 
-    public static boolean canSpawnMonsterOnGrass(EntityType<? extends Monster> type_, LevelAccessor level_, MobSpawnType reason_, BlockPos pos_, Random random_) {
+    public static boolean monsterOnGrassSpawn(EntityType<? extends Monster> type_, LevelAccessor level_, MobSpawnType reason_, BlockPos pos_, Random random_) {
         return level_.getBlockState(pos_.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && Monster.checkAnyLightMonsterSpawnRules(type_, level_, reason_, pos_, random_);
+    }
+
+    public static boolean undergroundSpawn(EntityType<? extends Monster> type_, LevelAccessor level_, MobSpawnType reason_, BlockPos pos_, Random random_) {
+        return pos_.getY() < 24 && Monster.checkAnyLightMonsterSpawnRules(type_, level_, reason_, pos_, random_);
     }
 }
 

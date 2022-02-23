@@ -46,6 +46,7 @@ public class JRenderTypes extends RenderType {
                 texture,
                 builder -> builder
                         .setShaderState(RenderStateShard.NEW_ENTITY_SHADER)
+                        .setTransparencyState(NO_TRANSPARENCY)
                         .setOverlayState(OVERLAY)
                         .setCullState(RenderStateShard.NO_CULL)
                         .createCompositeState(true));
