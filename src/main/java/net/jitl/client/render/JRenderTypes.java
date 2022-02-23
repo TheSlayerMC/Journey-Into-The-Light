@@ -29,7 +29,6 @@ public class JRenderTypes extends RenderType {
                         .createCompositeState(false));
     }
 
-    //FIXME
     public static RenderType fullbrightCutout(ResourceLocation texture) {
         return RenderHelper.rtTextured(JITL.rl("fullbright_cutout"),
                 VertexFormat.Mode.QUADS,
@@ -40,6 +39,18 @@ public class JRenderTypes extends RenderType {
                         .setCullState(RenderStateShard.NO_CULL)); //Still has culling??
     }
 
+    public static RenderType fullbrightEntity(ResourceLocation texture) {
+        return RenderHelper.rtTextured(JITL.rl("fullbright_entity_cutout"),
+                VertexFormat.Mode.QUADS,
+                DefaultVertexFormat.NEW_ENTITY,
+                texture,
+                builder -> builder
+                        .setShaderState(RenderStateShard.NEW_ENTITY_SHADER)
+                        .setOverlayState(OVERLAY)
+                        .setCullState(RenderStateShard.NO_CULL)
+                        .createCompositeState(true));
+    }
+
     public static RenderType transparentCutout(ResourceLocation texture) {
         return RenderHelper.rtTextured(JITL.rl("transparent_cutout"),
                 VertexFormat.Mode.QUADS,
@@ -48,7 +59,7 @@ public class JRenderTypes extends RenderType {
                 builder -> builder
                         .setTransparencyState(TransparencyStateShard.ADDITIVE_TRANSPARENCY)
                         //.setDiffuseLightingState(DIFFUSE_LIGHTING)
-                        .setShaderState(ShaderStateShard.RENDERTYPE_LIGHTNING_SHADER) //FIXME: subject to change ~ Dizzle
+                        .setShaderState(RenderStateShard.POSITION_TEX_SHADER) //FIXME: subject to change ~ Dizzle
                         .setLightmapState(LIGHTMAP)
                         .createCompositeState(true));
     }

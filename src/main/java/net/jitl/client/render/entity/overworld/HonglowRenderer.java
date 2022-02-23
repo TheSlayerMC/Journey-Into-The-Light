@@ -28,6 +28,6 @@ public class HonglowRenderer extends MobRenderer<HonglowEntity, HongoModel<Hongl
 	@Nullable
 	@Override
 	protected RenderType getRenderType(@NotNull HonglowEntity livingEntity, boolean boolean_, boolean boolean1_, boolean boolean2_) {
-		return JRenderTypes.fullbrightCutout(getTextureLocation(livingEntity));
+		return JRenderTypes.fullbrightEntity(getTextureLocation(livingEntity));
 	}
 }
