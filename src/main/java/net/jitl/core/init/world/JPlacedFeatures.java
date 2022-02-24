@@ -517,12 +517,12 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.EUCA_BIOMES)
             .asPromise();
 
-    public static final Promised<? extends PlacedFeature> GLOWING_FUNGI = REGISTER.register(
+    /*public static final Promised<? extends PlacedFeature> GLOWING_FUNGI = REGISTER.register(
                     "glowing_fungi",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.GLOWING_FUNGI.get()
                             .placed(undergroundFloorPatch(4, Blocks.STONE, Blocks.DEEPSLATE)))
-            .asPromise();
+            .asPromise();*/
 
     private static List<PlacementModifier> patch(int count, PlacementModifier placementModifier) {
         return List.of(
