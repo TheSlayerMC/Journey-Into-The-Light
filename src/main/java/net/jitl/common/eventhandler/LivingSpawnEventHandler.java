@@ -24,7 +24,7 @@ public class LivingSpawnEventHandler {
                         MobCategory.MONSTER,
                         new MobSpawnSettings.SpawnerData(
                                 JEntities.HONGLOW_TYPE,
-                                55, 1, 2));
+                                60, 1, 2));
 
         if (event.getCategory() == Biome.BiomeCategory.PLAINS) {
             spawnSettingsBuilder
