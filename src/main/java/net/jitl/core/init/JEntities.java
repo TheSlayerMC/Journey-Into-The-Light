@@ -28,8 +28,7 @@ import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
 import java.util.Random;
 
-public class
-JEntities {
+public class JEntities {
     //dimension colors
     private static final int OVERWORLD_COLOR = 0x32f53f;
     private static final int NETHER_COLOR = 0x881a2b;

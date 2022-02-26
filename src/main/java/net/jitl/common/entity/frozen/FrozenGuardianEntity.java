@@ -2,6 +2,7 @@ package net.jitl.common.entity.frozen;
 
 import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.entity.EssenciaBoltEntity;
+import net.jitl.common.helper.EnumKnowledgeType;
 import net.jitl.common.tile.PedestalTile;
 import net.jitl.core.init.JBlocks;
 import net.jitl.core.init.JEntities;
@@ -217,6 +218,7 @@ public class FrozenGuardianEntity extends PathfinderMob {
             if (capability != null) {
                 capability.frozenBlizzard.setBlizzardDisabled(true);
                 capability.detectAndSendChanges();
+                capability.knowledge.addXP(EnumKnowledgeType.FROZEN, 15F);
             }
         }
     }
