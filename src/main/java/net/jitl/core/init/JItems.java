@@ -188,6 +188,8 @@ public class JItems {
     public static final Item SULPHUR_POWDER = promise();
     public static final Item BLAZIUM_INGOT = promise();
     public static final Item RAW_BLAZIUM = promise();
+    public static final Item BOILING_SKULL = promise();
+    public static final Item DEMONIC_SKULL = promise();
 
     public static final Item EYE_OF_THE_BLIZZARD = promise();
 

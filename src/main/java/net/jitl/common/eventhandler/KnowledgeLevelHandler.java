@@ -27,7 +27,7 @@ public class KnowledgeLevelHandler {
             if (player != null) {
                 Knowledge knowledge = player.knowledge;
                 if (type.is(JTags.OVERWORLD_MOBS)) {
-                    JITL.LOGGER.info("Added overworld knowledge from {}", type);
+                    JITL.LOGGER.info("Added overworld knowledge from {}, with amount {}", type, amount);
                     knowledge.addXP(EnumKnowledgeType.OVERWORLD, amount);
                 }
 

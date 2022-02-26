@@ -240,6 +240,8 @@ public class ItemRegistrator {
         registerItem("blazium_ingot", "Blazium Ingot");
         registerItem("raw_blazium", "Raw Blazium");
 
+        registerItem("boiling_skull", "Charred Skull");
+
         registerItem("pottery_shard", "Pottery Shard");
 
         registerItem("music_disc_haunt_muskie_2", "Music Disc", () -> new RecordItem(1, JSounds.HAUNT_MUSKIE_2::get, itemGrouped().stacksTo(1)));
