@@ -16,15 +16,9 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class InjectTableModifier extends LootModifier {
-
     private final ResourceLocation newTable;
 
-    /**
-     * Constructs a LootModifier.
-     *
-     * @param conditionsIn the ILootConditions that need to be matched before the loot is modified.
-     */
-    protected InjectTableModifier(LootItemCondition[] conditionsIn, ResourceLocation lootTable) {
+    public InjectTableModifier(LootItemCondition[] conditionsIn, ResourceLocation lootTable) {
         super(conditionsIn);
         this.newTable = lootTable;
     }
@@ -68,7 +62,7 @@ public class InjectTableModifier extends LootModifier {
             if (getRegistryName() != null) {
                 jsonObject.addProperty("type", getRegistryName().toString());
             }
-            return null;
+            return jsonObject;
         }
     }
 }

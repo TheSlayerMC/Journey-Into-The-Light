@@ -24,6 +24,7 @@ public class DataGenStartPoint {
         JItemTags itemTags = new JItemTags(dataGenerator, blockTags, helper);
         JEntityTags entityTags = new JEntityTags(dataGenerator, helper);
         JAdvancementStartPoint advancements = new JAdvancementStartPoint(dataGenerator, helper);
+        JLootModifierProvider lootModifiers = new JLootModifierProvider(dataGenerator);
 
         //Adds data providers
         if (event.includeServer()) {
@@ -33,6 +34,7 @@ public class DataGenStartPoint {
             dataGenerator.addProvider(itemTags);
             dataGenerator.addProvider(entityTags);
             dataGenerator.addProvider(advancements);
+            dataGenerator.addProvider(lootModifiers);
         }
         //dataGenerator.addProvider(biomeProvider);
     }
