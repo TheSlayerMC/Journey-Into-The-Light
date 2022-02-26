@@ -29,6 +29,8 @@ public class KnowledgeLevelHandler {
                 if (type.is(JTags.OVERWORLD_MOBS)) {
                     JITL.LOGGER.info("Added overworld knowledge from {}, with amount {}", type, amount);
                     knowledge.addXP(EnumKnowledgeType.OVERWORLD, amount);
+                    JITL.LOGGER.info(player.knowledge.getXP(EnumKnowledgeType.OVERWORLD));
+                    JITL.LOGGER.info(player.knowledge.getLevel(EnumKnowledgeType.OVERWORLD));
                 }
 
                 if (type.is(JTags.NETHER_MOBS)) {
@@ -51,7 +53,6 @@ public class KnowledgeLevelHandler {
                     knowledge.addXP(EnumKnowledgeType.BOIL, amount);
                 }
                 player.detectAndSendChanges();
-                JITL.LOGGER.info(player.knowledge.getLevel(EnumKnowledgeType.FROZEN));
 
             }
         }
