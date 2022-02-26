@@ -2,7 +2,6 @@ package net.jitl.core.init;
 
 import net.jitl.core.JITL;
 import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -10,7 +9,7 @@ import net.minecraft.world.level.block.Block;
 
 public class JTags {
 
-    protected static final StaticTagHelper<EntityType<?>> HELPER = StaticTags.create(Registry.ENTITY_TYPE_REGISTRY, "tags/knowledge");
+    protected static final StaticTagHelper<EntityType<?>> KNOWLEDGE = StaticTags.create(Registry.ENTITY_TYPE_REGISTRY, "tags/knowledge");
 
     public static final SetTag.Named<Item> FROZEN_TROLL_LOVED_ITEMS = tagItem("frozen_troll_loved_items");
     public static final SetTag.Named<Block> EUCA_STONE_ORE_REPLACEABLES = tagBlock("euca_stone_ore_replaceables");
@@ -35,6 +34,6 @@ public class JTags {
     }
 
     private static Tag.Named<EntityType<?>> tagKnowledge(String name) {
-        return HELPER.createOptional(JITL.rl(name), null);
+        return KNOWLEDGE.createOptional(JITL.rl(name), null);
     }
 }
