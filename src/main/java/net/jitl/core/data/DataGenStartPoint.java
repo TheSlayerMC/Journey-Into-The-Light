@@ -1,4 +1,4 @@
-package net.jitl.core.datagen;
+package net.jitl.core.data;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -18,9 +18,11 @@ public class DataGenStartPoint {
         TimeLootTableGenerator lootTableGenerator = new TimeLootTableGenerator(dataGenerator)
                 .addSet(new JBlockLootTableSet())
                 .addSet(new JChestLootTableSet());
+
         JRecipeRegister recipeProvider = new JRecipeRegister(dataGenerator);
         JBlockTags blockTags = new JBlockTags(dataGenerator, helper);
         JItemTags itemTags = new JItemTags(dataGenerator, blockTags, helper);
+        JEntityTags entityTags = new JEntityTags(dataGenerator, helper);
         JAdvancementStartPoint advancements = new JAdvancementStartPoint(dataGenerator, helper);
 
         //Adds data providers
@@ -29,6 +31,7 @@ public class DataGenStartPoint {
             dataGenerator.addProvider(recipeProvider);
             dataGenerator.addProvider(blockTags);
             dataGenerator.addProvider(itemTags);
+            dataGenerator.addProvider(entityTags);
             dataGenerator.addProvider(advancements);
         }
         //dataGenerator.addProvider(biomeProvider);

@@ -2,7 +2,6 @@ package net.jitl.core;
 
 import net.jitl.client.eventhandler.ClientEventHandler;
 import net.jitl.client.eventhandler.ClientLoadingEventHandler;
-import net.jitl.common.eventhandler.SmeltingEnchantHandler;
 import net.jitl.core.init.JCommands;
 import net.jitl.core.init.JEntities;
 import net.jitl.core.init.JLootConditions;
@@ -39,7 +38,6 @@ public class JITL {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
-		SmeltingEnchantHandler.register();
 		Registration.register(modEventBus);
 		Dimensions.register(modEventBus);
 		JLootConditions.init();

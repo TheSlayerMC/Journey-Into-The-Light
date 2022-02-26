@@ -1,3 +1,4 @@
+98502179335167a6d1503fb42a9970e874b64628 data/forge/loot_modifiers/global_loot_modifiers.json
 60c6308b5638bf381aa22d8f39099b7c54d6cf9a data/forge/tags/blocks/needs_wood_tool.json
 42ec12be6c309c6f3b7ee6431f3155644f0db93b data/jitl/advancements/jitl/frozen/barter_troll.json
 7ea5af19e7cb5b60eb160e4b2457c570785eb087 data/jitl/advancements/jitl/frozen/ride_capybara.json
@@ -100,6 +101,8 @@ df1174a2bab851446f6e5d04c6aa5515abb93441 data/jitl/advancements/recipes/jitl.too
 4592dd4de317f64cdd29a0e0074860995add17f1 data/jitl/advancements/recipes/jitl.tools/sapphire_shovel.json
 6c9866314fdc6db93538de1672a87356a5e48334 data/jitl/advancements/recipes/jitl.weapons/lunium_sword_smithing.json
 b810490b78a298b67a38336b16914cc4c2b48c1f data/jitl/advancements/recipes/jitl.weapons/sapphire_sword.json
+e52dd406286060ca162f1cadbe2c771b88c97d10 data/jitl/loot_modifiers/old_chests.json
+286b33293d37d045e29633ad0c6ca339b0171d19 data/jitl/loot_modifiers/smelting.json
 05a227683343cbb5f275d1a628a5953e7b204887 data/jitl/loot_tables/blocks/bitterwood_campfire.json
 69482abf53ce486eea651da45ee6d2f774576d7d data/jitl/loot_tables/blocks/blazium_ore.json
 03c58b2fdade144d07b3fec0df69484fc37f182a data/jitl/loot_tables/blocks/block_of_mud.json
@@ -265,6 +268,8 @@ fc0982b663ea6df5f33922813ae7adcf2af9a333 data/jitl/recipes/shadium_block.json
 2420b488e4ce6412f023cc4581c68272094e8462 data/jitl/recipes/shadium_ingot_from_block.json
 bb400a849055c07df2f15ae00dca5ba3845e8345 data/jitl/recipes/storon_block.json
 1227ee6f42d389d3c349b347a157eda124b8d0c7 data/jitl/recipes/storon_gemstone_from_block.json
+d62dff99ae2c54f820cc5da57fb5b43f3739ec37 data/jitl/tags/entity_types/nether.json
+3fea050f1f81fbd28030738827f8c239d7d62318 data/jitl/tags/entity_types/overworld.json
 df9a9bb71519bdf46686ba82a3758bb03b065f4d data/jitl/tags/items/frozen_troll_loved_items.json
 65ee1e888b24d9326614c25d2b49e485479ea55e data/minecraft/tags/blocks/mineable/axe.json
 4f14cd26d4cd7e220acacbb5f665c9a207ec92c8 data/minecraft/tags/blocks/mineable/pickaxe.json

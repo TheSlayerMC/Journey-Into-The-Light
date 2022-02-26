@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:ghast",
+    "minecraft:magma_cube",
+    "minecraft:strider",
+    "minecraft:wither_skeleton",
+    "minecraft:piglin",
+    "minecraft:zombified_piglin",
+    "minecraft:piglin_brute",
+    "minecraft:hoglin",
+    "minecraft:blaze",
+    "jitl:witherspine",
+    "jitl:mini_ghast"
+  ]
+}

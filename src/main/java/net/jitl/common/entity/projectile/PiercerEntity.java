@@ -57,32 +57,28 @@ public class PiercerEntity extends AbstractArrow implements ItemSupplier {
         this.setSoundEvent(JSounds.PIERCER.get());
     }
 
-    public float setVelocityMultiplier(float velocityMultiplier) {
+    public void setVelocityMultiplier(float velocityMultiplier) {
         this.velocityMultiplier = velocityMultiplier;
-        return velocityMultiplier;
     }
 
     public float getVelocityMultiplier() {
         return velocityMultiplier;
     }
 
-    public double setRangeAddend(double rangeAddend) {
+    public void setRangeAddend(double rangeAddend) {
         this.rangeAddend = rangeAddend;
-        return rangeAddend;
     }
 
     public double getRangeAddend() {
         return rangeAddend;
     }
 
-    public int setFlameAddend(int flameAddend) {
+    public void setFlameAddend(int flameAddend) {
         this.flameAddend = flameAddend;
-        return flameAddend;
     }
 
-    public int setFaithfulLevel(int level) {
+    public void setFaithfulLevel(int level) {
         this.faithfulLevel = level;
-        return level;
     }
 
     public int getFlameAddend() {
@@ -112,8 +108,10 @@ public class PiercerEntity extends AbstractArrow implements ItemSupplier {
             }
             if (bounceTo == null) bounceTo = getOwner(); //default to owner if it's out of bounces
 
-            Vec3 movement = new Vec3(bounceTo.getX(), bounceTo.getY(0.8), bounceTo.getZ()).subtract(this.getX(), this.getY(0.5), this.getZ());
-            this.setDeltaMovement(movement.scale(((0.7 + getVelocityMultiplier() / 6.5) / movement.length()) * this.getDeltaMovement().length()));
+            if (bounceTo != null) {
+                Vec3 movement = new Vec3(bounceTo.getX(), bounceTo.getY(0.8), bounceTo.getZ()).subtract(this.getX(), this.getY(0.5), this.getZ());
+                this.setDeltaMovement(movement.scale(((0.7 + getVelocityMultiplier() / 6.5) / movement.length()) * this.getDeltaMovement().length()));
+            }
 
             launch = false;
         }
@@ -181,7 +179,7 @@ public class PiercerEntity extends AbstractArrow implements ItemSupplier {
     }
 
     @Override
-    public void playerTouch(Player entityIn) {
+    public void playerTouch(@NotNull Player entityIn) {
         if (!this.level.isClientSide) {
             boolean isOwner = this.getOwner().getUUID() == entityIn.getUUID();
             if ((isOwner && currentBounces > 0) || ((this.inGround || this.isNoPhysics()) && this.shakeTime <= 0)) {
@@ -203,7 +201,7 @@ public class PiercerEntity extends AbstractArrow implements ItemSupplier {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag nbt) {
+    public void addAdditionalSaveData(@NotNull CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.put("stack", getStack().save(new CompoundTag()));
         nbt.putInt("bounces", currentBounces);
@@ -214,7 +212,7 @@ public class PiercerEntity extends AbstractArrow implements ItemSupplier {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag nbt) {
+    public void readAdditionalSaveData(@NotNull CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         setStack(ItemStack.of(nbt.getCompound("stack")));
         if (getStack().isEmpty()) remove(RemovalReason.DISCARDED);
@@ -256,7 +254,7 @@ public class PiercerEntity extends AbstractArrow implements ItemSupplier {
     }
 
     @Override
-    public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
+    public void onSyncedDataUpdated(@NotNull EntityDataAccessor<?> key) {
         if (key == STACK) {
             getStack().setEntityRepresentation(this);
         }

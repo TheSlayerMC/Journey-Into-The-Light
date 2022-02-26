@@ -1,8 +1,9 @@
 package net.jitl.common.item;
 
-import net.jitl.common.capability.dialog.DialogManager;
-import net.jitl.core.init.JDialogs;
-import net.minecraft.server.level.ServerPlayer;
+import net.jitl.common.helper.EnumKnowledgeType;
+import net.jitl.common.item.interactive.LoreScrollItem;
+import net.jitl.core.init.JItems;
+import net.jitl.core.init.client.ScrollEntries;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -19,10 +20,10 @@ DebugItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         if (!worldIn.isClientSide()) {
-            DialogManager.of(((ServerPlayer) playerIn)).startDialog(JDialogs.test());
-//            ItemStack scrollStack = new ItemStack(JItems.LORE_SCROLL);
-//            LoreScrollItem.bindScrollEntry(scrollStack, ScrollEntries.TEST, EnumKnowledgeType.SENTERIAN, 50F);
-//            playerIn.addItem(scrollStack);
+//            DialogManager.of(((ServerPlayer) playerIn)).startDialog(JDialogs.test());
+            ItemStack scrollStack = new ItemStack(JItems.LORE_SCROLL);
+            LoreScrollItem.bindScrollEntry(scrollStack, ScrollEntries.TEST, EnumKnowledgeType.SENTERIAN, 50F);
+            playerIn.addItem(scrollStack);
 //
 //            if (worldIn instanceof ServerLevel serverLevel) {
 //                var advancement = serverLevel.getServer().getServerResources().getAdvancements().getAdvancement(new ResourceLocation("minecraft:advancements/story/root"));

@@ -12,15 +12,11 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import org.jetbrains.annotations.NotNull;
 
-public class GetTablesCondition implements LootItemCondition {
-    private final ResourceLocation[] tables;
-
-    public GetTablesCondition(ResourceLocation[] tables) {
-        this.tables = tables;
-    }
+public record GetTablesCondition(ResourceLocation[] tables) implements LootItemCondition {
 
     @Override
-    public @NotNull LootItemConditionType getType() {
+    public @NotNull
+    LootItemConditionType getType() {
         return JLootConditions.GET_TABLE;
     }
 
@@ -44,7 +40,8 @@ public class GetTablesCondition implements LootItemCondition {
         }
 
         @Override
-        public @NotNull GetTablesCondition deserialize(JsonObject jsonObject, @NotNull JsonDeserializationContext jsonDeserializationContext) {
+        public @NotNull
+        GetTablesCondition deserialize(JsonObject jsonObject, @NotNull JsonDeserializationContext jsonDeserializationContext) {
             JsonArray object = jsonObject.get("old_tables").getAsJsonArray();
             ResourceLocation[] oldTables = new ResourceLocation[object.size()];
             for (int i = 0; i < object.size(); i++) {

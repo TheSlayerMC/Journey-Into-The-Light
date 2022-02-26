@@ -205,6 +205,8 @@ public class IsometricCameraHandler {
      */
     @SubscribeEvent
     public static void overrideCamera(EntityViewRenderEvent.CameraSetup event) {
+        int NWRot = 135, SWRot = 1125, NERot = 1305, SERot = 1035;
+
         JClientConfig clientConfig = JConfigs.CLIENT;
 
         IsometricAngleSnap angleSnap = clientConfig.guiCategory.getIsometricAngleSnap();
@@ -224,22 +226,21 @@ public class IsometricCameraHandler {
             Then, reset the player snap timer back to 0.
              */
             if (entity instanceof Player player) {
-
                 if (PLAYER_ANGLE_SNAP_TIMER == 1) {
                     if (angleSnap == IsometricAngleSnap.NORTH_WEST) {
-                        player.setYRot(135 + yRot);
+                        player.setYRot(NWRot + yRot);
                         player.setXRot(xRot);
 
                     } else if (angleSnap == IsometricAngleSnap.SOUTH_WEST) {
-                        player.setYRot((float) 1125 + yRot);
+                        player.setYRot((float) SWRot + yRot);
                         player.setXRot(xRot);
 
                     } else if (angleSnap == IsometricAngleSnap.NORTH_EAST) {
-                        player.setYRot((float) 1305 + yRot);
+                        player.setYRot((float) NERot + yRot);
                         player.setXRot(xRot);
 
                     } else if (angleSnap == IsometricAngleSnap.SOUTH_EAST) {
-                        player.setYRot((float) 1035 + yRot);
+                        player.setYRot((float) SERot + yRot);
                         player.setXRot(xRot);
                     }
 
@@ -252,16 +253,16 @@ public class IsometricCameraHandler {
              */
             if (clientConfig.guiCategory.isIsometricPerspectiveLocked()) {
                 if (angleSnap == IsometricAngleSnap.NORTH_WEST) {
-                    camera.setRotation(135 + yRot, xRot);
+                    camera.setRotation(NWRot + yRot, xRot);
 
                 } else if (angleSnap == IsometricAngleSnap.SOUTH_WEST) {
-                    camera.setRotation(1125 + yRot, xRot);
+                    camera.setRotation(SWRot + yRot, xRot);
 
                 } else if (angleSnap == IsometricAngleSnap.NORTH_EAST) {
-                    camera.setRotation(1305 + yRot, xRot);
+                    camera.setRotation(NERot + yRot, xRot);
 
                 } else if (angleSnap == IsometricAngleSnap.SOUTH_EAST) {
-                    camera.setRotation(1035 + yRot, xRot);
+                    camera.setRotation(SERot + yRot, xRot);
                 }
             }
 

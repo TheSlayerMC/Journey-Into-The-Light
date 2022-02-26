@@ -1,4 +1,4 @@
-package net.jitl.core.datagen;
+package net.jitl.core.data;
 
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;

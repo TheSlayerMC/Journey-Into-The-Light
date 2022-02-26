@@ -1,4 +1,4 @@
-package net.jitl.core.datagen;
+package net.jitl.core.data;
 
 import net.jitl.core.JITL;
 import net.jitl.core.init.JItems;
@@ -8,6 +8,7 @@ import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class JItemTags extends ItemTagsProvider {
@@ -16,7 +17,7 @@ public class JItemTags extends ItemTagsProvider {
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return JITL.rl("item_tags").toString();
     }
 

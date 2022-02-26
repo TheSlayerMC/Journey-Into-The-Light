@@ -1,4 +1,4 @@
-package net.jitl.core.datagen;
+package net.jitl.core.data;
 
 import net.jitl.core.JITL;
 import net.jitl.core.init.JBlocks;
@@ -7,6 +7,7 @@ import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class JBlockTags extends BlockTagsProvider {
@@ -16,7 +17,7 @@ public class JBlockTags extends BlockTagsProvider {
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return JITL.rl("block_tags").toString();
     }
 
@@ -30,17 +31,17 @@ public class JBlockTags extends BlockTagsProvider {
     }
 
     //TODO: add block tags
-    public void addJITLBlockTags() {
+    private void addJITLBlockTags() {
     }
 
-    public void addVanillaBlockTags() {
+    private void addVanillaBlockTags() {
     }
 
-    public void addForgeBlockTags() {
+    private void addForgeBlockTags() {
     }
 
     //TODO: finish tool tags
-    public void addToolTags() {
+    private void addToolTags() {
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 JBlocks.LUNIUM_ORE,
                 JBlocks.DEEPSLATE_LUNIUM_ORE,
@@ -74,7 +75,7 @@ public class JBlockTags extends BlockTagsProvider {
     }
 
     //TODO: finish required tool tags
-    public void addRequiredToolTags() {
+    private void addRequiredToolTags() {
         tag(Tags.Blocks.NEEDS_WOOD_TOOL).add(
                 JBlocks.DEEP_MYCELIUM,
                 JBlocks.ICICLE
