@@ -73,6 +73,7 @@ public class KnowledgeLevelEvent {
                         knowledge.addXP(EnumKnowledgeType.FROZEN, amount);
                     }
                 }
+                player.detectAndSendChanges();
             }
         }
     }

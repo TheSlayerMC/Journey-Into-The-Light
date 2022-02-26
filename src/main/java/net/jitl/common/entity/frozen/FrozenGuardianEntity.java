@@ -217,8 +217,8 @@ public class FrozenGuardianEntity extends PathfinderMob {
             JPlayer capability = JPlayer.from(player);
             if (capability != null) {
                 capability.frozenBlizzard.setBlizzardDisabled(true);
-                capability.detectAndSendChanges();
                 capability.knowledge.addXP(EnumKnowledgeType.FROZEN, 15F);
+                capability.detectAndSendChanges();
             }
         }
     }
