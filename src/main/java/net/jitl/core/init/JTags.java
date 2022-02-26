@@ -2,7 +2,6 @@ package net.jitl.core.init;
 
 import net.jitl.core.JITL;
 import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.entity.EntityType;
@@ -41,9 +40,5 @@ public class JTags {
 
     public static net.minecraftforge.common.Tags.IOptionalNamedTag<EntityType<?>> createOptional(ResourceLocation name) {
         return HELPER.createOptional(name, null);
-    }
-
-    private static <T> ResourceKey<Registry<T>> createRegistryKey(String registryName) {
-        return ResourceKey.createRegistryKey(new ResourceLocation(registryName));
     }
 }
