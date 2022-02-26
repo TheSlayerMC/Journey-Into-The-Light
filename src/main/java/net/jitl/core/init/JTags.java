@@ -35,10 +35,6 @@ public class JTags {
     }
 
     private static Tag.Named<EntityType<?>> tagKnowledge(String name) {
-        return createOptional(JITL.rl(name));
-    }
-
-    public static net.minecraftforge.common.Tags.IOptionalNamedTag<EntityType<?>> createOptional(ResourceLocation name) {
-        return HELPER.createOptional(name, null);
+        return HELPER.createOptional(JITL.rl(name), null);
     }
 }
