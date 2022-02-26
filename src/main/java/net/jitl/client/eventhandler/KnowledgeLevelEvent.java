@@ -33,7 +33,7 @@ public class KnowledgeLevelEvent {
             EntityType<?> type = event.getEntityLiving().getType();
             Knowledge knowledge = player.knowledge;
 
-            if(player != null && type != null) {
+            /*if(player != null && type != null) {
                 if(type.is(JTags.OVERWORLD_MOBS)) {
                     knowledge.addXP(EnumKnowledgeType.OVERWORLD, amount);
                 }
@@ -56,7 +56,7 @@ public class KnowledgeLevelEvent {
 
                 if(type.is(JTags.BOIL_MOBS)) {
                     knowledge.addXP(EnumKnowledgeType.BOIL, amount);
-                }
+                }*/
                 player.detectAndSendChanges();
             }
         }
