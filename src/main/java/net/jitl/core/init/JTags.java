@@ -14,12 +14,12 @@ public class JTags {
     public static final SetTag.Named<Block> FROZEN_STONE_ORE_REPLACEABLES = tagBlock("frozen_stone_ore_replaceables");
     public static final SetTag.Named<Block> JLOGS = tagBlock("jlogs");
 
-    public static final SetTag.Named<EntityType<?>> OVERWORLD_MOBS = tagKnowledge("overworld");
-    public static final SetTag.Named<EntityType<?>> END_MOBS = tagKnowledge("end");
-    public static final SetTag.Named<EntityType<?>> NETHER_MOBS = tagKnowledge("nether");
-    public static final SetTag.Named<EntityType<?>> EUCA_MOBS = tagKnowledge("euca");
-    public static final SetTag.Named<EntityType<?>> FROZEN_MOBS = tagKnowledge("frozen");
-    public static final SetTag.Named<EntityType<?>> BOIL_MOBS = tagKnowledge("boil");
+    public static final SetTag.Named<EntityType<?>> OVERWORLD_MOBS = tagKnowledge("overworld_knowledge");
+    public static final SetTag.Named<EntityType<?>> END_MOBS = tagKnowledge("end_knowledge");
+    public static final SetTag.Named<EntityType<?>> NETHER_MOBS = tagKnowledge("nether_knowledge");
+    public static final SetTag.Named<EntityType<?>> EUCA_MOBS = tagKnowledge("euca_knowledge");
+    public static final SetTag.Named<EntityType<?>> FROZEN_MOBS = tagKnowledge("frozen_knowledge");
+    public static final SetTag.Named<EntityType<?>> BOIL_MOBS = tagKnowledge("boil_knowledge");
 
 
     private static Tag.Named<Item> tagItem(String name) {
