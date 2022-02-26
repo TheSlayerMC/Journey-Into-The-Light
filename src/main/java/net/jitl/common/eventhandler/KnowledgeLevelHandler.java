@@ -51,6 +51,8 @@ public class KnowledgeLevelHandler {
                     knowledge.addXP(EnumKnowledgeType.BOIL, amount);
                 }
                 player.detectAndSendChanges();
+                JITL.LOGGER.info(player.knowledge.getLevel(EnumKnowledgeType.FROZEN));
+
             }
         }
     }
