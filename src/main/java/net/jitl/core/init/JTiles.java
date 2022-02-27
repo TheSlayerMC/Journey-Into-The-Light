@@ -1,7 +1,9 @@
 package net.jitl.core.init;
 
+import com.google.common.collect.Lists;
 import net.jitl.client.render.tile.*;
 import net.jitl.common.tile.*;
+import net.jitl.common.tile.base.JFurnaceTile;
 import net.jitl.common.tile.spawner.GoldBotSpawnerTile;
 import net.jitl.common.tile.spawner.MiniGhastSpawnerTile;
 import net.jitl.core.JITL;
@@ -24,6 +26,7 @@ public class JTiles {
     public static final BlockEntityType<ClayPotTile> CLAY_POTTERY = promise();
     public static final BlockEntityType<ClayVaseTile> CLAY_VASE = promise();
     public static final BlockEntityType<ObeliskTile> OBELISK = promise();
+    public static final BlockEntityType<JFurnaceTile> JFURNACE = promise();
 
     public static final BlockEntityType<BloodRuneTile> BLOOD_RUNE = promise();
     public static final BlockEntityType<BloodRuneFleshTile> BLOOD_RUNE_FLESH = promise();
@@ -37,6 +40,8 @@ public class JTiles {
 
         @AutoRegistrable.Init
         private static void register() {
+            REGISTER.register("jfurnace", JFurnaceTile::new, () -> Lists.newArrayList(JBlocks.GOLDITE_FURNACE));
+
             REGISTER.registerSingleBound("laser_emitter", LaserEmitterTile::new, () -> JBlocks.LASER_EMITTER).regCustomRenderer(() -> LaserEmitterTER::new);
             REGISTER.registerSingleBound("gold_bot_spawner", GoldBotSpawnerTile::new, () -> JBlocks.GOLD_BOT_SPAWNER);
             REGISTER.registerSingleBound("mini_ghast_spawner", MiniGhastSpawnerTile::new, () -> JBlocks.MINI_GHAST_SPAWNER);

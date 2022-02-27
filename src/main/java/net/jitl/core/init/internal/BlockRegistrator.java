@@ -277,6 +277,9 @@ public class BlockRegistrator {
 
         registerDefaultBlock("goldite_dirt", "Goldite Dirt", () -> new Block(JBlockProperties.DIRT_PROPS.create()));
         registerRandomizedRotatedBlock("goldite_stone", "Goldite Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+        registerRandomizedRotatedBlock("goldite_cobblestone", "Goldite Cobblestone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
+
+        registerDefaultBlock("goldite_furnace", "Goldite Furnace", () -> new JFurnaceBlock(JBlockProperties.STONE_PROPS.create()));
 
         registerSpeciallyRenderedBlock("goldite_farmland", "Goldite Farmland", GolditeFarmlandBlock::new);
         registerTallCrossRenderedBlock("goldite_tall_grass", "Tall Goldite Grass", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.EUCA_GRASS_BLOCKS));

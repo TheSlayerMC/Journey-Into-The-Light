@@ -5,6 +5,7 @@ import net.jitl.client.eventhandler.ClientLoadingEventHandler;
 import net.jitl.core.init.JCommands;
 import net.jitl.core.init.JEntities;
 import net.jitl.core.init.JLootConditions;
+import net.jitl.core.init.client.JMenu;
 import net.jitl.core.init.client.ScrollEntries;
 import net.jitl.core.init.world.Dimensions;
 import net.jitl.core.init.world.JBiomeGeneration;
@@ -40,6 +41,7 @@ public class JITL {
 
 		Registration.register(modEventBus);
 		Dimensions.register(modEventBus);
+		JMenu.init(modEventBus);
 		JLootConditions.init();
 
 		modEventBus.addListener(this::preInit);
@@ -64,7 +66,7 @@ public class JITL {
 	}
 
 	private void clientSetup(final FMLClientSetupEvent event) {
-
+		event.enqueueWork(JMenu::register);
 	}
 
 	private void enqueue(InterModEnqueueEvent event) {
