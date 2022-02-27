@@ -40,7 +40,7 @@ public class JTiles {
 
         @AutoRegistrable.Init
         private static void register() {
-            REGISTER.register("jfurnace", JFurnaceTile::new, () -> Lists.newArrayList(JBlocks.GOLDITE_FURNACE));
+            REGISTER.register("jfurnace", JFurnaceTile::new, () -> Lists.newArrayList(JBlocks.GOLDITE_FURNACE, JBlocks.PERMAFROST_FURNACE));
 
             REGISTER.registerSingleBound("laser_emitter", LaserEmitterTile::new, () -> JBlocks.LASER_EMITTER).regCustomRenderer(() -> LaserEmitterTER::new);
             REGISTER.registerSingleBound("gold_bot_spawner", GoldBotSpawnerTile::new, () -> JBlocks.GOLD_BOT_SPAWNER);
