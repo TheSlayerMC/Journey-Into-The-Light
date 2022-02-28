@@ -6,18 +6,19 @@ import net.jitl.common.knowledge.KnowledgeStorageImpl;
 import net.minecraft.client.Minecraft;
 import ru.timeconqueror.timecore.common.capability.property.container.PropertyContainer;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 
 
 public class Knowledge extends PropertyContainer {
 
-    private final HashMap<EnumKnowledgeType, KnowledgeStorageImpl> knowledgeMap;
+    private final EnumMap<EnumKnowledgeType, KnowledgeStorageImpl> knowledgeMap;
 
     public Knowledge() {
-        this.knowledgeMap = new HashMap<>(EnumKnowledgeType.values().length, 1);
+        this.knowledgeMap = new EnumMap<>(EnumKnowledgeType.class);
 
         for(EnumKnowledgeType type : EnumKnowledgeType.values()) {
-            this.knowledgeMap.put(type, new KnowledgeStorageImpl());
+            KnowledgeStorageImpl container = container(type.getName(), new KnowledgeStorageImpl());
+            this.knowledgeMap.put(type, container);
         }
     }
 
