@@ -52,19 +52,16 @@ public class ClientEventHandler {
 
                 if (CuriosApi.getCuriosHelper().findEquippedCurio(JItems.EYE_OF_THE_BLIZZARD, player).isPresent()) {
                     if (cap != null) {
-                        if (!cap.frozenBlizzard.isBlizzardDisabled()) {
+                        if (!cap.frozenBlizzard.isBlizzardDisabled())
                             density *= curioMult;
-                        } else {
+                        else
                             density *= curioCapMult;
-                        }
-                    } else {
+                    } else
                         density *= curioMult;
-                    }
-                } else if (cap != null) {
-                    if (cap.frozenBlizzard.isBlizzardDisabled()) {
+
+                } else if (cap != null)
+                    if (cap.frozenBlizzard.isBlizzardDisabled())
                         density *= capMult;
-                    }
-                }
                 RenderSystem.setShaderFogStart(density);
                 RenderSystem.setShaderFogEnd(density * farPlaneDistance);
             }
