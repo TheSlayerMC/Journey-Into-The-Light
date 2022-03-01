@@ -281,7 +281,7 @@ public class JPlacedFeatures {
                     "dying_burned_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.DYING_BURNED_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(3, 0.1F, 1), JBlocks.CHARRED_SAPLING))) //FIXME: replace block with sapling when they're added
+                            .placed(treePlacement(PlacementUtils.countExtra(5, 0.1F, 1), JBlocks.CHARRED_SAPLING)))
             .allowedInBiomes(BiomePredicate.BOILING_SANDS)
             .asPromise();
 
@@ -297,7 +297,7 @@ public class JPlacedFeatures {
                     "medium_burned_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.MEDIUM_BURNED_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.BURNED_SAPLING)))
+                            .placed(treePlacement(PlacementUtils.countExtra(24, 0.1F, 1), JBlocks.BURNED_SAPLING)))
             .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
             .asPromise();
 
@@ -305,7 +305,7 @@ public class JPlacedFeatures {
                     "small_burned_tree",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
                     () -> JConfiguredFeatures.SMALL_BURNED_TREE.get()
-                            .placed(treePlacement(PlacementUtils.countExtra(16, 0.1F, 1), JBlocks.BURNED_SAPLING)))
+                            .placed(treePlacement(PlacementUtils.countExtra(20, 0.1F, 1), JBlocks.BURNED_SAPLING)))
             .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
             .asPromise();
 

@@ -8,22 +8,22 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
-public class SnowflakeParticle extends TextureSheetParticle {
+public class FlamePollenParticle extends TextureSheetParticle {
 
     private final SpriteSet sprites;
 
-    protected SnowflakeParticle(ClientLevel worldIn, double x, double y, double z, double motionX, double motionY, double motionZ, SpriteSet spriteWithAge) {
+    protected FlamePollenParticle(ClientLevel worldIn, double x, double y, double z, double motionX, double motionY, double motionZ, SpriteSet spriteWithAge) {
         super(worldIn, x, y, z, motionX, motionY, motionZ);
         this.sprites = spriteWithAge;
         int i = (int) (32.0D / (Math.random() * 0.8D + 0.2D));
         this.lifetime = (int) Math.max((float) i * 0.9F, 1.0F);
-        this.gravity = 0.003F;
+        this.gravity = 0.000003F;
         this.setSpriteFromAge(spriteWithAge);
     }
 
     @Override
     public @NotNull ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @Override
@@ -82,7 +82,7 @@ public class SnowflakeParticle extends TextureSheetParticle {
         }
 
         public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new SnowflakeParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.sprite);
+            return new FlamePollenParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.sprite);
         }
     }
 }

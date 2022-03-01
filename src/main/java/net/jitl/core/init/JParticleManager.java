@@ -32,6 +32,7 @@ public class JParticleManager {
     public static final RegistryObject<SimpleParticleType> SULPHUR = REGISTER.register("sulphur", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> CRYSTAL_FRUIT = REGISTER.register("crystal_fruit", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> GOLDITE_FLOWER = REGISTER.register("goldite_flower", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> FLAME_POLLEN = REGISTER.register("flame_pollen", () -> new SimpleParticleType(false));
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerParticleFactories(ParticleFactoryRegisterEvent event) {
@@ -47,5 +48,6 @@ public class JParticleManager {
         manager.register(SULPHUR.get(), SulphurParticle.Factory::new);
         manager.register(CRYSTAL_FRUIT.get(), CrystalFruitParticle.Factory::new);
         manager.register(GOLDITE_FLOWER.get(), GolditeFlowerParticle.Factory::new);
+        manager.register(FLAME_POLLEN.get(), FlamePollenParticle.Factory::new);
     }
 }

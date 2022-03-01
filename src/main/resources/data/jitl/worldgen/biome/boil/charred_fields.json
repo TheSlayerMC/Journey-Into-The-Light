@@ -7,7 +7,13 @@
     "sky_color": 4262144,
     "fog_color": 4262144,
     "water_color": 4262144,
-    "water_fog_color": 4262144
+    "water_fog_color": 4262144,
+    "particle": {
+      "options": {
+        "type": "jitl:flame_pollen"
+      },
+      "probability": 0.001428
+    }
   },
   "spawners": {},
   "carvers": {
