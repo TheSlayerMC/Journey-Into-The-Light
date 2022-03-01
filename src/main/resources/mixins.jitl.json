@@ -11,6 +11,7 @@
   ],
   "client": [
     "client.EucaSkyFixer",
+    "client.GameRendererMixin",
     "client.UnlockedBlockModelDeserializer"
   ]
 }

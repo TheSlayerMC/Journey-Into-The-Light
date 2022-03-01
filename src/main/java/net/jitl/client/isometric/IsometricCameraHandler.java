@@ -1,12 +1,14 @@
 package net.jitl.client.isometric;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import net.jitl.core.JITL;
 import net.jitl.core.config.JClientConfig;
 import net.jitl.core.config.JConfigs;
 import net.jitl.core.config.enums.IsometricAngleSnap;
 import net.minecraft.client.Camera;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -25,7 +27,7 @@ public class IsometricCameraHandler {
 
     private static final double FOV = -1.7;
     //Counts the scroll wheel delta
-    private static double DELTA = 0;
+    private static double DELTA = 8;
 
     //Counts the offset of the X and Y axis
     private static double XAXIS = 0, YAXIS = 0;
@@ -42,7 +44,7 @@ public class IsometricCameraHandler {
     @SubscribeEvent
     public static void overrideFOV(EntityViewRenderEvent.FieldOfView event) {
         if (JConfigs.CLIENT.guiCategory.isIsometricFOVEnabled()) {
-            event.setFOV(FOV);
+            //event.setFOV(FOV);
         }
     }
 
@@ -163,7 +165,7 @@ public class IsometricCameraHandler {
             YROT = 0;
             XAXIS = 0;
             YAXIS = 0;
-            DELTA = 0;
+            DELTA = 8;
 
             PLAYER_ANGLE_SNAP_TIMER = 1;
         }
@@ -287,16 +289,22 @@ public class IsometricCameraHandler {
                     y + (DELTA * lookY) + YAXIS,
                     z + (DELTA * lookZ));
 
-
             /*
             Offset the zoom created by extremely low FOV
              */
-            gameRenderer.zoom = (float) (FOV * 0.1D);
+            //gameRenderer.zoom = (float) (FOV * 0.1D);
+
         } else {
             /*
             Reset the zoom to 1.0F (TODO: this might cause problems)
              */
-            gameRenderer.zoom = 1.0F;
+            //gameRenderer.zoom = 1.0F;
         }
+    }
+
+    public static Matrix4f getIsometricProjectionMatrix(Minecraft minecraft) {
+        float width = (float) (DELTA * (minecraft.getWindow().getWidth() / (float) minecraft.getWindow().getHeight()));
+        float height = (float) DELTA;
+        return Matrix4f.orthographic(-width, width, -height, height, -2000, 2000);
     }
 }
