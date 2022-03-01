@@ -3,13 +3,10 @@ package net.jitl.common.capability;
 import net.jitl.common.capability.armorability.ArmorSetCapability;
 import net.jitl.common.capability.armorability.IArmorSetCapability;
 import net.jitl.common.capability.currentstructure.ICurrentStructureCapability;
-import net.jitl.common.capability.player.IJPlayer;
-import net.jitl.common.capability.player.JPlayer;
 import net.jitl.common.capability.pressedkeys.IPressedKeysCapability;
 import net.jitl.core.JITL;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.*;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,7 +30,6 @@ public class JCapabilityProvider {
         event.register(IArmorSetCapability.class);
         event.register(ICurrentStructureCapability.class);
         event.register(IPressedKeysCapability.class);
-        event.register(IJPlayer.class);
     }
 
     @Mod.EventBusSubscriber(modid = JITL.MODID)
@@ -43,9 +39,6 @@ public class JCapabilityProvider {
             Entity entity = event.getObject();
             if (!entity.level.isClientSide()) {
                 if (entity instanceof LivingEntity) {
-                    if (entity instanceof Player player) {
-                        event.addCapability(JITL.rl("jitl_player_data"), new CoffeeCapabilityProvider<>(new JPlayer(player)));
-                    }
                     event.addCapability(JITL.rl("current_armor"), new CoffeeCapabilityProvider<>(new ArmorSetCapability()));
                 }
             }

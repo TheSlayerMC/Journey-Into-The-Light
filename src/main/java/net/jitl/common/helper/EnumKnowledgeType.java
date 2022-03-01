@@ -3,8 +3,7 @@ package net.jitl.common.helper;
 import net.jitl.client.render.displayinfo.KnowledgeXPDisplay;
 import net.jitl.client.render.overlay.internal.JDisplayInfo;
 import net.minecraft.network.FriendlyByteBuf;
-
-import java.util.HashMap;
+import ru.timeconqueror.timecore.api.util.lookups.EnumLookup;
 
 public enum EnumKnowledgeType {
     OVERWORLD("overworld", 32, 10, new KnowledgeXPDisplay("overworld", false)
@@ -40,13 +39,7 @@ public enum EnumKnowledgeType {
     SENTERIAN("senterian", 96, 42, new KnowledgeXPDisplay("senterian", false)
             , new KnowledgeXPDisplay("senterian", true));
 
-    private static final HashMap<String, EnumKnowledgeType> BY_NAME = new HashMap<>();
-
-    static {
-        for (EnumKnowledgeType value : values()) {
-            BY_NAME.put(value.getName(), value);
-        }
-    }
+    public static final EnumLookup<EnumKnowledgeType, String> LOOKUP = EnumLookup.make(EnumKnowledgeType.class, EnumKnowledgeType::getName);
 
     private final String name;
     private final JDisplayInfo xp;
@@ -82,30 +75,15 @@ public enum EnumKnowledgeType {
         return level;
     }
 
-    public static EnumKnowledgeType getKnowledgeFromName(String name) {
-        return switch (name.toLowerCase()) {
-            case "overworld" -> OVERWORLD;
-            case "nether" -> NETHER;
-            case "end" -> END;
-            case "euca" -> EUCA;
-            case "boil" -> BOIL;
-            case "frozen" -> FROZEN;
-            case "depths" -> DEPTHS;
-            case "corba" -> CORBA;
-            case "cloudia" -> CLOUDIA;
-            case "terrania" -> TERRANIA;
-            case "senterian" -> SENTERIAN;
-            default -> null;
-        };
+    public static EnumKnowledgeType byName(String name) {
+        return LOOKUP.by(name);
     }
 
     public static void writeToBuffer(EnumKnowledgeType type, FriendlyByteBuf buf) {
-        buf.writeUtf(type.getName());
+        buf.writeUtf(LOOKUP.from(type));
     }
 
     public static EnumKnowledgeType readFromBuffer(FriendlyByteBuf buf) {
-        String name = buf.readUtf(Short.MAX_VALUE);
-
-        return BY_NAME.get(name);
+        return LOOKUP.by(buf.readUtf());
     }
 }

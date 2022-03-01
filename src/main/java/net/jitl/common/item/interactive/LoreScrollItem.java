@@ -48,7 +48,7 @@ public class LoreScrollItem extends Item {
                 if(!tag.getBoolean("openedBefore")) {
                     if(!tag.getString("knowledge").equals("")) {
                         Objects.requireNonNull(JPlayer.from(playerIn)).knowledge
-                                .addXP(EnumKnowledgeType.getKnowledgeFromName(tag.getString("knowledge")), tag.getFloat("xp"));//FIXME test
+                                .addXP(EnumKnowledgeType.byName(tag.getString("knowledge")), tag.getFloat("xp"));//FIXME test
                     }
                     tag.putBoolean("openedBefore", true);
                 }
