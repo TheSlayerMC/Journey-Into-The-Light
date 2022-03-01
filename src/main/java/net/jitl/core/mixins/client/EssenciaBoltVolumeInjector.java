@@ -1,4 +1,4 @@
-package net.jitl.core.mixins;
+package net.jitl.core.mixins.client;
 
 import net.jitl.common.entity.EssenciaBoltEntity;
 import net.minecraft.world.entity.LightningBolt;
@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(LightningBolt.class)
-public class LightningBoltVolumeInjector {
+public class EssenciaBoltVolumeInjector {
 
     @ModifyConstant(method = "tick", constant = @Constant(floatValue = 2.0F))
     private float injectStrikeVolume(float constant) {

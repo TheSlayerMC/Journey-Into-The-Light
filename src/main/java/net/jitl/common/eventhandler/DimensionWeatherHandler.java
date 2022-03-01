@@ -22,11 +22,10 @@ public class DimensionWeatherHandler {
             JPlayer jPlayer = JPlayer.from(player);
             if (jPlayer != null) {
                 FrozenBlizzard frozenBlizzard = jPlayer.frozenBlizzard;
-                if (frozenBlizzard.isBlizzardDisabled()) {
+                if (frozenBlizzard.isBlizzardDisabled())
                     level.setRainLevel(0.0F);
-                } else {
+                else
                     level.setRainLevel(5.0F);
-                }
                 jPlayer.detectAndSendChanges();
             }
         }

@@ -6,10 +6,10 @@
   "target": "@env(DEFAULT)",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "LightningBoltVolumeInjector",
     "StraySpawnFixer"
   ],
   "client": [
+    "client.EssenciaBoltVolumeInjector",
     "client.EucaSkyFixer",
     "client.UnlockedBlockModelDeserializer"
   ]
