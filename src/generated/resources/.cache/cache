@@ -172,6 +172,8 @@ f9defac5c399bbd6c230f763a209ca9553a383f1 data/jitl/loot_tables/blocks/storon_ore
 c627b59032638b1f77b02755f332a79d379c4a3d data/jitl/loot_tables/blocks/sulphur_crystal.json
 9a09039a7f52f0eb8f97d965d8f6d96ad5cbee95 data/jitl/loot_tables/blocks/sulphur_rock.json
 2af919b27cd9e3aaa259c6019f835777db96f676 data/jitl/loot_tables/blocks/warped_quartz_ore.json
+72cd34c373f2cedce11336af86fb71dbf2a4175b data/jitl/loot_tables/chests/ancient_ruins.json
+020f4ba62515b497a2effb9b27cbb68c4d083d3c data/jitl/loot_tables/chests/test.json
 4a5a988cd50b719122219d16deca6804f4092123 data/jitl/recipes/ash_from_block.json
 36dc8e690ebff95de7688aaa11eb68cac700bac6 data/jitl/recipes/ashual_block.json
 b85c18652ea266d1818ff9ad1029bffec44d2bdf data/jitl/recipes/block_of_mud.json
