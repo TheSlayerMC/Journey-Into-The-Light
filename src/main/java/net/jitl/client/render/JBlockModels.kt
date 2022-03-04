@@ -193,7 +193,7 @@ object JBlockModels {
         "textures" {
             "top" set top.toString()
             "front" set front.toString()
-            "side" set front.toString()
+            "side" set side.toString()
         }
     })
 
