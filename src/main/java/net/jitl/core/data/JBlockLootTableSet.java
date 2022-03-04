@@ -92,6 +92,9 @@ JBlockLootTableSet extends BlockLootTableSet {
 		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_SMALL);
 		registerDropsSelf(JBlocks.SCORCHED_STALAGMITE_TINY);
 
+		registerDropsSelf(JBlocks.GOLDITE_FURNACE);
+		registerDropsSelf(JBlocks.PERMAFROST_FURNACE);
+
 		registerSpecialOreWithExtraCount(JBlocks.BLOCK_OF_MUD, JItems.MUD_BALL, 3, 4);
 		registerDropsSelf(JBlocks.ICICLE);
 	}
