@@ -279,8 +279,8 @@ public class BlockRegistrator {
         registerRandomizedRotatedBlock("goldite_stone", "Goldite Stone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
         registerRandomizedRotatedBlock("goldite_cobblestone", "Goldite Cobblestone", () -> new Block(JBlockProperties.STONE_PROPS.create()));
 
-        registerDefaultBlock("goldite_furnace", "Goldite Furnace", () -> new JFurnaceBlock(JBlockProperties.STONE_PROPS.create()));
-        registerDefaultBlock("permafrost_furnace", "Permafrost Furnace", () -> new JFurnaceBlock(JBlockProperties.STONE_PROPS.create()));
+        registerFurnaceBlock("goldite_furnace", "Goldite Furnace", () -> new JFurnaceBlock(JBlockProperties.STONE_PROPS.create()));
+        registerFurnaceBlock("permafrost_furnace", "Permafrost Furnace", () -> new JFurnaceBlock(JBlockProperties.STONE_PROPS.create()));
 
         registerSpeciallyRenderedBlock("goldite_farmland", "Goldite Farmland", GolditeFarmlandBlock::new);
         registerTallCrossRenderedBlock("goldite_tall_grass", "Tall Goldite Grass", () -> new JDoublePlantBlock(JBlockProperties.PLANT_PROPS.create()).setPredicate(GroundPredicate.EUCA_GRASS_BLOCKS));
@@ -509,6 +509,16 @@ public class BlockRegistrator {
                 return isOn ? SoundEvents.WOODEN_BUTTON_CLICK_ON : SoundEvents.WOODEN_BUTTON_CLICK_OFF;
             }
         });
+    }
+
+    private static void registerFurnaceBlock(String name, String enName, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
+                .model(JITL.bml("block/" + name), () -> JBlockModels.furnace(JITL.tl("block/" + name + "_top"), JITL.tl("block/" + name + "_front"), JITL.tl("block/" + name + "_side")))
+                .model(JITL.bml("block/" + name + "_on"), () -> JBlockModels.furnace(JITL.tl("block/" + name + "_top"), JITL.tl("block/" + name + "_front_on"), JITL.tl("block/" + name + "_side")))
+                .state(JBlockStateResources.furnaceState(JITL.bml("block/" + name), JITL.bml("block/" + name + "_on")));
     }
 
     private static <B extends Block> BlockRegisterChain<B> register(String name, String enName, Supplier<B> block) {

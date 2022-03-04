@@ -665,6 +665,44 @@ object JBlockStateResources {
     }
 
     @JvmStatic
+    fun furnaceState(off: BlockModelLocation, on: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "facing=east,lit=false" {
+                    "model" set off
+                    y = 90
+                }
+                "facing=east,lit=true" {
+                    "model" set on
+                    y = 90
+                }
+                "facing=north,lit=false" {
+                    "model" set off
+                }
+                "facing=north,lit=true" {
+                    "model" set on
+                }
+                "facing=south,lit=false" {
+                    "model" set off
+                    y = 180
+                }
+                "facing=south,lit=true" {
+                    "model" set on
+                    y = 180
+                }
+                "facing=west,lit=false" {
+                    "model" set off
+                    y = 270
+                }
+                "facing=west,lit=true" {
+                    "model" set on
+                    y = 270
+                }
+            }
+        })
+    }
+
+    @JvmStatic
     fun pressurePlateState(up: BlockModelLocation, down: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(json {
             "variants" {
