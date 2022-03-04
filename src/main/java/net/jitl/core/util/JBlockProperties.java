@@ -8,9 +8,12 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
+
+import java.util.function.ToIntFunction;
 
 public class JBlockProperties {
 
@@ -48,7 +51,7 @@ public class JBlockProperties {
                     (Material.STONE)
             .sound(SoundType.STONE)
             .requiresCorrectToolForDrops()
-            .lightLevel((state) -> 15)
+            .lightLevel(litBlockEmission(13))
             .strength(1.5F, 6.0F));
 
     public static final BlockPropsFactory DEEPSLATE_PROPS = new BlockPropsFactory(() -> Properties.of
@@ -316,6 +319,12 @@ public class JBlockProperties {
 
     private static boolean never(BlockState state, BlockGetter reader, BlockPos pos) {
         return false;
+    }
+
+    private static ToIntFunction<BlockState> litBlockEmission(int lightValue) {
+        return (state) -> {
+            return state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
+        };
     }
 
     public static final BlockPropsFactory UNBREAKABLE_UTILITY = new BlockPropsFactory(() -> Properties.of(Material.BARRIER).noOcclusion().noCollission().noDrops());
