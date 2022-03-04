@@ -44,6 +44,13 @@ public class JBlockProperties {
             .requiresCorrectToolForDrops()
             .strength(1.5F, 6.0F));
 
+    public static final BlockPropsFactory FURNACE_PROPS = new BlockPropsFactory(() -> Properties.of
+                    (Material.STONE)
+            .sound(SoundType.STONE)
+            .requiresCorrectToolForDrops()
+            .lightLevel((state) -> 15)
+            .strength(1.5F, 6.0F));
+
     public static final BlockPropsFactory DEEPSLATE_PROPS = new BlockPropsFactory(() -> Properties.of
                     (Material.STONE)
             .sound(SoundType.DEEPSLATE)
