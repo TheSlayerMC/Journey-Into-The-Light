@@ -27,6 +27,7 @@ public class JTiles {
     public static final BlockEntityType<ClayVaseTile> CLAY_VASE = promise();
     public static final BlockEntityType<ObeliskTile> OBELISK = promise();
     public static final BlockEntityType<JFurnaceTile> JFURNACE = promise();
+    public static final BlockEntityType<JChestBlockEntity> JCHEST = promise();
 
     public static final BlockEntityType<BloodRuneTile> BLOOD_RUNE = promise();
     public static final BlockEntityType<BloodRuneFleshTile> BLOOD_RUNE_FLESH = promise();
@@ -41,6 +42,7 @@ public class JTiles {
         @AutoRegistrable.Init
         private static void register() {
             REGISTER.register("jfurnace", JFurnaceTile::new, () -> Lists.newArrayList(JBlocks.GOLDITE_FURNACE, JBlocks.PERMAFROST_FURNACE));
+            REGISTER.register("jchest", JChestBlockEntity::new, () -> Lists.newArrayList(JBlocks.EUCA_CHEST, JBlocks.BOIL_CHEST, JBlocks.FROZEN_CHEST)).regCustomRenderer(() -> JChestTER::new);
 
             REGISTER.registerSingleBound("laser_emitter", LaserEmitterTile::new, () -> JBlocks.LASER_EMITTER).regCustomRenderer(() -> LaserEmitterTER::new);
             REGISTER.registerSingleBound("gold_bot_spawner", GoldBotSpawnerTile::new, () -> JBlocks.GOLD_BOT_SPAWNER);
@@ -54,12 +56,10 @@ public class JTiles {
             REGISTER.registerSingleBound("obelisk", ObeliskTile::new, () -> JBlocks.ANCIENT_OBELISK).regCustomRenderer(() -> ObeliskTER::new);
 
             REGISTER.registerSingleBound("blood_rune", BloodRuneTile::new, () -> JBlocks.EMPTY_BLOOD_RUNE).regCustomRenderer(() -> BloodRuneTER::new);
-
             REGISTER.registerSingleBound("blood_rune_flesh", BloodRuneFleshTile::new, () -> JBlocks.BLOOD_RUNE_FLESH).regCustomRenderer(() -> BloodRuneTER::new);
             REGISTER.registerSingleBound("blood_rune_soul", BloodRuneSoulTile::new, () -> JBlocks.BLOOD_RUNE_SOUL).regCustomRenderer(() -> BloodRuneTER::new);
             REGISTER.registerSingleBound("blood_rune_life", BloodRuneLifeTile::new, () -> JBlocks.BLOOD_RUNE_LIFE).regCustomRenderer(() -> BloodRuneTER::new);
             REGISTER.registerSingleBound("blood_rune_death", BloodRuneDeathTile::new, () -> JBlocks.BLOOD_RUNE_DEATH).regCustomRenderer(() -> BloodRuneTER::new);
-
         }
     }
 }

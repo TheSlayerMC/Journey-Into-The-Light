@@ -309,6 +309,10 @@ public class JBlocks {
     public static final Block GOLDITE_FURNACE = promise();
     public static final Block PERMAFROST_FURNACE = promise();
 
+    public static final Block EUCA_CHEST = promise();
+    public static final Block BOIL_CHEST = promise();
+    public static final Block FROZEN_CHEST = promise();
+
     public static final Block TOMATO_CROP = promise();
     public static final Block FLORO_CROP = promise();
 

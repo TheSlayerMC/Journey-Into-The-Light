@@ -206,6 +206,13 @@ object JBlockModels {
     })
 
     @JvmStatic
+    fun chest(tex: TextureLocation) = BlockModel(json {
+        "textures" {
+            "texture" set tex.toString()
+        }
+    })
+
+    @JvmStatic
     fun fenceSide(tex: TextureLocation) = BlockModel(json {
         "parent" set "minecraft:block/fence_side"
         "textures" {

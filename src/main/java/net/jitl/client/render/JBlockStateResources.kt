@@ -665,6 +665,17 @@ object JBlockStateResources {
     }
 
     @JvmStatic
+    fun chestState(chest: BlockModelLocation): BlockStateResource {
+        return BlockStateResource.fromJson(json {
+            "variants" {
+                "" {
+                    "model" set chest
+                }
+            }
+        })
+    }
+
+    @JvmStatic
     fun furnaceState(off: BlockModelLocation, on: BlockModelLocation): BlockStateResource {
         return BlockStateResource.fromJson(json {
             "variants" {

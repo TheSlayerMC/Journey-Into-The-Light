@@ -16,6 +16,7 @@ import net.jitl.client.render.model.block.ObeliskModel;
 import net.jitl.client.render.model.euca.*;
 import net.jitl.client.render.model.frozen.*;
 import net.jitl.client.render.model.vehicle.JBoatModel;
+import net.jitl.client.render.tile.JChestTER;
 import net.jitl.client.render.vehicle.JBoatRenderer;
 import net.jitl.common.entity.vehicle.JBoat;
 import net.jitl.core.JITL;
@@ -100,6 +101,10 @@ public class JEntityRenderRegistry {
         //Blocks
         event.registerLayerDefinition(JModelLayers.OBELISK_BOTTOM_MODEL_LAYER, ObeliskModel::createBottomBodyLayer);
         event.registerLayerDefinition(JModelLayers.OBELISK_TOP_MODEL_LAYER, ObeliskModel::createTopBodyLayer);
+
+        event.registerLayerDefinition(JModelLayers.JCHEST, JChestTER::createSingleBodyLayer);
+        event.registerLayerDefinition(JModelLayers.JDOUBLE_CHEST_RIGHT, JChestTER::createDoubleBodyRightLayer);
+        event.registerLayerDefinition(JModelLayers.JDOUBLE_CHEST_LEFT, JChestTER::createDoubleBodyLeftLayer);
 
         //Mobs
         event.registerLayerDefinition(JModelLayers.HONGO_MODEL_LAYER, HongoModel::createBodyLayer);

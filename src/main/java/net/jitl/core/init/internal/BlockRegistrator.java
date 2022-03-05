@@ -483,6 +483,10 @@ public class BlockRegistrator {
         registerFenceBlock("nether_dungeon_brick_fence", "Nethic Dungeon Brick Fence", "nether_dungeon_brick", () -> new JFenceBlock(JBlockProperties.DUNGEON_BLOCK_PROPS.create()));
 
         registerCustomRenderLayerBlock("mini_ghast_spawner", "Mini Ghast Spawner", MiniGhastSpawnerBlock::new, JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
+
+        registerChestBlock("euca_chest", "Euca Chest", "euca_gold_plank", () -> new JChestBlock(JBlockProperties.WOOD_PROPS.create()));
+        registerChestBlock("frozen_chest", "Frozen Chest", "frozen_plank", () -> new JChestBlock(JBlockProperties.WOOD_PROPS.create()));
+        registerChestBlock("boil_chest", "Boiling Chest", "burned_bark_plank", () -> new JChestBlock(JBlockProperties.WOOD_PROPS.create()));
     }
 
     public static void registerWoodType(String name, String enName, String saplingName, String saplingEnName, AbstractTreeGrower tree) {
@@ -509,6 +513,15 @@ public class BlockRegistrator {
                 return isOn ? SoundEvents.WOODEN_BUTTON_CLICK_ON : SoundEvents.WOODEN_BUTTON_CLICK_OFF;
             }
         });
+    }
+
+    private static void registerChestBlock(String name, String enName, String texture, Supplier<Block> blockSupplier) {
+        REGISTER.register(name, blockSupplier)
+                .name(enName)
+                .defaultBlockItem(JTabs.BLOCKS)
+                .renderLayer(() -> RenderTypeWrappers.CUTOUT)
+                .model(JITL.bml("block/" + name), () -> JBlockModels.chest(JITL.tl("block/" + texture)))
+                .state(JBlockStateResources.chestState(JITL.bml("block/" + name)));
     }
 
     private static void registerFurnaceBlock(String name, String enName, Supplier<Block> blockSupplier) {
