@@ -229,7 +229,8 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
         if (!state.is(newState.getBlock())) {
             BlockEntity blockentity = level.getBlockEntity(pos);
             if (blockentity instanceof Container) {
-                Containers.dropContents(level, pos, (Container)blockentity);
+                if(!state.getValue(IS_LOCKED))
+                    Containers.dropContents(level, pos, (Container)blockentity);
                 level.updateNeighbourForOutputSignal(pos, this);
             }
             super.onRemove(state, level, pos, newState, isMoving);
