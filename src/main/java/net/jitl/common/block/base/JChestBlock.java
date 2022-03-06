@@ -115,6 +115,7 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
         }
     };
 
+
     public JChestBlock(BlockBehaviour.Properties properties) {
         super(properties, () -> JTiles.JCHEST);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH)

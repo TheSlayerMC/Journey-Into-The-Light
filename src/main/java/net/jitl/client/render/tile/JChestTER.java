@@ -142,7 +142,7 @@ public class JChestTER <T extends BlockEntity & LidBlockEntity> implements Block
         matrixStack.translate(-0.5D, -0.5D, -0.5D);
         matrixStack.translate(translation[0], translation[1], translation[2]);
         float scale = 1.0F;
-        matrixStack.scale(scale, scale, scale);
+        matrixStack.scale(scale, scale, scale + 0.15F);
         BakedModel model = renderer.getModel(stack, null, null, 0);
         renderer.render(stack, ItemTransforms.TransformType.GROUND, true, matrixStack, buffer, lightLevel, combinedOverlay, model);
         matrixStack.popPose();

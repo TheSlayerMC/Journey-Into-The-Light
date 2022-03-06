@@ -327,5 +327,11 @@ public class JBlockProperties {
         };
     }
 
+    private static ToIntFunction<BlockState> hardness(int hardness) {
+        return (state) -> {
+            return state.getValue(BlockStateProperties.LOCKED) ? hardness : 0;
+        };
+    }
+
     public static final BlockPropsFactory UNBREAKABLE_UTILITY = new BlockPropsFactory(() -> Properties.of(Material.BARRIER).noOcclusion().noCollission().noDrops());
 }

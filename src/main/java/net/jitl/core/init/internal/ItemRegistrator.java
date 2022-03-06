@@ -255,6 +255,9 @@ public class ItemRegistrator {
 
         registerItem("padlock", "Padlock", () -> new ChestInteractionItem(itemGrouped().stacksTo(8)));
         registerItem("chest_key", "Chest Key", () -> new ChestInteractionItem(itemGrouped().stacksTo(16)));
+        registerItem("euca_key", "Euca Chest Key", () -> new ChestInteractionItem(itemGrouped().stacksTo(16)));
+        registerItem("frozen_key", "Frozen Chest Key", () -> new ChestInteractionItem(itemGrouped().stacksTo(16)));
+        registerItem("boiling_key", "Boiling Chest Key", () -> new ChestInteractionItem(itemGrouped().stacksTo(16)));
 
     }
 
