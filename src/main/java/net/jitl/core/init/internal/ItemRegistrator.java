@@ -100,7 +100,6 @@ public class ItemRegistrator {
         registerItem("crystal_apple", "Crystal Apple", () -> new CrystalAppleItem(itemGrouped().food(JFoods.CRYSTAL_APPLE).rarity(Rarity.EPIC)));
         registerItem("frostborn_soul", "Frostborn Soul");
         registerItem("ice_amulet", "Amulet of Glacial Bloodlust", () -> new IceAmuletItem(itemGrouped().stacksTo(1)));
-        registerItem("padlock", "Padlock", () -> new Item(itemGrouped().stacksTo(16)));
 
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(itemGrouped(),
                 (world, thrower) -> new FloroMudEntity(JEntities.FLORO_MUD_TYPE, world, thrower, 0.0F)).setSound(() -> SoundEvents.SNOWBALL_THROW));
@@ -253,6 +252,10 @@ public class ItemRegistrator {
         registerItem("brown_euca_boat", "Brown Euca Boat", () -> new JBoatItem(JBoat.Type.BROWN_EUCA, itemGrouped()));
         registerItem("frozen_boat", "Frosty Boat", () -> new JBoatItem(JBoat.Type.FROZEN, itemGrouped()));
         registerItem("burned_boat", "Burned Boat", () -> new JBoatItem(JBoat.Type.BURNED, itemGrouped()));
+
+        registerItem("padlock", "Padlock", () -> new ChestInteractionItem(itemGrouped().stacksTo(8)));
+        registerItem("chest_key", "Chest Key", () -> new ChestInteractionItem(itemGrouped().stacksTo(16)));
+
     }
 
     public static void addMaterialToolsWeapons(String name, JToolTiers tiers, IAbility sworldAbility, IAbility toolAbility) {

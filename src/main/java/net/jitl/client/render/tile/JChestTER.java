@@ -8,6 +8,8 @@ import net.jitl.common.block.base.JChestBlock;
 import net.jitl.common.tile.JChestBlockEntity;
 import net.jitl.core.JITL;
 import net.jitl.core.init.JBlocks;
+import net.jitl.core.init.JItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -16,11 +18,14 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BrightnessCombiner;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
@@ -28,10 +33,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
+import org.jetbrains.annotations.NotNull;
 
 public class JChestTER <T extends BlockEntity & LidBlockEntity> implements BlockEntityRenderer<T> {
-
-    public static final ResourceLocation CHEST_SHEET = new ResourceLocation("textures/atlas/chest.png");
 
     protected final ModelPart lid;
     protected final ModelPart bottom;
@@ -86,7 +90,7 @@ public class JChestTER <T extends BlockEntity & LidBlockEntity> implements Block
     }
 
     @Override
-    public void render(T blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+    public void render(T blockEntity, float partialTick, PoseStack poseStack, @NotNull MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         Level level = blockEntity.getLevel();
         boolean viable = level != null;
         BlockState blockstate = viable ? blockEntity.getBlockState() : blockEntity.getBlockState().getBlock().defaultBlockState().setValue(JChestBlock.FACING, Direction.SOUTH);
@@ -123,6 +127,25 @@ public class JChestTER <T extends BlockEntity & LidBlockEntity> implements Block
             this.render(poseStack, vertexconsumer, this.lid, this.lock, this.bottom, f1, i, packedOverlay);
         }
         poseStack.popPose();
+
+        if(blockstate.getValue(JChestBlock.IS_LOCKED)) {
+            renderItem(new ItemStack(JItems.PADLOCK), new double[]{0.5D, 0.2D, 0.945D}, poseStack, bufferSource, packedOverlay, packedLight, blockstate);
+        }
+    }
+
+    private void renderItem(ItemStack stack, double[] translation, PoseStack matrixStack, MultiBufferSource buffer, int combinedOverlay, int lightLevel, BlockState state) {
+        ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
+        matrixStack.pushPose();
+        float f = state.getValue(JChestBlock.FACING).toYRot();
+        matrixStack.translate(0.5D, 0.5D, 0.5D);
+        matrixStack.mulPose(Vector3f.YP.rotationDegrees(-f));
+        matrixStack.translate(-0.5D, -0.5D, -0.5D);
+        matrixStack.translate(translation[0], translation[1], translation[2]);
+        float scale = 1.0F;
+        matrixStack.scale(scale, scale, scale);
+        BakedModel model = renderer.getModel(stack, null, null, 0);
+        renderer.render(stack, ItemTransforms.TransformType.GROUND, true, matrixStack, buffer, lightLevel, combinedOverlay, model);
+        matrixStack.popPose();
     }
 
     public String getNameFromBlock(JChestBlock chest) {

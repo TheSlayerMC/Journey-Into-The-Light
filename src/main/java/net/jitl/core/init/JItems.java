@@ -202,5 +202,6 @@ public class JItems {
     public static final Item BURNED_BOAT = promise();
 
     public static final Item PADLOCK = promise();
+    public static final Item CHEST_KEY = promise();
 
 }

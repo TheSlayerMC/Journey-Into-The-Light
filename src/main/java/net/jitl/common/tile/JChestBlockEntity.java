@@ -18,6 +18,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.entity.ChestLidController;
@@ -37,6 +38,7 @@ public class JChestBlockEntity extends ChestBlockEntity {
     
     private final ChestLidController chestLidController = new ChestLidController();
     private LazyOptional<IItemHandlerModifiable> chestHandler;
+
     private final ContainerOpenersCounter openersCounter = new ContainerOpenersCounter() {
 
         @Override
@@ -94,22 +96,6 @@ public class JChestBlockEntity extends ChestBlockEntity {
         blockEntity.chestLidController.tickLid();
     }
 
-    public static void playSound(Level level, BlockPos pos, BlockState state, SoundEvent sound) {
-        ChestType chesttype = state.getValue(JChestBlock.TYPE);
-        if (chesttype != ChestType.LEFT) {
-            double d0 = (double)pos.getX() + 0.5D;
-            double d1 = (double)pos.getY() + 0.5D;
-            double d2 = (double)pos.getZ() + 0.5D;
-            if (chesttype == ChestType.RIGHT) {
-                Direction direction = JChestBlock.getConnectedDirection(state);
-                d0 += (double)direction.getStepX() * 0.5D;
-                d2 += (double)direction.getStepZ() * 0.5D;
-            }
-
-            level.playSound((Player)null, d0, d1, d2, sound, SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
-        }
-    }
-
     @Override
     public boolean triggerEvent(int id, int type) {
         if (id == 1) {
@@ -125,7 +111,6 @@ public class JChestBlockEntity extends ChestBlockEntity {
         if (!this.remove && !player.isSpectator()) {
             this.openersCounter.incrementOpeners(player, Objects.requireNonNull(this.getLevel()), this.getBlockPos(), this.getBlockState());
         }
-
     }
 
     @Override
@@ -189,5 +174,20 @@ public class JChestBlockEntity extends ChestBlockEntity {
     public void recheckOpen() {
         if(!this.remove)
             this.openersCounter.recheckOpeners(Objects.requireNonNull(this.getLevel()), this.getBlockPos(), this.getBlockState());
+    }
+
+    private static void playSound(Level level, BlockPos pos, BlockState state, SoundEvent sound) {
+        ChestType chesttype = state.getValue(ChestBlock.TYPE);
+        if (chesttype != ChestType.LEFT) {
+            double d0 = (double)pos.getX() + 0.5D;
+            double d1 = (double)pos.getY() + 0.5D;
+            double d2 = (double)pos.getZ() + 0.5D;
+            if (chesttype == ChestType.RIGHT) {
+                Direction direction = ChestBlock.getConnectedDirection(state);
+                d0 += (double)direction.getStepX() * 0.5D;
+                d2 += (double)direction.getStepZ() * 0.5D;
+            }
+            level.playSound((Player)null, d0, d1, d2, sound, SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
+        }
     }
 }

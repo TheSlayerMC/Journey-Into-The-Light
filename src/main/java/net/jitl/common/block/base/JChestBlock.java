@@ -2,6 +2,7 @@ package net.jitl.common.block.base;
 
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import net.jitl.common.tile.JChestBlockEntity;
+import net.jitl.core.init.JItems;
 import net.jitl.core.init.JTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,11 +13,11 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
-import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -56,6 +57,7 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
     protected static final VoxelShape WESTAABB = Block.box(0.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
     protected static final VoxelShape EASTAABB = Block.box(1.0D, 0.0D, 1.0D, 16.0D, 14.0D, 15.0D);
     protected static final VoxelShape AABB = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
+    public static final BooleanProperty IS_LOCKED = BlockStateProperties.LOCKED;
 
     private static final DoubleBlockCombiner.Combiner<JChestBlockEntity, Optional<Container>> CHESTCOMBINER = new DoubleBlockCombiner.Combiner<>() {
         @Override
@@ -115,7 +117,8 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
 
     public JChestBlock(BlockBehaviour.Properties properties) {
         super(properties, () -> JTiles.JCHEST);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(TYPE, ChestType.SINGLE).setValue(WATERLOGGED, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH)
+                .setValue(TYPE, ChestType.SINGLE).setValue(IS_LOCKED, Boolean.FALSE).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     public static DoubleBlockCombiner.BlockType getBlockType(BlockState state1) {
@@ -197,7 +200,7 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
             }
         }
 
-        return this.defaultBlockState().setValue(FACING, direction).setValue(TYPE, chesttype).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+        return this.defaultBlockState().setValue(FACING, direction).setValue(TYPE, chesttype).setValue(IS_LOCKED, Boolean.FALSE).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
     }
 
     @Override
@@ -235,18 +238,19 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (level.isClientSide) {
-            return InteractionResult.SUCCESS;
-        } else {
-            MenuProvider menuprovider = this.getMenuProvider(state, level, pos);
-            if (menuprovider != null) {
+        Item heldItem = player.getMainHandItem().getItem();
+        MenuProvider menuprovider = this.getMenuProvider(state, level, pos);
+        if(state.getValue(IS_LOCKED)) {
+            return InteractionResult.FAIL;
+        }
+        if(!state.getValue(IS_LOCKED) && heldItem != JItems.PADLOCK) {
+            if(menuprovider != null) {
                 player.openMenu(menuprovider);
                 player.awardStat(Stats.CUSTOM.get(Stats.OPEN_CHEST));
-                PiglinAi.angerNearbyPiglins(player, true);
             }
 
-            return InteractionResult.CONSUME;
         }
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     @Nullable
@@ -344,7 +348,7 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, TYPE, WATERLOGGED);
+        builder.add(FACING, TYPE, WATERLOGGED, IS_LOCKED);
     }
 
     @Override
@@ -355,7 +359,7 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
     @Override
     public void tick(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos, @NotNull Random random) {
         BlockEntity blockentity = level.getBlockEntity(pos);
-        if (blockentity instanceof JChestBlockEntity) {
+        if(blockentity instanceof JChestBlockEntity) {
             ((JChestBlockEntity)blockentity).recheckOpen();
         }
     }
