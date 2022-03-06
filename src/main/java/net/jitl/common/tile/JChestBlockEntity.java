@@ -1,6 +1,7 @@
 package net.jitl.common.tile;
 
 import net.jitl.common.block.base.JChestBlock;
+import net.jitl.core.init.JTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -72,7 +73,7 @@ public class JChestBlockEntity extends ChestBlockEntity {
     }
 
     public JChestBlockEntity(BlockPos worldPosition, BlockState blockState) {
-        this(BlockEntityType.CHEST, worldPosition, blockState);
+        this(JTiles.JCHEST, worldPosition, blockState);
     }
 
     @Override

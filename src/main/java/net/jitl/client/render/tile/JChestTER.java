@@ -90,44 +90,49 @@ public class JChestTER <T extends BlockEntity & LidBlockEntity> implements Block
     public void render(T blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         Level level = blockEntity.getLevel();
         boolean flag = level != null;
-        BlockState blockstate = flag ? blockEntity.getBlockState() : JBlocks.EUCA_CHEST.defaultBlockState().setValue(JChestBlock.FACING, Direction.SOUTH);
+        BlockState blockstate = flag ? blockEntity.getBlockState() : blockEntity.getBlockState().getBlock().defaultBlockState().setValue(JChestBlock.FACING, Direction.SOUTH);
         ChestType chesttype = blockstate.hasProperty(JChestBlock.TYPE) ? blockstate.getValue(JChestBlock.TYPE) : ChestType.SINGLE;
         Block block = blockstate.getBlock();
-            JChestBlock chest = (JChestBlock)block;
-            boolean flag1 = chesttype != ChestType.SINGLE;
-            poseStack.pushPose();
-            float f = blockstate.getValue(JChestBlock.FACING).toYRot();
-            poseStack.translate(0.5D, 0.5D, 0.5D);
-            poseStack.mulPose(Vector3f.YP.rotationDegrees(-f));
-            poseStack.translate(-0.5D, -0.5D, -0.5D);
-            DoubleBlockCombiner.NeighborCombineResult<? extends JChestBlockEntity> neighborcombineresult;
-            if (flag) {
-                neighborcombineresult = chest.combine(blockstate, level, blockEntity.getBlockPos(), true);
+        JChestBlock chest = (JChestBlock)block;
+        boolean flag1 = chesttype != ChestType.SINGLE;
+        poseStack.pushPose();
+        float f = blockstate.getValue(JChestBlock.FACING).toYRot();
+        poseStack.translate(0.5D, 0.5D, 0.5D);
+        poseStack.mulPose(Vector3f.YP.rotationDegrees(-f));
+        poseStack.translate(-0.5D, -0.5D, -0.5D);
+        DoubleBlockCombiner.NeighborCombineResult<? extends JChestBlockEntity> neighborcombineresult;
+        if (flag) {
+            neighborcombineresult = chest.combine(blockstate, level, blockEntity.getBlockPos(), true);
+        } else {
+            neighborcombineresult = DoubleBlockCombiner.Combiner::acceptNone;
+        }
+        float f1 = neighborcombineresult.apply(JChestBlock.opennessCombiner(blockEntity)).get(partialTick);
+        f1 = 1.0F - f1;
+        f1 = 1.0F - f1 * f1 * f1;
+        int i = neighborcombineresult.apply(new BrightnessCombiner<>()).applyAsInt(packedLight);
+        VertexConsumer vertexconsumer = bufferSource.getBuffer(RenderType.entitySolid(JITL.rl("textures/models/block/chest/" + getNameFromBlock(chest) + ".png")));
+        if (flag1) {
+            if (chesttype == ChestType.LEFT) {
+                this.render(poseStack, vertexconsumer, this.doubleLeftLid, this.doubleLeftLock, this.doubleLeftBottom, f1, i, packedOverlay);
             } else {
-                neighborcombineresult = DoubleBlockCombiner.Combiner::acceptNone;
+                this.render(poseStack, vertexconsumer, this.doubleRightLid, this.doubleRightLock, this.doubleRightBottom, f1, i, packedOverlay);
             }
-            float f1 = neighborcombineresult.apply(JChestBlock.opennessCombiner(blockEntity)).get(partialTick);
-            f1 = 1.0F - f1;
-            f1 = 1.0F - f1 * f1 * f1;
-            int i = neighborcombineresult.apply(new BrightnessCombiner<>()).applyAsInt(packedLight);
-            Material material = this.getMaterial(blockEntity, chesttype, getNameFromBlock(chest));
-            VertexConsumer vertexconsumer = material.buffer(bufferSource, RenderType::entityCutout);
-            if (flag1) {
-                if (chesttype == ChestType.LEFT) {
-                    this.render(poseStack, vertexconsumer, this.doubleLeftLid, this.doubleLeftLock, this.doubleLeftBottom, f1, i, packedOverlay);
-                } else {
-                    this.render(poseStack, vertexconsumer, this.doubleRightLid, this.doubleRightLock, this.doubleRightBottom, f1, i, packedOverlay);
-                }
-            } else {
-                this.render(poseStack, vertexconsumer, this.lid, this.lock, this.bottom, f1, i, packedOverlay);
-            }
-            poseStack.popPose();
+        } else {
+            this.render(poseStack, vertexconsumer, this.lid, this.lock, this.bottom, f1, i, packedOverlay);
+        }
+        poseStack.popPose();
     }
 
     public String getNameFromBlock(JChestBlock chest) {
         String name = "";
         if(chest == JBlocks.EUCA_CHEST) {
             name = "euca_chest";
+        }
+        if(chest == JBlocks.FROZEN_CHEST) {
+            name = "frozen_chest";
+        }
+        if(chest == JBlocks.BOIL_CHEST) {
+            name = "boiling_chest";
         }
         return name;
     }
