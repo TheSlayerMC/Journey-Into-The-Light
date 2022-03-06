@@ -21,6 +21,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
@@ -114,8 +115,7 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
             return Optional.empty();
         }
     };
-
-
+    
     public JChestBlock(BlockBehaviour.Properties properties) {
         super(properties, () -> JTiles.JCHEST);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH)
@@ -364,5 +364,10 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
         if(blockentity instanceof JChestBlockEntity) {
             ((JChestBlockEntity)blockentity).recheckOpen();
         }
+    }
+
+    @Override
+    public float getExplosionResistance(BlockState state, BlockGetter world, BlockPos pos, Explosion explosion) {
+        return state.getValue(IS_LOCKED) ? 1000000F : super.getExplosionResistance(state, world, pos, explosion);
     }
 }
