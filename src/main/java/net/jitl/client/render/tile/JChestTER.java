@@ -19,7 +19,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BrightnessCombiner;
-import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
@@ -89,29 +88,31 @@ public class JChestTER <T extends BlockEntity & LidBlockEntity> implements Block
     @Override
     public void render(T blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         Level level = blockEntity.getLevel();
-        boolean flag = level != null;
-        BlockState blockstate = flag ? blockEntity.getBlockState() : blockEntity.getBlockState().getBlock().defaultBlockState().setValue(JChestBlock.FACING, Direction.SOUTH);
+        boolean viable = level != null;
+        BlockState blockstate = viable ? blockEntity.getBlockState() : blockEntity.getBlockState().getBlock().defaultBlockState().setValue(JChestBlock.FACING, Direction.SOUTH);
         ChestType chesttype = blockstate.hasProperty(JChestBlock.TYPE) ? blockstate.getValue(JChestBlock.TYPE) : ChestType.SINGLE;
         Block block = blockstate.getBlock();
         JChestBlock chest = (JChestBlock)block;
-        boolean flag1 = chesttype != ChestType.SINGLE;
+        boolean isDouble = chesttype != ChestType.SINGLE;
         poseStack.pushPose();
         float f = blockstate.getValue(JChestBlock.FACING).toYRot();
         poseStack.translate(0.5D, 0.5D, 0.5D);
         poseStack.mulPose(Vector3f.YP.rotationDegrees(-f));
         poseStack.translate(-0.5D, -0.5D, -0.5D);
-        DoubleBlockCombiner.NeighborCombineResult<? extends JChestBlockEntity> neighborcombineresult;
-        if (flag) {
-            neighborcombineresult = chest.combine(blockstate, level, blockEntity.getBlockPos(), true);
+        DoubleBlockCombiner.NeighborCombineResult<? extends JChestBlockEntity> res;
+        if(viable) {
+            res = chest.combine(blockstate, level, blockEntity.getBlockPos(), true);
         } else {
-            neighborcombineresult = DoubleBlockCombiner.Combiner::acceptNone;
+            res = DoubleBlockCombiner.Combiner::acceptNone;
         }
-        float f1 = neighborcombineresult.apply(JChestBlock.opennessCombiner(blockEntity)).get(partialTick);
+        float f1 = res.apply(JChestBlock.opennessCombiner(blockEntity)).get(partialTick);
         f1 = 1.0F - f1;
         f1 = 1.0F - f1 * f1 * f1;
-        int i = neighborcombineresult.apply(new BrightnessCombiner<>()).applyAsInt(packedLight);
+        int i = res.apply(new BrightnessCombiner<>()).applyAsInt(packedLight);
         VertexConsumer vertexconsumer = bufferSource.getBuffer(RenderType.entitySolid(JITL.rl("textures/models/block/chest/" + getNameFromBlock(chest) + ".png")));
-        if (flag1) {
+
+        if(isDouble) {
+            vertexconsumer = bufferSource.getBuffer(RenderType.entitySolid(JITL.rl("textures/models/block/chest/" + getNameFromBlock(chest) + "_double.png")));
             if (chesttype == ChestType.LEFT) {
                 this.render(poseStack, vertexconsumer, this.doubleLeftLid, this.doubleLeftLock, this.doubleLeftBottom, f1, i, packedOverlay);
             } else {
@@ -143,9 +144,5 @@ public class JChestTER <T extends BlockEntity & LidBlockEntity> implements Block
         lidPart.render(poseStack, consumer, packedLight, packedOverlay);
         lockPart.render(poseStack, consumer, packedLight, packedOverlay);
         bottomPart.render(poseStack, consumer, packedLight, packedOverlay);
-    }
-
-    protected Material getMaterial(T blockEntity, ChestType chestType, String name) {
-        return new Material(CHEST_SHEET, JITL.rl("textures/block/chest/" + name));
     }
 }
