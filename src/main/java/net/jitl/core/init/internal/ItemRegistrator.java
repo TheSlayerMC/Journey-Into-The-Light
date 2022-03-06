@@ -100,6 +100,7 @@ public class ItemRegistrator {
         registerItem("crystal_apple", "Crystal Apple", () -> new CrystalAppleItem(itemGrouped().food(JFoods.CRYSTAL_APPLE).rarity(Rarity.EPIC)));
         registerItem("frostborn_soul", "Frostborn Soul");
         registerItem("ice_amulet", "Amulet of Glacial Bloodlust", () -> new IceAmuletItem(itemGrouped().stacksTo(1)));
+        registerItem("padlock", "Padlock", () -> new Item(itemGrouped().stacksTo(16)));
 
         registerItem("mud_ball", "Mud Ball", () -> new ThrowableItem(itemGrouped(),
                 (world, thrower) -> new FloroMudEntity(JEntities.FLORO_MUD_TYPE, world, thrower, 0.0F)).setSound(() -> SoundEvents.SNOWBALL_THROW));
@@ -252,19 +253,6 @@ public class ItemRegistrator {
         registerItem("brown_euca_boat", "Brown Euca Boat", () -> new JBoatItem(JBoat.Type.BROWN_EUCA, itemGrouped()));
         registerItem("frozen_boat", "Frosty Boat", () -> new JBoatItem(JBoat.Type.FROZEN, itemGrouped()));
         registerItem("burned_boat", "Burned Boat", () -> new JBoatItem(JBoat.Type.BURNED, itemGrouped()));
-
-        registerItem("overworld_knowledge", "Knowledge", () -> new Item(noGroup()));
-        registerItem("nether_knowledge", "Knowledge", () -> new Item(noGroup()));
-        registerItem("end_knowledge", "Knowledge", () -> new Item(noGroup()));
-        registerItem("boil_knowledge", "Knowledge", () -> new Item(noGroup()));
-        registerItem("frozen_knowledge", "Knowledge", () -> new Item(noGroup()));
-        registerItem("euca_knowledge", "Knowledge", () -> new Item(noGroup()));
-        registerItem("depths_knowledge", "Knowledge", () -> new Item(noGroup()));
-        registerItem("corba_knowledge", "Knowledge", () -> new Item(noGroup()));
-        registerItem("cloudia_knowledge", "Knowledge", () -> new Item(noGroup()));
-        registerItem("terrania_knowledge", "Knowledge", () -> new Item(noGroup()));
-        registerItem("senterian_knowledge", "Knowledge", () -> new Item(noGroup()));
-
     }
 
     public static void addMaterialToolsWeapons(String name, JToolTiers tiers, IAbility sworldAbility, IAbility toolAbility) {

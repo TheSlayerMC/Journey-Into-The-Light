@@ -6,8 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,10 +17,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import net.minecraft.world.level.block.entity.ChestLidController;
+import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraftforge.common.capabilities.Capability;
@@ -36,12 +35,10 @@ import java.util.Objects;
 
 public class JChestBlockEntity extends ChestBlockEntity {
     
-    private static final int EVENT_SET_OPEN_COUNT = 1;
-    private NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
     private final ChestLidController chestLidController = new ChestLidController();
-
+    private LazyOptional<IItemHandlerModifiable> chestHandler;
     private final ContainerOpenersCounter openersCounter = new ContainerOpenersCounter() {
-        
+
         @Override
         protected void onOpen(@NotNull Level level2, @NotNull BlockPos blockPos2, @NotNull BlockState blockState2) {
             JChestBlockEntity.playSound(level2, blockPos2, blockState2, SoundEvents.CHEST_OPEN);
@@ -77,31 +74,19 @@ public class JChestBlockEntity extends ChestBlockEntity {
     }
 
     @Override
-    public int getContainerSize() {
-        return 27;
-    }
-
-    @NotNull
-    @Override
-    protected Component getDefaultName() {
-        return new TranslatableComponent("container.chest");
-    }
-
-    @Override
     public void load(@NotNull CompoundTag tag) {
         super.load(tag);
-        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        this.setItems(NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY));
         if (!this.tryLoadLootTable(tag)) {
-            ContainerHelper.loadAllItems(tag, this.items);
+            ContainerHelper.loadAllItems(tag, this.getItems());
         }
-
     }
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
         super.saveAdditional(tag);
         if(!this.trySaveLootTable(tag)) {
-            ContainerHelper.saveAllItems(tag, this.items);
+            ContainerHelper.saveAllItems(tag, this.getItems());
         }
     }
 
@@ -148,17 +133,6 @@ public class JChestBlockEntity extends ChestBlockEntity {
         if (!this.remove && !player.isSpectator()) {
             this.openersCounter.decrementOpeners(player, Objects.requireNonNull(this.getLevel()), this.getBlockPos(), this.getBlockState());
         }
-
-    }
-
-    @Override
-    protected @NotNull NonNullList<ItemStack> getItems() {
-        return this.items;
-    }
-
-    @Override
-    protected void setItems(@NotNull NonNullList<ItemStack> items) {
-        this.items = items;
     }
 
     @Override
@@ -166,31 +140,11 @@ public class JChestBlockEntity extends ChestBlockEntity {
         return this.chestLidController.getOpenness(partialTicks);
     }
 
-    public static int getOpenCount(BlockGetter level, BlockPos pos) {
-        BlockState blockstate = level.getBlockState(pos);
-        if (blockstate.hasBlockEntity()) {
-            BlockEntity blockentity = level.getBlockEntity(pos);
-            if (blockentity instanceof JChestBlockEntity) {
-                return ((JChestBlockEntity)blockentity).openersCounter.getOpenerCount();
-            }
-        }
-
-        return 0;
-    }
-
-    public static void swapContents(JChestBlockEntity chest, JChestBlockEntity otherChest) {
-        NonNullList<ItemStack> list = chest.getItems();
-        chest.setItems(otherChest.getItems());
-        otherChest.setItems(list);
-    }
-
     @NotNull
     @Override
     protected AbstractContainerMenu createMenu(int id, @NotNull Inventory player) {
         return ChestMenu.threeRows(id, player, this);
     }
-
-    private LazyOptional<IItemHandlerModifiable> chestHandler;
 
     @Override
     public void setBlockState(@NotNull BlockState blockState) {
@@ -231,13 +185,9 @@ public class JChestBlockEntity extends ChestBlockEntity {
         }
     }
 
+    @Override
     public void recheckOpen() {
         if(!this.remove)
             this.openersCounter.recheckOpeners(Objects.requireNonNull(this.getLevel()), this.getBlockPos(), this.getBlockState());
-    }
-
-    protected void signalOpenCount(Level level, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
-        Block block = state.getBlock();
-        level.blockEvent(pos, block, 1, newViewerCount);
     }
 }

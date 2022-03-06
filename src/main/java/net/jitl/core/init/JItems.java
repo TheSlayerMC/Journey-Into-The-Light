@@ -201,15 +201,6 @@ public class JItems {
     public static final Item FROZEN_BOAT = promise();
     public static final Item BURNED_BOAT = promise();
 
-    public static final Item OVERWORLD_KNOWLEDGE = promise();
-    public static final Item NETHER_KNOWLEDGE = promise();
-    public static final Item END_KNOWLEDGE = promise();
-    public static final Item BOIL_KNOWLEDGE = promise();
-    public static final Item FROZEN_KNOWLEDGE = promise();
-    public static final Item EUCA_KNOWLEDGE = promise();
-    public static final Item DEPTHS_KNOWLEDGE = promise();
-    public static final Item CORBA_KNOWLEDGE = promise();
-    public static final Item CLOUDIA_KNOWLEDGE = promise();
-    public static final Item TERRANIA_KNOWLEDGE = promise();
-    public static final Item SENTERIAN_KNOWLEDGE = promise();
+    public static final Item PADLOCK = promise();
+
 }

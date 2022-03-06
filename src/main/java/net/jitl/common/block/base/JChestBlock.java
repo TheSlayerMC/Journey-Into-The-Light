@@ -7,9 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.LivingEntity;
@@ -53,9 +51,6 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final EnumProperty<ChestType> TYPE = BlockStateProperties.CHEST_TYPE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final int EVENTSETOPENCOUNT = 1;
-    protected static final int AABBOFFSET = 1;
-    protected static final int AABBHEIGHT = 14;
     protected static final VoxelShape NORTHAABB = Block.box(1.0D, 0.0D, 0.0D, 15.0D, 14.0D, 15.0D);
     protected static final VoxelShape SOUTHAABB = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 16.0D);
     protected static final VoxelShape WESTAABB = Block.box(0.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
@@ -224,7 +219,6 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
                 ((JChestBlockEntity)blockentity).setCustomName(stack.getHoverName());
             }
         }
-
     }
 
     @Override
@@ -235,7 +229,6 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
                 Containers.dropContents(level, pos, (Container)blockentity);
                 level.updateNeighbourForOutputSignal(pos, this);
             }
-
             super.onRemove(state, level, pos, newState, isMoving);
         }
     }
@@ -248,20 +241,12 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
             MenuProvider menuprovider = this.getMenuProvider(state, level, pos);
             if (menuprovider != null) {
                 player.openMenu(menuprovider);
-                player.awardStat(this.getOpenChestStat());
+                player.awardStat(Stats.CUSTOM.get(Stats.OPEN_CHEST));
                 PiglinAi.angerNearbyPiglins(player, true);
             }
 
             return InteractionResult.CONSUME;
         }
-    }
-
-    protected Stat<ResourceLocation> getOpenChestStat() {
-        return Stats.CUSTOM.get(Stats.OPEN_CHEST);
-    }
-
-    public BlockEntityType<? extends JChestBlockEntity> blockEntityType() {
-        return this.blockEntityType.get();
     }
 
     @Nullable
@@ -312,7 +297,7 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> blockEntityType) {
-        return level.isClientSide ? createTickerHelper(blockEntityType, this.blockEntityType(), JChestBlockEntity::lidAnimateTick) : null;
+        return level.isClientSide ? createTickerHelper(blockEntityType, this.blockEntityType.get(), JChestBlockEntity::lidAnimateTick) : null;
     }
 
     public static boolean isJChestBlockedAt(LevelAccessor level1, BlockPos pos1) {
