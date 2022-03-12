@@ -129,7 +129,15 @@ public class JChestTER <T extends BlockEntity & LidBlockEntity> implements Block
         poseStack.popPose();
 
         if(blockstate.getValue(JChestBlock.IS_LOCKED)) {
-            renderItem(new ItemStack(JItems.PADLOCK), new double[]{0.5D, 0.2D, 0.945D}, poseStack, bufferSource, packedOverlay, packedLight, blockstate);
+            if(isDouble) {
+                if(chesttype == ChestType.LEFT) {
+                    renderItem(new ItemStack(JItems.PADLOCK), new double[]{1.0D, 0.2D, 0.945D}, poseStack, bufferSource, packedOverlay, packedLight, blockstate);
+                } else {
+                    renderItem(new ItemStack(JItems.PADLOCK), new double[]{1.0D, 0.199D, 0.945D}, poseStack, bufferSource, packedOverlay, packedLight, blockstate);
+                }
+            } else {
+                renderItem(new ItemStack(JItems.PADLOCK), new double[]{0.5D, 0.2D, 0.945D}, poseStack, bufferSource, packedOverlay, packedLight, blockstate);
+            }
         }
     }
 

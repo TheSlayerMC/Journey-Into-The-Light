@@ -242,6 +242,7 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         Item heldItem = player.getMainHandItem().getItem();
         MenuProvider menuprovider = this.getMenuProvider(state, level, pos);
+
         if(state.getValue(IS_LOCKED)) {
             return InteractionResult.FAIL;
         }
