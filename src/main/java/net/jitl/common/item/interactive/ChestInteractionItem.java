@@ -31,19 +31,13 @@ public class ChestInteractionItem extends Item {
         BlockState blockstate = world.getBlockState(pos);
 
         if(blockstate.getBlock() instanceof JChestBlock) {
-            if(heldItem.getItem() == JItems.CHEST_KEY) {//Sets the chest key to be the universal key
-                if(blockstate.getValue(JChestBlock.IS_LOCKED)) {
-                    BlockState s = blockstate.setValue(JChestBlock.IS_LOCKED, Boolean.FALSE);
-                    world.setBlock(pos, s, 2);
-                    heldItem.shrink(1);
-                    world.playSound(null, pos, SoundEvents.IRON_DOOR_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
-                }
-            }
+            //Sets the chest key to be the universal key
+            unlockChest(player, JItems.CHEST_KEY, world, pos, JBlocks.BOIL_CHEST, JBlocks.EUCA_CHEST, JBlocks.FROZEN_CHEST);
 
             //Sets specific keys to only open their respective chests
-            unlockChest(player, JItems.BOILING_KEY, JBlocks.BOIL_CHEST, world, pos);
-            unlockChest(player, JItems.EUCA_KEY, JBlocks.EUCA_CHEST, world, pos);
-            unlockChest(player, JItems.FROZEN_KEY, JBlocks.FROZEN_CHEST, world, pos);
+            unlockChest(player, JItems.BOILING_KEY, world, pos, JBlocks.BOIL_CHEST);
+            unlockChest(player, JItems.EUCA_KEY, world, pos, JBlocks.EUCA_CHEST);
+            unlockChest(player, JItems.FROZEN_KEY, world, pos, JBlocks.FROZEN_CHEST);
 
             //Locks the chest if the player wishes to do so
             if(heldItem.getItem() == JItems.PADLOCK) {
@@ -70,16 +64,16 @@ public class ChestInteractionItem extends Item {
 
                 //Checks if double chest is adjacent
                 if(isNorth) {
-                    world.setBlock(pos, n.setValue(JChestBlock.IS_LOCKED, Boolean.TRUE), 2);
+                    world.setBlock(pos.north(), n.setValue(JChestBlock.IS_LOCKED, Boolean.TRUE), 2);
                 }
                 if(isSouth) {
-                    world.setBlock(pos, s.setValue(JChestBlock.IS_LOCKED, Boolean.TRUE), 2);
+                    world.setBlock(pos.south(), s.setValue(JChestBlock.IS_LOCKED, Boolean.TRUE), 2);
                 }
                 if(isEast) {
-                    world.setBlock(pos, e.setValue(JChestBlock.IS_LOCKED, Boolean.TRUE), 2);
+                    world.setBlock(pos.east(), e.setValue(JChestBlock.IS_LOCKED, Boolean.TRUE), 2);
                 }
                 if(isWest) {
-                    world.setBlock(pos, w.setValue(JChestBlock.IS_LOCKED, Boolean.TRUE), 2);
+                    world.setBlock(pos.west(), w.setValue(JChestBlock.IS_LOCKED, Boolean.TRUE), 2);
                 }
                 player.getMainHandItem().shrink(1);
                 world.playSound(null, pos, SoundEvents.IRON_DOOR_CLOSE, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -87,35 +81,37 @@ public class ChestInteractionItem extends Item {
         }
     }
 
-    public void unlockChest(Player player, Item key, Block chest, Level world, BlockPos pos) {
-        if(player.getMainHandItem().getItem() == key && world.getBlockState(pos).getBlock() == chest) {
-            BlockState n = world.getBlockState(pos.north());
-            BlockState s = world.getBlockState(pos.south());
-            BlockState e = world.getBlockState(pos.east());
-            BlockState w = world.getBlockState(pos.west());
-            boolean isNorth = n.getBlock() == chest;
-            boolean isSouth = s.getBlock() == chest;
-            boolean isEast = e.getBlock() == chest;
-            boolean isWest = w.getBlock() == chest;
-            BlockState clickedChest = world.getBlockState(pos);
-            if(clickedChest.getValue(JChestBlock.IS_LOCKED)) {
-                world.setBlock(pos, clickedChest.setValue(JChestBlock.IS_LOCKED, Boolean.FALSE), 2); //Locks the clicked chest
+    public void unlockChest(Player player, Item key, Level world, BlockPos pos, Block...c) {
+        for(Block chest : c) {
+            if (player.getMainHandItem().getItem() == key && world.getBlockState(pos).getBlock() == chest) {
+                BlockState n = world.getBlockState(pos.north());
+                BlockState s = world.getBlockState(pos.south());
+                BlockState e = world.getBlockState(pos.east());
+                BlockState w = world.getBlockState(pos.west());
+                boolean isNorth = n.getBlock() == chest;
+                boolean isSouth = s.getBlock() == chest;
+                boolean isEast = e.getBlock() == chest;
+                boolean isWest = w.getBlock() == chest;
+                BlockState clickedChest = world.getBlockState(pos);
+                if (clickedChest.getValue(JChestBlock.IS_LOCKED)) {
+                    world.setBlock(pos, clickedChest.setValue(JChestBlock.IS_LOCKED, Boolean.FALSE), 2); //Locks the clicked chest
 
-                //Checks if double chest is adjacent
-                if(isNorth) {
-                    world.setBlock(pos, n.setValue(JChestBlock.IS_LOCKED, Boolean.FALSE), 2);
+                    //Checks if double chest is adjacent
+                    if (isNorth) {
+                        world.setBlock(pos.north(), n.setValue(JChestBlock.IS_LOCKED, Boolean.FALSE), 2);
+                    }
+                    if (isSouth) {
+                        world.setBlock(pos.south(), s.setValue(JChestBlock.IS_LOCKED, Boolean.FALSE), 2);
+                    }
+                    if (isEast) {
+                        world.setBlock(pos.east(), e.setValue(JChestBlock.IS_LOCKED, Boolean.FALSE), 2);
+                    }
+                    if (isWest) {
+                        world.setBlock(pos.west(), w.setValue(JChestBlock.IS_LOCKED, Boolean.FALSE), 2);
+                    }
+                    player.getMainHandItem().shrink(1);
+                    world.playSound(null, pos, SoundEvents.IRON_DOOR_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
-                if(isSouth) {
-                    world.setBlock(pos, s.setValue(JChestBlock.IS_LOCKED, Boolean.FALSE), 2);
-                }
-                if(isEast) {
-                    world.setBlock(pos, e.setValue(JChestBlock.IS_LOCKED, Boolean.FALSE), 2);
-                }
-                if(isWest) {
-                    world.setBlock(pos, w.setValue(JChestBlock.IS_LOCKED, Boolean.FALSE), 2);
-                }
-                player.getMainHandItem().shrink(1);
-                world.playSound(null, pos, SoundEvents.IRON_DOOR_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
         }
     }
