@@ -127,6 +127,7 @@ JBlockLootTableSet extends BlockLootTableSet {
 		registerDropsSelf(JBlocks.EUCA_CHEST);
 		registerDropsSelf(JBlocks.FROZEN_CHEST);
 		registerDropsSelf(JBlocks.BOIL_CHEST);
+		registerDropsSelf(JBlocks.NETHER_CHEST);
 	}
 
 	/**
