@@ -167,6 +167,9 @@ public class JChestTER <T extends BlockEntity & LidBlockEntity> implements Block
         if(chest == JBlocks.BOIL_CHEST) {
             name = "boiling_chest";
         }
+        if(chest == JBlocks.NETHER_CHEST) {
+            name = "nether_chest";
+        }
         return name;
     }
 

@@ -206,5 +206,6 @@ public class JItems {
     public static final Item EUCA_KEY = promise();
     public static final Item BOILING_KEY = promise();
     public static final Item FROZEN_KEY = promise();
+    public static final Item NETHER_KEY = promise();
 
 }

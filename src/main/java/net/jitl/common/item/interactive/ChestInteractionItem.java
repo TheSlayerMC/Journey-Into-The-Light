@@ -46,6 +46,7 @@ public class ChestInteractionItem extends Item {
             unlockChest(player, JItems.BOILING_KEY, world, pos, JBlocks.BOIL_CHEST);
             unlockChest(player, JItems.EUCA_KEY, world, pos, JBlocks.EUCA_CHEST);
             unlockChest(player, JItems.FROZEN_KEY, world, pos, JBlocks.FROZEN_CHEST);
+            unlockChest(player, JItems.NETHER_KEY, world, pos, JBlocks.NETHER_CHEST);
 
             //Locks the chest if the player wishes to do so
             if(heldItem.getItem() == JItems.PADLOCK) {
@@ -138,6 +139,21 @@ public class ChestInteractionItem extends Item {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level world, @NotNull List<Component> text, @NotNull TooltipFlag flag) {
+        if(stack.getItem() == JItems.CHEST_KEY) {
+            text.add(new TranslatableComponent("jitl.key.chest.desc"));
+        }
+        if(stack.getItem() == JItems.BOILING_KEY) {
+            text.add(new TranslatableComponent("jitl.key.boiling.desc"));
+        }
+        if(stack.getItem() == JItems.EUCA_KEY) {
+            text.add(new TranslatableComponent("jitl.key.euca.desc"));
+        }
+        if(stack.getItem() == JItems.FROZEN_KEY) {
+            text.add(new TranslatableComponent("jitl.key.frozen.desc"));
+        }
+        if(stack.getItem() == JItems.NETHER_KEY) {
+            text.add(new TranslatableComponent("jitl.key.nether.desc"));
+        }
         if(stack.getItem() == JItems.PADLOCK) {
             text.add(new TranslatableComponent("jitl.padlock.desc"));
         }
