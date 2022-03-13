@@ -371,4 +371,9 @@ public class JChestBlock extends AbstractChestBlock<JChestBlockEntity> implement
     public float getExplosionResistance(BlockState state, BlockGetter world, BlockPos pos, Explosion explosion) {
         return state.getValue(IS_LOCKED) ? 1000000F : super.getExplosionResistance(state, world, pos, explosion);
     }
+
+    @Override
+    public float getDestroyProgress(BlockState state, Player player, BlockGetter level, BlockPos pos) {
+        return state.getValue(IS_LOCKED) ? 0F : super.getDestroyProgress(state, player, level, pos);
+    }
 }
