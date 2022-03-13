@@ -123,6 +123,10 @@ JBlockLootTableSet extends BlockLootTableSet {
 	private void initUtilityBlocks() {
 		registerSpecialOreWithExtraCount(JBlocks.CLAY_POTTERY, JItems.POTTERY_SHARD, 2, 5);
 		registerSpecialOreWithExtraCount(JBlocks.CLAY_VASE, JItems.POTTERY_SHARD, 1, 2);
+
+		registerDropsSelf(JBlocks.EUCA_CHEST);
+		registerDropsSelf(JBlocks.FROZEN_CHEST);
+		registerDropsSelf(JBlocks.BOIL_CHEST);
 	}
 
 	/**
