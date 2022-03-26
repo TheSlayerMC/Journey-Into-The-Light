@@ -42,7 +42,7 @@ public class JTiles {
         @AutoRegistrable.Init
         private static void register() {
             REGISTER.register("jfurnace", JFurnaceTile::new, () -> Lists.newArrayList(JBlocks.GOLDITE_FURNACE, JBlocks.PERMAFROST_FURNACE));
-            REGISTER.register("jchest", JChestBlockEntity::new, () -> Lists.newArrayList(JBlocks.EUCA_CHEST, JBlocks.BOIL_CHEST, JBlocks.FROZEN_CHEST)).regCustomRenderer(() -> JChestTER::new);
+            REGISTER.register("jchest", JChestBlockEntity::new, () -> Lists.newArrayList(JBlocks.EUCA_CHEST, JBlocks.BOIL_CHEST, JBlocks.FROZEN_CHEST, JBlocks.NETHER_CHEST)).regCustomRenderer(() -> JChestTER::new);
 
             REGISTER.registerSingleBound("laser_emitter", LaserEmitterTile::new, () -> JBlocks.LASER_EMITTER).regCustomRenderer(() -> LaserEmitterTER::new);
             REGISTER.registerSingleBound("gold_bot_spawner", GoldBotSpawnerTile::new, () -> JBlocks.GOLD_BOT_SPAWNER);
