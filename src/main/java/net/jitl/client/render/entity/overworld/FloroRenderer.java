@@ -15,8 +15,6 @@ public class FloroRenderer extends AnimatedLivingEntityRenderer<FloroEntity, Tim
         super(context, new TimeEntityModel<>(ModelConfiguration.builder(JsonModels.FLORO).scaled(1.6F).build()), 0.5F);
     }
 
-    //fafaf
-
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull FloroEntity entity) {
         return new ResourceLocation(JITL.MODID, "textures/entity/overworld/floro.png");
