@@ -40,13 +40,14 @@ public class ChestInteractionItem extends Item {
 
         if(blockstate.getBlock() instanceof JChestBlock) {
             //Sets the chest key to be the universal key
-            unlockChest(player, JItems.CHEST_KEY, world, pos, JBlocks.BOIL_CHEST, JBlocks.EUCA_CHEST, JBlocks.FROZEN_CHEST, JBlocks.NETHER_CHEST);
+            unlockChest(player, JItems.CHEST_KEY, world, pos, JBlocks.BOIL_CHEST, JBlocks.EUCA_CHEST, JBlocks.FROZEN_CHEST, JBlocks.NETHER_CHEST, JBlocks.JOURNEY_CHEST);
 
             //Sets specific keys to only open their respective chests
             unlockChest(player, JItems.BOILING_KEY, world, pos, JBlocks.BOIL_CHEST);
             unlockChest(player, JItems.EUCA_KEY, world, pos, JBlocks.EUCA_CHEST);
             unlockChest(player, JItems.FROZEN_KEY, world, pos, JBlocks.FROZEN_CHEST);
             unlockChest(player, JItems.NETHER_KEY, world, pos, JBlocks.NETHER_CHEST);
+            unlockChest(player, JItems.JOURNEY_KEY, world, pos, JBlocks.JOURNEY_CHEST);
 
             //Locks the chest if the player wishes to do so
             if(heldItem.getItem() == JItems.PADLOCK) {

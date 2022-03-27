@@ -259,6 +259,7 @@ public class ItemRegistrator {
         registerItem("frozen_key", "Frozen Chest Key", () -> new ChestInteractionItem(itemGrouped().stacksTo(16)));
         registerItem("boiling_key", "Boiling Chest Key", () -> new ChestInteractionItem(itemGrouped().stacksTo(16)));
         registerItem("nether_key", "Nether Chest Key", () -> new ChestInteractionItem(itemGrouped().stacksTo(16)));
+        registerItem("journey_key", "Journey Chest Key", () -> new ChestInteractionItem(itemGrouped().stacksTo(16)));
 
     }
 

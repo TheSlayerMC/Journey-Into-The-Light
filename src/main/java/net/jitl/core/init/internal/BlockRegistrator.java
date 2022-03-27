@@ -484,6 +484,7 @@ public class BlockRegistrator {
 
         registerCustomRenderLayerBlock("mini_ghast_spawner", "Mini Ghast Spawner", MiniGhastSpawnerBlock::new, JTabs.SPAWNERS, () -> RenderTypeWrappers.CUTOUT);
 
+        registerChestBlock("journey_chest", "Journey Chest", "euca_gold_plank", () -> new JChestBlock(JBlockProperties.WOOD_PROPS.create()));
         registerChestBlock("euca_chest", "Euca Chest", "euca_gold_plank", () -> new JChestBlock(JBlockProperties.WOOD_PROPS.create()));
         registerChestBlock("frozen_chest", "Frozen Chest", "frozen_plank", () -> new JChestBlock(JBlockProperties.WOOD_PROPS.create()));
         registerChestBlock("boil_chest", "Boiling Chest", "burned_bark_plank", () -> new JChestBlock(JBlockProperties.WOOD_PROPS.create()));

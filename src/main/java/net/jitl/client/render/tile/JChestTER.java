@@ -158,6 +158,9 @@ public class JChestTER <T extends BlockEntity & LidBlockEntity> implements Block
 
     public String getNameFromBlock(JChestBlock chest) {
         String name = "";
+        if(chest == JBlocks.JOURNEY_CHEST) {
+            name = "journey_chest";
+        }
         if(chest == JBlocks.EUCA_CHEST) {
             name = "euca_chest";
         }

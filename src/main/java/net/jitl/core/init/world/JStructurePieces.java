@@ -7,6 +7,7 @@ import net.jitl.common.world.gen.structures.nether.BoilLockStructure;
 import net.jitl.common.world.gen.structures.nether.NetherTowerStructure;
 import net.jitl.common.world.gen.structures.overworld.AncientRuinsStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
+import net.jitl.common.world.gen.structures.overworld.RockiteDungeonStructure;
 import net.jitl.common.world.gen.structures.overworld.guardian.GuardianTowerPieces;
 import net.jitl.core.JITL;
 import net.minecraft.core.Registry;
@@ -24,6 +25,7 @@ public class JStructurePieces {
     public static final Promised<StructurePieceType> MAGE = REGISTER.register("mage", () -> MageHouseStructure.Piece::new);
 
     public static final Promised<StructurePieceType> ANCIENT_RUINS = REGISTER.register("ancient_ruins", () -> AncientRuinsStructure.Piece::new);
+    public static final Promised<StructurePieceType> ROCKITE_DUNGEON = REGISTER.register("rockite_dungeon", () -> RockiteDungeonStructure.Piece::new);
 
     public static final Promised<StructurePieceType> GOLDITE_WINDMILL = REGISTER.register("goldite_windmill", () -> GolditeWindmillStructure.Piece::new);
 

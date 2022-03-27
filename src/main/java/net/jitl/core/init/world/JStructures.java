@@ -73,6 +73,14 @@ public class JStructures {
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
                     .asHolder();
 
+
+    //Underground FIXME
+   /* public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, RockiteDungeonStructure> ROCKITE_DUNGEON =
+            REGISTER.register("rockite_dungeon", RockiteDungeonStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
+                    .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
+                    .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
+                    .asHolder();*/
+
     public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, GolditeWindmillStructure> GOLDITE_WINDMILL =
             REGISTER.register("goldite_windmill", GolditeWindmillStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .transformsSurroundingLand()
