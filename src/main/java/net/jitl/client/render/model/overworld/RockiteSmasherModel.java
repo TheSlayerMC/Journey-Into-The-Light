@@ -52,10 +52,10 @@ public class RockiteSmasherModel<T extends Entity> extends EntityModel<T> {
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.xRot = 0.3054F + headPitch * ((float) Math.PI / 180F);
         this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
-        this.leg1.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.leg2.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.arm1.xRot = -Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.arm2.xRot = -Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.leg1.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / 2;
+        this.leg2.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / 2;
+        this.arm1.xRot = -Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / 2;
+        this.arm2.xRot = -Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / 2;
     }
 
     @Override
