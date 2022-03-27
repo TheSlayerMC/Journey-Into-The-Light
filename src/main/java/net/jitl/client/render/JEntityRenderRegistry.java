@@ -8,13 +8,14 @@ import net.jitl.client.render.entity.frozen.*;
 import net.jitl.client.render.entity.nether.MiniGhastRenderer;
 import net.jitl.client.render.entity.nether.WitherspineRenderer;
 import net.jitl.client.render.entity.overworld.*;
-import net.jitl.client.render.model.BoomModel;
-import net.jitl.client.render.model.BrownHongoModel;
-import net.jitl.client.render.model.HongoModel;
+import net.jitl.client.render.model.overworld.BoomModel;
+import net.jitl.client.render.model.overworld.BrownHongoModel;
+import net.jitl.client.render.model.overworld.HongoModel;
 import net.jitl.client.render.model.base.HoodedVillagerModel;
 import net.jitl.client.render.model.block.ObeliskModel;
 import net.jitl.client.render.model.euca.*;
 import net.jitl.client.render.model.frozen.*;
+import net.jitl.client.render.model.overworld.RockiteSmasherModel;
 import net.jitl.client.render.model.vehicle.JBoatModel;
 import net.jitl.client.render.tile.JChestTER;
 import net.jitl.client.render.vehicle.JBoatRenderer;
@@ -57,6 +58,7 @@ public class JEntityRenderRegistry {
         event.registerEntityRenderer(JEntities.FLORO_TYPE, FloroRenderer::new);
         event.registerEntityRenderer(JEntities.TOWER_GUARDIAN_TYPE, TowerGuardianRenderer::new);
         event.registerEntityRenderer(JEntities.SOUL_WATCHER_TYPE, SoulWatcherRenderer::new);
+        event.registerEntityRenderer(JEntities.ROCKITE_SMASHER_TYPE, RockiteSmasherRenderer::new);
 
         event.registerEntityRenderer(JEntities.SHIMMERER_TYPE, ShimmererRenderer::new);
         event.registerEntityRenderer(JEntities.EUCA_CHARGER_TYPE, EucaChargerRenderer::new);
@@ -111,6 +113,7 @@ public class JEntityRenderRegistry {
         event.registerLayerDefinition(JModelLayers.BROWN_HONGO_MODEL_LAYER, BrownHongoModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.WITHERSHROOM_MODEL_LAYER, HongoModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.HONGLOW_MODEL_LAYER, HongoModel::createBodyLayer);
+        event.registerLayerDefinition(JModelLayers.ROCKITE_SMASHER_LAYER, RockiteSmasherModel::createBodyLayer);
 
         event.registerLayerDefinition(JModelLayers.FROZEN_TROLL_MODEL_LAYER, FrozenTrollModel::createBodyLayer);
         event.registerLayerDefinition(JModelLayers.FROZEN_TROLL_HELD_ITEM_LAYER, FrozenTrollModel::createBodyLayer);

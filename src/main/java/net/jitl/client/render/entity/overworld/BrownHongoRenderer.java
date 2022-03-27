@@ -1,7 +1,7 @@
 package net.jitl.client.render.entity.overworld;
 
 import net.jitl.client.render.JModelLayers;
-import net.jitl.client.render.model.BrownHongoModel;
+import net.jitl.client.render.model.overworld.BrownHongoModel;
 import net.jitl.common.entity.overworld.BrownHongoEntity;
 import net.jitl.core.JITL;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

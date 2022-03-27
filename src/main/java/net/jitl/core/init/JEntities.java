@@ -187,6 +187,15 @@ public class JEntities {
             .attributes(() -> HonglowEntity.createAttributes().build())
             .retrieve();
 
+    public static final EntityType<RockiteSmasherEntity> ROCKITE_SMASHER_TYPE = REGISTER.registerMob("rockite_smasher",
+                    Builder.of(RockiteSmasherEntity::new, MobCategory.CREATURE)
+                            .setTrackingRange(80)
+                            .setShouldReceiveVelocityUpdates(true)
+                            .sized(1.5F, 1.5F))
+            .spawnEgg(BOSS_COLOR, NEUTRAL_COLOR, JTabs.SPAWNERS)
+            .attributes(() -> RockiteSmasherEntity.createAttributes().build())
+            .retrieve();
+
     public static final EntityType<EucaHopperEntity> EUCA_HOPPER_TYPE = REGISTER.registerMob("euca_hopper",
                     Builder.of(EucaHopperEntity::new, MobCategory.CREATURE)
                             .setTrackingRange(80)

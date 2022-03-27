@@ -3,7 +3,7 @@ package net.jitl.client.render.entity.overworld;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.jitl.client.render.JModelLayers;
 import net.jitl.client.render.entity.layer.MiniBoomChargeLayer;
-import net.jitl.client.render.model.BoomModel;
+import net.jitl.client.render.model.overworld.BoomModel;
 import net.jitl.common.entity.pet.MiniBoomEntity;
 import net.jitl.core.JITL;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

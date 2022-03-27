@@ -36,6 +36,7 @@ public class JModelLayers {
     public static final ModelLayerLocation OBELISK_TOP_MODEL_LAYER = register("obelisk_top");
     public static final ModelLayerLocation OBELISK_BOTTOM_MODEL_LAYER = register("obelisk_bottom");
     public static final ModelLayerLocation MINI_GHAST_LAYER = register("mini_ghast");
+    public static final ModelLayerLocation ROCKITE_SMASHER_LAYER = register("rockite_smasher");
 
     public static final ModelLayerLocation JCHEST = register("jchest");
     public static final ModelLayerLocation JDOUBLE_CHEST_LEFT = register("jdouble_chest_left");

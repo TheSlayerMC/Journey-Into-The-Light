@@ -1,4 +1,4 @@
-package net.jitl.client.render.model;
+package net.jitl.client.render.model.overworld;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.ListModel;
