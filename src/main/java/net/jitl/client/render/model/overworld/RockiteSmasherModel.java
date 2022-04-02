@@ -2,14 +2,14 @@ package net.jitl.client.render.model.overworld;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.jitl.common.entity.overworld.RockiteSmasherEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 
-public class RockiteSmasherModel<T extends Entity> extends EntityModel<T> {
+public class RockiteSmasherModel<T extends RockiteSmasherEntity> extends EntityModel<T> {
 
     private final ModelPart body;
     private final ModelPart waist;
@@ -54,8 +54,20 @@ public class RockiteSmasherModel<T extends Entity> extends EntityModel<T> {
         this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
         this.leg1.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / 2;
         this.leg2.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / 2;
-        this.arm1.xRot = -Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / 2;
-        this.arm2.xRot = -Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / 2;
+        //this.arm1.xRot = -Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount / 2;
+        //this.arm2.xRot = -Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / 2;
+    }
+
+    @Override
+    public void prepareMobModel(T entity, float limbSwing, float limbSwingAmount, float partialTick) {
+        int i = entity.getAttackAnimationTick();
+        if (i > 0) {
+            this.arm1.xRot = -2.0F + 1.5F * Mth.triangleWave((float)i - partialTick, 10.0F);
+            this.arm2.xRot = -2.0F + 1.5F * Mth.triangleWave((float)i - partialTick, 10.0F);
+        } else {
+            this.arm1.xRot = (-0.2F + 1.5F * Mth.triangleWave(limbSwing, 13.0F)) * limbSwingAmount;
+            this.arm2.xRot = (-0.2F - 1.5F * Mth.triangleWave(limbSwing, 13.0F)) * limbSwingAmount;
+        }
     }
 
     @Override
