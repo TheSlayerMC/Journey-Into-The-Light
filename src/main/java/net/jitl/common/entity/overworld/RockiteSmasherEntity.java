@@ -1,6 +1,14 @@
 package net.jitl.common.entity.overworld;
 
+import net.jitl.client.render.gui.BossBarRenderer;
+import net.jitl.common.entity.base.IJourneyBoss;
+import net.jitl.common.helper.JBossInfo;
+import net.jitl.common.helper.JMusic;
+import net.jitl.core.JITL;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -12,10 +20,13 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
-public class RockiteSmasherEntity extends Monster {
+public class RockiteSmasherEntity extends Monster implements IJourneyBoss {
 
     private int attackAnimationTick;
+    private final ServerBossEvent BOSS_INFO = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.NOTCHED_6);
+    private final BossBarRenderer BOSS_BAR = new BossBarRenderer(this, JITL.tl("gui/bossbars/rockite_smasher.png").fullLocation());
 
     public RockiteSmasherEntity(EntityType<? extends RockiteSmasherEntity> entityType, Level world) {
         super(entityType, world);
@@ -74,4 +85,27 @@ public class RockiteSmasherEntity extends Monster {
         }
         super.handleEntityEvent(id);
     }
+
+    @Override
+    public BossBarRenderer getBossBar() {
+        return this.BOSS_BAR;
+    }
+
+    @Override
+    public JMusic getBossMusic() {
+        return null;
+    }
+
+    @Override
+    public void startSeenByPlayer(@NotNull ServerPlayer player) {
+        super.startSeenByPlayer(player);
+        JBossInfo.addInfo(player, BOSS_INFO, this);
+    }
+
+    @Override
+    public void stopSeenByPlayer(@NotNull ServerPlayer player) {
+        super.stopSeenByPlayer(player);
+        JBossInfo.removeInfo(player, BOSS_INFO, this);
+    }
+
 }
