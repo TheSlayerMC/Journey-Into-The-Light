@@ -77,6 +77,10 @@ public class JSounds {
 
     public static final RegistryObject<SoundEvent> FROZEN_GUARDIAN_DEATH = REGISTER.register("entities.frozen_guardian_death");
 
+    public static final RegistryObject<SoundEvent> ROCKITE_SMASHER_HURT = REGISTER.register("entities.rockite_smasher_hurt");
+    public static final RegistryObject<SoundEvent> ROCKITE_SMASHER_DEATH = REGISTER.register("entities.rockite_smasher_death");
+
+
     public static final RegistryObject<SoundEvent> ILLAGER_MECH_STEP = REGISTER.register("entities.illager_mech_step");
     public static final RegistryObject<SoundEvent> ILLAGER_MECH_HURT = REGISTER.register("entities.illager_mech_hurt");
     public static final RegistryObject<SoundEvent> ILLAGER_MECH_DEATH = REGISTER.register("entities.illager_mech_death");

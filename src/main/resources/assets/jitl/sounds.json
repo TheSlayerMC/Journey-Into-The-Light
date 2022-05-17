@@ -348,6 +348,18 @@
       "jitl:entities/frozen_troll_intrigued_2"
     ]
   },
+  "entities.rockite_smasher_hurt": {
+    "sounds": [
+      "jitl:entities/rockite_smasher_hurt_0",
+      "jitl:entities/rockite_smasher_hurt_1",
+	   "jitl:entities/rockite_smasher_hurt_2"
+    ]
+  },
+    "entities.rockite_smasher_death": {
+    "sounds": [
+      "jitl:entities/rockite_smasher_death"
+    ]
+  },
   "entities.illager_mech_step": {
     "sounds": [
       "jitl:entities/illager_mech_step_1",

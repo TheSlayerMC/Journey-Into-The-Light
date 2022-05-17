@@ -5,8 +5,10 @@ import net.jitl.common.entity.base.IJourneyBoss;
 import net.jitl.common.helper.JBossInfo;
 import net.jitl.common.helper.JMusic;
 import net.jitl.core.JITL;
+import net.jitl.core.init.JSounds;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,6 +21,7 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
@@ -43,6 +46,16 @@ public class RockiteSmasherEntity extends Monster implements IJourneyBoss {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, null));
     }
 
+    @Override
+    protected SoundEvent getHurtSound(@NotNull DamageSource damageSourceIn) {
+        return JSounds.ROCKITE_SMASHER_HURT.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return JSounds.ROCKITE_SMASHER_DEATH.get();
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 100.0D)
@@ -60,6 +73,17 @@ public class RockiteSmasherEntity extends Monster implements IJourneyBoss {
         if (this.attackAnimationTick > 0) {
             --this.attackAnimationTick;
         }
+    }
+
+    @Override
+    public boolean hurt(@NotNull DamageSource source, float amount) {
+        if(source.getEntity() instanceof Player) {
+            Player player = (Player)source.getEntity();
+            if(player.getMainHandItem().getItem() instanceof PickaxeItem) {
+                return super.hurt(source, amount);
+            }
+        }
+        return false;
     }
 
     @Override
