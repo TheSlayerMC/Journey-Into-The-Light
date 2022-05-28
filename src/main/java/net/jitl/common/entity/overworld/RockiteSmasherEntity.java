@@ -47,6 +47,11 @@ public class RockiteSmasherEntity extends Monster implements IJourneyBoss {
     }
 
     @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return false;
+    }
+
+    @Override
     protected SoundEvent getHurtSound(@NotNull DamageSource damageSourceIn) {
         return JSounds.ROCKITE_SMASHER_HURT.get();
     }
