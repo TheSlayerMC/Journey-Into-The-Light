@@ -1,7 +1,9 @@
 package net.jitl.common.entity.overworld;
 
 import net.jitl.client.render.gui.BossBarRenderer;
+import net.jitl.common.entity.IDontAttackWhenPeaceful;
 import net.jitl.common.entity.base.IJourneyBoss;
+import net.jitl.common.entity.goal.AttackWhenDifficultGoal;
 import net.jitl.common.helper.JBossInfo;
 import net.jitl.common.helper.JMusic;
 import net.jitl.core.JITL;
@@ -11,9 +13,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -25,7 +29,7 @@ import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-public class RockiteSmasherEntity extends Monster implements IJourneyBoss {
+public class RockiteSmasherEntity extends Monster implements IJourneyBoss, IDontAttackWhenPeaceful {
 
     private int attackAnimationTick;
     private final ServerBossEvent BOSS_INFO = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.NOTCHED_6);
@@ -43,6 +47,7 @@ public class RockiteSmasherEntity extends Monster implements IJourneyBoss {
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.targetSelector.addGoal(1, new AttackWhenDifficultGoal(this, this));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, null));
     }
 
@@ -137,4 +142,8 @@ public class RockiteSmasherEntity extends Monster implements IJourneyBoss {
         JBossInfo.removeInfo(player, BOSS_INFO, this);
     }
 
+    @Override
+    public boolean wantsToAttack(LivingEntity target, LivingEntity living) {
+        return this.level.getDifficulty() != Difficulty.PEACEFUL;
+    }
 }
