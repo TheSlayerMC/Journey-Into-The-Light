@@ -10,11 +10,9 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EndPortalFrameBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.common.IPlantable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -24,8 +22,6 @@ public class VolcanicRockBlock extends Block {
     public VolcanicRockBlock(Properties properties) {
         super(properties);
     }
-
-    EndPortalFrameBlock
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, Random rand) {
@@ -38,6 +34,7 @@ public class VolcanicRockBlock extends Block {
                  level.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.75D, (double)pos.getZ() + 0.5D, (double)(rand.nextFloat() / 2.0F), 5.0E-5D, (double)(rand.nextFloat() / 2.0F));
             }
         }
+
         if(rand.nextInt(5) == 0) {
             for(int i = 0; i < rand.nextInt(1) + 1; ++i) {
                 level.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.75D, (double)pos.getZ() + 0.5D, (double)(rand.nextFloat() / 2.0F), 5.0E-5D, (double)(rand.nextFloat() / 2.0F));
