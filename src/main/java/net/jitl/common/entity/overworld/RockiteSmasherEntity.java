@@ -87,8 +87,7 @@ public class RockiteSmasherEntity extends Monster implements IJourneyBoss, IDont
 
     @Override
     public boolean hurt(@NotNull DamageSource source, float amount) {
-        if(source.getEntity() instanceof Player) {
-            Player player = (Player)source.getEntity();
+        if(source.getEntity() instanceof Player player) {
             if(player.getMainHandItem().getItem() instanceof PickaxeItem) {
                 return super.hurt(source, amount);
             }
@@ -104,7 +103,7 @@ public class RockiteSmasherEntity extends Monster implements IJourneyBoss, IDont
         float f1 = (int)damage > 0 ? damage / 2.0F + (float)this.random.nextInt((int)damage) : damage;
         boolean hurt = entity.hurt(DamageSource.mobAttack(this), f1);
         if(hurt) {
-            entity.setDeltaMovement(entity.getDeltaMovement().add(0.0D, (double)0.4F, 0.0D));
+            entity.setDeltaMovement(entity.getDeltaMovement().add(0.0D, 0.4F, 0.0D));
             this.doEnchantDamageEffects(this, entity);
         }
         this.playSound(SoundEvents.IRON_GOLEM_ATTACK, 1.0F, 1.0F);
