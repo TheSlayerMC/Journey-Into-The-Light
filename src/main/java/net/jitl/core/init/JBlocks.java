@@ -352,6 +352,7 @@ public class JBlocks {
     public static final Block CLAY_VASE = promise();
 
     public static final Block DREADIRON_BLOCK = promise();
+    public static final Block VOLCANIC_ROCK = promise();
 
 
 }

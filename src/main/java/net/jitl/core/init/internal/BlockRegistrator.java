@@ -489,6 +489,9 @@ public class BlockRegistrator {
         registerChestBlock("frozen_chest", "Frozen Chest", "frozen_plank", () -> new JChestBlock(JBlockProperties.WOOD_PROPS.create()));
         registerChestBlock("boil_chest", "Boiling Chest", "burned_bark_plank", () -> new JChestBlock(JBlockProperties.WOOD_PROPS.create()));
         registerChestBlock("nether_chest", "Nether Chest", "burned_bark_plank", () -> new JChestBlock(JBlockProperties.WOOD_PROPS.create()));
+
+        registerSpeciallyRenderedBlock("volcanic_rock", "Volcanic Rock", () -> new VolcanicRockBlock(JBlockProperties.VOLCANIC_BLOCK.create()));
+
     }
 
     public static void registerWoodType(String name, String enName, String saplingName, String saplingEnName, AbstractTreeGrower tree) {

@@ -277,6 +277,8 @@ public class JConfiguredFeatures {
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOILING_FIRE =
             REGISTER.register("boiling_fire", surfacePatchFeature(() -> Blocks.FIRE.defaultBlockState()));
 
+    public static final Promised<? extends ConfiguredFeature<?, ?>> VOLCANIC_ROCK =
+            REGISTER.register("volcanic_rock", surfacePatchFeature(() -> JBlocks.VOLCANIC_ROCK.defaultBlockState()));
 
     public static final Promised<? extends ConfiguredFeature<?, ?>> BOIL_SANDS_VEG =
             REGISTER.register("boil_sands_veg",

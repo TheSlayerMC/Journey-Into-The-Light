@@ -316,6 +316,13 @@ public class JBlockProperties {
             .strength(0.3F)
             .noOcclusion());
 
+    public static final BlockPropsFactory VOLCANIC_BLOCK = new BlockPropsFactory(() -> Properties.of
+                    (Material.STONE)
+            .sound(SoundType.STONE)
+            .noOcclusion()
+            .lightLevel((state) -> 10)
+            .strength(1.5F, 6.0F));
+
 
     private static boolean never(BlockState state, BlockGetter reader, BlockPos pos) {
         return false;
