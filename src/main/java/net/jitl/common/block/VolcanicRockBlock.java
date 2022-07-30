@@ -6,7 +6,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -50,19 +49,13 @@ public class VolcanicRockBlock extends Block {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        return canSupportCenter(level, pos.below(), Direction.UP);
-    }
-
-
-
-    @Override
-    public boolean isCollisionShapeFullBlock(BlockState state_, BlockGetter level_, BlockPos pos_) {
-        return super.isCollisionShapeFullBlock(state_, level_, pos_);
+        BlockPos blockpos = pos.below();
+        return level.getBlockState(blockpos).isFaceSturdy(level, blockpos, Direction.UP);
     }
 
     @Override
     public boolean canBeReplaced(BlockState state_, Fluid fluid_) {
-        return super.canBeReplaced(state_, fluid_);
+        return false;
     }
 
     @Override
