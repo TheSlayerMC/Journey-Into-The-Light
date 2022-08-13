@@ -21,6 +21,7 @@ object KBlockRegistrator {
     private val REGISTER = BlockRegister(JITL.MODID)
 
     @AutoRegistrable.Init
+    @JvmStatic
     private fun register() {
         REGISTER {
             "runic_connector" represents { XZFacedBlock(JBlockProperties.BRICK_PROPS.create()) } with {

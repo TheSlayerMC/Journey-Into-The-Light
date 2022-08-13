@@ -4,7 +4,7 @@ import ru.timeconqueror.timecore.api.client.resource.BlockModel
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResource
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation
 import ru.timeconqueror.timecore.api.registry.BlockRegister
-import ru.timeconqueror.timecore.api.util.json
+import ru.timeconqueror.timecore.api.util.json.*
 
 object ResourceFillers {
     /**
