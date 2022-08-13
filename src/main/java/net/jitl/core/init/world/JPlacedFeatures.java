@@ -245,6 +245,14 @@ public class JPlacedFeatures {
             .allowedInBiomes(BiomePredicate.BOIL_FIRE_BIOMES)
             .asPromise();
 
+    public static final Promised<? extends PlacedFeature> VOLCANIC_ROCK = REGISTER.register(
+                    "volcanic_rock",
+                    GenerationStep.Decoration.SURFACE_STRUCTURES,
+                    () -> JConfiguredFeatures.VOLCANIC_ROCK.get()
+                            .placed(patch(1, 2, PlacementUtils.HEIGHTMAP_WORLD_SURFACE)))
+            .allowedInBiomes(BiomePredicate.BOIL_FIRE_BIOMES)
+            .asPromise();
+
     public static final Promised<? extends PlacedFeature> BOIL_SANDS_VEG = REGISTER.register(
                     "boil_sands_veg",
                     GenerationStep.Decoration.VEGETAL_DECORATION,
@@ -307,14 +315,6 @@ public class JPlacedFeatures {
                     () -> JConfiguredFeatures.SMALL_BURNED_TREE.get()
                             .placed(treePlacement(PlacementUtils.countExtra(20, 0.1F, 1), JBlocks.BURNED_SAPLING)))
             .allowedInBiomes(BiomePredicate.CHARRED_FIELDS)
-            .asPromise();
-
-    public static final Promised<? extends PlacedFeature> VOLCANIC_ROCK = REGISTER.register(
-                    "boiling_fire",
-                    GenerationStep.Decoration.VEGETAL_DECORATION,
-                    () -> JConfiguredFeatures.VOLCANIC_ROCK.get()
-                            .placed(surfaceFloorPatch(1, 2, JBlocks.HOT_GROUND, JBlocks.SCORCHED_RUBBLE, JBlocks.CHARRED_GRASS, JBlocks.VOLCANIC_SAND)))
-            .allowedInBiomes(BiomePredicate.BOIL_FIRE_BIOMES)
             .asPromise();
 
     public static final Promised<? extends PlacedFeature> LARGE_FROZEN_TREE = REGISTER.register(
