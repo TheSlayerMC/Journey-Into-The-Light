@@ -31,7 +31,7 @@ public class RockiteDungeonStructure extends StructureFeature<NoneFeatureConfigu
 
     static final Map<ResourceLocation, BlockPos> PIVOTS = ImmutableMap.of(DUNGEON, new BlockPos(15, 15, 15));
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
-            DUNGEON, new BlockPos(0, -1, 0)
+            DUNGEON, new BlockPos(0, 0, 0)
     );
 
     public RockiteDungeonStructure(Codec<NoneFeatureConfiguration> configCodec_) {
@@ -39,17 +39,15 @@ public class RockiteDungeonStructure extends StructureFeature<NoneFeatureConfigu
     }
 
     private static void generatePieces(StructurePiecesBuilder collector_, PieceGenerator.Context<NoneFeatureConfiguration> context_) {
-        BlockPos blockPos = context_.chunkPos().getWorldPosition();
-        int landHeight = context_.chunkGenerator().getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context_.heightAccessor());
-        landHeight -= 7;
-        BlockPos blockpos = new BlockPos(context_.chunkPos().getMinBlockX(), landHeight - 1, context_.chunkPos().getMinBlockZ());
+        BlockPos genPos = new BlockPos(context_.chunkPos().getMinBlockX(), -30, context_.chunkPos().getMinBlockZ());
         Rotation rotation = Rotation.getRandom(context_.random());
-        RockiteDungeonStructure.addPieces(context_.structureManager(), blockpos, rotation, collector_, context_.random());
+        if(genPos.getY() < 0)
+            RockiteDungeonStructure.addPieces(context_.structureManager(), genPos, rotation, collector_, context_.random());
     }
 
     @Override
     public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.SURFACE_STRUCTURES;
+        return GenerationStep.Decoration.UNDERGROUND_STRUCTURES;
     }
 
     public static void addPieces(StructureManager structureManager, BlockPos pos, Rotation rotation, StructurePieceAccessor pieces, Random random) {

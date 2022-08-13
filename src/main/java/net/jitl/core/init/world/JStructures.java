@@ -10,6 +10,7 @@ import net.jitl.common.world.gen.structures.nether.NetherTowerStructure;
 import net.jitl.common.world.gen.structures.overworld.AncientRuinsStructure;
 import net.jitl.common.world.gen.structures.overworld.IllagerBunkerStructure;
 import net.jitl.common.world.gen.structures.overworld.MageHouseStructure;
+import net.jitl.common.world.gen.structures.overworld.RockiteDungeonStructure;
 import net.jitl.core.JITL;
 import net.minecraft.data.worldgen.PlainVillagePools;
 import net.minecraft.resources.ResourceLocation;
@@ -74,12 +75,11 @@ public class JStructures {
                     .asHolder();
 
 
-    //Underground FIXME
-   /* public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, RockiteDungeonStructure> ROCKITE_DUNGEON =
+   public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, RockiteDungeonStructure> ROCKITE_DUNGEON =
             REGISTER.register("rockite_dungeon", RockiteDungeonStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
                     .allowedInDimensions(serverWorld -> serverWorld.dimension() == Level.OVERWORLD)
                     .tagged(StructureTags.Tag.DISABLE_BREAKING_BY_LAKES)
-                    .asHolder();*/
+                    .asHolder();
 
     public static final StructureFeatureRegister.StructureHolder<NoneFeatureConfiguration, GolditeWindmillStructure> GOLDITE_WINDMILL =
             REGISTER.register("goldite_windmill", GolditeWindmillStructure::new, StructureFeatureRegister.TimeStructureSeparationSettings.create(20, 10), NoneFeatureConfiguration.CODEC, NoneFeatureConfiguration.NONE)
