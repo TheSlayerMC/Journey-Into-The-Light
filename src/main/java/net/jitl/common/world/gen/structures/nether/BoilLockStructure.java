@@ -5,11 +5,8 @@ import com.mojang.serialization.Codec;
 import net.jitl.core.JITL;
 import net.jitl.core.init.world.JStructurePieces;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.QuartPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.EmptyBlockGetter;
 import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -17,11 +14,9 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
-import net.minecraft.world.level.levelgen.WorldGenerationContext;
-import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.RangeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.StructurePieceAccessor;
@@ -29,25 +24,25 @@ import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.Random;
 
-public class BoilLockStructure extends StructureFeature<RangeConfiguration> {
+public class BoilLockStructure extends StructureFeature<NoneFeatureConfiguration> {
 
-    public static final ResourceLocation LOCK = JITL.rl("boil/boil_lock");
+    public static final ResourceLocation LOCK = JITL.rl("nether/boil_lock");
 
     static final Map<ResourceLocation, BlockPos> PIVOTS = ImmutableMap.of(LOCK, new BlockPos(10, 15, 10));
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
             LOCK, new BlockPos(0, -1, 0)
     );
 
-    public BoilLockStructure(Codec<RangeConfiguration> configCodec_) {
-        super(configCodec_, BoilLockStructure::generatePieces);
+    public BoilLockStructure(Codec<NoneFeatureConfiguration> configCodec_) {
+        super(configCodec_, PieceGeneratorSupplier.simple(PieceGeneratorSupplier.checkForBiomeOnTop(Heightmap.Types.WORLD_SURFACE_WG), BoilLockStructure::generatePieces));
     }
 
     @Override
@@ -55,46 +50,23 @@ public class BoilLockStructure extends StructureFeature<RangeConfiguration> {
         return GenerationStep.Decoration.UNDERGROUND_DECORATION;
     }
 
-    private static @NotNull Optional<PieceGenerator<RangeConfiguration>> generatePieces(PieceGeneratorSupplier.Context<RangeConfiguration> context) {
-        WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0L));
+    private static void generatePieces(StructurePiecesBuilder collector_, PieceGenerator.Context<NoneFeatureConfiguration> context_) {
+        BlockPos genPos = new BlockPos(context_.chunkPos().getMinBlockX(), 33, context_.chunkPos().getMinBlockZ());
+        Rotation rotation = Rotation.getRandom(context_.random());
+        NoiseColumn noisecolumn = context_.chunkGenerator().getBaseColumn(genPos.getX(), genPos.getZ(), context_.heightAccessor());
 
-        random.setLargeFeatureSeed(context.seed(), context.chunkPos().x, context.chunkPos().z);
-
-        int i = context.chunkPos().getMinBlockX() + random.nextInt(16);
-        int j = context.chunkPos().getMinBlockZ() + random.nextInt(16);
-        int k = context.chunkGenerator().getSeaLevel();
-
-        Rotation rotation = Rotation.getRandom(random);
-
-        WorldGenerationContext worldgenerationcontext = new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor());
-        int l = (context.config()).height.sample(random, worldgenerationcontext);
-
-        NoiseColumn noisecolumn = context.chunkGenerator().getBaseColumn(i, j, context.heightAccessor());
-        BlockPos.MutableBlockPos mbp = new BlockPos.MutableBlockPos(i, l, j);
-
-        while (l > k) {
-            BlockState blockstate = noisecolumn.getBlock(l);
-            l--;
-            BlockState blockstate1 = noisecolumn.getBlock(l);
-            if (blockstate.isAir() && (blockstate1.is(Blocks.SOUL_SAND) || (blockstate1.is(Blocks.NETHERRACK) || blockstate1.isFaceSturdy(EmptyBlockGetter.INSTANCE, mbp.setY(l), Direction.UP)))) {
-                break;
-            }
-        }
-        if (l <= k) {
-            return Optional.empty();
-        } else if (!context.validBiome().test(context.chunkGenerator().getNoiseBiome(QuartPos.fromBlock(i), QuartPos.fromBlock(l), QuartPos.fromBlock(j)))) {
-            return Optional.empty();
-        } else {
-            BlockPos blockpos = new BlockPos(i, l, j);
-            return Optional.of((structurePiecesBuilder_, context1_) -> BoilLockStructure.addPieces(context.structureManager(), blockpos, rotation, structurePiecesBuilder_, random));
+        BlockState state = noisecolumn.getBlock(genPos.getY());
+        BlockState stateAbove = noisecolumn.getBlock(genPos.getY() + 1);
+        if(state.getBlock() == Blocks.NETHERRACK && stateAbove.getBlock() == Blocks.AIR) {
+            BoilLockStructure.addPieces(context_.structureManager(), genPos, rotation, collector_);
         }
     }
 
-    public static void addPieces(StructureManager structureManager, BlockPos pos, Rotation rotation, StructurePieceAccessor pieces, Random random) {
-        pieces.addPiece(createPiece(structureManager, LOCK, pos, rotation, true));
+    public static void addPieces(StructureManager structureManager, BlockPos pos, Rotation rotation, StructurePieceAccessor pieces) {
+        pieces.addPiece(createPiece(structureManager, LOCK, pos, rotation));
     }
 
-    public static StructurePiece createPiece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos, Rotation rotation, boolean applyGenerationNoise) {
+    public static StructurePiece createPiece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos, Rotation rotation) {
         return new BoilLockStructure.Piece(templateManager, templateLocation, pos, rotation, 0);
     }
 

@@ -53,7 +53,6 @@ public class NetherTowerStructure extends StructureFeature<NoneFeatureConfigurat
         BlockState stateAbove = noisecolumn.getBlock(genPos.getY() + 1);
         if(state.getBlock() == Blocks.NETHERRACK && stateAbove.getBlock() == Blocks.AIR) {
             NetherTowerStructure.addPieces(context_.structureManager(), genPos, rotation, collector_);
-            System.out.println("Gen: " + genPos);
         }
     }
 
