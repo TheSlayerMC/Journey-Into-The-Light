@@ -3,10 +3,7 @@ package net.jitl.client.render
 import net.jitl.common.block.base.XZFacedBlock
 import ru.timeconqueror.timecore.api.client.resource.BlockStateResource
 import ru.timeconqueror.timecore.api.client.resource.location.BlockModelLocation
-import ru.timeconqueror.timecore.api.util.json
-import ru.timeconqueror.timecore.api.util.uvlock
-import ru.timeconqueror.timecore.api.util.x
-import ru.timeconqueror.timecore.api.util.y
+import ru.timeconqueror.timecore.api.util.json.*
 
 object JBlockStateResources {
     /**
