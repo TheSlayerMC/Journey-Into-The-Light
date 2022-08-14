@@ -7,9 +7,12 @@ import net.jitl.core.init.world.JStructurePieces;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
@@ -30,11 +33,11 @@ import java.util.Random;
 
 public class NetherTowerStructure extends StructureFeature<NoneFeatureConfiguration> {
 
-    public static final ResourceLocation TOWER = JITL.rl("boil/nether_tower");
+    public static final ResourceLocation DUNGEON = JITL.rl("nether/nether_tower");
 
-    static final Map<ResourceLocation, BlockPos> PIVOTS = ImmutableMap.of(TOWER, new BlockPos(10, 15, 10));
+    static final Map<ResourceLocation, BlockPos> PIVOTS = ImmutableMap.of(DUNGEON, new BlockPos(15, 15, 15));
     private static final Map<ResourceLocation, BlockPos> OFFSETS = ImmutableMap.of(
-            TOWER, new BlockPos(0, -1, 0)
+            DUNGEON, new BlockPos(0, 0, 0)
     );
 
     public NetherTowerStructure(Codec<NoneFeatureConfiguration> configCodec_) {
@@ -42,11 +45,16 @@ public class NetherTowerStructure extends StructureFeature<NoneFeatureConfigurat
     }
 
     private static void generatePieces(StructurePiecesBuilder collector_, PieceGenerator.Context<NoneFeatureConfiguration> context_) {
-        BlockPos blockPos = context_.chunkPos().getWorldPosition();
-        int landHeight = context_.chunkGenerator().getFirstOccupiedHeight(blockPos.getX(), blockPos.getZ(), Heightmap.Types.WORLD_SURFACE_WG, context_.heightAccessor());
-        BlockPos blockpos = new BlockPos(context_.chunkPos().getMinBlockX(), landHeight - 1, context_.chunkPos().getMinBlockZ());
+        BlockPos genPos = new BlockPos(context_.chunkPos().getMinBlockX(), 33, context_.chunkPos().getMinBlockZ());
         Rotation rotation = Rotation.getRandom(context_.random());
-        NetherTowerStructure.addPieces(context_.structureManager(), blockpos, rotation, collector_, context_.random());
+        NoiseColumn noisecolumn = context_.chunkGenerator().getBaseColumn(genPos.getX(), genPos.getZ(), context_.heightAccessor());
+
+        BlockState state = noisecolumn.getBlock(genPos.getY());
+        BlockState stateAbove = noisecolumn.getBlock(genPos.getY() + 1);
+        if(state.getBlock() == Blocks.NETHERRACK && stateAbove.getBlock() == Blocks.AIR) {
+            NetherTowerStructure.addPieces(context_.structureManager(), genPos, rotation, collector_);
+            System.out.println("Gen: " + genPos);
+        }
     }
 
     @Override
@@ -54,11 +62,11 @@ public class NetherTowerStructure extends StructureFeature<NoneFeatureConfigurat
         return GenerationStep.Decoration.UNDERGROUND_STRUCTURES;
     }
 
-    public static void addPieces(StructureManager structureManager, BlockPos pos, Rotation rotation, StructurePieceAccessor pieces, Random random) {
-        pieces.addPiece(createPiece(structureManager, TOWER, pos, rotation, true));
+    public static void addPieces(StructureManager structureManager, BlockPos pos, Rotation rotation, StructurePieceAccessor pieces) {
+        pieces.addPiece(createPiece(structureManager, DUNGEON, pos, rotation));
     }
 
-    public static StructurePiece createPiece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos, Rotation rotation, boolean applyGenerationNoise) {
+    public static StructurePiece createPiece(StructureManager templateManager, ResourceLocation templateLocation, BlockPos pos, Rotation rotation) {
         return new NetherTowerStructure.Piece(templateManager, templateLocation, pos, rotation, 0);
     }
 

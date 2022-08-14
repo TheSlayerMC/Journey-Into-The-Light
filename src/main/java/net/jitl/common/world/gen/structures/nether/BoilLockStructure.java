@@ -31,6 +31,7 @@ import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplie
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 import java.util.Optional;
@@ -50,11 +51,11 @@ public class BoilLockStructure extends StructureFeature<RangeConfiguration> {
     }
 
     @Override
-    public GenerationStep.Decoration step() {
+    public GenerationStep.@NotNull Decoration step() {
         return GenerationStep.Decoration.UNDERGROUND_DECORATION;
     }
 
-    private static Optional<PieceGenerator<RangeConfiguration>> generatePieces(PieceGeneratorSupplier.Context<RangeConfiguration> context) {
+    private static @NotNull Optional<PieceGenerator<RangeConfiguration>> generatePieces(PieceGeneratorSupplier.Context<RangeConfiguration> context) {
         WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0L));
 
         random.setLargeFeatureSeed(context.seed(), context.chunkPos().x, context.chunkPos().z);
